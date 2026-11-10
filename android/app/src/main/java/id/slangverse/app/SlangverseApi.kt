@@ -1,0 +1,130 @@
+package id.slangverse.app
+
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
+import java.nio.charset.StandardCharsets
+
+/**
+ * Starter API client. This is for the MOCK backend, not a production authenticated API.
+ * HTTP is allowed only by the debug Android manifest. Keep API credentials server-side.
+ */
+data class ApiReply(val handle: String, val text: String)
+data class ApiPost(
+    val displayName: String,
+    val handle: String,
+    val hashtag: String,
+    val content: String,
+    val comments: List<ApiReply>
+)
+data class ApiQuestion(
+    val id: String,
+    val slang: String,
+    val difficulty: String,
+    val contextId: String,
+    val post: ApiPost,
+    val question: String,
+    val options: List<String>
+)
+data class ApiSession(val id: String, val source: String, val questions: List<ApiQuestion>)
+data class ApiGrade(
+    val correct: Boolean,
+    val correctIndex: Int,
+    val explanation: String,
+    val xpEarned: Int,
+    val answeredCount: Int,
+    val totalCount: Int,
+    val totalXp: Int
+)
+
+class ApiException(message: String) : Exception(message)
+
+class SlangverseApi(rawBaseUrl: String) {
+    private val baseUrl = rawBaseUrl.trim().trimEnd('/')
+
+    init {
+        require(baseUrl.startsWith("http://") || baseUrl.startsWith("https://")) { "API URL must begin with http:// or https://" }
+    }
+
+    suspend fun health(): String = withContext(Dispatchers.IO) {
+        request("GET", "/api/health").getString("mode")
+    }
+
+    suspend fun createSession(): ApiSession = withContext(Dispatchers.IO) {
+        val response = request("POST", "/api/sessions", "{}")
+        val data = response.getJSONArray("questions")
+        val questions = (0 until data.length()).map { index ->
+            val q = data.getJSONObject(index)
+            val post = q.getJSONObject("post")
+            val replies = post.getJSONArray("comments").objects().map { c ->
+                ApiReply(handle = c.getString("handle"), text = c.getString("text"))
+            }
+            ApiQuestion(
+                id = q.getString("id"),
+                slang = q.getString("slang"),
+                difficulty = q.getString("difficulty"),
+                contextId = q.getString("contextId"),
+                post = ApiPost(
+                    displayName = post.getString("displayName"),
+                    handle = post.getString("handle"),
+                    hashtag = post.getString("hashtag"),
+                    content = post.getString("content"),
+                    comments = replies
+                ),
+                question = q.getString("question"),
+                options = q.getJSONArray("options").strings()
+            )
+        }
+        if (questions.isEmpty()) throw ApiException("Server returned no questions")
+        ApiSession(response.getString("id"), response.optString("source", "unknown"), questions)
+    }
+
+    suspend fun submitAnswer(sessionId: String, questionId: String, selectedIndex: Int): ApiGrade = withContext(Dispatchers.IO) {
+        val payload = JSONObject().put("questionId", questionId).put("selectedIndex", selectedIndex)
+        val response = request("POST", "/api/sessions/$sessionId/answers", payload.toString())
+        ApiGrade(
+            correct = response.getBoolean("correct"),
+            correctIndex = response.getInt("correctIndex"),
+            explanation = response.getString("explanation"),
+            xpEarned = response.getInt("xpEarned"),
+            answeredCount = response.getInt("answeredCount"),
+            totalCount = response.getInt("totalCount"),
+            totalXp = response.getInt("totalXp")
+        )
+    }
+
+    private fun request(method: String, path: String, json: String? = null): JSONObject {
+        val connection = (URL(baseUrl + path).openConnection() as HttpURLConnection)
+        try {
+            connection.requestMethod = method
+            connection.connectTimeout = 8_000
+            connection.readTimeout = 15_000
+            connection.setRequestProperty("Accept", "application/json")
+            if (json != null) {
+                connection.doOutput = true
+                connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
+                connection.outputStream.use { it.write(json.toByteArray(StandardCharsets.UTF_8)) }
+            }
+            val status = connection.responseCode
+            val stream = if (status in 200..299) connection.inputStream else connection.errorStream
+            val text = stream?.bufferedReader(StandardCharsets.UTF_8)?.use { it.readText() }.orEmpty()
+            val body = try { JSONObject(text) } catch (_: Exception) { throw ApiException("Invalid JSON from server (HTTP $status)") }
+            if (status !in 200..299) throw ApiException(body.optString("error", "HTTP $status"))
+            return body
+        } catch (e: java.net.SocketTimeoutException) {
+            throw ApiException("Connection timed out. Check your backend address.")
+        } catch (e: java.net.ConnectException) {
+            throw ApiException("Cannot reach the backend. Start Node.js server and check host/IP.")
+        } catch (e: java.net.UnknownHostException) {
+            throw ApiException("Backend hostname cannot be resolved.")
+        } finally {
+            connection.disconnect()
+        }
+    }
+}
+
+private fun JSONArray.objects(): List<JSONObject> = (0 until length()).map { getJSONObject(it) }
+private fun JSONArray.strings(): List<String> = (0 until length()).map { getString(it) }

@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.Slangverse" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#181326</item>
+        <item name="android:navigationBarColor">#211B34</item>
+    </style>
+</resources>

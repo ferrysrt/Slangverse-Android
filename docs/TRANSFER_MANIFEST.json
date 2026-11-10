@@ -1,0 +1,32 @@
+{
+  "project": "Slangverse-Android-Direct",
+  "version": "2.2.0-direct",
+  "projectOrigin": "Slangverse V2.1 MagicPath visual design + earlier handoff starter",
+  "magicpath": {
+    "projectUrl": "https://www.magicpath.ai/files/470964531963789312",
+    "prototypeUrl": "https://designs.magicpath.ai/v1/gladly-water-6771",
+    "componentId": "470964549080743936",
+    "revisionId": "470973154093850624",
+    "exactReactSourceBundled": false
+  },
+  "android": {
+    "framework": "Kotlin + Jetpack Compose",
+    "screensFromStarter": 8,
+    "addedApiTraining": true,
+    "builtIntoApk": false,
+    "gradleWrapperJarBundled": false
+  },
+  "backend": {
+    "runtime": "Node.js 20+",
+    "defaultProvider": "mock",
+    "optionalProviderAdapter": "openai-compatible chat completions",
+    "testedWithRealLlm": false,
+    "unitAndHttpTests": 17,
+    "contextIdsInMockPackage": 10
+  },
+  "repository": {
+    "target": "ferrysrt/Slangverse-Android",
+    "createdOrPushedHere": false,
+    "legacyRepositoryUnmodified": "ferrysrt/slangfeed"
+  }
+}

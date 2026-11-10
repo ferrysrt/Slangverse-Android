@@ -1,0 +1,206 @@
+package id.slangverse.app
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
+
+private val Night = Color(0xFF181326)
+private val PanelColor = Color(0xFF2C2540)
+private val PanelRaised = Color(0xFF362B4C)
+private val MintGreen = Color(0xFF74E5BF)
+private val CoralPink = Color(0xFFFF7F87)
+private val Secondary = Color(0xFFBDB2CF)
+private val PrimaryText = Color(0xFFF9F5FF)
+
+/**
+ * True HTTP game loop against Slangverse MOCK backend.
+ * Never calculate the right answer in the Android app; grades come from the server.
+ * Parent composable provides vertical scrolling.
+ */
+@Composable
+fun RemoteTrainingPanel() {
+    val scope = rememberCoroutineScope()
+    var serverUrl by rememberSaveable { mutableStateOf("http://10.0.2.2:8787") }
+    var session by remember { mutableStateOf<ApiSession?>(null) }
+    var currentIndex by remember { mutableIntStateOf(0) }
+    var selectedIndex by remember { mutableIntStateOf(-1) }
+    var result by remember { mutableStateOf<ApiGrade?>(null) }
+    var loading by remember { mutableStateOf(false) }
+    var error by remember { mutableStateOf<String?>(null) }
+    var totalXp by remember { mutableIntStateOf(0) }
+    var correctCount by remember { mutableIntStateOf(0) }
+    var combo by remember { mutableIntStateOf(0) }
+    var highestCombo by remember { mutableIntStateOf(0) }
+    var finished by remember { mutableStateOf(false) }
+    var expandedReplies by remember { mutableStateOf(false) }
+
+    @Composable fun Action(text: String, enabled: Boolean = true, onClick: () -> Unit) {
+        Button(
+            onClick = onClick,
+            enabled = enabled,
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = MintGreen, contentColor = Night),
+            shape = RoundedCornerShape(14.dp)
+        ) { Text(text, fontWeight = FontWeight.Bold) }
+    }
+    @Composable fun Sheet(content: @Composable ColumnScope.() -> Unit) {
+        Column(
+            Modifier.fillMaxWidth().background(PanelColor, RoundedCornerShape(18.dp)).padding(15.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+            content = content
+        )
+    }
+
+    if (session == null) {
+        Sheet {
+            Text("Connect to the backend", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Text("Real HTTP requests · mock dataset · server-side grading", color = MintGreen, fontSize = 11.sp)
+            Text("Emulator address: http://10.0.2.2:8787", color = Secondary, fontSize = 12.sp)
+            OutlinedTextField(
+                value = serverUrl,
+                onValueChange = { serverUrl = it },
+                label = { Text("Backend base URL") },
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MintGreen, unfocusedBorderColor = Secondary,
+                    focusedTextColor = PrimaryText, unfocusedTextColor = PrimaryText,
+                    focusedLabelColor = MintGreen, unfocusedLabelColor = Secondary
+                )
+            )
+            Text("On a physical phone, use your laptop's Wi-Fi IP and start the mock API with HOST=0.0.0.0. Only use HTTP on a trusted local network.", color = Secondary, fontSize = 12.sp)
+            Action("START 10-CONTEXT SESSION", enabled = !loading) {
+                loading = true; error = null
+                scope.launch {
+                    try {
+                        val created = SlangverseApi(serverUrl).createSession()
+                        session = created
+                        currentIndex = 0; selectedIndex = -1; result = null; finished = false
+                        correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
+                    } catch (e: Exception) { error = e.message ?: "Connection failed" }
+                    finally { loading = false }
+                }
+            }
+        }
+        if (loading) LinearProgressIndicator(Modifier.fillMaxWidth(), color = MintGreen)
+        if (error != null) Text(error.orEmpty(), color = CoralPink, fontSize = 12.sp)
+        return
+    }
+
+    val activeSession = session ?: return
+    val current = activeSession.questions.getOrNull(currentIndex)
+    if (finished || current == null) {
+        Sheet {
+            Text("🏆 SESSION COMPLETE", fontSize = 24.sp, color = MintGreen, fontWeight = FontWeight.Bold)
+            Text("${activeSession.questions.size} contexts of '${activeSession.questions.first().slang}'", color = Secondary)
+            Text("Correct: $correctCount / ${activeSession.questions.size}", fontWeight = FontWeight.Bold)
+            Text("Total earned XP: $totalXp", fontSize = 21.sp, color = MintGreen)
+            Text("Best combo: $highestCombo", color = Secondary)
+            Text("Data source: ${activeSession.source.uppercase()} · This is not an LLM evaluation result.", color = Secondary, fontSize = 11.sp)
+            Action("START NEW SESSION") { session = null; finished = false; error = null }
+        }
+        return
+    }
+
+    val isThreadMode = currentIndex % 2 == 1
+    Text("QUESTION SOURCE: ${activeSession.source.uppercase()} · answer checked by server", color = Secondary, fontSize = 10.sp)
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        Text("${if (isThreadMode) "REPLY BATTLE" else "DECODE POST"} · ${current.difficulty.uppercase()}", color = MintGreen, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+        Text("${currentIndex + 1} / ${activeSession.questions.size}", color = Secondary)
+    }
+    LinearProgressIndicator(
+        progress = { currentIndex.toFloat() / activeSession.questions.size },
+        color = MintGreen,
+        modifier = Modifier.fillMaxWidth()
+    )
+    Text("🔥 COMBO ×$combo     +$totalXp XP", color = CoralPink, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+    Sheet {
+        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Box(
+                Modifier.size(43.dp).background(PanelRaised, CircleShape),
+                contentAlignment = Alignment.Center
+            ) { Text(current.post.displayName.take(1), fontSize = 20.sp, fontWeight = FontWeight.Bold) }
+            Column(Modifier.weight(1f)) {
+                Text(current.post.displayName, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                Text(current.post.handle + " · Fictional account", color = Secondary, fontSize = 11.sp)
+            }
+            Text("⋯", fontSize = 21.sp, color = Secondary)
+        }
+        Text(current.post.content, color = PrimaryText, fontSize = 16.sp, lineHeight = 23.sp)
+        Text(current.post.hashtag + " · Fictional community", color = MintGreen, fontSize = 11.sp)
+        HorizontalDivider(color = Color(0xFF514469))
+        Text("♡   Reply   ↻   Share   ♧", color = Secondary, fontSize = 12.sp)
+        HorizontalDivider(color = Color(0xFF514469))
+        Text("Replies · contextual clues", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+        current.post.comments.take(if (expandedReplies) 3 else 1).forEach { comment ->
+            Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
+                Box(
+                    Modifier.size(28.dp).background(PanelRaised, CircleShape),
+                    contentAlignment = Alignment.Center
+                ) { Text(comment.handle.trimStart('@').take(1).uppercase(), fontSize = 11.sp) }
+                Column {
+                    Text(comment.handle, color = MintGreen, fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                    Text(comment.text, color = PrimaryText, fontSize = 12.sp, lineHeight = 18.sp)
+                }
+            }
+        }
+        TextButton(onClick = { expandedReplies = !expandedReplies }) {
+            Text(if (expandedReplies) "Hide extra replies ↑" else "Need a clue? View more replies ↓", color = MintGreen, fontSize = 12.sp)
+        }
+        Text("Hints are indirect. Content is hand-written mock data.", color = Secondary, fontSize = 10.sp)
+    }
+    Text(current.question, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+    current.options.forEachIndexed { index, option ->
+        val isSelected = selectedIndex == index
+        val isCorrect = result?.correctIndex == index
+        Surface(
+            modifier = Modifier.fillMaxWidth().clickable(enabled = result == null && !loading) { selectedIndex = index },
+            color = if (isCorrect) MintGreen else if (isSelected) PanelRaised else PanelColor,
+            border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) MintGreen else PanelRaised),
+            shape = RoundedCornerShape(14.dp)
+        ) {
+            Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text("${'A' + index}    $option", color = if (isCorrect) Night else PrimaryText, fontSize = 13.sp)
+            }
+        }
+    }
+    if (result != null) {
+        Sheet {
+            Text(if (result!!.correct) "✓ Correct! +${result!!.xpEarned} XP" else "Not quite. +${result!!.xpEarned} XP", color = MintGreen, fontWeight = FontWeight.Bold)
+            Text(result!!.explanation, color = PrimaryText, fontSize = 12.sp)
+            Text("Scored by MOCK backend; not evidence of semantic accuracy.", color = Secondary, fontSize = 10.sp)
+        }
+        Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT POST →") {
+            if (currentIndex == activeSession.questions.lastIndex) finished = true
+            else { currentIndex += 1; selectedIndex = -1; result = null; expandedReplies = false; error = null }
+        }
+    } else {
+        Action(if (loading) "SUBMITTING…" else "SUBMIT ANSWER", enabled = selectedIndex >= 0 && !loading) {
+            loading = true; error = null
+            scope.launch {
+                try {
+                    val response = SlangverseApi(serverUrl).submitAnswer(activeSession.id, current.id, selectedIndex)
+                    result = response
+                    totalXp = response.totalXp
+                    if (response.correct) {correctCount += 1; combo += 1; highestCombo = maxOf(highestCombo, combo)} else combo = 0
+                } catch (e: Exception) { error = e.message ?: "Submission failed" }
+                finally { loading = false }
+            }
+        }
+    }
+    if (loading) LinearProgressIndicator(Modifier.fillMaxWidth(), color = MintGreen)
+    if (error != null) Text(error.orEmpty(), color = CoralPink, fontSize = 12.sp)
+}

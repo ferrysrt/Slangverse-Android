@@ -1,0 +1,50 @@
+import test, {after} from 'node:test';
+import assert from 'node:assert/strict';
+
+process.env.SLANGVERSE_NO_LISTEN = '1';
+const {default: server} = await import('../src/server.mjs');
+await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const root = `http://127.0.0.1:${server.address().port}`;
+after(()=>new Promise(resolve=>server.close(resolve)));
+
+async function json(method,path,body){
+ const res=await fetch(root+path,{method,headers:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+ return {status:res.status,data:await res.json()};
+}
+
+test('health and curated trending mark mock data honestly',async()=>{
+ const health=await json('GET','/api/health');assert.equal(health.data.ok,true);assert.equal(health.data.mode,'mock');assert.equal(health.data.llmConnected,false);assert.equal(health.data.providerConfigured,false);
+ const trending=await json('GET','/api/trending');assert.equal(trending.data.source,'curated');assert.equal(trending.data.trending.length,3);
+});
+test('complete HTTP session creation, grading, progress and duplicate protection',async()=>{
+ const {status,data}=await json('POST','/api/sessions',{});
+ assert.equal(status,201);assert.equal(data.source,'mock');assert.equal(data.generationLatencyMs,null);
+ assert.equal(data.questions.length,10);const first=data.questions[0];
+ assert.ok(first.post.comments.length>=1);
+ assert.equal('correctIndex' in first,false);assert.equal('targetMeaning' in first,false);
+ assert.equal('explanation' in first,false);
+ const progress0=await json('GET',`/api/sessions/${data.id}`);
+ assert.equal(progress0.data.answeredCount,0);
+ const grade=await json('POST',`/api/sessions/${data.id}/answers`,{questionId:first.id,selectedIndex:1});
+ assert.equal(grade.data.correct,true);assert.equal(grade.data.totalXp,80);
+ const progress1=await json('GET',`/api/sessions/${data.id}`);
+ assert.equal(progress1.data.answeredCount,1);assert.equal(progress1.data.correctCount,1);
+ const duplicate=await json('POST',`/api/sessions/${data.id}/answers`,{questionId:first.id,selectedIndex:1});
+ assert.equal(duplicate.status,409);
+ const missing=await json('GET','/api/sessions/00000000-0000-0000-0000-000000000000');
+ assert.equal(missing.status,404);
+});
+test('validation errors are HTTP errors, not crashes',async()=>{
+ const {data}=await json('POST','/api/sessions',{});
+ const wrong=await json('POST',`/api/sessions/${data.id}/answers`,{questionId:data.questions[0].id,selectedIndex:7});
+ assert.equal(wrong.status,400);assert.equal(wrong.data.error,'invalid-option');
+ const missing=await json('POST',`/api/sessions/${data.id}/answers`,{questionId:'missing',selectedIndex:0});
+ assert.equal(missing.status,404);
+ const url=root+`/api/sessions/${data.id}/answers`;
+ const malformed=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:'{invalid'});
+ assert.equal(malformed.status,400);
+});
+test('leaderboard never pretends simulated questions are ranked competitively',async()=>{
+ const {data}=await json('GET','/api/leaderboard');assert.equal(data.competitive,false);
+ assert.equal(data.source,'demo');assert.deepEqual(data.players,[]);
+});

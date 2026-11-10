@@ -1,0 +1,21 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+local.properties
+*.keystore
+*.jks
+*.key
+# Android build
+.gradle/
+**/build/
+.idea/
+*.iml
+/captures/
+# Node
+node_modules/
+coverage/
+.npm/
+# OS
+.DS_Store
+Thumbs.db
