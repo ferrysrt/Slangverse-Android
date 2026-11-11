@@ -29,7 +29,13 @@ data class ApiQuestion(
     val question: String,
     val options: List<String>
 )
-data class ApiSession(val id: String, val source: String, val questions: List<ApiQuestion>)
+data class ApiSense(val senseId: String, val term: String, val reviewStatus: String)
+data class ApiCatalog(val datasetVersion: String, val candidateCount: Int, val senses: List<ApiSense>)
+data class ApiSession(
+ val id: String, val source: String, val questions: List<ApiQuestion>,
+ val senseId: String = "cooked-trouble", val referenceStatus: String = "provisional",
+ val catalogVersion: String = ""
+)
 data class ApiGrade(
     val correct: Boolean,
     val correctIndex: Int,
@@ -53,8 +59,22 @@ class SlangverseApi(rawBaseUrl: String) {
         request("GET", "/api/health").getString("mode")
     }
 
-    suspend fun createSession(): ApiSession = withContext(Dispatchers.IO) {
-        val response = request("POST", "/api/sessions", "{}")
+    suspend fun fetchCatalog(): ApiCatalog = withContext(Dispatchers.IO) {
+        val response = request("GET", "/api/catalog")
+        val a = response.getJSONArray("senses")
+        ApiCatalog(
+            datasetVersion = response.optString("datasetVersion", "unknown"),
+            candidateCount = response.optInt("candidateCount", 0),
+            senses = (0 until a.length()).map { i ->
+                val item = a.getJSONObject(i)
+                ApiSense(item.getString("senseId"), item.getString("term"), item.optString("reviewStatus","unreviewed"))
+            }
+        )
+    }
+    suspend fun createSession(senseId: String? = null): ApiSession = withContext(Dispatchers.IO) {
+        val payload = JSONObject()
+        if (!senseId.isNullOrBlank()) payload.put("senseId",senseId)
+        val response = request("POST", "/api/sessions", payload.toString())
         val data = response.getJSONArray("questions")
         val questions = (0 until data.length()).map { index ->
             val q = data.getJSONObject(index)
@@ -79,7 +99,9 @@ class SlangverseApi(rawBaseUrl: String) {
             )
         }
         if (questions.isEmpty()) throw ApiException("Server returned no questions")
-        ApiSession(response.getString("id"), response.optString("source", "unknown"), questions)
+        ApiSession(response.getString("id"), response.optString("source", "unknown"), questions,
+            response.optString("senseId","cooked-trouble"), response.optString("referenceStatus","provisional"),
+            response.optString("catalogVersion",""))
     }
 
     suspend fun submitAnswer(sessionId: String, questionId: String, selectedIndex: Int): ApiGrade = withContext(Dispatchers.IO) {
