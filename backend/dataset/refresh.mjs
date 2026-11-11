@@ -40,7 +40,7 @@ export function validateDiscoveries(raw,docs){
    const appears=Boolean(doc&&term&&new RegExp('(^|[^a-z0-9])'+escaped+'(?=$|[^a-z0-9])','i').test(text));
    if(!/^[a-z][a-z0-9 '-]{1,48}$/.test(term)||definition.split(/\s+/).length<5||
       definition.length>480||!appears||!evidenceSnippet||evidenceSnippet.length>220||
-      !text.includes(evidenceSnippet.toLowerCase())||seen.has(term)){
+      !text.includes(evidenceSnippet.toLowerCase())||!evidenceSnippet.toLowerCase().includes(term)||seen.has(term)){
       rejected.push({index:i,reason:'unsupported-source-quote-or-duplicate'});continue;
    }
    seen.add(term);
