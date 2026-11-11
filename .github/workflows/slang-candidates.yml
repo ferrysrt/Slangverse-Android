@@ -1,0 +1,31 @@
+name: Slang candidate discovery - manual review
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1'
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Discover candidate slang via Firecrawl v2 and OpenRouter
+        working-directory: backend
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-oss-120b' }}
+        run: npm run dataset:refresh
+      - name: Publish review-only artifact (never automatically merge into game)
+        uses: actions/upload-artifact@v4
+        with:
+          name: unreviewed-slang-candidates
+          path: backend/data/discovered_candidates.json
+          if-no-files-found: error
