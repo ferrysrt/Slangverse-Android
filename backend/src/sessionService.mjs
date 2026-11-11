@@ -15,7 +15,7 @@ export function createSessionService({
     const sense=resolveSense(selection);
     if(provider==='mock')return {session:createMockSession(now(),sense),generationLatencyMs:null,providerCalls:0,failureReason:null,promptVersion:null};
     if(provider!=='openai-compatible')throw Error('unsupported-llm-provider');
-    const start=performance.now();let failureReason='unknown',calls=0;
+    const start=performance.now();let failureReason='unknown',calls=0,validationErrors=[];
     for(let attempt=0;attempt<=safeRetries;attempt++){
       calls++;
       try{
@@ -25,11 +25,11 @@ export function createSessionService({
         const errs=validatePackage(items);
         if(Array.isArray(items)&&items.some(q=>normalize(q?.slang)!==normalize(sense.term)||
            normalize(q?.targetMeaning)!==normalize(sense.targetMeaning)))errs.push('reference-mismatch');
-        if(errs.length){failureReason='llm-schema-or-rules';continue;}
+        if(errs.length){failureReason='llm-schema-or-rules';validationErrors=[...new Set(errs)].slice(0,30);continue;}
         const session=createMockSession(now(),sense);
         session.source='llm';session.questions=structuredClone(items);
         session.catalogVersion=DATASET_VERSION;
-        return {session,generationLatencyMs:Math.round(performance.now()-start),providerCalls:calls,failureReason:null,promptVersion:PROMPT_VERSION};
+        return {session,generationLatencyMs:Math.round(performance.now()-start),providerCalls:calls,failureReason:null,promptVersion:PROMPT_VERSION,validationErrors:[]};
       }catch(e){
         failureReason=(e instanceof Error&&e.message.startsWith('llm-'))?e.message:
            e?.message==='missing-provider-config'?'missing-provider-config':'provider-error';
@@ -37,6 +37,6 @@ export function createSessionService({
     }
     const session=createMockSession(now(),sense);
     session.source='fallback';
-    return {session,generationLatencyMs:Math.round(performance.now()-start),providerCalls:calls,failureReason,promptVersion:PROMPT_VERSION};
+    return {session,generationLatencyMs:Math.round(performance.now()-start),providerCalls:calls,failureReason,promptVersion:PROMPT_VERSION,validationErrors};
   };
 }

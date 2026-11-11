@@ -1,11 +1,5 @@
 name: Slang candidate discovery - manual review
 on:
-  push:
-    branches:
-      - test/slang-candidate-live-smoke-20261112
-    paths:
-      - '.github/workflows/slang-candidates.yml'
-      - 'backend/dataset/refresh.mjs'
   workflow_dispatch:
   schedule:
     - cron: '0 3 * * 1'

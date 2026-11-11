@@ -9,12 +9,16 @@ export function createLlmProvider({
   model=process.env.LLM_MODEL,
   baseUrl=process.env.LLM_API_BASE_URL||'https://api.openai.com/v1',
   timeoutMs=Number(process.env.LLM_TIMEOUT_MS||20000),
+  maxTokens=Number(process.env.LLM_MAX_TOKENS||7500),
+  reasoningEffort=process.env.LLM_REASONING_EFFORT||'',
   fetchImpl=fetch
 }={}){
   if(!apiKey||!model)throw new Error('missing-provider-config');
   const u=new URL(baseUrl);
   if(u.protocol!=='https:'&&!(u.protocol==='http:'&&['127.0.0.1','localhost'].includes(u.hostname)))throw new Error('unsafe-provider-url');
   if(!Number.isFinite(timeoutMs)||timeoutMs<1000||timeoutMs>120000)throw new Error('bad-provider-timeout');
+  if(!Number.isInteger(maxTokens)||maxTokens<512||maxTokens>12000)throw new Error('bad-provider-max-tokens');
+  if(reasoningEffort&&!['none','minimal','low','medium','high'].includes(reasoningEffort))throw new Error('bad-provider-reasoning-effort');
   const endpoint=u.toString().replace(/\/$/,'')+'/chat/completions';
   return async ({term,meaning,senseId})=>{
     let response;
@@ -22,12 +26,14 @@ export function createLlmProvider({
       response=await fetchImpl(endpoint,{
         method:'POST',signal:AbortSignal.timeout(timeoutMs),
         headers:{'Content-Type':'application/json',Authorization:`Bearer ${apiKey}`},
-        body:JSON.stringify({model,temperature:0.7,response_format:{type:'json_object'},messages:[
+        body:JSON.stringify({model,temperature:0.5,max_tokens:maxTokens,
+          ...(reasoningEffort?{reasoning:{effort:reasoningEffort}}:{}),
+          response_format:{type:'json_object'},messages:[
           {role:'system',content:'Generate structured fictional English slang context questions as strict JSON. Never include surrounding prose.'},
           {role:'user',content:createGenerationPrompt({term,meaning,senseId})}
         ]})
       });
-    }catch(e){throw new Error(e?.name==='TimeoutError'?'llm-timeout':'llm-network');}
+    }catch(e){throw new Error(['TimeoutError','AbortError'].includes(e?.name)?'llm-timeout':'llm-network');}
     if(!response.ok)throw new Error(`llm-http-${response.status}`);
     let outer;try{outer=await response.json()}catch{throw new Error('llm-bad-provider-json')}
     let content=outer?.choices?.[0]?.message?.content;

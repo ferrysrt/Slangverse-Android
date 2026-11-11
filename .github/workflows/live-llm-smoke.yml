@@ -1,0 +1,47 @@
+name: Live OpenRouter 10-question smoke (manual)
+on:
+  push:
+    branches:
+      - feat/openrouter-live-quiz-smoke
+    paths:
+      - '.github/workflows/live-llm-smoke.yml'
+      - 'backend/scripts/live-generation-smoke.mjs'
+  workflow_dispatch:
+    inputs:
+      sense_id:
+        description: 'Curated sense ID to test'
+        required: false
+        default: 'no-cap-truth'
+        type: choice
+        options:
+          - no-cap-truth
+          - lowkey-subtle
+          - cooked-trouble
+permissions:
+  contents: read
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: One real generation attempt; no retries or raw question uploads
+        working-directory: backend
+        env:
+          LLM_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          LLM_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-oss-120b' }}
+          SLANGVERSE_TEST_SENSE_ID: ${{ inputs.sense_id || 'no-cap-truth' }}
+        run: node scripts/live-generation-smoke.mjs
+      - name: Upload sanitized validation metrics even when generation falls back
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-llm-validation-metrics
+          path: backend/reports/live-llm-smoke.json
+          retention-days: 14
+          if-no-files-found: warn
