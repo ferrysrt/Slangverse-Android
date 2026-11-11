@@ -8,7 +8,7 @@ import {PROMPT_VERSION} from '../src/prompts.mjs';
 const out=new URL('../reports/live-llm-smoke.json',import.meta.url);
 const started=new Date().toISOString();
 const senseId=process.env.SLANGVERSE_TEST_SENSE_ID||'no-cap-truth';
-const model=process.env.LLM_MODEL||'openai/gpt-oss-120b';
+const model=process.env.LLM_MODEL||'openai/gpt-6-luna';
 const report={type:'slangverse-llm-generation-smoke',startedAt:started,
   status:'failed',model,senseId,datasetVersion:DATASET_VERSION,promptVersion:PROMPT_VERSION,
   provider:'openrouter',liveRequest:true,expertValidated:false,
