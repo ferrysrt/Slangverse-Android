@@ -19,3 +19,9 @@ The artifact `live-llm-validation-metrics` contains only counts, structural-vali
 - The app still defaults to `LLM_PROVIDER=mock`. Live model is only used if the **backend host** is configured with `LLM_PROVIDER=openai-compatible`, `LLM_API_KEY`, `LLM_MODEL`, and `LLM_API_BASE_URL=https://openrouter.ai/api/v1`. GitHub Actions secrets by themselves do **not** deploy or configure that server. Do not put provider keys in Android apps.
 
 The smoke workflow is manual only on `main` after integration; avoid scheduling repeated paid model calls.
+
+## Verified first live smoke run
+
+The feature-branch live run on 11 November 2026 succeeded: [GitHub Actions #43072284935](https://github.com/ferrysrt/Slangverse-Android/actions/runs/43072284935). With model `openai/gpt-oss-120b`, sense `no-cap-truth`, and **one request without retry**, generated source was `llm`, 10 items passed automated structure checks, 10 distinct context IDs, 5/3/2 nominal difficulty ratio, 0 validation error codes and no fallback. Recorded generation latency: **70,430 ms**. This is a single exploratory observation, NOT a latency benchmark or proof of educational/semantic quality.
+
+The live smoke workflow is now **manual-only**, so it will not spend API credits automatically on every code push.
