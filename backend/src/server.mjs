@@ -1,6 +1,7 @@
 import http from 'node:http';
 import {grade,progress,publicQuestion} from './game.mjs';
 import {createSessionService} from './sessionService.mjs';
+import {publicCatalog,listCandidates} from './catalog.mjs';
 const generateSession = createSessionService();
 const sessions = new Map();
 const port = Number(process.env.PORT||8787);
@@ -26,10 +27,13 @@ const server = http.createServer(async(req,res)=>{
     if(req.method==='OPTIONS')return reply(res,204,{});
     if(req.method==='GET'&&url.pathname==='/api/health')return reply(res,200,{ok:true,mode:process.env.LLM_PROVIDER||'mock',llmConnected:false,providerConfigured:Boolean(process.env.LLM_API_KEY&&process.env.LLM_MODEL)});
     if(req.method==='GET'&&url.pathname==='/api/trending')return reply(res,200,{source:'curated',trending:[{tag:'#CampusChaos',category:'campus'},{tag:'#GamingMoments',category:'gaming'},{tag:'#MemeCulture',category:'internet'}]});
+    if(req.method==='GET'&&url.pathname==='/api/catalog')return reply(res,200,publicCatalog());
+    if(req.method==='GET'&&url.pathname==='/api/catalog/candidates')return reply(res,200,listCandidates({q:url.searchParams.get('q')||'',limit:url.searchParams.get('limit')||25}));
     if(req.method==='POST'&&url.pathname==='/api/sessions'){
-      cleanup();const generated=await generateSession();const session=generated.session;source=session.source;sessions.set(session.id,session);
+      const selection=await parseBody(req);
+      cleanup();const generated=await generateSession(selection);const session=generated.session;source=session.source;sessions.set(session.id,session);
       if(generated.failureReason)console.warn(JSON.stringify({event:'generation-fallback',category:generated.failureReason,attempts:generated.providerCalls,promptVersion:generated.promptVersion}));
-      return reply(res,201,{id:session.id,source:session.source,generationLatencyMs:generated.generationLatencyMs,questions:session.questions.map(publicQuestion)});
+      return reply(res,201,{id:session.id,senseId:session.senseId,referenceStatus:session.referenceStatus,catalogVersion:session.catalogVersion,source:session.source,generationLatencyMs:generated.generationLatencyMs,questions:session.questions.map(publicQuestion)});
     }
     const match=url.pathname.match(/^\/api\/sessions\/([\w-]+)(\/answers)?$/);
     if(match){

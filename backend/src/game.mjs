@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { additionalMockPackage } from './mockCatalog.mjs';
 
 /**
  * Research-aware DEMO dataset. Every question is hand-authored; no LLM call occurs.
@@ -103,11 +104,16 @@ export function publicQuestion(q){
   const {correctIndex,targetMeaning,explanation,...safe}=q;
   return structuredClone(safe);
 }
-export function createMockSession(now=Date.now()){
-  const errs=validatePackage(mockPackage);
-  if(errs.length)throw new Error(`Invalid curated mock pack: ${errs.join(',')}`);
-  return {id:randomUUID(),source:'mock',createdAt:new Date(now).toISOString(),expiresAt:now+30*60*1000,answered:new Map(),questions:mockPackage};
+export function createMockSession(now=Date.now(),sense=null){
+  const items=sense&&sense.senseId!=='cooked-trouble'?additionalMockPackage(sense):mockPackage;
+  const errs=validatePackage(items);
+  if(errs.length)throw Error('Invalid curated demo pack: '+errs.join(','));
+  return {id:randomUUID(),senseId:sense?.senseId||'cooked-trouble',
+    catalogVersion:'slangfeed-2026-10-05',referenceStatus:'provisional',
+    source:'mock',createdAt:new Date(now).toISOString(),expiresAt:now+30*60*1000,
+    answered:new Map(),questions:structuredClone(items)};
 }
+
 export function grade(session,questionId,selectedIndex){
   const q=session.questions.find(q=>q.id===questionId);
   if(!q)return {status:404,error:'question-not-found'};

@@ -1,0 +1,32 @@
+[
+  {
+    "senseId": "cooked-trouble",
+    "term": "cooked",
+    "targetMeaning": "in serious trouble",
+    "reviewStatus": "provisional",
+    "playable": true,
+    "sourceDatasetTerm": "Cooked",
+    "sourceRelationship": "conflict",
+    "referenceNote": "Legacy SlangFeed definition focuses on extreme tiredness/overwhelm, NOT this exact target sense. This gameplay sense is independently authored, not sourced from the CSV. Requires source-backed review."
+  },
+  {
+    "senseId": "no-cap-truth",
+    "term": "no cap",
+    "targetMeaning": "speaking truthfully without exaggeration",
+    "reviewStatus": "provisional",
+    "playable": true,
+    "sourceDatasetTerm": "no cap",
+    "sourceRelationship": "related_unverified",
+    "referenceNote": "SlangFeed candidate describes a truthful statement. This normalized target meaning is developer-authored; not expert certified."
+  },
+  {
+    "senseId": "lowkey-subtle",
+    "term": "lowkey",
+    "targetMeaning": "in a subtle or understated way",
+    "reviewStatus": "provisional",
+    "playable": true,
+    "sourceDatasetTerm": "lowkey",
+    "sourceRelationship": "related_unverified",
+    "referenceNote": "SlangFeed candidate relates to subtle/non-obvious expression; this target sense has not had a linguistic expert review."
+  }
+]
