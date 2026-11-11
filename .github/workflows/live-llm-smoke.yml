@@ -1,5 +1,10 @@
 name: Live OpenRouter 10-question smoke (manual)
 on:
+  push:
+    branches:
+      - test/luna-live-smoke-20261112
+    paths:
+      - '.github/workflows/live-llm-smoke.yml'
   workflow_dispatch:
     inputs:
       sense_id:
