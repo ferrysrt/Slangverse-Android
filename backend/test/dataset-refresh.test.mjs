@@ -27,7 +27,7 @@ test('LLM normalizer output remains unreviewed',async()=>{
  const fetchImpl=async()=>({ok:true,json:async()=>({choices:[{message:{content:JSON.stringify({items:[row]})}}]})});
  const x=await extractCandidates({docs,key:'mock',model:'mock',fetchImpl});
  assert.equal(x.entries.length,1);
- assert.equal(x.entries[0].qualityClaim,'source-evidence-only-not-expert-validated');
+ assert.equal(x.entries[0].qualityClaim,'web-observed-term-not-expert-validated');
 });
 
 test('fabricated citations are never stored, evidence comes from a literal source match',()=>{
