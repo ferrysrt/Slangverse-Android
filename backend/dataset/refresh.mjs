@@ -92,7 +92,7 @@ export async function extractCandidates({docs,key,model,fetchImpl=fetch}={}){
  return validateDiscoveries(obj.items,docs);
 }
 export async function refreshDataset({firecrawlKey=process.env.FIRECRAWL_API_KEY,
- normalizerKey=process.env.OPENROUTER_API_KEY,normalizerModel=process.env.OPENROUTER_MODEL||'openai/gpt-oss-120b',
+ normalizerKey=process.env.OPENROUTER_API_KEY,normalizerModel=process.env.OPENROUTER_MODEL||'openai/gpt-6-luna',
  fetchImpl=fetch,outputUrl=new URL('../data/discovered_candidates.json',import.meta.url)}={}){
  const docs=await collectDocuments({key:firecrawlKey,fetchImpl});
  console.log('[dataset] collected document count: '+docs.length);

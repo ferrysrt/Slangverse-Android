@@ -43,18 +43,18 @@ After uploading this project to your new GitHub repository, open **Actions → A
 
 ## 4. Optional LLM adapter (backend only)
 
-Default provider is `mock`. To turn on a *compatible* endpoint (model-dependent), create your private `backend/.env` and set variables in `.env.example`:
+Default provider remains `mock`. To switch a deployed backend to GPT-6 Luna via OpenRouter, create your private `backend/.env` and set these variables (never commit the secret):
 
 ```ini
 LLM_PROVIDER=openai-compatible
 LLM_API_KEY=YOUR_PRIVATE_SECRET
-LLM_MODEL=YOUR_COMPATIBLE_MODEL
-LLM_API_BASE_URL=https://api.openai.com/v1
-LLM_TIMEOUT_MS=20000
+LLM_MODEL=openai/gpt-6-luna
+LLM_API_BASE_URL=https://openrouter.ai/api/v1
+LLM_TIMEOUT_MS=120000
 LLM_RETRIES=1
 ```
 
-Then `npm run start:env` (Node 20.6+). This calls `/chat/completions` and requests JSON output. If the provider returns invalid data, times out, or configuration is missing, **source is explicitly `fallback`**, never a fabricated `llm` success. The `mock` and `fallback` sources are excluded from live-generation success metrics. A live OpenRouter generation request has now passed one smoke test via Actions, separate from Android deployment. The default backend remains in mock mode unless separately configured.
+Then `npm run start:env` (Node 20.6+). This calls `/chat/completions` and requests JSON output. If the provider returns invalid data, times out, or configuration is missing, **source is explicitly `fallback`**, never a fabricated `llm` success. The `mock` and `fallback` sources are excluded from live-generation success metrics. One earlier GPT-OSS 120B generation request passed a smoke test via Actions (historical result). The current configured model is **`openai/gpt-6-luna` (non-batch)**, which has not yet been smoke-tested live in this change. The default backend remains in mock mode unless separately configured.
 
 ## 5. Package layout
 

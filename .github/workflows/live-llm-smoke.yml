@@ -28,7 +28,7 @@ jobs:
         working-directory: backend
         env:
           LLM_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          LLM_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-oss-120b' }}
+          LLM_MODEL: openai/gpt-6-luna
           SLANGVERSE_TEST_SENSE_ID: ${{ inputs.sense_id || 'no-cap-truth' }}
         run: node scripts/live-generation-smoke.mjs
       - name: Upload sanitized validation metrics even when generation falls back

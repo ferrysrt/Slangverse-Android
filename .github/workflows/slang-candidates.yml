@@ -21,7 +21,7 @@ jobs:
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-oss-120b' }}
+          OPENROUTER_MODEL: openai/gpt-6-luna
         run: npm run dataset:refresh
       - name: Publish review-only artifact (never automatically merge into game)
         uses: actions/upload-artifact@v4

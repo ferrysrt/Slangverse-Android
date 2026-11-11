@@ -57,3 +57,25 @@ test('failed structural validation reports safe categories and retains fallback'
  assert.deepEqual(result.validationErrors,['package-size']);
  assert.equal(result.session.senseId,'no-cap-truth');
 });
+
+test('default live provider targets OpenRouter GPT-6 Luna (not batch) without hardcoded credentials',async()=>{
+ let target,request;
+ const fake=async(url,options)=>{
+   target=url;request=JSON.parse(options.body);
+   return {ok:true,json:async()=>({choices:[{message:{content:JSON.stringify({items:mockPackage})}}]})};
+ };
+ const savedModel=process.env.LLM_MODEL,savedBase=process.env.LLM_API_BASE_URL;
+ try{
+   delete process.env.LLM_MODEL;
+   delete process.env.LLM_API_BASE_URL;
+   const provider=createLlmProvider({apiKey:'injected-test-key',fetchImpl:fake});
+   const response=await provider({term:'cooked',meaning:'in serious trouble',senseId:'cooked-trouble'});
+   assert.equal(target,'https://openrouter.ai/api/v1/chat/completions');
+   assert.equal(request.model,'openai/gpt-6-luna');
+   assert.equal(request.model.includes(':batch'),false);
+   assert.equal(response.items.length,10);
+ }finally{
+   if(savedModel===undefined)delete process.env.LLM_MODEL;else process.env.LLM_MODEL=savedModel;
+   if(savedBase===undefined)delete process.env.LLM_API_BASE_URL;else process.env.LLM_API_BASE_URL=savedBase;
+ }
+});

@@ -6,8 +6,8 @@ import { createGenerationPrompt } from './prompts.mjs';
  */
 export function createLlmProvider({
   apiKey=process.env.LLM_API_KEY,
-  model=process.env.LLM_MODEL,
-  baseUrl=process.env.LLM_API_BASE_URL||'https://api.openai.com/v1',
+  model=process.env.LLM_MODEL||'openai/gpt-6-luna',
+  baseUrl=process.env.LLM_API_BASE_URL||'https://openrouter.ai/api/v1',
   timeoutMs=Number(process.env.LLM_TIMEOUT_MS||20000),
   maxTokens=Number(process.env.LLM_MAX_TOKENS||7500),
   reasoningEffort=process.env.LLM_REASONING_EFFORT||'',
