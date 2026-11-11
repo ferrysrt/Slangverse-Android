@@ -1,11 +1,5 @@
 name: Live OpenRouter 10-question smoke (manual)
 on:
-  push:
-    branches:
-      - feat/openrouter-live-quiz-smoke
-    paths:
-      - '.github/workflows/live-llm-smoke.yml'
-      - 'backend/scripts/live-generation-smoke.mjs'
   workflow_dispatch:
     inputs:
       sense_id:
