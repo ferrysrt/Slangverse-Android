@@ -40,26 +40,43 @@ export async function collectDocuments({key,fetchImpl=fetch,query}={}){
 }
 export function validateDiscoveries(raw,docs){
  const byUrl=new Map(docs.map(d=>[d.url,d])),seen=new Set(),entries=[],rejected=[];
+ const normDoc=d=>String(d?.markdown??'').replace(/\s+/g,' ').trim();
+ const reasons={};
+ const reject=(index,reason)=>{rejected.push({index,reason});reasons[reason]=(reasons[reason]||0)+1};
  for(const [i,c] of (Array.isArray(raw)?raw:[]).entries()){
    const term=clean(c?.term||c?.slang,100).toLowerCase();
    const definition=clean(c?.definition,500),originContext=clean(c?.originContext||c?.origin_context,500);
-   const sourceUrl=clean(c?.sourceUrl,2000),evidenceSnippet=clean(c?.evidenceSnippet,240);
-   const doc=byUrl.get(sourceUrl);
-   const text=doc?.markdown.toLowerCase().replace(/\s+/g,' ')||'';
-   const escaped=term.replace(/[.*+?^${}()|\[\]\\]/g,'\\$&');
-   const appears=Boolean(doc&&term&&new RegExp('(^|[^a-z0-9])'+escaped+'(?=$|[^a-z0-9])','i').test(text));
-   if(!/^[a-z][a-z0-9 '-]{1,48}$/.test(term)||definition.split(/\s+/).length<5||
-      definition.length>480||!appears||!evidenceSnippet||evidenceSnippet.length>220||
-      !text.includes(evidenceSnippet.toLowerCase())||!evidenceSnippet.toLowerCase().includes(term)||seen.has(term)){
-      rejected.push({index:i,reason:'unsupported-source-quote-or-duplicate'});continue;
+   if(!/^[a-z][a-z0-9 '-]{1,48}$/.test(term)||definition.split(/\s+/).length<5||definition.length>480){
+     reject(i,'malformed-term-or-definition');continue;
    }
+   if(seen.has(term)){reject(i,'duplicate');continue;}
+   const claimedUrl=clean(c?.sourceUrl,2000),claimedQuote=clean(c?.evidenceSnippet,240);
+   const regex=new RegExp('(^|[^a-z0-9])'+term.replace(/[^a-z0-9]/g,'\\$&')+'(?=$|[^a-z0-9])','i');
+   const preferred=byUrl.get(claimedUrl);
+   const ordered=preferred?[preferred,...docs.filter(d=>d.url!==claimedUrl)]:docs;
+   let match=null,chosen=null,flat='';
+   for(const d of ordered){
+     const candidate=normDoc(d),hit=regex.exec(candidate);
+     if(hit){chosen=d;match=hit;flat=candidate;break;}
+   }
+   if(!chosen){reject(i,'term-not-in-collected-web-text');continue;}
+   // Bind reference evidence deterministically to the source text. Do not trust
+   // a model-provided source URL or quote unless it literally matches.
+   const quote=flat.slice(Math.max(0,match.index-55),
+       Math.min(flat.length,match.index+match[0].length+105)).trim().slice(0,220);
+   const modelQuoteVerified=Boolean(claimedQuote&&flat.toLowerCase().includes(claimedQuote.toLowerCase()));
    seen.add(term);
-   entries.push({term,definition,originContext,sourceUrl,evidenceSnippet,sourceTitle:doc.title,
-      reviewStatus:'unreviewed',qualityClaim:'source-evidence-only-not-expert-validated'});
-   if(entries.length===25)break;
+   entries.push({term,definition,originContext,sourceUrl:chosen.url,
+     sourceTitle:clean(chosen.title,150),evidenceSnippet:quote,
+     sourceClaimMatched:chosen.url===claimedUrl,modelQuoteVerified,
+     sourceEvidenceStatus:'literal-term-appearance-only',
+     reviewStatus:'unreviewed',qualityClaim:'web-observed-term-not-expert-validated'});
+   if(entries.length>=25)break;
  }
+ console.log('[dataset] candidate validation summary: '+JSON.stringify({accepted:entries.length,rejected:rejected.length,reasons}));
  return {entries,rejected};
 }
+
 export async function extractCandidates({docs,key,model,fetchImpl=fetch}={}){
  if(!key||!model)throw Error('missing-normalizer-config');
  const sourceBundle=docs.slice(0,6).map(d=>'SOURCE URL: '+d.url+'\nTITLE: '+d.title+'\nTEXT:\n'+d.markdown.slice(0,2500)).join('\n---\n');
