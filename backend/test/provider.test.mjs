@@ -35,4 +35,25 @@ test('OpenAI-compatible adapter constructs request without logging secrets',asyn
  assert.equal(request.headers.Authorization,'Bearer test-secret');
  assert.equal(JSON.parse(request.body).response_format.type,'json_object');
  assert.equal(data.items.length,10);
+ assert.equal(JSON.parse(request.body).max_tokens,7500);
+});
+
+test('OpenRouter adapter can request bounded low-effort generation without exposing key',async()=>{
+ let request;
+ const fetchImpl=async(_url,opts)=>{request=opts;return {ok:true,json:async()=>({choices:[{message:{content:JSON.stringify({items:mockPackage})}}]})}};
+ const provider=createLlmProvider({apiKey:'example-only',model:'openai/gpt-oss-120b',
+   baseUrl:'https://openrouter.ai/api/v1',maxTokens:8000,reasoningEffort:'low',fetchImpl});
+ await provider({term:'cooked',meaning:'in serious trouble',senseId:'cooked-trouble'});
+ const data=JSON.parse(request.body);
+ assert.equal(data.max_tokens,8000);
+ assert.deepEqual(data.reasoning,{effort:'low'});
+ assert.equal(data.model,'openai/gpt-oss-120b');
+ assert.equal(JSON.stringify(data).includes('example-only'),false);
+});
+test('failed structural validation reports safe categories and retains fallback',async()=>{
+ const fn=createSessionService({provider:'openai-compatible',llmProvider:async()=>({items:[]}),retries:0});
+ const result=await fn({senseId:'no-cap-truth'});
+ assert.equal(result.session.source,'fallback');assert.equal(result.providerCalls,1);
+ assert.deepEqual(result.validationErrors,['package-size']);
+ assert.equal(result.session.senseId,'no-cap-truth');
 });

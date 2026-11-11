@@ -1,6 +1,6 @@
 # Slangverse Android V2.2 — Native Compose + Backend (direct development)
 
-**Status:** editable Android + Node.js source with a real HTTP workflow and a mock/optional LLM provider. **Android APK build has not been verified.** This project is not affiliated with the separate Godot repository `ferrysrt/slangfeed`.
+**Status:** editable Android + Node.js source with a real HTTP workflow and a mock/optional LLM provider. **Android debug APK successfully built on GitHub Actions (2026-11-11)**, but device/emulator behavior is not verified. This project is not affiliated with the separate Godot repository `ferrysrt/slangfeed`.
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of on-demand LLM generation**: schema adherence, success/fallback, latency, and SUS.
 
@@ -10,7 +10,7 @@ Slangverse is an educational Android game with a **fictional social-media-inspir
 - **Additional API Training path** from Feed: create a session over HTTP, play ten questions with **ten different context IDs** for *cooked*, open more replies as indirect hints, submit answers, receive server-graded feedback, XP, combo, and a session result.
 - Node.js mock API: `GET /api/health`, `GET /api/trending`, `POST /api/sessions`, `GET /api/sessions/:id`, `POST /api/sessions/:id/answers`, `GET /api/leaderboard` (demo-only).
 - Server keeps answer keys and explanation hidden until grading; rejects double answers. Tests run with Node.js built-in test runner and use no npm dependencies.
-- Optional OpenAI-compatible REST adapter **in code** with retry, schema validation and explicitly labeled fallback. **Not tested with a live API key/model**; don't mistake injected fake-provider tests for real LLM success.
+- Optional OpenAI-compatible REST adapter with retry, schema validation and labeled fallback. A **single live OpenRouter GPT-OSS 120B smoke test** on 2026-11-11 generated ten structurally valid `no cap` items in 70.43 seconds without retry; this does **not** imply semantic validity, production deployment, or average latency. See [live validation notes](docs/LIVE_LLM_SMOKE.md).
 
 ## 1. Run backend first
 
@@ -31,7 +31,7 @@ Use `HOST=0.0.0.0` if you **intentionally** want a physical Android phone on the
 1. Open the **`android/`** folder as a Gradle project, not the repository root.
 2. Choose a suitable JDK (17+) and install Android SDK platform 36 if prompted.
 3. This package has `gradle/wrapper/gradle-wrapper.properties`, **but no official `gradle-wrapper.jar`** because the generation environment has no Gradle distribution/network access. If Android Studio does not sync, install compatible Gradle and run `android/scripts/setup-wrapper.ps1` in PowerShell or `android/scripts/setup-wrapper.sh` on Linux/macOS. This generates the genuine wrapper scripts/JAR.
-4. Then run `./gradlew :app:assembleDebug` or the IDE build action. **Only claim an APK once the build succeeds and `app/build/outputs/apk/debug/app-debug.apk` exists.**
+4. Then run `./gradlew :app:assembleDebug` or the IDE build action. **The cloud build succeeded on 2026-11-11, but still verify any newly built APK before distributing.**
 5. Launch in emulator, run Node backend on your computer, then open Feed > **PLAY API SESSION**. The default backend URL `http://10.0.2.2:8787` is for the standard Android emulator.
 6. For a **physical device**, set API URL to `http://YOUR-LAPTOP-LAN-IP:8787`, and run server with `HOST=0.0.0.0`. Ensure firewall/Wi-Fi allows local access.
 
@@ -39,7 +39,7 @@ Android **debug builds** allow cleartext HTTP for this local mock server; releas
 
 ## 3. Build APK in GitHub Actions (no Codex, no powerful laptop required)
 
-After uploading this project to your new GitHub repository, open **Actions → Android debug build (no Codex) → Run workflow**. The workflow installs JDK, Android SDK 36, and Gradle 8.14.3 on a GitHub runner, compiles with `gradle :app:assembleDebug`, and (on success) uploads `slangverse-debug-apk` under the workflow's **Artifacts**. This is a cloud build only; it has **not yet been executed or verified** and could reveal Android compile errors to fix. GitHub Actions usage limits and private-repository minutes depend on your account plan. The workflow does not require Codex or a pre-generated Gradle wrapper JAR.
+After uploading this project to your new GitHub repository, open **Actions → Android debug build (no Codex) → Run workflow**. The workflow installs JDK, Android SDK 36, and Gradle 8.14.3 on a GitHub runner, compiles with `gradle :app:assembleDebug`, and (on success) uploads `slangverse-debug-apk` under the workflow's **Artifacts**. GitHub Actions has successfully completed the Android debug build; future changes still require their own build verification. GitHub Actions usage limits and private-repository minutes depend on your account plan. The workflow does not require Codex or a pre-generated Gradle wrapper JAR.
 
 ## 4. Optional LLM adapter (backend only)
 
@@ -54,7 +54,7 @@ LLM_TIMEOUT_MS=20000
 LLM_RETRIES=1
 ```
 
-Then `npm run start:env` (Node 20.6+). This calls `/chat/completions` and requests JSON output. If the provider returns invalid data, times out, or configuration is missing, **source is explicitly `fallback`**, never a fabricated `llm` success. The `mock` and `fallback` sources are excluded from live-generation success metrics. No API key or real LLM request has been verified in this environment.
+Then `npm run start:env` (Node 20.6+). This calls `/chat/completions` and requests JSON output. If the provider returns invalid data, times out, or configuration is missing, **source is explicitly `fallback`**, never a fabricated `llm` success. The `mock` and `fallback` sources are excluded from live-generation success metrics. A live OpenRouter generation request has now passed one smoke test via Actions, separate from Android deployment. The default backend remains in mock mode unless separately configured.
 
 ## 5. Package layout
 
