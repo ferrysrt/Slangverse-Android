@@ -25,7 +25,7 @@ Workflow `.github/workflows/slang-candidates.yml` runs on Monday UTC 03:00 or ma
 
 The workflow **uploads an unreviewed artifact only**. It does NOT automatically publish to the playable glossary, does not write to the Godot repo, and does not claim per-sense linguistic accuracy.
 
-The candidate collector rejects entries without matching term and exact evidence excerpt on a crawled source page, but those syntactic checks are NOT a semantic correctness guarantee. Manually review each candidate's source, sense, safety, and licensing before adding new playable meanings. Do not publish scraped full-text pages.
+The candidate collector locates each candidate term in the actual Firecrawl-returned page text and derives an evidence excerpt locally. Model-suggested URLs and quotations are treated as untrusted; sourceClaimMatched and modelQuoteVerified indicate whether they matched. A term appearing on a page does NOT establish that the generated definition is accurate: all outputs remain unreviewed candidates. The live test on 11 November 2026 found 13 candidates from seven scraped pages, but this is not an expert accuracy test. Manually review each candidate's source, sense, safety, and licensing before adding new playable meanings. Do not publish scraped full-text pages.
 
 ## Known limitation
 

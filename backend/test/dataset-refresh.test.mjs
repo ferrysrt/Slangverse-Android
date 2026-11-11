@@ -27,5 +27,17 @@ test('LLM normalizer output remains unreviewed',async()=>{
  const fetchImpl=async()=>({ok:true,json:async()=>({choices:[{message:{content:JSON.stringify({items:[row]})}}]})});
  const x=await extractCandidates({docs,key:'mock',model:'mock',fetchImpl});
  assert.equal(x.entries.length,1);
- assert.equal(x.entries[0].qualityClaim,'source-evidence-only-not-expert-validated');
+ assert.equal(x.entries[0].qualityClaim,'web-observed-term-not-expert-validated');
+});
+
+test('fabricated citations are never stored, evidence comes from a literal source match',()=>{
+ const input={term:'no cap',definition:'used when telling a truthful story',sourceUrl:'https://fake.invalid/madeup',evidenceSnippet:'an invented sentence without proof'};
+ const r=validateDiscoveries([input],docs);
+ assert.equal(r.entries.length,1);
+ assert.equal(r.entries[0].sourceUrl,docs[0].url);
+ assert.equal(r.entries[0].sourceClaimMatched,false);
+ assert.equal(r.entries[0].modelQuoteVerified,false);
+ assert.ok(docs[0].markdown.includes(r.entries[0].evidenceSnippet));
+ assert.equal(r.entries[0].reviewStatus,'unreviewed');
+ assert.equal(r.entries[0].sourceEvidenceStatus,'literal-term-appearance-only');
 });
