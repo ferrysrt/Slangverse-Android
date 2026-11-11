@@ -1,12 +1,12 @@
-export const PROMPT_VERSION = 'slangverse-v2.2';
+export const PROMPT_VERSION = 'slangverse-v2.3-catalog';
 export const CONTEXTS = [
   'campus','gaming','office','travel','sports',
   'technology','finance','event','exam','application'
 ];
-export function createGenerationPrompt({term='cooked',meaning='in serious trouble'}={}){
+export function createGenerationPrompt({term='cooked',meaning='in serious trouble',senseId='cooked-trouble'}={}){
   return `Generate an EDUCATIONAL, FICTIONAL Internet-slang question package, JSON only. No markdown.
 Term: ${JSON.stringify(term)}.
-Approved reference meaning: ${JSON.stringify(meaning)}.
+Provisional curated sense ID: ${JSON.stringify(senseId)}.\nSelected target meaning (not expert certified): ${JSON.stringify(meaning)}.
 Provide exactly 10 distinct fictional English social posts, one context in each of these EXACT contextId values IN ORDER: ${CONTEXTS.join(', ')}.
 Difficulty sequence: easy,easy,easy,easy,easy,medium,medium,medium,hard,hard. These are nominal design labels, not empirically measured difficulty.
 The JSON root MUST be an object with an items array of exactly ten elements, nothing else required.

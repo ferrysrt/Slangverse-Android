@@ -16,7 +16,7 @@ export function createLlmProvider({
   if(u.protocol!=='https:'&&!(u.protocol==='http:'&&['127.0.0.1','localhost'].includes(u.hostname)))throw new Error('unsafe-provider-url');
   if(!Number.isFinite(timeoutMs)||timeoutMs<1000||timeoutMs>120000)throw new Error('bad-provider-timeout');
   const endpoint=u.toString().replace(/\/$/,'')+'/chat/completions';
-  return async ({term,meaning})=>{
+  return async ({term,meaning,senseId})=>{
     let response;
     try{
       response=await fetchImpl(endpoint,{
@@ -24,7 +24,7 @@ export function createLlmProvider({
         headers:{'Content-Type':'application/json',Authorization:`Bearer ${apiKey}`},
         body:JSON.stringify({model,temperature:0.7,response_format:{type:'json_object'},messages:[
           {role:'system',content:'Generate structured fictional English slang context questions as strict JSON. Never include surrounding prose.'},
-          {role:'user',content:createGenerationPrompt({term,meaning})}
+          {role:'user',content:createGenerationPrompt({term,meaning,senseId})}
         ]})
       });
     }catch(e){throw new Error(e?.name==='TimeoutError'?'llm-timeout':'llm-network');}

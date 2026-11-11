@@ -48,3 +48,28 @@ test('leaderboard never pretends simulated questions are ranked competitively',a
  const {data}=await json('GET','/api/leaderboard');assert.equal(data.competitive,false);
  assert.equal(data.source,'demo');assert.deepEqual(data.players,[]);
 });
+
+test('catalog lists provisional senses and preserves answer key secrecy',async()=>{
+ const {status,data}=await json('GET','/api/catalog');
+ assert.equal(status,200);assert.equal(data.candidateCount,200);
+ assert.equal(data.expertValidated,false);
+ assert.ok(data.senses.some(s=>s.senseId==='no-cap-truth'));
+ assert.equal(data.senses.some(s=>'targetMeaning' in s),false);
+ const candidates=await json('GET','/api/catalog/candidates?q=lowkey&limit=1');
+ assert.equal(candidates.data.items.length,1);
+ assert.equal(candidates.data.items[0].reviewStatus,'unreviewed');
+});
+test('create HTTP session for a selected sense without exposing answer keys',async()=>{
+ const {status,data}=await json('POST','/api/sessions',{senseId:'lowkey-subtle'});
+ assert.equal(status,201);assert.equal(data.senseId,'lowkey-subtle');
+ assert.equal(data.referenceStatus,'provisional');assert.equal(data.questions.length,10);
+ assert.equal(data.questions[0].slang,'lowkey');
+ assert.equal('correctIndex' in data.questions[0],false);
+ assert.equal('targetMeaning' in data.questions[0],false);
+});
+test('reject unsupported and mismatched sense selectors',async()=>{
+ const invalid=await json('POST','/api/sessions',{senseId:'does-not-exist'});
+ assert.equal(invalid.status,400);
+ const mismatch=await json('POST','/api/sessions',{senseId:'cooked-trouble',term:'no cap'});
+ assert.equal(mismatch.status,400);
+});

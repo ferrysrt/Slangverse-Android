@@ -46,6 +46,8 @@ fun RemoteTrainingPanel() {
     var highestCombo by remember { mutableIntStateOf(0) }
     var finished by remember { mutableStateOf(false) }
     var expandedReplies by remember { mutableStateOf(false) }
+    var catalog by remember { mutableStateOf<ApiCatalog?>(null) }
+    var selectedSenseId by rememberSaveable { mutableStateOf("cooked-trouble") }
 
     @Composable fun Action(text: String, enabled: Boolean = true, onClick: () -> Unit) {
         Button(
@@ -82,11 +84,37 @@ fun RemoteTrainingPanel() {
                 )
             )
             Text("On a physical phone, use your laptop's Wi-Fi IP and start the mock API with HOST=0.0.0.0. Only use HTTP on a trusted local network.", color = Secondary, fontSize = 12.sp)
+            Action("LOAD AVAILABLE SLANG", enabled = !loading) {
+                loading = true; error = null
+                scope.launch {
+                    try {
+                        catalog = SlangverseApi(serverUrl).fetchCatalog()
+                        if (catalog?.senses?.none { it.senseId == selectedSenseId } == true) {
+                            selectedSenseId = catalog!!.senses.firstOrNull()?.senseId ?: "cooked-trouble"
+                        }
+                    } catch (e: Exception) { error = e.message ?: "Catalog unavailable" }
+                    finally { loading = false }
+                }
+            }
+            if (catalog != null) {
+                Text("${catalog!!.candidateCount} unreviewed candidate terms. Only provisional selections below are playable.",
+                    color = Secondary, fontSize = 11.sp)
+                catalog!!.senses.forEach { sense ->
+                    OutlinedButton(
+                        onClick = { selectedSenseId = sense.senseId },
+                        modifier = Modifier.fillMaxWidth(),
+                        border = BorderStroke(1.dp, if (selectedSenseId == sense.senseId) MintGreen else Secondary)
+                    ) {
+                        Text((if (selectedSenseId == sense.senseId) "✓ " else "") +
+                            sense.term + " · " + sense.reviewStatus, color = MintGreen)
+                    }
+                }
+            }
             Action("START 10-CONTEXT SESSION", enabled = !loading) {
                 loading = true; error = null
                 scope.launch {
                     try {
-                        val created = SlangverseApi(serverUrl).createSession()
+                        val created = SlangverseApi(serverUrl).createSession(selectedSenseId)
                         session = created
                         currentIndex = 0; selectedIndex = -1; result = null; finished = false
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
@@ -116,7 +144,7 @@ fun RemoteTrainingPanel() {
     }
 
     val isThreadMode = currentIndex % 2 == 1
-    Text("QUESTION SOURCE: ${activeSession.source.uppercase()} · answer checked by server", color = Secondary, fontSize = 10.sp)
+    Text("QUESTION SOURCE: ${activeSession.source.uppercase()} · ${activeSession.senseId} · ${activeSession.referenceStatus}", color = Secondary, fontSize = 10.sp)
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         Text("${if (isThreadMode) "REPLY BATTLE" else "DECODE POST"} · ${current.difficulty.uppercase()}", color = MintGreen, fontSize = 11.sp, fontWeight = FontWeight.Bold)
         Text("${currentIndex + 1} / ${activeSession.questions.size}", color = Secondary)
