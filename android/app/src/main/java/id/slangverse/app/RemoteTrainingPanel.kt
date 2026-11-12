@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ private val Secondary = Color(0xFFBDB2CF)
 private val PrimaryText = Color(0xFFF9F5FF)
 
 /**
- * True HTTP game loop against Slangverse MOCK backend.
+ * True HTTP game loop against Slangverse mock or live-LLM backend.
  * Never calculate the right answer in the Android app; grades come from the server.
  * Parent composable provides vertical scrolling.
  */
@@ -34,6 +35,8 @@ private val PrimaryText = Color(0xFFF9F5FF)
 fun RemoteTrainingPanel() {
     val scope = rememberCoroutineScope()
     var serverUrl by rememberSaveable { mutableStateOf("http://10.0.2.2:8787") }
+    // Deliberately not saved to disk or Android saved-instance state.
+    var clientToken by remember { mutableStateOf("") }
     var session by remember { mutableStateOf<ApiSession?>(null) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var selectedIndex by remember { mutableIntStateOf(-1) }
@@ -83,12 +86,26 @@ fun RemoteTrainingPanel() {
                     focusedLabelColor = MintGreen, unfocusedLabelColor = Secondary
                 )
             )
-            Text("On a physical phone, use your laptop's Wi-Fi IP and start the mock API with HOST=0.0.0.0. Only use HTTP on a trusted local network.", color = Secondary, fontSize = 12.sp)
+            OutlinedTextField(
+                value = clientToken,
+                onValueChange = { clientToken = it },
+                label = { Text("Backend access token (optional for local)") },
+                visualTransformation = PasswordVisualTransformation(),
+                singleLine = true,
+                modifier = Modifier.fillMaxWidth(),
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = MintGreen, unfocusedBorderColor = Secondary,
+                    focusedTextColor = PrimaryText, unfocusedTextColor = PrimaryText,
+                    focusedLabelColor = MintGreen, unfocusedLabelColor = Secondary
+                )
+            )
+            Text("For cloud hosting, enter the HTTPS URL and the separate backend access token. NEVER enter your OpenRouter API key here.", color = MintGreen, fontSize = 11.sp)
+            Text("For local Wi-Fi testing, use http://LAPTOP-IP:8787 on a trusted network with HOST=0.0.0.0. Do not use public HTTP.", color = Secondary, fontSize = 12.sp)
             Action("LOAD AVAILABLE SLANG", enabled = !loading) {
                 loading = true; error = null
                 scope.launch {
                     try {
-                        catalog = SlangverseApi(serverUrl).fetchCatalog()
+                        catalog = SlangverseApi(serverUrl, clientToken).fetchCatalog()
                         if (catalog?.senses?.none { it.senseId == selectedSenseId } == true) {
                             selectedSenseId = catalog!!.senses.firstOrNull()?.senseId ?: "cooked-trouble"
                         }
@@ -114,7 +131,7 @@ fun RemoteTrainingPanel() {
                 loading = true; error = null
                 scope.launch {
                     try {
-                        val created = SlangverseApi(serverUrl).createSession(selectedSenseId)
+                        val created = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
                         session = created
                         currentIndex = 0; selectedIndex = -1; result = null; finished = false
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
@@ -224,7 +241,7 @@ fun RemoteTrainingPanel() {
             loading = true; error = null
             scope.launch {
                 try {
-                    val response = SlangverseApi(serverUrl).submitAnswer(activeSession.id, current.id, selectedIndex)
+                    val response = SlangverseApi(serverUrl, clientToken).submitAnswer(activeSession.id, current.id, selectedIndex)
                     result = response
                     totalXp = response.totalXp
                     if (response.correct) {correctCount += 1; combo += 1; highestCombo = maxOf(highestCombo, combo)} else combo = 0
