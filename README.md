@@ -6,6 +6,12 @@ Slangverse is an educational Android game with a **fictional social-media-inspir
 
 **Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
 
+## New: GitHub GET mode (no server IP)
+
+The Android **API Training** screen now supports **GitHub GET** for publicly hosted static question packs, alongside the separate **Live Backend** mode. It can display/grade 10-question packs without a laptop or Node server. The current main source repo is private, so a separate public JSON bank must be published before anonymous phone GET works; no GitHub or OpenRouter token is shipped in the APK. See [GitHub GET setup](docs/GITHUB_GET_QUESTIONS.md).
+
+Backend CI exports three free hand-written demo packs as a downloadable artifact. A separate **manual-only** GitHub Actions workflow can generate a genuine GPT-6 Luna pack (one optional paid request) for review and later publication. Static-bank grading occurs on the phone and is **not secure research-grade grading**. The original backend server-grading option is preserved.
+
 ## What currently works
 
 - **8 native Compose screens (source)**: Feed, Explore/Trending, Community Quest, Decode, Reply Battle, Results, Top Decoders (demo), Profile/Badges (demo).
