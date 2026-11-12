@@ -1,0 +1,62 @@
+import {mkdirSync, writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {resolveSense, publicCatalog} from '../src/catalog.mjs';
+import {createSessionService} from '../src/sessionService.mjs';
+import {validatePackage} from '../src/game.mjs';
+
+/**
+ * Generate ONE real LLM pack in a manually triggered GitHub Actions run.
+ * Never store a fabricated 'llm' claim when the provider fell back to mock data.
+ * The output contains answer keys for public, local-demo scoring.
+ * No provider keys or unverified raw completions are written to files or logs.
+ */
+export async function exportLiveStaticPack({
+  senseId = process.env.SLANG_SENSE_ID,
+  outputDir = process.env.OUTPUT_DIR || 'public-question-bank',
+  generate = createSessionService({
+    provider: 'openai-compatible',
+    retries: 0
+  })
+}={}) {
+  const selected = resolveSense({senseId});
+  const result = await generate({senseId:selected.senseId});
+  if (result.session?.source !== 'llm') {
+    throw Error('Live generation did not produce an LLM result: '+String(result.failureReason||'unknown'));
+  }
+  const errs = validatePackage(result.session.questions);
+  if (errs.length) throw Error('Generated pack failed structural validation: '+errs.join(','));
+  const catalog = publicCatalog();
+  const target = resolve(outputDir);
+  mkdirSync(resolve(target,'packs'),{recursive:true});
+  const index = {
+    schemaVersion: 1,
+    datasetVersion: catalog.datasetVersion,
+    source: 'github-static',
+    generationSource: 'llm',
+    candidateCount: catalog.candidateCount,
+    expertValidated: false,
+    senses: [{senseId:selected.senseId,term:selected.term,reviewStatus:'provisional'}]
+  };
+  const pack = {
+    schemaVersion: 1,
+    senseId: selected.senseId,
+    generationSource: 'llm',
+    generatorModel: process.env.LLM_MODEL || 'openai/gpt-6-luna',
+    referenceStatus:'provisional',
+    datasetVersion:catalog.datasetVersion,
+    expertValidated:false,
+    questions: result.session.questions.map(({targetMeaning,...q})=>structuredClone(q))
+  };
+  writeFileSync(resolve(target,'catalog.json'),JSON.stringify(index,null,2)+'\n');
+  writeFileSync(resolve(target,'packs',selected.senseId+'.json'),JSON.stringify(pack,null,2)+'\n');
+  return {senseId:selected.senseId,source:'llm',questions:pack.questions.length,contexts:new Set(pack.questions.map(q=>q.contextId)).size};
+}
+
+if (process.argv[1] && process.argv[1].endsWith('export-static-llm-bank.mjs')) {
+  exportLiveStaticPack().then(metrics=>{
+    console.log(JSON.stringify({event:'llm-static-pack-export',...metrics}));
+  }).catch(e=>{
+    console.error(JSON.stringify({event:'llm-static-pack-failed',category:e?.message||'error'}));
+    process.exitCode=1;
+  });
+}

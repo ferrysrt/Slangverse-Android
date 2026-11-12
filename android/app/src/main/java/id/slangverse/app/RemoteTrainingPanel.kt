@@ -34,6 +34,9 @@ private val PrimaryText = Color(0xFFF9F5FF)
 @Composable
 fun RemoteTrainingPanel() {
     val scope = rememberCoroutineScope()
+    var questionMode by rememberSaveable { mutableStateOf("github") }
+    var githubRoot by rememberSaveable { mutableStateOf("") }
+    var staticAnswers by remember { mutableStateOf<Map<String, StaticAnswer>>(emptyMap()) }
     var serverUrl by rememberSaveable { mutableStateOf("http://10.0.2.2:8787") }
     // Deliberately not saved to disk or Android saved-instance state.
     var clientToken by remember { mutableStateOf("") }
@@ -71,6 +74,31 @@ fun RemoteTrainingPanel() {
 
     if (session == null) {
         Sheet {
+            Text("Choose question source", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                OutlinedButton(
+                    onClick = { questionMode = "github"; catalog = null; error = null },
+                    modifier = Modifier.weight(1f),
+                    border = BorderStroke(1.dp, if (questionMode == "github") MintGreen else Secondary)
+                ) { Text("GitHub GET", color = MintGreen, fontSize = 12.sp) }
+                OutlinedButton(
+                    onClick = { questionMode = "backend"; catalog = null; error = null },
+                    modifier = Modifier.weight(1f),
+                    border = BorderStroke(1.dp, if (questionMode == "backend") MintGreen else Secondary)
+                ) { Text("Live Backend", color = MintGreen, fontSize = 12.sp) }
+            }
+            if (questionMode == "github") {
+                Text("GET-only public JSON question bank. No laptop IP or backend required; demo grading runs locally.", color = MintGreen, fontSize = 12.sp)
+                OutlinedTextField(
+                    value = githubRoot,
+                    onValueChange = { githubRoot = it; catalog = null },
+                    label = { Text("Public GitHub JSON folder URL") },
+                    placeholder = { Text("https://raw.githubusercontent.com/.../public-question-bank") },
+                    singleLine = true,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Text("The repository holding JSON must be PUBLIC, or use public GitHub Pages. No GitHub token is used. Static packs expose answer keys; not suitable for tamper-proof player scoring.", color = Secondary, fontSize = 11.sp)
+            } else {
             Text("Connect to the backend", fontWeight = FontWeight.Bold, fontSize = 18.sp)
             Text("Real HTTP requests · mock or live LLM · server-side grading", color = MintGreen, fontSize = 11.sp)
             Text("Emulator address: http://10.0.2.2:8787", color = Secondary, fontSize = 12.sp)
@@ -101,11 +129,13 @@ fun RemoteTrainingPanel() {
             )
             Text("For cloud hosting, enter the HTTPS URL and the separate backend access token. NEVER enter your OpenRouter API key here.", color = MintGreen, fontSize = 11.sp)
             Text("For local Wi-Fi testing, use http://LAPTOP-IP:8787 on a trusted network with HOST=0.0.0.0. Do not use public HTTP.", color = Secondary, fontSize = 12.sp)
-            Action("LOAD AVAILABLE SLANG", enabled = !loading) {
+            }
+            Action("LOAD AVAILABLE SLANG", enabled = !loading && (questionMode != "github" || githubRoot.isNotBlank())) {
                 loading = true; error = null
                 scope.launch {
                     try {
-                        catalog = SlangverseApi(serverUrl, clientToken).fetchCatalog()
+                        catalog = if (questionMode == "github") GithubStaticBank(githubRoot).fetchCatalog()
+                            else SlangverseApi(serverUrl, clientToken).fetchCatalog()
                         if (catalog?.senses?.none { it.senseId == selectedSenseId } == true) {
                             selectedSenseId = catalog!!.senses.firstOrNull()?.senseId ?: "cooked-trouble"
                         }
@@ -114,7 +144,8 @@ fun RemoteTrainingPanel() {
                 }
             }
             if (catalog != null) {
-                Text("${catalog!!.candidateCount} unreviewed candidate terms. Only provisional selections below are playable.",
+                Text(if (questionMode == "github") "Pre-generated GitHub question bank · local demo scoring"
+                     else "${catalog!!.candidateCount} unreviewed candidate terms. Only provisional selections below are playable.",
                     color = Secondary, fontSize = 11.sp)
                 catalog!!.senses.forEach { sense ->
                     OutlinedButton(
@@ -127,12 +158,18 @@ fun RemoteTrainingPanel() {
                     }
                 }
             }
-            Action("START 10-CONTEXT SESSION", enabled = !loading) {
+            Action("START 10-CONTEXT SESSION", enabled = !loading && catalog != null) {
                 loading = true; error = null
                 scope.launch {
                     try {
-                        val created = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
-                        session = created
+                        if (questionMode == "github") {
+                            val downloaded = GithubStaticBank(githubRoot).fetchSession(selectedSenseId)
+                            staticAnswers = downloaded.answers
+                            session = downloaded.session
+                        } else {
+                            staticAnswers = emptyMap()
+                            session = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
+                        }
                         currentIndex = 0; selectedIndex = -1; result = null; finished = false
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
                     } catch (e: Exception) { error = e.message ?: "Connection failed" }
@@ -142,7 +179,8 @@ fun RemoteTrainingPanel() {
         }
         if (loading) {
             LinearProgressIndicator(Modifier.fillMaxWidth(), color = MintGreen)
-            Text("Connecting to backend. Live generation can take longer than mock mode.",
+            Text(if (questionMode == "github") "Fetching public GitHub JSON with GET..."
+                 else "Connecting to backend. Live generation can take longer than mock mode.",
                 color = Secondary, fontSize = 12.sp)
         }
         if (error != null) Text(error.orEmpty(), color = CoralPink, fontSize = 12.sp)
@@ -159,6 +197,9 @@ fun RemoteTrainingPanel() {
             Text("Total earned XP: $totalXp", fontSize = 21.sp, color = MintGreen)
             Text("Best combo: $highestCombo", color = Secondary)
             Text("Data source: ${activeSession.source.uppercase()} · Reference: ${activeSession.referenceStatus}. Semantic accuracy is not expert-validated.", color = Secondary, fontSize = 11.sp)
+            if (activeSession.source.startsWith("github-static")) {
+                Text("Local demo scores only: answer keys are included in the publicly readable JSON.", color = Secondary, fontSize = 11.sp)
+            }
             Action("START NEW SESSION") { session = null; finished = false; error = null }
         }
         return
@@ -166,6 +207,9 @@ fun RemoteTrainingPanel() {
 
     val isThreadMode = currentIndex % 2 == 1
     Text("QUESTION SOURCE: ${activeSession.source.uppercase()} · ${activeSession.senseId} · ${activeSession.referenceStatus}", color = Secondary, fontSize = 10.sp)
+    if (activeSession.source.startsWith("github-static")) {
+        Text("Pre-generated GitHub pack · local demo scoring · NOT a live LLM request", color = Secondary, fontSize = 10.sp)
+    }
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         Text("${if (isThreadMode) "REPLY BATTLE" else "DECODE POST"} · ${current.difficulty.uppercase()}", color = MintGreen, fontSize = 11.sp, fontWeight = FontWeight.Bold)
         Text("${currentIndex + 1} / ${activeSession.questions.size}", color = Secondary)
@@ -230,7 +274,9 @@ fun RemoteTrainingPanel() {
         Sheet {
             Text(if (result!!.correct) "✓ Correct! +${result!!.xpEarned} XP" else "Not quite. +${result!!.xpEarned} XP", color = MintGreen, fontWeight = FontWeight.Bold)
             Text(result!!.explanation, color = PrimaryText, fontSize = 12.sp)
-            Text("Server-graded result; not evidence of semantic accuracy.", color = Secondary, fontSize = 10.sp)
+            Text(if (activeSession.source.startsWith("github-static"))
+                 "Locally graded demo; correct answers are public in GitHub JSON."
+                 else "Server-graded result; not evidence of semantic accuracy.", color = Secondary, fontSize = 10.sp)
         }
         Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT POST →") {
             if (currentIndex == activeSession.questions.lastIndex) finished = true
@@ -241,7 +287,9 @@ fun RemoteTrainingPanel() {
             loading = true; error = null
             scope.launch {
                 try {
-                    val response = SlangverseApi(serverUrl, clientToken).submitAnswer(activeSession.id, current.id, selectedIndex)
+                    val response = if (activeSession.source.startsWith("github-static"))
+                        gradeStaticAnswer(staticAnswers, current.id, selectedIndex, currentIndex, totalXp)
+                    else SlangverseApi(serverUrl, clientToken).submitAnswer(activeSession.id, current.id, selectedIndex)
                     result = response
                     totalXp = response.totalXp
                     if (response.correct) {correctCount += 1; combo += 1; highestCombo = maxOf(highestCombo, combo)} else combo = 0
