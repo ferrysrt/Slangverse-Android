@@ -14,3 +14,11 @@ jobs:
         with:
           node-version: '22'
       - run: npm test
+      - name: Export public-safe static demo question packs
+        run: npm run bank:export
+      - name: Upload static JSON demo bank
+        uses: actions/upload-artifact@v4
+        with:
+          name: slangverse-static-demo-json
+          path: backend/public-question-bank/
+          if-no-files-found: error

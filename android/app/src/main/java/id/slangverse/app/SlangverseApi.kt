@@ -9,8 +9,8 @@ import java.net.URL
 import java.nio.charset.StandardCharsets
 
 /**
- * Starter API client. This is for the MOCK backend, not a production authenticated API.
- * HTTP is allowed only by the debug Android manifest. Keep API credentials server-side.
+ * HTTP client for mock or live-LLM sessions; answer keys and OpenRouter keys stay on the server.
+ * Optional backend access token is entered at runtime, never compiled into the APK.
  */
 data class ApiReply(val handle: String, val text: String)
 data class ApiPost(
@@ -48,7 +48,7 @@ data class ApiGrade(
 
 class ApiException(message: String) : Exception(message)
 
-class SlangverseApi(rawBaseUrl: String) {
+class SlangverseApi(rawBaseUrl: String, private val clientToken: String = "") {
     private val baseUrl = rawBaseUrl.trim().trimEnd('/')
 
     init {
@@ -125,8 +125,13 @@ class SlangverseApi(rawBaseUrl: String) {
             connection.connectTimeout = 8_000
             // Generating 10 questions with a live LLM can take longer than simple API requests.
             // Use a longer timeout only for creating a new session.
-            connection.readTimeout = if (method == "POST" && path == "/api/sessions") 150_000 else 15_000
+            connection.readTimeout = when {
+                method == "POST" && path == "/api/sessions" -> 150_000
+                method == "GET" && (path == "/api/catalog" || path == "/api/health") -> 90_000 // Free cloud hosts may need to wake up.
+                else -> 15_000
+            }
             connection.setRequestProperty("Accept", "application/json")
+            if (clientToken.isNotBlank()) connection.setRequestProperty("Authorization", "Bearer $clientToken")
             if (json != null) {
                 connection.doOutput = true
                 connection.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
@@ -136,10 +141,12 @@ class SlangverseApi(rawBaseUrl: String) {
             val stream = if (status in 200..299) connection.inputStream else connection.errorStream
             val text = stream?.bufferedReader(StandardCharsets.UTF_8)?.use { it.readText() }.orEmpty()
             val body = try { JSONObject(text) } catch (_: Exception) { throw ApiException("Invalid JSON from server (HTTP $status)") }
+            if (status == 401) throw ApiException("Access denied. Check the backend access token (not the OpenRouter API key).")
+            if (status == 429) throw ApiException("Generation limit reached or another generation is in progress. Try later or contact the backend owner.")
             if (status !in 200..299) throw ApiException(body.optString("error", "HTTP $status"))
             return body
         } catch (e: java.net.SocketTimeoutException) {
-            throw ApiException("Connection timed out. Check your backend address.")
+            throw ApiException("Connection timed out. Cloud services may be waking up; retry after checking your backend address.")
         } catch (e: java.net.ConnectException) {
             throw ApiException("Cannot reach the backend. Start Node.js server and check host/IP.")
         } catch (e: java.net.UnknownHostException) {

@@ -8,7 +8,8 @@
     "start:env": "node --env-file=.env src/server.mjs",
     "benchmark": "node scripts/benchmark.mjs",
     "test": "node --test",
-    "dataset:refresh": "node dataset/refresh.mjs"
+    "dataset:refresh": "node dataset/refresh.mjs",
+    "bank:export": "node scripts/export-static-demo-bank.mjs public-question-bank"
   },
   "engines": {
     "node": ">=20"

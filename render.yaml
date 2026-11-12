@@ -1,0 +1,41 @@
+# Free-tier hobby/development deployment (not production-ready).
+# Create via Render Dashboard -> New -> Blueprint.
+# The two secrets below must be supplied in Render, never committed to GitHub.
+services:
+  - type: web
+    name: slangverse-backend
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: backend
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeployTrigger: off
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: NODE_ENV
+        value: production
+      - key: LLM_PROVIDER
+        value: openai-compatible
+      - key: LLM_MODEL
+        value: openai/gpt-6-luna
+      - key: LLM_API_BASE_URL
+        value: https://openrouter.ai/api/v1
+      - key: LLM_TIMEOUT_MS
+        value: "120000"
+      - key: LLM_MAX_TOKENS
+        value: "8000"
+      - key: LLM_REASONING_EFFORT
+        value: low
+      - key: LLM_RETRIES
+        value: "0"
+      - key: SLANGVERSE_REQUIRE_TOKEN
+        value: "true"
+      - key: SLANGVERSE_MAX_LLM_SESSIONS
+        value: "10"
+      - key: SLANGVERSE_CLIENT_TOKEN
+        sync: false
+      - key: LLM_API_KEY
+        sync: false

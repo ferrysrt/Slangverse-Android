@@ -1,0 +1,48 @@
+name: Export GPT-6 Luna static question pack (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      senseId:
+        description: Provisional slang sense to generate (one paid LLM request)
+        required: true
+        type: choice
+        default: no-cap-truth
+        options:
+          - cooked-trouble
+          - no-cap-truth
+          - lowkey-subtle
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      SLANG_SENSE_ID: ${{ inputs.senseId }}
+      LLM_PROVIDER: openai-compatible
+      LLM_MODEL: openai/gpt-6-luna
+      LLM_API_BASE_URL: https://openrouter.ai/api/v1
+      LLM_TIMEOUT_MS: '120000'
+      LLM_MAX_TOKENS: '8000'
+      LLM_REASONING_EFFORT: low
+      LLM_RETRIES: '0'
+      LLM_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Ensure OpenRouter secret exists (never print its contents)
+        run: test -n "$LLM_API_KEY"
+      - name: Generate one real LLM pack; fail rather than exporting fallback
+        run: node scripts/export-static-llm-bank.mjs
+      - name: Save private artifact for manual review and optional publication
+        uses: actions/upload-artifact@v4
+        with:
+          name: slangverse-llm-static-bank-${{ inputs.senseId }}
+          path: backend/public-question-bank/
+          if-no-files-found: error
+          retention-days: 7
