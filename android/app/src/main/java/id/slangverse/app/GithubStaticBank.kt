@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.StandardCharsets
@@ -145,9 +146,15 @@ class GithubStaticBank(rawRootUrl: String) {
             )
             val text = connection.inputStream.use { stream ->
                 val maxBytes = 1_000_000
-                val bytes = stream.readNBytes(maxBytes + 1)
-                if (bytes.size > maxBytes) throw ApiException("GitHub JSON exceeds 1 MB")
-                String(bytes, StandardCharsets.UTF_8)
+                val output = ByteArrayOutputStream()
+                val buffer = ByteArray(8192)
+                while (true) {
+                    val count = stream.read(buffer)
+                    if (count < 0) break
+                    if (output.size() + count > maxBytes) throw ApiException("GitHub JSON exceeds 1 MB")
+                    output.write(buffer, 0, count)
+                }
+                String(output.toByteArray(), StandardCharsets.UTF_8)
             }
             return try { JSONObject(text) } catch (_: Exception) {
                 throw ApiException("GitHub returned an invalid JSON object")
