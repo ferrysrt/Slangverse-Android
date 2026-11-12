@@ -31,7 +31,7 @@ class SlangversePlaythroughTest {
     @Test
     fun userCanPlayBuiltInSocialFeedDemoAndSeeRewards() {
         rule.onNodeWithText("◎ SLANGVERSE").assertExists()
-        rule.onNodeWithText("DECODE THIS POST").performScrollTo().performClick()
+        rule.onAllNodesWithText("DECODE THIS POST")[0].performScrollTo().performClick()
         rule.onNodeWithText("What does 'cooked' mean here?").assertExists()
         rule.onNodeWithText("B   In serious trouble").performScrollTo().performClick()
         rule.onNodeWithText("SUBMIT ANSWER").performScrollTo().performClick()
