@@ -4,13 +4,15 @@
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of on-demand LLM generation**: schema adherence, success/fallback, latency, and SUS.
 
+**Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
+
 ## What currently works
 
 - **8 native Compose screens (source)**: Feed, Explore/Trending, Community Quest, Decode, Reply Battle, Results, Top Decoders (demo), Profile/Badges (demo).
 - **Additional API Training path** from Feed: create a session over HTTP, play ten questions with **ten different context IDs** for *cooked*, open more replies as indirect hints, submit answers, receive server-graded feedback, XP, combo, and a session result.
 - Node.js mock API: `GET /api/health`, `GET /api/trending`, `POST /api/sessions`, `GET /api/sessions/:id`, `POST /api/sessions/:id/answers`, `GET /api/leaderboard` (demo-only).
 - Server keeps answer keys and explanation hidden until grading; rejects double answers. Tests run with Node.js built-in test runner and use no npm dependencies.
-- Optional OpenAI-compatible REST adapter with retry, schema validation and labeled fallback. A **single live OpenRouter GPT-OSS 120B smoke test** on 2026-11-11 generated ten structurally valid `no cap` items in 70.43 seconds without retry; this does **not** imply semantic validity, production deployment, or average latency. See [live validation notes](docs/LIVE_LLM_SMOKE.md).
+- Optional OpenAI-compatible REST adapter with retry, schema validation and labeled fallback. Separate **one-run live OpenRouter** smoke tests generated ten structurally valid `no cap` items with GPT-OSS 120B (~70.43 seconds) and GPT-6 Luna (~29.29 seconds). These are **individual observations**, not average latencies or proof of semantic correctness, production deployment, or phone-level play. See [live validation notes](docs/LIVE_LLM_SMOKE.md).
 
 ## 1. Run backend first
 
@@ -35,7 +37,7 @@ Use `HOST=0.0.0.0` if you **intentionally** want a physical Android phone on the
 5. Launch in emulator, run Node backend on your computer, then open Feed > **PLAY API SESSION**. The default backend URL `http://10.0.2.2:8787` is for the standard Android emulator.
 6. For a **physical device**, set API URL to `http://YOUR-LAPTOP-LAN-IP:8787`, and run server with `HOST=0.0.0.0`. Ensure firewall/Wi-Fi allows local access.
 
-Android **debug builds** allow cleartext HTTP for this local mock server; release builds do **not** opt into cleartext. For a deployed backend, use HTTPS. Never put API keys in the APK.
+Android **debug builds** allow cleartext HTTP for trusted private-LAN testing; release builds do **not** opt into cleartext. Use HTTPS for a cloud backend and enter the separate *backend access token* in API Training. Never put OpenRouter keys in the APK. See [cloud deployment guide](docs/CLOUD_PLAY.md).
 
 ## 3. Build APK in GitHub Actions (no Codex, no powerful laptop required)
 
@@ -54,7 +56,7 @@ LLM_TIMEOUT_MS=120000
 LLM_RETRIES=1
 ```
 
-Then `npm run start:env` (Node 20.6+). This calls `/chat/completions` and requests JSON output. If the provider returns invalid data, times out, or configuration is missing, **source is explicitly `fallback`**, never a fabricated `llm` success. The `mock` and `fallback` sources are excluded from live-generation success metrics. One earlier GPT-OSS 120B generation request passed a smoke test via Actions (historical result). The current configured model is **`openai/gpt-6-luna` (non-batch)**, which has not yet been smoke-tested live in this change. The default backend remains in mock mode unless separately configured.
+Then `npm run start:env` (Node 20.6+). This calls `/chat/completions` and requests JSON output. If the provider returns invalid data, times out, or configuration is missing, **source is explicitly `fallback`**, never a fabricated `llm` success. The `mock` and `fallback` sources are excluded from live-generation success metrics. One earlier GPT-OSS 120B generation request passed a smoke test via Actions (historical result). The configured model is **`openai/gpt-6-luna` (non-batch)**; one previous isolated live smoke test passed, but a cloud-hosted phone session has not been verified. The default backend remains in mock mode unless separately configured.
 
 ## 5. Package layout
 
@@ -69,8 +71,8 @@ Original editable prototype: https://designs.magicpath.ai/v1/gladly-water-6771
 
 - The ten mock contexts are **hand-authored**, not LLM-generated. A unique `contextId` does not prove genuine semantic variation or item validity.
 - Automated validation checks schema, IDs, literal answer matching and obvious answer leakage; **not** semantic correctness, actual difficulty, distractor plausibility, bias, or educational gains.
-- No real player accounts, competitive leaderboard, cloud persistence, production auth, real-time moderation, abuse prevention or SUS study yet.
-- The UI was not compiled or tested on an Android device here, because the environment has no Android SDK/Gradle and cannot download them.
+- No real player accounts, competitive leaderboard, cloud persistence, per-user authorization, robust abuse prevention or SUS study yet. The cloud-play prototype supports only a manually entered *shared backend token* and a per-process generation safety fuse.
+- The Android debug APK has successfully compiled through GitHub Actions, **not** been validated by playing on a physical Android device.
 - Backend process-memory sessions expire after 30 minutes and disappear on server restart.
 - The system is not a public social network: accounts, posts, comments, reactions, and trending are fictional.
 
