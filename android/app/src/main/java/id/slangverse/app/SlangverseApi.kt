@@ -123,7 +123,9 @@ class SlangverseApi(rawBaseUrl: String) {
         try {
             connection.requestMethod = method
             connection.connectTimeout = 8_000
-            connection.readTimeout = 15_000
+            // Generating 10 questions with a live LLM can take longer than simple API requests.
+            // Use a longer timeout only for creating a new session.
+            connection.readTimeout = if (method == "POST" && path == "/api/sessions") 150_000 else 15_000
             connection.setRequestProperty("Accept", "application/json")
             if (json != null) {
                 connection.doOutput = true

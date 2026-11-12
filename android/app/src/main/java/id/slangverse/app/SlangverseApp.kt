@@ -119,7 +119,7 @@ fun SlangverseApp() {
                         Screen.ApiSession -> RemoteTrainingPanel()
                         Screen.Feed -> {
                             Panel(Surface) {
-                                Text("API-CONNECTED MOCK TRAINING", color = Mint, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+                                Text("API-CONNECTED TRAINING", color = Mint, fontSize = 11.sp, fontWeight = FontWeight.Bold)
                                 Text("Try a real HTTP session with 10 curated contexts. Scoring and answer keys stay on Node.js.", color = Muted, fontSize = 12.sp)
                                 PrimaryButton("PLAY API SESSION →") { screen = Screen.ApiSession }
                             }
