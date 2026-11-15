@@ -226,6 +226,15 @@ export function additionalMockPackage(sense){
     difficulty:levels[i],contextId:CONTEXT_IDS[i],
     post:{id:CONTEXT_IDS[i],displayName,handle,hashtag,content,
       comments:comments.map((text,j)=>({handle:'@reply'+(j+1)+'_'+CONTEXT_IDS[i],text}))},
+    questionComment:(sense.senseId==='no-cap-truth'?[
+      "Wait, no cap? Did somebody lose a hat?",
+      "I'm lost — what does no cap mean? Is this about headwear?",
+      "No cap? Like, are we supposed to take our caps off?"
+    ]:[
+      "What does lowkey mean here? Is there an actual key?",
+      "Wait, lowkey? Are you talking about a small key?",
+      "I'm confused — does lowkey refer to a lock or something?"
+    ])[i%3],
     question:"What does '"+sense.term+"' mean in this post?",
     options,correctIndex:selected,explanation:"This example uses '"+sense.term+"' to mean '"+sense.targetMeaning+"'."};
  });
