@@ -28,7 +28,7 @@ private enum class DetectiveStep { Investigate, Feedback, Report }
 internal fun ContextDetective(
     startCaseId: String,
     onExit: () -> Unit,
-    onSessionCompleted: (xp: Int, trailingCombo: Int) -> Unit
+    onSessionCompleted: (xp: Int, trailingCombo: Int, correctCases: Int) -> Unit
 ) {
     val cases = remember(startCaseId) { ContextDetectiveGame.orderedFrom(startCaseId) }
     var round by remember(startCaseId) { mutableIntStateOf(0) }
@@ -44,7 +44,7 @@ internal fun ContextDetective(
             step = DetectiveStep.Report
             val xp = decisions.sumOf { it.xpEarned }
             val trailingCombo = decisions.reversed().takeWhile { it.correct }.size
-            onSessionCompleted(xp, trailingCombo)
+            onSessionCompleted(xp, trailingCombo, decisions.count { it.correct })
         }
         else {
             round += 1
