@@ -1,16 +1,45 @@
-# MagicPath V2.1 design — exact source retrieval
+# Slangverse — Warm Editorial design sync
 
-- Project: `470964531963789312`
-- Component: `470964549080743936`
-- Revision observed for this handoff: `470973154093850624`
-- Editable canvas: https://www.magicpath.ai/files/470964531963789312
+## MagicPath production component (updated November 13, 2026)
+
+- Existing project: `470964531963789312`
+- Existing component: `470964549080743936`
+- Warm Editorial revision: `470990382860222464`
+- MagicPath canvas: https://www.magicpath.ai/files/470964531963789312
 - Live prototype: https://designs.magicpath.ai/v1/gladly-water-6771
-- Source file names on MagicPath:
-  - `src/components/generated/SlangverseV2SocialFeedGameUI8Screens.tsx`
-  - `src/components/generated/SlangverseV2SocialFeedGameUI8Screens.css`
-  - `src/App.tsx`
-  - `src/index.css`
 
-**IMPORTANT:** These original React/CSS files are **not embedded** in this handoff archive because the MagicPath connector returned them to ChatGPT but could not export bytes into this working container. The eight-screen Android UI in `android/` was independently drafted from the MagicPath layout. Please export the exact React source from MagicPath's Code/Export UI or enable MagicPath in Codex and fetch via `get_component_code_context` for the component ID. Place them in `magicpath-reference/export/` under a distinct commit and keep them read-only as design reference.
+The existing V2 MagicPath component was updated in place from a dark social-feed concept to **Warm Editorial**.
 
-Prompt for Codex: `Use the MagicPath component 470964549080743936 as a UI reference; recreate in native Compose and preserve social card hierarchy, indirect reply hints, navigation and gamification. Do not embed React in WebView.`
+Its seven interactive pages are:
+1. Feed
+2. Play / Quiz
+3. Answer Feedback
+4. Glossary / Learn
+5. Challenges
+6. Progress
+7. Profile / Settings
+
+Style tokens: paper `#FFF3E5`, ink `#18213B`, coral `#EE7058`, peach `#FBC8B2`, sand border `#E9D6C8`. Editorial serif display headlines, clear sans body copy, warm cards and deep-navy bottom navigation.
+
+MagicPath contains an **interactive React prototype with fictional content**, not a live backend. Its XP, streak and other account statistics are demonstration UI.
+
+## Android source of truth
+
+The Kotlin + Jetpack Compose implementation is in:
+- `android/app/src/main/java/id/slangverse/app/WarmEditorialTheme.kt`
+- `android/app/src/main/java/id/slangverse/app/SlangverseApp.kt`
+- `android/app/src/main/java/id/slangverse/app/RemoteTrainingPanel.kt`
+
+Feed/learn/challenges/progress/profile are native Compose and use the Warm Editorial visual language. The **Connected Training** screen continues to offer the real GitHub GET/static JSON path and Node backend (mock/LLM) path without changing grading or API credentials.
+
+**Important distinction**: MagicPath React and the Android implementation are separate codebases sharing design decisions. The production Android app does not embed a MagicPath WebView or use React.
+
+The sample UI can render without connectivity. The backend has not been publicly deployed and the public static JSON bank may still need publishing.
+
+## Research boundaries
+
+The visual prototype is not expert-validated learning content. Hardcoded XP/profile examples do not count as participant outcomes. Structural validation is not semantic validation. Do not claim successful live-phone testing until device/emulator gameplay has been verified.
+
+## Original prototype
+
+Previous MagicPath dark-mode revision: `470973154093850624`. Keep this revision as historical reference. It was not overwritten in GitHub by copying JSX into the Android runtime.

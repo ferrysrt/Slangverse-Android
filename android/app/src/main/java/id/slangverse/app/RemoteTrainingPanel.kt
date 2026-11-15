@@ -18,17 +18,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 
-private val Night = Color(0xFF181326)
-private val PanelColor = Color(0xFF2C2540)
-private val PanelRaised = Color(0xFF362B4C)
-private val MintGreen = Color(0xFF74E5BF)
-private val CoralPink = Color(0xFFFF7F87)
-private val Secondary = Color(0xFFBDB2CF)
-private val PrimaryText = Color(0xFFF9F5FF)
+private val Night = WarmEditorial.Ink
+private val PanelColor = WarmEditorial.Card
+private val PanelRaised = WarmEditorial.Blush
+private val MintGreen = WarmEditorial.Coral
+private val CoralPink = WarmEditorial.CoralDeep
+private val Secondary = WarmEditorial.Muted
+private val PrimaryText = WarmEditorial.Ink
 
 /**
- * True HTTP game loop against Slangverse mock or live-LLM backend.
- * Never calculate the right answer in the Android app; grades come from the server.
+ * Session gameplay supports two distinctly labeled sources: public GitHub GET static demo
+ * (local scoring) and mock/live-LLM Node backend (server-side scoring).
  * Parent composable provides vertical scrolling.
  */
 @Composable
@@ -61,7 +61,7 @@ fun RemoteTrainingPanel() {
             enabled = enabled,
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = MintGreen, contentColor = Night),
-            shape = RoundedCornerShape(14.dp)
+            shape = RoundedCornerShape(17.dp)
         ) { Text(text, fontWeight = FontWeight.Bold) }
     }
     @Composable fun Sheet(content: @Composable ColumnScope.() -> Unit) {
@@ -263,7 +263,7 @@ fun RemoteTrainingPanel() {
             modifier = Modifier.fillMaxWidth().clickable(enabled = result == null && !loading) { selectedIndex = index },
             color = if (isCorrect) MintGreen else if (isSelected) PanelRaised else PanelColor,
             border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) MintGreen else PanelRaised),
-            shape = RoundedCornerShape(14.dp)
+            shape = RoundedCornerShape(17.dp)
         ) {
             Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text("${'A' + index}    $option", color = if (isCorrect) Night else PrimaryText, fontSize = 13.sp)

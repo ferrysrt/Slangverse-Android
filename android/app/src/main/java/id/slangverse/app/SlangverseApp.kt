@@ -3,6 +3,7 @@ package id.slangverse.app
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -13,189 +14,451 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-// HANDOFF STARTER: mock data, local-only state, no real LLM or backend connection.
-// All social accounts and interactions here are fictional.
-private val Background = Color(0xFF181326)
-private val Surface = Color(0xFF2C2540)
-private val Raised = Color(0xFF362B4C)
-private val Mint = Color(0xFF74E5BF)
-private val Coral = Color(0xFFFF7F87)
-private val Gold = Color(0xFFFFC66B)
-private val Muted = Color(0xFFBDB2CF)
-private val White = Color(0xFFF9F5FF)
+/**
+ * Warm Editorial is a native Jetpack Compose implementation of the approved visual direction.
+ * Decorative feed, missions, profile and glossary are clearly demo/curated data.
+ * The API Training route continues to use the existing GitHub GET and live backend clients.
+ */
+private enum class EditorialScreen { Feed, Quiz, Feedback, Learn, Challenges, Progress, Profile, ApiSession }
 
-private data class Reply(val handle: String, val message: String)
-private data class Post(
+private data class EditorialReply(val handle: String, val text: String)
+
+private data class EditorialPost(
+    val id: String,
     val displayName: String,
-    val username: String,
-    val ago: String,
+    val handle: String,
+    val age: String,
     val hashtag: String,
-    val message: String,
-    val replies: List<Reply>,
-    val likes: String = "1.8K",
-    val replyCount: String = "204"
+    val slang: String,
+    val content: String,
+    val likes: Int,
+    val replies: List<EditorialReply>,
+    val options: List<String>,
+    val answerIndex: Int,
+    val explanation: String
 )
-private val campus = Post(
-    "Campus Confessions", "@campusfeed", "2h", "#CampusChaos",
-    "Deadline tonight, laptop crashed, and my project isn't saved. I'm cooked. 😭",
-    listOf(
-        Reply("@studybuddy", "bro the lecturer's gonna grill you tomorrow 😭"),
-        Reply("@nightowl", "please tell me auto-save was ON 💀"),
-        Reply("@finalsweek", "that deadline isn't gonna wait for anyone...")
+
+private val editorialPosts = listOf(
+    EditorialPost(
+        "campus", "Campus Confessions", "@campusfeed", "2h", "#CampusChaos", "cooked",
+        "The presentation is tomorrow, my laptop crashed, and I didn't back up anything. I'm cooked 😭",
+        247,
+        listOf(
+            EditorialReply("@classmate", "Please tell me you saved a copy somewhere 💀"),
+            EditorialReply("@nightowl", "That deadline is going to be brutal..."),
+            EditorialReply("@studybuddy", "Maybe check your cloud backup before panicking 😭")
+        ),
+        listOf("Feeling hungry", "In serious trouble", "Feeling confident", "Planning a meal"),
+        1, "In this context, 'cooked' means being in serious trouble. The broken laptop and tomorrow's presentation provide the clues."
+    ),
+    EditorialPost(
+        "exam", "studybro", "@studybro", "5h", "#ExamWeek", "no cap",
+        "Just aced the midterm with five minutes to spare — no cap, I was stressing the whole time 😤",
+        389,
+        listOf(
+            EditorialReply("@classmate", "Wait, actually? Tell me how you did it."),
+            EditorialReply("@finalsweek", "You earned that break."),
+            EditorialReply("@nightowl", "I still haven't checked my grade.")
+        ),
+        listOf("Making a joke", "Feeling uncertain", "Speaking honestly", "Changing the subject"),
+        2, "'No cap' is used to emphasize that the speaker is telling the truth or is not exaggerating."
+    ),
+    EditorialPost(
+        "travel", "nightowl", "@nightowl", "7h", "#WeekendVibes", "lowkey",
+        "I lowkey want to drop everything and take a spontaneous weekend trip somewhere new... 🏔️",
+        312,
+        listOf(
+            EditorialReply("@friend", "That sounds tempting, honestly."),
+            EditorialReply("@wanderer", "You have been talking about a break all week."),
+            EditorialReply("@classmate", "Could be a nice reset after exams.")
+        ),
+        listOf("Loudly announcing", "Quietly or somewhat", "Completely forgetting", "Never wanting"),
+        1, "'Lowkey' often expresses a feeling or desire in a subtle or understated way."
     )
 )
-private val gaming = Post(
-    "Gaming Lobby", "@gaminglobby", "35m", "#GamingMoments",
-    "We were up 4–0 and still lost 4–5. We're cooked. 😭",
-    listOf(
-        Reply("@scoreboard", "from 4–0 to 4–5 is actually diabolical 😭"),
-        Reply("@teammate", "we're never living down that comeback 💀"),
-        Reply("@friend2", "wait how did that match collapse so badly?")
-    ), "860", "86"
-)
-private val choices = listOf("Feeling exhausted", "In serious trouble", "Very excited", "Feeling hungry")
-private val replyChoices = listOf("They're getting ready to eat", "They're in serious trouble", "They played extremely well", "They're about to celebrate")
-private enum class Screen { Feed, Explore, Community, Decode, ReplyBattle, Result, Rank, Profile, ApiSession }
 
 @Composable
 fun SlangverseApp() {
-    var screen by remember { mutableStateOf(Screen.Feed) }
-    var choice by remember { mutableIntStateOf(-1) }
-    var submitted by remember { mutableStateOf(false) }
-    var streak by remember { mutableIntStateOf(3) }
-    fun openQuiz(destination: Screen) { choice = -1; submitted = false; screen = destination }
-    BackHandler(screen !in listOf(Screen.Feed, Screen.Explore, Screen.Rank, Screen.Profile)) { screen = Screen.Feed }
+    var screen by remember { mutableStateOf(EditorialScreen.Feed) }
+    var currentPostId by remember { mutableStateOf("campus") }
+    var selectedOption by remember { mutableIntStateOf(-1) }
+    var sampleXp by remember { mutableIntStateOf(2430) }
+    var sampleCombo by remember { mutableIntStateOf(4) }
+    var answeredCount by remember { mutableIntStateOf(2) }
+    var lastCorrect by remember { mutableStateOf(false) }
+    var lastXpEarned by remember { mutableIntStateOf(0) }
+    var glossaryQuery by rememberSaveable { mutableStateOf("") }
+    var glossaryFilter by rememberSaveable { mutableStateOf("All") }
+    var expandedTerm by rememberSaveable { mutableStateOf("cooked") }
+    var notifications by remember { mutableStateOf(true) }
+    var showPrivacy by remember { mutableStateOf(false) }
+
+    val activePost = editorialPosts.firstOrNull { it.id == currentPostId } ?: editorialPosts.first()
+    fun openQuiz(id: String) {
+        currentPostId = id
+        selectedOption = -1
+        screen = EditorialScreen.Quiz
+    }
+    fun submitSample() {
+        if (selectedOption < 0) return
+        lastCorrect = selectedOption == activePost.answerIndex
+        lastXpEarned = if (lastCorrect) 105 else 15
+        sampleXp += lastXpEarned
+        sampleCombo = if (lastCorrect) sampleCombo + 1 else 0
+        answeredCount += 1
+        screen = EditorialScreen.Feedback
+    }
+
+    BackHandler(screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges, EditorialScreen.Progress, EditorialScreen.Profile)) {
+        screen = EditorialScreen.Feed
+    }
+
     MaterialTheme(
-        colorScheme = darkColorScheme(primary = Mint, onPrimary = Background, background = Background, surface = Surface, onSurface = White)
+        colorScheme = lightColorScheme(
+            primary = WarmEditorial.Coral,
+            onPrimary = Color.White,
+            background = WarmEditorial.Paper,
+            onBackground = WarmEditorial.Ink,
+            surface = WarmEditorial.Card,
+            onSurface = WarmEditorial.Ink,
+            secondary = WarmEditorial.CoralDeep
+        )
     ) {
-        Scaffold(containerColor = Background, bottomBar = {
-            if (screen in listOf(Screen.Feed, Screen.Explore, Screen.Community, Screen.Rank, Screen.Profile)) {
-                NavigationBar(containerColor = Color(0xFF211B34)) {
-                    listOf(
-                        Triple(Screen.Feed, "Feed", Icons.Outlined.Home),
-                        Triple(Screen.Explore, "Explore", Icons.Outlined.Explore),
-                        Triple(Screen.Rank, "Rank", Icons.Outlined.EmojiEvents),
-                        Triple(Screen.Profile, "Profile", Icons.Outlined.PersonOutline)
-                    ).forEach { (tab, label, icon) ->
-                        NavigationBarItem(
-                            selected = screen == tab || (screen == Screen.Community && tab == Screen.Explore),
-                            onClick = { screen = tab },
-                            icon = { Icon(icon, label) }, label = { Text(label) },
-                            colors = NavigationBarItemDefaults.colors(selectedIconColor = Mint, selectedTextColor = Mint, indicatorColor = Raised)
+        Scaffold(containerColor = WarmEditorial.Paper, bottomBar = {
+            NavigationBar(containerColor = WarmEditorial.Ink, tonalElevation = 0.dp) {
+                val tabs = listOf(
+                    Triple(EditorialScreen.Feed, "Feed", Icons.Outlined.Home),
+                    Triple(EditorialScreen.Learn, "Learn", Icons.Outlined.MenuBook),
+                    Triple(EditorialScreen.Challenges, "Quests", Icons.Outlined.EmojiEvents),
+                    Triple(EditorialScreen.Progress, "Progress", Icons.Outlined.BarChart),
+                    Triple(EditorialScreen.Profile, "Profile", Icons.Outlined.PersonOutline)
+                )
+                tabs.forEach { (page, text, icon) ->
+                    NavigationBarItem(
+                        selected = screen == page,
+                        onClick = { screen = page },
+                        icon = { Icon(icon, contentDescription = text) },
+                        label = { Text(text, fontSize = 10.sp) },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.White,
+                            selectedTextColor = Color.White,
+                            indicatorColor = WarmEditorial.Coral,
+                            unselectedIconColor = WarmEditorial.Card,
+                            unselectedTextColor = WarmEditorial.Card
                         )
-                    }
+                    )
                 }
             }
-        }) { padding ->
-            Column(Modifier.fillMaxSize().padding(padding)) {
-                Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 14.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    Column {
-                        Text(if (screen == Screen.Feed) "◎ SLANGVERSE" else when (screen) {
-                            Screen.Explore -> "Trending & Explore"; Screen.Community -> "Campus Hub"; Screen.Decode -> "Decode the Slang";
-                            Screen.ReplyBattle -> "Reply Battle"; Screen.Result -> "Quest Complete"; Screen.Rank -> "Top Decoders";
-                            Screen.Profile -> "My Profile"; Screen.ApiSession -> "API Training"; else -> "Slangverse"
-                        }, color = White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                        Text(when (screen) {
-                            Screen.Feed -> "Decode the internet."; Screen.Explore -> "Curated fictional trending quests";
-                            Screen.Community -> "Community Quest"; Screen.Decode -> "Question 02 / 10";
-                            Screen.ReplyBattle -> "Thread 03 / 05"; Screen.Result -> "Reward unlocked";
-                            Screen.Rank -> "Demo leaderboard"; Screen.Profile -> "Your slang journey"; Screen.ApiSession -> "10-context HTTP session"
-                        }, fontSize = 11.sp, color = Muted)
-                    }
-                    IconButton(onClick = { screen = if (screen == Screen.Feed) Screen.Explore else Screen.Feed }) {
-                        Icon(if (screen == Screen.Feed) Icons.Outlined.Search else Icons.Outlined.ArrowBack, contentDescription = "Navigate", tint = White)
-                    }
-                }
-                Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 18.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    when (screen) {
-                        Screen.ApiSession -> RemoteTrainingPanel()
-                        Screen.Feed -> {
-                            Panel(Surface) {
-                                Text("API-CONNECTED TRAINING", color = Mint, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                                Text("Try a real HTTP session with 10 curated contexts. Scoring and answer keys stay on Node.js.", color = Muted, fontSize = 12.sp)
-                                PrimaryButton("PLAY API SESSION →") { screen = Screen.ApiSession }
-                            }
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Chip("For You", Mint, Background); Chip("Following", Raised, Muted); Chip("✦ Daily", Raised, Muted)
-                            }
-                            Panel(Raised) {
-                                Text("✦ TRENDING IN SLANGVERSE", color = Gold, fontSize = 11.sp)
-                                Text("#CampusChaos", fontWeight = FontWeight.Bold, fontSize = 22.sp)
-                                Text("Decode 5 posts from campus life · +100 XP", fontSize = 12.sp, color = Muted)
-                                Button(onClick = { screen = Screen.Community }, colors = ButtonDefaults.buttonColors(containerColor = Mint)) { Text("START QUEST", color = Background) }
-                            }
-                            PostCard(campus, showAction = true, onAction = { openQuiz(Screen.Decode) })
-                            Panel(Surface) { Text("🔥 Daily Quest  ·  2 / 5", fontWeight = FontWeight.Bold); Text("Decode five posts to earn your reward", color = Muted, fontSize = 12.sp); LinearProgressIndicator(progress = { .4f }, color = Mint, modifier = Modifier.fillMaxWidth()) }
-                            PostCard(gaming, onAction = { openQuiz(Screen.ReplyBattle) }, showAction = true)
-                        }
-                        Screen.Explore -> {
-                            listOf("#CampusChaos" to "Campus deadlines & daily drama", "#GamingMoments" to "Clutch plays & chat reactions", "#RelationshipTalk" to "DMs and mixed signals", "#MemeCulture" to "Internet humor & memes").forEachIndexed { idx, (tag, desc) ->
-                                Panel(if (idx == 0) Raised else Surface, modifier = Modifier.fillMaxWidth().clickable { screen = Screen.Community }) {
-                                    Text("0${idx+1} · SLANGVERSE QUEST", color = Gold, fontSize = 11.sp)
-                                    Text(tag, fontWeight = FontWeight.Bold, fontSize = 19.sp)
-                                    Text(desc, color = Muted, fontSize = 12.sp)
-                                    Text("5 posts · +100 XP →", color = Mint, fontSize = 12.sp)
+        }) { innerPadding ->
+            Column(Modifier.fillMaxSize().padding(innerPadding)) {
+                EditorialHeader(
+                    screen = screen,
+                    xp = sampleXp,
+                    combo = sampleCombo,
+                    onBack = { screen = EditorialScreen.Feed }
+                )
+                key(screen) {
+                    Column(
+                        Modifier.fillMaxSize()
+                            .verticalScroll(rememberScrollState())
+                            .padding(horizontal = 17.dp, vertical = 12.dp),
+                        verticalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                        when (screen) {
+                            EditorialScreen.Feed -> {
+                                PaperCard(background = WarmEditorial.Blush) {
+                                    EditorialEyebrow("YOUR NEXT CHAPTER")
+                                    EditorialTitle("Continue your slang journey.", 29)
+                                    Text("Read a post. Follow the clues. Decode the meaning.",
+                                        color = WarmEditorial.Muted, fontSize = 13.sp)
+                                    EditorialPrimary("CONTINUE SESSION →") { openQuiz("campus") }
                                 }
-                            }
-                            Text("These are curated fictional topics, not real-world trending data.", color = Muted, fontSize = 11.sp)
-                        }
-                        Screen.Community -> {
-                            Panel(Raised) { Text("🎓 CAMPUS HUB", fontSize = 22.sp, fontWeight = FontWeight.Bold); Text("Homework emergencies. Late-night panic. Slang everywhere.", color = Muted, fontSize = 13.sp) }
-                            Panel(Surface) { Text("#CampusChaos · Quest", fontWeight = FontWeight.Bold); Text("2 decoded · 3 posts left", color = Muted); LinearProgressIndicator(progress = {.4f}, color = Mint, modifier = Modifier.fillMaxWidth()) }
-                            listOf("@campusfeed · cooked" to "Laptop crashed at the worst time.", "@librarylife · locked in" to "Studying all night for finals.", "@classdrama · lowkey" to "Someone just confessed in class...").forEachIndexed { i, pair ->
-                                Panel(Surface, Modifier.fillMaxWidth().clickable { openQuiz(if (i == 2) Screen.ReplyBattle else Screen.Decode) }) {
-                                    Text(pair.first, fontWeight = FontWeight.Bold)
-                                    Text(pair.second, color = Muted, fontSize = 12.sp)
-                                    Text(if (i < 2) "✓ COMPLETED" else "TAP TO DECODE →", color = if (i < 2) Mint else Coral, fontSize = 11.sp)
+                                EditorialSection("Your Feed", "Social stories made for contextual practice")
+                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    EditorialTag("For you", selected = true)
+                                    EditorialTag("Fictional topics")
+                                    EditorialTag("✦ Daily")
                                 }
-                            }
-                            PrimaryButton("CONTINUE CAMPUS QUEST") { openQuiz(Screen.Decode) }
-                        }
-                        Screen.Decode, Screen.ReplyBattle -> {
-                            LinearProgressIndicator(progress = {if(screen==Screen.Decode) .2f else .6f}, color = Mint, modifier = Modifier.fillMaxWidth())
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Chip("🔥 COMBO ×$streak", Raised, Coral); Chip("+130 PTS", Raised, Mint)
-                            }
-                            PostCard(if (screen == Screen.Decode) campus else gaming, showHint = true, showAction = false)
-                            Text(if(screen==Screen.Decode) "What does 'cooked' mean here?" else "Which reply explains it best?", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                            (if (screen == Screen.Decode) choices else replyChoices).forEachIndexed { idx, label ->
-                                val isSelected = choice == idx
-                                SurfaceCard(onClick = { if (!submitted) choice = idx }, selected = isSelected || (submitted && idx == 1), highlight = submitted && idx == 1) {
-                                    Text("${'A'+idx}   $label", color = if (submitted && idx == 1) Background else White)
+                                editorialPosts.forEach { post ->
+                                    EditorialSocialPost(
+                                        post = post, showComments = false,
+                                        onDecode = { openQuiz(post.id) }
+                                    )
                                 }
+                                PaperCard {
+                                    EditorialEyebrow("CONNECTED TRAINING")
+                                    EditorialTitle("Try the real question pipeline", 22)
+                                    Text("Play with GitHub GET question packs or the Node.js live backend. Sources remain clearly labeled.",
+                                        color = WarmEditorial.Muted, fontSize = 12.sp)
+                                    EditorialPrimary("PLAY API SESSION →") { screen = EditorialScreen.ApiSession }
+                                }
+                                EditorialResearchNote()
                             }
-                            if (submitted) Text("'Cooked' implies serious trouble in this context. This is sample feedback, not expert-validated.", color = Mint, fontSize = 12.sp)
-                            PrimaryButton(if(submitted) "VIEW REWARDS →" else "SUBMIT ANSWER", enabled = choice >= 0, coral = true) {
-                                if (submitted) screen = Screen.Result else { submitted = true; if (choice == 1) streak += 1 else streak = 0 }
+
+                            EditorialScreen.Quiz -> {
+                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                    EditorialEyebrow("ACTIVE SESSION · SAMPLE")
+                                    Text("Streak day 5 · demo", fontSize = 11.sp, color = WarmEditorial.CoralDeep)
+                                }
+                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Text("Session progress", fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                                    Text((answeredCount + 1).coerceAtMost(10).toString() + " of 10",
+                                        fontWeight = FontWeight.Bold, fontSize = 13.sp)
+                                }
+                                EditorialProgress((answeredCount + 1).coerceAtMost(10) / 10f)
+                                EditorialSocialPost(post = activePost, showComments = true)
+                                EditorialTitle("What does “" + activePost.slang + "” mean in this context?", 25)
+                                Text("Choose the closest meaning based on the post and replies.",
+                                    color = WarmEditorial.Muted, fontSize = 12.sp)
+                                activePost.options.forEachIndexed { index, option ->
+                                    EditorialOption(
+                                        index = index,
+                                        label = option,
+                                        selected = selectedOption == index,
+                                        correct = false,
+                                        reveal = false,
+                                        onClick = { selectedOption = index }
+                                    )
+                                }
+                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Text("✦ Context before guessing", fontSize = 11.sp, color = WarmEditorial.CoralDeep)
+                                    Text("+105 XP for a correct answer", fontSize = 10.sp, color = WarmEditorial.Muted)
+                                }
+                                EditorialPrimary("SUBMIT ANSWER →", selectedOption >= 0) { submitSample() }
+                                EditorialResearchNote()
+                            }
+
+                            EditorialScreen.Feedback -> {
+                                Column(
+                                    Modifier.fillMaxWidth(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.spacedBy(7.dp)
+                                ) {
+                                    Text(if (lastCorrect) "🏆" else "✏", fontSize = 48.sp)
+                                    EditorialTitle(if (lastCorrect) "Correct answer!" else "Good try!", 35)
+                                    Text("+" + lastXpEarned + " XP  ·  Combo " + sampleCombo,
+                                        fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
+                                }
+                                PaperCard {
+                                    EditorialTitle("“" + activePost.slang + "” in context", 22)
+                                    activePost.options.forEachIndexed { index, option ->
+                                        EditorialOption(
+                                            index = index, label = option,
+                                            selected = index == selectedOption,
+                                            correct = index == activePost.answerIndex,
+                                            reveal = true, onClick = {}
+                                        )
+                                    }
+                                }
+                                PaperCard(background = WarmEditorial.Blush) {
+                                    EditorialTitle("✦ The context gives it away", 22)
+                                    Text(activePost.explanation, fontSize = 14.sp, color = WarmEditorial.Ink)
+                                    Text("Sample explanation only; not expert-validated.",
+                                        color = WarmEditorial.Muted, fontSize = 11.sp)
+                                }
+                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                    Text("Session progress", fontSize = 12.sp)
+                                    Text(answeredCount.coerceAtMost(10).toString() + " / 10", fontSize = 12.sp)
+                                }
+                                EditorialProgress(answeredCount.coerceAtMost(10) / 10f)
+                                EditorialPrimary("NEXT POST →") {
+                                    val idx = editorialPosts.indexOfFirst { it.id == currentPostId }
+                                    openQuiz(editorialPosts[(idx + 1) % editorialPosts.size].id)
+                                }
+                                EditorialSecondary("VIEW PROGRESS") { screen = EditorialScreen.Progress }
+                            }
+
+                            EditorialScreen.Learn -> {
+                                EditorialSection("Glossary / Learn", "Explore one curated meaning at a time")
+                                OutlinedTextField(
+                                    value = glossaryQuery,
+                                    onValueChange = { glossaryQuery = it },
+                                    label = { Text("Search slang") },
+                                    leadingIcon = { Icon(Icons.Outlined.Search, contentDescription = null) },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    singleLine = true,
+                                    shape = RoundedCornerShape(18.dp)
+                                )
+                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                    listOf("All", "School", "Social").forEach { group ->
+                                        EditorialTag(group, selected = glossaryFilter == group) { glossaryFilter = group }
+                                    }
+                                }
+                                val filtered = editorialPosts.filter {
+                                    it.slang.contains(glossaryQuery.trim(), ignoreCase = true) &&
+                                        (glossaryFilter == "All" ||
+                                            (glossaryFilter == "School" && it.id == "campus") ||
+                                            (glossaryFilter == "Social" && it.id != "campus"))
+                                }
+                                if (filtered.isEmpty()) {
+                                    PaperCard {
+                                        Text("No matching slang. Try another search or category.",
+                                            color = WarmEditorial.Muted, fontSize = 13.sp)
+                                    }
+                                }
+                                filtered.forEach { post ->
+                                    PaperCard {
+                                        Row(
+                                            Modifier.fillMaxWidth().clickable {
+                                                expandedTerm = if (expandedTerm == post.slang) "" else post.slang
+                                            },
+                                            horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            EditorialTitle(post.slang, 29)
+                                            Icon(if (expandedTerm == post.slang) Icons.Outlined.ExpandLess
+                                                else Icons.Outlined.ExpandMore, contentDescription = "Expand term",
+                                                tint = WarmEditorial.CoralDeep)
+                                        }
+                                        if (expandedTerm == post.slang) {
+                                            EditorialEyebrow("MEANING IN THIS GAME")
+                                            Text(post.options[post.answerIndex], fontSize = 16.sp,
+                                                fontWeight = FontWeight.SemiBold)
+                                            EditorialEyebrow("EXAMPLE IN CONTEXT")
+                                            Text(post.content, fontSize = 13.sp, lineHeight = 20.sp)
+                                            Text("Slang senses are provisional and vary across communities.",
+                                                color = WarmEditorial.Muted, fontSize = 11.sp)
+                                            EditorialPrimary("PRACTICE THIS TERM →") { openQuiz(post.id) }
+                                        } else {
+                                            Text(post.options[post.answerIndex],
+                                                color = WarmEditorial.Muted, fontSize = 12.sp)
+                                        }
+                                    }
+                                }
+                                EditorialResearchNote()
+                            }
+
+                            EditorialScreen.Challenges -> {
+                                EditorialSection("Challenges", "Small steps. Stronger instincts.")
+                                PaperCard(background = WarmEditorial.Blush) {
+                                    EditorialEyebrow("✦ TODAY'S CONTEXT QUEST")
+                                    EditorialTitle("Read between the lines.", 29)
+                                    Text("Decode a fictional social post and build your practice streak.",
+                                        fontSize = 12.sp, color = WarmEditorial.Muted)
+                                    EditorialPrimary("START CHALLENGE →") { openQuiz("campus") }
+                                }
+                                EditorialChallenge("Decode 10 posts", "7 / 10", 0.7f, "150 XP", "♧")
+                                EditorialChallenge("Get 5 correct in a row", "5 / 5", 1f, "200 XP", "◎")
+                                EditorialChallenge("Practice 3 slang terms", "2 / 3", 0.67f, "300 XP", "▤")
+                                EditorialResearchNote()
+                            }
+
+                            EditorialScreen.Progress -> {
+                                EditorialSection("Your Progress", "Every context counts")
+                                PaperCard {
+                                    Row(verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                        EditorialAvatar("S", WarmEditorial.Peach, 62)
+                                        Column {
+                                            EditorialEyebrow("LEVEL 7 · SAMPLE")
+                                            EditorialTitle("Slang Explorer", 25)
+                                            Text(sampleXp.toString() + " / 3,000 XP",
+                                                color = WarmEditorial.Muted, fontSize = 12.sp)
+                                        }
+                                    }
+                                    EditorialProgress((sampleXp / 3000f).coerceIn(0f, 1f))
+                                }
+                                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                                    Box(Modifier.weight(1f)) {
+                                        PaperCard {
+                                            EditorialTitle("♨ 4 days", 19)
+                                            Text("Sample streak", color = WarmEditorial.Muted, fontSize = 11.sp)
+                                        }
+                                    }
+                                    Box(Modifier.weight(1f)) {
+                                        PaperCard {
+                                            EditorialTitle("3 / 5", 19)
+                                            Text("Sample challenges", color = WarmEditorial.Muted, fontSize = 11.sp)
+                                        }
+                                    }
+                                }
+                                PaperCard {
+                                    EditorialTitle("Weekly learning summary", 23)
+                                    EditorialMetric("Posts decoded", "28")
+                                    EditorialMetric("Correct answers", "21")
+                                    EditorialMetric("Slang reviewed", "6")
+                                    EditorialProgress(0.75f)
+                                    Text("Illustrative UI data — not results from research participants.",
+                                        fontSize = 11.sp, color = WarmEditorial.Muted)
+                                }
+                                EditorialPrimary("BROWSE CHALLENGES →") { screen = EditorialScreen.Challenges }
+                            }
+
+                            EditorialScreen.Profile -> {
+                                EditorialSection("My Profile", "Your corner of Slangverse")
+                                PaperCard {
+                                    Row(verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                        EditorialAvatar("S", WarmEditorial.Peach, 70)
+                                        Column {
+                                            EditorialEyebrow("LEVEL 7 · DEMO ACCOUNT")
+                                            EditorialTitle("Context Detective", 24)
+                                            Text("Internet language explorer", color = WarmEditorial.Muted,
+                                                fontSize = 12.sp)
+                                        }
+                                    }
+                                    EditorialProgress((sampleXp / 3000f).coerceIn(0f, 1f))
+                                }
+                                PaperCard {
+                                    EditorialTitle("Badges earned", 24)
+                                    Row(Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceBetween) {
+                                        listOf("🏅" to "Starter", "🔥" to "Combo",
+                                            "🏆" to "Decoder", "📚" to "Scholar").forEach { (icon, caption) ->
+                                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                                Text(icon, fontSize = 26.sp)
+                                                Text(caption, fontSize = 10.sp, color = WarmEditorial.Muted)
+                                            }
+                                        }
+                                    }
+                                }
+                                PaperCard {
+                                    EditorialTitle("Saved slang", 23)
+                                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                        listOf("cooked", "no cap", "lowkey").forEach { term ->
+                                            EditorialTag(term) {
+                                                expandedTerm = term
+                                                screen = EditorialScreen.Learn
+                                            }
+                                        }
+                                    }
+                                }
+                                PaperCard {
+                                    EditorialTitle("Settings", 23)
+                                    EditorialSetting("Notifications", if (notifications) "On" else "Off") {
+                                        notifications = !notifications
+                                    }
+                                    EditorialSetting("Appearance", "Warm Editorial") {}
+                                    EditorialSetting("Privacy & data", "Information") { showPrivacy = !showPrivacy }
+                                    if (showPrivacy) {
+                                        Text("This prototype does not create accounts or store real participant research data.",
+                                            color = WarmEditorial.Muted, fontSize = 12.sp)
+                                    }
+                                }
+                                EditorialResearchNote()
+                            }
+
+                            EditorialScreen.ApiSession -> {
+                                EditorialSection("Connected Training", "GitHub GET or live backend")
+                                RemoteTrainingPanel()
                             }
                         }
-                        Screen.Result -> {
-                            Panel(Raised) { Text("🏆 QUEST COMPLETE!", color = Mint, fontSize = 24.sp, fontWeight = FontWeight.Bold); Text("#CampusChaos · Sample completion", color = Muted) }
-                            Panel(Surface) { Text("+420 XP", color = Mint, fontSize = 24.sp, fontWeight = FontWeight.Bold); Text("Level 7 · Context Detective", fontSize = 12.sp, color = Muted); LinearProgressIndicator(progress = {.75f}, color = Mint, modifier = Modifier.fillMaxWidth()) }
-                            Panel(Surface) { Text("🔥 BADGE UNLOCKED", color = Gold); Text("No Cap!", fontWeight = FontWeight.Bold, fontSize = 22.sp); Text("Five correct answers in a row (demo reward).", color = Muted, fontSize = 12.sp) }
-                            PrimaryButton("EXPLORE NEXT QUEST") { screen = Screen.Explore }
-                        }
-                        Screen.Rank -> {
-                            Panel(Raised) { Text("♛ WEEKLY TOP DECODERS", color = Gold, fontWeight = FontWeight.Bold); listOf("1 · SlangNinja   2,450 pts", "2 · MemeMaster  2,180 pts", "3 · ContextPro  1,960 pts").forEach { Text(it) } }
-                            Panel(Surface) { Text("Your rank · #12", fontWeight = FontWeight.Bold); Text("1,230 pts · Sample ranking", color = Mint) }
-                            Text("Demo only. Competitive ranking requires identical questions and server-verified answers.", color = Muted, fontSize = 12.sp)
-                        }
-                        Screen.Profile -> {
-                            Panel(Raised) { Text("@context.detective", fontWeight = FontWeight.Bold, fontSize = 21.sp); Text("Level 7 · Slang Explorer", color = Mint); LinearProgressIndicator(progress = {.725f}, color = Mint, modifier = Modifier.fillMaxWidth()) }
-                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) { Chip("24 decoded", Surface, White); Chip("6 badges", Surface, White); Chip("3d streak", Surface, White) }
-                            listOf("No Cap! · 5 correct combo", "Detective · 5 context types", "Trend Hunter · 3 daily quests", "Slang Scholar · 20 slang decoded").forEach { Panel(Surface) { Text(it, color = White) } }
-                            Panel(Surface) { Text("♧ Saved slang", color = Mint); Text("cooked · ghosted · rizz · lowkey", color = Muted) }
-                        }
+                        Spacer(Modifier.height(18.dp))
                     }
-                    Spacer(Modifier.height(24.dp))
                 }
             }
         }
@@ -203,58 +466,294 @@ fun SlangverseApp() {
 }
 
 @Composable
-private fun PostCard(post: Post, showAction: Boolean = false, showHint: Boolean = false, onAction: () -> Unit = {}) {
-    var expanded by remember(post.username) { mutableStateOf(false) }
-    var liked by remember(post.username) { mutableStateOf(false) }
-    var bookmarked by remember(post.username) { mutableStateOf(false) }
-    Panel(Surface) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(9.dp)) {
-            Box(Modifier.size(42.dp).background(Raised, CircleShape), contentAlignment = Alignment.Center) { Text(post.displayName.take(1), fontWeight = FontWeight.Bold) }
-            Column(Modifier.weight(1f)) {
-                Text(post.displayName + " ✓", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                Text("${post.username} · ${post.ago}", color = Muted, fontSize = 11.sp)
+private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack: () -> Unit) {
+    Column(Modifier.fillMaxWidth().background(WarmEditorial.Paper)
+        .padding(horizontal = 18.dp, vertical = 10.dp),
+        verticalArrangement = Arrangement.spacedBy(7.dp)) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween) {
+            Column {
+                Text("Slangverse ✳", fontFamily = WarmEditorial.Display,
+                    fontSize = 29.sp, color = WarmEditorial.Ink)
+                Text("LEARN INTERNET SLANG THROUGH CONTEXTS",
+                    fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp,
+                    fontSize = 8.sp, color = WarmEditorial.Muted)
             }
-            Icon(Icons.Outlined.MoreHoriz, contentDescription = "More options", tint = Muted)
+            if (screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges,
+                    EditorialScreen.Progress, EditorialScreen.Profile)) {
+                IconButton(onClick = onBack) {
+                    Icon(Icons.Outlined.ArrowBack, "Back to Feed", tint = WarmEditorial.CoralDeep)
+                }
+            } else {
+                Icon(Icons.Outlined.AutoAwesome, "Slangverse",
+                    tint = WarmEditorial.Coral, modifier = Modifier.size(24.dp))
+            }
         }
-        Text(post.message, fontSize = 16.sp, lineHeight = 23.sp)
-        Text("${post.hashtag}  ·  Fictional community post", color = Mint, fontSize = 11.sp)
-        HorizontalDivider(color = Color(0xFF504360))
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically) {
+            EditorialTag("★ " + xp + " DEMO XP")
+            EditorialTag("♨ COMBO " + combo, selected = true)
+            Spacer(Modifier.weight(1f))
+            Text(
+                when (screen) {
+                    EditorialScreen.Feed -> "FEED"
+                    EditorialScreen.Quiz -> "PLAY / QUIZ"
+                    EditorialScreen.Feedback -> "FEEDBACK"
+                    EditorialScreen.Learn -> "LEARN"
+                    EditorialScreen.Challenges -> "QUESTS"
+                    EditorialScreen.Progress -> "PROGRESS"
+                    EditorialScreen.Profile -> "PROFILE"
+                    EditorialScreen.ApiSession -> "API SESSION"
+                },
+                fontSize = 9.sp, fontWeight = FontWeight.Bold,
+                color = WarmEditorial.CoralDeep, letterSpacing = 0.5.sp
+            )
+        }
+    }
+}
+
+@Composable private fun EditorialSection(title: String, subtitle: String) {
+    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+        EditorialTitle(title + " ✳", 29)
+        Text(subtitle, fontSize = 12.sp, color = WarmEditorial.Muted)
+    }
+}
+
+@Composable private fun EditorialTitle(value: String, size: Int) {
+    Text(value, color = WarmEditorial.Ink, fontSize = size.sp,
+        fontFamily = WarmEditorial.Display, lineHeight = (size + 3).sp)
+}
+
+@Composable private fun EditorialEyebrow(value: String) {
+    Text(value, color = WarmEditorial.CoralDeep, fontSize = 10.sp,
+        letterSpacing = 1.sp, fontWeight = FontWeight.Bold)
+}
+
+@Composable private fun PaperCard(
+    modifier: Modifier = Modifier,
+    background: Color = WarmEditorial.Card,
+    content: @Composable ColumnScope.() -> Unit
+) {
+    val shape = RoundedCornerShape(21.dp)
+    Column(
+        modifier.fillMaxWidth().shadow(3.dp, shape)
+            .background(background, shape)
+            .border(1.dp, WarmEditorial.Sand, shape).padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(11.dp),
+        content = content
+    )
+}
+
+@Composable private fun EditorialTag(value: String, selected: Boolean = false, onClick: (() -> Unit)? = null) {
+    val shape = RoundedCornerShape(24.dp)
+    Box(
+        Modifier.background(if (selected) WarmEditorial.Peach else WarmEditorial.Card, shape)
+            .border(1.dp, WarmEditorial.Sand, shape)
+            .then(if (onClick == null) Modifier else Modifier.clickable { onClick() })
+            .padding(horizontal = 12.dp, vertical = 8.dp)
+    ) {
+        Text(value, fontSize = 11.sp, fontWeight = FontWeight.SemiBold,
+            color = if (selected) WarmEditorial.CoralDeep else WarmEditorial.Ink)
+    }
+}
+
+@Composable private fun EditorialPrimary(
+    label: String, enabled: Boolean = true, onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick, enabled = enabled, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = WarmEditorial.Coral, contentColor = Color.White),
+        shape = RoundedCornerShape(17.dp)
+    ) {
+        Text(label, fontSize = 13.sp, fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable private fun EditorialSecondary(label: String, onClick: () -> Unit) {
+    OutlinedButton(
+        onClick = onClick, modifier = Modifier.fillMaxWidth(),
+        border = BorderStroke(1.dp, WarmEditorial.Coral),
+        shape = RoundedCornerShape(16.dp)
+    ) {
+        Text(label, fontSize = 12.sp, fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
+    }
+}
+
+@Composable private fun EditorialAvatar(initial: String, bg: Color, size: Int) {
+    Box(Modifier.size(size.dp).background(bg, CircleShape)
+        .border(2.dp, WarmEditorial.Card, CircleShape), contentAlignment = Alignment.Center) {
+        Text(initial, fontFamily = WarmEditorial.Display, fontSize = (size / 2).sp,
+            color = WarmEditorial.Ink)
+    }
+}
+
+@Composable private fun EditorialSocialPost(
+    post: EditorialPost,
+    showComments: Boolean,
+    onDecode: (() -> Unit)? = null
+) {
+    var expanded by remember(post.id) { mutableStateOf(showComments) }
+    var liked by remember(post.id) { mutableStateOf(false) }
+    var saved by remember(post.id) { mutableStateOf(false) }
+    PaperCard {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            EditorialAvatar(post.displayName.take(1), WarmEditorial.Peach, 44)
+            Column(Modifier.weight(1f)) {
+                Text(post.displayName, fontFamily = WarmEditorial.Display, fontSize = 18.sp,
+                    maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(post.handle + " · " + post.age + " ago", fontSize = 11.sp,
+                    color = WarmEditorial.Muted)
+            }
+            Icon(Icons.Outlined.MoreHoriz, contentDescription = null, tint = WarmEditorial.Muted)
+        }
+        val highlight = buildAnnotatedString {
+            val at = post.content.indexOf(post.slang, ignoreCase = true)
+            if (at >= 0) {
+                append(post.content.substring(0, at))
+                withStyle(SpanStyle(background = WarmEditorial.Peach, fontWeight = FontWeight.Bold)) {
+                    append(post.content.substring(at, at + post.slang.length))
+                }
+                append(post.content.substring(at + post.slang.length))
+            } else append(post.content)
+        }
+        Text(highlight, fontFamily = WarmEditorial.Display, color = WarmEditorial.Ink,
+            fontSize = 19.sp, lineHeight = 26.sp)
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically) {
+            Text(post.hashtag, color = WarmEditorial.CoralDeep,
+                fontSize = 11.sp, fontWeight = FontWeight.Bold)
+            Text("Fictional social account", fontSize = 10.sp, color = WarmEditorial.Muted)
+        }
+        HorizontalDivider(color = WarmEditorial.Sand)
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            SocialAction(if (liked) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder, if(liked) "Liked" else post.likes) { liked = !liked }
-            SocialAction(Icons.Outlined.ChatBubbleOutline, post.replyCount) { expanded = !expanded }
-            SocialAction(Icons.Outlined.Repeat, "87") { expanded = true }
-            SocialAction(if(bookmarked) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder, "") { bookmarked = !bookmarked }
+            TextButton(onClick = { liked = !liked }) {
+                Icon(if (liked) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,
+                    contentDescription = "Like", tint = if (liked) WarmEditorial.Coral else WarmEditorial.Muted,
+                    modifier = Modifier.size(17.dp))
+                Text(" " + (post.likes + if (liked) 1 else 0),
+                    color = WarmEditorial.Muted, fontSize = 11.sp)
+            }
+            TextButton(onClick = { expanded = !expanded }) {
+                Icon(Icons.Outlined.ChatBubbleOutline, contentDescription = "Comments",
+                    tint = WarmEditorial.Muted, modifier = Modifier.size(17.dp))
+                Text(" " + post.replies.size, color = WarmEditorial.Muted, fontSize = 11.sp)
+            }
+            TextButton(onClick = { expanded = true }) {
+                Icon(Icons.Outlined.Repeat, contentDescription = "View conversation",
+                    tint = WarmEditorial.Muted, modifier = Modifier.size(17.dp))
+            }
+            IconButton(onClick = { saved = !saved }) {
+                Icon(if (saved) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder,
+                    contentDescription = "Save post", tint = if (saved) WarmEditorial.Coral else WarmEditorial.Muted)
+            }
         }
-        HorizontalDivider(color = Color(0xFF504360))
-        Text("Replies · fictional conversation", fontWeight = FontWeight.Bold, fontSize = 12.sp)
-        post.replies.take(if(expanded) 3 else 1).forEach { reply ->
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Box(Modifier.size(28.dp).background(Raised, CircleShape), contentAlignment = Alignment.Center) { Text(reply.handle.take(2).last().uppercase(), fontSize = 11.sp) }
-                Column {
-                    Text(reply.handle, color = Mint, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-                    Text(reply.message, fontSize = 12.sp, lineHeight = 17.sp)
+        if (showComments || expanded) {
+            HorizontalDivider(color = WarmEditorial.Sand)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                Text("Comments", fontFamily = WarmEditorial.Display, fontSize = 18.sp)
+                Text("Context clues", color = WarmEditorial.CoralDeep, fontSize = 11.sp)
+            }
+            post.replies.take(if (expanded) 3 else 1).forEach { reply ->
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    EditorialAvatar(reply.handle.trimStart('@').take(1).uppercase(),
+                        WarmEditorial.Gold, 30)
+                    Column {
+                        Text(reply.handle, color = WarmEditorial.Ink, fontSize = 12.sp,
+                            fontWeight = FontWeight.Bold)
+                        Text(reply.text, color = WarmEditorial.Ink, fontSize = 12.sp, lineHeight = 17.sp)
+                    }
                 }
             }
+            TextButton(onClick = { expanded = !expanded }) {
+                Text(if (expanded) "Hide extra replies ↑" else "Need a clue? Read more replies ↓",
+                    color = WarmEditorial.CoralDeep, fontSize = 11.sp)
+            }
         }
-        TextButton(onClick = { expanded = !expanded }) {
-            Text(if(expanded) "Hide extra replies ↑" else if(showHint) "Need a clue? Read 2 more replies ↓" else "View more replies ↓", color = Mint, fontSize = 12.sp)
+        if (onDecode != null) {
+            EditorialSecondary("DECODE THIS POST →", onDecode)
         }
-        if (showHint) Text("✧ Comments are indirect contextual clues, not direct answers.", color = Muted, fontSize = 10.sp)
-        if (showAction) PrimaryButton("DECODE THIS POST") { onAction() }
     }
 }
-@Composable private fun SocialAction(icon: androidx.compose.ui.graphics.vector.ImageVector, text: String, onClick: () -> Unit) {
-    TextButton(onClick=onClick, contentPadding = PaddingValues(2.dp)) { Icon(icon, null, tint=Muted, modifier=Modifier.size(17.dp)); if (text.isNotEmpty()) Text(" $text", color=Muted, fontSize=10.sp) }
-}
-@Composable private fun Panel(bg: Color, modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
-    Column(modifier.fillMaxWidth().background(bg, RoundedCornerShape(18.dp)).padding(15.dp), verticalArrangement = Arrangement.spacedBy(10.dp), content = content)
-}
-@Composable private fun Chip(label: String, bg: Color, text: Color) { Surface(color=bg, shape=RoundedCornerShape(25.dp)) { Text(label, color=text, fontSize=11.sp, modifier=Modifier.padding(horizontal=12.dp, vertical=9.dp)) } }
-@Composable private fun PrimaryButton(label: String, enabled: Boolean = true, coral: Boolean = false, onClick: () -> Unit) {
-    Button(onClick=onClick, enabled=enabled, modifier=Modifier.fillMaxWidth(), shape=RoundedCornerShape(14.dp), colors=ButtonDefaults.buttonColors(containerColor=if(coral) Coral else Mint, contentColor=Background)) { Text(label, fontWeight=FontWeight.Bold) }
-}
-@Composable private fun SurfaceCard(onClick: () -> Unit, selected: Boolean, highlight: Boolean, content: @Composable RowScope.() -> Unit) {
-    Surface(onClick=onClick, color=if(highlight) Mint else if(selected) Raised else Surface, border=BorderStroke(if(selected)2.dp else 1.dp, if(selected)Mint else Raised), shape=RoundedCornerShape(14.dp)) {
-        Row(Modifier.fillMaxWidth().padding(15.dp), verticalAlignment=Alignment.CenterVertically, content=content)
+
+@Composable private fun EditorialOption(
+    index: Int, label: String, selected: Boolean, correct: Boolean,
+    reveal: Boolean, onClick: () -> Unit
+) {
+    val bg = if (reveal && correct) WarmEditorial.Sage
+        else if (selected) WarmEditorial.Blush else WarmEditorial.Card
+    val outline = if (reveal && correct) WarmEditorial.Olive
+        else if (selected) WarmEditorial.Coral else WarmEditorial.Sand
+    Surface(
+        onClick = onClick, enabled = !reveal,
+        color = bg, border = BorderStroke(if (selected || correct) 2.dp else 1.dp, outline),
+        shape = RoundedCornerShape(14.dp)
+    ) {
+        Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 13.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text(('A' + index).toString() + ".", fontFamily = WarmEditorial.Display,
+                fontSize = 19.sp, color = WarmEditorial.Ink)
+            Text(label, color = WarmEditorial.Ink,
+                fontSize = 13.sp, modifier = Modifier.weight(1f))
+            if ((reveal && correct) || (!reveal && selected)) {
+                Icon(Icons.Outlined.CheckCircle, contentDescription = "Selected",
+                    tint = if (reveal) WarmEditorial.Olive else WarmEditorial.CoralDeep,
+                    modifier = Modifier.size(21.dp))
+            }
+        }
     }
+}
+
+@Composable private fun EditorialProgress(amount: Float) {
+    LinearProgressIndicator(
+        progress = { amount.coerceIn(0f, 1f) },
+        modifier = Modifier.fillMaxWidth().height(8.dp),
+        color = WarmEditorial.Coral,
+        trackColor = WarmEditorial.Sand
+    )
+}
+
+@Composable private fun EditorialChallenge(
+    title: String, ratio: String, progress: Float, reward: String, symbol: String
+) {
+    PaperCard {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            Box(Modifier.size(46.dp).background(WarmEditorial.Blush, RoundedCornerShape(15.dp)),
+                contentAlignment = Alignment.Center) {
+                Text(symbol, fontSize = 25.sp, color = WarmEditorial.CoralDeep)
+            }
+            Column(Modifier.weight(1f)) {
+                EditorialTitle(title, 19)
+                Text(ratio + " complete", fontSize = 11.sp, color = WarmEditorial.Muted)
+            }
+            Text("+" + reward, color = WarmEditorial.CoralDeep,
+                fontSize = 11.sp, fontWeight = FontWeight.Bold)
+        }
+        EditorialProgress(progress)
+    }
+}
+
+@Composable private fun EditorialMetric(label: String, number: String) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(label, color = WarmEditorial.Muted, fontSize = 12.sp)
+        Text(number, fontWeight = FontWeight.Bold, color = WarmEditorial.Ink, fontSize = 14.sp)
+    }
+    HorizontalDivider(color = WarmEditorial.Sand)
+}
+
+@Composable private fun EditorialSetting(label: String, value: String, onClick: () -> Unit) {
+    Row(Modifier.fillMaxWidth().clickable(onClick = onClick).padding(vertical = 7.dp),
+        horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(label, fontWeight = FontWeight.Medium, fontSize = 13.sp)
+        Text(value + " →", color = WarmEditorial.CoralDeep, fontSize = 11.sp)
+    }
+    HorizontalDivider(color = WarmEditorial.Sand)
+}
+
+@Composable private fun EditorialResearchNote() {
+    Text("Slangverse visual prototype. Feed accounts, XP and challenge metrics are demonstration data. " +
+            "Source labels and real scoring are handled separately in Connected Training.",
+        fontSize = 10.sp, lineHeight = 14.sp, color = WarmEditorial.Muted)
 }
