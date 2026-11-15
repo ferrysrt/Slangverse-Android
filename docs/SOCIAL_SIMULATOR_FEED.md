@@ -35,3 +35,7 @@ gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug
 `SocialFeedGameTest` checks category filtering, ten-item single-sense coverage, the 5:3:2 split, option validity, bounded progress, XP idempotence, and invalid-answer rejection. Existing Context Detective tests remain in place. These JVM checks and APK assembly do not verify gestures, layout, accessibility, or gameplay on a device.
 
 Device acceptance checklist: cold launch shows post cards without the old hero; select every category; like and save a post; open it from Saved; expand clues; submit correct and wrong answers; change tabs and navigate away/back; confirm feedback and XP remain stable; recreate the activity; complete the finite feed and inspect results; open the archived mode; open Connected Training.
+
+## Download an APK for phone testing
+
+The Android debug workflow also runs on pushes to `feat/social-simulator-feed` that change Android files or the workflow. On GitHub, sign in, open Actions → Android debug build (no Codex), and choose a successful run whose branch is `feat/social-simulator-feed`. In that run's Artifacts section, download `slangverse-debug-apk`, extract the ZIP, and install `app-debug.apk` on an Android 8.0+ phone. If no successful run is available, use Run workflow and select that branch. GitHub Actions availability and account quotas apply. A successful local build does not establish that the GitHub run has finished successfully.

@@ -2,7 +2,7 @@ name: Android debug build (no Codex)
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, feat/social-simulator-feed]
     paths:
       - 'android/**'
       - '.github/workflows/android-debug.yml'
