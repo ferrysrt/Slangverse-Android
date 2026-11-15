@@ -44,6 +44,7 @@ fun RemoteTrainingPanel() {
     var currentIndex by remember { mutableIntStateOf(0) }
     var selectedIndex by remember { mutableIntStateOf(-1) }
     var pinnedClueIndex by remember { mutableIntStateOf(-1) }
+    var questionOpened by remember { mutableStateOf(false) }
     var result by remember { mutableStateOf<ApiGrade?>(null) }
     var loading by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -171,7 +172,7 @@ fun RemoteTrainingPanel() {
                             staticAnswers = emptyMap()
                             session = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
                         }
-                        currentIndex = 0; selectedIndex = -1; pinnedClueIndex = -1; result = null; finished = false
+                        currentIndex = 0; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; finished = false
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
                     } catch (e: Exception) { error = e.message ?: "Connection failed" }
                     finally { loading = false }
@@ -201,7 +202,7 @@ fun RemoteTrainingPanel() {
             if (activeSession.source.startsWith("github-static")) {
                 Text("Local demo scores only: answer keys are included in the publicly readable JSON.", color = Secondary, fontSize = 11.sp)
             }
-            Action("START NEW SESSION") { session = null; finished = false; error = null }
+            Action("START NEW SESSION") { session = null; questionOpened = false; finished = false; error = null }
         }
         return
     }
@@ -235,9 +236,9 @@ fun RemoteTrainingPanel() {
         }
         Text(current.post.content, color = PrimaryText, fontSize = 16.sp, lineHeight = 23.sp)
         Text(current.post.hashtag + " · Fictional community", color = MintGreen, fontSize = 11.sp)
-        HorizontalDivider(color = Color(0xFF514469))
+        HorizontalDivider(color = WarmEditorial.Sand)
         Text("♡   Reply   ↻   Share   ♧", color = Secondary, fontSize = 12.sp)
-        HorizontalDivider(color = Color(0xFF514469))
+        HorizontalDivider(color = WarmEditorial.Sand)
         Text("01 · INVESTIGATE · PIN A REPLY", fontWeight = FontWeight.Bold, fontSize = 12.sp)
         current.post.comments.take(if (expandedReplies) 3 else 1).forEachIndexed { idx, comment ->
             Row(
@@ -261,21 +262,48 @@ fun RemoteTrainingPanel() {
         TextButton(onClick = { expandedReplies = !expandedReplies }) {
             Text(if (expandedReplies) "Hide extra replies ↑" else "Need a clue? View more replies ↓", color = MintGreen, fontSize = 12.sp)
         }
-        Text("Clue pinning is your reasoning choice, not a graded semantic judgment.", color = Secondary, fontSize = 10.sp)
-    }
-    Text("02 · DECODE THE MEANING", color = MintGreen, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-    Text(current.question, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        Text("Save any reply as a clue if helpful; evidence is optional and unscored.",
+            color = Secondary, fontSize = 10.sp)
+        HorizontalDivider(color = WarmEditorial.Sand)
+        val specialShape = RoundedCornerShape(16.dp)
+        Column(
+            Modifier.fillMaxWidth()
+                .background(WarmEditorial.Blush, specialShape)
+                .border(1.dp, WarmEditorial.Peach, specialShape)
+                .padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Box(Modifier.size(31.dp).background(WarmEditorial.Peach, CircleShape),
+                    contentAlignment = Alignment.Center) {
+                    Text("?", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Night)
+                }
+                Text("@confuseduser", fontWeight = FontWeight.Bold, fontSize = 12.sp,
+                    color = Night, modifier = Modifier.weight(1f))
+                Surface(color = WarmEditorial.Card, shape = RoundedCornerShape(15.dp),
+                    border = BorderStroke(1.dp, WarmEditorial.Coral)) {
+                    Text("✳ DECODE", modifier = Modifier.padding(horizontal = 9.dp, vertical = 5.dp),
+                        color = CoralPink, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                }
+            }
+            Text("“" + current.questionComment.ifBlank { current.question } + "”",
+                fontSize = 18.sp, lineHeight = 25.sp, color = Night)
+            if (!questionOpened && result == null) {
+                Action("REPLY WITH THE MEANING ↓") { questionOpened = true }
+            } else {
+    Text("YOUR REPLY · CHOOSE THE MEANING", color = CoralPink, fontSize = 11.sp, fontWeight = FontWeight.Bold)
     current.options.forEachIndexed { index, option ->
         val isSelected = selectedIndex == index
         val isCorrect = result?.correctIndex == index
         Surface(
             modifier = Modifier.fillMaxWidth().clickable(enabled = result == null && !loading) { selectedIndex = index },
-            color = if (isCorrect) MintGreen else if (isSelected) PanelRaised else PanelColor,
+            color = if (isCorrect) WarmEditorial.Sage else if (isSelected) WarmEditorial.Peach else PanelColor,
             border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) MintGreen else PanelRaised),
             shape = RoundedCornerShape(17.dp)
         ) {
             Row(Modifier.padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text("${'A' + index}    $option", color = if (isCorrect) Night else PrimaryText, fontSize = 13.sp)
+                Text("${'A' + index}    $option", color = PrimaryText, fontSize = 13.sp)
             }
         }
     }
@@ -291,12 +319,12 @@ fun RemoteTrainingPanel() {
                  "Locally graded demo; correct answers are public in GitHub JSON."
                  else "Server-graded result; not evidence of semantic accuracy.", color = Secondary, fontSize = 10.sp)
         }
-        Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT POST →") {
+        Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT CONVERSATION →") {
             if (currentIndex == activeSession.questions.lastIndex) finished = true
-            else { currentIndex += 1; selectedIndex = -1; pinnedClueIndex = -1; result = null; expandedReplies = false; error = null }
+            else { currentIndex += 1; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; expandedReplies = false; error = null }
         }
     } else {
-        Action(if (loading) "SUBMITTING…" else "LOCK IN INTERPRETATION", enabled = selectedIndex >= 0 && pinnedClueIndex >= 0 && !loading) {
+        Action(if (loading) "SUBMITTING…" else "POST YOUR INTERPRETATION →", enabled = selectedIndex >= 0 && !loading) {
             loading = true; error = null
             scope.launch {
                 try {
@@ -313,4 +341,7 @@ fun RemoteTrainingPanel() {
     }
     if (loading) LinearProgressIndicator(Modifier.fillMaxWidth(), color = MintGreen)
     if (error != null) Text(error.orEmpty(), color = CoralPink, fontSize = 12.sp)
+            }
+        }
+    }
 }
