@@ -2,9 +2,10 @@
 
 - Project: `470964531963789312`
 - Component: `470964549080743936`
-- Current V3 revision: `472691771546144768`
+- Current V3 revision: `472696158041575424`
 - Interactive preview: https://designs.magicpath.ai/v1/gladly-water-6771
 - Warm Editorial baseline revision: `470990382860222464`
+- V3 update: actual local case metrics replace fake streak/level displays; immersive investigation hides the bottom tabs.
 - V3 screens: Feed, Investigate/Play, Answer Feedback, **Case Report**, Glossary, Challenges, Progress, Profile
 - V3 mechanic: read fictional social thread → inspect reply → **pin context evidence** (not graded) → choose meaning → feedback → next **different slang** → case report
 - Android: native Compose `ContextDetective.kt` and `ContextDetectiveGame.kt`; Connected Training retained for real/GET source-specific API sessions
