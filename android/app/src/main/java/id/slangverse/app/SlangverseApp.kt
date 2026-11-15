@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
  * Decorative feed, missions, profile and glossary are clearly demo/curated data.
  * The API Training route continues to use the existing GitHub GET and live backend clients.
  */
-private enum class EditorialScreen { Feed, Quiz, Feedback, Learn, Challenges, Progress, Profile, ApiSession }
+private enum class EditorialScreen { Feed, Detective, Learn, Challenges, Progress, Profile, ApiSession }
 
 private data class EditorialReply(val handle: String, val text: String)
 
@@ -94,33 +94,19 @@ private val editorialPosts = listOf(
 @Composable
 fun SlangverseApp() {
     var screen by remember { mutableStateOf(EditorialScreen.Feed) }
-    var currentPostId by remember { mutableStateOf("campus") }
-    var selectedOption by remember { mutableIntStateOf(-1) }
-    var sampleXp by remember { mutableIntStateOf(2430) }
-    var sampleCombo by remember { mutableIntStateOf(4) }
-    var answeredCount by remember { mutableIntStateOf(2) }
-    var lastCorrect by remember { mutableStateOf(false) }
-    var lastXpEarned by remember { mutableIntStateOf(0) }
+    // Last local demo case-file metrics; not provider or research data.
+    var sampleXp by remember { mutableIntStateOf(0) }
+    var sampleCombo by remember { mutableIntStateOf(0) }
+    var detectiveStartCaseId by remember { mutableStateOf("campus") }
     var glossaryQuery by rememberSaveable { mutableStateOf("") }
     var glossaryFilter by rememberSaveable { mutableStateOf("All") }
     var expandedTerm by rememberSaveable { mutableStateOf("cooked") }
     var notifications by remember { mutableStateOf(true) }
     var showPrivacy by remember { mutableStateOf(false) }
 
-    val activePost = editorialPosts.firstOrNull { it.id == currentPostId } ?: editorialPosts.first()
-    fun openQuiz(id: String) {
-        currentPostId = id
-        selectedOption = -1
-        screen = EditorialScreen.Quiz
-    }
-    fun submitSample() {
-        if (selectedOption < 0) return
-        lastCorrect = selectedOption == activePost.answerIndex
-        lastXpEarned = if (lastCorrect) 105 else 15
-        sampleXp += lastXpEarned
-        sampleCombo = if (lastCorrect) sampleCombo + 1 else 0
-        answeredCount += 1
-        screen = EditorialScreen.Feedback
+    fun launchDetective(caseId: String) {
+        detectiveStartCaseId = caseId
+        screen = EditorialScreen.Detective
     }
 
     BackHandler(screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges, EditorialScreen.Progress, EditorialScreen.Profile)) {
@@ -139,7 +125,7 @@ fun SlangverseApp() {
         )
     ) {
         Scaffold(containerColor = WarmEditorial.Paper, bottomBar = {
-            NavigationBar(containerColor = WarmEditorial.Ink, tonalElevation = 0.dp) {
+            if (screen != EditorialScreen.Detective) NavigationBar(containerColor = WarmEditorial.Ink, tonalElevation = 0.dp) {
                 val tabs = listOf(
                     Triple(EditorialScreen.Feed, "Feed", Icons.Outlined.Home),
                     Triple(EditorialScreen.Learn, "Learn", Icons.Outlined.MenuBook),
@@ -165,7 +151,7 @@ fun SlangverseApp() {
             }
         }) { innerPadding ->
             Column(Modifier.fillMaxSize().padding(innerPadding)) {
-                EditorialHeader(
+                if (screen != EditorialScreen.Detective) EditorialHeader(
                     screen = screen,
                     xp = sampleXp,
                     combo = sampleCombo,
@@ -181,11 +167,11 @@ fun SlangverseApp() {
                         when (screen) {
                             EditorialScreen.Feed -> {
                                 PaperCard(background = WarmEditorial.Blush) {
-                                    EditorialEyebrow("YOUR NEXT CHAPTER")
-                                    EditorialTitle("Continue your slang journey.", 29)
-                                    Text("Read a post. Follow the clues. Decode the meaning.",
+                                    EditorialEyebrow("CONTEXT DETECTIVE · V3")
+                                    EditorialTitle("Read the room. Decode the slang.", 29)
+                                    Text("Three short cases. Three different slang terms. Your evidence matters.",
                                         color = WarmEditorial.Muted, fontSize = 13.sp)
-                                    EditorialPrimary("CONTINUE SESSION →") { openQuiz("campus") }
+                                    EditorialPrimary("START THE CASE FILE →") { launchDetective("campus") }
                                 }
                                 EditorialSection("Your Feed", "Social stories made for contextual practice")
                                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -196,7 +182,7 @@ fun SlangverseApp() {
                                 editorialPosts.forEach { post ->
                                     EditorialSocialPost(
                                         post = post, showComments = false,
-                                        onDecode = { openQuiz(post.id) }
+                                        onDecode = { launchDetective(post.id) }
                                     )
                                 }
                                 PaperCard {
@@ -209,77 +195,15 @@ fun SlangverseApp() {
                                 EditorialResearchNote()
                             }
 
-                            EditorialScreen.Quiz -> {
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                                    EditorialEyebrow("ACTIVE SESSION · SAMPLE")
-                                    Text("Streak day 5 · demo", fontSize = 11.sp, color = WarmEditorial.CoralDeep)
-                                }
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                                    Text("Session progress", fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                                    Text((answeredCount + 1).coerceAtMost(10).toString() + " of 10",
-                                        fontWeight = FontWeight.Bold, fontSize = 13.sp)
-                                }
-                                EditorialProgress((answeredCount + 1).coerceAtMost(10) / 10f)
-                                EditorialSocialPost(post = activePost, showComments = true)
-                                EditorialTitle("What does “" + activePost.slang + "” mean in this context?", 25)
-                                Text("Choose the closest meaning based on the post and replies.",
-                                    color = WarmEditorial.Muted, fontSize = 12.sp)
-                                activePost.options.forEachIndexed { index, option ->
-                                    EditorialOption(
-                                        index = index,
-                                        label = option,
-                                        selected = selectedOption == index,
-                                        correct = false,
-                                        reveal = false,
-                                        onClick = { selectedOption = index }
-                                    )
-                                }
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                                    Text("✦ Context before guessing", fontSize = 11.sp, color = WarmEditorial.CoralDeep)
-                                    Text("+105 XP for a correct answer", fontSize = 10.sp, color = WarmEditorial.Muted)
-                                }
-                                EditorialPrimary("SUBMIT ANSWER →", selectedOption >= 0) { submitSample() }
-                                EditorialResearchNote()
-                            }
-
-                            EditorialScreen.Feedback -> {
-                                Column(
-                                    Modifier.fillMaxWidth(),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                    verticalArrangement = Arrangement.spacedBy(7.dp)
-                                ) {
-                                    Text(if (lastCorrect) "🏆" else "✏", fontSize = 48.sp)
-                                    EditorialTitle(if (lastCorrect) "Correct answer!" else "Good try!", 35)
-                                    Text("+" + lastXpEarned + " XP  ·  Combo " + sampleCombo,
-                                        fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
-                                }
-                                PaperCard {
-                                    EditorialTitle("“" + activePost.slang + "” in context", 22)
-                                    activePost.options.forEachIndexed { index, option ->
-                                        EditorialOption(
-                                            index = index, label = option,
-                                            selected = index == selectedOption,
-                                            correct = index == activePost.answerIndex,
-                                            reveal = true, onClick = {}
-                                        )
+                            EditorialScreen.Detective -> {
+                                ContextDetective(
+                                    startCaseId = detectiveStartCaseId,
+                                    onExit = { screen = EditorialScreen.Feed },
+                                    onSessionCompleted = { earnedXp, trailingCombo ->
+                                        sampleXp = earnedXp
+                                        sampleCombo = trailingCombo
                                     }
-                                }
-                                PaperCard(background = WarmEditorial.Blush) {
-                                    EditorialTitle("✦ The context gives it away", 22)
-                                    Text(activePost.explanation, fontSize = 14.sp, color = WarmEditorial.Ink)
-                                    Text("Sample explanation only; not expert-validated.",
-                                        color = WarmEditorial.Muted, fontSize = 11.sp)
-                                }
-                                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                                    Text("Session progress", fontSize = 12.sp)
-                                    Text(answeredCount.coerceAtMost(10).toString() + " / 10", fontSize = 12.sp)
-                                }
-                                EditorialProgress(answeredCount.coerceAtMost(10) / 10f)
-                                EditorialPrimary("NEXT POST →") {
-                                    val idx = editorialPosts.indexOfFirst { it.id == currentPostId }
-                                    openQuiz(editorialPosts[(idx + 1) % editorialPosts.size].id)
-                                }
-                                EditorialSecondary("VIEW PROGRESS") { screen = EditorialScreen.Progress }
+                                )
                             }
 
                             EditorialScreen.Learn -> {
@@ -332,7 +256,7 @@ fun SlangverseApp() {
                                             Text(post.content, fontSize = 13.sp, lineHeight = 20.sp)
                                             Text("Slang senses are provisional and vary across communities.",
                                                 color = WarmEditorial.Muted, fontSize = 11.sp)
-                                            EditorialPrimary("PRACTICE THIS TERM →") { openQuiz(post.id) }
+                                            EditorialPrimary("PRACTICE THIS TERM →") { launchDetective(post.id) }
                                         } else {
                                             Text(post.options[post.answerIndex],
                                                 color = WarmEditorial.Muted, fontSize = 12.sp)
@@ -349,7 +273,7 @@ fun SlangverseApp() {
                                     EditorialTitle("Read between the lines.", 29)
                                     Text("Decode a fictional social post and build your practice streak.",
                                         fontSize = 12.sp, color = WarmEditorial.Muted)
-                                    EditorialPrimary("START CHALLENGE →") { openQuiz("campus") }
+                                    EditorialPrimary("START CHALLENGE →") { launchDetective("campus") }
                                 }
                                 EditorialChallenge("Decode 10 posts", "7 / 10", 0.7f, "150 XP", "♧")
                                 EditorialChallenge("Get 5 correct in a row", "5 / 5", 1f, "200 XP", "◎")
@@ -491,14 +415,13 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
         }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically) {
-            EditorialTag("★ " + xp + " DEMO XP")
+            EditorialTag("★ " + xp + " SAMPLE XP")
             EditorialTag("♨ COMBO " + combo, selected = true)
             Spacer(Modifier.weight(1f))
             Text(
                 when (screen) {
                     EditorialScreen.Feed -> "FEED"
-                    EditorialScreen.Quiz -> "PLAY / QUIZ"
-                    EditorialScreen.Feedback -> "FEEDBACK"
+                    EditorialScreen.Detective -> "CONTEXT DETECTIVE"
                     EditorialScreen.Learn -> "LEARN"
                     EditorialScreen.Challenges -> "QUESTS"
                     EditorialScreen.Progress -> "PROGRESS"
