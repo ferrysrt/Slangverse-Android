@@ -1,3 +1,25 @@
+# Social Stories checkpoint verification — 2026-11-16 (Asia/Jakarta)
+
+Version: `0.3.0-social-stories`, version code 2, branch `feat/social-simulator-feed`.
+
+Executed from `android/` after activating the cloud toolchain:
+
+```sh
+gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug
+```
+
+Result: **BUILD SUCCESSFUL**. Current JUnit XML reports **18 passed, 0 failed, 0 errors, 0 skipped**:
+
+- `ContextDetectiveGameTest`: 7 tests (archived gameplay/scoring regression checks).
+- `SocialFeedGameTest`: 5 tests (pack composition, category filters, once-per-post XP and bounded progress).
+- `SocialNarrativeTest`: 6 tests (profile references, nested reply parents, quoted evidence, submission-gated updates, exact inbox targets, and hashtag routes).
+
+The rebuilt APK passed `apksigner verify`. `aapt dump badging` confirmed application `id.slangverse.app`, version `0.3.0-social-stories`, minimum SDK 26 and target SDK 36. `git diff --check` passed.
+
+These checks validate the model, compilation, packaging and signature. They do not establish rendered layout, gesture/navigation behavior, accessibility or saveable-state behavior on a device. Use the [phone acceptance checklist](SOCIAL_SIMULATOR_FEED.md#social-stories-phone-acceptance-checks). GitHub Actions completion is not established by this local run. No paid LLM call, backend deployment, participant study or durable research logging is claimed. Backend files were not modified or retested for this checkpoint.
+
+## Historical verification records
+
 # Verification in current environment — 2026-11-11 (Asia/Jakarta)
 
 ## Backend

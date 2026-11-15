@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.sp
  * Feed replies drive local practice progress; profiles and content remain fictional/curated.
  * The API Training route continues to use the existing GitHub GET and live backend clients.
  */
-private enum class EditorialScreen { Feed, Detective, Learn, Challenges, Progress, Profile, ApiSession }
+private enum class EditorialScreen { Feed, Detective, Learn, Challenges, Progress, Profile, ApiSession, Activity, Conversation }
 
 private data class EditorialReply(val handle: String, val text: String)
 
@@ -93,7 +93,7 @@ private val editorialPosts = listOf(
 
 @Composable
 fun SlangverseApp() {
-    var screen by remember { mutableStateOf(EditorialScreen.Feed) }
+    var screen by rememberSaveable { mutableStateOf(EditorialScreen.Feed) }
     var feedTab by rememberSaveable { mutableStateOf("For you") }
     var likedPosts by rememberSaveable { mutableStateOf(emptyList<String>()) }
     var savedPosts by rememberSaveable { mutableStateOf(emptyList<String>()) }
@@ -114,7 +114,22 @@ fun SlangverseApp() {
     var glossaryQuery by rememberSaveable { mutableStateOf("") }
     var glossaryFilter by rememberSaveable { mutableStateOf("All") }
     var expandedTerm by rememberSaveable { mutableStateOf("cooked") }
-    var notifications by remember { mutableStateOf(true) }
+    var profileHandle by rememberSaveable { mutableStateOf<String?>(null) }
+    var focusedPostId by rememberSaveable { mutableStateOf<String?>(null) }
+    var readUpdateIds by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    val conversationUpdates = SocialNarrative.updates(feedProgress)
+    val unreadUpdates = conversationUpdates.count { it.postId !in readUpdateIds }
+
+    fun openConversation(postId: String) {
+        focusedPostId = postId
+        screen = EditorialScreen.Conversation
+    }
+
+    fun openContext(context: FeedContext) {
+        feedTab = context.label
+        screen = EditorialScreen.Feed
+    }
+
     var showPrivacy by remember { mutableStateOf(false) }
 
     fun launchDetective(caseId: String) {
@@ -137,6 +152,11 @@ fun SlangverseApp() {
             secondary = WarmEditorial.CoralDeep
         )
     ) {
+        profileHandle?.let { handle ->
+            FictionalProfileDialog(handle,
+                onDismiss = { profileHandle = null },
+                onOpenPost = { id -> profileHandle = null; openConversation(id) })
+        }
         Scaffold(containerColor = WarmEditorial.Paper, bottomBar = {
             if (screen != EditorialScreen.Detective) NavigationBar(containerColor = WarmEditorial.Ink, tonalElevation = 0.dp) {
                 val tabs = listOf(
@@ -168,9 +188,11 @@ fun SlangverseApp() {
                     screen = screen,
                     xp = feedProgress.xp,
                     combo = feedProgress.combo,
-                    onBack = { screen = EditorialScreen.Feed }
+                    onBack = { screen = EditorialScreen.Feed },
+                    unreadUpdates = unreadUpdates,
+                    onInbox = { screen = EditorialScreen.Activity }
                 )
-                key(screen) {
+                key(screen, focusedPostId) {
                     Column(
                         Modifier.fillMaxSize()
                             .then(if (screen == EditorialScreen.Feed) Modifier else Modifier.verticalScroll(rememberScrollState()))
@@ -203,7 +225,8 @@ fun SlangverseApp() {
                                                 likedPosts - post.thread.id else likedPosts + post.thread.id },
                                             onSave = { savedPosts = if (post.thread.id in savedPosts)
                                                 savedPosts - post.thread.id else savedPosts + post.thread.id },
-                                            onAnswer = { feedProgress = feedProgress.answer(post.thread.id, it) })
+                                            onAnswer = { feedProgress = feedProgress.answer(post.thread.id, it) },
+                                            onProfile = { profileHandle = it }, onContext = ::openContext)
                                     }
                                     if (visiblePosts.isEmpty()) item {
                                         PaperCard {
@@ -229,6 +252,29 @@ fun SlangverseApp() {
                                         }
                                     }
                                 }
+                            }
+
+                            EditorialScreen.Activity -> {
+                                ConversationInbox(conversationUpdates, readUpdateIds, onOpenPost = { id ->
+                                    if (id !in readUpdateIds) readUpdateIds = readUpdateIds + id
+                                    openConversation(id)
+                                })
+                            }
+
+                            EditorialScreen.Conversation -> {
+                                val post = SocialFeedGame.posts.firstOrNull { it.thread.id == focusedPostId }
+                                if (post != null) {
+                                    FeedSocialPost(post, feedProgress.answers[post.thread.id],
+                                        liked = post.thread.id in likedPosts, saved = post.thread.id in savedPosts,
+                                        onLike = { likedPosts = if (post.thread.id in likedPosts)
+                                            likedPosts - post.thread.id else likedPosts + post.thread.id },
+                                        onSave = { savedPosts = if (post.thread.id in savedPosts)
+                                            savedPosts - post.thread.id else savedPosts + post.thread.id },
+                                        onAnswer = { feedProgress = feedProgress.answer(post.thread.id, it) },
+                                        onProfile = { profileHandle = it }, onContext = ::openContext,
+                                        initiallyExpanded = true)
+                                }
+                                EditorialSecondary("BACK TO FEED →") { screen = EditorialScreen.Feed }
                             }
 
                             EditorialScreen.Detective -> {
@@ -308,8 +354,8 @@ fun SlangverseApp() {
                                 EditorialSection("Your quests", "Small goals, at your own pace")
                                 EditorialChallenge("Decode ten conversations", "${feedProgress.answers.size} / 10",
                                     feedProgress.answers.size / 10f, "PRACTICE", "◎")
-                                EditorialChallenge("Explore the nine contexts", "${feedProgress.contexts} / 9",
-                                    feedProgress.contexts / 9f, "EXPLORE", "▤")
+                                EditorialChallenge("Explore this pack’s contexts", "${feedProgress.contexts} / ${SocialFeedGame.contextCount}",
+                                    feedProgress.contexts.toFloat() / SocialFeedGame.contextCount, "EXPLORE", "▤")
                                 EditorialChallenge("Match five meanings", "${feedProgress.correct.coerceAtMost(5)} / 5",
                                     (feedProgress.correct / 5f).coerceAtMost(1f), "REVIEW", "✳")
                                 EditorialPrimary("BACK TO THE CONVERSATIONS →") { screen = EditorialScreen.Feed }
@@ -336,7 +382,7 @@ fun SlangverseApp() {
                                     EditorialProgress(feedProgress.answers.size / 10f)
                                     EditorialMetric("Conversations decoded", "${feedProgress.answers.size} / 10")
                                     EditorialMetric("Meanings matched", "${feedProgress.correct} / ${feedProgress.answers.size}")
-                                    EditorialMetric("Contexts explored", "${feedProgress.contexts} / 9")
+                                    EditorialMetric("Contexts explored", "${feedProgress.contexts} / ${SocialFeedGame.contextCount}")
                                     Text("One reward per post. Likes and bookmarks never affect your score.",
                                         fontSize = 12.sp, color = WarmEditorial.Muted)
                                 }
@@ -412,8 +458,8 @@ fun SlangverseApp() {
                                 }
                                 PaperCard {
                                     EditorialTitle("Settings", 23)
-                                    EditorialSetting("Notifications", if (notifications) "On" else "Off") {
-                                        notifications = !notifications
+                                    EditorialSetting("Conversation updates", "$unreadUpdates unread") {
+                                        screen = EditorialScreen.Activity
                                     }
                                     EditorialSetting("Appearance", "Warm Editorial") {}
                                     EditorialSetting("Privacy & data", "Information") { showPrivacy = !showPrivacy }
@@ -439,13 +485,16 @@ fun SlangverseApp() {
 }
 
 @Composable
-private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack: () -> Unit) {
+private fun EditorialHeader(
+    screen: EditorialScreen, xp: Int, combo: Int, onBack: () -> Unit,
+    unreadUpdates: Int, onInbox: () -> Unit
+) {
     Column(Modifier.fillMaxWidth().background(WarmEditorial.Paper)
         .padding(horizontal = 18.dp, vertical = 10.dp),
         verticalArrangement = Arrangement.spacedBy(7.dp)) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween) {
-            Column {
+            Column(Modifier.weight(1f)) {
                 Text("Slangverse ✳", fontFamily = WarmEditorial.Display,
                     fontSize = 29.sp, color = WarmEditorial.Ink)
                 Text("A FICTIONAL SOCIAL FEED FOR SLANG PRACTICE",
@@ -457,9 +506,12 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
                 IconButton(onClick = onBack) {
                     Icon(Icons.Outlined.ArrowBack, "Back to Feed", tint = WarmEditorial.CoralDeep)
                 }
-            } else {
-                Icon(Icons.Outlined.AutoAwesome, "Slangverse",
-                    tint = WarmEditorial.Coral, modifier = Modifier.size(24.dp))
+            }
+            IconButton(onClick = onInbox) {
+                BadgedBox(badge = { if (unreadUpdates > 0) Badge { Text(unreadUpdates.toString()) } }) {
+                    Icon(Icons.Outlined.Notifications, "Conversation updates, $unreadUpdates unread",
+                        tint = WarmEditorial.CoralDeep)
+                }
             }
         }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -476,6 +528,8 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
                     EditorialScreen.Progress -> "PROGRESS"
                     EditorialScreen.Profile -> "PROFILE"
                     EditorialScreen.ApiSession -> "API SESSION"
+                    EditorialScreen.Activity -> "UPDATES"
+                    EditorialScreen.Conversation -> "THREAD"
                 },
                 fontSize = 9.sp, fontWeight = FontWeight.Bold,
                 color = WarmEditorial.CoralDeep, letterSpacing = 0.5.sp
@@ -561,24 +615,22 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
 
 @Composable private fun FeedSocialPost(
     post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
-    onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit
+    onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit,
+    onProfile: (String) -> Unit, onContext: (FeedContext) -> Unit,
+    initiallyExpanded: Boolean = false
 ) {
     val thread = post.thread
-    var expanded by rememberSaveable(thread.id) { mutableStateOf(false) }
+    val story = SocialNarrative.story(post)
+    var expanded by rememberSaveable(thread.id) { mutableStateOf(initiallyExpanded) }
     var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
     var selected by rememberSaveable(thread.id) { mutableIntStateOf(-1) }
     PaperCard {
-        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            EditorialAvatar(thread.author.take(1), WarmEditorial.Peach, 44)
-            Column(Modifier.weight(1f)) {
-                Text(thread.author, fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                Text("${thread.handle} · fictional account", fontSize = 11.sp, color = WarmEditorial.Muted)
-            }
-            Text(post.context.label, fontSize = 11.sp, color = WarmEditorial.CoralDeep)
-        }
+        StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story")
         Text(thread.post, color = WarmEditorial.Ink, fontSize = 18.sp, lineHeight = 26.sp)
-        Text(thread.hashtag, fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+        story.quote?.let { StoryQuoteCard(it, onProfile) }
+        TextButton(onClick = { SocialFeedGame.contextForHashtag(thread.hashtag)?.let(onContext) }) {
+            Text(thread.hashtag, fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+        }
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween) {
             IconToggleButton(checked = liked, onCheckedChange = { onLike() }) {
@@ -596,22 +648,11 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
                     tint = if (saved) WarmEditorial.Coral else WarmEditorial.Muted)
             }
         }
-        if (expanded) {
-            thread.comments.forEachIndexed { index, comment ->
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    EditorialAvatar(if (index == 0) "N" else "J", WarmEditorial.Gold, 30)
-                    Column {
-                        Text(if (index == 0) "@naya" else "@justjo", fontWeight = FontWeight.Bold, fontSize = 11.sp)
-                        Text(comment, fontSize = 13.sp, lineHeight = 19.sp)
-                    }
-                }
-            }
-        }
+        if (expanded) StoryReplies(story.replies, onProfile)
         HorizontalDivider(color = WarmEditorial.Sand)
         Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(14.dp)).padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(9.dp)) {
-            Text("@confuseduser · help explain", fontSize = 12.sp, fontWeight = FontWeight.Bold,
-                color = WarmEditorial.CoralDeep)
+            StoryIdentity("@confuseduser", onProfile, "Replying to ${thread.handle} · help explain")
             Text(thread.questionComment, fontSize = 15.sp, lineHeight = 22.sp)
             if (answeredIndex == null && !replying) {
                 TextButton(onClick = { replying = true }) { Text("Reply with the meaning ↓") }
@@ -623,13 +664,19 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
                 EditorialPrimary("POST REPLY →", enabled = selected in thread.options.indices) { onAnswer(selected) }
             } else {
                 val correct = answeredIndex == thread.correctIndex
-                Text("You replied: ${thread.options[answeredIndex]}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                StoryPlayerReply(thread.options[answeredIndex])
+                Text("PRACTICE FEEDBACK", fontSize = 10.sp, fontWeight = FontWeight.Bold,
+                    color = WarmEditorial.Muted)
                 Text(if (correct) "✓ Meaning matched · +${ContextDetectiveGame.CORRECT_XP} XP"
                     else "↺ Let's review · +${ContextDetectiveGame.PRACTICE_XP} practice XP",
                     fontSize = 12.sp, color = WarmEditorial.CoralDeep)
                 if (!correct) Text("Meaning here: ${thread.meaning}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
                 Text(thread.explanation, fontSize = 13.sp, lineHeight = 20.sp)
                 Text("Hand-authored practice feedback", fontSize = 10.sp, color = WarmEditorial.Muted)
+                HorizontalDivider(color = WarmEditorial.Sand)
+                Text("LATER IN THIS STORY · SCRIPTED FOLLOW-UP", fontSize = 9.sp, color = WarmEditorial.Muted)
+                StoryIdentity(story.followUpHandle, onProfile)
+                Text(story.followUp, fontSize = 13.sp, lineHeight = 19.sp)
             }
         }
     }

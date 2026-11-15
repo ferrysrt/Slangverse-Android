@@ -10,8 +10,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.2.0-direct"
+        versionCode = 2
+        versionName = "0.3.0-social-stories"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

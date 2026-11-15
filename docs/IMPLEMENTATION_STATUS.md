@@ -1,4 +1,12 @@
-# Implementation status — Slangverse V2.2 (direct)
+# Current checkpoint — Social Stories 0.3.0
+
+The current feature branch is `feat/social-simulator-feed`. Home opens into the ten-item local practice feed. This revision adds fictional character profiles, nested replies, quoted earlier posts, context hashtag navigation, visible player replies, and a local inbox that links to exact answered conversations. The archived V3 welcome panel remains under Quests. See [checkpoint behavior and phone acceptance checks](SOCIAL_SIMULATOR_FEED.md).
+
+The ten-question, single-sense, nominal 5/3/2 pack and 80/15 XP rules remain intact. Story follow-ups unlock once per submitted post regardless of correctness, and social actions do not affect scoring. The context quest counts categories present in the pack rather than imposing all nine on every slang.
+
+This remains hand-authored practice with local saveable UI state. Durable participant response recording/export, generated-pack integration into this local feed, content validation and device usability evaluation are outstanding. The backend, Connected Training and archived gameplay retain their separate boundaries. Current verification is recorded in [test results](TEST_RESULTS.md).
+
+## Historical V2.2 status (retained for reference)
 
 | Part | Implemented | Independently verified here | Remaining |
 | --- | --- | --- | --- |

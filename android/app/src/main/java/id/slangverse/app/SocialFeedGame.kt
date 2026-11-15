@@ -1,10 +1,11 @@
 package id.slangverse.app
 
 /** Proposal §8.2.2. News is fictional event reaction, not an additional research category. */
-internal enum class FeedContext(val label: String) {
-    Personal("Personal"), Education("Education"), Work("Work"), Prediction("Predictions"),
-    Sports("Sports"), Entertainment("Entertainment"), Opinion("Opinions"),
-    Friends("Friends"), EventReaction("News")
+internal enum class FeedContext(val label: String, val hashtag: String) {
+    Personal("Personal", "#EverydayLife"), Education("Education", "#CampusLife"),
+    Work("Work", "#WorkLife"), Prediction("Predictions", "#WhatIf"),
+    Sports("Sports", "#Matchday"), Entertainment("Entertainment", "#OpeningNight"),
+    Opinion("Opinions", "#MyTake"), Friends("Friends", "#FriendChat"), EventReaction("News", "#TownUpdates")
 }
 
 internal enum class FeedDifficulty { Easy, Medium, Hard }
@@ -85,9 +86,13 @@ internal object SocialFeedGame {
         val options = distractors.drop(index % 4) + distractors.take(index % 4)
         FeedPracticePost(
             DetectiveCase(scene.id, "cooked", "In serious trouble", scene.author, scene.handle,
-                "#${scene.context.label.replace(" ", "")}", scene.post, scene.replies, scene.question,
+                scene.context.hashtag, scene.post, scene.replies, scene.question,
                 options, options.indexOf("In serious trouble"), scene.explanation), scene.context, difficulty)
     }
+
+    val contextCount: Int get() = posts.map { it.context }.distinct().size
+
+    fun contextForHashtag(hashtag: String): FeedContext? = FeedContext.entries.firstOrNull { it.hashtag == hashtag }
 
     fun filter(context: FeedContext?): List<FeedPracticePost> = posts.filter { context == null || it.context == context }
 }

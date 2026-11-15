@@ -1,14 +1,16 @@
 # Slangverse Android — Social Simulator Feed (native Compose + Node backend)
 
-**Status:** V3 Context Detective native Android gameplay is implemented on a feature branch, with GitHub Actions unit/build checks as merge gates. The source also contains an independently labeled real HTTP training path and a mock/optional LLM provider. Device/emulator gameplay is not verified merely by compiling an APK. This repository is separate from `ferrysrt/slangfeed`.
+**Status:** The Social Stories checkpoint (`0.3.0-social-stories`) extends the feed on `feat/social-simulator-feed` with fictional profiles, nested replies, quoted posts and a local conversation inbox. Android builds and unit tests are checked locally; device usability needs its own validation. The optional HTTP/LLM training path remains separate. This repository is separate from `ferrysrt/slangfeed`.
 
-Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of on-demand LLM generation**: schema adherence, success/fallback, latency, and SUS.
+Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of LLM-generated multicontext question packs**: schema adherence, success/fallback, latency, and SUS.
 
 **Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
 
 ## Social simulator feed (current home)
 
 Home opens directly into fictional posts, with **For you**, **News** (fictional event reactions), and the other eight proposal context filters. Players interpret slang inside a comment thread, earn practice XP once per post, bookmark conversations, and review actual local progress in Quests and Progress. The finite local practice feed demonstrates ten contexts for one `cooked` sense with a nominal 5 easy / 3 medium / 2 hard split; these examples are hand-authored, not generated or expert-validated.
+
+The **Social Stories** update adds tappable character profiles, nested reply targets, five quoted earlier posts, context hashtags, visible player replies, and a bell-button inbox with one scripted follow-up per answered conversation. These features do not add questions or affect XP.
 
 The previous **CONTEXT DETECTIVE · V3** welcome panel is archived under **Quests → Archived: Context Detective · V3**. Connected Training remains separate and source-labeled. See [proposal alignment, interactions, and validation](docs/SOCIAL_SIMULATOR_FEED.md).
 
