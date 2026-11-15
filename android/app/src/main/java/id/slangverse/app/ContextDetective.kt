@@ -252,20 +252,11 @@ internal fun ContextDetective(
                                 .padding(12.dp),
                             verticalArrangement = Arrangement.spacedBy(9.dp)
                         ) {
-                            Text(if (decision.correct) "✓ You got the context."
-                                 else "↺ Another meaning fits this context better.",
-                                fontFamily = WarmEditorial.Display, fontSize = 22.sp,
-                                color = WarmEditorial.Ink)
-                            Text("+" + decision.xpEarned + " demo XP · " + item.meaning,
-                                fontSize = 12.sp, color = WarmEditorial.CoralDeep)
-                            Text(item.explanation, fontSize = 13.sp,
-                                lineHeight = 19.sp, color = WarmEditorial.Ink)
-                            if (pinned >= 0) {
-                                Text("Saved clue: “" + item.comments[pinned] + "”",
-                                    fontSize = 12.sp, color = WarmEditorial.Muted)
-                            }
-                            Text("This answer is a hand-authored demo; saved clues are not graded.",
-                                fontSize = 11.sp, color = WarmEditorial.Muted)
+                            LearningFeedbackPanel(
+                                correct = decision.correct, xp = decision.xpEarned,
+                                meaning = item.meaning, explanation = item.explanation,
+                                sourceLabel = "Hand-authored demo · saved clues are not graded",
+                                savedClue = item.comments.getOrNull(pinned))
                             CDButton(if (round == cases.lastIndex) "OPEN CASE REPORT →"
                                 else "NEXT CONVERSATION →", onClick = { advance() })
                         }

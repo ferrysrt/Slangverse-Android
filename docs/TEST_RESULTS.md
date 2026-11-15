@@ -1,3 +1,17 @@
+# UI Hierarchy checkpoint verification — 2026-11-16 (Asia/Jakarta)
+
+Version `0.3.2-ui-hierarchy`, version code 4, branch `feat/social-simulator-feed`.
+
+- Android `:app:testDebugUnitTest :app:assembleDebug`: **BUILD SUCCESSFUL; 20 passed, 0 failures/errors/skipped**, read from the current JUnit XML.
+- APK signature verification passed; APK metadata confirms `0.3.2-ui-hierarchy`, min SDK 26 and target SDK 36.
+- `git diff --check` passed.
+- Source inspection confirms existing 44dp author / 30–32dp reply / 80dp profile portraits, stronger author typography, 12sp handles/metadata and a distinct Learning feedback component. In the feed the grading component is outside the social comment container, before the separate fictional follow-up. Archived and Connected Training source/grading disclosures are retained.
+- No new mirror-of-layout unit tests were added. Existing tests protect scoring, pack composition, identity mapping and avatar metadata. Backend files and the avatar catalogue were unchanged and were not retested for this UI-only revision.
+
+These results establish compilation, regression checks and APK packaging, not rendered device layout, navigation, large-font behavior or a complete accessibility audit. Perform the phone checks in [the current checkpoint](SOCIAL_SIMULATOR_FEED.md). GitHub Actions completion and device usability remain unverified here.
+
+## Previous checkpoint verification
+
 # Profile Pictures checkpoint verification — 2026-11-16 (Asia/Jakarta)
 
 Version `0.3.1-profile-pictures`, version code 3, branch `feat/social-simulator-feed`.

@@ -13,7 +13,7 @@ internal object WarmEditorial {
     val Peach = Color(0xFFFBC8B2)
     val Blush = Color(0xFFFFE7D9)
     val Sand = Color(0xFFE9D6C8)
-    val Muted = Color(0xFF756F7D)
+    val Muted = Color(0xFF5E5865)
     val Sage = Color(0xFFE2EDCE)
     val Olive = Color(0xFF426B42)
     val Gold = Color(0xFFE6BC76)

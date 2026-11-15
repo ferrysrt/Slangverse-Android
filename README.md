@@ -1,10 +1,14 @@
 # Slangverse Android — Social Simulator Feed (native Compose + Node backend)
 
-**Status:** The Social Stories checkpoint (`0.3.1-profile-pictures`) extends the feed on `feat/social-simulator-feed` with fictional profiles, nested replies, quoted posts and a local conversation inbox. Android builds and unit tests are checked locally; device usability needs its own validation. The optional HTTP/LLM training path remains separate. This repository is separate from `ferrysrt/slangfeed`.
+**Status:** The Social Stories checkpoint (`0.3.2-ui-hierarchy`) extends the feed on `feat/social-simulator-feed` with fictional profiles, nested replies, quoted posts and a local conversation inbox. Android builds and unit tests are checked locally; device usability needs its own validation. The optional HTTP/LLM training path remains separate. This repository is separate from `ferrysrt/slangfeed`.
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of LLM-generated multicontext question packs**: schema adherence, success/fallback, latency, and SUS.
 
 **Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
+
+## UI hierarchy checkpoint (0.3.2)
+
+The existing 44dp author / 30–32dp reply / 80dp profile portrait hierarchy is retained. Author names now use stronger 16sp type, handles and story metadata use readable 12sp text, and secondary text has darker contrast on the warm backgrounds. The social feed shows the player's reply in the conversation, a distinct bordered **Learning feedback** panel for grading and explanation, then a separate scripted story continuation. The same feedback component is used in archived practice and Connected Training with their respective source/grading disclosures. Scoring and question data are unchanged.
 
 ## Profile pictures checkpoint (0.3.1)
 

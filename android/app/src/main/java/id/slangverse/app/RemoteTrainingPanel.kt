@@ -300,17 +300,15 @@ fun RemoteTrainingPanel() {
         }
     }
     if (result != null) {
-        Sheet {
-            Text(if (result!!.correct) "✓ Correct! +${result!!.xpEarned} XP" else "Not quite. +${result!!.xpEarned} XP", color = MintGreen, fontWeight = FontWeight.Bold)
-            Text(result!!.explanation, color = PrimaryText, fontSize = 12.sp)
-            if (pinnedClueIndex in current.post.comments.indices) {
-                Text("Your pinned clue: " + current.post.comments[pinnedClueIndex].text,
-                    color = Secondary, fontSize = 12.sp)
-            }
-            Text(if (activeSession.source.startsWith("github-static"))
-                 "Locally graded demo; correct answers are public in GitHub JSON."
-                 else "Server-graded result; not evidence of semantic accuracy.", color = Secondary, fontSize = 10.sp)
-        }
+        LearningFeedbackPanel(
+            correct = result!!.correct, xp = result!!.xpEarned,
+            meaning = current.options.getOrElse(result!!.correctIndex) { "See the explanation below" },
+            explanation = result!!.explanation,
+            sourceLabel = "Question source: ${activeSession.source}. " +
+                if (activeSession.source.startsWith("github-static"))
+                    "Locally graded demo; correct answers are public in GitHub JSON."
+                else "Server-graded result; not evidence of semantic accuracy.",
+            savedClue = current.post.comments.getOrNull(pinnedClueIndex)?.text)
         Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT CONVERSATION →") {
             if (currentIndex == activeSession.questions.lastIndex) finished = true
             else { currentIndex += 1; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; expandedReplies = false; error = null }

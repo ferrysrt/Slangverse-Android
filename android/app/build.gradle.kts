@@ -10,8 +10,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 3
-        versionName = "0.3.1-profile-pictures"
+        versionCode = 4
+        versionName = "0.3.2-ui-hierarchy"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

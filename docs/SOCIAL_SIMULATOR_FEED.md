@@ -2,7 +2,17 @@
 
 The app opens directly into fictional post cards. The former “CONTEXT DETECTIVE · V3 / Read the room. Decode the slang.” welcome panel is archived under **Quests → Archived: Context Detective · V3**. The original three-slang mode remains playable there and from the glossary; its results stay separate.
 
-## Current checkpoint: Profile Pictures · 0.3.1
+## Current checkpoint: UI Hierarchy · 0.3.2
+
+`0.3.2-ui-hierarchy` (version code 4) completes the hierarchy recommendation. It retains author portraits at 44dp, reply/quote portraits at 30–32dp, and profile portraits at 80dp. Primary author names are 16sp/bold; handles and story metadata are 12sp with explicit line heights. Other character names remain 14sp/bold. Secondary text uses a darker muted colour for readability on the warm surfaces; nested reply connectors remain in place.
+
+In the feed, the player's visible reply stays in the social comment container. Grading, practice XP, correct meaning and explanation appear in their own bordered **Learning feedback** surface outside that container, without a character avatar or social action buttons. A book icon and semantic heading identify the educational panel, while text plus colour distinguish correct and incorrect answers. The scripted story continuation follows as a separate identity/message block. This prevents a character's neutral reaction from being mistaken for grading.
+
+Archived practice and Connected Training use the same feedback surface, retaining their distinct source labels, grading disclosures and optional saved clues. The question pack, meanings, answer keys, XP rules, API and LLM prompt are unchanged in this UI-only checkpoint.
+
+Phone acceptance additions: check names/handles at normal and large font sizes; submit correct and wrong answers; verify the visible player reply, separate Learning feedback panel and separate fictional follow-up; check archived and static/live training disclosures. These changes are compiled and model-regression tested, not a completed device usability or accessibility evaluation.
+
+## Previous checkpoint: Profile Pictures · 0.3.1
 
 `0.3.1-profile-pictures` (version code 3) adds 22 local Open Peeps portraits, including the twelve recurring characters, player and guest/fallback pictures. The [asset catalogue and generator documentation](../assets/profile-pictures/README.md) includes CC0 artwork provenance, MIT renderer notices, SVG originals, a contact sheet and reproducible rendering commands.
 

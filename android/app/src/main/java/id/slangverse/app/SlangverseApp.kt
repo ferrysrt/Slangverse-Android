@@ -619,7 +619,7 @@ private fun EditorialHeader(
     var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
     var selected by rememberSaveable(thread.id) { mutableIntStateOf(-1) }
     PaperCard {
-        StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story", avatarSize = 44.dp)
+        StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story", avatarSize = 44.dp, emphasized = true)
         Text(thread.post, color = WarmEditorial.Ink, fontSize = 18.sp, lineHeight = 26.sp)
         story.quote?.let { StoryQuoteCard(it, onProfile) }
         TextButton(onClick = { SocialFeedGame.contextForHashtag(thread.hashtag)?.let(onContext) }) {
@@ -657,21 +657,21 @@ private fun EditorialHeader(
                 }
                 EditorialPrimary("POST REPLY →", enabled = selected in thread.options.indices) { onAnswer(selected) }
             } else {
-                val correct = answeredIndex == thread.correctIndex
                 StoryPlayerReply(thread.options[answeredIndex])
-                Text("PRACTICE FEEDBACK", fontSize = 10.sp, fontWeight = FontWeight.Bold,
-                    color = WarmEditorial.Muted)
-                Text(if (correct) "✓ Meaning matched · +${ContextDetectiveGame.CORRECT_XP} XP"
-                    else "↺ Let's review · +${ContextDetectiveGame.PRACTICE_XP} practice XP",
-                    fontSize = 12.sp, color = WarmEditorial.CoralDeep)
-                if (!correct) Text("Meaning here: ${thread.meaning}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                Text(thread.explanation, fontSize = 13.sp, lineHeight = 20.sp)
-                Text("Hand-authored practice feedback", fontSize = 10.sp, color = WarmEditorial.Muted)
-                HorizontalDivider(color = WarmEditorial.Sand)
-                Text("LATER IN THIS STORY · SCRIPTED FOLLOW-UP", fontSize = 9.sp, color = WarmEditorial.Muted)
-                StoryIdentity(story.followUpHandle, onProfile, avatarSize = 32.dp)
-                Text(story.followUp, fontSize = 13.sp, lineHeight = 19.sp)
             }
+        }
+        if (answeredIndex != null) {
+            val correct = answeredIndex == thread.correctIndex
+            LearningFeedbackPanel(
+                correct = correct,
+                xp = if (correct) ContextDetectiveGame.CORRECT_XP else ContextDetectiveGame.PRACTICE_XP,
+                meaning = thread.meaning, explanation = thread.explanation,
+                sourceLabel = "Hand-authored practice")
+            HorizontalDivider(color = WarmEditorial.Sand)
+            Text("Later in this story · scripted follow-up", fontSize = 12.sp,
+                lineHeight = 18.sp, color = WarmEditorial.Muted)
+            StoryIdentity(story.followUpHandle, onProfile, avatarSize = 32.dp)
+            Text(story.followUp, fontSize = 13.sp, lineHeight = 20.sp)
         }
     }
 }

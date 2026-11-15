@@ -8,10 +8,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -19,7 +23,8 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 internal fun StoryIdentity(
-    handle: String, onProfile: (String) -> Unit, subtitle: String? = null, avatarSize: Dp = 36.dp
+    handle: String, onProfile: (String) -> Unit, subtitle: String? = null,
+    avatarSize: Dp = 36.dp, emphasized: Boolean = false
 ) {
     val profile = SocialNarrative.profile(handle)
     Row(Modifier.fillMaxWidth().clickable(onClickLabel = "View ${profile.name}'s fictional profile") { onProfile(handle) }
@@ -27,9 +32,10 @@ internal fun StoryIdentity(
         horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
         ProfilePicture(handle, profile.avatarId, size = avatarSize)
         Column(Modifier.weight(1f)) {
-            Text(profile.name, fontWeight = FontWeight.Bold, fontSize = 14.sp)
-            Text(handle, fontSize = 11.sp, color = WarmEditorial.CoralDeep)
-            if (subtitle != null) Text(subtitle, fontSize = 10.sp, color = WarmEditorial.Muted)
+            Text(profile.name, fontWeight = FontWeight.Bold, fontSize = if (emphasized) 16.sp else 14.sp,
+                lineHeight = if (emphasized) 22.sp else 20.sp)
+            Text(handle, fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+            if (subtitle != null) Text(subtitle, fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
         }
     }
 }
@@ -39,7 +45,7 @@ internal fun StoryQuoteCard(quote: StoryQuote, onProfile: (String) -> Unit) {
     Surface(shape = RoundedCornerShape(14.dp), color = WarmEditorial.Paper,
         border = BorderStroke(1.dp, WarmEditorial.Sand)) {
         Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-            Text("QUOTED POST · EARLIER IN THIS STORY", fontSize = 9.sp, color = WarmEditorial.Muted)
+            Text("Quoted post · earlier in this story", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
             StoryIdentity(quote.handle, onProfile, avatarSize = 32.dp)
             Text(quote.text, fontSize = 13.sp, lineHeight = 19.sp)
         }
@@ -55,7 +61,7 @@ internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit
             if (parent != null) Box(Modifier.width(2.dp).fillMaxHeight().background(WarmEditorial.Sand))
             Column(Modifier.weight(1f)) {
                 StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
-                Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 10.sp, color = WarmEditorial.Muted)
+                Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
                 Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
             }
         }
@@ -68,10 +74,41 @@ internal fun StoryPlayerReply(text: String) {
         Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 ProfilePicture("@you", size = 28.dp)
-                Text("You · replying to @confuseduser", fontSize = 11.sp, fontWeight = FontWeight.Bold,
+                Text("You · replying to @confuseduser", fontSize = 12.sp, fontWeight = FontWeight.Bold,
                     color = WarmEditorial.CoralDeep)
             }
             Text(text, fontSize = 14.sp, lineHeight = 20.sp)
+        }
+    }
+}
+
+/** A game explanation has no account/avatar or social actions: it is visibly separate from the story. */
+@Composable
+internal fun LearningFeedbackPanel(
+    correct: Boolean, xp: Int, meaning: String, explanation: String,
+    sourceLabel: String, savedClue: String? = null
+) {
+    val accent = if (correct) WarmEditorial.Olive else WarmEditorial.CoralDeep
+    Surface(modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp),
+        color = if (correct) WarmEditorial.Sage else WarmEditorial.Paper,
+        contentColor = WarmEditorial.Ink, border = BorderStroke(1.dp, accent)) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Icon(Icons.AutoMirrored.Outlined.MenuBook, contentDescription = null, tint = accent,
+                    modifier = Modifier.size(20.dp))
+                Text("Learning feedback", modifier = Modifier.semantics { heading() },
+                    fontSize = 14.sp, fontWeight = FontWeight.Bold)
+            }
+            Text(if (correct) "✓ Meaning matched" else "↺ Review this interpretation",
+                fontSize = 18.sp, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold)
+            Text("+$xp practice XP", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = accent)
+            Text("Meaning in this context", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+            Text(meaning, fontSize = 15.sp, lineHeight = 22.sp, fontWeight = FontWeight.SemiBold)
+            Text(explanation, fontSize = 14.sp, lineHeight = 21.sp)
+            if (savedClue != null) Text("Your saved clue: “$savedClue”", fontSize = 12.sp, lineHeight = 18.sp)
+            HorizontalDivider(color = accent.copy(alpha = 0.3f))
+            Text("Likes and story replies do not affect your score.", fontSize = 12.sp, lineHeight = 18.sp)
+            Text(sourceLabel, fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
         }
     }
 }
