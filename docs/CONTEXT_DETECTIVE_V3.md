@@ -19,12 +19,12 @@ No countdown, energy bar, punishable streak, virtual currency shop or competitiv
 
 Existing MagicPath project: `470964531963789312`
 Existing component: `470964549080743936`
-V3 revision: `472691771546144768`
+V3 revision: `472696158041575424`
 Prototype URL: https://designs.magicpath.ai/v1/gladly-water-6771
 
 Updated in place; the previous Warm Editorial revision remains accessible by revision id.
 
-The V3 MagicPath prototype is interactive React with **eight views**, including the additional Case Report. The Android implementation is a separate **native Jetpack Compose** runtime, not a WebView or embedded React component.
+The V3 MagicPath prototype is interactive React with **eight views**, including the additional Case Report. Its Progress and Challenges now derive local sample values from played decisions instead of fabricated counts; bottom tabs disappear while investigating. The Android implementation is a separate **native Jetpack Compose** runtime, not a WebView or embedded React component.
 
 ## Native Android implementation
 
