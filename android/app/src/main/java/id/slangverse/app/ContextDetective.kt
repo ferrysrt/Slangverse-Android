@@ -25,7 +25,11 @@ private enum class DetectiveStep { Investigate, Feedback, Report }
 
 /** A three-case, locally scored V3 demonstration. Not the live LLM or research-testing mode. */
 @Composable
-internal fun ContextDetective(startCaseId: String, onExit: () -> Unit) {
+internal fun ContextDetective(
+    startCaseId: String,
+    onExit: () -> Unit,
+    onSessionCompleted: (xp: Int, trailingCombo: Int) -> Unit
+) {
     val cases = remember(startCaseId) { ContextDetectiveGame.orderedFrom(startCaseId) }
     var round by remember(startCaseId) { mutableIntStateOf(0) }
     var selected by remember(startCaseId) { mutableIntStateOf(-1) }
@@ -36,7 +40,12 @@ internal fun ContextDetective(startCaseId: String, onExit: () -> Unit) {
     val item = cases[round]
 
     fun advance() {
-        if (round == cases.lastIndex) step = DetectiveStep.Report
+        if (round == cases.lastIndex) {
+            step = DetectiveStep.Report
+            val xp = decisions.sumOf { it.xpEarned }
+            val trailingCombo = decisions.reversed().takeWhile { it.correct }.size
+            onSessionCompleted(xp, trailingCombo)
+        }
         else {
             round += 1
             selected = -1
