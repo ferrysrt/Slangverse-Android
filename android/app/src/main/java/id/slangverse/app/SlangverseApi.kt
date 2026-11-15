@@ -27,7 +27,8 @@ data class ApiQuestion(
     val contextId: String,
     val post: ApiPost,
     val question: String,
-    val options: List<String>
+    val options: List<String>,
+    val questionComment: String = ""
 )
 data class ApiSense(val senseId: String, val term: String, val reviewStatus: String)
 data class ApiCatalog(val datasetVersion: String, val candidateCount: Int, val senses: List<ApiSense>)
@@ -95,7 +96,8 @@ class SlangverseApi(rawBaseUrl: String, private val clientToken: String = "") {
                     comments = replies
                 ),
                 question = q.getString("question"),
-                options = q.getJSONArray("options").strings()
+                options = q.getJSONArray("options").strings(),
+                questionComment = q.optString("questionComment", "")
             )
         }
         if (questions.isEmpty()) throw ApiException("Server returned no questions")

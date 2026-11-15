@@ -39,6 +39,23 @@ class ContextDetectiveGameTest {
         }
     }
 
+    @Test fun questionCommentIsPresentAndVariesBySlang() {
+        val comments = ContextDetectiveGame.cases.map { it.questionComment }
+        assertTrue(comments.all { it.isNotBlank() && it.contains("?") })
+        assertEquals(comments.size, comments.distinct().size)
+        ContextDetectiveGame.cases.forEach { item ->
+            assertTrue(item.questionComment.contains(item.term, ignoreCase = true))
+        }
+    }
+
+    @Test fun pinningEvidenceIsOptional() {
+        val item = ContextDetectiveGame.cases.first()
+        val result = ContextDetectiveGame.grade(item, item.correctIndex, -1)
+        assertTrue(result.correct)
+        assertEquals(-1, result.pinnedClueIndex)
+        assertEquals(80, result.xpEarned)
+    }
+
     @Test(expected = IllegalArgumentException::class)
     fun invalidChoiceRejected() {
         ContextDetectiveGame.grade(ContextDetectiveGame.cases.first(), 4, 0)

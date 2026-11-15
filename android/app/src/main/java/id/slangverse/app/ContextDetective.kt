@@ -35,6 +35,7 @@ internal fun ContextDetective(
     var selected by remember(startCaseId) { mutableIntStateOf(-1) }
     var pinned by remember(startCaseId) { mutableIntStateOf(-1) }
     var expanded by remember(startCaseId) { mutableStateOf(false) }
+    var questionOpened by remember(startCaseId) { mutableStateOf(false) }
     var step by remember(startCaseId) { mutableStateOf(DetectiveStep.Investigate) }
     val decisions = remember(startCaseId) { mutableStateListOf<DetectiveDecision>() }
     val item = cases[round]
@@ -51,6 +52,7 @@ internal fun ContextDetective(
             selected = -1
             pinned = -1
             expanded = false
+            questionOpened = false
             step = DetectiveStep.Investigate
         }
     }
@@ -59,11 +61,12 @@ internal fun ContextDetective(
         selected = -1
         pinned = -1
         expanded = false
+        questionOpened = false
         decisions.clear()
         step = DetectiveStep.Investigate
     }
     fun submit() {
-        if (step != DetectiveStep.Investigate || selected < 0 || pinned < 0) return
+        if (step != DetectiveStep.Investigate || !questionOpened || selected < 0) return
         if (decisions.any { it.caseId == item.id }) return
         decisions.add(ContextDetectiveGame.grade(item, selected, pinned))
         step = DetectiveStep.Feedback
@@ -107,7 +110,7 @@ internal fun ContextDetective(
                             color = if (result.correct) WarmEditorial.Olive else WarmEditorial.CoralDeep)
                     }
                     Text("Meaning: " + sample.meaning, fontSize = 13.sp)
-                    Text("Pinned clue: " + sample.comments[result.pinnedClueIndex],
+                    Text("Clue: " + if (result.pinnedClueIndex == -1) "No clue saved" else sample.comments[result.pinnedClueIndex],
                         fontSize = 11.sp, color = WarmEditorial.Muted)
                 }
             }
@@ -129,8 +132,8 @@ internal fun ContextDetective(
                 color = WarmEditorial.Coral, trackColor = WarmEditorial.Sand
             )
             Text(if (step == DetectiveStep.Investigate)
-                "Read the post, inspect replies, and pin the clue that informed your interpretation."
-                else "Review your interpretation and the context before moving on.",
+                "Read the post and replies, then tap the highlighted comment to answer. Saving a clue is optional."
+                else "Your interpretation is now visible inside the highlighted reply.",
                 fontSize = 12.sp, color = WarmEditorial.Ink, lineHeight = 18.sp)
         }
 
@@ -198,57 +201,87 @@ internal fun ContextDetective(
                     fontSize = 12.sp, color = WarmEditorial.CoralDeep)
             }
             if (pinned >= 0) Text(
-                "Evidence pinned. This is a reasoning choice, not a graded clue.",
+                "Clue saved (optional). This choice is not graded.",
                 fontSize = 11.sp, color = WarmEditorial.CoralDeep
             )
+            // This is the ONLY location of the question and answer controls.
+            // The interaction reads as a reply to another fictional user, not a separate quiz card.
+            HorizontalDivider(color = WarmEditorial.Sand)
+            val commentShape = RoundedCornerShape(16.dp)
+            Column(
+                Modifier.fillMaxWidth()
+                    .background(WarmEditorial.Blush, commentShape)
+                    .border(1.dp, WarmEditorial.Peach, commentShape)
+                    .padding(13.dp),
+                verticalArrangement = Arrangement.spacedBy(11.dp)
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(9.dp)) {
+                    Box(Modifier.size(32.dp).background(WarmEditorial.Peach, CircleShape),
+                        contentAlignment = Alignment.Center) {
+                        Text("?", fontSize = 19.sp, fontWeight = FontWeight.Bold, color = WarmEditorial.Ink)
+                    }
+                    Text("@confuseduser", fontSize = 12.sp, fontWeight = FontWeight.Bold,
+                        color = WarmEditorial.Ink, modifier = Modifier.weight(1f))
+                    Surface(color = WarmEditorial.Card, shape = RoundedCornerShape(15.dp),
+                        border = BorderStroke(1.dp, WarmEditorial.Coral)) {
+                        Text("✳ DECODE", modifier = Modifier.padding(horizontal = 9.dp, vertical = 5.dp),
+                            fontSize = 10.sp, fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
+                    }
+                }
+                Text("“" + item.questionComment + "”", fontFamily = WarmEditorial.Display,
+                    fontSize = 19.sp, lineHeight = 26.sp, color = WarmEditorial.Ink)
+
+                if (!questionOpened && step == DetectiveStep.Investigate) {
+                    CDButton("REPLY WITH THE MEANING ↓", onClick = { questionOpened = true })
+                } else {
+                    CDLabel("YOUR REPLY · MEANING OF “" + item.term + "”")
+                    item.options.forEachIndexed { i, option ->
+                        CDOption(
+                            index = i,
+                            text = option,
+                            selected = selected == i,
+                            correct = step == DetectiveStep.Feedback && i == item.correctIndex,
+                            revealed = step == DetectiveStep.Feedback,
+                            onClick = { selected = i }
+                        )
+                    }
+                    if (step == DetectiveStep.Investigate) {
+                        Text("Save a clue if helpful; it does not affect scoring.",
+                            fontSize = 11.sp, color = WarmEditorial.Muted)
+                        CDButton("POST YOUR INTERPRETATION →", enabled = selected >= 0) {
+                            submit()
+                        }
+                    } else {
+                        val decision = decisions.last()
+                        Column(
+                            Modifier.fillMaxWidth().background(WarmEditorial.Card, RoundedCornerShape(13.dp))
+                                .padding(12.dp),
+                            verticalArrangement = Arrangement.spacedBy(9.dp)
+                        ) {
+                            Text(if (decision.correct) "✓ You got the context."
+                                 else "↺ Another meaning fits this context better.",
+                                fontFamily = WarmEditorial.Display, fontSize = 22.sp,
+                                color = WarmEditorial.Ink)
+                            Text("+" + decision.xpEarned + " demo XP · " + item.meaning,
+                                fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+                            Text(item.explanation, fontSize = 13.sp,
+                                lineHeight = 19.sp, color = WarmEditorial.Ink)
+                            if (pinned >= 0) {
+                                Text("Saved clue: “" + item.comments[pinned] + "”",
+                                    fontSize = 12.sp, color = WarmEditorial.Muted)
+                            }
+                            Text("This answer is a hand-authored demo; saved clues are not graded.",
+                                fontSize = 11.sp, color = WarmEditorial.Muted)
+                            CDButton(if (round == cases.lastIndex) "OPEN CASE REPORT →"
+                                else "NEXT CONVERSATION →", onClick = { advance() })
+                        }
+                    }
+                }
+            }
         }
 
-        if (step == DetectiveStep.Investigate) {
-            CDLabel("02 · DECODE THE MEANING")
-            Text("What does “" + item.term + "” mean here?",
-                fontFamily = WarmEditorial.Display, fontSize = 27.sp,
-                lineHeight = 32.sp, color = WarmEditorial.Ink)
-            Text(if (pinned < 0) "Pin a reply as evidence, then choose the closest meaning."
-                 else "Clue pinned. Now choose your interpretation.",
-                fontSize = 12.sp, color = WarmEditorial.Muted)
-            item.options.forEachIndexed { i, option ->
-                CDOption(i, option, selected == i, false, false) { selected = i }
-            }
-            CDButton("LOCK IN INTERPRETATION →",
-                enabled = selected >= 0 && pinned >= 0,
-                onClick = { submit() })
-            Text("No timer or penalty for reading more. Clue choice is not scored.",
-                fontSize = 11.sp, color = WarmEditorial.Muted)
-        } else {
-            val decision = decisions.last()
-            CDCard(background = WarmEditorial.Blush) {
-                CDLabel("DECISION REPORT")
-                Text(if (decision.correct) "You read the context."
-                     else "Look at the clues again.",
-                    fontFamily = WarmEditorial.Display, fontSize = 28.sp,
-                    lineHeight = 33.sp, color = WarmEditorial.Ink)
-                Text("+" + decision.xpEarned + " demo XP · " +
-                    if (decision.correct) "Meaning matched" else "Practice review",
-                    color = WarmEditorial.CoralDeep, fontSize = 12.sp)
-            }
-            item.options.forEachIndexed { i, option ->
-                CDOption(i, option, selected == i, i == item.correctIndex, true) {}
-            }
-            CDCard {
-                Text("✳ Evidence, not guesswork", fontFamily = WarmEditorial.Display,
-                    fontSize = 23.sp, color = WarmEditorial.Ink)
-                Text(item.explanation, fontSize = 13.sp, lineHeight = 20.sp)
-                HorizontalDivider(color = WarmEditorial.Sand)
-                CDLabel("YOUR PINNED CLUE")
-                Text("“" + item.comments[pinned] + "”", fontFamily = WarmEditorial.Display,
-                    fontSize = 17.sp, lineHeight = 23.sp)
-                Text("Your chosen clue is not automatically graded. This demo cannot certify semantic quality.",
-                    fontSize = 11.sp, color = WarmEditorial.Muted)
-            }
-            CDButton(if (round == cases.lastIndex) "OPEN CASE REPORT →"
-                     else "NEXT CASE · NEW SLANG →", onClick = { advance() })
-        }
-        Text("Context Detective V3 · Hand-authored demo · No live LLM or participant scoring.",
+        Text("Interactive Comment Quiz V3.1 · Local demo · No live LLM or participant scoring.",
             fontSize = 10.sp, color = WarmEditorial.Muted)
     }
 }

@@ -60,6 +60,13 @@ const correctIndexes = [1,3,0,2,1,3,0,2,0,3];
 export const mockPackage = difficulties.map((difficulty,i)=>({
   id:`cooked-${i+1}`,slang:'cooked',targetMeaning:slang.targetMeaning,
   difficulty,contextId:mockPosts[i].id,post:mockPosts[i],
+  questionComment:[
+    "Wait, cooked? Are you making dinner or what?",
+    "I'm confused — does cooked mean food is involved here?",
+    "Cooked? Did someone turn on a stove? 😭",
+    "What do you mean by cooked? Like literally cooking something?",
+    "Is cooked about making a meal, or did I miss something?"
+  ][i%5],
   question:"What does 'cooked' mean in this post?",options:optionSets[i],
   correctIndex:correctIndexes[i],explanation:'Here, cooked describes someone being in a serious or difficult situation.'
 }));
@@ -71,6 +78,18 @@ export function validateQuestion(q){
   if(typeof q.contextId!=='string'||!q.contextId)errors.push('context-id');
   if(!q.post||typeof q.post!=='object'||typeof q.post.content!=='string'||!q.post.content.trim()||typeof q.post.displayName!=='string'||typeof q.post.handle!=='string')errors.push('post-shape');
   if(typeof q.question!=='string'||!q.question.trim())errors.push('question-text');
+  // V3.1 optional extension for previously exported V2/V3 packs.
+  if(q.questionComment!==undefined){
+    const v=q.questionComment;
+    if(typeof v!=='string'||v.length<10||v.length>220||!v.includes('?')||
+       !normalize(v).includes(normalize(q.slang)))errors.push('question-comment-shape');
+    else{
+      const text=normalize(v),meaning=normalize(q.targetMeaning);
+      if((meaning&&text.includes(meaning))||
+         q.options?.some(o=>{const opt=normalize(o);return opt&&text.includes(opt);}))
+        errors.push('question-comment-leakage');
+    }
+  }
   if(!Array.isArray(q.options)||q.options.length!==4||q.options.some(o=>typeof o!=='string'||!normalize(o))||new Set(q.options.map(normalize)).size!==4)errors.push('options');
   if(!Number.isInteger(q.correctIndex)||q.correctIndex<0||q.correctIndex>3)errors.push('correct-index');
   // Lexical reference-key check only. This is NOT a semantic quality assessment.

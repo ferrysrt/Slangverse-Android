@@ -13,6 +13,7 @@ internal data class DetectiveCase(
     val hashtag: String,
     val post: String,
     val comments: List<String>,
+    val questionComment: String,
     val options: List<String>,
     val correctIndex: Int,
     val explanation: String
@@ -42,6 +43,7 @@ internal object ContextDetectiveGame {
                 "That deadline is going to be brutal...",
                 "Maybe check your cloud backup before panicking 😭"
             ),
+            questionComment = "Wait, what do you mean by cooked? Are you literally making dinner? 😭",
             options = listOf("Feeling hungry", "In serious trouble", "Feeling confident", "Planning a meal"),
             correctIndex = 1,
             explanation = "The crashed laptop and looming presentation create an urgent problem. " +
@@ -56,6 +58,7 @@ internal object ContextDetectiveGame {
                 "You earned that break after all that studying.",
                 "I still haven't checked my grade."
             ),
+            questionComment = "No cap? Did you lose your hat or something? I'm confused 😅",
             options = listOf("Making a joke", "Feeling uncertain", "Speaking honestly", "Changing the subject"),
             correctIndex = 2,
             explanation = "The speaker emphasizes that the exam result really happened. " +
@@ -70,6 +73,7 @@ internal object ContextDetectiveGame {
                 "That sounds pretty tempting, honestly.",
                 "Maybe a quiet weekend is exactly what you need."
             ),
+            questionComment = "Lowkey? As in an actual key? Or am I missing the point?",
             options = listOf("Loudly announcing", "Quietly or somewhat", "Completely forgetting", "Never wanting"),
             correctIndex = 1,
             explanation = "The desire is expressed casually and with understatement. " +
@@ -80,7 +84,7 @@ internal object ContextDetectiveGame {
     init {
         require(cases.map { it.id }.distinct().size == cases.size)
         require(cases.map { it.term }.distinct().size == cases.size)
-        require(cases.all { it.options.size == 4 && it.correctIndex in 0..3 && it.comments.size >= 2 })
+        require(cases.all { it.options.size == 4 && it.correctIndex in 0..3 && it.comments.size >= 2 && it.questionComment.isNotBlank() })
     }
 
     /** Rotates three distinct senses; unlike a 10-item generator pack, no repeated sense is shown. */
@@ -89,10 +93,10 @@ internal object ContextDetectiveGame {
         return cases.drop(offset) + cases.take(offset)
     }
 
-    /** Player pins one subjective evidence clue; only the option is graded. */
+    /** Evidence pinning is optional and reflective, never a graded requirement. */
     fun grade(case: DetectiveCase, selectedIndex: Int, pinnedClueIndex: Int): DetectiveDecision {
         require(selectedIndex in case.options.indices) { "invalid-answer" }
-        require(pinnedClueIndex in case.comments.indices) { "invalid-clue" }
+        require(pinnedClueIndex == -1 || pinnedClueIndex in case.comments.indices) { "invalid-clue" }
         val correct = selectedIndex == case.correctIndex
         return DetectiveDecision(
             caseId = case.id,
