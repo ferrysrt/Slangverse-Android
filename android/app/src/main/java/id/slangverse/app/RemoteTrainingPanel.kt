@@ -43,6 +43,7 @@ fun RemoteTrainingPanel() {
     var session by remember { mutableStateOf<ApiSession?>(null) }
     var currentIndex by remember { mutableIntStateOf(0) }
     var selectedIndex by remember { mutableIntStateOf(-1) }
+    var pinnedClueIndex by remember { mutableIntStateOf(-1) }
     var result by remember { mutableStateOf<ApiGrade?>(null) }
     var loading by remember { mutableStateOf(false) }
     var error by remember { mutableStateOf<String?>(null) }
@@ -170,7 +171,7 @@ fun RemoteTrainingPanel() {
                             staticAnswers = emptyMap()
                             session = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
                         }
-                        currentIndex = 0; selectedIndex = -1; result = null; finished = false
+                        currentIndex = 0; selectedIndex = -1; pinnedClueIndex = -1; result = null; finished = false
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
                     } catch (e: Exception) { error = e.message ?: "Connection failed" }
                     finally { loading = false }
@@ -205,13 +206,12 @@ fun RemoteTrainingPanel() {
         return
     }
 
-    val isThreadMode = currentIndex % 2 == 1
     Text("QUESTION SOURCE: ${activeSession.source.uppercase()} · ${activeSession.senseId} · ${activeSession.referenceStatus}", color = Secondary, fontSize = 10.sp)
     if (activeSession.source.startsWith("github-static")) {
         Text("Pre-generated GitHub pack · local demo scoring · NOT a live LLM request", color = Secondary, fontSize = 10.sp)
     }
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-        Text("${if (isThreadMode) "REPLY BATTLE" else "DECODE POST"} · ${current.difficulty.uppercase()}", color = MintGreen, fontSize = 11.sp, fontWeight = FontWeight.Bold)
+        Text("CONTEXT DETECTIVE · ${current.difficulty.uppercase()}", color = MintGreen, fontSize = 11.sp, fontWeight = FontWeight.Bold)
         Text("${currentIndex + 1} / ${activeSession.questions.size}", color = Secondary)
     }
     LinearProgressIndicator(
@@ -219,7 +219,8 @@ fun RemoteTrainingPanel() {
         color = MintGreen,
         modifier = Modifier.fillMaxWidth()
     )
-    Text("🔥 COMBO ×$combo     +$totalXp XP", color = CoralPink, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+    Text("Practice combo ×$combo     $totalXp XP", color = CoralPink, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+    Text("Live/GitHub question packs contain 10 contexts of one slang; V3 casual cases are a separate mixed-slang demo.", color = Secondary, fontSize = 10.sp)
     Sheet {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Box(
@@ -237,9 +238,15 @@ fun RemoteTrainingPanel() {
         HorizontalDivider(color = Color(0xFF514469))
         Text("♡   Reply   ↻   Share   ♧", color = Secondary, fontSize = 12.sp)
         HorizontalDivider(color = Color(0xFF514469))
-        Text("Replies · contextual clues", fontWeight = FontWeight.Bold, fontSize = 12.sp)
-        current.post.comments.take(if (expandedReplies) 3 else 1).forEach { comment ->
-            Row(horizontalArrangement = Arrangement.spacedBy(9.dp)) {
+        Text("01 · INVESTIGATE · PIN A REPLY", fontWeight = FontWeight.Bold, fontSize = 12.sp)
+        current.post.comments.take(if (expandedReplies) 3 else 1).forEachIndexed { idx, comment ->
+            Row(
+                Modifier.fillMaxWidth()
+                    .background(if (pinnedClueIndex == idx) PanelRaised else PanelColor, RoundedCornerShape(12.dp))
+                    .clickable(enabled = result == null && !loading) { pinnedClueIndex = idx }
+                    .padding(7.dp),
+                horizontalArrangement = Arrangement.spacedBy(9.dp)
+            ) {
                 Box(
                     Modifier.size(28.dp).background(PanelRaised, CircleShape),
                     contentAlignment = Alignment.Center
@@ -247,14 +254,16 @@ fun RemoteTrainingPanel() {
                 Column {
                     Text(comment.handle, color = MintGreen, fontWeight = FontWeight.Bold, fontSize = 11.sp)
                     Text(comment.text, color = PrimaryText, fontSize = 12.sp, lineHeight = 18.sp)
+                    if (pinnedClueIndex == idx) Text("✓ PINNED", color = MintGreen, fontSize = 10.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
         TextButton(onClick = { expandedReplies = !expandedReplies }) {
             Text(if (expandedReplies) "Hide extra replies ↑" else "Need a clue? View more replies ↓", color = MintGreen, fontSize = 12.sp)
         }
-        Text("Replies are contextual hints; semantic accuracy is not expert-validated.", color = Secondary, fontSize = 10.sp)
+        Text("Clue pinning is your reasoning choice, not a graded semantic judgment.", color = Secondary, fontSize = 10.sp)
     }
+    Text("02 · DECODE THE MEANING", color = MintGreen, fontSize = 10.sp, fontWeight = FontWeight.Bold)
     Text(current.question, fontSize = 18.sp, fontWeight = FontWeight.Bold)
     current.options.forEachIndexed { index, option ->
         val isSelected = selectedIndex == index
@@ -274,16 +283,20 @@ fun RemoteTrainingPanel() {
         Sheet {
             Text(if (result!!.correct) "✓ Correct! +${result!!.xpEarned} XP" else "Not quite. +${result!!.xpEarned} XP", color = MintGreen, fontWeight = FontWeight.Bold)
             Text(result!!.explanation, color = PrimaryText, fontSize = 12.sp)
+            if (pinnedClueIndex in current.post.comments.indices) {
+                Text("Your pinned clue: " + current.post.comments[pinnedClueIndex].text,
+                    color = Secondary, fontSize = 12.sp)
+            }
             Text(if (activeSession.source.startsWith("github-static"))
                  "Locally graded demo; correct answers are public in GitHub JSON."
                  else "Server-graded result; not evidence of semantic accuracy.", color = Secondary, fontSize = 10.sp)
         }
         Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT POST →") {
             if (currentIndex == activeSession.questions.lastIndex) finished = true
-            else { currentIndex += 1; selectedIndex = -1; result = null; expandedReplies = false; error = null }
+            else { currentIndex += 1; selectedIndex = -1; pinnedClueIndex = -1; result = null; expandedReplies = false; error = null }
         }
     } else {
-        Action(if (loading) "SUBMITTING…" else "SUBMIT ANSWER", enabled = selectedIndex >= 0 && !loading) {
+        Action(if (loading) "SUBMITTING…" else "LOCK IN INTERPRETATION", enabled = selectedIndex >= 0 && pinnedClueIndex >= 0 && !loading) {
             loading = true; error = null
             scope.launch {
                 try {
