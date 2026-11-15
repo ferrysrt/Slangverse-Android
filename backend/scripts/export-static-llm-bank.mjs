@@ -1,8 +1,10 @@
 import {mkdirSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
 import {resolveSense, publicCatalog} from '../src/catalog.mjs';
 import {createSessionService} from '../src/sessionService.mjs';
 import {validatePackage} from '../src/game.mjs';
+import {writePublishedCatalog} from '../src/publishedBank.mjs';
 
 /**
  * Generate ONE real LLM pack in a manually triggered GitHub Actions run.
@@ -28,31 +30,24 @@ export async function exportLiveStaticPack({
   const catalog = publicCatalog();
   const target = resolve(outputDir);
   mkdirSync(resolve(target,'packs'),{recursive:true});
-  const index = {
-    schemaVersion: 1,
-    datasetVersion: catalog.datasetVersion,
-    source: 'github-static',
-    generationSource: 'llm',
-    candidateCount: catalog.candidateCount,
-    expertValidated: false,
-    senses: [{senseId:selected.senseId,term:selected.term,reviewStatus:'provisional'}]
-  };
   const pack = {
     schemaVersion: 1,
     senseId: selected.senseId,
     generationSource: 'llm',
     generatorModel: process.env.LLM_MODEL || 'openai/gpt-6-luna',
+    promptVersion: result.promptVersion,
+    generatedAt: new Date().toISOString(),
     referenceStatus:'provisional',
     datasetVersion:catalog.datasetVersion,
     expertValidated:false,
     questions: result.session.questions.map(({targetMeaning,...q})=>structuredClone(q))
   };
-  writeFileSync(resolve(target,'catalog.json'),JSON.stringify(index,null,2)+'\n');
   writeFileSync(resolve(target,'packs',selected.senseId+'.json'),JSON.stringify(pack,null,2)+'\n');
+  writePublishedCatalog(target);
   return {senseId:selected.senseId,source:'llm',questions:pack.questions.length,contexts:new Set(pack.questions.map(q=>q.contextId)).size};
 }
 
-if (process.argv[1] && process.argv[1].endsWith('export-static-llm-bank.mjs')) {
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   exportLiveStaticPack().then(metrics=>{
     console.log(JSON.stringify({event:'llm-static-pack-export',...metrics}));
   }).catch(e=>{

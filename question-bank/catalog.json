@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "datasetVersion": "slangfeed-2026-10-05",
+  "source": "github-static",
+  "generationSource": "llm",
+  "status": "awaiting-generation",
+  "candidateCount": 200,
+  "expertValidated": false,
+  "bankVersion": "4f53cda18c2baa0c",
+  "senses": []
+}
