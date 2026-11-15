@@ -97,6 +97,8 @@ fun SlangverseApp() {
     // Last local demo case-file metrics; not provider or research data.
     var sampleXp by remember { mutableIntStateOf(0) }
     var sampleCombo by remember { mutableIntStateOf(0) }
+    var sampleCompletedCases by remember { mutableIntStateOf(0) }
+    var sampleCorrectCases by remember { mutableIntStateOf(0) }
     var detectiveStartCaseId by remember { mutableStateOf("campus") }
     var glossaryQuery by rememberSaveable { mutableStateOf("") }
     var glossaryFilter by rememberSaveable { mutableStateOf("All") }
@@ -199,9 +201,11 @@ fun SlangverseApp() {
                                 ContextDetective(
                                     startCaseId = detectiveStartCaseId,
                                     onExit = { screen = EditorialScreen.Feed },
-                                    onSessionCompleted = { earnedXp, trailingCombo ->
+                                    onSessionCompleted = { earnedXp, trailingCombo, correctCases ->
                                         sampleXp = earnedXp
                                         sampleCombo = trailingCombo
+                                        sampleCompletedCases = ContextDetectiveGame.cases.size
+                                        sampleCorrectCases = correctCases
                                     }
                                 )
                             }
@@ -271,55 +275,65 @@ fun SlangverseApp() {
                                 PaperCard(background = WarmEditorial.Blush) {
                                     EditorialEyebrow("✦ TODAY'S CONTEXT QUEST")
                                     EditorialTitle("Read between the lines.", 29)
-                                    Text("Decode a fictional social post and build your practice streak.",
+                                    Text("Decode a fictional social post by identifying its contextual clues.",
                                         fontSize = 12.sp, color = WarmEditorial.Muted)
                                     EditorialPrimary("START CHALLENGE →") { launchDetective("campus") }
                                 }
-                                EditorialChallenge("Decode 10 posts", "7 / 10", 0.7f, "150 XP", "♧")
-                                EditorialChallenge("Get 5 correct in a row", "5 / 5", 1f, "200 XP", "◎")
-                                EditorialChallenge("Practice 3 slang terms", "2 / 3", 0.67f, "300 XP", "▤")
+                                EditorialChallenge("Complete a case file",
+                                    sampleCompletedCases.toString() + " / 3",
+                                    sampleCompletedCases / 3f, "PRACTICE", "♧")
+                                EditorialChallenge("Decode two cases correctly",
+                                    sampleCorrectCases.coerceAtMost(2).toString() + " / 2",
+                                    (sampleCorrectCases / 2f).coerceAtMost(1f), "REVIEW", "◎")
+                                EditorialChallenge("Explore three slang terms",
+                                    sampleCompletedCases.toString() + " / 3",
+                                    sampleCompletedCases / 3f, "3 SLANG", "▤")
+                                Text("Practice goals reflect only the most recent completed demo case file.",
+                                    color = WarmEditorial.Muted, fontSize = 11.sp)
                                 EditorialResearchNote()
                             }
 
                             EditorialScreen.Progress -> {
-                                EditorialSection("Your Progress", "Every context counts")
+                                EditorialSection("Your Progress", "Based on your last completed sample case file")
                                 PaperCard {
                                     Row(verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                         EditorialAvatar("S", WarmEditorial.Peach, 62)
                                         Column {
-                                            EditorialEyebrow("LEVEL 7 · SAMPLE")
-                                            EditorialTitle("Slang Explorer", 25)
-                                            Text(sampleXp.toString() + " / 3,000 XP",
+                                            EditorialEyebrow("LOCAL DEMO · NOT RESEARCH DATA")
+                                            EditorialTitle("Context Detective", 25)
+                                            Text(sampleXp.toString() + " practice XP from last case file",
                                                 color = WarmEditorial.Muted, fontSize = 12.sp)
                                         }
                                     }
-                                    EditorialProgress((sampleXp / 3000f).coerceIn(0f, 1f))
+                                    EditorialProgress(sampleCompletedCases / 3f)
                                 }
                                 Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                                     Box(Modifier.weight(1f)) {
                                         PaperCard {
-                                            EditorialTitle("♨ 4 days", 19)
-                                            Text("Sample streak", color = WarmEditorial.Muted, fontSize = 11.sp)
+                                            EditorialTitle(sampleCompletedCases.toString() + " / 3", 19)
+                                            Text("Cases resolved", color = WarmEditorial.Muted, fontSize = 11.sp)
                                         }
                                     }
                                     Box(Modifier.weight(1f)) {
                                         PaperCard {
-                                            EditorialTitle("3 / 5", 19)
-                                            Text("Sample challenges", color = WarmEditorial.Muted, fontSize = 11.sp)
+                                            EditorialTitle(sampleCorrectCases.toString() + " / 3", 19)
+                                            Text("Meanings matched", color = WarmEditorial.Muted, fontSize = 11.sp)
                                         }
                                     }
                                 }
                                 PaperCard {
-                                    EditorialTitle("Weekly learning summary", 23)
-                                    EditorialMetric("Posts decoded", "28")
-                                    EditorialMetric("Correct answers", "21")
-                                    EditorialMetric("Slang reviewed", "6")
-                                    EditorialProgress(0.75f)
-                                    Text("Illustrative UI data — not results from research participants.",
+                                    EditorialTitle("Last case file", 23)
+                                    EditorialMetric("Different slang practiced", sampleCompletedCases.toString())
+                                    EditorialMetric("Meanings matched", sampleCorrectCases.toString())
+                                    EditorialMetric("Practice XP", sampleXp.toString())
+                                    EditorialMetric("Ending combo", sampleCombo.toString())
+                                    Text(if (sampleCompletedCases == 0)
+                                            "Complete a three-case sample to see your practice results."
+                                         else "These are in-memory practice values, not persistence or measured language mastery.",
                                         fontSize = 11.sp, color = WarmEditorial.Muted)
                                 }
-                                EditorialPrimary("BROWSE CHALLENGES →") { screen = EditorialScreen.Challenges }
+                                EditorialPrimary("PLAY CONTEXT DETECTIVE →") { launchDetective("campus") }
                             }
 
                             EditorialScreen.Profile -> {
@@ -329,16 +343,16 @@ fun SlangverseApp() {
                                         horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                         EditorialAvatar("S", WarmEditorial.Peach, 70)
                                         Column {
-                                            EditorialEyebrow("LEVEL 7 · DEMO ACCOUNT")
+                                            EditorialEyebrow("LOCAL PRACTICE · DEMO PROFILE")
                                             EditorialTitle("Context Detective", 24)
                                             Text("Internet language explorer", color = WarmEditorial.Muted,
                                                 fontSize = 12.sp)
                                         }
                                     }
-                                    EditorialProgress((sampleXp / 3000f).coerceIn(0f, 1f))
+                                    EditorialProgress(sampleCompletedCases / 3f)
                                 }
                                 PaperCard {
-                                    EditorialTitle("Badges earned", 24)
+                                    EditorialTitle("Badge ideas · preview only", 24)
                                     Row(Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.SpaceBetween) {
                                         listOf("🏅" to "Starter", "🔥" to "Combo",
@@ -351,7 +365,7 @@ fun SlangverseApp() {
                                     }
                                 }
                                 PaperCard {
-                                    EditorialTitle("Saved slang", 23)
+                                    EditorialTitle("Explore slang", 23)
                                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                         listOf("cooked", "no cap", "lowkey").forEach { term ->
                                             EditorialTag(term) {
