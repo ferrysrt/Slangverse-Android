@@ -37,3 +37,10 @@ Copy the returned session `id` into the next request. The server's demo sessions
 - There are no accounts, auth, rate limits, durable score storage or real leaderboard.
 - Structural validation stops obvious literal answer leaks, but cannot reliably detect indirect semantic spoilers.
 - Do not show the sample scores or source as real-player statistics.
+
+
+## Optional local profile-picture metadata (0.3.1)
+
+Question `post` and each `post.comments` object may include `avatarId`, an identifier from the [local avatar catalogue](../assets/profile-pictures/README.md). It is cosmetic metadata and does not alter grading, question count, difficulty, source labels or answer-key visibility.
+
+Generation prompts supply the allowed IDs. The backend normalizes these fields for mock, fallback and generated sessions before serving or exporting packs. Established cast handles keep their canonical image. New handles receive a consistent requested/fallback image within a pack. Malformed or absent IDs use deterministic local fallbacks, without retrying an otherwise valid generated question package. Legacy clients can ignore the field; current Android clients also render old packs that omit it. No image URL or new network image service is required.

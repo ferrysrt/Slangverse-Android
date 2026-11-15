@@ -2,7 +2,17 @@
 
 The app opens directly into fictional post cards. The former “CONTEXT DETECTIVE · V3 / Read the room. Decode the slang.” welcome panel is archived under **Quests → Archived: Context Detective · V3**. The original three-slang mode remains playable there and from the glossary; its results stay separate.
 
-## Current checkpoint: Social Stories · 0.3.0
+## Current checkpoint: Profile Pictures · 0.3.1
+
+`0.3.1-profile-pictures` (version code 3) adds 22 local Open Peeps portraits, including the twelve recurring characters, player and guest/fallback pictures. The [asset catalogue and generator documentation](../assets/profile-pictures/README.md) includes CC0 artwork provenance, MIT renderer notices, SVG originals, a contact sheet and reproducible rendering commands.
+
+The UI now uses consistent circular pictures across posts (44dp), nested replies (30dp), quotes and question/follow-up identities (32dp), character dialogs (80dp), inbox entries, player replies, the player profile, archived practice and Connected Training. Pictures support recognition; they do not encode answers or difficulty. The Privacy & data panel also credits the artwork.
+
+The LLM prompt offers allowed `avatarId` values and canonical cast bindings. The backend normalizes post/comment IDs consistently within each pack; malformed cosmetic IDs fall back without regenerating the educational content. Optional fields are preserved through live API sessions and static exports, parsed by both Android clients, and resolved to bundled resources. No live provider call is claimed for this checkpoint. Durable participant logging remains outstanding.
+
+Phone checks: inspect each identity surface, open a recurring character in multiple conversations, verify the same portrait, test an old static pack without IDs, and test generated IDs via a mock/live-backend pack. Pictures must render offline and without affecting XP. Check both large and small font settings. Local tests/builds do not establish device layout or usability.
+
+## Previous checkpoint: Social Stories · 0.3.0
 
 This revision extends the feed checkpoint on `feat/social-simulator-feed`. It adds recurring fictional profiles, nested replies, five quoted earlier posts, clickable context hashtags, visible player replies, and an in-app conversation inbox. The app version is `0.3.0-social-stories` (version code 2).
 

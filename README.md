@@ -1,10 +1,16 @@
 # Slangverse Android — Social Simulator Feed (native Compose + Node backend)
 
-**Status:** The Social Stories checkpoint (`0.3.0-social-stories`) extends the feed on `feat/social-simulator-feed` with fictional profiles, nested replies, quoted posts and a local conversation inbox. Android builds and unit tests are checked locally; device usability needs its own validation. The optional HTTP/LLM training path remains separate. This repository is separate from `ferrysrt/slangfeed`.
+**Status:** The Social Stories checkpoint (`0.3.1-profile-pictures`) extends the feed on `feat/social-simulator-feed` with fictional profiles, nested replies, quoted posts and a local conversation inbox. Android builds and unit tests are checked locally; device usability needs its own validation. The optional HTTP/LLM training path remains separate. This repository is separate from `ferrysrt/slangfeed`.
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of LLM-generated multicontext question packs**: schema adherence, success/fallback, latency, and SUS.
 
 **Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
+
+## Profile pictures checkpoint (0.3.1)
+
+The recurring cast now has consistent Open Peeps portraits (Pablo Stanley, CC0), rendered with DiceBear (MIT). Post authors use 44dp pictures, reply/quote identities use 30–32dp pictures, and character profiles show a larger portrait. The same images appear in the inbox, player replies, archived practice and Connected Training. All pictures are bundled for offline use.
+
+The [profile-picture folder](assets/profile-pictures/README.md) contains 22 portraits, SVG sources, a preview sheet, checksummed catalogue and licence notices. Generated content can select an optional `avatarId` from the prompt's allowed list; Android resolves it to a local picture and older packs receive stable fallbacks. This adds presentation metadata only, without changing question count, scoring or research claims.
 
 ## Social simulator feed (current home)
 

@@ -414,7 +414,7 @@ fun SlangverseApp() {
                                 PaperCard {
                                     Row(verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                        EditorialAvatar("S", WarmEditorial.Peach, 70)
+                                        ProfilePicture("@you", size = 70.dp)
                                         Column {
                                             EditorialEyebrow("LOCAL PRACTICE · DEMO PROFILE")
                                             EditorialTitle("Context Explorer", 24)
@@ -465,6 +465,8 @@ fun SlangverseApp() {
                                     EditorialSetting("Privacy & data", "Information") { showPrivacy = !showPrivacy }
                                     if (showPrivacy) {
                                         Text("This prototype does not create accounts or store real participant research data.",
+                                            color = WarmEditorial.Muted, fontSize = 12.sp)
+                                        Text("Profile illustrations: Open Peeps by Pablo Stanley (CC0), rendered with DiceBear (MIT). These depict fictional characters.",
                                             color = WarmEditorial.Muted, fontSize = 12.sp)
                                     }
                                 }
@@ -605,14 +607,6 @@ private fun EditorialHeader(
     }
 }
 
-@Composable private fun EditorialAvatar(initial: String, bg: Color, size: Int) {
-    Box(Modifier.size(size.dp).background(bg, CircleShape)
-        .border(2.dp, WarmEditorial.Card, CircleShape), contentAlignment = Alignment.Center) {
-        Text(initial, fontFamily = WarmEditorial.Display, fontSize = (size / 2).sp,
-            color = WarmEditorial.Ink)
-    }
-}
-
 @Composable private fun FeedSocialPost(
     post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
     onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit,
@@ -625,7 +619,7 @@ private fun EditorialHeader(
     var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
     var selected by rememberSaveable(thread.id) { mutableIntStateOf(-1) }
     PaperCard {
-        StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story")
+        StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story", avatarSize = 44.dp)
         Text(thread.post, color = WarmEditorial.Ink, fontSize = 18.sp, lineHeight = 26.sp)
         story.quote?.let { StoryQuoteCard(it, onProfile) }
         TextButton(onClick = { SocialFeedGame.contextForHashtag(thread.hashtag)?.let(onContext) }) {
@@ -652,7 +646,7 @@ private fun EditorialHeader(
         HorizontalDivider(color = WarmEditorial.Sand)
         Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(14.dp)).padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(9.dp)) {
-            StoryIdentity("@confuseduser", onProfile, "Replying to ${thread.handle} · help explain")
+            StoryIdentity("@confuseduser", onProfile, "Replying to ${thread.handle} · help explain", avatarSize = 32.dp)
             Text(thread.questionComment, fontSize = 15.sp, lineHeight = 22.sp)
             if (answeredIndex == null && !replying) {
                 TextButton(onClick = { replying = true }) { Text("Reply with the meaning ↓") }
@@ -675,7 +669,7 @@ private fun EditorialHeader(
                 Text("Hand-authored practice feedback", fontSize = 10.sp, color = WarmEditorial.Muted)
                 HorizontalDivider(color = WarmEditorial.Sand)
                 Text("LATER IN THIS STORY · SCRIPTED FOLLOW-UP", fontSize = 9.sp, color = WarmEditorial.Muted)
-                StoryIdentity(story.followUpHandle, onProfile)
+                StoryIdentity(story.followUpHandle, onProfile, avatarSize = 32.dp)
                 Text(story.followUp, fontSize = 13.sp, lineHeight = 19.sp)
             }
         }

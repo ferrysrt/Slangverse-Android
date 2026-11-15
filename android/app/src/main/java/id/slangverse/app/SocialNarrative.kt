@@ -1,6 +1,9 @@
 package id.slangverse.app
 
-internal data class FictionalProfile(val handle: String, val name: String, val bio: String)
+internal data class FictionalProfile(
+    val handle: String, val name: String, val bio: String,
+    val avatarId: String = resolveProfilePictureId(handle = handle)
+)
 internal data class StoryReply(val id: String, val handle: String, val text: String, val parentId: String? = null)
 internal data class StoryQuote(val handle: String, val text: String)
 internal data class PostStory(

@@ -13,18 +13,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-internal fun StoryIdentity(handle: String, onProfile: (String) -> Unit, subtitle: String? = null) {
+internal fun StoryIdentity(
+    handle: String, onProfile: (String) -> Unit, subtitle: String? = null, avatarSize: Dp = 36.dp
+) {
     val profile = SocialNarrative.profile(handle)
     Row(Modifier.fillMaxWidth().clickable(onClickLabel = "View ${profile.name}'s fictional profile") { onProfile(handle) }
         .heightIn(min = 48.dp).padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
-        Box(Modifier.size(36.dp).background(WarmEditorial.Peach, CircleShape), contentAlignment = Alignment.Center) {
-            Text(profile.name.take(1), color = WarmEditorial.Ink, fontWeight = FontWeight.Bold)
-        }
+        ProfilePicture(handle, profile.avatarId, size = avatarSize)
         Column(Modifier.weight(1f)) {
             Text(profile.name, fontWeight = FontWeight.Bold, fontSize = 14.sp)
             Text(handle, fontSize = 11.sp, color = WarmEditorial.CoralDeep)
@@ -39,7 +40,7 @@ internal fun StoryQuoteCard(quote: StoryQuote, onProfile: (String) -> Unit) {
         border = BorderStroke(1.dp, WarmEditorial.Sand)) {
         Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Text("QUOTED POST · EARLIER IN THIS STORY", fontSize = 9.sp, color = WarmEditorial.Muted)
-            StoryIdentity(quote.handle, onProfile)
+            StoryIdentity(quote.handle, onProfile, avatarSize = 32.dp)
             Text(quote.text, fontSize = 13.sp, lineHeight = 19.sp)
         }
     }
@@ -53,7 +54,7 @@ internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit
             horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             if (parent != null) Box(Modifier.width(2.dp).fillMaxHeight().background(WarmEditorial.Sand))
             Column(Modifier.weight(1f)) {
-                StoryIdentity(reply.handle, onProfile)
+                StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
                 Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 10.sp, color = WarmEditorial.Muted)
                 Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
             }
@@ -65,8 +66,11 @@ internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit
 internal fun StoryPlayerReply(text: String) {
     Surface(color = WarmEditorial.Card, shape = RoundedCornerShape(12.dp)) {
         Column(Modifier.fillMaxWidth().padding(12.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
-            Text("You · replying to @confuseduser", fontSize = 11.sp, fontWeight = FontWeight.Bold,
-                color = WarmEditorial.CoralDeep)
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                ProfilePicture("@you", size = 28.dp)
+                Text("You · replying to @confuseduser", fontSize = 11.sp, fontWeight = FontWeight.Bold,
+                    color = WarmEditorial.CoralDeep)
+            }
             Text(text, fontSize = 14.sp, lineHeight = 20.sp)
         }
     }
@@ -81,6 +85,8 @@ internal fun FictionalProfileDialog(handle: String, onDismiss: () -> Unit, onOpe
         text = {
             Column(Modifier.heightIn(max = 380.dp).verticalScroll(rememberScrollState()),
                 verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                ProfilePicture(handle, profile.avatarId, size = 80.dp,
+                    contentDescription = "${profile.name}'s illustrated profile picture")
                 Text("$handle · fictional character", color = WarmEditorial.CoralDeep)
                 Text(profile.bio)
                 Text("Story posts", fontWeight = FontWeight.Bold)
@@ -114,8 +120,11 @@ internal fun ConversationInbox(updates: List<ConversationUpdate>, readIds: List<
                 WarmEditorial.Card else WarmEditorial.Blush)) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 val profile = SocialNarrative.profile(update.handle)
-                Text("${if (update.postId in readIds) "Read" else "New"} · ${profile.name} continued the story",
-                    fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    ProfilePicture(update.handle, profile.avatarId)
+                    Text("${if (update.postId in readIds) "Read" else "New"} · ${profile.name} continued the story",
+                        fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                }
                 Text(update.text, fontSize = 13.sp, lineHeight = 20.sp)
                 Text("Open conversation →", color = WarmEditorial.CoralDeep, fontSize = 12.sp)
             }

@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "style": "Open Peeps",
+    "creator": "Pablo Stanley",
+    "url": "https://www.openpeeps.com/",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "renderer": "DiceBear 9.4.2"
+  },
+  "defaultId": "default",
+  "fallbackIds": [
+    "guest_01",
+    "guest_02",
+    "guest_03",
+    "guest_04",
+    "guest_05",
+    "guest_06",
+    "guest_07",
+    "guest_08"
+  ],
+  "avatars": [
+    {
+      "id": "mira",
+      "handle": "@miramoments"
+    },
+    {
+      "id": "campus",
+      "handle": "@campusfeed"
+    },
+    {
+      "id": "ari",
+      "handle": "@ariatwork"
+    },
+    {
+      "id": "matchday",
+      "handle": "@matchdaychat"
+    },
+    {
+      "id": "ben",
+      "handle": "@benchside"
+    },
+    {
+      "id": "lila",
+      "handle": "@lilalistens"
+    },
+    {
+      "id": "dea",
+      "handle": "@deasays"
+    },
+    {
+      "id": "jo",
+      "handle": "@justjo"
+    },
+    {
+      "id": "townloop",
+      "handle": "@townloop"
+    },
+    {
+      "id": "naya",
+      "handle": "@naya"
+    },
+    {
+      "id": "sam",
+      "handle": "@sam"
+    },
+    {
+      "id": "kai",
+      "handle": "@confuseduser"
+    },
+    {
+      "id": "guest_01",
+      "handle": null
+    },
+    {
+      "id": "guest_02",
+      "handle": null
+    },
+    {
+      "id": "guest_03",
+      "handle": null
+    },
+    {
+      "id": "guest_04",
+      "handle": null
+    },
+    {
+      "id": "guest_05",
+      "handle": null
+    },
+    {
+      "id": "guest_06",
+      "handle": null
+    },
+    {
+      "id": "guest_07",
+      "handle": null
+    },
+    {
+      "id": "guest_08",
+      "handle": null
+    },
+    {
+      "id": "player",
+      "handle": "@you"
+    },
+    {
+      "id": "default",
+      "handle": null
+    }
+  ]
+}

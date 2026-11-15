@@ -5,10 +5,14 @@ on:
     branches: [main, feat/social-simulator-feed]
     paths:
       - 'android/**'
+      - 'assets/profile-pictures/**'
+      - 'tools/profile-pictures/**'
       - '.github/workflows/android-debug.yml'
   pull_request:
     paths:
       - 'android/**'
+      - 'assets/profile-pictures/**'
+      - 'tools/profile-pictures/**'
       - '.github/workflows/android-debug.yml'
 
 jobs:
@@ -20,6 +24,12 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify bundled profile pictures and generated registries
+        working-directory: tools/profile-pictures
+        run: npm ci && npm run check
       - name: Install JDK 17
         uses: actions/setup-java@v4
         with:

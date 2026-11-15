@@ -1,4 +1,6 @@
-# Current checkpoint — Social Stories 0.3.0
+# Current checkpoint — Profile Pictures 0.3.1
+
+This checkpoint adds an offline CC0 portrait library, consistent avatar UI, LLM-selectable avatar IDs, normalization and legacy fallbacks in both Android training clients. Sources, licences, checksums and reproduction steps are in [the avatar folder](../assets/profile-pictures/README.md).
 
 The current feature branch is `feat/social-simulator-feed`. Home opens into the ten-item local practice feed. This revision adds fictional character profiles, nested replies, quoted earlier posts, context hashtag navigation, visible player replies, and a local inbox that links to exact answered conversations. The archived V3 welcome panel remains under Quests. See [checkpoint behavior and phone acceptance checks](SOCIAL_SIMULATOR_FEED.md).
 

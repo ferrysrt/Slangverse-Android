@@ -12,13 +12,14 @@ import java.nio.charset.StandardCharsets
  * HTTP client for mock or live-LLM sessions; answer keys and OpenRouter keys stay on the server.
  * Optional backend access token is entered at runtime, never compiled into the APK.
  */
-data class ApiReply(val handle: String, val text: String)
+data class ApiReply(val handle: String, val text: String, val avatarId: String = "")
 data class ApiPost(
     val displayName: String,
     val handle: String,
     val hashtag: String,
     val content: String,
-    val comments: List<ApiReply>
+    val comments: List<ApiReply>,
+    val avatarId: String = ""
 )
 data class ApiQuestion(
     val id: String,
@@ -81,7 +82,7 @@ class SlangverseApi(rawBaseUrl: String, private val clientToken: String = "") {
             val q = data.getJSONObject(index)
             val post = q.getJSONObject("post")
             val replies = post.getJSONArray("comments").objects().map { c ->
-                ApiReply(handle = c.getString("handle"), text = c.getString("text"))
+                ApiReply(handle = c.getString("handle"), text = c.getString("text"), avatarId = c.optString("avatarId", ""))
             }
             ApiQuestion(
                 id = q.getString("id"),
@@ -93,7 +94,8 @@ class SlangverseApi(rawBaseUrl: String, private val clientToken: String = "") {
                     handle = post.getString("handle"),
                     hashtag = post.getString("hashtag"),
                     content = post.getString("content"),
-                    comments = replies
+                    comments = replies,
+                    avatarId = post.optString("avatarId", "")
                 ),
                 question = q.getString("question"),
                 options = q.getJSONArray("options").strings(),

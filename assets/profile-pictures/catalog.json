@@ -1,0 +1,882 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "style": "Open Peeps",
+    "creator": "Pablo Stanley",
+    "url": "https://www.openpeeps.com/",
+    "license": "CC0-1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "renderer": "DiceBear 9.4.2"
+  },
+  "defaultId": "default",
+  "fallbackIds": [
+    "guest_01",
+    "guest_02",
+    "guest_03",
+    "guest_04",
+    "guest_05",
+    "guest_06",
+    "guest_07",
+    "guest_08"
+  ],
+  "avatars": [
+    {
+      "id": "mira",
+      "handle": "@miramoments",
+      "seed": "slangverse-pfp-v1-mira",
+      "options": {
+        "seed": "slangverse-pfp-v1-mira",
+        "size": 256,
+        "backgroundColor": [
+          "f6dfd3"
+        ],
+        "head": [
+          "longCurly"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ffdbb4"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_mira.svg",
+      "png": "android-res/drawable-nodpi/pfp_mira.png",
+      "sha256": "bd4c7494ee3dbe669b6ee021d20736f787ee7729539fcba8472f35b1e4124c82"
+    },
+    {
+      "id": "campus",
+      "handle": "@campusfeed",
+      "seed": "slangverse-pfp-v1-campus",
+      "options": {
+        "seed": "slangverse-pfp-v1-campus",
+        "size": 256,
+        "backgroundColor": [
+          "e7ebd7"
+        ],
+        "head": [
+          "hatHip"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "edb98a"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_campus.svg",
+      "png": "android-res/drawable-nodpi/pfp_campus.png",
+      "sha256": "de143fc5000ed8b632b2a426670e0121e494554b1ebfa6cf55848588e26aa5b0"
+    },
+    {
+      "id": "ari",
+      "handle": "@ariatwork",
+      "seed": "slangverse-pfp-v1-ari",
+      "options": {
+        "seed": "slangverse-pfp-v1-ari",
+        "size": 256,
+        "backgroundColor": [
+          "f3e4c5"
+        ],
+        "head": [
+          "short2"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "d08b5b"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_ari.svg",
+      "png": "android-res/drawable-nodpi/pfp_ari.png",
+      "sha256": "b93dc57c6757cdd0b345ba62a81f81b13a51cd852d3acc9119c26a8e84fcb643"
+    },
+    {
+      "id": "matchday",
+      "handle": "@matchdaychat",
+      "seed": "slangverse-pfp-v1-matchday",
+      "options": {
+        "seed": "slangverse-pfp-v1-matchday",
+        "size": 256,
+        "backgroundColor": [
+          "dce6e9"
+        ],
+        "head": [
+          "hatBeanie"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ae5d29"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_matchday.svg",
+      "png": "android-res/drawable-nodpi/pfp_matchday.png",
+      "sha256": "945cfa619589daf26a10ae31a0912b6cac1f9913e07de18266f27825f6d128d2"
+    },
+    {
+      "id": "ben",
+      "handle": "@benchside",
+      "seed": "slangverse-pfp-v1-ben",
+      "options": {
+        "seed": "slangverse-pfp-v1-ben",
+        "size": 256,
+        "backgroundColor": [
+          "f6dfd3"
+        ],
+        "head": [
+          "short4"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "694d3d"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_ben.svg",
+      "png": "android-res/drawable-nodpi/pfp_ben.png",
+      "sha256": "c9887e41f7ccf051cb4e34f339f23806eb84f8e52b6e8eef79e11014609c642f"
+    },
+    {
+      "id": "lila",
+      "handle": "@lilalistens",
+      "seed": "slangverse-pfp-v1-lila",
+      "options": {
+        "seed": "slangverse-pfp-v1-lila",
+        "size": 256,
+        "backgroundColor": [
+          "e7ebd7"
+        ],
+        "head": [
+          "bun"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ffdbb4"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_lila.svg",
+      "png": "android-res/drawable-nodpi/pfp_lila.png",
+      "sha256": "5a8aab232aee7a29bb28dbe86e4b8b14d14a8d1e6ff41e16738ebcc8c2a51daf"
+    },
+    {
+      "id": "dea",
+      "handle": "@deasays",
+      "seed": "slangverse-pfp-v1-dea",
+      "options": {
+        "seed": "slangverse-pfp-v1-dea",
+        "size": 256,
+        "backgroundColor": [
+          "f3e4c5"
+        ],
+        "head": [
+          "mediumBangs"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "edb98a"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_dea.svg",
+      "png": "android-res/drawable-nodpi/pfp_dea.png",
+      "sha256": "d4b0cd62061ea35c53fcdf1216404fe369a4d13b685ee4cc44a680ea62314b0f"
+    },
+    {
+      "id": "jo",
+      "handle": "@justjo",
+      "seed": "slangverse-pfp-v1-jo",
+      "options": {
+        "seed": "slangverse-pfp-v1-jo",
+        "size": 256,
+        "backgroundColor": [
+          "dce6e9"
+        ],
+        "head": [
+          "twists"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "d08b5b"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_jo.svg",
+      "png": "android-res/drawable-nodpi/pfp_jo.png",
+      "sha256": "6623c2dc1dd76f0423ba9f5bf7cdfbe5ef3ce5aead242faa0753bd6da581d811"
+    },
+    {
+      "id": "townloop",
+      "handle": "@townloop",
+      "seed": "slangverse-pfp-v1-townloop",
+      "options": {
+        "seed": "slangverse-pfp-v1-townloop",
+        "size": 256,
+        "backgroundColor": [
+          "f6dfd3"
+        ],
+        "head": [
+          "grayShort"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ae5d29"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_townloop.svg",
+      "png": "android-res/drawable-nodpi/pfp_townloop.png",
+      "sha256": "614e1933e4c6f0f2a5bfa0d4033d24b63d8025e005fa4b3f3a02066d21a91667"
+    },
+    {
+      "id": "naya",
+      "handle": "@naya",
+      "seed": "slangverse-pfp-v1-naya",
+      "options": {
+        "seed": "slangverse-pfp-v1-naya",
+        "size": 256,
+        "backgroundColor": [
+          "e7ebd7"
+        ],
+        "head": [
+          "hijab"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "694d3d"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_naya.svg",
+      "png": "android-res/drawable-nodpi/pfp_naya.png",
+      "sha256": "c93d9921694dda0e0f11245b437c2d80bf2df0d1e5f1de7a4c82c05fa4d415ca"
+    },
+    {
+      "id": "sam",
+      "handle": "@sam",
+      "seed": "slangverse-pfp-v1-sam",
+      "options": {
+        "seed": "slangverse-pfp-v1-sam",
+        "size": 256,
+        "backgroundColor": [
+          "f3e4c5"
+        ],
+        "head": [
+          "flatTop"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ffdbb4"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_sam.svg",
+      "png": "android-res/drawable-nodpi/pfp_sam.png",
+      "sha256": "131f620e7cf4e47ddfd156e85e23a101d07e3924f0a6fd903888eed2e9b58c49"
+    },
+    {
+      "id": "kai",
+      "handle": "@confuseduser",
+      "seed": "slangverse-pfp-v1-kai",
+      "options": {
+        "seed": "slangverse-pfp-v1-kai",
+        "size": 256,
+        "backgroundColor": [
+          "dce6e9"
+        ],
+        "head": [
+          "medium2"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "edb98a"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_kai.svg",
+      "png": "android-res/drawable-nodpi/pfp_kai.png",
+      "sha256": "7b12b200677bf81c15e15265a4c3e5a716a4fddb3ca78895e0b3794d766727bc"
+    },
+    {
+      "id": "guest_01",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_01",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_01",
+        "size": 256,
+        "backgroundColor": [
+          "f6dfd3"
+        ],
+        "head": [
+          "bangs"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "d08b5b"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_01.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_01.png",
+      "sha256": "6402c38e129c63248699c0998234a742f7df42afe313536340565242c3aa78db"
+    },
+    {
+      "id": "guest_02",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_02",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_02",
+        "size": 256,
+        "backgroundColor": [
+          "e7ebd7"
+        ],
+        "head": [
+          "afro"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ae5d29"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_02.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_02.png",
+      "sha256": "ab75a0559f1978f9c8efbcc9de3bc25fa204cfffd477b693020e4598fbb53940"
+    },
+    {
+      "id": "guest_03",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_03",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_03",
+        "size": 256,
+        "backgroundColor": [
+          "f3e4c5"
+        ],
+        "head": [
+          "short1"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "694d3d"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_03.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_03.png",
+      "sha256": "84acc4d66d0286abca989cfa5cb8d5e569e47ee1e4893b3bf5b2aa399af08e53"
+    },
+    {
+      "id": "guest_04",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_04",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_04",
+        "size": 256,
+        "backgroundColor": [
+          "dce6e9"
+        ],
+        "head": [
+          "long"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ffdbb4"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_04.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_04.png",
+      "sha256": "5a6a8a0ec747d8db06b2a31200ba72402d8a5c18ae9d1cd8d4b475d07557bb70"
+    },
+    {
+      "id": "guest_05",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_05",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_05",
+        "size": 256,
+        "backgroundColor": [
+          "f6dfd3"
+        ],
+        "head": [
+          "cornrows"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "edb98a"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_05.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_05.png",
+      "sha256": "d8785ff7701f426bb156fd1262486cd442d5b358dcb78eb14d7b2a43357d65fb"
+    },
+    {
+      "id": "guest_06",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_06",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_06",
+        "size": 256,
+        "backgroundColor": [
+          "e7ebd7"
+        ],
+        "head": [
+          "turban"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "d08b5b"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_06.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_06.png",
+      "sha256": "fb921c94b323d796cdd84ce7ca39fdd18bdde107fec822f5bb24c84712409f62"
+    },
+    {
+      "id": "guest_07",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_07",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_07",
+        "size": 256,
+        "backgroundColor": [
+          "f3e4c5"
+        ],
+        "head": [
+          "bantuKnots"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ae5d29"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_07.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_07.png",
+      "sha256": "9da9671a24d93b3b8ba14271057d5ea0f8c3cf286c3e03df520343dd52a7b5e4"
+    },
+    {
+      "id": "guest_08",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-guest_08",
+      "options": {
+        "seed": "slangverse-pfp-v1-guest_08",
+        "size": 256,
+        "backgroundColor": [
+          "dce6e9"
+        ],
+        "head": [
+          "grayMedium"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "694d3d"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_guest_08.svg",
+      "png": "android-res/drawable-nodpi/pfp_guest_08.png",
+      "sha256": "da0acdb99571a826690db5a6ef3ce80d8ac2ec4b63930376d8a281dda9bf9e47"
+    },
+    {
+      "id": "player",
+      "handle": "@you",
+      "seed": "slangverse-pfp-v1-player",
+      "options": {
+        "seed": "slangverse-pfp-v1-player",
+        "size": 256,
+        "backgroundColor": [
+          "f6dfd3"
+        ],
+        "head": [
+          "pomp"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "ffdbb4"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_player.svg",
+      "png": "android-res/drawable-nodpi/pfp_player.png",
+      "sha256": "826a35675d926c3b4d99c1b7cc7fa2b2a324ff2137876b5060675934da778708"
+    },
+    {
+      "id": "default",
+      "handle": null,
+      "seed": "slangverse-pfp-v1-default",
+      "options": {
+        "seed": "slangverse-pfp-v1-default",
+        "size": 256,
+        "backgroundColor": [
+          "e7ebd7"
+        ],
+        "head": [
+          "mediumStraight"
+        ],
+        "face": [
+          "calm",
+          "smile",
+          "cute"
+        ],
+        "skinColor": [
+          "edb98a"
+        ],
+        "clothingColor": [
+          "ce7566",
+          "839375",
+          "c79956"
+        ],
+        "accessories": [
+          "glasses",
+          "glasses2"
+        ],
+        "accessoriesProbability": 20,
+        "facialHairProbability": 0,
+        "maskProbability": 0,
+        "scale": 110
+      },
+      "svg": "source/pfp_default.svg",
+      "png": "android-res/drawable-nodpi/pfp_default.png",
+      "sha256": "b067523e0c9110913216720c6e586172f5571e2531b91f335154e91b440425c6"
+    }
+  ]
+}

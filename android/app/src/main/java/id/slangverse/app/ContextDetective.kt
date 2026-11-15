@@ -140,11 +140,7 @@ internal fun ContextDetective(
         CDCard {
             Row(verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(11.dp)) {
-                Box(Modifier.size(44.dp).background(WarmEditorial.Peach, CircleShape),
-                    contentAlignment = Alignment.Center) {
-                    Text(item.author.take(1), fontFamily = WarmEditorial.Display,
-                        fontSize = 23.sp, color = WarmEditorial.Ink)
-                }
+                ProfilePicture(item.handle, size = 44.dp)
                 Column(Modifier.weight(1f)) {
                     Text(item.author, fontFamily = WarmEditorial.Display,
                         fontSize = 20.sp, color = WarmEditorial.Ink)
@@ -217,10 +213,7 @@ internal fun ContextDetective(
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(9.dp)) {
-                    Box(Modifier.size(32.dp).background(WarmEditorial.Peach, CircleShape),
-                        contentAlignment = Alignment.Center) {
-                        Text("?", fontSize = 19.sp, fontWeight = FontWeight.Bold, color = WarmEditorial.Ink)
-                    }
+                    ProfilePicture("@confuseduser", size = 32.dp)
                     Text("@confuseduser", fontSize = 12.sp, fontWeight = FontWeight.Bold,
                         color = WarmEditorial.Ink, modifier = Modifier.weight(1f))
                     Surface(color = WarmEditorial.Card, shape = RoundedCornerShape(15.dp),

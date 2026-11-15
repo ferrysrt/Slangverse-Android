@@ -1,3 +1,19 @@
+# Profile Pictures checkpoint verification — 2026-11-16 (Asia/Jakarta)
+
+Version `0.3.1-profile-pictures`, version code 3, branch `feat/social-simulator-feed`.
+
+- `npm ci --prefix tools/profile-pictures` and `npm --prefix tools/profile-pictures run check`: passed. Confirmed deterministic SVG output, PNG dimensions and SHA-256 checksums, canonical catalogue metadata, and generated Android/backend registries for 22 portraits.
+- Visually inspected the generated contact sheet: distinct illustrated faces, readable at thumbnail scale, consistent warm backgrounds. This is asset inspection, not an app screenshot or device usability test.
+- Android `:app:testDebugUnitTest :app:assembleDebug`: **BUILD SUCCESSFUL; 20 passed, 0 failed/errors/skipped**, verified from the current JUnit XML. Two new tests exercise canonical cast identity, handle normalization, ID allowlisting and cross-platform legacy fallback behavior.
+- Backend `npm test`: **48 passed, 0 failed/cancelled/skipped**. Five new tests cover asset/catalogue integrity, normalization without question mutation, consistent identity within packs, public API/static export metadata and an injected LLM response with malformed cosmetic metadata. No paid LLM request occurred.
+- APK signature verification passed. APK inspection found all 22 bundled PNGs and confirmed version `0.3.1-profile-pictures`, min SDK 26, target SDK 36.
+- Backend-only deployment smoke passed: copied only `backend/src` and `backend/data` into an isolated temporary directory and created a mock session with valid avatar metadata. Root-level picture files are not required by the server at runtime.
+- `git diff --check`: passed.
+
+Live provider/avatar-selection behavior, GitHub Actions completion, phone rendering, accessibility and navigation were not established by these checks. The phone checklist in [the feed document](SOCIAL_SIMULATOR_FEED.md) remains applicable. Durable participant research logging remains outstanding.
+
+## Previous checkpoint verification
+
 # Social Stories checkpoint verification — 2026-11-16 (Asia/Jakarta)
 
 Version: `0.3.0-social-stories`, version code 2, branch `feat/social-simulator-feed`.

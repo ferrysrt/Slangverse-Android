@@ -88,8 +88,9 @@ class GithubStaticBank(rawRootUrl: String) {
                     content = post.getString("content"),
                     comments = (0 until comments.length()).map { j ->
                         val comment = comments.getJSONObject(j)
-                        ApiReply(comment.getString("handle"), comment.getString("text"))
-                    }
+                        ApiReply(comment.getString("handle"), comment.getString("text"), comment.optString("avatarId", ""))
+                    },
+                    avatarId = post.optString("avatarId", "")
                 ),
                 question = q.getString("question"),
                 options = options,

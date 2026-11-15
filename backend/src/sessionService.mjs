@@ -2,6 +2,7 @@ import {createLlmProvider} from './provider.mjs';
 import {createMockSession,validatePackage,normalize} from './game.mjs';
 import {resolveSense,DATASET_VERSION} from './catalog.mjs';
 import {PROMPT_VERSION} from './prompts.mjs';
+import {withProfilePictures} from './profilePictures.mjs';
 
 /** Never silently substitute a different slang/sense after a provider failure. */
 export function createSessionService({
@@ -27,7 +28,7 @@ export function createSessionService({
            normalize(q?.targetMeaning)!==normalize(sense.targetMeaning)))errs.push('reference-mismatch');
         if(errs.length){failureReason='llm-schema-or-rules';validationErrors=[...new Set(errs)].slice(0,30);continue;}
         const session=createMockSession(now(),sense);
-        session.source='llm';session.questions=structuredClone(items);
+        session.source='llm';session.questions=withProfilePictures(items);
         session.catalogVersion=DATASET_VERSION;
         return {session,generationLatencyMs:Math.round(performance.now()-start),providerCalls:calls,failureReason:null,promptVersion:PROMPT_VERSION,validationErrors:[]};
       }catch(e){

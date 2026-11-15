@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import {withProfilePictures} from './profilePictures.mjs';
 import { additionalMockPackage } from './mockCatalog.mjs';
 
 /**
@@ -130,7 +131,7 @@ export function createMockSession(now=Date.now(),sense=null){
   return {id:randomUUID(),senseId:sense?.senseId||'cooked-trouble',
     catalogVersion:'slangfeed-2026-10-05',referenceStatus:'provisional',
     source:'mock',createdAt:new Date(now).toISOString(),expiresAt:now+30*60*1000,
-    answered:new Map(),questions:structuredClone(items)};
+    answered:new Map(),questions:withProfilePictures(items)};
 }
 
 export function grade(session,questionId,selectedIndex){

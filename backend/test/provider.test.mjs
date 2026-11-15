@@ -8,7 +8,7 @@ test('valid mocked provider response can produce an LLM-labeled session',async()
   const invoke=async()=>({items:structuredClone(mockPackage)});
   const generated=await createSessionService({provider:'openai-compatible',llmProvider:invoke,retries:1})();
   assert.equal(generated.session.source,'llm');assert.equal(generated.providerCalls,1);
-  assert.equal(generated.session.questions.length,10);assert.equal(generated.promptVersion,'slangverse-v3.1-inline-comment');
+  assert.equal(generated.session.questions.length,10);assert.equal(generated.promptVersion,'slangverse-v3.1-inline-comment-pfp-v1');
 });
 test('schema violations fall back with explicit provenance',async()=>{
   const invoke=async()=>({items:[{bad:'pack'}]});

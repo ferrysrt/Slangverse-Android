@@ -225,10 +225,7 @@ fun RemoteTrainingPanel() {
     Text("Live/GitHub question packs contain 10 contexts of one slang; V3 casual cases are a separate mixed-slang demo.", color = Secondary, fontSize = 10.sp)
     Sheet {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            Box(
-                Modifier.size(43.dp).background(PanelRaised, CircleShape),
-                contentAlignment = Alignment.Center
-            ) { Text(current.post.displayName.take(1), fontSize = 20.sp, fontWeight = FontWeight.Bold) }
+            ProfilePicture(current.post.handle, current.post.avatarId, size = 43.dp)
             Column(Modifier.weight(1f)) {
                 Text(current.post.displayName, fontWeight = FontWeight.Bold, fontSize = 13.sp)
                 Text(current.post.handle + " · Fictional account", color = Secondary, fontSize = 11.sp)
@@ -249,10 +246,7 @@ fun RemoteTrainingPanel() {
                     .padding(7.dp),
                 horizontalArrangement = Arrangement.spacedBy(9.dp)
             ) {
-                Box(
-                    Modifier.size(28.dp).background(PanelRaised, CircleShape),
-                    contentAlignment = Alignment.Center
-                ) { Text(comment.handle.trimStart('@').take(1).uppercase(), fontSize = 11.sp) }
+                ProfilePicture(comment.handle, comment.avatarId, size = 28.dp)
                 Column {
                     Text(comment.handle, color = MintGreen, fontWeight = FontWeight.Bold, fontSize = 11.sp)
                     Text(comment.text, color = PrimaryText, fontSize = 12.sp, lineHeight = 18.sp)
@@ -276,10 +270,7 @@ fun RemoteTrainingPanel() {
         ) {
             Row(verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                Box(Modifier.size(31.dp).background(WarmEditorial.Peach, CircleShape),
-                    contentAlignment = Alignment.Center) {
-                    Text("?", fontWeight = FontWeight.Bold, fontSize = 18.sp, color = Night)
-                }
+                ProfilePicture("@confuseduser", size = 31.dp)
                 Text("@confuseduser", fontWeight = FontWeight.Bold, fontSize = 12.sp,
                     color = Night, modifier = Modifier.weight(1f))
                 Surface(color = WarmEditorial.Card, shape = RoundedCornerShape(15.dp),

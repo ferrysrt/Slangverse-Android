@@ -10,8 +10,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 2
-        versionName = "0.3.0-social-stories"
+        versionCode = 3
+        versionName = "0.3.1-profile-pictures"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -19,6 +19,7 @@ android {
     }
     kotlinOptions { jvmTarget = "17" }
     buildFeatures { compose = true }
+    sourceSets.getByName("main").res.srcDir("../../assets/profile-pictures/android-res")
 }
 dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2025.08.00")

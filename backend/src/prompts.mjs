@@ -1,4 +1,5 @@
-export const PROMPT_VERSION = 'slangverse-v3.1-inline-comment';
+import {avatarPromptInstructions} from './profilePictures.mjs';
+export const PROMPT_VERSION = 'slangverse-v3.1-inline-comment-pfp-v1';
 export const CONTEXTS = [
   'campus','gaming','office','travel','sports',
   'technology','finance','event','exam','application'
@@ -14,12 +15,13 @@ Each item MUST include these fields and types:
 {
  "id":"${term}-1", "slang":"${term}", "targetMeaning":${JSON.stringify(meaning)},
  "difficulty":"easy", "contextId":"campus",
- "post":{"id":"campus","displayName":"Campus Account","handle":"@fictionalhandle","hashtag":"#CampusChaos","content":"A natural fictional post containing ${term}","comments":[{"handle":"@fictionalreply","text":"an indirect context clue"}]},
+ "post":{"id":"campus","avatarId":"guest_01","displayName":"Campus Account","handle":"@fictionalhandle","hashtag":"#CampusChaos","content":"A natural fictional post containing ${term}","comments":[{"handle":"@fictionalreply","avatarId":"guest_02","text":"an indirect context clue"}]},
  "questionComment":"Wait, what do you mean by ${term}? Are you talking about its literal meaning?",
  "question":"What does '${term}' mean in this post?",
  "options":["wrong1",${JSON.stringify(meaning)},"wrong2","wrong3"], "correctIndex":1,
  "explanation":"A short explanation that fits the approved meaning"
 }
+${avatarPromptInstructions()}
 Rules:
 - Use the approved reference meaning verbatim as exactly one of the four options; correctIndex MUST point to it (zero-based). Rotate the correctIndex position across items.
 - Four distinct options per question, with three plausible but incorrect distractors. Use straightforward language.
