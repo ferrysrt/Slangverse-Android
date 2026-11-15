@@ -92,7 +92,8 @@ class GithubStaticBank(rawRootUrl: String) {
                     }
                 ),
                 question = q.getString("question"),
-                options = options
+                options = options,
+                questionComment = q.optString("questionComment", "")
             )
             if (question.id.isBlank() || question.contextId.isBlank() ||
                 question.question.isBlank() || question.post.content.isBlank()
