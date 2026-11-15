@@ -6,6 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,22 +18,19 @@ import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 /**
  * Warm Editorial is a native Jetpack Compose implementation of the approved visual direction.
- * Decorative feed, missions, profile and glossary are clearly demo/curated data.
+ * Feed replies drive local practice progress; profiles and content remain fictional/curated.
  * The API Training route continues to use the existing GitHub GET and live backend clients.
  */
 private enum class EditorialScreen { Feed, Detective, Learn, Challenges, Progress, Profile, ApiSession }
@@ -94,6 +94,17 @@ private val editorialPosts = listOf(
 @Composable
 fun SlangverseApp() {
     var screen by remember { mutableStateOf(EditorialScreen.Feed) }
+    var feedTab by rememberSaveable { mutableStateOf("For you") }
+    var likedPosts by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    var savedPosts by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    var archiveExpanded by rememberSaveable { mutableStateOf(false) }
+    var feedProgress by rememberSaveable(stateSaver = listSaver<FeedPracticeProgress, String>(
+        save = { progress -> progress.answers.map { (id, index) -> "$id:$index" } },
+        restore = { entries -> FeedPracticeProgress(entries.associate {
+            it.substringBeforeLast(":") to it.substringAfterLast(":").toInt()
+        }) }
+    )) { mutableStateOf(FeedPracticeProgress()) }
+
     // Last local demo case-file metrics; not provider or research data.
     var sampleXp by remember { mutableIntStateOf(0) }
     var sampleCombo by remember { mutableIntStateOf(0) }
@@ -155,46 +166,69 @@ fun SlangverseApp() {
             Column(Modifier.fillMaxSize().padding(innerPadding)) {
                 if (screen != EditorialScreen.Detective) EditorialHeader(
                     screen = screen,
-                    xp = sampleXp,
-                    combo = sampleCombo,
+                    xp = feedProgress.xp,
+                    combo = feedProgress.combo,
                     onBack = { screen = EditorialScreen.Feed }
                 )
                 key(screen) {
                     Column(
                         Modifier.fillMaxSize()
-                            .verticalScroll(rememberScrollState())
+                            .then(if (screen == EditorialScreen.Feed) Modifier else Modifier.verticalScroll(rememberScrollState()))
                             .padding(horizontal = 17.dp, vertical = 12.dp),
                         verticalArrangement = Arrangement.spacedBy(14.dp)
                     ) {
                         when (screen) {
                             EditorialScreen.Feed -> {
-                                PaperCard(background = WarmEditorial.Blush) {
-                                    EditorialEyebrow("CONTEXT DETECTIVE · V3")
-                                    EditorialTitle("Read the room. Decode the slang.", 29)
-                                    Text("Three short cases. Three different slang terms. Your evidence matters.",
-                                        color = WarmEditorial.Muted, fontSize = 13.sp)
-                                    EditorialPrimary("START THE CASE FILE →") { launchDetective("campus") }
+                                val context = FeedContext.entries.firstOrNull { it.label == feedTab }
+                                val visiblePosts = if (feedTab == "Saved")
+                                    SocialFeedGame.posts.filter { it.thread.id in savedPosts }
+                                else SocialFeedGame.filter(context)
+                                LazyColumn(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                                    item(key = "feed-tabs") {
+                                        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
+                                            horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                            (listOf("For you", "News") + FeedContext.entries
+                                                .filter { it != FeedContext.EventReaction }.map { it.label } + "Saved")
+                                                .forEach { tab ->
+                                                    FilterChip(selected = feedTab == tab,
+                                                        onClick = { feedTab = tab }, label = { Text(tab) })
+                                                }
+                                        }
+                                    }
+                                    items(visiblePosts, key = { it.thread.id }) { post ->
+                                        FeedSocialPost(post, feedProgress.answers[post.thread.id],
+                                            liked = post.thread.id in likedPosts,
+                                            saved = post.thread.id in savedPosts,
+                                            onLike = { likedPosts = if (post.thread.id in likedPosts)
+                                                likedPosts - post.thread.id else likedPosts + post.thread.id },
+                                            onSave = { savedPosts = if (post.thread.id in savedPosts)
+                                                savedPosts - post.thread.id else savedPosts + post.thread.id },
+                                            onAnswer = { feedProgress = feedProgress.answer(post.thread.id, it) })
+                                    }
+                                    if (visiblePosts.isEmpty()) item {
+                                        PaperCard {
+                                            Text("No saved posts yet. Tap a bookmark to keep a conversation here.")
+                                        }
+                                    }
+                                    item(key = "feed-finish") {
+                                        PaperCard(background = WarmEditorial.Blush) {
+                                            EditorialTitle(if (feedProgress.answers.size == SocialFeedGame.posts.size)
+                                                "You're all caught up." else "A little context goes a long way.", 23)
+                                            Text("${feedProgress.answers.size} / 10 conversations decoded · ${feedProgress.xp} practice XP",
+                                                fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+                                            Text("Hand-authored practice · fictional accounts and events. News means reactions to fictional events.",
+                                                fontSize = 11.sp, color = WarmEditorial.Muted)
+                                            EditorialSecondary("VIEW PRACTICE RESULTS →") { screen = EditorialScreen.Progress }
+                                        }
+                                    }
+                                    item(key = "connected-training") {
+                                        PaperCard {
+                                            EditorialEyebrow("CONNECTED TRAINING")
+                                            Text("Use a generated question pack or the live backend.", fontSize = 12.sp)
+                                            EditorialSecondary("PLAY API SESSION →") { screen = EditorialScreen.ApiSession }
+                                        }
+                                    }
                                 }
-                                EditorialSection("Your Feed", "Social stories made for contextual practice")
-                                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                    EditorialTag("For you", selected = true)
-                                    EditorialTag("Fictional topics")
-                                    EditorialTag("✦ Daily")
-                                }
-                                editorialPosts.forEach { post ->
-                                    EditorialSocialPost(
-                                        post = post, showComments = false,
-                                        onDecode = { launchDetective(post.id) }
-                                    )
-                                }
-                                PaperCard {
-                                    EditorialEyebrow("CONNECTED TRAINING")
-                                    EditorialTitle("Try the real question pipeline", 22)
-                                    Text("Play with GitHub GET question packs or the Node.js live backend. Sources remain clearly labeled.",
-                                        color = WarmEditorial.Muted, fontSize = 12.sp)
-                                    EditorialPrimary("PLAY API SESSION →") { screen = EditorialScreen.ApiSession }
-                                }
-                                EditorialResearchNote()
                             }
 
                             EditorialScreen.Detective -> {
@@ -271,69 +305,62 @@ fun SlangverseApp() {
                             }
 
                             EditorialScreen.Challenges -> {
-                                EditorialSection("Challenges", "Small steps. Stronger instincts.")
-                                PaperCard(background = WarmEditorial.Blush) {
-                                    EditorialEyebrow("✦ TODAY'S CONTEXT QUEST")
-                                    EditorialTitle("Read between the lines.", 29)
-                                    Text("Decode a fictional social post by identifying its contextual clues.",
-                                        fontSize = 12.sp, color = WarmEditorial.Muted)
-                                    EditorialPrimary("START CHALLENGE →") { launchDetective("campus") }
+                                EditorialSection("Your quests", "Small goals, at your own pace")
+                                EditorialChallenge("Decode ten conversations", "${feedProgress.answers.size} / 10",
+                                    feedProgress.answers.size / 10f, "PRACTICE", "◎")
+                                EditorialChallenge("Explore the nine contexts", "${feedProgress.contexts} / 9",
+                                    feedProgress.contexts / 9f, "EXPLORE", "▤")
+                                EditorialChallenge("Match five meanings", "${feedProgress.correct.coerceAtMost(5)} / 5",
+                                    (feedProgress.correct / 5f).coerceAtMost(1f), "REVIEW", "✳")
+                                EditorialPrimary("BACK TO THE CONVERSATIONS →") { screen = EditorialScreen.Feed }
+                                PaperCard {
+                                    TextButton(onClick = { archiveExpanded = !archiveExpanded }) {
+                                        Text(if (archiveExpanded) "Hide archived Context Detective ↑"
+                                            else "Archived: Context Detective · V3 ↓")
+                                    }
+                                    if (archiveExpanded) {
+                                        EditorialEyebrow("CONTEXT DETECTIVE · V3")
+                                        EditorialTitle("Read the room. Decode the slang.", 29)
+                                        Text("Three short cases. Three different slang terms. Your evidence matters.", fontSize = 13.sp)
+                                        EditorialPrimary("START THE CASE FILE →") { launchDetective("campus") }
+                                        Text("Original three-slang demo. Its results stay separate from feed practice.",
+                                            fontSize = 11.sp, color = WarmEditorial.Muted)
+                                    }
                                 }
-                                EditorialChallenge("Complete a case file",
-                                    sampleCompletedCases.toString() + " / 3",
-                                    sampleCompletedCases / 3f, "PRACTICE", "♧")
-                                EditorialChallenge("Decode two cases correctly",
-                                    sampleCorrectCases.coerceAtMost(2).toString() + " / 2",
-                                    (sampleCorrectCases / 2f).coerceAtMost(1f), "REVIEW", "◎")
-                                EditorialChallenge("Explore three slang terms",
-                                    sampleCompletedCases.toString() + " / 3",
-                                    sampleCompletedCases / 3f, "3 SLANG", "▤")
-                                Text("Practice goals reflect only the most recent completed demo case file.",
-                                    color = WarmEditorial.Muted, fontSize = 11.sp)
-                                EditorialResearchNote()
                             }
 
                             EditorialScreen.Progress -> {
-                                EditorialSection("Your Progress", "Based on your last completed sample case file")
-                                PaperCard {
-                                    Row(verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                        EditorialAvatar("S", WarmEditorial.Peach, 62)
-                                        Column {
-                                            EditorialEyebrow("LOCAL DEMO · NOT RESEARCH DATA")
-                                            EditorialTitle("Context Detective", 25)
-                                            Text(sampleXp.toString() + " practice XP from last case file",
-                                                color = WarmEditorial.Muted, fontSize = 12.sp)
-                                        }
-                                    }
-                                    EditorialProgress(sampleCompletedCases / 3f)
+                                EditorialSection("Your practice", "Progress from the conversations you've answered")
+                                PaperCard(background = WarmEditorial.Blush) {
+                                    EditorialTitle("${feedProgress.xp} practice XP", 29)
+                                    EditorialProgress(feedProgress.answers.size / 10f)
+                                    EditorialMetric("Conversations decoded", "${feedProgress.answers.size} / 10")
+                                    EditorialMetric("Meanings matched", "${feedProgress.correct} / ${feedProgress.answers.size}")
+                                    EditorialMetric("Contexts explored", "${feedProgress.contexts} / 9")
+                                    Text("One reward per post. Likes and bookmarks never affect your score.",
+                                        fontSize = 12.sp, color = WarmEditorial.Muted)
                                 }
-                                Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                                    Box(Modifier.weight(1f)) {
-                                        PaperCard {
-                                            EditorialTitle(sampleCompletedCases.toString() + " / 3", 19)
-                                            Text("Cases resolved", color = WarmEditorial.Muted, fontSize = 11.sp)
-                                        }
-                                    }
-                                    Box(Modifier.weight(1f)) {
-                                        PaperCard {
-                                            EditorialTitle(sampleCorrectCases.toString() + " / 3", 19)
-                                            Text("Meanings matched", color = WarmEditorial.Muted, fontSize = 11.sp)
-                                        }
+                                feedProgress.decisions.forEach { result ->
+                                    val post = SocialFeedGame.posts.first { it.thread.id == result.caseId }
+                                    PaperCard {
+                                        EditorialEyebrow(post.context.label.uppercase())
+                                        Text(post.thread.post, fontSize = 13.sp)
+                                        Text("Your reply: ${post.thread.options[result.selectedIndex]}", fontSize = 12.sp)
+                                        Text("Meaning here: ${post.thread.meaning}", fontSize = 12.sp)
+                                        Text(if (result.correct) "✓ Meaning matched · +${result.xpEarned} XP"
+                                            else "↺ Review · +${result.xpEarned} XP", color = WarmEditorial.CoralDeep)
+                                        Text(post.thread.explanation, fontSize = 12.sp)
                                     }
                                 }
-                                PaperCard {
-                                    EditorialTitle("Last case file", 23)
-                                    EditorialMetric("Different slang practiced", sampleCompletedCases.toString())
-                                    EditorialMetric("Meanings matched", sampleCorrectCases.toString())
-                                    EditorialMetric("Practice XP", sampleXp.toString())
-                                    EditorialMetric("Ending combo", sampleCombo.toString())
-                                    Text(if (sampleCompletedCases == 0)
-                                            "Complete a three-case sample to see your practice results."
-                                         else "These are in-memory practice values, not persistence or measured language mastery.",
-                                        fontSize = 11.sp, color = WarmEditorial.Muted)
+                                if (feedProgress.answers.isEmpty()) Text("Reply to a highlighted comment in the feed to begin.")
+                                Text("Local practice only; not a measure of mastery or participant research data.",
+                                    fontSize = 11.sp, color = WarmEditorial.Muted)
+                                EditorialPrimary("RETURN TO FEED →") { screen = EditorialScreen.Feed }
+                                if (sampleCompletedCases > 0) PaperCard {
+                                    EditorialEyebrow("ARCHIVED DEMO · LAST CASE FILE")
+                                    Text("$sampleCompletedCases cases · $sampleCorrectCases matched · $sampleXp XP · ending combo $sampleCombo",
+                                        fontSize = 12.sp)
                                 }
-                                EditorialPrimary("PLAY CONTEXT DETECTIVE →") { launchDetective("campus") }
                             }
 
                             EditorialScreen.Profile -> {
@@ -344,12 +371,12 @@ fun SlangverseApp() {
                                         EditorialAvatar("S", WarmEditorial.Peach, 70)
                                         Column {
                                             EditorialEyebrow("LOCAL PRACTICE · DEMO PROFILE")
-                                            EditorialTitle("Context Detective", 24)
+                                            EditorialTitle("Context Explorer", 24)
                                             Text("Internet language explorer", color = WarmEditorial.Muted,
                                                 fontSize = 12.sp)
                                         }
                                     }
-                                    EditorialProgress(sampleCompletedCases / 3f)
+                                    EditorialProgress(feedProgress.answers.size / 10f)
                                 }
                                 PaperCard {
                                     EditorialTitle("Badge ideas · preview only", 24)
@@ -362,6 +389,14 @@ fun SlangverseApp() {
                                                 Text(caption, fontSize = 10.sp, color = WarmEditorial.Muted)
                                             }
                                         }
+                                    }
+                                }
+                                PaperCard {
+                                    EditorialTitle("Saved conversations", 23)
+                                    Text("${savedPosts.size} bookmarked posts", fontSize = 12.sp)
+                                    EditorialSecondary("OPEN SAVED POSTS →") {
+                                        feedTab = "Saved"
+                                        screen = EditorialScreen.Feed
                                     }
                                 }
                                 PaperCard {
@@ -395,7 +430,7 @@ fun SlangverseApp() {
                                 RemoteTrainingPanel()
                             }
                         }
-                        Spacer(Modifier.height(18.dp))
+                        if (screen != EditorialScreen.Feed) Spacer(Modifier.height(18.dp))
                     }
                 }
             }
@@ -413,7 +448,7 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
             Column {
                 Text("Slangverse ✳", fontFamily = WarmEditorial.Display,
                     fontSize = 29.sp, color = WarmEditorial.Ink)
-                Text("LEARN INTERNET SLANG THROUGH CONTEXTS",
+                Text("A FICTIONAL SOCIAL FEED FOR SLANG PRACTICE",
                     fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp,
                     fontSize = 8.sp, color = WarmEditorial.Muted)
             }
@@ -429,7 +464,7 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
         }
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically) {
-            EditorialTag("★ " + xp + " SAMPLE XP")
+            EditorialTag("★ " + xp + " PRACTICE XP")
             EditorialTag("♨ COMBO " + combo, selected = true)
             Spacer(Modifier.weight(1f))
             Text(
@@ -524,91 +559,78 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
     }
 }
 
-@Composable private fun EditorialSocialPost(
-    post: EditorialPost,
-    showComments: Boolean,
-    onDecode: (() -> Unit)? = null
+@Composable private fun FeedSocialPost(
+    post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
+    onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit
 ) {
-    var expanded by remember(post.id) { mutableStateOf(showComments) }
-    var liked by remember(post.id) { mutableStateOf(false) }
-    var saved by remember(post.id) { mutableStateOf(false) }
+    val thread = post.thread
+    var expanded by rememberSaveable(thread.id) { mutableStateOf(false) }
+    var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
+    var selected by rememberSaveable(thread.id) { mutableIntStateOf(-1) }
     PaperCard {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-            EditorialAvatar(post.displayName.take(1), WarmEditorial.Peach, 44)
+            EditorialAvatar(thread.author.take(1), WarmEditorial.Peach, 44)
             Column(Modifier.weight(1f)) {
-                Text(post.displayName, fontFamily = WarmEditorial.Display, fontSize = 18.sp,
-                    maxLines = 1, overflow = TextOverflow.Ellipsis)
-                Text(post.handle + " · " + post.age + " ago", fontSize = 11.sp,
-                    color = WarmEditorial.Muted)
+                Text(thread.author, fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                Text("${thread.handle} · fictional account", fontSize = 11.sp, color = WarmEditorial.Muted)
             }
-            Icon(Icons.Outlined.MoreHoriz, contentDescription = null, tint = WarmEditorial.Muted)
+            Text(post.context.label, fontSize = 11.sp, color = WarmEditorial.CoralDeep)
         }
-        val highlight = buildAnnotatedString {
-            val at = post.content.indexOf(post.slang, ignoreCase = true)
-            if (at >= 0) {
-                append(post.content.substring(0, at))
-                withStyle(SpanStyle(background = WarmEditorial.Peach, fontWeight = FontWeight.Bold)) {
-                    append(post.content.substring(at, at + post.slang.length))
-                }
-                append(post.content.substring(at + post.slang.length))
-            } else append(post.content)
-        }
-        Text(highlight, fontFamily = WarmEditorial.Display, color = WarmEditorial.Ink,
-            fontSize = 19.sp, lineHeight = 26.sp)
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically) {
-            Text(post.hashtag, color = WarmEditorial.CoralDeep,
-                fontSize = 11.sp, fontWeight = FontWeight.Bold)
-            Text("Fictional social account", fontSize = 10.sp, color = WarmEditorial.Muted)
-        }
-        HorizontalDivider(color = WarmEditorial.Sand)
-        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            TextButton(onClick = { liked = !liked }) {
+        Text(thread.post, color = WarmEditorial.Ink, fontSize = 18.sp, lineHeight = 26.sp)
+        Text(thread.hashtag, fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween) {
+            IconToggleButton(checked = liked, onCheckedChange = { onLike() }) {
                 Icon(if (liked) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,
-                    contentDescription = "Like", tint = if (liked) WarmEditorial.Coral else WarmEditorial.Muted,
-                    modifier = Modifier.size(17.dp))
-                Text(" " + (post.likes + if (liked) 1 else 0),
-                    color = WarmEditorial.Muted, fontSize = 11.sp)
+                    contentDescription = if (liked) "Unlike post" else "Like post",
+                    tint = if (liked) WarmEditorial.Coral else WarmEditorial.Muted)
             }
             TextButton(onClick = { expanded = !expanded }) {
-                Icon(Icons.Outlined.ChatBubbleOutline, contentDescription = "Comments",
-                    tint = WarmEditorial.Muted, modifier = Modifier.size(17.dp))
-                Text(" " + post.replies.size, color = WarmEditorial.Muted, fontSize = 11.sp)
+                Icon(Icons.Outlined.ChatBubbleOutline, contentDescription = null, Modifier.size(18.dp))
+                Text(if (expanded) " Hide replies" else " ${thread.comments.size + 1} replies", fontSize = 12.sp)
             }
-            TextButton(onClick = { expanded = true }) {
-                Icon(Icons.Outlined.Repeat, contentDescription = "View conversation",
-                    tint = WarmEditorial.Muted, modifier = Modifier.size(17.dp))
-            }
-            IconButton(onClick = { saved = !saved }) {
+            IconToggleButton(checked = saved, onCheckedChange = { onSave() }) {
                 Icon(if (saved) Icons.Outlined.Bookmark else Icons.Outlined.BookmarkBorder,
-                    contentDescription = "Save post", tint = if (saved) WarmEditorial.Coral else WarmEditorial.Muted)
+                    contentDescription = if (saved) "Unsave post" else "Save post",
+                    tint = if (saved) WarmEditorial.Coral else WarmEditorial.Muted)
             }
         }
-        if (showComments || expanded) {
-            HorizontalDivider(color = WarmEditorial.Sand)
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text("Comments", fontFamily = WarmEditorial.Display, fontSize = 18.sp)
-                Text("Context clues", color = WarmEditorial.CoralDeep, fontSize = 11.sp)
-            }
-            post.replies.take(if (expanded) 3 else 1).forEach { reply ->
+        if (expanded) {
+            thread.comments.forEachIndexed { index, comment ->
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    EditorialAvatar(reply.handle.trimStart('@').take(1).uppercase(),
-                        WarmEditorial.Gold, 30)
+                    EditorialAvatar(if (index == 0) "N" else "J", WarmEditorial.Gold, 30)
                     Column {
-                        Text(reply.handle, color = WarmEditorial.Ink, fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold)
-                        Text(reply.text, color = WarmEditorial.Ink, fontSize = 12.sp, lineHeight = 17.sp)
+                        Text(if (index == 0) "@naya" else "@justjo", fontWeight = FontWeight.Bold, fontSize = 11.sp)
+                        Text(comment, fontSize = 13.sp, lineHeight = 19.sp)
                     }
                 }
             }
-            TextButton(onClick = { expanded = !expanded }) {
-                Text(if (expanded) "Hide extra replies ↑" else "Need a clue? Read more replies ↓",
-                    color = WarmEditorial.CoralDeep, fontSize = 11.sp)
-            }
         }
-        if (onDecode != null) {
-            EditorialSecondary("DECODE THIS POST →", onDecode)
+        HorizontalDivider(color = WarmEditorial.Sand)
+        Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(14.dp)).padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(9.dp)) {
+            Text("@confuseduser · help explain", fontSize = 12.sp, fontWeight = FontWeight.Bold,
+                color = WarmEditorial.CoralDeep)
+            Text(thread.questionComment, fontSize = 15.sp, lineHeight = 22.sp)
+            if (answeredIndex == null && !replying) {
+                TextButton(onClick = { replying = true }) { Text("Reply with the meaning ↓") }
+            } else if (answeredIndex == null) {
+                Text("Choose your interpretation", fontSize = 11.sp, color = WarmEditorial.Muted)
+                thread.options.forEachIndexed { index, option ->
+                    EditorialOption(index, option, selected == index, false, false) { selected = index }
+                }
+                EditorialPrimary("POST REPLY →", enabled = selected in thread.options.indices) { onAnswer(selected) }
+            } else {
+                val correct = answeredIndex == thread.correctIndex
+                Text("You replied: ${thread.options[answeredIndex]}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Text(if (correct) "✓ Meaning matched · +${ContextDetectiveGame.CORRECT_XP} XP"
+                    else "↺ Let's review · +${ContextDetectiveGame.PRACTICE_XP} practice XP",
+                    fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+                if (!correct) Text("Meaning here: ${thread.meaning}", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                Text(thread.explanation, fontSize = 13.sp, lineHeight = 20.sp)
+                Text("Hand-authored practice feedback", fontSize = 10.sp, color = WarmEditorial.Muted)
+            }
         }
     }
 }
@@ -690,7 +712,7 @@ private fun EditorialHeader(screen: EditorialScreen, xp: Int, combo: Int, onBack
 }
 
 @Composable private fun EditorialResearchNote() {
-    Text("Slangverse visual prototype. Feed accounts, XP and challenge metrics are demonstration data. " +
-            "Source labels and real scoring are handled separately in Connected Training.",
+    Text("Fictional accounts and hand-authored practice. XP reflects your local replies, not measured mastery. " +
+            "Connected Training labels its question sources separately.",
         fontSize = 10.sp, lineHeight = 14.sp, color = WarmEditorial.Muted)
 }

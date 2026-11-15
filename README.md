@@ -1,10 +1,16 @@
-# Slangverse Android V3 — Context Detective (native Compose + Node backend)
+# Slangverse Android — Social Simulator Feed (native Compose + Node backend)
 
 **Status:** V3 Context Detective native Android gameplay is implemented on a feature branch, with GitHub Actions unit/build checks as merge gates. The source also contains an independently labeled real HTTP training path and a mock/optional LLM provider. Device/emulator gameplay is not verified merely by compiling an APK. This repository is separate from `ferrysrt/slangfeed`.
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of on-demand LLM generation**: schema adherence, success/fallback, latency, and SUS.
 
 **Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
+
+## Social simulator feed (current home)
+
+Home opens directly into fictional posts, with **For you**, **News** (fictional event reactions), and the other eight proposal context filters. Players interpret slang inside a comment thread, earn practice XP once per post, bookmark conversations, and review actual local progress in Quests and Progress. The finite local practice feed demonstrates ten contexts for one `cooked` sense with a nominal 5 easy / 3 medium / 2 hard split; these examples are hand-authored, not generated or expert-validated.
+
+The previous **CONTEXT DETECTIVE · V3** welcome panel is archived under **Quests → Archived: Context Detective · V3**. Connected Training remains separate and source-labeled. See [proposal alignment, interactions, and validation](docs/SOCIAL_SIMULATOR_FEED.md).
 
 ## V3.1 — Interactive Comment Quiz
 
@@ -16,9 +22,9 @@ The question now lives as a **special @confuseduser reply** inside the fictional
 
 See [V3.1 implementation and research boundaries](docs/INTERACTIVE_COMMENT_V31.md).
 
-## New: V3 Context Detective (primary gameplay)
+## Archived: V3 Context Detective (optional three-slang demo)
 
-The main **Feed** now starts a three-case, **mixed-slang** investigation loop:
+The optional archived mode starts a three-case, **mixed-slang** investigation loop:
 1. Read a fictional post.
 2. Expand the replies.
 3. **Pin one piece of contextual evidence** (the choice is reflective, not scored).
@@ -26,7 +32,7 @@ The main **Feed** now starts a three-case, **mixed-slang** investigation loop:
 5. Receive contextual feedback.
 6. Advance to the **next different slang**; end with a Case Report.
 
-Three provisional hand-authored demo cases: `cooked`, `no cap`, `lowkey`. Practice XP is +80/+15 on correct/incorrect; no timer, streak penalty or paywall. Scores in this mode are **local demonstration state**, not persistent research outcomes. During play, the bottom navigation disappears so the player focuses on the social thread. Feed, Learn and Quests open the new mode.
+Three provisional hand-authored demo cases: `cooked`, `no cap`, `lowkey`. Practice XP is +80/+15 on correct/incorrect; no timer, streak penalty or paywall. Scores in this mode are **local demonstration state**, not persistent research outcomes. During play, the bottom navigation disappears so the player focuses on the social thread. Learn and the archive in Quests can open this mode.
 
 For the architecture, UI/testing expectations, and MagicPath V3 revision, see [Context Detective V3](docs/CONTEXT_DETECTIVE_V3.md).
 
@@ -66,7 +72,7 @@ Use `HOST=0.0.0.0` if you **intentionally** want a physical Android phone on the
 2. Choose a suitable JDK (17+) and install Android SDK platform 36 if prompted.
 3. This package has `gradle/wrapper/gradle-wrapper.properties`, **but no official `gradle-wrapper.jar`** because the generation environment has no Gradle distribution/network access. If Android Studio does not sync, install compatible Gradle and run `android/scripts/setup-wrapper.ps1` in PowerShell or `android/scripts/setup-wrapper.sh` on Linux/macOS. This generates the genuine wrapper scripts/JAR.
 4. Then run `./gradlew :app:assembleDebug` or the IDE build action. **The cloud build succeeded on 2026-11-11, but still verify any newly built APK before distributing.**
-5. Launch in emulator, run Node backend on your computer, then open Feed > **PLAY API SESSION** for the connected training path. For offline local play, use **START THE CASE FILE**. The default backend URL `http://10.0.2.2:8787` is for the standard Android emulator.
+5. Launch in emulator, run Node backend on your computer, then open Feed > **PLAY API SESSION** for the connected training path. For offline local play, answer posts directly in the feed; the original **START THE CASE FILE** action is now in the Quests archive. The default backend URL `http://10.0.2.2:8787` is for the standard Android emulator.
 6. For a **physical device**, set API URL to `http://YOUR-LAPTOP-LAN-IP:8787`, and run server with `HOST=0.0.0.0`. Ensure firewall/Wi-Fi allows local access.
 
 Android **debug builds** allow cleartext HTTP for trusted private-LAN testing; release builds do **not** opt into cleartext. Use HTTPS for a cloud backend and enter the separate *backend access token* in API Training. Never put OpenRouter keys in the APK. See [cloud deployment guide](docs/CLOUD_PLAY.md).
