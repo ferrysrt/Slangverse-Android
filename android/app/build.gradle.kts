@@ -10,8 +10,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 4
-        versionName = "0.3.2-ui-hierarchy"
+        versionCode = 5
+        versionName = "0.4.0-published-feed"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -33,4 +33,9 @@ dependencies {
     implementation("androidx.compose.foundation:foundation")
     debugImplementation("androidx.compose.ui:ui-tooling")
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.json:json:20250517")
+}
+
+tasks.withType<Test>().configureEach {
+    systemProperty("slangverse.repositoryRoot", rootProject.projectDir.parentFile.absolutePath)
 }

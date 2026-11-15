@@ -18,7 +18,7 @@ export function writePublishedCatalog(outputDir){
   const file=resolve(outputDir,'packs',sense.senseId+'.json');
   if(!existsSync(file))continue;
   const text=readFileSync(file,'utf8');
-  validatePublishedPack(JSON.parse(text),sense.senseId);
+  try {validatePublishedPack(JSON.parse(text),sense.senseId);} catch {continue;}
   senses.push({...sense,sha256:sha256(text)});
  }
  const index={schemaVersion:1,datasetVersion:catalog.datasetVersion,source:'github-static',generationSource:'llm',

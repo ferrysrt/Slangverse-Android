@@ -1,8 +1,10 @@
-# Current checkpoint — UI Hierarchy 0.3.2
+# Current checkpoint — Published Feed 0.4.0 (main)
 
 This UI revision strengthens names/handles and separates Learning feedback from the social reply and story continuation. A shared feedback component retains source-specific disclosures in archived and connected modes. It builds on the offline CC0 portrait library, consistent avatar UI, LLM-selectable avatar IDs, normalization and legacy fallbacks in both Android training clients. Sources, licences, checksums and reproduction steps are in [the avatar folder](../assets/profile-pictures/README.md).
 
-The current feature branch is `feat/social-simulator-feed`. Home opens into the ten-item local practice feed. This revision adds fictional character profiles, nested replies, quoted earlier posts, context hashtag navigation, visible player replies, and a local inbox that links to exact answered conversations. The archived V3 welcome panel remains under Quests. See [checkpoint behavior and phone acceptance checks](SOCIAL_SIMULATOR_FEED.md).
+The social simulator has been promoted to `main`. Home now defaults to published LLM packs via GitHub Raw, with three available senses/30 generated questions. The offline hand-authored feed is explicit opt-in. Catalogue checksums, pack-scoped progress and dynamically resolved identities are implemented. A bounded publisher workflow updates the bank from playable curated senses. Durable participant response logging remains outstanding.
+
+The previous feature branch was `feat/social-simulator-feed`. Home opens into the ten-item local practice feed. This revision adds fictional character profiles, nested replies, quoted earlier posts, context hashtag navigation, visible player replies, and a local inbox that links to exact answered conversations. The archived V3 welcome panel remains under Quests. See [checkpoint behavior and phone acceptance checks](SOCIAL_SIMULATOR_FEED.md).
 
 The ten-question, single-sense, nominal 5/3/2 pack and 80/15 XP rules remain intact. Story follow-ups unlock once per submitted post regardless of correctness, and social actions do not affect scoring. The context quest counts categories present in the pack rather than imposing all nine on every slang.
 

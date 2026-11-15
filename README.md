@@ -1,10 +1,18 @@
 # Slangverse Android — Social Simulator Feed (native Compose + Node backend)
 
-**Status:** The Social Stories checkpoint (`0.3.2-ui-hierarchy`) extends the feed on `feat/social-simulator-feed` with fictional profiles, nested replies, quoted posts and a local conversation inbox. Android builds and unit tests are checked locally; device usability needs its own validation. The optional HTTP/LLM training path remains separate. This repository is separate from `ferrysrt/slangfeed`.
+**Status:** The social simulator is now on **main**. Version `0.4.0-published-feed` loads pre-generated LLM question packs from the repository's public GitHub Raw bank by default. The source catalogue currently has three playable, provisional slang senses; 30 GPT-6 Luna questions have been generated and published. Mock/offline examples are opt-in and labeled. Device usability remains a separate validation task. This repository is separate from `ferrysrt/slangfeed`.
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret Internet slang from posts and indirect comment hints. The research direction (still awaiting final supervisor approval) is the **technical evaluation of LLM-generated multicontext question packs**: schema adherence, success/fallback, latency, and SUS.
 
 **Want to play on your own Android phone with GPT-6 Luna?** See [secure cloud + physical phone setup](docs/CLOUD_PLAY.md). The Render configuration is included but the backend is **not deployed automatically**, and an actual phone test is still outstanding.
+
+## Default published question feed (0.4.0)
+
+Home automatically GETs [the question catalogue](https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank/catalog.json), selects an available slang, and displays its ten generated questions in the social feed. Slang chips switch packs; **Refresh bank** discovers updates without rebuilding the APK. The phone never calls the LLM or needs a token. Pack hashes prevent mixing a new catalogue with stale question files, and answers are scoped to the exact pack revision.
+
+The [publisher workflow](.github/workflows/publish-question-bank.yml) generates at most three missing/outdated packs per run from playable entries in `backend/data/curated_senses.json`, and commits valid packs plus the multi-slang catalogue together. It uses the repository's `OPENROUTER_API_KEY` secret. It runs on curated-catalogue/publisher-workflow changes on main or manual dispatch; it does not run on phone launches or on a recurring schedule. Published questions are marked provisional, not expert-validated. See [the bank guide](question-bank/README.md).
+
+The old hand-authored feed is available only through **Question source → Open hand-authored offline sample**. The Context Detective welcome remains archived under Quests. If published content cannot be loaded, the app shows loading/error/empty states rather than relabeling sample questions as LLM output. Static grading is local practice, not authenticated research recording.
 
 ## UI hierarchy checkpoint (0.3.2)
 
@@ -18,7 +26,7 @@ The [profile-picture folder](assets/profile-pictures/README.md) contains 22 port
 
 ## Social simulator feed (current home)
 
-Home opens directly into fictional posts, with **For you**, **News** (fictional event reactions), and the other eight proposal context filters. Players interpret slang inside a comment thread, earn practice XP once per post, bookmark conversations, and review actual local progress in Quests and Progress. The finite local practice feed demonstrates ten contexts for one `cooked` sense with a nominal 5 easy / 3 medium / 2 hard split; these examples are hand-authored, not generated or expert-validated.
+The earlier offline sample opens directly into fictional posts, with **For you**, **News** (fictional event reactions), and the other eight proposal context filters. Players interpret slang inside a comment thread, earn practice XP once per post, bookmark conversations, and review actual local progress in Quests and Progress. The finite local practice feed demonstrates ten contexts for one `cooked` sense with a nominal 5 easy / 3 medium / 2 hard split; these examples are hand-authored, not generated or expert-validated.
 
 The **Social Stories** update adds tappable character profiles, nested reply targets, five quoted earlier posts, context hashtags, visible player replies, and a bell-button inbox with one scripted follow-up per answered conversation. These features do not add questions or affect XP.
 
@@ -52,7 +60,7 @@ For the architecture, UI/testing expectations, and MagicPath V3 revision, see [C
 
 ## GitHub GET mode (no server IP)
 
-The Android **API Training** screen now supports **GitHub GET** for publicly hosted static question packs, alongside the separate **Live Backend** mode. It can display/grade 10-question packs without a laptop or Node server. The current main source repo is private, so a separate public JSON bank must be published before anonymous phone GET works; no GitHub or OpenRouter token is shipped in the APK. See [GitHub GET setup](docs/GITHUB_GET_QUESTIONS.md).
+The Android **API Training** screen now supports **GitHub GET** for publicly hosted static question packs, alongside the separate **Live Backend** mode. It can display/grade 10-question packs without a laptop or Node server. The current default bank is published in this repository under `question-bank/`; no GitHub or OpenRouter token is shipped in the APK. See [GitHub GET setup](docs/GITHUB_GET_QUESTIONS.md).
 
 Backend CI exports three free hand-written demo packs as a downloadable artifact. A separate **manual-only** GitHub Actions workflow can generate a genuine GPT-6 Luna pack (one optional paid request) for review and later publication. Static-bank grading occurs on the phone and is **not secure research-grade grading**. The original backend server-grading option is preserved.
 

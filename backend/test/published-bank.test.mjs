@@ -49,3 +49,22 @@ test('generation failure preserves existing valid packs and is reported rather t
  assert.equal(result.available,1);assert.equal(result.published,0);assert.deepEqual(result.failures,['no-cap-truth']);
  assert.equal(readFileSync(join(dir,'packs','cooked-trouble.json'),'utf8'),before);
 });
+
+test('invalid existing packs are excluded while valid catalog entries survive',async t=>{
+ const dir=sandbox(t);
+ await exportLiveStaticPack({senseId:'cooked-trouble',outputDir:dir,generate:fixtureGenerate});
+ const file=join(dir,'packs','cooked-trouble.json');
+ const invalid=JSON.parse(readFileSync(file));invalid.generationSource='mock';
+ const {writeFileSync}=await import('node:fs');writeFileSync(file,JSON.stringify(invalid));
+ const result=await publishQuestionBank({outputDir:dir,maxPacks:1,exportPack:async()=>{throw Error('offline');}});
+ assert.equal(result.available,0);assert.deepEqual(result.failures,['cooked-trouble']);
+ assert.equal(JSON.parse(readFileSync(join(dir,'catalog.json'))).status,'awaiting-generation');
+});
+test('checked-in published bank contains only valid reference-matched LLM packs with matching hashes',()=>{
+ const catalog=JSON.parse(readFileSync(new URL('../../question-bank/catalog.json',import.meta.url)));
+ assert.equal(catalog.generationSource,'llm');
+ for(const sense of catalog.senses){
+  const text=readFileSync(new URL(`../../question-bank/packs/${sense.senseId}.json`,import.meta.url),'utf8');
+  assert.equal(sense.sha256,sha256(text));validatePublishedPack(JSON.parse(text),sense.senseId);
+ }
+});

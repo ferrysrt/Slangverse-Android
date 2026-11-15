@@ -1,3 +1,17 @@
+# Published Feed checkpoint verification — 2026-11-16 (Asia/Jakarta)
+
+Version `0.4.0-published-feed`, version code 5, on **main**. The social simulator was fast-forwarded to main, then the bounded publisher generated and committed three genuine GPT-6 Luna packs to `question-bank/` (generation commit `329989d`).
+
+- HTTPS GET of the actual public GitHub Raw catalogue and all three packs returned HTTP 200 without application credential headers. All pack SHA-256 values matched the catalogue. Cooked, no cap and lowkey provide 30 questions total; generator metadata records `openai/gpt-6-luna`, prompt version and generation time. This checkpoint did invoke live generation through GitHub Actions, bounded to three requests with retries disabled.
+- Backend `npm test`: **54 passed, 0 failed/cancelled/skipped**. New checks cover multi-sense publication, exact-byte hashes, mock/fallback rejection, call limits, skipping current packs, preservation during failures, invalid-pack exclusion and the real checked-in bank.
+- Android `:app:testDebugUnitTest :app:assembleDebug`: **BUILD SUCCESSFUL; 25 passed, 0 failures/errors/skipped**, verified from current XML. New tests parse the actual published catalogue/packs, adapt them into social conversations, reject default mock content and stale/wrong-slang packs, verify per-pack progress and revision isolation, and handle an empty published catalogue without a demo substitution.
+- APK signature verification passed. APK metadata confirms `0.4.0-published-feed`, min SDK 26, target SDK 36.
+- `git diff --check` passed.
+
+These checks establish real published JSON availability, parser/model behavior and packaging. They do not establish Android rendering/navigation, mobile-network behavior, semantic correctness, calibrated difficulty or participant-study readiness. Phone acceptance is still required. Generated content is provisional and static grading remains local practice; durable authenticated response logging is not implemented.
+
+## Previous checkpoint verification
+
 # UI Hierarchy checkpoint verification — 2026-11-16 (Asia/Jakarta)
 
 Version `0.3.2-ui-hierarchy`, version code 4, branch `feat/social-simulator-feed`.

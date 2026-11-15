@@ -1,62 +1,33 @@
-# GitHub GET mode — no laptop IP, no Node server
+# Default published question feed — GitHub Raw
 
-Slangverse Android has an optional GET-only source for pre-generated public JSON questions. This mode does not invoke OpenRouter from the phone; local answers/XP are demo-only.
+The social-simulator implementation is now on **main**. `0.4.0-published-feed` automatically loads LLM-generated question packs into Home from:
 
-## Private repo warning
+```
+https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank
+```
 
-The Slangverse-Android repository is PRIVATE. Android without a GitHub access token cannot GET its raw files. Never put a GitHub PAT, OpenRouter key, or API key in the APK. Publish only approved static JSON question files in a separate PUBLIC repository (or GitHub Pages when available on the GitHub plan). The Slangverse-Android source and the unrelated slangfeed repository should remain private.
+The catalogue is `catalog.json`, with individual packs under `packs/<senseId>.json`. These URLs were checked using HTTPS GET without application credentials during this checkpoint: three LLM packs, 30 questions, all matching the catalogue's SHA-256 values. The earlier separate `Slangverse-Question-Bank` URL was only an example and returned 404.
 
-## Export three free hand-written demo question packs
+## Play
 
-The Mock backend checks workflow now runs npm run bank:export and uploads a private GitHub Actions artifact named slangverse-static-demo-json.
+Install the APK from the latest successful **main** Android build. Home loads published questions automatically. Slang chips switch between available senses. **Refresh bank** fetches the latest catalogue and selected pack. **Question source** can change the folder URL or explicitly open the labeled hand-authored offline sample. Errors, unavailable packs and empty catalogues do not cause a silent switch to mock questions.
 
-The ZIP contains:
+The existing Connected Training GitHub GET mode is retained and starts with the same bank URL. It still permits explicitly labeled legacy mock/static packs. The default Home feed requires both catalogue and pack to declare LLM provenance. Profiles, avatars, replies, grading feedback, bookmarks, quests and results use the loaded pack rather than the fixed cooked demo.
 
-    catalog.json
-    packs/cooked-trouble.json
-    packs/no-cap-truth.json
-    packs/lowkey-subtle.json
+## Generate and publish more
 
-All 30 questions are hand-written mock data, not GPT-6 Luna output. They have 10 contexts per slang and nominal 5 easy, 3 medium, 2 hard labels. Automated tests check their structure, not their semantic validity.
+Use **Actions → Publish LLM question bank → Run workflow** on main. The normal limit is three generation requests, one ten-question pack per request, with no retries. Missing/outdated playable senses are generated first; current packs are skipped unless Force is selected. Requests use GPT-6 Luna via the existing `OPENROUTER_API_KEY` repository secret and may incur provider charges. No credentials belong in the APK or public bank.
 
-### Publish and play
+The workflow also runs when its own configuration or `backend/data/curated_senses.json` changes on main. It has no recurring schedule and is not invoked by the phone. New packs and their catalogue are committed in one change. Generation failures preserve valid existing packs; fallback/mock output is never published as LLM. Stale/invalid reference packs are excluded until successfully regenerated. Adding a new playable sense is an explicit curation step; the 200 dataset candidates are not all validated meanings. Three senses are currently playable.
 
-1. Create a separate PUBLIC repository, for example Slangverse-Question-Bank. This name is an example, not an existing repo.
-2. Download the slangverse-static-demo-json ZIP from a successful backend CI workflow in Slangverse-Android. Extract it.
-3. Upload catalog.json and the packs folder to public-question-bank/ in the new PUBLIC repository. Do not upload credentials, private data or research reports.
-4. Verify both of these example URLs in your phone browser (they will not work until you create and populate that public repo):
+The standalone single-pack exporter also merges its result into the existing multi-sense catalogue instead of overwriting other entries. Artifact-only exports remain available for separate review workflows.
 
-    https://raw.githubusercontent.com/ferrysrt/Slangverse-Question-Bank/main/public-question-bank/catalog.json
-    https://raw.githubusercontent.com/ferrysrt/Slangverse-Question-Bank/main/public-question-bank/packs/no-cap-truth.json
+## Contract and boundaries
 
-5. Install an APK built from the new GitHub GET PR, then open Feed -> PLAY API SESSION -> GitHub GET.
-6. Paste the FOLDER URL (omit catalog.json):
+A pack contains one slang sense and exactly ten questions, with 5 easy / 3 medium / 2 hard labels, unique question/context IDs, four choices and a correct answer index. Optional avatar IDs are resolved to bundled pictures. The catalogue includes sense IDs, terms, review status and SHA-256 checksums. A mismatched checksum or slang is rejected. Unknown categories remain visible in For you; legacy scenario IDs have navigation tags, not human-validated semantic classifications.
 
-    https://raw.githubusercontent.com/ferrysrt/Slangverse-Question-Bank/main/public-question-bank
+Questions are pre-generated, not generated live during a phone session. Refreshing GitHub is not an LLM-latency measurement. Content is structurally checked and provisional; generation does not establish semantic validity, calibrated difficulty or learning gains.
 
-7. Tap LOAD AVAILABLE SLANG, select a sense, then START 10-CONTEXT SESSION. The game uses GET only, with local demo grading. Its source reads GITHUB-STATIC-MOCK.
+Static JSON exposes answer keys and explanations by design. Grading and saved UI state are local practice, not authenticated participant results or durable study logging. Questions are namespaced by sense, content hash and question ID; changing a pack does not reuse its older answers or award duplicate XP for the same revision.
 
-If JSON files are at the public repo root, omit /public-question-bank from the example URLs.
-
-## Optional: generate one real GPT-6 Luna pack in GitHub Actions
-
-After this feature reaches the default branch, open GitHub Actions and manually run Export GPT-6 Luna static question pack (manual). Choose one of three provisional slang senses. It uses the existing OPENROUTER_API_KEY GitHub Secret and the openai/gpt-6-luna model. This may incur an API fee; it NEVER runs automatically.
-
-After successful generation, download the private slangverse-llm-static-bank-<senseId> artifact. Review the questions yourself before publication. Copy its packs/<senseId>.json to the public bank and add that sense to the public catalog.json. If combining packs, DO NOT overwrite a multi-sense catalog with the one-sense catalog from the new artifact.
-
-A successful generation has generationSource=llm and is shown in the app as GITHUB-STATIC-LLM. This does NOT mean GPT-6 Luna was called live during gameplay. Fallback/mock output fails the export instead of being labeled as LLM.
-
-## Data format
-
-The root must contain a catalog.json object with schemaVersion 1, datasetVersion, candidateCount and senses [{senseId, term, reviewStatus}]. Each listed sense needs packs/<senseId>.json with schemaVersion 1, senseId, generationSource ("mock" or "llm"), referenceStatus, datasetVersion, and questions.
-
-A pack has exactly 10 questions with unique id and contextId, 5 easy, 3 medium, 2 hard, 4 distinct options and a correctIndex in range 0..3. Each question includes a slang term, a fictional post object (displayName, handle, hashtag, content, comments with handle and text), question text and explanation. Use an exported artifact for complete sample JSON.
-
-## Research and security constraints
-
-- GitHub GET distributes previously generated files; it is not on-demand LLM generation. Don't measure it as GPT-6 Luna generation latency.
-- Every public static pack necessarily exposes correctIndex and explanation. The app grades locally. XP and accuracy can be manipulated and are not authenticated research observations.
-- GitHub static hosting cannot receive responses for a persistent leaderboard or store experimental player answers.
-- The live backend path is retained for server-side grading and on-demand GPT-6 Luna research. See CLOUD_PLAY.md.
-- Structural checks do NOT prove semantic accuracy or empirically calibrated difficulty.
-- Record the Git commit SHA and bank version for reproducibility, since URLs from main branches can change.
+A bank used by the APK must remain publicly readable without credentials. No repository visibility setting was changed by this implementation. If deployment moves to a private repository, publish the bank to a public location and change the configured root; never embed a GitHub token.

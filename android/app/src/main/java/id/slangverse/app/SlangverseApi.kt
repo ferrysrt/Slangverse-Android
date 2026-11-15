@@ -29,14 +29,18 @@ data class ApiQuestion(
     val post: ApiPost,
     val question: String,
     val options: List<String>,
-    val questionComment: String = ""
+    val questionComment: String = "",
+    val contextCategory: String = ""
 )
-data class ApiSense(val senseId: String, val term: String, val reviewStatus: String)
-data class ApiCatalog(val datasetVersion: String, val candidateCount: Int, val senses: List<ApiSense>)
+data class ApiSense(val senseId: String, val term: String, val reviewStatus: String, val packSha256: String = "")
+data class ApiCatalog(
+    val datasetVersion: String, val candidateCount: Int, val senses: List<ApiSense>,
+    val generationSource: String = "unknown", val status: String = "ready"
+)
 data class ApiSession(
  val id: String, val source: String, val questions: List<ApiQuestion>,
  val senseId: String = "cooked-trouble", val referenceStatus: String = "provisional",
- val catalogVersion: String = ""
+ val catalogVersion: String = "", val contentVersion: String = ""
 )
 data class ApiGrade(
     val correct: Boolean,

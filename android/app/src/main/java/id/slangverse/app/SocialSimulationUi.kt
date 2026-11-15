@@ -12,6 +12,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.heading
@@ -21,12 +22,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+internal val LocalStoryProfiles = staticCompositionLocalOf { SocialNarrative.profiles }
+internal val LocalStoryPosts = staticCompositionLocalOf { SocialFeedGame.posts }
+
+@Composable
+private fun visibleProfile(handle: String): FictionalProfile = LocalStoryProfiles.current[handle]
+    ?: FictionalProfile(handle, handle.trimStart('@'), "A fictional conversation participant.")
+
 @Composable
 internal fun StoryIdentity(
     handle: String, onProfile: (String) -> Unit, subtitle: String? = null,
     avatarSize: Dp = 36.dp, emphasized: Boolean = false
 ) {
-    val profile = SocialNarrative.profile(handle)
+    val profile = visibleProfile(handle)
     Row(Modifier.fillMaxWidth().clickable(onClickLabel = "View ${profile.name}'s fictional profile") { onProfile(handle) }
         .heightIn(min = 48.dp).padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -115,8 +123,8 @@ internal fun LearningFeedbackPanel(
 
 @Composable
 internal fun FictionalProfileDialog(handle: String, onDismiss: () -> Unit, onOpenPost: (String) -> Unit) {
-    val profile = SocialNarrative.profile(handle)
-    val posts = SocialFeedGame.posts.filter { it.thread.handle == handle }
+    val profile = visibleProfile(handle)
+    val posts = LocalStoryPosts.current.filter { it.thread.handle == handle }
     AlertDialog(onDismissRequest = onDismiss,
         title = { Text(profile.name, fontFamily = WarmEditorial.Display) },
         text = {
@@ -131,7 +139,7 @@ internal fun FictionalProfileDialog(handle: String, onDismiss: () -> Unit, onOpe
                 posts.forEach { post ->
                     OutlinedButton(onClick = { onOpenPost(post.thread.id) }, shape = RoundedCornerShape(12.dp)) {
                         Column(Modifier.fillMaxWidth().padding(vertical = 5.dp)) {
-                            Text(post.context.label, fontSize = 10.sp)
+                            Text(post.context?.label ?: "Other context", fontSize = 10.sp)
                             Text(post.thread.post, fontSize = 12.sp)
                         }
                     }
@@ -146,7 +154,7 @@ internal fun FictionalProfileDialog(handle: String, onDismiss: () -> Unit, onOpe
 @Composable
 internal fun ConversationInbox(updates: List<ConversationUpdate>, readIds: List<String>, onOpenPost: (String) -> Unit) {
     Text("Conversations", fontFamily = WarmEditorial.Display, fontSize = 29.sp)
-    Text("Scripted story replies · no push notifications", fontSize = 12.sp, color = WarmEditorial.Muted)
+    Text("Story replies and learning feedback · no push notifications", fontSize = 12.sp, color = WarmEditorial.Muted)
     if (updates.isEmpty()) {
         Text("No updates yet. Reply to a highlighted question in the feed to see what happens next in that story.",
             fontSize = 14.sp, lineHeight = 22.sp)
@@ -156,10 +164,11 @@ internal fun ConversationInbox(updates: List<ConversationUpdate>, readIds: List<
             colors = CardDefaults.outlinedCardColors(containerColor = if (update.postId in readIds)
                 WarmEditorial.Card else WarmEditorial.Blush)) {
             Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                val profile = SocialNarrative.profile(update.handle)
+                val profile = visibleProfile(update.handle)
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     ProfilePicture(update.handle, profile.avatarId)
-                    Text("${if (update.postId in readIds) "Read" else "New"} · ${profile.name} continued the story",
+                    Text("${if (update.postId in readIds) "Read" else "New"} · " +
+                        if (update.isFeedback) "Learning feedback ready" else "${profile.name} continued the story",
                         fontSize = 13.sp, fontWeight = FontWeight.Bold)
                 }
                 Text(update.text, fontSize = 13.sp, lineHeight = 20.sp)

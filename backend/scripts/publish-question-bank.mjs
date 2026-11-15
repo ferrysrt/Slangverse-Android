@@ -11,8 +11,10 @@ export async function publishQuestionBank({outputDir=resolve('../question-bank')
  for(const sense of catalog.senses){
   const file=resolve(outputDir,'packs',sense.senseId+'.json');let current=false;
   if(existsSync(file)){
-   const pack=validatePublishedPack(JSON.parse(readFileSync(file,'utf8')),sense.senseId);
-   current=pack.datasetVersion===catalog.datasetVersion&&pack.promptVersion===PROMPT_VERSION;
+   try {
+    const pack=validatePublishedPack(JSON.parse(readFileSync(file,'utf8')),sense.senseId);
+    current=pack.datasetVersion===catalog.datasetVersion&&pack.promptVersion===PROMPT_VERSION;
+   } catch {current=false;}
   }
   if(current&&!force)continue;
   if(attempted>=maxPacks)break;

@@ -44,3 +44,12 @@ Copy the returned session `id` into the next request. The server's demo sessions
 Question `post` and each `post.comments` object may include `avatarId`, an identifier from the [local avatar catalogue](../assets/profile-pictures/README.md). It is cosmetic metadata and does not alter grading, question count, difficulty, source labels or answer-key visibility.
 
 Generation prompts supply the allowed IDs. The backend normalizes these fields for mock, fallback and generated sessions before serving or exporting packs. Established cast handles keep their canonical image. New handles receive a consistent requested/fallback image within a pack. Malformed or absent IDs use deterministic local fallbacks, without retrying an otherwise valid generated question package. Legacy clients can ignore the field; current Android clients also render old packs that omit it. No image URL or new network image service is required.
+
+
+## Default published feed (0.4.0)
+
+The default Android feed uses GitHub GET rather than POST /api/sessions. Its folder root is `https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank`.
+
+`catalog.json` uses schemaVersion 1, generationSource `llm`, datasetVersion, candidateCount, status (`ready` or `awaiting-generation`), bankVersion, and senses containing senseId, term, reviewStatus and sha256. Each `packs/<senseId>.json` contains schemaVersion 1, generationSource `llm`, matching senseId, generatorModel, promptVersion, generatedAt, datasetVersion, referenceStatus and ten questions with the existing static schema. Keys/explanations are necessarily public for local grading.
+
+The home feed requires LLM provenance in both files, validates catalogue checksums and slang matching, and namespaces progress by sense/content hash/question ID. Optional `contextCategory` can name one of the nine proposal categories; legacy scenario IDs use navigation tags and unknown scenarios remain visible in For you. The phone never invokes the generation provider. The existing live backend and explicitly selected legacy static/mock training modes remain available with their own source labels.

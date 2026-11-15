@@ -36,7 +36,7 @@ private val PrimaryText = WarmEditorial.Ink
 fun RemoteTrainingPanel() {
     val scope = rememberCoroutineScope()
     var questionMode by rememberSaveable { mutableStateOf("github") }
-    var githubRoot by rememberSaveable { mutableStateOf("") }
+    var githubRoot by rememberSaveable { mutableStateOf(PublishedFeedDefaults.BANK_ROOT) }
     var staticAnswers by remember { mutableStateOf<Map<String, StaticAnswer>>(emptyMap()) }
     var serverUrl by rememberSaveable { mutableStateOf("http://10.0.2.2:8787") }
     // Deliberately not saved to disk or Android saved-instance state.

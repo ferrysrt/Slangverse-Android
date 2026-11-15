@@ -12,8 +12,12 @@ internal enum class FeedDifficulty { Easy, Medium, Hard }
 
 internal data class FeedPracticePost(
     val thread: DetectiveCase,
-    val context: FeedContext,
-    val difficulty: FeedDifficulty
+    val context: FeedContext?,
+    val difficulty: FeedDifficulty,
+    val avatarId: String = "",
+    val replies: List<StoryReply>? = null,
+    val published: Boolean = false,
+    val sourceLabel: String = "Hand-authored practice"
 )
 
 /** Hand-authored UI practice pack. Not generated, expert-validated, or participant research data. */
@@ -98,17 +102,23 @@ internal object SocialFeedGame {
 }
 
 /** Results are keyed by post, so filtering, navigation and repeated taps cannot farm XP. */
-internal data class FeedPracticeProgress(val answers: Map<String, Int> = emptyMap()) {
-    val decisions: List<DetectiveDecision> get() = answers.map { (id, selection) ->
-        ContextDetectiveGame.grade(SocialFeedGame.posts.first { it.thread.id == id }.thread, selection, -1)
+internal data class FeedPracticeProgress(
+    val answers: Map<String, Int> = emptyMap(),
+    val posts: List<FeedPracticePost> = SocialFeedGame.posts
+) {
+    val decisions: List<DetectiveDecision> get() = answers.mapNotNull { (id, selection) ->
+        val post = posts.firstOrNull { it.thread.id == id } ?: return@mapNotNull null
+        ContextDetectiveGame.grade(post.thread, selection, -1)
     }
+    val completedCount: Int get() = decisions.size
+    val contextCount: Int get() = posts.mapNotNull { it.context }.distinct().size
     val xp: Int get() = decisions.sumOf { it.xpEarned }
     val correct: Int get() = decisions.count { it.correct }
-    val contexts: Int get() = SocialFeedGame.posts.filter { it.thread.id in answers }.map { it.context }.distinct().size
+    val contexts: Int get() = posts.filter { it.thread.id in answers }.mapNotNull { it.context }.distinct().size
     val combo: Int get() = decisions.takeLastWhile { it.correct }.size
 
     fun answer(postId: String, selectedIndex: Int): FeedPracticeProgress {
-        val post = SocialFeedGame.posts.first { it.thread.id == postId }
+        val post = posts.first { it.thread.id == postId }
         require(selectedIndex in post.thread.options.indices)
         return if (postId in answers) this else copy(answers = answers + (postId to selectedIndex))
     }

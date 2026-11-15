@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.CancellationException
 
 /**
  * Warm Editorial is a native Jetpack Compose implementation of the approved visual direction.
@@ -102,8 +103,46 @@ fun SlangverseApp() {
         save = { progress -> progress.answers.map { (id, index) -> "$id:$index" } },
         restore = { entries -> FeedPracticeProgress(entries.associate {
             it.substringBeforeLast(":") to it.substringAfterLast(":").toInt()
-        }) }
-    )) { mutableStateOf(FeedPracticeProgress()) }
+        }, posts = emptyList()) }
+    )) { mutableStateOf(FeedPracticeProgress(posts = emptyList())) }
+
+    var bankRoot by rememberSaveable { mutableStateOf(PublishedFeedDefaults.BANK_ROOT) }
+    var offlineSample by rememberSaveable { mutableStateOf(false) }
+    var selectedBankSense by rememberSaveable { mutableStateOf("") }
+    var bankRefresh by remember { mutableIntStateOf(0) }
+    var bankCatalog by remember { mutableStateOf<ApiCatalog?>(null) }
+    var bankLoading by remember { mutableStateOf(false) }
+    var bankError by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(bankRoot, bankRefresh, offlineSample) {
+        bankError = null
+        if (offlineSample) {
+            bankLoading = false
+            feedProgress = feedProgress.copy(posts = SocialFeedGame.posts)
+            return@LaunchedEffect
+        }
+        bankLoading = true
+        bankCatalog = null
+        feedProgress = feedProgress.copy(posts = emptyList())
+        try {
+            val bank = GithubStaticBank(bankRoot)
+            val catalog = bank.fetchCatalog(requireLlm = true)
+            bankCatalog = catalog
+            if (catalog.senses.isNotEmpty()) {
+                val sense = catalog.senses.firstOrNull { it.senseId == selectedBankSense } ?: catalog.senses.random()
+                selectedBankSense = sense.senseId
+                val pack = bank.fetchSession(sense.senseId, requireLlm = true,
+                    expectedTerm = sense.term, expectedSha256 = sense.packSha256)
+                feedProgress = feedProgress.copy(posts = pack.toFeedPosts())
+            }
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (error: Exception) {
+            bankError = "Published questions unavailable: ${error.message ?: "check your connection"}. Use Refresh to retry."
+        } finally {
+            bankLoading = false
+        }
+    }
 
     // Last local demo case-file metrics; not provider or research data.
     var sampleXp by remember { mutableIntStateOf(0) }
@@ -141,6 +180,9 @@ fun SlangverseApp() {
         screen = EditorialScreen.Feed
     }
 
+    CompositionLocalProvider(
+        LocalStoryProfiles provides feedProfiles(feedProgress.posts), LocalStoryPosts provides feedProgress.posts
+    ) {
     MaterialTheme(
         colorScheme = lightColorScheme(
             primary = WarmEditorial.Coral,
@@ -203,9 +245,17 @@ fun SlangverseApp() {
                             EditorialScreen.Feed -> {
                                 val context = FeedContext.entries.firstOrNull { it.label == feedTab }
                                 val visiblePosts = if (feedTab == "Saved")
-                                    SocialFeedGame.posts.filter { it.thread.id in savedPosts }
-                                else SocialFeedGame.filter(context)
+                                    feedProgress.posts.filter { it.thread.id in savedPosts }
+                                else feedProgress.posts.filter { context == null || it.context == context }
                                 LazyColumn(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                                    item(key = "published-source") {
+                                        PublishedBankControls(bankRoot, bankCatalog, selectedBankSense,
+                                            bankLoading, bankError, offlineSample,
+                                            onRoot = { bankRoot = it; offlineSample = false; bankRefresh++ },
+                                            onSelect = { selectedBankSense = it; feedTab = "For you"; bankRefresh++ },
+                                            onRefresh = { bankRefresh++ },
+                                            onMode = { offlineSample = it; feedTab = "For you" })
+                                    }
                                     item(key = "feed-tabs") {
                                         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
                                             horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -230,16 +280,19 @@ fun SlangverseApp() {
                                     }
                                     if (visiblePosts.isEmpty()) item {
                                         PaperCard {
-                                            Text("No saved posts yet. Tap a bookmark to keep a conversation here.")
+                                            Text(if (feedProgress.posts.isEmpty()) "Load a published question pack to start."
+                                                else if (feedTab == "Saved") "No saved posts in this pack yet. Tap a bookmark to keep a conversation here."
+                                                else "No conversations in this context in the current pack. Choose For you to see all ten.")
                                         }
                                     }
-                                    item(key = "feed-finish") {
+                                    if (feedProgress.posts.isNotEmpty()) item(key = "feed-finish") {
                                         PaperCard(background = WarmEditorial.Blush) {
-                                            EditorialTitle(if (feedProgress.answers.size == SocialFeedGame.posts.size)
+                                            EditorialTitle(if (feedProgress.completedCount == feedProgress.posts.size)
                                                 "You're all caught up." else "A little context goes a long way.", 23)
-                                            Text("${feedProgress.answers.size} / 10 conversations decoded · ${feedProgress.xp} practice XP",
+                                            Text("${feedProgress.completedCount} / 10 conversations decoded · ${feedProgress.xp} practice XP",
                                                 fontSize = 12.sp, color = WarmEditorial.CoralDeep)
-                                            Text("Hand-authored practice · fictional accounts and events. News means reactions to fictional events.",
+                                            Text(if (offlineSample) "Hand-authored practice · fictional accounts and events."
+                                                else "Published LLM questions · local static grading · fictional conversations.",
                                                 fontSize = 11.sp, color = WarmEditorial.Muted)
                                             EditorialSecondary("VIEW PRACTICE RESULTS →") { screen = EditorialScreen.Progress }
                                         }
@@ -262,7 +315,7 @@ fun SlangverseApp() {
                             }
 
                             EditorialScreen.Conversation -> {
-                                val post = SocialFeedGame.posts.firstOrNull { it.thread.id == focusedPostId }
+                                val post = feedProgress.posts.firstOrNull { it.thread.id == focusedPostId }
                                 if (post != null) {
                                     FeedSocialPost(post, feedProgress.answers[post.thread.id],
                                         liked = post.thread.id in likedPosts, saved = post.thread.id in savedPosts,
@@ -352,10 +405,10 @@ fun SlangverseApp() {
 
                             EditorialScreen.Challenges -> {
                                 EditorialSection("Your quests", "Small goals, at your own pace")
-                                EditorialChallenge("Decode ten conversations", "${feedProgress.answers.size} / 10",
-                                    feedProgress.answers.size / 10f, "PRACTICE", "◎")
-                                EditorialChallenge("Explore this pack’s contexts", "${feedProgress.contexts} / ${SocialFeedGame.contextCount}",
-                                    feedProgress.contexts.toFloat() / SocialFeedGame.contextCount, "EXPLORE", "▤")
+                                EditorialChallenge("Decode ten conversations", "${feedProgress.completedCount} / 10",
+                                    feedProgress.completedCount / 10f, "PRACTICE", "◎")
+                                EditorialChallenge("Explore this pack’s contexts", "${feedProgress.contexts} / ${feedProgress.contextCount}",
+                                    feedProgress.contexts.toFloat() / feedProgress.contextCount.coerceAtLeast(1), "EXPLORE", "▤")
                                 EditorialChallenge("Match five meanings", "${feedProgress.correct.coerceAtMost(5)} / 5",
                                     (feedProgress.correct / 5f).coerceAtMost(1f), "REVIEW", "✳")
                                 EditorialPrimary("BACK TO THE CONVERSATIONS →") { screen = EditorialScreen.Feed }
@@ -376,20 +429,20 @@ fun SlangverseApp() {
                             }
 
                             EditorialScreen.Progress -> {
-                                EditorialSection("Your practice", "Progress from the conversations you've answered")
+                                EditorialSection("Your practice", "Current question pack · locally graded practice")
                                 PaperCard(background = WarmEditorial.Blush) {
                                     EditorialTitle("${feedProgress.xp} practice XP", 29)
-                                    EditorialProgress(feedProgress.answers.size / 10f)
-                                    EditorialMetric("Conversations decoded", "${feedProgress.answers.size} / 10")
-                                    EditorialMetric("Meanings matched", "${feedProgress.correct} / ${feedProgress.answers.size}")
-                                    EditorialMetric("Contexts explored", "${feedProgress.contexts} / ${SocialFeedGame.contextCount}")
+                                    EditorialProgress(feedProgress.completedCount / 10f)
+                                    EditorialMetric("Conversations decoded", "${feedProgress.completedCount} / 10")
+                                    EditorialMetric("Meanings matched", "${feedProgress.correct} / ${feedProgress.completedCount}")
+                                    EditorialMetric("Contexts explored", "${feedProgress.contexts} / ${feedProgress.contextCount}")
                                     Text("One reward per post. Likes and bookmarks never affect your score.",
                                         fontSize = 12.sp, color = WarmEditorial.Muted)
                                 }
                                 feedProgress.decisions.forEach { result ->
-                                    val post = SocialFeedGame.posts.first { it.thread.id == result.caseId }
+                                    val post = feedProgress.posts.first { it.thread.id == result.caseId }
                                     PaperCard {
-                                        EditorialEyebrow(post.context.label.uppercase())
+                                        EditorialEyebrow(post.context?.label?.uppercase() ?: "OTHER CONTEXT")
                                         Text(post.thread.post, fontSize = 13.sp)
                                         Text("Your reply: ${post.thread.options[result.selectedIndex]}", fontSize = 12.sp)
                                         Text("Meaning here: ${post.thread.meaning}", fontSize = 12.sp)
@@ -398,7 +451,7 @@ fun SlangverseApp() {
                                         Text(post.thread.explanation, fontSize = 12.sp)
                                     }
                                 }
-                                if (feedProgress.answers.isEmpty()) Text("Reply to a highlighted comment in the feed to begin.")
+                                if (feedProgress.completedCount == 0) Text("Reply to a highlighted comment in the feed to begin.")
                                 Text("Local practice only; not a measure of mastery or participant research data.",
                                     fontSize = 11.sp, color = WarmEditorial.Muted)
                                 EditorialPrimary("RETURN TO FEED →") { screen = EditorialScreen.Feed }
@@ -422,7 +475,7 @@ fun SlangverseApp() {
                                                 fontSize = 12.sp)
                                         }
                                     }
-                                    EditorialProgress(feedProgress.answers.size / 10f)
+                                    EditorialProgress(feedProgress.completedCount / 10f)
                                 }
                                 PaperCard {
                                     EditorialTitle("Badge ideas · preview only", 24)
@@ -483,6 +536,7 @@ fun SlangverseApp() {
                 }
             }
         }
+    }
     }
 }
 
@@ -622,7 +676,7 @@ private fun EditorialHeader(
         StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story", avatarSize = 44.dp, emphasized = true)
         Text(thread.post, color = WarmEditorial.Ink, fontSize = 18.sp, lineHeight = 26.sp)
         story.quote?.let { StoryQuoteCard(it, onProfile) }
-        TextButton(onClick = { SocialFeedGame.contextForHashtag(thread.hashtag)?.let(onContext) }) {
+        TextButton(onClick = { post.context?.let(onContext) }, enabled = post.context != null) {
             Text(thread.hashtag, fontSize = 12.sp, color = WarmEditorial.CoralDeep)
         }
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
@@ -666,12 +720,14 @@ private fun EditorialHeader(
                 correct = correct,
                 xp = if (correct) ContextDetectiveGame.CORRECT_XP else ContextDetectiveGame.PRACTICE_XP,
                 meaning = thread.meaning, explanation = thread.explanation,
-                sourceLabel = "Hand-authored practice")
-            HorizontalDivider(color = WarmEditorial.Sand)
-            Text("Later in this story · scripted follow-up", fontSize = 12.sp,
-                lineHeight = 18.sp, color = WarmEditorial.Muted)
-            StoryIdentity(story.followUpHandle, onProfile, avatarSize = 32.dp)
-            Text(story.followUp, fontSize = 13.sp, lineHeight = 20.sp)
+                sourceLabel = post.sourceLabel)
+            if (story.followUp.isNotBlank()) {
+                HorizontalDivider(color = WarmEditorial.Sand)
+                Text("Later in this story · scripted follow-up", fontSize = 12.sp,
+                    lineHeight = 18.sp, color = WarmEditorial.Muted)
+                StoryIdentity(story.followUpHandle, onProfile, avatarSize = 32.dp)
+                Text(story.followUp, fontSize = 13.sp, lineHeight = 20.sp)
+            }
         }
     }
 }

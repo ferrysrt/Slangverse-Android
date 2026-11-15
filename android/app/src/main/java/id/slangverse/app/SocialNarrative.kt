@@ -4,7 +4,7 @@ internal data class FictionalProfile(
     val handle: String, val name: String, val bio: String,
     val avatarId: String = resolveProfilePictureId(handle = handle)
 )
-internal data class StoryReply(val id: String, val handle: String, val text: String, val parentId: String? = null)
+internal data class StoryReply(val id: String, val handle: String, val text: String, val parentId: String? = null, val avatarId: String = "")
 internal data class StoryQuote(val handle: String, val text: String)
 internal data class PostStory(
     val time: String,
@@ -13,7 +13,7 @@ internal data class PostStory(
     val followUpHandle: String,
     val followUp: String
 )
-internal data class ConversationUpdate(val postId: String, val handle: String, val text: String)
+internal data class ConversationUpdate(val postId: String, val handle: String, val text: String, val isFeedback: Boolean = false)
 
 /** Scripted identities and story continuity. No real accounts, incoming messages, or generated items. */
 internal object SocialNarrative {
@@ -57,6 +57,9 @@ internal object SocialNarrative {
 
     fun story(post: FeedPracticePost): PostStory {
         val id = post.thread.id
+        if (post.published) return PostStory(
+            time = "Published story", replies = post.replies.orEmpty(),
+            followUpHandle = post.thread.handle, followUp = "")
         val firstHandle = when (post.context) {
             FeedContext.Sports -> "@matchdaychat"
             FeedContext.Prediction -> "@benchside"
@@ -81,10 +84,12 @@ internal object SocialNarrative {
     }
 
     /** Exactly one scripted update per submitted post, regardless of correctness or social actions. */
-    fun updates(progress: FeedPracticeProgress): List<ConversationUpdate> = progress.answers.keys
-        .toList().asReversed().map { id ->
-            val post = SocialFeedGame.posts.first { it.thread.id == id }
+    fun updates(progress: FeedPracticeProgress): List<ConversationUpdate> = progress.decisions
+        .asReversed().map { decision ->
+            val post = progress.posts.first { it.thread.id == decision.caseId }
             val story = story(post)
-            ConversationUpdate(id, story.followUpHandle, story.followUp)
+            if (post.published) ConversationUpdate(post.thread.id, post.thread.handle,
+                "Review your interpretation of “${post.thread.term}” and its learning feedback.", isFeedback = true)
+            else ConversationUpdate(post.thread.id, story.followUpHandle, story.followUp)
         }
 }
