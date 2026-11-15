@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "senseId": "no-cap-truth",
+  "generationSource": "llm",
+  "generatorModel": "openai/gpt-6-luna",
+  "promptVersion": "slangverse-v3.1-inline-comment-pfp-v1",
+  "generatedAt": "2026-11-15T22:52:12.423Z",
+  "referenceStatus": "provisional",
+  "datasetVersion": "slangfeed-2026-10-05",
+  "expertValidated": false,
+  "questions": [
+    {
+      "id": "no cap-1",
+      "slang": "no cap",
+      "difficulty": "easy",
+      "contextId": "campus",
+      "post": {
+        "id": "campus",
+        "avatarId": "campus",
+        "displayName": "Campus Account",
+        "handle": "@campusfeed",
+        "hashtag": "#CampusChaos",
+        "content": "The library was so quiet I could hear my laptop fan from across the room, no cap.",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "avatarId": "guest_01",
+            "text": "Even the clock sounded loud in there."
+          },
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "I whisper when I turn the page."
+          }
+        ]
+      },
+      "questionComment": "Wait, does no cap mean you left your hat at home, or am I missing something?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "speaking truthfully without exaggeration",
+        "asking someone to lower their voice",
+        "saying the library is closed",
+        "complaining that a laptop is broken"
+      ],
+      "correctIndex": 0,
+      "explanation": "The poster emphasizes that the unusually quiet library experience really happened."
+    },
+    {
+      "id": "no cap-2",
+      "slang": "no cap",
+      "difficulty": "easy",
+      "contextId": "gaming",
+      "post": {
+        "id": "gaming",
+        "avatarId": "guest_01",
+        "displayName": "Pixel Scout",
+        "handle": "@pixelscout",
+        "hashtag": "#GameNight",
+        "content": "That final round lasted two minutes, no cap. I barely had time to grab my controller.",
+        "comments": [
+          {
+            "handle": "@matchdaychat",
+            "avatarId": "matchday",
+            "text": "The lobby timer felt longer."
+          },
+          {
+            "handle": "@guest_03",
+            "avatarId": "guest_03",
+            "text": "I was still picking a character!"
+          }
+        ]
+      },
+      "questionComment": "I know it isn't about hats, but what are you saying with no cap here?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the game automatically ended",
+        "speaking truthfully without exaggeration",
+        "the player forgot their controller",
+        "the round was unusually difficult"
+      ],
+      "correctIndex": 1,
+      "explanation": "The poster is insisting that the round really was very short."
+    },
+    {
+      "id": "no cap-3",
+      "slang": "no cap",
+      "difficulty": "easy",
+      "contextId": "office",
+      "post": {
+        "id": "office",
+        "avatarId": "ari",
+        "displayName": "Ari at Work",
+        "handle": "@ariatwork",
+        "hashtag": "#OfficeLife",
+        "content": "The meeting ended early for once, no cap. We all got ten minutes back.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "avatarId": "guest_04",
+            "text": "A rare calendar miracle."
+          },
+          {
+            "handle": "@ben",
+            "avatarId": "ben",
+            "text": "Those ten minutes felt luxurious."
+          }
+        ]
+      },
+      "questionComment": "Does no cap have some special office meaning in this post?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the meeting was moved to another room",
+        "the poster wants to cancel the next meeting",
+        "speaking truthfully without exaggeration",
+        "the meeting covered only one topic"
+      ],
+      "correctIndex": 2,
+      "explanation": "The poster stresses that the meeting really did finish early."
+    },
+    {
+      "id": "no cap-4",
+      "slang": "no cap",
+      "difficulty": "easy",
+      "contextId": "travel",
+      "post": {
+        "id": "travel",
+        "avatarId": "townloop",
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#WeekendTrip",
+        "content": "We watched the sunrise from the train window, no cap. The whole sky turned pink.",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "That sounds like a lovely start to the day."
+          },
+          {
+            "handle": "@naya",
+            "avatarId": "naya",
+            "text": "Hope you got a picture!"
+          }
+        ]
+      },
+      "questionComment": "I'm not sure what no cap adds to this travel story—could you clarify?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the train arrived late",
+        "the sunrise was difficult to see",
+        "the poster missed the train",
+        "speaking truthfully without exaggeration"
+      ],
+      "correctIndex": 3,
+      "explanation": "The poster underscores that the sunrise view was real, not embellished."
+    },
+    {
+      "id": "no cap-5",
+      "slang": "no cap",
+      "difficulty": "easy",
+      "contextId": "sports",
+      "post": {
+        "id": "sports",
+        "avatarId": "matchday",
+        "displayName": "Matchday Chat",
+        "handle": "@matchdaychat",
+        "hashtag": "#LocalSports",
+        "content": "The crowd kept cheering through the whole final quarter, no cap. You could hear them from outside the gym.",
+        "comments": [
+          {
+            "handle": "@benchside",
+            "avatarId": "ben",
+            "text": "The hallway was buzzing afterward too."
+          },
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "My ears are still ringing a little."
+          }
+        ]
+      },
+      "questionComment": "Is no cap a sports term here, or does it mean something else?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the crowd was cheering for a different team",
+        "speaking truthfully without exaggeration",
+        "the game continued past its scheduled end",
+        "the gym was too small for the crowd"
+      ],
+      "correctIndex": 1,
+      "explanation": "The poster emphasizes that the crowd really was loud throughout the quarter."
+    },
+    {
+      "id": "no cap-6",
+      "slang": "no cap",
+      "difficulty": "medium",
+      "contextId": "technology",
+      "post": {
+        "id": "technology",
+        "avatarId": "sam",
+        "displayName": "Sam",
+        "handle": "@sam",
+        "hashtag": "#TinyTechFix",
+        "content": "I unplugged the router for a minute and the whole connection came back, no cap. I thought I'd need to reset everything.",
+        "comments": [
+          {
+            "handle": "@guest_07",
+            "avatarId": "guest_07",
+            "text": "Sometimes the simplest fix wins."
+          },
+          {
+            "handle": "@kai",
+            "avatarId": "kai",
+            "text": "Saving this for my next troubleshooting spiral."
+          }
+        ]
+      },
+      "questionComment": "When you say no cap about the router, what are you trying to get across?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the router needs a new password",
+        "the connection came back only briefly",
+        "speaking truthfully without exaggeration",
+        "the poster is unsure whether the fix worked"
+      ],
+      "correctIndex": 2,
+      "explanation": "The poster is emphasizing that unplugging the router really restored the connection."
+    },
+    {
+      "id": "no cap-7",
+      "slang": "no cap",
+      "difficulty": "medium",
+      "contextId": "finance",
+      "post": {
+        "id": "finance",
+        "avatarId": "naya",
+        "displayName": "Naya",
+        "handle": "@naya",
+        "hashtag": "#BudgetNotes",
+        "content": "Packing lunch all week left enough in my budget for a new sketchbook, no cap. Those small savings added up.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "Little choices can make a difference."
+          },
+          {
+            "handle": "@lilalistens",
+            "avatarId": "lila",
+            "text": "A fresh sketchbook is a satisfying reward."
+          }
+        ]
+      },
+      "questionComment": "Could you explain what no cap is doing in this budgeting post?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the sketchbook was on sale",
+        "the poster packed lunch only once",
+        "the budget was accidentally changed",
+        "speaking truthfully without exaggeration"
+      ],
+      "correctIndex": 3,
+      "explanation": "The poster is saying the savings really did add up enough to buy a sketchbook."
+    },
+    {
+      "id": "no cap-8",
+      "slang": "no cap",
+      "difficulty": "medium",
+      "contextId": "event",
+      "post": {
+        "id": "event",
+        "avatarId": "mira",
+        "displayName": "Mira Moments",
+        "handle": "@miramoments",
+        "hashtag": "#NeighborhoodNight",
+        "content": "The community hall filled up before the first song, no cap. We had to bring out extra chairs.",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "That must have been a welcome surprise."
+          },
+          {
+            "handle": "@jo",
+            "avatarId": "jo",
+            "text": "Hope everyone found a seat!"
+          }
+        ]
+      },
+      "questionComment": "What should I understand from no cap when you're describing the event?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "speaking truthfully without exaggeration",
+        "the event started later than planned",
+        "the first song was performed twice",
+        "the hall was smaller than expected"
+      ],
+      "correctIndex": 0,
+      "explanation": "The poster highlights that the hall really filled up before the music began."
+    },
+    {
+      "id": "no cap-9",
+      "slang": "no cap",
+      "difficulty": "hard",
+      "contextId": "exam",
+      "post": {
+        "id": "exam",
+        "avatarId": "dea",
+        "displayName": "Dea Says",
+        "handle": "@deasays",
+        "hashtag": "#StudyWeek",
+        "content": "I finished the practice paper with six minutes to spare, no cap, after spending all week convinced I'd run out of time.",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "avatarId": "guest_03",
+            "text": "That must have been a huge relief."
+          },
+          {
+            "handle": "@guest_04",
+            "avatarId": "guest_04",
+            "text": "All that timing practice paid off."
+          }
+        ]
+      },
+      "questionComment": "I get the exam part, but what does no cap signal about that claim?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the practice paper was easier than expected",
+        "the poster skipped six questions",
+        "speaking truthfully without exaggeration",
+        "the poster finished after the time limit"
+      ],
+      "correctIndex": 2,
+      "explanation": "The phrase emphasizes that finishing with time left really happened, despite the poster's earlier worry."
+    },
+    {
+      "id": "no cap-10",
+      "slang": "no cap",
+      "difficulty": "hard",
+      "contextId": "application",
+      "post": {
+        "id": "application",
+        "avatarId": "guest_05",
+        "displayName": "Next Step Notes",
+        "handle": "@nextstepnotes",
+        "hashtag": "#ApplicationSeason",
+        "content": "I reread my application draft this morning and the final paragraph finally sounds like me, no cap. I stopped trying to make every sentence impressive.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "avatarId": "ari",
+            "text": "That sounds like a strong revision choice."
+          },
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "Clear and personal can make a real difference."
+          }
+        ]
+      },
+      "questionComment": "In this application update, what are you signaling with no cap?",
+      "question": "What does 'no cap' mean in this post?",
+      "options": [
+        "the application was submitted before the deadline",
+        "speaking truthfully without exaggeration",
+        "the draft needs a more formal tone",
+        "the final paragraph was removed"
+      ],
+      "correctIndex": 1,
+      "explanation": "The poster stresses that the final paragraph genuinely feels authentic to them."
+    }
+  ]
+}

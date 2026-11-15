@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "senseId": "lowkey-subtle",
+  "generationSource": "llm",
+  "generatorModel": "openai/gpt-6-luna",
+  "promptVersion": "slangverse-v3.1-inline-comment-pfp-v1",
+  "generatedAt": "2026-11-15T22:52:41.830Z",
+  "referenceStatus": "provisional",
+  "datasetVersion": "slangfeed-2026-10-05",
+  "expertValidated": false,
+  "questions": [
+    {
+      "id": "lowkey-1",
+      "slang": "lowkey",
+      "difficulty": "easy",
+      "contextId": "campus",
+      "post": {
+        "id": "campus",
+        "avatarId": "campus",
+        "displayName": "Campus Feed",
+        "handle": "@campusfeed",
+        "hashtag": "#CampusDays",
+        "content": "I lowkey loved the quiet corner in the library today; finally got through my reading.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "avatarId": "mira",
+            "text": "That corner is a hidden gem."
+          },
+          {
+            "handle": "@ariatwork",
+            "avatarId": "ari",
+            "text": "You stayed way past lunch, though."
+          }
+        ]
+      },
+      "questionComment": "When you say you lowkey loved it, are you keeping your feelings under wraps?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "in a subtle or understated way",
+        "with no interest at all",
+        "in a loud and obvious way",
+        "only for a short time"
+      ],
+      "correctIndex": 0,
+      "explanation": "The writer enjoyed the library corner but describes that feeling in a restrained way."
+    },
+    {
+      "id": "lowkey-2",
+      "slang": "lowkey",
+      "difficulty": "easy",
+      "contextId": "gaming",
+      "post": {
+        "id": "gaming",
+        "avatarId": "guest_01",
+        "displayName": "Pixel Pal",
+        "handle": "@pixelpal",
+        "hashtag": "#GameNight",
+        "content": "I lowkey carried that round, but the whole squad played well.",
+        "comments": [
+          {
+            "handle": "@matchdaychat",
+            "avatarId": "matchday",
+            "text": "That last save was clutch."
+          },
+          {
+            "handle": "@benchside",
+            "avatarId": "ben",
+            "text": "You barely mentioned your score afterward."
+          }
+        ]
+      },
+      "questionComment": "Are you saying lowkey because you didn't want to make a big deal of your win?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "without taking part",
+        "in a subtle or understated way",
+        "by using a secret game feature",
+        "with complete certainty"
+      ],
+      "correctIndex": 1,
+      "explanation": "The player hints at doing especially well without boasting about it."
+    },
+    {
+      "id": "lowkey-3",
+      "slang": "lowkey",
+      "difficulty": "easy",
+      "contextId": "office",
+      "post": {
+        "id": "office",
+        "avatarId": "ari",
+        "displayName": "Ari",
+        "handle": "@ariatwork",
+        "hashtag": "#Workday",
+        "content": "I lowkey fixed the spreadsheet before the meeting, so nobody had to scramble.",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "avatarId": "dea",
+            "text": "Smooth save. The meeting went right on."
+          },
+          {
+            "handle": "@justjo",
+            "avatarId": "jo",
+            "text": "You didn't even bring it up in the room."
+          }
+        ]
+      },
+      "questionComment": "Did you mean lowkey as in you handled it without drawing attention to yourself?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "in a rushed way",
+        "only after the meeting",
+        "in a subtle or understated way",
+        "with help from everyone"
+      ],
+      "correctIndex": 2,
+      "explanation": "Ari quietly solved the spreadsheet issue without making a fuss."
+    },
+    {
+      "id": "lowkey-4",
+      "slang": "lowkey",
+      "difficulty": "easy",
+      "contextId": "travel",
+      "post": {
+        "id": "travel",
+        "avatarId": "townloop",
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#WeekendTrip",
+        "content": "We lowkey found the best view on the trip by taking the slower path uphill.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "avatarId": "naya",
+            "text": "And you almost walked right past it."
+          },
+          {
+            "handle": "@sam",
+            "avatarId": "sam",
+            "text": "That little lookout deserves a return visit."
+          }
+        ]
+      },
+      "questionComment": "How does lowkey fit here—was finding the view not something you made a big announcement about?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "in a subtle or understated way",
+        "at the lowest point on a map",
+        "by following a crowded route",
+        "after dark"
+      ],
+      "correctIndex": 0,
+      "explanation": "The travelers mention their discovery casually rather than making a big announcement."
+    },
+    {
+      "id": "lowkey-5",
+      "slang": "lowkey",
+      "difficulty": "easy",
+      "contextId": "sports",
+      "post": {
+        "id": "sports",
+        "avatarId": "matchday",
+        "displayName": "Matchday Chat",
+        "handle": "@matchdaychat",
+        "hashtag": "#TeamPractice",
+        "content": "I lowkey changed the warm-up playlist, and everyone kept moving longer than usual.",
+        "comments": [
+          {
+            "handle": "@benchside",
+            "avatarId": "ben",
+            "text": "No one noticed the switch until the last song."
+          },
+          {
+            "handle": "@playerfan",
+            "avatarId": "guest_03",
+            "text": "The extra laps felt less like extra laps."
+          }
+        ]
+      },
+      "questionComment": "Were you trying to slip that playlist change past the team when you said lowkey?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "with the coach's permission",
+        "at a very quiet volume",
+        "in a subtle or understated way",
+        "during the final part of practice"
+      ],
+      "correctIndex": 2,
+      "explanation": "The playlist was changed without making the adjustment especially noticeable."
+    },
+    {
+      "id": "lowkey-6",
+      "slang": "lowkey",
+      "difficulty": "medium",
+      "contextId": "technology",
+      "post": {
+        "id": "technology",
+        "avatarId": "guest_04",
+        "displayName": "Patch Notes Pal",
+        "handle": "@patchnotespal",
+        "hashtag": "#AppUpdate",
+        "content": "The new layout lowkey makes the settings easier to find, even though the update barely looks different.",
+        "comments": [
+          {
+            "handle": "@kai",
+            "avatarId": "kai",
+            "text": "I found the privacy toggle on my first try."
+          },
+          {
+            "handle": "@lilalistens",
+            "avatarId": "lila",
+            "text": "Took me a day to notice anything had changed."
+          }
+        ]
+      },
+      "questionComment": "What are you getting at with lowkey here—the layout change isn't very showy?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "in a subtle or understated way",
+        "by removing most of the settings",
+        "only on older devices",
+        "in a way that makes the app slower"
+      ],
+      "correctIndex": 0,
+      "explanation": "The layout improves the app quietly, without a major visible change."
+    },
+    {
+      "id": "lowkey-7",
+      "slang": "lowkey",
+      "difficulty": "medium",
+      "contextId": "finance",
+      "post": {
+        "id": "finance",
+        "avatarId": "guest_05",
+        "displayName": "Budget Notebook",
+        "handle": "@budgetnotebook",
+        "hashtag": "#SavingSteps",
+        "content": "I lowkey switched to making coffee at home, and my weekly spending has been a little easier to manage.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "avatarId": "naya",
+            "text": "Small routine changes really add up."
+          },
+          {
+            "handle": "@sam",
+            "avatarId": "sam",
+            "text": "You didn't even announce your new coffee era."
+          }
+        ]
+      },
+      "questionComment": "Does lowkey mean the change happened gradually or without much fuss?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "with a strict financial plan",
+        "for only one week",
+        "because coffee prices fell",
+        "in a subtle or understated way"
+      ],
+      "correctIndex": 3,
+      "explanation": "The writer describes the habit change casually, without presenting it as a major announcement."
+    },
+    {
+      "id": "lowkey-8",
+      "slang": "lowkey",
+      "difficulty": "medium",
+      "contextId": "event",
+      "post": {
+        "id": "event",
+        "avatarId": "guest_06",
+        "displayName": "Gathering Notes",
+        "handle": "@gatheringnotes",
+        "hashtag": "#CommunityNight",
+        "content": "We lowkey made the whole community night feel warmer by adding handwritten welcome cards to the tables.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "avatarId": "jo",
+            "text": "A few people took theirs home."
+          },
+          {
+            "handle": "@deasays",
+            "avatarId": "dea",
+            "text": "Such a thoughtful touch, and easy to miss at first."
+          }
+        ]
+      },
+      "questionComment": "When you say lowkey, are you describing the welcome cards as a quiet touch rather than the main attraction?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "with a large public announcement",
+        "in a subtle or understated way",
+        "by lowering the room lights",
+        "without inviting the community"
+      ],
+      "correctIndex": 1,
+      "explanation": "The cards added warmth as a small, understated detail at the event."
+    },
+    {
+      "id": "lowkey-9",
+      "slang": "lowkey",
+      "difficulty": "hard",
+      "contextId": "exam",
+      "post": {
+        "id": "exam",
+        "avatarId": "guest_07",
+        "displayName": "Study Break",
+        "handle": "@studybreaklog",
+        "hashtag": "#ExamWeek",
+        "content": "I lowkey helped my study group spot the pattern in the practice questions by asking one extra question each time.",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "avatarId": "campus",
+            "text": "Everyone got to the answer together."
+          },
+          {
+            "handle": "@miramoments",
+            "avatarId": "mira",
+            "text": "That question changed the whole discussion."
+          }
+        ]
+      },
+      "questionComment": "Are you using lowkey to say your role in the group went mostly unnoticed?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "by giving the group the answers",
+        "without preparing for the exam",
+        "in a subtle or understated way",
+        "only after the practice session ended"
+      ],
+      "correctIndex": 2,
+      "explanation": "The writer guided the group with small prompts instead of taking over or drawing attention to their role."
+    },
+    {
+      "id": "lowkey-10",
+      "slang": "lowkey",
+      "difficulty": "hard",
+      "contextId": "application",
+      "post": {
+        "id": "application",
+        "avatarId": "guest_08",
+        "displayName": "Application Notes",
+        "handle": "@applicationnotes",
+        "hashtag": "#PortfolioBuild",
+        "content": "I lowkey reshaped my portfolio around the projects I learned the most from, rather than adding another flashy page.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "avatarId": "ari",
+            "text": "The whole story reads more clearly now."
+          },
+          {
+            "handle": "@kai",
+            "avatarId": "kai",
+            "text": "I noticed the difference on the second look."
+          }
+        ]
+      },
+      "questionComment": "Is lowkey suggesting a quiet adjustment to the portfolio, not a dramatic redesign?",
+      "question": "What does 'lowkey' mean in this post?",
+      "options": [
+        "by copying another applicant's work",
+        "only for a short application window",
+        "with no changes to the projects",
+        "in a subtle or understated way"
+      ],
+      "correctIndex": 3,
+      "explanation": "The writer made a restrained change to the portfolio's focus instead of adding a flashy feature."
+    }
+  ]
+}

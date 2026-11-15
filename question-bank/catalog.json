@@ -3,9 +3,34 @@
   "datasetVersion": "slangfeed-2026-10-05",
   "source": "github-static",
   "generationSource": "llm",
-  "status": "awaiting-generation",
+  "status": "ready",
   "candidateCount": 200,
   "expertValidated": false,
-  "bankVersion": "4f53cda18c2baa0c",
-  "senses": []
+  "bankVersion": "4073955f7be050cc",
+  "senses": [
+    {
+      "senseId": "cooked-trouble",
+      "term": "cooked",
+      "reviewStatus": "provisional",
+      "sourceRelationship": "conflict",
+      "playable": true,
+      "sha256": "65d75762858e52563e121a2235164bfa6060420a598160a98c9f5b126a6da4cc"
+    },
+    {
+      "senseId": "no-cap-truth",
+      "term": "no cap",
+      "reviewStatus": "provisional",
+      "sourceRelationship": "related_unverified",
+      "playable": true,
+      "sha256": "46b4445eaaa4488d56f30d97a31dd89408dce899f22202acaf67097b0c64cdd4"
+    },
+    {
+      "senseId": "lowkey-subtle",
+      "term": "lowkey",
+      "reviewStatus": "provisional",
+      "sourceRelationship": "related_unverified",
+      "playable": true,
+      "sha256": "a661f6a380e50bba428e801dd4fbf4863811ae31b6c17829074a600c4f0bd921"
+    }
+  ]
 }

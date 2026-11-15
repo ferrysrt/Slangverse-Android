@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "senseId": "cooked-trouble",
+  "generationSource": "llm",
+  "generatorModel": "openai/gpt-6-luna",
+  "promptVersion": "slangverse-v3.1-inline-comment-pfp-v1",
+  "generatedAt": "2026-11-15T22:51:44.249Z",
+  "referenceStatus": "provisional",
+  "datasetVersion": "slangfeed-2026-10-05",
+  "expertValidated": false,
+  "questions": [
+    {
+      "id": "cooked-1",
+      "slang": "cooked",
+      "difficulty": "easy",
+      "contextId": "campus",
+      "post": {
+        "id": "campus",
+        "avatarId": "guest_01",
+        "displayName": "Campus Account",
+        "handle": "@campusday",
+        "hashtag": "#CampusChaos",
+        "content": "Forgot my history project at home, and it’s due in ten minutes. I’m cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The teacher just started collecting them 😬"
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Maybe you can email it before class ends?"
+          }
+        ]
+      },
+      "questionComment": "Wait, what does cooked mean here—did something actually happen in a kitchen?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Very tired after a long day",
+        "in serious trouble",
+        "Ready to eat",
+        "Having a really good time"
+      ],
+      "correctIndex": 1,
+      "explanation": "The project is due soon, and it was left at home, so the student expects consequences."
+    },
+    {
+      "id": "cooked-2",
+      "slang": "cooked",
+      "difficulty": "easy",
+      "contextId": "gaming",
+      "post": {
+        "id": "gaming",
+        "avatarId": "guest_04",
+        "displayName": "Pixel Player",
+        "handle": "@pixelqueue",
+        "hashtag": "#FinalRound",
+        "content": "I used our last life, and the boss still has a full health bar. We’re cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "That health bar barely moved."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Maybe save the special move for the next try."
+          }
+        ]
+      },
+      "questionComment": "I’m lost—what are you saying with cooked when the boss is still standing?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Ready for a new game",
+        "Playing very skillfully",
+        "in serious trouble",
+        "Completely out of energy"
+      ],
+      "correctIndex": 2,
+      "explanation": "The team has used its last life while the boss remains strong, leaving them in a bad spot."
+    },
+    {
+      "id": "cooked-3",
+      "slang": "cooked",
+      "difficulty": "easy",
+      "contextId": "office",
+      "post": {
+        "id": "office",
+        "avatarId": "guest_05",
+        "displayName": "Office Notes",
+        "handle": "@deskdiary",
+        "hashtag": "#MondayMeeting",
+        "content": "I sent the draft to the client with the old prices still in it. I’m cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "That’s the version from last month, right?"
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Maybe send the corrected file right away."
+          }
+        ]
+      },
+      "questionComment": "Could you clarify what cooked means here, given the mix-up with the client file?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "in serious trouble",
+        "Busy with several tasks",
+        "Pleased with the final draft",
+        "Ready to leave work"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sending a client the wrong prices could cause a serious problem at work."
+    },
+    {
+      "id": "cooked-4",
+      "slang": "cooked",
+      "difficulty": "easy",
+      "contextId": "travel",
+      "post": {
+        "id": "travel",
+        "avatarId": "guest_06",
+        "displayName": "Window Seat",
+        "handle": "@windowseatlog",
+        "hashtag": "#TrainDash",
+        "content": "My train leaves in five minutes, and I just realized my ticket is for yesterday. I’m cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The station desk might be able to help."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Those departure boards are already changing."
+          }
+        ]
+      },
+      "questionComment": "When you say cooked about the ticket, what are you getting at?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Excited to start a trip",
+        "Exhausted from traveling",
+        "in serious trouble",
+        "Hungry during the journey"
+      ],
+      "correctIndex": 2,
+      "explanation": "The ticket is for the wrong day and the train is leaving soon, creating a serious travel problem."
+    },
+    {
+      "id": "cooked-5",
+      "slang": "cooked",
+      "difficulty": "easy",
+      "contextId": "sports",
+      "post": {
+        "id": "sports",
+        "avatarId": "guest_07",
+        "displayName": "Sideline Scoop",
+        "handle": "@sidelinescoop",
+        "hashtag": "#LastMinute",
+        "content": "Our team is down by three with ten seconds left, and we just lost possession. We’re cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The other side has the ball now."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "That clock is not doing us any favors."
+          }
+        ]
+      },
+      "questionComment": "What does cooked suggest about the team in this last-minute situation?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Ready to celebrate a win",
+        "in serious trouble",
+        "Too tired to keep playing",
+        "Learning the rules"
+      ],
+      "correctIndex": 1,
+      "explanation": "The team is behind, has little time left, and has lost possession, so its position looks very bad."
+    },
+    {
+      "id": "cooked-6",
+      "slang": "cooked",
+      "difficulty": "medium",
+      "contextId": "technology",
+      "post": {
+        "id": "technology",
+        "avatarId": "guest_08",
+        "displayName": "Build Log",
+        "handle": "@buildlog",
+        "hashtag": "#DemoDay",
+        "content": "The demo starts in an hour, and the update wiped the only working build. We’re cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The backup copy is from before the main feature was added."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Maybe the old laptop still has a local version."
+          }
+        ]
+      },
+      "questionComment": "I get that the build is gone, but what does cooked mean in this post?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Ready to install an update",
+        "Surprised by a new feature",
+        "in serious trouble",
+        "Working faster than expected"
+      ],
+      "correctIndex": 2,
+      "explanation": "With the demo approaching and the only working build gone, the team faces a major problem."
+    },
+    {
+      "id": "cooked-7",
+      "slang": "cooked",
+      "difficulty": "medium",
+      "contextId": "finance",
+      "post": {
+        "id": "finance",
+        "avatarId": "guest_01",
+        "displayName": "Budget Board",
+        "handle": "@budgetboard",
+        "hashtag": "#MonthlyBills",
+        "content": "The rent payment bounced, and the bank says the account is short again. I’m cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The notice came through this morning."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Might be worth checking the payment date and balance."
+          }
+        ]
+      },
+      "questionComment": "Could you explain cooked here? I’m trying to read the post in context.",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Excited about a new budget",
+        "Confused by a bank statement",
+        "Taking a break from spending",
+        "in serious trouble"
+      ],
+      "correctIndex": 3,
+      "explanation": "A bounced rent payment and a short account balance point to a serious financial predicament."
+    },
+    {
+      "id": "cooked-8",
+      "slang": "cooked",
+      "difficulty": "medium",
+      "contextId": "event",
+      "post": {
+        "id": "event",
+        "avatarId": "guest_04",
+        "displayName": "Backstage Brief",
+        "handle": "@backstagebrief",
+        "hashtag": "#ShowNight",
+        "content": "The venue says our reservation was never confirmed, and the guests are already on their way. We’re cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The printed schedule still lists this room."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "The front desk is checking the other halls."
+          }
+        ]
+      },
+      "questionComment": "What’s cooked doing in this post about the venue reservation?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Proud of how the event turned out",
+        "Ready to welcome the guests",
+        "in serious trouble",
+        "Worn out after organizing"
+      ],
+      "correctIndex": 2,
+      "explanation": "The reservation problem surfaced just as guests are arriving, putting the event in a difficult situation."
+    },
+    {
+      "id": "cooked-9",
+      "slang": "cooked",
+      "difficulty": "hard",
+      "contextId": "exam",
+      "post": {
+        "id": "exam",
+        "avatarId": "guest_05",
+        "displayName": "Study Break",
+        "handle": "@studybreaknotes",
+        "hashtag": "#ExamWeek",
+        "content": "I uploaded the blank answer sheet instead of my completed exam, and the portal just closed. I’m cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "It shows the empty file as your final submission."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "The instructor may still be able to see the upload history."
+          }
+        ]
+      },
+      "questionComment": "I’m not sure how to read cooked here—what are you implying about that submission?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "in serious trouble",
+        "Relieved that the exam is over",
+        "Certain the answers were correct",
+        "Too tired to study more"
+      ],
+      "correctIndex": 0,
+      "explanation": "The blank sheet was submitted and the portal closed, leaving the student facing a potentially serious consequence."
+    },
+    {
+      "id": "cooked-10",
+      "slang": "cooked",
+      "difficulty": "hard",
+      "contextId": "application",
+      "post": {
+        "id": "application",
+        "avatarId": "guest_06",
+        "displayName": "Deadline Desk",
+        "handle": "@deadlinedesk",
+        "hashtag": "#ApplicationSeason",
+        "content": "I noticed after the deadline that I attached the wrong portfolio to my application. The review team has already started. I’m cooked.",
+        "comments": [
+          {
+            "handle": "@hallmate",
+            "avatarId": "guest_02",
+            "text": "The portal won’t let you replace the file now."
+          },
+          {
+            "handle": "@notebookkid",
+            "avatarId": "guest_03",
+            "text": "Maybe the office can tell you whether an update is possible."
+          }
+        ]
+      },
+      "questionComment": "What does cooked mean in this application update, with the deadline already passed?",
+      "question": "What does 'cooked' mean in this post?",
+      "options": [
+        "Confident the application will succeed",
+        "in serious trouble",
+        "Pleased with the portfolio",
+        "Ready to submit another form"
+      ],
+      "correctIndex": 1,
+      "explanation": "The wrong portfolio was submitted after the deadline, creating a serious risk for the application."
+    }
+  ]
+}
