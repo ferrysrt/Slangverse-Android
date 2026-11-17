@@ -18,7 +18,7 @@ The user-approved plan uses the own Firecrawl-normalized JSON/CSV, automatic pro
 
 - The experiment-report summary CLI (`npm run experiments:report`) and the mixed publisher workflow are wired: the workflow runs at most the selected number of attempts (default one, maximum three), aggregates real attempt evidence, uploads `backend/experiments/` and `question-bank/`, and persists available audit files and valid additions even when generation fails.
 - The dataset workflow sets `DATASET_AUDIT_DIR=dataset-runs` (relative to its `backend/` working directory), so each refresh keeps bounded request/response evidence, rejections and a terminal `result.json` under `backend/dataset-runs/` even on failure.
-- A live refresh has run: 22 normalized entries with persisted audit evidence. Three real mixed attempts (`mixed-v1`…`v3`) are archived; each passed the critical nine but was rejected by additional integrity gates, so **no mixed pack is published** and no success rate is claimed.
+- A live refresh has run: 22 normalized entries with persisted audit evidence. Four real mixed attempts (`mixed-v1`…`mixed-v4`) are archived; each passed the critical nine but was rejected by additional integrity gates, so **no mixed pack is published** and no success rate is claimed.
 - Android `versionName: 0.5.0-mixed-feed` and `versionCode: 6` are on main; [build run 44140097650](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44140097650) compiled, ran 48 unit tests with zero failures and uploaded the APK. Device acceptance is still outstanding.
 - Report actual refresh/generation/device outcomes after those runs. No live mixed generation result or success rate is asserted here.
 

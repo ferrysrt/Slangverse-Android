@@ -10,15 +10,16 @@ Code checkpoint at report time is on **main**; the final commit and run IDs are 
 
 ## Actual mixed-generation results
 
-Three bounded publisher runs, one paid request each, no retries or JSON repair: [v1 44143393023](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44143393023), [v2 44144286530](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144286530), [v3 44144857363](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144857363).
+Four bounded publisher runs, one paid request each, no retries or JSON repair: [v1 44143393023](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44143393023), [v2 44144286530](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144286530), [v3 44144857363](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144857363), [v4 44146316232](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44146316232).
 
 | Version | Provider | Critical nine | Additional gates | Outcome |
 | --- | --- | --- | --- | --- |
 | `mixed-v1` | 1 call, HTTP 200, `stop`/`completed`, 5,200+3,214 tokens, provider-reported cost 0.002256925 | 9/9 pass | `reference-integrity`: `7:post-slang-missing` | rejected |
 | `mixed-v2` | 1 call, HTTP 200, `stop`/`completed` | 9/9 pass | `existing-question-rules`: 4 × `question-comment-shape` | rejected |
 | `mixed-v3` | 1 call, HTTP 200 | 9/9 pass | `reference-mismatch`, `key-meaning-mismatch`, `unused-reference` on question 5 | rejected |
+| `mixed-v4` | 1 call, HTTP 200, `stop`/`completed`, 5,029+4,107 tokens, provider-reported cost 0.00268205 | 9/9 pass | `existing-question-rules`: 9 × `question-comment-shape` | rejected |
 
-**Published mixed packs: 0.** No pack entered `question-bank/packs/`; the bank still advertises the six retained legacy senses and its catalogue was not changed by these failed attempts. Three terminal attempts are archived with rendered prompts, non-secret request parameters, raw output/response, provider metadata, named checks and results in `backend/experiments/`; `summary.json` and `attempts.csv` aggregate them. See [prompt engineering](PROMPT_ENGINEERING.md) for the v1→v2→v3 hypotheses and the aggregate interpretation.
+**Published mixed packs: 0.** No pack entered `question-bank/packs/`; the bank still advertises the six retained legacy senses and its catalogue was not changed by these failed attempts. Four terminal attempts are archived with rendered prompts, non-secret request parameters, raw output/response, provider metadata, named checks and results in `backend/experiments/`; `summary.json` and `attempts.csv` aggregate them. See [prompt engineering](PROMPT_ENGINEERING.md) for the v1→v2→v3 hypotheses and the aggregate interpretation.
 
 Backend local `npm test` after the final prompt change: **165 passed, 0 failed/cancelled/skipped**. Source guards: **12 passed, 0 failed**. Android/JUnit results come from the earlier successful [build run 44140097650](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44140097650) (**48 tests, 0 failures/errors/skipped**); no new Android code changed in these live runs.
 

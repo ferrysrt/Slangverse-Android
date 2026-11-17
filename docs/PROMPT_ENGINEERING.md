@@ -2,7 +2,7 @@
 
 ## Scope and evidence rule
 
-The implemented mixed baseline is **`mixed-v3`**, stored in `backend/prompts/mixed-v3.txt` (with v1/v2 retained) and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
+The implemented mixed baseline is **`mixed-v4`**, stored in `backend/prompts/mixed-v4.txt` (with v1/v2/v3 retained) and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
 
 Report only observations backed by actual attempt files. A future prompt revision needs its own saved template, actual runs and comparable metrics before it can be described as evaluated or better.
 
@@ -101,17 +101,21 @@ Both revisions are one-target-change steps from observed evidence, not a broad r
 
 A real `mixed-v3` attempt exists: [publisher run 44144857363](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144857363), record `mixed-20261117t181016380z-2806191a-d9ba-45fe-aef4-8d92d9e6adc6`. The post-term and question-comment failures did not recur. It failed differently: question 5 copied a paraphrase instead of the reference string — assigned meaning `"A dance indicating that someone or something smells bad."`, returned `"A move that signals someone or something smells bad"` — producing `4:reference-mismatch`, `4:key-meaning-mismatch` and `unused-reference`.
 
-### Aggregate observed via `mixed-v1` through `mixed-v3`
+`mixed-v4` therefore requires the reference string to be copied character-for-character into both `targetMeaning` and the correct option. Its real attempt, [run 44146316232](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44146316232), record `mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e`, fixed that: the meaning and option matched the reference verbatim. It failed on a different defect — **nine of ten `questionComment` values omitted the literal slang term** (e.g. `"Did the lockers really all start playing the same tune?"` for `ohio`). That is now the second version to lose the term from the comment (v2: four items, v4: nine), so the instruction-only approach is not reliable for this field.
+
+### Aggregate observed via `mixed-v1` through `mixed-v4`
 
 | Item | Observed |
 | --- | --- |
-| Real terminal attempts | 3 (one per version) |
-| Provider calls | 3, one each, no retries |
-| Critical nine, all passing | **3/3 attempts** |
-| Publishable after additional gates | **0/3** |
-| Failure categories | v1 `post-slang-missing`; v2 four `question-comment-shape`; v3 `reference-mismatch`/`key-meaning-mismatch`/`unused-reference` |
+| Real terminal attempts | 4 (one per version) |
+| Provider calls | 4, one each, no retries |
+| Critical nine, all passing | **4/4 attempts** |
+| Publishable after additional gates | **0/4** |
+| Failure categories | v1 `post-slang-missing`; v2 four `question-comment-shape`; v3 `reference-mismatch`/`key-meaning-mismatch`/`unused-reference`; v4 nine `question-comment-shape` |
 
-The important interpretation is that **the nine critical checks alone would have accepted all three packs**; the reference-integrity, existing-question and completion gates are what stopped them. Do not report a "100% valid generation rate" from the critical-nine subset. A fourth candidate hypothesis — require `targetMeaning` and the correct option to be copied verbatim from the reference — is recorded but **not implemented or tested**; the bounded revision loop stops at v3.
+The important interpretation is that **the nine critical checks alone would have accepted all four packs**; the reference-integrity, existing-question and completion gates are what stopped them. Do not report a "100% valid generation rate" from the critical-nine subset.
+
+The bounded revision loop stops at v4. The `questionComment` term requirement is a **legacy self-imposed constraint** (inherited from the single-sense V3.1 validator), not one of the nine critical checks. Three options remain for a future decision, none taken here: (a) keep the constraint and accept repeated rejection, (b) drop the redundancy with an explicit justification because the term is already required in `post.content`, or (c) add a disclosed deterministic repair step and record it as a repair rather than a clean generation. Weakening the validator silently to obtain a pass was deliberately not done.
 
 ## Revision and interpretation protocol
 
