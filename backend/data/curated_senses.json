@@ -28,5 +28,95 @@
     "sourceDatasetTerm": "lowkey",
     "sourceRelationship": "related_unverified",
     "referenceNote": "SlangFeed candidate relates to subtle/non-obvious expression; this target sense has not had a linguistic expert review."
+  },
+  {
+    "senseId": "glow-up-improvement",
+    "term": "glow up",
+    "targetMeaning": "a noticeable improvement in appearance or confidence",
+    "reviewStatus": "provisional",
+    "playable": true,
+    "sourceDataset": "firecrawl",
+    "sourceCandidateId": "73cca91552b47e1831845692",
+    "sourceDatasetTerm": "glow up",
+    "sourceRelationship": "source-backed-provisional",
+    "referenceNote": "The collected UPrinting glossary explicitly defines Glow Up as a noticeable improvement in looks or confidence. The source page was also read directly during this review. Target meaning paraphrases that entry; use harmless fictional personal/style/confidence changes, not guaranteed outcomes or body-shaming. This commercial blog is one provisional reference, not linguistic expert approval or evidence of current usage frequency. No full page is republished.",
+    "definition": "A noticeable improvement in appearance or confidence.",
+    "normalizedDefinition": "A noticeable improvement in appearance or confidence.",
+    "normalizationModel": "openai/gpt-6-luna",
+    "sources": [
+      {
+        "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+        "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+        "quote": "| Glow Up | **A noticeable improvement in looks or confidence.**“Her post-breakup glow up could power a small city.” |",
+        "collectedAt": "2026-11-17T13:08:28.914Z",
+        "collectionMethod": "firecrawl",
+        "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+      }
+    ],
+    "review": {
+      "reviewedBy": "Zed coding agent — agent-assisted source and safety review",
+      "reviewedAt": "2026-11-17T13:10:05.787Z",
+      "scope": "developer-source-and-safety-review-not-expert-validation"
+    }
+  },
+  {
+    "senseId": "rizz-flirting",
+    "term": "rizz",
+    "targetMeaning": "charm or skill in flirting",
+    "reviewStatus": "provisional",
+    "playable": true,
+    "sourceDataset": "firecrawl",
+    "sourceCandidateId": "da836b332facac35d6cece15",
+    "sourceDatasetTerm": "rizz",
+    "sourceRelationship": "source-backed-provisional",
+    "referenceNote": "The collected UPrinting glossary explicitly lists smooth flirting skills or natural charisma, corroborated by directly reading the source page. This target narrows to the flirting use rather than general personal presence; keep all fictional interactions age-appropriate, non-explicit and respectful. A commercial glossary and agent-assisted review do not establish expert semantic validation, prevalence or calibrated difficulty. Only the short supporting excerpt is retained.",
+    "definition": "Flirting skill or natural charisma.",
+    "normalizedDefinition": "Flirting skill or natural charisma.",
+    "normalizationModel": "openai/gpt-6-luna",
+    "sources": [
+      {
+        "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+        "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+        "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+        "collectedAt": "2026-11-17T13:08:28.914Z",
+        "collectionMethod": "firecrawl",
+        "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+      }
+    ],
+    "review": {
+      "reviewedBy": "Zed coding agent — agent-assisted source and safety review",
+      "reviewedAt": "2026-11-17T13:10:05.787Z",
+      "scope": "developer-source-and-safety-review-not-expert-validation"
+    }
+  },
+  {
+    "senseId": "iykyk-inside-reference",
+    "term": "iykyk",
+    "targetMeaning": "an inside joke or niche reference understood by those familiar with it",
+    "reviewStatus": "provisional",
+    "playable": true,
+    "sourceDataset": "firecrawl",
+    "sourceCandidateId": "e4323f9559778628325cd112",
+    "sourceDatasetTerm": "iykyk",
+    "sourceRelationship": "source-backed-provisional",
+    "referenceNote": "The collected UPrinting glossary explicitly describes an inside joke or niche reference and expands IYKYK as If You Know, You Know; the source page was also read directly. The target expresses shared-background understanding, not literal secrecy or proof of truth. Use benign fictional shared experiences rather than exclusion or harassment. This is a single commercial source and provisional agent-assisted review, not expert approval or a popularity claim; only its short supporting excerpt is retained.",
+    "definition": "An inside joke or niche reference, short for “if you know, you know.”",
+    "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+    "normalizationModel": "openai/gpt-6-luna",
+    "sources": [
+      {
+        "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+        "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+        "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+        "collectedAt": "2026-11-17T13:08:28.914Z",
+        "collectionMethod": "firecrawl",
+        "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+      }
+    ],
+    "review": {
+      "reviewedBy": "Zed coding agent — agent-assisted source and safety review",
+      "reviewedAt": "2026-11-17T13:10:05.787Z",
+      "scope": "developer-source-and-safety-review-not-expert-validation"
+    }
   }
 ]

@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Run backend provenance, generation and publication tests
+        run: npm --prefix backend test
       - name: Check default reply visibility and explicit answer controls
         run: node --test android/scripts/reply-visibility.test.mjs
       - name: Verify bundled profile pictures and generated registries

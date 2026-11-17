@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "candidateId": "73cca91552b47e1831845692",
+    "senseId": "glow-up-improvement",
+    "targetMeaning": "a noticeable improvement in appearance or confidence",
+    "reviewedBy": "Zed coding agent — agent-assisted source and safety review",
+    "reviewedAt": "2026-11-17T13:10:05.787Z",
+    "referenceNote": "The collected UPrinting glossary explicitly defines Glow Up as a noticeable improvement in looks or confidence. The source page was also read directly during this review. Target meaning paraphrases that entry; use harmless fictional personal/style/confidence changes, not guaranteed outcomes or body-shaming. This commercial blog is one provisional reference, not linguistic expert approval or evidence of current usage frequency. No full page is republished."
+  },
+  {
+    "candidateId": "da836b332facac35d6cece15",
+    "senseId": "rizz-flirting",
+    "targetMeaning": "charm or skill in flirting",
+    "reviewedBy": "Zed coding agent — agent-assisted source and safety review",
+    "reviewedAt": "2026-11-17T13:10:05.787Z",
+    "referenceNote": "The collected UPrinting glossary explicitly lists smooth flirting skills or natural charisma, corroborated by directly reading the source page. This target narrows to the flirting use rather than general personal presence; keep all fictional interactions age-appropriate, non-explicit and respectful. A commercial glossary and agent-assisted review do not establish expert semantic validation, prevalence or calibrated difficulty. Only the short supporting excerpt is retained."
+  },
+  {
+    "candidateId": "e4323f9559778628325cd112",
+    "senseId": "iykyk-inside-reference",
+    "targetMeaning": "an inside joke or niche reference understood by those familiar with it",
+    "reviewedBy": "Zed coding agent — agent-assisted source and safety review",
+    "reviewedAt": "2026-11-17T13:10:05.787Z",
+    "referenceNote": "The collected UPrinting glossary explicitly describes an inside joke or niche reference and expands IYKYK as If You Know, You Know; the source page was also read directly. The target expresses shared-background understanding, not literal secrecy or proof of truth. Use benign fictional shared experiences rather than exclusion or harassment. This is a single commercial source and provisional agent-assisted review, not expert approval or a popularity claim; only its short supporting excerpt is retained."
+  }
+]

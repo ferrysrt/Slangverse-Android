@@ -19,7 +19,8 @@ export function buildDemoBank() {
     generationSource: 'mock',
     candidateCount: catalog.candidateCount,
     expertValidated: false,
-    senses: catalog.senses.map(({senseId, term, reviewStatus}) => ({senseId, term, reviewStatus}))
+    senses: catalog.senses.filter(sense => !sense.sourceCandidateId)
+          .map(({senseId, term, reviewStatus}) => ({senseId, term, reviewStatus}))
   };
   const packs = {};
   for (const sense of index.senses) {
