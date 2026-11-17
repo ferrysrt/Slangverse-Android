@@ -105,19 +105,20 @@ A real `mixed-v3` attempt exists: [publisher run 44144857363](https://github.com
 
 `mixed-v4` therefore requires the reference string to be copied character-for-character into both `targetMeaning` and the correct option. Its real attempt, [run 44146316232](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44146316232), record `mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e`, fixed that: the meaning and option matched the reference verbatim. It failed on a different defect — **nine of ten `questionComment` values omitted the literal slang term** (e.g. `"Did the lockers really all start playing the same tune?"` for `ohio`). That is now the second version to lose the term from the comment (v2: four items, v4: nine), so the instruction-only approach is not reliable for this field.
 
-### Aggregate observed via `mixed-v1` through `mixed-v4`
+### Aggregate observed via `mixed-v1` through `mixed-v5`
 
 | Item | Observed |
 | --- | --- |
-| Real terminal attempts | 4 (one per version) |
-| Provider calls | 4, one each, no retries |
-| Critical nine, all passing | **4/4 attempts** |
-| Publishable after additional gates | **0/4** |
-| Failure categories | v1 `post-slang-missing`; v2 four `question-comment-shape`; v3 `reference-mismatch`/`key-meaning-mismatch`/`unused-reference`; v4 nine `question-comment-shape` |
+| Real terminal attempts | 6 |
+| Provider calls | 6, one each, no retries |
+| Critical nine, all passing | **6/6 attempts** |
+| Publishable after additional gates | **1/6** (the second `mixed-v5` attempt) |
+| Item-level adherence | v1 9/10, v2 6/10, v3 9/10, v4 1/10, v5 attempt 1 9/10, v5 attempt 2 10/10 |
+| Failure categories | v1 `post-slang-missing`; v2 four `question-comment-shape`; v3 `reference-mismatch`/`key-meaning-mismatch`/`unused-reference`; v4 nine `question-comment-shape`; v5 attempt 1 `term-presence` |
 
-The important interpretation is that **the nine critical checks alone would have accepted all four packs**; the reference-integrity, existing-question and completion gates are what stopped them. Do not report a "100% valid generation rate" from the critical-nine subset.
+The important interpretation is that **the nine critical checks alone would have accepted all six packs**; the reference-integrity, existing-question and completion gates are what stopped five of them. Do not report a "100% valid generation rate" from the critical-nine subset.
 
-The bounded revision loop stops at v4. The `questionComment` term requirement is a **legacy self-imposed constraint** (inherited from the single-sense V3.1 validator), not one of the nine critical checks. Three options remain for a future decision, none taken here: (a) keep the constraint and accept repeated rejection, (b) drop the redundancy with an explicit justification because the term is already required in `post.content`, or (c) add a disclosed deterministic repair step and record it as a repair rather than a clean generation. Weakening the validator silently to obtain a pass was deliberately not done.
+A single valid pack from six attempts is a real observation, not a rate: with a three-attempt budget the first multi-attempt run published on its second try and stopped early. The bounded revision loop stopped at `mixed-v5`; the remaining hypothesis (deterministic term placement, disclosed as a repair) is recorded but **not implemented**.
 
 ## Revision and interpretation protocol
 
