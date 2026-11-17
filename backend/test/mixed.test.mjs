@@ -624,6 +624,26 @@ test('failed generation never publishes invalid output and retains previously va
   assert.equal(readdirSync(join(outputDir, 'packs')).length, 2);
 });
 
+test('publisher stops at the first valid pack within the attempt budget', async t => {
+  const {outputDir, experimentsDir} = sandbox(t);
+  let call = 0;
+  const provider = fakeProvider({transform: envelope => {
+    call++;
+    return call % 3 === 1 ? envelope : {...envelope, choices: [{message: {content: '{}'}}]};
+  }});
+  const first = await publishMixedBank({outputDir, experimentsDir, maxPacks: 3, senses: senses(),
+    datasetVersion: 'fixture-v1', provider});
+  assert.equal(call, 1); assert.equal(first.attempted, 1); assert.equal(first.published, 1);
+  assert.equal(first.stoppedEarly, true);
+  assert.equal(jsonFile(outputDir, 'catalog.json').packs.length, 1);
+
+  const second = await publishMixedBank({outputDir, experimentsDir, maxPacks: 3, senses: senses(),
+    datasetVersion: 'fixture-v2', provider, stopOnFirstValid: false});
+  assert.equal(call, 4); assert.equal(second.attempted, 3); assert.equal(second.published, 1);
+  assert.equal(second.stoppedEarly, false);
+  assert.equal(jsonFile(outputDir, 'catalog.json').packs.length, 2);
+});
+
 test('explicit max three attempts are bounded without retrying failed completions', async t => {
   const {outputDir, experimentsDir} = sandbox(t); let calls = 0;
   const result = await publishMixedBank({outputDir, experimentsDir, maxPacks: 3, senses: senses(), datasetVersion: 'fixture-v1',

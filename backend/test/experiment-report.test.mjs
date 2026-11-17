@@ -47,6 +47,38 @@ test('report keeps successful, failed, pre-call and incomplete attempts with exp
   assert.deepEqual(reportExperiments({directory}), summary);
 });
 
+test('report separates item compliance from pack publishability', t => {
+  const directory = sandbox(t);
+  const withOutput = join(directory, 'mixed-fixture-item-metrics');
+  mkdirSync(withOutput);
+  const save = (dir, file, value) => writeFileSync(join(dir, file + '.json'), JSON.stringify(value));
+  save(withOutput, 'input', {promptVersion: 'fixture-v1', datasetVersion: 'fixture-dataset'});
+  save(withOutput, 'result', {status: 'failed', providerCalls: 1, startedAt: '2026-01-01T00:00:00Z',
+    completedAt: '2026-01-01T00:00:02Z', failureCode: 'mixed-validation-failed'});
+  save(withOutput, 'output', {questions: Array.from({length: 10}, (_, i) => ({id: `q${i}`}))});
+  save(withOutput, 'validation', {checks: MIXED_EVALUATION_CHECKS.map(id => ({id, passed: true})),
+    errors: ['8:term-presence', '8:term-presence']});
+  const noOutput = join(directory, 'mixed-fixture-no-output');
+  mkdirSync(noOutput);
+  save(noOutput, 'input', {promptVersion: 'fixture-v1', datasetVersion: 'fixture-dataset'});
+  save(noOutput, 'result', {status: 'failed', providerCalls: 1, startedAt: '2026-01-01T00:00:03Z',
+    completedAt: '2026-01-01T00:00:04Z', failureCode: 'llm-timeout'});
+  save(noOutput, 'validation', {checks: [], errors: []});
+  const summary = reportExperiments({directory});
+  const measured = summary.attempts.find(a => a.attemptId.endsWith('item-metrics'));
+  assert.equal(measured.itemsEvaluated, 10);
+  assert.equal(measured.itemsWithErrors, 1);
+  assert.equal(measured.itemCompliance, 0.9);
+  assert.equal(measured.allNinePassed, true);
+  const unmeasured = summary.attempts.find(a => a.attemptId.endsWith('no-output'));
+  assert.equal(unmeasured.itemsEvaluated, null);
+  assert.equal(unmeasured.itemsWithErrors, null);
+  assert.equal(unmeasured.itemCompliance, null);
+  assert.equal(summary.byPrompt['fixture-v1'].itemsEvaluated, 10);
+  assert.equal(summary.byPrompt['fixture-v1'].itemsCompliant, 9);
+  assert.equal(summary.byPrompt['fixture-v1'].packsPublishable, 0);
+});
+
 test('empty report records zero observations instead of synthetic successes', t => {
   const directory = sandbox(t);
   const summary = reportExperiments({directory});

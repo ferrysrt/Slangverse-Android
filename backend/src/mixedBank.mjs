@@ -128,8 +128,10 @@ export function writeImmutableMixedPack(pack, {outputDir = DEFAULT_MIXED_BANK_DI
 
 export async function publishMixedBank({outputDir = DEFAULT_MIXED_BANK_DIR,
   experimentsDir = DEFAULT_MIXED_EXPERIMENTS_DIR, maxPacks = 1, retention = MIXED_CATALOG_RETENTION,
-  senses, datasetVersion, provider, providerOptions, generate = generateMixedPack, onWarning = defaultRetentionWarning} = {}) {
+  senses, datasetVersion, provider, providerOptions, generate = generateMixedPack,
+  stopOnFirstValid = true, onWarning = defaultRetentionWarning} = {}) {
   if (!Number.isInteger(maxPacks) || maxPacks < 1 || maxPacks > 3) throw Error('max-packs-must-be-1-to-3');
+  if (typeof stopOnFirstValid !== 'boolean') throw Error('invalid-stop-on-first-valid');
   // Refuse a corrupt index or invalid settings before allowing any paid request.
   previousCatalog(outputDir);
   if (!Number.isInteger(retention) || retention < 1 || retention > MIXED_CATALOG_RETENTION) throw Error('invalid-mixed-retention');
@@ -142,7 +144,7 @@ export async function publishMixedBank({outputDir = DEFAULT_MIXED_BANK_DIR,
   if (typeof onWarning !== 'function') throw Error('invalid-mixed-warning-handler');
   if (!Array.isArray(senses) || typeof datasetVersion !== 'string' || !datasetVersion.trim()) throw Error('invalid-normalized-dataset');
   const additions = [], failures = [], attempts = [], warnings = [];
-  let providerCalls = 0;
+  let providerCalls = 0, stoppedEarly = false;
   for (let i = 0; i < maxPacks; i++) {
     const result = await generate({senses, datasetVersion, experimentsDir, provider, providerOptions});
     providerCalls += result.providerCalls;
@@ -154,9 +156,10 @@ export async function publishMixedBank({outputDir = DEFAULT_MIXED_BANK_DIR,
     // Recheck before creating a public file, even when generate is injected by a caller/test.
     validatePublishedMixedPack(result.pack);
     additions.push(writeImmutableMixedPack(result.pack, {outputDir}));
+    if (stopOnFirstValid) { stoppedEarly = true; break; }
   }
   const catalog = writeMixedCatalog({outputDir, datasetVersion, candidateCount: senses.length, additions, retention,
     onWarning: warning => { warnings.push(warning); onWarning(warning); }});
   return {attempted: attempts.length, providerCalls, published: additions.length, available: catalog.packs.length,
-    legacyAvailable: catalog.senses.length, failures, attempts, warnings, bankVersion: catalog.bankVersion};
+    legacyAvailable: catalog.senses.length, failures, attempts, warnings, stoppedEarly, bankVersion: catalog.bankVersion};
 }

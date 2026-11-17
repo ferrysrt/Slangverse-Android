@@ -7,7 +7,7 @@ The user-approved plan uses the own Firecrawl-normalized JSON/CSV, automatic pro
 | Area | Implemented source behavior | Boundary / remaining work |
 | --- | --- | --- |
 | Dataset/catalogue | Own dataset, capture ordering, literal sources, automatic normalized senses | Literal provenance is not semantic validation; no fresh collection success asserted |
-| Mixed publisher | `publish-mixed-bank.mjs` and `src/mixed*.mjs`; default one, maximum three attempts; no retries/repair/mock fallback | Real mixed generation/publication outcomes must come from actual artifacts |
+| Mixed publisher | `publish-mixed-bank.mjs` and `src/mixed*.mjs`; up to three attempts per run, stopping at the first valid pack; no retries/repair/mock fallback | Real mixed generation/publication outcomes must come from actual artifacts |
 | Prompt/validator | `prompts/mixed-v1.txt`; critical nine checks plus reference, lexical, social and completion gates | No mixed-v2 comparison, expert semantics or calibrated difficulty claimed |
 | Attempt audit | Per-attempt input/prompt/request, raw output/response, metadata/validation/result as available; pack on success | Preserve actual model, usage and finish reasons; missing responses are not invented |
 | Published schema | Schema 2 mixed `packs` plus retained legacy `senses`, immutable files and hashes | Existing schema 1 bank remains compatibility content until mixed publication |
@@ -16,7 +16,7 @@ The user-approved plan uses the own Firecrawl-normalized JSON/CSV, automatic pro
 
 ## Integration and remaining work
 
-- The experiment-report summary CLI (`npm run experiments:report`) and the mixed publisher workflow are wired: the workflow runs at most the selected number of attempts (default one, maximum three), aggregates real attempt evidence, uploads `backend/experiments/` and `question-bank/`, and persists available audit files and valid additions even when generation fails.
+- The experiment-report summary CLI (`npm run experiments:report`) and the mixed publisher workflow are wired: the workflow runs up to the selected number of attempts (default three, maximum three) and stops early once one pack passes validation, aggregates real attempt evidence, uploads `backend/experiments/` and `question-bank/`, and persists available audit files and valid additions even when generation fails.
 - The dataset workflow sets `DATASET_AUDIT_DIR=dataset-runs` (relative to its `backend/` working directory), so each refresh keeps bounded request/response evidence, rejections and a terminal `result.json` under `backend/dataset-runs/` even on failure.
 - A live refresh has run: 22 normalized entries with persisted audit evidence. Four real mixed attempts (`mixed-v1`…`mixed-v4`) are archived; each passed the critical nine but was rejected by additional integrity gates, so **no mixed pack is published** and no success rate is claimed.
 - Android `versionName: 0.5.0-mixed-feed` and `versionCode: 6` are on main; [build run 44140097650](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44140097650) compiled, ran 48 unit tests with zero failures and uploaded the APK. Device acceptance is still outstanding.

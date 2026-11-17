@@ -12,7 +12,7 @@ Each attempt saves the sampled senses and literal sources, dataset version, pack
 
 The prompt requires a single JSON object with `questions`, fictional social posts, ordinary indirect hint replies, a separate in-thread `questionComment`, four choices, an exact reference answer and an explanation. Every mixed question declares one of nine categories; repeats are allowed and natural term/context fit takes priority over category quotas. Reference data is explicitly untrusted and must not become instructions.
 
-`mixedProvider.mjs` currently requests JSON-object output with temperature `0.5`, low reasoning effort, a default 10,000 output-token cap and 120-second timeout. Requested model defaults to `openai/gpt-6-luna`; model/token/timeout overrides must be recorded, not assumed. The publisher defaults to one attempt and permits at most three. Each attempt has at most one provider invocation: no retries, fence stripping, JSON substring extraction, repair generation or mock fallback.
+`mixedProvider.mjs` currently requests JSON-object output with temperature `0.5`, low reasoning effort, a default 10,000 output-token cap and 120-second timeout. Requested model defaults to `openai/gpt-6-luna`; model/token/timeout overrides must be recorded, not assumed. A workflow run may make up to **three** attempts (one provider invocation each, no retries, fence stripping, JSON substring extraction, repair generation or mock fallback) and **stops early as soon as one pack passes validation**; the workflow default is three. Every attempt — including the ones after a success when early stop is disabled, and every failure — is retained.
 
 Prompt requests such as plausible distractors, naturally fitting contexts, varied voices and non-spoiling hints are **objectives**, not properties established by syntax checks.
 
@@ -70,6 +70,8 @@ State the prompt version, dataset version, requested and actual model, provider 
 | Metric | Definition and denominator |
 | --- | --- |
 | Attempt outcomes | Count every real terminal attempt as valid or failed; list incomplete attempts separately |
+| Item-level adherence | Distinct item indices appearing in `validation.errors` against the parsed `output.json` question count; `items_evaluated`, `items_with_errors`, `item_compliance` |
+| Pack-level publishability | Attempts whose whole ten-item pack passed every gate / real terminal attempts; `packsPublishable` |
 | Provider invocation count | Sum recorded `providerCalls`; distinguish pre-call failure from an invoked request, not an inferred billable-call count |
 | Each critical-check rate | Passed / evaluated real attempts for that check; disclose missing/incomplete validation records |
 | All-nine compliance | Attempts passing all nine / real terminal attempts with validation; separate additional-gate failures |

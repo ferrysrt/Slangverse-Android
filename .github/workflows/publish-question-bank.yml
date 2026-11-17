@@ -3,8 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       maxPacks:
-        description: 'Maximum paid requests (each generates ten mixed-slang questions; no retries)'
-        default: '1'
+        description: 'Maximum paid requests per run; stops early once one pack passes validation'
+        default: '3'
         required: true
         type: choice
         options: ['1', '2', '3']
@@ -36,7 +36,7 @@ jobs:
           LLM_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-6-luna' }}
           LLM_TIMEOUT_MS: '120000'
           LLM_MAX_TOKENS: '10000'
-          BANK_MAX_PACKS: ${{ inputs.maxPacks || '1' }}
+          BANK_MAX_PACKS: ${{ inputs.maxPacks || '3' }}
         run: npm run bank:publish
       - name: Aggregate real experiment records, including failures
         if: ${{ always() && steps.generate.outcome != 'skipped' }}
