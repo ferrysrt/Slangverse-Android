@@ -1,0 +1,19 @@
+{
+  "url": "https://api.firecrawl.dev/v2/search",
+  "payload": {
+    "query": "latest internet slang November 2026 -site:tiktok.com -site:youtube.com",
+    "limit": 10,
+    "sources": [
+      {
+        "type": "web"
+      }
+    ],
+    "scrapeOptions": {
+      "formats": [
+        {
+          "type": "markdown"
+        }
+      ]
+    }
+  }
+}

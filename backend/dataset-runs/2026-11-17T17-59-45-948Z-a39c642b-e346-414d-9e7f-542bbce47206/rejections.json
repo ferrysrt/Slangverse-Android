@@ -1,0 +1,42 @@
+{
+  "accepted": 2,
+  "rejected": 9,
+  "items": [
+    {
+      "index": 0,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 1,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 2,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 3,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 4,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 5,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 7,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 9,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 10,
+      "reason": "source-quote-not-literal"
+    }
+  ]
+}

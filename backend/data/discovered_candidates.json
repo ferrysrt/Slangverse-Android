@@ -1,12 +1,62 @@
 {
   "version": 3,
   "stage": "normalized_dataset",
-  "collectedAt": "2026-11-17T17:55:58.638Z",
+  "collectedAt": "2026-11-17T17:59:47.033Z",
   "scrapedPages": 9,
-  "accepted": 4,
-  "rejected": 4,
+  "accepted": 2,
+  "rejected": 9,
   "note": "Machine-normalized definitions with literal source captures, eligible for generation without a manual-review gate. Not expert-validated and not evidence of current popularity. Entries are ordered by newest recorded capture, not by popularity. Legacy provenance may be incomplete and retains its original evidence status.",
   "entries": [
+    {
+      "candidateId": "2c3d03f9b4a28b0be01d4b2d",
+      "term": "crine",
+      "definition": "An intentional misspelling of “crying” used to describe extreme laughter.",
+      "normalizedDefinition": "An intentional misspelling of “crying” used to describe extreme laughter.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Gen Alpha online slang, described in coverage of viral youth vocabulary.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "The buzzy term “crine” is the intentional misspelling of “crying,” which Alphas use to describe extreme laughter.",
+          "collectedAt": "2026-11-17T17:59:47.033Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ],
+      "sourceUrl": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+      "sourceTitle": "The most confusing Gen Alpha slang of 2026 revealed, report",
+      "evidenceSnippet": "The buzzy term “crine” is the intentional misspelling of “crying,” which Alphas use to describe extreme laughter.",
+      "firstSeenAt": "2026-11-17T17:59:47.033Z",
+      "lastCollectedAt": "2026-11-17T17:59:47.033Z"
+    },
+    {
+      "candidateId": "0f91fb75130009f8abbbc91b",
+      "term": "scuba",
+      "definition": "A dance indicating that someone or something smells bad.",
+      "normalizedDefinition": "A dance indicating that someone or something smells bad.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Gen Alpha slang reported alongside a dance move involving holding the nose and fanning the air.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+          "collectedAt": "2026-11-17T17:59:47.033Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ],
+      "sourceUrl": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+      "sourceTitle": "The most confusing Gen Alpha slang of 2026 revealed, report",
+      "evidenceSnippet": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+      "firstSeenAt": "2026-11-17T17:59:47.033Z",
+      "lastCollectedAt": "2026-11-17T17:59:47.033Z"
+    },
     {
       "candidateId": "940baad7d6d2ccc1fe07729e",
       "term": "scuba",
