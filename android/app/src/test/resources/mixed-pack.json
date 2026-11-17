@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 2,
+  "packId": "mixed-fixture",
+  "generationSource": "llm",
+  "promptVersion": "mixed-test-v1",
+  "generatorModel": "fixture-only-not-generated",
+  "generatedAt": "2026-11-17T00:00:00Z",
+  "referenceStatus": "normalized-unreviewed",
+  "expertValidated": false,
+  "datasetVersion": "fixture-v2",
+  "fixtureNote": "Synthetic hand-authored test data, not collected or generated. llm/firecrawl labels exercise the contract only. Each contentSha256 hashes the synthetic quote text, not a fetched page.",
+  "references": [
+    {
+      "senseId": "normalized-9de90f669f55705b3da34356", "term": "cooked", "targetMeaning": "in serious trouble",
+      "sourceCandidateId": "9de90f669f55705b3da34356", "normalizedDefinition": "in serious trouble",
+      "referenceSources": [{
+        "url": "https://example.invalid/fixture/cooked", "title": "Synthetic test fixture (not a real capture)",
+        "quote": "Synthetic test capture only: cooked means in serious trouble.", "collectedAt": "2026-11-17T00:00:00Z",
+        "collectionMethod": "firecrawl",
+        "contentSha256": "70d3539efa250513a1fcb66cb6ed53ae01d1ebf828281925ace0f75bfc05badf"
+      }]
+    },
+    {
+      "senseId": "normalized-2c63e28ce1e84417e6f68e9e", "term": "no cap", "targetMeaning": "speaking truthfully without exaggeration",
+      "sourceCandidateId": "2c63e28ce1e84417e6f68e9e", "normalizedDefinition": "speaking truthfully without exaggeration",
+      "referenceSources": [{
+        "url": "https://example.invalid/fixture/no-cap", "title": "Synthetic test fixture (not a real capture)",
+        "quote": "Synthetic test capture only: no cap means speaking truthfully without exaggeration.", "collectedAt": "2026-11-17T00:00:00Z",
+        "collectionMethod": "firecrawl",
+        "contentSha256": "ed082ddf6b2baf57c7e5ef87edc881067c4deb9a4c1409ae4b426e5e21d5eb21"
+      }]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1", "senseId": "normalized-9de90f669f55705b3da34356", "slang": "cooked", "targetMeaning": "in serious trouble",
+      "difficulty": "easy", "contextId": "repeated-campus", "contextCategory": "education",
+      "post": {"displayName": "Student", "handle": "@student", "hashtag": "#CampusLife", "avatarId": "guest_01",
+        "content": "My assignment vanished just before the deadline. I'm cooked.",
+        "comments": [{"handle": "@friend", "text": "Check your backup folder.", "avatarId": "guest_02"}]},
+      "question": "What does cooked mean here?", "questionComment": "What do you mean by cooked?",
+      "options": ["in serious trouble", "feeling hungry", "doing well", "taking a break"],
+      "correctIndex": 0, "explanation": "The lost assignment and deadline signal a difficult situation."
+    },
+    {
+      "id": "q2", "senseId": "normalized-2c63e28ce1e84417e6f68e9e", "slang": "no cap", "targetMeaning": "speaking truthfully without exaggeration",
+      "difficulty": "easy", "contextId": "repeated-campus", "contextCategory": "education",
+      "post": {"displayName": "Reader", "handle": "@reader", "hashtag": "#CampusLife", "avatarId": "guest_02",
+        "content": "I finished the whole reading list today, no cap.",
+        "comments": [{"handle": "@student", "text": "Even the last chapter?", "avatarId": "guest_01"}]},
+      "question": "What does no cap mean here?", "questionComment": "What do you mean by no cap?",
+      "options": ["wearing a hat", "speaking truthfully without exaggeration", "changing subjects", "forgetting details"],
+      "correctIndex": 1, "explanation": "The speaker emphasizes that the reading claim is true."
+    },
+    {
+      "id": "q3", "senseId": "normalized-9de90f669f55705b3da34356", "slang": "cooked", "targetMeaning": "in serious trouble",
+      "difficulty": "easy", "contextId": "office", "contextCategory": "work",
+      "post": {"displayName": "Designer", "handle": "@designer", "hashtag": "#WorkLife", "avatarId": "guest_01",
+        "content": "The client meeting starts now and the slides won't open. We're cooked.",
+        "comments": [{"handle": "@friend", "text": "Try the PDF export.", "avatarId": "guest_02"}]},
+      "question": "What does cooked mean here?", "questionComment": "What do you mean by cooked?",
+      "options": ["feeling hungry", "doing well", "in serious trouble", "taking a break"],
+      "correctIndex": 2, "explanation": "The broken slides create an urgent problem."
+    },
+    {
+      "id": "q4", "senseId": "normalized-2c63e28ce1e84417e6f68e9e", "slang": "no cap", "targetMeaning": "speaking truthfully without exaggeration",
+      "difficulty": "easy", "contextId": "daily", "contextCategory": "personal",
+      "post": {"displayName": "Walker", "handle": "@walker", "hashtag": "#EverydayLife", "avatarId": "guest_02",
+        "content": "That sunrise was worth the early alarm, no cap.",
+        "comments": [{"handle": "@friend", "text": "Send us the photo.", "avatarId": "guest_01"}]},
+      "question": "What does no cap mean here?", "questionComment": "What do you mean by no cap?",
+      "options": ["wearing a hat", "changing subjects", "forgetting details", "speaking truthfully without exaggeration"],
+      "correctIndex": 3, "explanation": "The speaker sincerely praises the sunrise."
+    },
+    {
+      "id": "q5", "senseId": "normalized-9de90f669f55705b3da34356", "slang": "cooked", "targetMeaning": "in serious trouble",
+      "difficulty": "easy", "contextId": "prediction", "contextCategory": "prediction",
+      "post": {"displayName": "Planner", "handle": "@planner", "hashtag": "#WhatIf", "avatarId": "guest_01",
+        "content": "If the last train is cancelled, we're cooked.",
+        "comments": [{"handle": "@friend", "text": "Let's check the bus timetable too.", "avatarId": "guest_02"}]},
+      "question": "What does cooked mean here?", "questionComment": "What do you mean by cooked?",
+      "options": ["in serious trouble", "feeling hungry", "doing well", "taking a break"],
+      "correctIndex": 0, "explanation": "The prediction concerns being stranded without transport."
+    },
+    {
+      "id": "q6", "senseId": "normalized-2c63e28ce1e84417e6f68e9e", "slang": "no cap", "targetMeaning": "speaking truthfully without exaggeration",
+      "difficulty": "medium", "contextId": "game", "contextCategory": "sports",
+      "post": {"displayName": "Fan", "handle": "@fan", "hashtag": "#Matchday", "avatarId": "guest_02",
+        "content": "That was the best save I've seen all season, no cap.",
+        "comments": [{"handle": "@friend", "text": "The replay is incredible.", "avatarId": "guest_01"}]},
+      "question": "What does no cap mean here?", "questionComment": "What do you mean by no cap?",
+      "options": ["wearing a hat", "speaking truthfully without exaggeration", "changing subjects", "forgetting details"],
+      "correctIndex": 1, "explanation": "The fan insists that the praise is sincere."
+    },
+    {
+      "id": "q7", "senseId": "normalized-9de90f669f55705b3da34356", "slang": "cooked", "targetMeaning": "in serious trouble",
+      "difficulty": "medium", "contextId": "concert", "contextCategory": "entertainment",
+      "post": {"displayName": "Singer", "handle": "@singer", "hashtag": "#OpeningNight", "avatarId": "guest_01",
+        "content": "The backing track stopped halfway through our set. Cooked.",
+        "comments": [{"handle": "@friend", "text": "Did you finish it acoustically?", "avatarId": "guest_02"}]},
+      "question": "What does cooked mean here?", "questionComment": "What do you mean by cooked?",
+      "options": ["feeling hungry", "doing well", "in serious trouble", "taking a break"],
+      "correctIndex": 2, "explanation": "The abrupt technical failure threatens the performance."
+    },
+    {
+      "id": "q8", "senseId": "normalized-2c63e28ce1e84417e6f68e9e", "slang": "no cap", "targetMeaning": "speaking truthfully without exaggeration",
+      "difficulty": "medium", "contextId": "take", "contextCategory": "opinion",
+      "post": {"displayName": "Reviewer", "handle": "@reviewer", "hashtag": "#MyTake", "avatarId": "guest_02",
+        "content": "The tiny library has the best reading room in town, no cap.",
+        "comments": [{"handle": "@friend", "text": "The window seats are lovely.", "avatarId": "guest_01"}]},
+      "question": "What does no cap mean here?", "questionComment": "What do you mean by no cap?",
+      "options": ["wearing a hat", "changing subjects", "forgetting details", "speaking truthfully without exaggeration"],
+      "correctIndex": 3, "explanation": "The reviewer emphasizes a genuine opinion."
+    },
+    {
+      "id": "q9", "senseId": "normalized-9de90f669f55705b3da34356", "slang": "cooked", "targetMeaning": "in serious trouble",
+      "difficulty": "hard", "contextId": "chat", "contextCategory": "friends",
+      "post": {"displayName": "Friend", "handle": "@friend", "hashtag": "#FriendChat", "avatarId": "guest_01",
+        "content": "You promised both groups you'd join them at seven? Cooked.",
+        "comments": [{"handle": "@planner", "text": "I should have checked my calendar.", "avatarId": "guest_02"}]},
+      "question": "What does cooked mean here?", "questionComment": "What do you mean by cooked?",
+      "options": ["in serious trouble", "feeling hungry", "doing well", "taking a break"],
+      "correctIndex": 0, "explanation": "The overlapping commitments put the friend in a difficult position."
+    },
+    {
+      "id": "q10", "senseId": "normalized-2c63e28ce1e84417e6f68e9e", "slang": "no cap", "targetMeaning": "speaking truthfully without exaggeration",
+      "difficulty": "hard", "contextId": "festival", "contextCategory": "event-reaction",
+      "post": {"displayName": "Neighbour", "handle": "@neighbour", "hashtag": "#TownUpdates", "avatarId": "guest_02",
+        "content": "The whole square joined the final song, no cap.",
+        "comments": [{"handle": "@friend", "text": "You could hear it from the next street.", "avatarId": "guest_01"}]},
+      "question": "What does no cap mean here?", "questionComment": "What do you mean by no cap?",
+      "options": ["wearing a hat", "speaking truthfully without exaggeration", "changing subjects", "forgetting details"],
+      "correctIndex": 1, "explanation": "The neighbour stresses that the surprising scene really happened."
+    }
+  ]
+}

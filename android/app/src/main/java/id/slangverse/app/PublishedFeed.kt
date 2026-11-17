@@ -1,14 +1,14 @@
 package id.slangverse.app
 
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.CancellationException
+import kotlin.random.Random
 
 internal object PublishedFeedDefaults {
     const val BANK_ROOT = "https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank"
@@ -39,11 +39,45 @@ internal fun publishedContext(category: String, contextId: String): FeedContext?
     }
 }
 
+internal data class PublishedPackRequest(val id: String, val sha256: String, val legacyTerm: String? = null)
+
+internal fun selectPublishedPacks(catalog: ApiCatalog): List<PublishedPackRequest> =
+    if (catalog.packs.isNotEmpty()) catalog.packs.take(12).map { PublishedPackRequest(it.packId, it.sha256) }
+    else catalog.senses.take(12).map { PublishedPackRequest(it.senseId, it.packSha256, it.term) }
+
+internal suspend fun loadPublishedSessions(
+    catalog: ApiCatalog, fetch: suspend (PublishedPackRequest) -> StaticBankSession
+): List<StaticBankSession> {
+    if (catalog.generationSource != "llm") throw ApiException("Default feed requires a published LLM catalog")
+    val requests = selectPublishedPacks(catalog)
+    if (requests.isEmpty()) throw ApiException("No generated packs have been published yet (${catalog.status})")
+    return requests.map { request ->
+        try {
+            fetch(request)
+        } catch (cancelled: CancellationException) {
+            throw cancelled
+        } catch (error: Exception) {
+            throw ApiException("Pack ${request.id}: ${error.message ?: "download failed"}")
+        }
+    }
+}
+
+internal fun mergePublishedFeed(
+    sessions: List<StaticBankSession>, random: Random = Random.Default, savedOrder: List<String> = emptyList()
+): List<FeedPracticePost> {
+    val posts = sessions.flatMap { it.toFeedPosts() }
+    val byId = posts.associateBy { it.thread.id }
+    require(byId.size == posts.size) { "Duplicate published pack/question identity" }
+    return if (savedOrder.size == posts.size && savedOrder.toSet() == byId.keys)
+        savedOrder.map { byId.getValue(it) }
+    else posts.shuffled(random)
+}
+
 internal fun StaticBankSession.toFeedPosts(): List<FeedPracticePost> {
     require(session.source == "github-static-llm") { "Default feed accepts published LLM packs only" }
     return session.questions.map { q ->
         val answer = answers.getValue(q.id)
-        val id = "${session.senseId}/${session.contentVersion}/${q.id}"
+        val id = "${session.packId.ifBlank { session.senseId }}/${session.contentVersion}/${q.id}"
         val context = publishedContext(q.contextCategory, q.contextId)
         FeedPracticePost(
             thread = DetectiveCase(id, q.slang, q.options[answer.correctIndex], q.post.displayName,
@@ -80,8 +114,8 @@ internal fun feedProfiles(posts: List<FeedPracticePost>): Map<String, FictionalP
 
 @Composable
 internal fun PublishedBankControls(
-    root: String, catalog: ApiCatalog?, selectedSense: String, loading: Boolean, error: String?, demo: Boolean,
-    onRoot: (String) -> Unit, onSelect: (String) -> Unit, onRefresh: () -> Unit, onMode: (Boolean) -> Unit
+    root: String, loading: Boolean, error: String?, demo: Boolean,
+    onRoot: (String) -> Unit, onRefresh: () -> Unit, onMode: (Boolean) -> Unit
 ) {
     var settings by rememberSaveable { mutableStateOf(false) }
     var draftRoot by rememberSaveable(root) { mutableStateOf(root) }
@@ -107,15 +141,5 @@ internal fun PublishedBankControls(
             Text("Loading published questions…", fontSize = 13.sp)
         }
         if (error != null) Text(error, color = WarmEditorial.CoralDeep, fontSize = 13.sp)
-        if (!demo && !loading && catalog?.senses?.isEmpty() == true)
-            Text("No generated packs have been published yet. Refresh after the bank publisher finishes.", fontSize = 13.sp)
-        if (!demo && catalog != null && catalog.senses.isNotEmpty()) {
-            Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                catalog.senses.forEach { sense ->
-                    FilterChip(selected = sense.senseId == selectedSense, enabled = !loading,
-                        onClick = { onSelect(sense.senseId) }, label = { Text(sense.term) })
-                }
-            }
-        }
     }
 }

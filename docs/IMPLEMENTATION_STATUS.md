@@ -1,4 +1,32 @@
-# Current checkpoint — Replies and sourced slang expansion (main)
+# Implementation status — mixed-feed transition
+
+## Current accepted contract
+
+The user-approved plan uses the own Firecrawl-normalized JSON/CSV, automatic provenance-based `normalized-<candidateId>` eligibility, and pre-generated mixed packs in Home. There is no manual review gate or active slangfeed snapshot. The initial 16 entries are carried forward from the recorded capture; a fresh refresh is pending. Weekly refresh is Monday 03:00 UTC / 10:00 WIB.
+
+| Area | Implemented source behavior | Boundary / remaining work |
+| --- | --- | --- |
+| Dataset/catalogue | Own dataset, capture ordering, literal sources, automatic normalized senses | Literal provenance is not semantic validation; no fresh collection success asserted |
+| Mixed publisher | `publish-mixed-bank.mjs` and `src/mixed*.mjs`; default one, maximum three attempts; no retries/repair/mock fallback | Real mixed generation/publication outcomes must come from actual artifacts |
+| Prompt/validator | `prompts/mixed-v1.txt`; critical nine checks plus reference, lexical, social and completion gates | No mixed-v2 comparison, expert semantics or calibrated difficulty claimed |
+| Attempt audit | Per-attempt input/prompt/request, raw output/response, metadata/validation/result as available; pack on success | Preserve actual model, usage and finish reasons; missing responses are not invented |
+| Published schema | Schema 2 mixed `packs` plus retained legacy `senses`, immutable files and hashes | Existing schema 1 bank remains compatibility content until mixed publication |
+| Android Home | Prefer mixed, legacy only if no mixed listed; merged feed, no slang chips, context tabs retained | Real device behavior and final build remain to be reported |
+| Local practice | Shuffle each fresh load/refresh, saved stable order, pack/hash/question-scoped answers and 80/15 XP | No live phone LLM call, secure competitive score or durable participant logging |
+
+## Integration and remaining work
+
+- The experiment-report summary CLI (`npm run experiments:report`) and the mixed publisher workflow are wired: the workflow runs at most the selected number of attempts (default one, maximum three), aggregates real attempt evidence, uploads `backend/experiments/` and `question-bank/`, and persists available audit files and valid additions even when generation fails.
+- The dataset workflow sets `DATASET_AUDIT_DIR=backend/dataset-runs`, so each refresh keeps bounded request/response evidence, rejections and a terminal `result.json` even on failure.
+- Execute/report the pending dataset refresh and any authorized real mixed run without inventing historical experiments.
+- Android `versionName: 0.5.0-mixed-feed` and `versionCode: 6` are set on the working tree; they are not claimed as released until a GitHub Actions build succeeds.
+- Report actual tests/build/publication/device outcomes after integration. No final test counts or live-generation successes are asserted here.
+
+Product approval is not supervisor approval of the thesis methodology. See [accepted intent](MIXED_FEED_HANDBOOK.md), [architecture](ARCHITECTURE.md), [dataset operations](DATASET_INTEGRATION.md) and [prompt/metrics protocol](PROMPT_ENGINEERING.md).
+
+## Historical record — replies and sourced slang expansion
+
+The following checkpoint text is retained as an earlier record. Its manual promotion rules, counts, Home selection behavior and verification statements are not current mixed-feed claims or revalidation.
 
 17 November 2026: Home retains the published LLM feed, with replies initially visible and individually collapsible. Answer choices still require player action. Connected Training and archived practice have matching reply defaults; expanded training displays all supported comments.
 
@@ -6,7 +34,7 @@ A successful bounded Firecrawl/OpenRouter workflow persisted 16 unreviewed candi
 
 Candidate-only updates do not generate questions. Source URLs, titles, literal quotes, actual capture times, page hashes and normalization model persist in `backend/data/discovered_candidates.json` and its CSV, with reviewed source copies in curated senses and new packs. The legacy 200-row snapshot remains unchanged, including the cooked meaning conflict. See [dataset operations](DATASET_INTEGRATION.md) and [current verification](TEST_RESULTS.md). Durable participant logging, expert content review, phone usability and empirical difficulty calibration remain outstanding.
 
-## Previous checkpoint — Published Feed 0.4.0
+## Historical checkpoint — Published Feed 0.4.0
 
 This UI revision strengthens names/handles and separates Learning feedback from the social reply and story continuation. A shared feedback component retains source-specific disclosures in archived and connected modes. It builds on the offline CC0 portrait library, consistent avatar UI, LLM-selectable avatar IDs, normalization and legacy fallbacks in both Android training clients. Sources, licences, checksums and reproduction steps are in [the avatar folder](../assets/profile-pictures/README.md).
 
@@ -16,7 +44,7 @@ The previous feature branch was `feat/social-simulator-feed`. Home opens into th
 
 The ten-question, single-sense, nominal 5/3/2 pack and 80/15 XP rules remain intact. Story follow-ups unlock once per submitted post regardless of correctness, and social actions do not affect scoring. The context quest counts categories present in the pack rather than imposing all nine on every slang.
 
-This remains hand-authored practice with local saveable UI state. Durable participant response recording/export, generated-pack integration into this local feed, content validation and device usability evaluation are outstanding. The backend, Connected Training and archived gameplay retain their separate boundaries. Current verification is recorded in [test results](TEST_RESULTS.md).
+This remains hand-authored practice with local saveable UI state. Durable participant response recording/export, generated-pack integration into this local feed, content validation and device usability evaluation are outstanding. The backend, Connected Training and archived gameplay retain their separate boundaries. The earlier checkpoint's verification is recorded in [historical test results](TEST_RESULTS.md), not as final mixed-feed verification.
 
 ## Historical V2.2 status (retained for reference)
 

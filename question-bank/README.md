@@ -1,27 +1,41 @@
-# Published LLM question bank
+# Published question bank — mixed feed and legacy compatibility
 
-This directory is the default read-only content source for Android Home:
+Android Home reads public JSON from:
 
+```text
 https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank/catalog.json
-
-The current set contains six ten-question GPT-6 Luna-generated packs: cooked, no cap, lowkey, glow up, rizz and IYKYK. The latter three have persisted Firecrawl definition sources and explicit provisional mappings. Rizz/IYKYK include later agent-assisted editorial corrections, disclosed in `editorialReview` metadata and the Android feed source label. Their metadata records generator model, prompt version, generation time, dataset version and provisional reference status. The catalogue's hashes cover the exact pack bytes. LLM provenance here comes from the publisher pipeline; it is not expert content validation.
-
-## Updating content
-
-`Publish LLM question bank` runs on main when `backend/data/curated_senses.json` changes, or through manual Run workflow. It uses `OPENROUTER_API_KEY` from repository secrets and makes at most three paid generation requests per run (one ten-item pack per request, no retries). Current packs are skipped unless forced. There is no periodic schedule or generation on phone launches. The workflow commits the catalogue and valid packs together; output labeled fallback/mock is rejected.
-
-Add source-backed playable senses through the curated catalogue to expand the bank. The 200 legacy snapshot entries and 16 Firecrawl candidates are not verified reference meanings; six senses are currently playable after three explicit new mappings. See [source table and review operations](../docs/DATASET_INTEGRATION.md). Existing valid packs survive failed generation. Invalid/outdated reference packs are excluded from the catalogue until regenerated. The same ten-question 5/3/2 and single-sense contract applies.
-
-Run locally from `backend/` with a securely provided LLM_API_KEY:
-
-```
-node scripts/publish-question-bank.mjs
 ```
 
-Do not put keys in this directory, command arguments, the APK, or question JSON. See [the full guide](../docs/GITHUB_GET_QUESTIONS.md).
+The implemented mixed contract uses **schema 2**: `packs` lists mixed packs and `senses` retains legacy single-sense entries. Existing schema 1 catalogues/packs remain supported; the presence of source code does not mean mixed publication has already run. Inspect the actual catalogue for availability. Planned app version is `0.5.0-mixed-feed`, version code `6`, to be set by main—not a claimed release here.
 
-## Playing and validation
+## Generate and publish
 
-The APK fetches only public JSON, verifies source/shape/slang/hash and grades locally. New content does not require an APK rebuild. Users can choose another bank folder under Question source. Question count, options, reply hints, avatar IDs and explanations all come from the loaded pack. The original sample is available only by explicit selection.
+With a securely supplied `LLM_API_KEY`, run from the repository root:
 
-These files necessarily expose answers and explanations. They support local practice, not authenticated results, competitive scoring or durable participant research storage. Structural validation does not establish linguistic accuracy, difficulty or educational effectiveness. Review the generated content before participant research use.
+```sh
+node backend/scripts/publish-mixed-bank.mjs
+```
+
+`BANK_MAX_PACKS` defaults to **1**, maximum **3**. Each attempt makes at most one provider call: no retries, repair requests or mock fallback. Default paths are module-relative; `OUTPUT_DIR` and `BANK_EXPERIMENTS_DIR` overrides can be absolute. Paid provider calls send reference data externally; never place keys in the APK, arguments, bank files or audit logs.
+
+Input comes directly from the own Firecrawl-normalized JSON/CSV, initially 16 carried-forward entries with fresh refresh pending. Provenance-eligible `normalized-<candidateId>` senses are automatically available, without a manual review gate. The old slangfeed snapshot is not active input. Literal sources do not certify semantic correctness.
+
+A mixed pack has exactly ten questions, prefers ten unique slang terms, requires at least two, and uses nominal 5 easy / 3 medium / 2 hard labels. Each question points to its embedded sense reference and one of nine context categories; repeated categories/scenarios are allowed. Metadata retains actual generator model, `mixed-v1` prompt version, dataset version, generation time and `normalized-unreviewed` status. No mixed-v2 experiment or successful live mixed run is claimed by this guide.
+
+New `packs/<packId>.json` files are immutable. `catalog.json` pins SHA-256 bytes and retains up to twelve valid mixed entries plus valid legacy entries. Failed generation does not replace good old packs. Older files remain for compatibility even after catalogue retention removes a mixed entry. Reference history must not be rewritten to look like newly collected data.
+
+## Attempt evidence and pending integration
+
+`backend/experiments/<attemptId>/` records actual input, rendered prompt, non-secret request, raw `output.txt`, provider `response.txt`, metadata, validation and result when available; success adds `pack.json`. Pre-call failures cannot have provider output. Preserve actual model, usage and finish reasons and keep missing evidence explicit.
+
+Main is to add the experiment-summary CLI and wire the mixed workflow to upload artifacts and persist audit files even on generation failure, along with any valid public additions. This is pending integration, not a claim that the older single-sense publishing workflow already does it. See [operations](../docs/GITHUB_GET_QUESTIONS.md) and [research protocol](../docs/PROMPT_ENGINEERING.md).
+
+## Playing and boundaries
+
+Home prefers mixed packs; legacy is used only when no mixed packs are advertised, not as error recovery. Loaded packs are merged and shuffled on fresh load/explicit refresh; saved order stays stable during navigation, recomposition and supported restoration. Slang chips are removed; context tabs and Saved remain. A failed load reports an error instead of silently opening mock content.
+
+The phone only GETs public JSON, verifies checksums/contracts and grades locally. It has no live LLM call or provider token. Answers are public; progress/80-or-15 XP is namespaced by pack ID, content hash and question ID, separate from authored/archived practice. This is not authenticated scoring or durable participant storage. Syntax, literal provenance and byte integrity are not semantic/expert validation.
+
+## Historical single-sense bank
+
+The 0.4.0 bank contained cooked, no cap, lowkey, glow up, rizz and IYKYK. The latter three used explicit provisional Firecrawl mappings; rizz/IYKYK retain disclosed agent-assisted editorial corrections and `agent-edited` labels. Those packs remain legacy compatibility content, not mixed-v1 experiments. Their snapshot versions/review metadata are historical and must not be relabeled as fresh normalized evidence. See [dataset history](../docs/DATASET_INTEGRATION.md).

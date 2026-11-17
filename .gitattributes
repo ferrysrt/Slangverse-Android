@@ -1,0 +1,10 @@
+# Hash-addressed artifacts must be byte-identical on every checkout.
+# Without this, Windows autocrlf turns published pack bytes into CRLF and the
+# exact-byte SHA-256 checks in the catalogue stop matching.
+question-bank/** text eol=lf
+backend/data/** text eol=lf
+backend/experiments/** text eol=lf
+backend/prompts/** text eol=lf
+backend/dataset-runs/** text eol=lf
+*.csv text eol=lf
+*.json text eol=lf

@@ -1,25 +1,32 @@
 import {existsSync,readFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {publicCatalog} from '../src/catalog.mjs';
 import {PROMPT_VERSION} from '../src/prompts.mjs';
-import {writePublishedCatalog,validatePublishedPack} from '../src/publishedBank.mjs';
+import {writePublishedCatalog,validatePublishedPack,legacyCatalog,assertLegacyPublicationAllowed} from '../src/publishedBank.mjs';
 import {exportLiveStaticPack} from './export-static-llm-bank.mjs';
-export async function publishQuestionBank({outputDir=resolve('../question-bank'),maxPacks=3,force=false,exportPack=exportLiveStaticPack}={}){
+const defaultOutputDir=fileURLToPath(new URL('../../question-bank/',import.meta.url));
+export async function publishQuestionBank({outputDir=defaultOutputDir,maxPacks=3,force=false,exportPack=exportLiveStaticPack}={}){
  if(!Number.isInteger(maxPacks)||maxPacks<1||maxPacks>3)throw Error('max-packs-must-be-1-to-3');
- const catalog=publicCatalog();let attempted=0,published=0;const failures=[];
+ assertLegacyPublicationAllowed(outputDir);
+ const catalog=legacyCatalog();let attempted=0,published=0;const failures=[];
  for(const sense of catalog.senses){
   const file=resolve(outputDir,'packs',sense.senseId+'.json');let current=false;
   if(existsSync(file)){
    try {
     const pack=validatePublishedPack(JSON.parse(readFileSync(file,'utf8')),sense.senseId);
-    current=pack.datasetVersion===catalog.datasetVersion&&pack.promptVersion===PROMPT_VERSION;
+    // Exact legacy meanings and provenance were checked above. Active dataset
+    // changes must not trigger regeneration of otherwise current historical packs.
+    current=pack.promptVersion===PROMPT_VERSION;
    } catch {current=false;}
   }
   if(current&&!force)continue;
   if(attempted>=maxPacks)break;
   attempted++;
-  try {await exportPack({senseId:sense.senseId,outputDir});published++;}
+  try {
+   await exportPack({senseId:sense.senseId,outputDir});
+   validatePublishedPack(JSON.parse(readFileSync(file,'utf8')),sense.senseId);
+   published++;
+  }
   catch {failures.push(sense.senseId);}
  }
  const index=writePublishedCatalog(outputDir);

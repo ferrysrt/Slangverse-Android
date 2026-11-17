@@ -30,18 +30,22 @@ data class ApiQuestion(
     val question: String,
     val options: List<String>,
     val questionComment: String = "",
-    val contextCategory: String = ""
+    val contextCategory: String = "",
+    val senseId: String = "",
+    val targetMeaning: String = ""
 )
 data class ApiSense(val senseId: String, val term: String, val reviewStatus: String, val packSha256: String = "")
+data class ApiPack(val packId: String, val sha256: String, val questionCount: Int)
 data class ApiCatalog(
     val datasetVersion: String, val candidateCount: Int, val senses: List<ApiSense>,
-    val generationSource: String = "unknown", val status: String = "ready"
+    val generationSource: String = "unknown", val status: String = "ready",
+    val packs: List<ApiPack> = emptyList()
 )
 data class ApiSession(
  val id: String, val source: String, val questions: List<ApiQuestion>,
  val senseId: String = "cooked-trouble", val referenceStatus: String = "provisional",
  val catalogVersion: String = "", val contentVersion: String = "",
- val editoriallyEdited: Boolean = false
+ val editoriallyEdited: Boolean = false, val packId: String = ""
 )
 data class ApiGrade(
     val correct: Boolean,

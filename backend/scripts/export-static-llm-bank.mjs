@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {resolveSense, publicCatalog} from '../src/catalog.mjs';
 import {createSessionService} from '../src/sessionService.mjs';
 import {validatePackage} from '../src/game.mjs';
-import {writePublishedCatalog} from '../src/publishedBank.mjs';
+import {writePublishedCatalog, assertLegacyPublicationAllowed} from '../src/publishedBank.mjs';
 
 /**
  * Generate ONE real LLM pack in a manually triggered GitHub Actions run.
@@ -20,6 +20,8 @@ export async function exportLiveStaticPack({
     retries: 0
   })
 }={}) {
+  const target = resolve(outputDir);
+  assertLegacyPublicationAllowed(target);
   const selected = resolveSense({senseId});
   const result = await generate({senseId:selected.senseId});
   if (result.session?.source !== 'llm') {
@@ -28,7 +30,7 @@ export async function exportLiveStaticPack({
   const errs = validatePackage(result.session.questions);
   if (errs.length) throw Error('Generated pack failed structural validation: '+errs.join(','));
   const catalog = publicCatalog();
-  const target = resolve(outputDir);
+  assertLegacyPublicationAllowed(target);
   mkdirSync(resolve(target,'packs'),{recursive:true});
   const pack = {
     schemaVersion: 1,

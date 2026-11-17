@@ -1,33 +1,62 @@
-# Default published question feed — GitHub Raw
+# Published mixed feed — GitHub GET
 
-The social-simulator implementation is now on **main**. `0.4.0-published-feed` automatically loads LLM-generated question packs into Home from:
+## Current contract and rollout boundary
 
-```
+Android Home consumes pre-generated public JSON from:
+
+```text
 https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank
 ```
 
-The catalogue is `catalog.json`, with individual packs under `packs/<senseId>.json`. The current bank has six LLM-generated packs / 60 questions. The 17 November expansion added glow up, rizz and IYKYK from explicitly reviewed Firecrawl candidates. All six were checked by HTTPS GET without application credentials and matched the catalogue SHA-256 values. Rizz and IYKYK contain disclosed agent-assisted editorial corrections; the app marks these packs `agent-edited`. The earlier separate `Slangverse-Question-Bank` URL was only an example and returned 404.
+The mixed publisher/client source supports schema 2: `catalog.json` advertises mixed `packs` alongside compatibility `senses`. Each pack is `packs/<packId>.json` or legacy `packs/<senseId>.json`. Source support is not a claim that a new mixed pack has been generated/published. The checked-in legacy catalogue can remain schema 1 until mixed publication; use the actual catalogue and audit artifacts to determine published availability.
+
+Planned release metadata is `0.5.0-mixed-feed`, version code `6`, to be set by main. A fresh dataset refresh, real mixed generation results and final release verification are not asserted here.
 
 ## Play
 
-Install the APK from the latest successful **main** Android build. Home loads published questions automatically. Slang chips switch between available senses. **Refresh bank** fetches the latest catalogue and selected pack. **Question source** can change the folder URL or explicitly open the labeled hand-authored offline sample. Errors, unavailable packs and empty catalogues do not cause a silent switch to mock questions.
+Home prefers mixed packs when the catalogue lists them, otherwise merges legacy single-sense packs. It does **not** fall back to legacy when an advertised mixed pack fails to load. There are no slang-selection chips; context tabs remain. **Refresh bank** fetches the catalogue/packs and reshuffles on successful load without rebuilding the APK. The current loader selects up to twelve packs, so Home may contain more than ten posts.
 
-The existing Connected Training GitHub GET mode is retained and starts with the same bank URL. It still permits explicitly labeled legacy mock/static packs. The default Home feed requires both catalogue and pack to declare LLM provenance. Profiles, avatars, replies, grading feedback, bookmarks, quests and results use the loaded pack rather than the fixed cooked demo.
+The merged order is saved for the same loaded content across recomposition, navigation and supported activity recreation. An explicit refresh starts a new shuffle; a failed refresh reports an error and can retain prior published posts in their existing order. **Question source** changes the public folder URL or explicitly opens the labeled hand-authored offline sample. Errors never silently turn mock content into LLM output.
 
-## Generate and publish more
+The phone needs neither a backend server nor a provider token for Home and never calls the LLM. Source labels disclose local grading and unreviewed/provisional references; retained agent-edited legacy packs keep that disclosure. Avatars, replies, profiles, context filters, Saved and feedback use the loaded questions. Connected Training remains a separate static/live route with its own source labels.
 
-Use **Actions → Publish LLM question bank → Run workflow** on main. The normal limit is three generation requests, one ten-question pack per request, with no retries. Missing/outdated playable senses are generated first; current packs are skipped unless Force is selected. Requests use GPT-6 Luna via the existing `OPENROUTER_API_KEY` repository secret and may incur provider charges. No credentials belong in the APK or public bank.
+## Mixed publisher
 
-The workflow also runs when `backend/data/curated_senses.json` changes on main. Editing its workflow alone no longer triggers paid generation. It has no recurring schedule and is not invoked by the phone. New packs and their catalogue are committed in one change. Generation failures preserve valid existing packs; fallback/mock output is never published as LLM. Stale/invalid reference packs are excluded until successfully regenerated. Adding a new playable sense is an explicit curation step; the 200 dataset candidates are not all validated meanings. Six senses are currently playable. Discovery alone never promotes candidates; the [explicit mapping procedure and persistent source table](DATASET_INTEGRATION.md) connect reviewed candidates to playable references.
+With Node.js 20+ and `LLM_API_KEY` supplied securely, run from the repository root:
 
-The standalone single-pack exporter also merges its result into the existing multi-sense catalogue instead of overwriting other entries. Artifact-only exports remain available for separate review workflows.
+```sh
+node backend/scripts/publish-mixed-bank.mjs
+```
 
-## Contract and boundaries
+Defaults are module-relative, so the default bank and experiment paths do not depend on the shell's current directory. Optional `OUTPUT_DIR` and `BANK_EXPERIMENTS_DIR` overrides are resolved from the invoking directory; prefer absolute paths when the shell ignores a requested working directory.
 
-A pack contains one slang sense and exactly ten questions, with 5 easy / 3 medium / 2 hard labels, unique question/context IDs, four choices and a correct answer index. Optional avatar IDs are resolved to bundled pictures. The catalogue includes sense IDs, terms, review status and SHA-256 checksums. Firecrawl-derived packs retain `sourceCandidateId`, `normalizedDefinition` and `referenceSources`. Optional `editorialReview` records the actual reviewer, review time and item-level reasons when LLM output is subsequently edited; `generationSource` identifies its LLM origin, not a claim of untouched output. A mismatched checksum or slang is rejected. Unknown categories remain visible in For you; legacy scenario IDs have navigation tags, not human-validated semantic classifications.
+- `BANK_MAX_PACKS`: default **1**, allowed **1–3**. Each attempt requests one ten-question mixed pack, with **no retries, JSON repair or mock fallback**.
+- `LLM_MODEL`: default `openai/gpt-6-luna`; `LLM_API_BASE_URL`: default OpenRouter. Actual returned model, usage and finish reasons are logged, not assumed from configuration.
+- Input: automatically eligible normalized senses from the own Firecrawl dataset, not manually promoted curated entries or the old slangfeed snapshot. Initially 16 entries are carried forward; fresh refresh is pending.
+- Selection: prefer ten distinct terms, require at least two; reuse selected senses if fewer than ten. Every pack has ten questions and nominal 5 easy / 3 medium / 2 hard labels.
+- Every question links by `senseId` to an embedded reference; categories belong to the allowed nine but may repeat. Ten unique scenario IDs/all nine categories are not mixed-pack requirements.
+- Only validated LLM output becomes a new immutable public pack. Failed attempts retain audit evidence and produce a nonzero publisher exit when reported failures exist. Already valid packs are preserved.
 
-Questions are pre-generated, not generated live during a phone session. Refreshing GitHub is not an LLM-latency measurement. Content is structurally checked and provisional; generation does not establish semantic validity, calibrated difficulty or learning gains.
+Generation sends sourced reference data to an external provider and can incur charges. Keep keys out of arguments, public JSON, the APK and audit artifacts. Do not run the publisher just to validate documentation.
 
-Static JSON exposes answer keys and explanations by design. Grading and saved UI state are local practice, not authenticated participant results or durable study logging. Questions are namespaced by sense, content hash and question ID; changing a pack does not reuse its older answers or award duplicate XP for the same revision.
+## Catalogue, integrity and retention
 
-A bank used by the APK must remain publicly readable without credentials. No repository visibility setting was changed by this implementation. If deployment moves to a private repository, publish the bank to a public location and change the configured root; never embed a GitHub token.
+Schema 2 includes origin/status/version metadata, `expertValidated: false`, `packs: [{packId, sha256, questionCount: 10}]` and legacy `senses` entries. Mixed packs carry `schemaVersion: 2`, `packId`, `generationSource: llm`, actual `generatorModel`, `promptVersion: mixed-v1`, generation time, dataset version, `referenceStatus: normalized-unreviewed`, references and questions.
+
+Catalogue SHA-256 values cover exact public pack bytes. Retained legacy entries are checked against their pinned files; old references are not silently rebound to a changing normalized dataset. The mixed catalogue retains up to twelve valid mixed entries, newest first. Older files remain untouched even when no longer indexed. The catalogue is replaced only after new immutable pack files exist; publication must ship a consistent set.
+
+Android verifies checksum, origin, shape and per-question reference matching. Question identity is pack ID/content hash/question ID, preventing answer reuse across revisions and repeat XP for the same revision. A checksum proves byte integrity, not semantic quality or a signature from an expert.
+
+## Audit and workflow integration
+
+Each attempt uses `backend/experiments/<attemptId>/`: `input.json`, `prompt.json`, `request.json`, raw model `output.txt`, raw provider `response.txt`, `metadata.json`, `validation.json`, `result.json`, and `pack.json` on success, as available by stage. Preserve failures; never fabricate responses for pre-call failures. `mixed-v1` is the only implemented mixed baseline, not evidence of a v1/v2 comparison.
+
+**Pending main work:** create the experiment-report summary CLI and update `.github/workflows/publish-question-bank.yml` to run the mixed publisher/report, default to one attempt, upload artifacts and persist available audit files even when generation fails. Publish valid additions and the catalogue consistently without losing failed-attempt evidence. The older workflow's curated-sense trigger/default-three/single-sense behavior is historical integration, not the new approved contract and not proof this pending work has run.
+
+The dataset workflow separately refreshes Monday 03:00 UTC / 10:00 WIB with no manual review gate. Home launches and GitHub GET refreshes never trigger paid generation. See [dataset operations](DATASET_INTEGRATION.md) and [prompt/metrics protocol](PROMPT_ENGINEERING.md).
+
+## Limits and historical compatibility
+
+Public static JSON necessarily exposes answers and explanations. Scores are local practice, not authenticated competitive results, durable participant logs or secure research grading. Syntactic checks do not establish semantics, calibrated difficulty or learning gains. Banks must be public on an allowed GitHub Raw/Pages HTTPS host without credentials; never embed a GitHub token to access a private bank.
+
+**Historical 0.4.0 record:** six single-sense packs covered cooked, no cap, lowkey, glow up, rizz and IYKYK. The latter three used explicit provisional Firecrawl mappings; rizz/IYKYK retain disclosed `editorialReview` corrections and `agent-edited` labeling. The earlier guide recorded anonymous HTTPS/hash checks, not mixed publication. The standalone legacy exporter merges legacy entries rather than replacing the catalogue; artifact-only/single-sense workflows remain compatibility tooling. The former example `Slangverse-Question-Bank` URL was not the deployed bank. None of these notes is a new live-run claim.

@@ -108,9 +108,10 @@ fun SlangverseApp() {
 
     var bankRoot by rememberSaveable { mutableStateOf(PublishedFeedDefaults.BANK_ROOT) }
     var offlineSample by rememberSaveable { mutableStateOf(false) }
-    var selectedBankSense by rememberSaveable { mutableStateOf("") }
-    var bankRefresh by remember { mutableIntStateOf(0) }
-    var bankCatalog by remember { mutableStateOf<ApiCatalog?>(null) }
+    var bankRefresh by rememberSaveable { mutableIntStateOf(0) }
+    var loadedBankRoot by rememberSaveable { mutableStateOf("") }
+    var loadedBankRefresh by rememberSaveable { mutableIntStateOf(-1) }
+    var publishedOrder by rememberSaveable { mutableStateOf(emptyList<String>()) }
     var bankLoading by remember { mutableStateOf(false) }
     var bankError by remember { mutableStateOf<String?>(null) }
 
@@ -122,23 +123,25 @@ fun SlangverseApp() {
             return@LaunchedEffect
         }
         bankLoading = true
-        bankCatalog = null
-        feedProgress = feedProgress.copy(posts = emptyList())
+        // Never retain the explicit sample when returning to the published source.
+        if (feedProgress.posts.any { !it.published }) feedProgress = feedProgress.copy(posts = emptyList())
         try {
             val bank = GithubStaticBank(bankRoot)
             val catalog = bank.fetchCatalog(requireLlm = true)
-            bankCatalog = catalog
-            if (catalog.senses.isNotEmpty()) {
-                val sense = catalog.senses.firstOrNull { it.senseId == selectedBankSense } ?: catalog.senses.random()
-                selectedBankSense = sense.senseId
-                val pack = bank.fetchSession(sense.senseId, requireLlm = true,
-                    expectedTerm = sense.term, expectedSha256 = sense.packSha256)
-                feedProgress = feedProgress.copy(posts = pack.toFeedPosts())
-            }
+            val sessions = bank.fetchPublishedSessions(catalog)
+            val savedOrder = if (loadedBankRoot == bankRoot && loadedBankRefresh == bankRefresh)
+                publishedOrder else emptyList()
+            val posts = mergePublishedFeed(sessions, savedOrder = savedOrder)
+            feedProgress = feedProgress.copy(posts = posts)
+            publishedOrder = posts.map { it.thread.id }
+            loadedBankRoot = bankRoot
+            loadedBankRefresh = bankRefresh
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (error: Exception) {
-            bankError = "Published questions unavailable: ${error.message ?: "check your connection"}. Use Refresh to retry."
+            val retained = if (feedProgress.posts.isNotEmpty())
+                " Showing previously loaded published questions in their existing order." else " No sample was loaded."
+            bankError = "Published questions unavailable: ${error.message ?: "check your connection"}.$retained Use Refresh to retry."
         } finally {
             bankLoading = false
         }
@@ -249,12 +252,16 @@ fun SlangverseApp() {
                                 else feedProgress.posts.filter { context == null || it.context == context }
                                 LazyColumn(verticalArrangement = Arrangement.spacedBy(14.dp)) {
                                     item(key = "published-source") {
-                                        PublishedBankControls(bankRoot, bankCatalog, selectedBankSense,
-                                            bankLoading, bankError, offlineSample,
-                                            onRoot = { bankRoot = it; offlineSample = false; bankRefresh++ },
-                                            onSelect = { selectedBankSense = it; feedTab = "For you"; bankRefresh++ },
+                                        PublishedBankControls(bankRoot, bankLoading, bankError, offlineSample,
+                                            onRoot = {
+                                                if (offlineSample) feedProgress = feedProgress.copy(posts = emptyList())
+                                                bankRoot = it; offlineSample = false; bankRefresh++
+                                            },
                                             onRefresh = { bankRefresh++ },
-                                            onMode = { offlineSample = it; feedTab = "For you" })
+                                            onMode = {
+                                                feedProgress = feedProgress.copy(posts = emptyList())
+                                                offlineSample = it; feedTab = "For you"
+                                            })
                                     }
                                     item(key = "feed-tabs") {
                                         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
@@ -281,15 +288,15 @@ fun SlangverseApp() {
                                     if (visiblePosts.isEmpty()) item {
                                         PaperCard {
                                             Text(if (feedProgress.posts.isEmpty()) "Load a published question pack to start."
-                                                else if (feedTab == "Saved") "No saved posts in this pack yet. Tap a bookmark to keep a conversation here."
-                                                else "No conversations in this context in the current pack. Choose For you to see all ten.")
+                                                else if (feedTab == "Saved") "No saved posts in this feed yet. Tap a bookmark to keep a conversation here."
+                                                else "No conversations in this context in the loaded feed. Choose For you to see all conversations.")
                                         }
                                     }
                                     if (feedProgress.posts.isNotEmpty()) item(key = "feed-finish") {
                                         PaperCard(background = WarmEditorial.Blush) {
                                             EditorialTitle(if (feedProgress.completedCount == feedProgress.posts.size)
                                                 "You're all caught up." else "A little context goes a long way.", 23)
-                                            Text("${feedProgress.completedCount} / 10 conversations decoded · ${feedProgress.xp} practice XP",
+                                            Text("${feedProgress.completedCount} / ${feedProgress.posts.size} conversations decoded · ${feedProgress.xp} practice XP",
                                                 fontSize = 12.sp, color = WarmEditorial.CoralDeep)
                                             Text(if (offlineSample) "Hand-authored practice · fictional accounts and events."
                                                 else "Published LLM questions · local static grading · fictional conversations.",
@@ -405,9 +412,9 @@ fun SlangverseApp() {
 
                             EditorialScreen.Challenges -> {
                                 EditorialSection("Your quests", "Small goals, at your own pace")
-                                EditorialChallenge("Decode ten conversations", "${feedProgress.completedCount} / 10",
-                                    feedProgress.completedCount / 10f, "PRACTICE", "◎")
-                                EditorialChallenge("Explore this pack’s contexts", "${feedProgress.contexts} / ${feedProgress.contextCount}",
+                                EditorialChallenge("Decode ten conversations", "${feedProgress.completedCount.coerceAtMost(10)} / 10",
+                                    (feedProgress.completedCount / 10f).coerceAtMost(1f), "PRACTICE", "◎")
+                                EditorialChallenge("Explore this feed’s contexts", "${feedProgress.contexts} / ${feedProgress.contextCount}",
                                     feedProgress.contexts.toFloat() / feedProgress.contextCount.coerceAtLeast(1), "EXPLORE", "▤")
                                 EditorialChallenge("Match five meanings", "${feedProgress.correct.coerceAtMost(5)} / 5",
                                     (feedProgress.correct / 5f).coerceAtMost(1f), "REVIEW", "✳")
@@ -429,11 +436,11 @@ fun SlangverseApp() {
                             }
 
                             EditorialScreen.Progress -> {
-                                EditorialSection("Your practice", "Current question pack · locally graded practice")
+                                EditorialSection("Your practice", "Loaded feed · locally graded practice")
                                 PaperCard(background = WarmEditorial.Blush) {
                                     EditorialTitle("${feedProgress.xp} practice XP", 29)
-                                    EditorialProgress(feedProgress.completedCount / 10f)
-                                    EditorialMetric("Conversations decoded", "${feedProgress.completedCount} / 10")
+                                    EditorialProgress(feedProgress.completedCount.toFloat() / feedProgress.posts.size.coerceAtLeast(1))
+                                    EditorialMetric("Conversations decoded", "${feedProgress.completedCount} / ${feedProgress.posts.size}")
                                     EditorialMetric("Meanings matched", "${feedProgress.correct} / ${feedProgress.completedCount}")
                                     EditorialMetric("Contexts explored", "${feedProgress.contexts} / ${feedProgress.contextCount}")
                                     Text("One reward per post. Likes and bookmarks never affect your score.",
@@ -475,7 +482,7 @@ fun SlangverseApp() {
                                                 fontSize = 12.sp)
                                         }
                                     }
-                                    EditorialProgress(feedProgress.completedCount / 10f)
+                                    EditorialProgress(feedProgress.completedCount.toFloat() / feedProgress.posts.size.coerceAtLeast(1))
                                 }
                                 PaperCard {
                                     EditorialTitle("Badge ideas · preview only", 24)

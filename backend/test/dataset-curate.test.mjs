@@ -20,7 +20,7 @@ const review = {candidateId: candidate.candidateId, senseId: 'fixture-slang-mean
   reviewedAt: '2026-11-17T01:00:00.000Z', referenceNote: 'Test only; not expert validated.'};
 const curate = (entries = [candidate], reviews = [review], curated = []) => curateCandidates({entries, reviews, curated});
 
-test('discovery never auto-promotes and explicit review retains all provenance as provisional', () => {
+test('historical manual curation remains explicit and retains provisional provenance', () => {
   assert.deepEqual(curate([candidate], []), []);
   const [sense] = curate();
   assert.equal(sense.playable, true);
@@ -66,7 +66,7 @@ test('same term with a distinct meaning needs a separate candidate and sense map
   assert.notEqual(result[0].sourceCandidateId, result[1].sourceCandidateId);
 });
 
-test('runtime catalog contract rejects detached citations without discarding legacy conflict notes', () => {
+test('historical curation contract rejects detached citations without discarding legacy conflict notes', () => {
   const [sense] = curate();
   assert.equal(validateSourcedSense(sense, [candidate]), sense);
   assert.throws(() => validateSourcedSense({...sense, sources: [{...sense.sources[0], quote: 'invented'}]}, [candidate]), /source-mismatch/);

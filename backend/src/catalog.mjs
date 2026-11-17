@@ -1,12 +1,16 @@
 import {readFileSync} from 'node:fs';
-import {validateSourcedSense} from './datasetProvenance.mjs';
+import {captureTimesFor, sortByCapture, validateSourcedSense} from './datasetProvenance.mjs';
+import {buildNormalizedSenses, datasetVersionFor, DATASET_SOURCE, DATASET_NOTE} from '../dataset/normalized.mjs';
 
-export const DATASET_VERSION='slangfeed-2026-10-05';
+// This ID also selects the historical hand-authored cooked mock in game.mjs.
 export const DEFAULT_SENSE_ID='cooked-trouble';
-export const SNAPSHOT_SOURCE='ferrysrt/slangfeed@main:data/slang_dataset.csv';
-const csv=readFileSync(new URL('../data/slangfeed_snapshot.csv',import.meta.url),'utf8');
-const senses=JSON.parse(readFileSync(new URL('../data/curated_senses.json',import.meta.url),'utf8'));
-const discovered=JSON.parse(readFileSync(new URL('../data/discovered_candidates.json',import.meta.url),'utf8')).entries;
+const dataset=JSON.parse(readFileSync(new URL('../data/discovered_candidates.json',import.meta.url),'utf8'));
+if(!Array.isArray(dataset.entries))throw Error('invalid-normalized-dataset');
+const discovered=sortByCapture(dataset.entries.map(entry=>({...entry,...captureTimesFor(entry)})));
+export const DATASET_VERSION=datasetVersionFor(discovered);
+const normalized=buildNormalizedSenses(discovered);
+const active=new Map(normalized.map(sense=>[sense.senseId,sense]));
+let historical;
 
 export function parseCandidateCsv(input){
   const lines=input.replace(/^\uFEFF/,'').trim().split(/\r?\n/);
@@ -25,33 +29,34 @@ export function parseCandidateCsv(input){
   }
   return {entries,rejected};
 }
-const parsed=parseCandidateCsv(csv);
-const byTerm=new Map(parsed.entries.map(e=>[e.term.toLowerCase(),e]));
-const curated=new Map();
-for(const sense of senses){
-  if(!sense.playable||sense.reviewStatus!=='provisional')throw Error('invalid-curation-state');
-  if(curated.has(sense.senseId))throw Error('curated-sense-catalog-mismatch');
-  if(sense.sourceDataset==='firecrawl')validateSourcedSense(sense,discovered);
-  else if(!byTerm.has(sense.sourceDatasetTerm.toLowerCase()))throw Error('curated-sense-catalog-mismatch');
-  curated.set(sense.senseId,Object.freeze(sense));
+
+// Historical authored mocks and old packs remain resolvable, but never populate
+// the active catalog or require the old candidate snapshot to be present.
+function historicalSenses(){
+  if(!historical){
+    const senses=JSON.parse(readFileSync(new URL('../data/curated_senses.json',import.meta.url),'utf8'));
+    historical=new Map(senses.map(sense=>[sense.senseId,sense]));
+  }
+  return historical;
 }
 
+export function listNormalizedSenses(){return structuredClone(normalized);}
+
 export function publicCatalog(){
-  return {source:discovered.length?'slangfeed-snapshot+firecrawl':'slangfeed-snapshot',datasetVersion:DATASET_VERSION,
-    sourceRepository:SNAPSHOT_SOURCE,candidateCount:parsed.entries.length,
-    discoveredCandidateCount:discovered.length,
+  return {source:DATASET_SOURCE,datasetVersion:DATASET_VERSION,
+    candidateCount:discovered.length,discoveredCandidateCount:discovered.length,
     provenanceTable:'backend/data/discovered_candidates.csv',
-    rejectedRowCount:parsed.rejected.length,expertValidated:false,
-    warning:'Candidate definitions are NOT verified reference meanings. Curated senses are provisional and not expert-certified.',
-    senses:[...curated.values()].map(({senseId,term,reviewStatus,sourceRelationship,sourceCandidateId})=>
-      ({senseId,term,reviewStatus,sourceRelationship,...(sourceCandidateId?{sourceCandidateId}:{}),playable:true}))};
+    rejectedRowCount:discovered.length-normalized.length,expertValidated:false,
+    reviewStatus:'normalized-unreviewed',order:'lastCollectedAt-desc',warning:DATASET_NOTE,
+    senses:normalized.map(({senseId,term,reviewStatus,sourceRelationship,sourceCandidateId,firstSeenAt,lastCollectedAt})=>
+      ({senseId,term,reviewStatus,sourceRelationship,sourceCandidateId,firstSeenAt,lastCollectedAt,playable:true}))};
 }
 export function listCandidates({q='',limit=25}={}){
   const query=String(q).trim().toLowerCase().slice(0,80);
   const n=Math.min(100,Math.max(1,Number.parseInt(String(limit),10)||25));
-  const matches=parsed.entries.filter(e=>!query||e.term.toLowerCase().includes(query));
-  return {source:SNAPSHOT_SOURCE,datasetVersion:DATASET_VERSION,reviewStatus:'unreviewed',
-    totalMatches:matches.length,items:matches.slice(0,n)};
+  const matches=discovered.filter(e=>!query||e.term.toLowerCase().includes(query));
+  return {source:DATASET_SOURCE,datasetVersion:DATASET_VERSION,reviewStatus:'normalized-unreviewed',
+    order:'lastCollectedAt-desc',totalMatches:matches.length,items:structuredClone(matches.slice(0,n))};
 }
 export function resolveSense(input={}){
   if(!input||typeof input!=='object'||Array.isArray(input))throw Object.assign(Error('invalid-session-options'),{status:400});
@@ -61,11 +66,19 @@ export function resolveSense(input={}){
     throw Object.assign(Error('invalid-sense-selector'),{status:400});
   const requestedId=senseId?.trim()||null;
   const requestedTerm=term?.trim().toLowerCase()||null;
-  const selected=requestedId?curated.get(requestedId):
-    requestedTerm?[...curated.values()].find(s=>s.term.toLowerCase()===requestedTerm):
-    curated.get(DEFAULT_SENSE_ID);
-  if(!selected||(requestedTerm&&selected.term.toLowerCase()!==requestedTerm))
+  let selected=requestedId?active.get(requestedId):
+    requestedTerm?normalized.find(s=>s.term.toLowerCase()===requestedTerm):null;
+  if(!selected){
+    selected=requestedId?historicalSenses().get(requestedId):
+      requestedTerm?[...historicalSenses().values()].find(s=>s.term.toLowerCase()===requestedTerm):
+      historicalSenses().get(DEFAULT_SENSE_ID);
+    if(selected?.sourceDataset==='firecrawl')validateSourcedSense(selected,discovered);
+  }
+  if(!selected||!selected.playable||(requestedTerm&&selected.term.toLowerCase()!==requestedTerm))
     throw Object.assign(Error('sense-not-curated-or-not-supported'),{status:400});
-  return selected;
+  return structuredClone(selected);
 }
-export function getCandidate(term){return byTerm.get(String(term).toLowerCase())||null;}
+export function getCandidate(term){
+  const entry=discovered.find(e=>e.term.toLowerCase()===String(term).trim().toLowerCase());
+  return entry?structuredClone(entry):null;
+}

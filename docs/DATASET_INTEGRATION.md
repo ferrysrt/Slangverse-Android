@@ -1,57 +1,71 @@
-# Dataset discovery, definition sources and explicit sense review
+# Active dataset — own Firecrawl-normalized slang
 
-## Separate candidate data from playable references
+## Current source of truth
 
-- `backend/data/slangfeed_snapshot.csv` remains the frozen 200-row, three-column legacy snapshot. Its definitions have no per-term citation; no URLs have been retroactively invented. Its parser/header are unchanged.
-- `backend/data/discovered_candidates.json` is the canonical, incremental Firecrawl dataset. Version 2 records normalized definitions separately from literal source quotations, collection times, page hashes and the actual normalizer model. All discovered entries remain `unreviewed`.
-- `backend/data/discovered_candidates.csv` is a readable source table: **one row per source capture**, preserving multiple sources in JSON and CSV. Columns include term, sense_id, definition, source_url, source_title, source_quote, collected_at, collection_method, review_status, normalized_definition, normalization_model and candidate_id. Standard CSV quoting supports commas, quotes and multiline excerpts. Do not import this as the legacy snapshot.
-- `backend/data/sense_reviews.json` explicitly maps reviewed candidate IDs to new sense IDs and a target meaning. `curated_senses.json` is the separate playable reference catalogue, still provisional, not expert certified.
+`backend/data/discovered_candidates.json` is the canonical active dataset; `backend/data/discovered_candidates.csv` is its inspectable source table. The initial dataset has **16 entries** carried forward from the recorded collection. A fresh refresh is pending; migration/normalization does not count as new collection or evidence of current popularity.
 
-Candidate identity hashes the normalized term **and definition**, not the term alone. Distinct senses are not silently merged. Exact duplicate candidates retain all distinct source captures. A collection timestamp is the time the Firecrawl response was received, never a model-supplied date. Page hashes fingerprint captured markdown; full copyrighted pages are not republished.
+Eligible entries automatically become playable `normalized-<candidateId>` senses with `reviewStatus: normalized-unreviewed`. **There is no manual review or sense-review mapping gate in the current pipeline.** Eligibility is a provenance contract, not semantic approval. `backend/dataset/normalized.mjs` builds these references, and `backend/src/catalog.mjs` exposes them as `firecrawl-normalized`.
 
-## Bounded discovery workflow
+The frozen 200-row `backend/data/slangfeed_snapshot.csv`, `sense_reviews.json` and `curated_senses.json` belong to historical/compatibility flows. The snapshot is not an active source, is not refreshed, and is not required to populate the normalized catalogue. Nothing here modifies the independent `ferrysrt/slangfeed` repository. Legacy mocks and published packs remain readable without being represented as new normalized evidence.
 
-Run **Actions → Slang candidate discovery - manual review**, optionally supplying a search query. The Monday 03:00 UTC schedule is retained. Each run uses at most **one Firecrawl v2 search** (ten pages) and **one OpenRouter normalization request**, with no retries. Charges/provider quotas apply. The web text is sent to the normalizer, treated as untrusted content, and limited to 80,000 prompt characters.
+## Refresh and cost boundary
 
-Bindings are `secrets.FIRECRAWL_API_KEY`, `secrets.OPENROUTER_API_KEY`, and optional `vars.OPENROUTER_MODEL`, defaulting to `openai/gpt-6-luna`. Do not put credentials in Android or the dataset. Secret presence is distinct from local environment configuration.
+**Actions → Refresh normalized slang dataset** (`.github/workflows/slang-candidates.yml`) supports manual dispatch and runs weekly **Monday 03:00 UTC / 10:00 WIB** (`0 3 * * 1`). Each run is bounded to one Firecrawl v2 search of up to ten pages and one OpenRouter normalization request, without retries. Provider charges and quotas apply. Search results are not a representative usage survey.
 
-The model must propose a literal definitional excerpt containing the term. Validation rejects URLs absent from the collected documents, invented/case-altered quotations, short excerpts and excerpts missing the term. Whitespace differences are allowed and the original captured excerpt is retained. **A matching excerpt does not prove that the normalized definition is correct**; the resulting status is `literal-excerpt-unreviewed`, not semantically validated. A developer must inspect whether it actually explains the intended sense, rather than merely mentioning the term. Legacy term-appearance-only evidence is not silently upgraded.
+Credentials stay in `FIRECRAWL_API_KEY` and `OPENROUTER_API_KEY` repository secrets; optional `OPENROUTER_MODEL` defaults to `openai/gpt-6-luna`. Captured web text is sent to the normalizer as untrusted data, with an 80,000-character prompt bundle limit. No provider key belongs in Android, public JSON or experiment logs.
 
-A successful run uploads both files as `unreviewed-slang-candidates` and commits the candidate JSON/source CSV to this repository. Sources therefore persist beyond workflow logs/artifact retention. Discovery does not create new reviews or automatically make every candidate playable, and does not touch `ferrysrt/slangfeed`. Candidate-only commits do not trigger question generation.
+From the repository root, with secrets supplied securely:
 
-## Review → playable sense → LLM bank
+```sh
+node backend/dataset/refresh.mjs
+```
 
-1. Read the candidate's actual source quote, URL, context and normalized meaning. Check safety, source support and distinct sense identity. Revisit the source where necessary. Do not approve an ambiguous definition merely because schema validation passed.
-2. Add an explicit entry to `backend/data/sense_reviews.json`:
-   ```json
-   {
-     "candidateId": "<existing candidate ID>",
-     "senseId": "<new-stable-sense-id>",
-     "targetMeaning": "<one reviewed reference meaning>",
-     "reviewedBy": "<actual reviewer or clearly identified agent-assisted review>",
-     "reviewedAt": "<actual ISO timestamp>",
-     "referenceNote": "<source/sense/safety rationale and remaining uncertainty>"
-   }
-   ```
-   This is developer/agent-assisted source review, **not linguistic expert approval**.
-3. Run `npm --prefix backend run dataset:curate`. It verifies provenance and explicit mappings, preserves legacy senses and conflict notes, copies the supporting sources into the new provisional sense, and exports sense IDs into the CSV. Re-running is idempotent; an existing sense ID cannot silently change meaning/candidate. Commit reviews, curated senses and table together.
-4. A curated-sense change on main triggers **Publish LLM question bank**, or run it manually. The existing ceiling of three ten-question generation requests/run and no retries remains. Editing the publisher workflow alone no longer starts a paid run. Current packs are skipped; valid older packs survive provider failures. Each sourced pack also carries `sourceCandidateId`, `normalizedDefinition` and `referenceSources`; publication verifies these against its curated reference.
-5. Verify the public catalogue, hashes and packs, then **Refresh bank** on Android. New slang needs no APK rebuild. No request is made to the paid provider by the phone.
+The workflow persists the own JSON and CSV and uploads a normalized-dataset artifact on successful collection. Runtime success of the pending refresh must be reported from its actual run, not inferred from a workflow definition. Dataset refresh and mixed question generation are separate bounded operations; a phone refresh is neither of them.
 
-New senses do not acquire invented hand-authored mock packs. Real LLM sessions can use them directly. An unavailable provider without an authored fallback produces an explicit 503 instead of a wrong-slang or falsely labeled mock result. Existing three offline/mock senses keep their authored behavior.
+## Strict literal provenance, not semantic validation
 
-The dataset version string continues to identify the legacy snapshot; each new reference additionally has its candidate identity and literal provenance, and published content has its own exact-byte hash. `candidateCount` remains the legacy snapshot count; `discoveredCandidateCount` reports the separate Firecrawl dataset.
+Discovery rejects an uncollected URL, nonliteral or case-altered quote, quote shorter than five words, or quote that omits the term. Only whitespace differences are tolerated; the actual captured excerpt is kept. Every supplied citation must pass: one valid citation cannot excuse another fabricated one.
 
-## Verified collection and provisional mappings — 17 November 2026
+An automatically eligible record retains:
 
-Discovery run [44089717679](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44089717679) succeeded: 16 candidates accepted, one rejected, capture time `2026-11-17T13:08:28.914Z`. The accepted entries all came from one [UPrinting commercial glossary](https://www.uprinting.com/blog/top-gen-z-slang-words/), not sixteen independent sources. Its snippets explicitly define the terms, but neither its marketing claims nor publication date establish current usage frequency. Actual captured URLs (including the returned query string), titles and quotes are retained in the dataset; the page was also read directly during agent-assisted review.
+- `candidateId`, term and nonempty `normalizedDefinition`, plus `normalizationModel`;
+- `sourceEvidenceStatus: literal-excerpt-unreviewed`;
+- nonempty sources with actual URL, title, literal quote, capture timestamp, `collectionMethod: firecrawl` and full captured-markdown SHA-256.
 
-Explicit mappings: `glow-up-improvement`, `rizz-flirting`, `iykyk-inside-reference`. Thirteen other candidates remain unplayable. The new `cooked` candidate describes exhaustion and is **not** mapped to `cooked-trouble`.
+The normalizer is asked for a definitional excerpt, but code verifies literal occurrence and provenance, **not whether the excerpt truly supports the normalized sense**. `normalized-unreviewed` and `expertValidated: false` remain visible. Do not call these entries expert-reviewed, verified meanings or measured trends.
 
-Publisher run [44090251900](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44090251900) generated three new packs, preserving the original three. Rizz/IYKYK then received disclosed agent-assisted editorial corrections: several invitations were clarified as dates, an artificial finance context was removed, and one IYKYK distractor that duplicated the key was replaced. `editorialReview` metadata lists item-level reasons; the feed adds `agent-edited` to these packs' source labels. LLM origin, original generator model/time and provisional status remain intact. No additional paid generation was used for those corrections. These edits change content hashes, so progress remains isolated by the revised pack identity.
+Candidate identity is the first 24 hex characters of SHA-256 over the JSON pair of normalized term and normalized definition (NFKC, collapsed whitespace, lowercase). The sense ID is `normalized-` plus that candidate ID. A different normalized definition creates a different sense; term-only deduplication must not merge meanings. Duplicate identities retain distinct source captures rather than overwriting earlier evidence.
 
-## Known legacy meaning conflict
+Collection time is when the Firecrawl response was received, not a model-supplied date, migration time or claimed page publication date. `firstSeenAt` and `lastCollectedAt` derive from recorded captures; unknown legacy times stay unknown. Dataset and CSV rows are ordered by newest recorded capture, not popularity. Full copyrighted pages are not republished; their hashes are fingerprints, not semantic endorsements.
 
-`cooked-trouble` means “in serious trouble,” while the legacy snapshot's Cooked emphasizes tiredness/overwhelm. Its `sourceRelationship: conflict` and `referenceNote` remain intact. No new source is attached to this legacy sense without a separate review.
+## JSON, CSV and versioning
 
-All source-supported and generated content remains provisional. Structural tests do not establish semantic validity, empirically calibrated difficulty, learning gains, usability or authenticated participant logging.
+JSON preserves the complete source array. CSV has **one row per source capture**, so row count need not equal entry count. Columns are:
+
+```text
+term,sense_id,definition,source_url,source_title,source_quote,collected_at,collection_method,review_status,normalized_definition,normalization_model,candidate_id,first_seen_at,last_collected_at,source_evidence_status,content_sha256
+```
+
+CSV quoting preserves commas, quotes and multiline excerpts. It is not the legacy three-column snapshot format. Incomplete legacy records remain inspectable but are not automatically playable; missing timestamps, hashes or evidence status must not be invented.
+
+`datasetVersion` is a `firecrawl-normalized-<content hash>` identifier, insensitive to JSON formatting and line endings. Active catalogue `candidateCount` and `discoveredCandidateCount` refer to this own dataset; eligible sense count may be smaller if records fail provenance requirements. Historical pack metadata may still name its old snapshot version/count and must not be rewritten as new collection.
+
+## Normalized senses → mixed bank
+
+The mixed publisher samples eligible normalized senses directly, preferring ten distinct terms and requiring at least two. Each pack has ten questions with a nominal 5/3/2 difficulty split, references embedded per sense and each question linked by `senseId`. Nine categories are allowed, not a mandatory all-category quota. No new hand-authored mocks are invented for normalized entries.
+
+Run `backend/scripts/publish-mixed-bank.mjs` separately: default one attempt, maximum three, no retries or mock fallback. See [bank operations](GITHUB_GET_QUESTIONS.md), [prompt protocol](PROMPT_ENGINEERING.md) and [architecture](ARCHITECTURE.md). Main's summary CLI and failure-safe workflow artifact/persistence integration are pending, not claimed complete here.
+
+## Historical record — manual mapping and legacy publication
+
+This section records the earlier approach; it is **not an instruction to gate current eligibility**.
+
+The 17 November 2026 discovery record [44089717679](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44089717679) reported 16 accepted candidates and one rejection, captured at `2026-11-17T13:08:28.914Z`. All accepted entries came from one [UPrinting commercial glossary](https://www.uprinting.com/blog/top-gen-z-slang-words/), not sixteen independent sources. The persisted dataset retains the returned URL including its query string. This is a historical observation, not a new collection claim.
+
+The former manual flow read source/safety evidence, added an explicit `sense_reviews.json` mapping with actual reviewer/time/rationale, then ran `dataset:curate` before publishing single-sense packs. It mapped `glow-up-improvement`, `rizz-flirting` and `iykyk-inside-reference`; at that checkpoint thirteen other candidates were not promoted. That restriction is superseded by automatic normalized eligibility.
+
+The earlier publisher record [44090251900](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44090251900) added three single-sense packs to the original three. Rizz/IYKYK later received disclosed agent-assisted corrections: flirting examples were clarified as dates, an artificial finance context removed, and a competing-correct IYKYK distractor replaced. `editorialReview` records the changes and the feed retains `agent-edited` disclosure. These are legacy publication notes, not mixed-v1 experiments or expert validation; no new run is asserted here.
+
+### Historical meaning conflict retained
+
+`cooked-trouble` means “in serious trouble,” while the frozen snapshot and a newer candidate emphasize exhaustion/overwhelm. The legacy `sourceRelationship: conflict` and `referenceNote` remain intact. The exhaustion candidate is a separate normalized sense, not evidence that the old reference was reconciled. Old packs and mocks retain their own meanings and provenance for compatibility.

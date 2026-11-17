@@ -49,15 +49,18 @@ test('leaderboard never pretends simulated questions are ranked competitively',a
  assert.equal(data.source,'demo');assert.deepEqual(data.players,[]);
 });
 
-test('catalog lists provisional senses and preserves answer key secrecy',async()=>{
+test('catalog exposes own normalized senses without a manual-review or snapshot dependency',async()=>{
+ const {publicCatalog}=await import('../src/catalog.mjs');
  const {status,data}=await json('GET','/api/catalog');
- assert.equal(status,200);assert.equal(data.candidateCount,200);
+ assert.equal(status,200);assert.deepEqual(data,publicCatalog());
+ assert.equal(data.source,'firecrawl-normalized');assert.ok(data.candidateCount>0);
  assert.equal(data.expertValidated,false);
- assert.ok(data.senses.some(s=>s.senseId==='no-cap-truth'));
+ assert.ok(data.senses.every(s=>/^normalized-[a-f0-9]{24}$/.test(s.senseId)));
  assert.equal(data.senses.some(s=>'targetMeaning' in s),false);
- const candidates=await json('GET','/api/catalog/candidates?q=lowkey&limit=1');
+ const term=data.senses[0].term;
+ const candidates=await json('GET','/api/catalog/candidates?q='+encodeURIComponent(term)+'&limit=1');
  assert.equal(candidates.data.items.length,1);
- assert.equal(candidates.data.items[0].reviewStatus,'unreviewed');
+ assert.equal(candidates.data.items[0].reviewStatus,'normalized-unreviewed');
 });
 test('create HTTP session for a selected sense without exposing answer keys',async()=>{
  const {status,data}=await json('POST','/api/sessions',{senseId:'lowkey-subtle'});

@@ -1,4 +1,6 @@
-# OpenRouter live question-generation smoke test
+# Legacy single-sense OpenRouter smoke workflow
+
+**Scope:** retained single-sense smoke setup and historical observations, not mixed-v1 experiments or a current live-generation result. Default Android Home only GETs pre-generated packs; the backend's default mock setting below applies to optional REST training, not Home. See [the current mixed prompt protocol](PROMPT_ENGINEERING.md).
 
 This is **not the dataset discovery pipeline**. The data collector discovers *candidate meanings*, while this flow tests generating 10 context-diverse fictional questions for a **provisional** manually selected sense.
 
@@ -16,7 +18,7 @@ The artifact `live-llm-validation-metrics` contains only counts, structural-vali
 - `status: fallback`: model was called but failed response parsing, API, or schema checks; a **mock** session would be used by the game.
 - `status: failed`: configuration or smoke-run error; read non-secret category.
 - No structural outcome proves meaning correctness, subtle hints, plausible distractors, HCI usability or learning gains.
-- The app still defaults to `LLM_PROVIDER=mock`. Live model is only used if the **backend host** is configured with `LLM_PROVIDER=openai-compatible`, `LLM_API_KEY`, `LLM_MODEL`, and `LLM_API_BASE_URL=https://openrouter.ai/api/v1`. GitHub Actions secrets by themselves do **not** deploy or configure that server. Do not put provider keys in Android apps.
+- The optional REST backend defaults to `LLM_PROVIDER=mock`. Live model is only used if the **backend host** is configured with `LLM_PROVIDER=openai-compatible`, `LLM_API_KEY`, `LLM_MODEL`, and `LLM_API_BASE_URL=https://openrouter.ai/api/v1`. GitHub Actions secrets by themselves do **not** deploy or configure that server. Do not put provider keys in Android apps.
 
 The smoke workflow is manual only on `main` after integration; avoid scheduling repeated paid model calls.
 

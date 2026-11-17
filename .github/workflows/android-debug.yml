@@ -30,7 +30,7 @@ jobs:
       - name: Run backend provenance, generation and publication tests
         run: npm --prefix backend test
       - name: Check default reply visibility and explicit answer controls
-        run: node --test android/scripts/reply-visibility.test.mjs
+        run: node --test android/scripts/reply-visibility.test.mjs android/scripts/published-feed.test.mjs
       - name: Verify bundled profile pictures and generated registries
         working-directory: tools/profile-pictures
         run: npm ci && npm run check

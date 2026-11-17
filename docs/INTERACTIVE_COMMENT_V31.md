@@ -1,5 +1,7 @@
 # Slangverse V3.1 — Interactive Comment Quiz
 
+**Historical UI checkpoint:** the in-thread answer interaction is retained, but this page's sample/generation and inline-feedback descriptions belong to V3.1. Current Home uses mixed published packs and separate Learning feedback; see the [mixed-feed handbook](MIXED_FEED_HANDBOOK.md) and [social-feed contract](SOCIAL_SIMULATOR_FEED.md).
+
 ## Intent
 
 V3.1 turns the multiple-choice question into **one special fictional reply in a social-media thread**, instead of a separate question block below the post. Players feel they are helping a confused user interpret slang; the educational prompt is contextual and the interaction remains readable as a social conversation.

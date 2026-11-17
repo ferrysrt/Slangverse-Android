@@ -138,7 +138,7 @@ test('collection rejects an invalid response and empty scraped results without r
   }
 });
 
-test('strict literal evidence gets the v2 candidate schema and trusted capture metadata', () => {
+test('strict literal evidence gets normalized eligibility and trusted capture metadata', () => {
   const result = validate([item({
     candidateId: 'invented', reviewStatus: 'approved', normalizationModel: 'model-claimed',
     collectedAt: '2099-01-01', sourceTitle: 'Invented title',
@@ -150,7 +150,8 @@ test('strict literal evidence gets the v2 candidate schema and trusted capture m
     candidateId: candidateIdFor('no cap', item().definition), term: 'no cap',
     definition: item().definition, normalizedDefinition: item().definition,
     normalizationModel: 'unit/model', originContext: item().originContext,
-    reviewStatus: 'unreviewed', sourceEvidenceStatus: 'literal-excerpt-unreviewed',
+    reviewStatus: 'normalized-unreviewed', sourceEvidenceStatus: 'literal-excerpt-unreviewed',
+    firstSeenAt: capturedAt, lastCollectedAt: capturedAt,
     sources: [{url: docs[0].url, title: docs[0].title, quote, collectedAt: capturedAt,
       collectionMethod: 'firecrawl', contentSha256: hash(docs[0].markdown)}],
     sourceUrl: docs[0].url, sourceTitle: docs[0].title, evidenceSnippet: quote
@@ -224,7 +225,7 @@ test('validation merges identical meanings and all sources, retaining distinct m
   assert.deepEqual(result.entries[0].sources.map(source => source.url), docs.map(doc => doc.url));
   assert.equal(result.entries[1].sources.length, 2);
   assert.notEqual(result.entries[0].candidateId, result.entries[1].candidateId);
-  assert.ok(result.entries.every(entry => entry.reviewStatus === 'unreviewed'));
+  assert.ok(result.entries.every(entry => entry.reviewStatus === 'normalized-unreviewed'));
 });
 
 test('candidate IDs use a documented 24-hex SHA-256 identity, not a term-only identity', () => {
@@ -294,10 +295,12 @@ test('CSV uses the exact companion schema, one row per source and standard escap
   const csv = candidateTableCsv([entry]);
   const [header, first, second] = parseCsv(csv);
   assert.deepEqual(header, ['term', 'sense_id', 'definition', 'source_url', 'source_title', 'source_quote',
-    'collected_at', 'collection_method', 'review_status', 'normalized_definition', 'normalization_model', 'candidate_id']);
+    'collected_at', 'collection_method', 'review_status', 'normalized_definition', 'normalization_model', 'candidate_id',
+    'first_seen_at', 'last_collected_at', 'source_evidence_status', 'content_sha256']);
   assert.equal(parseCsv(csv).length, 3);
   assert.deepEqual(first, ['no cap', '', definition, docs[0].url, title, sourceQuote,
-    capturedAt, 'firecrawl', 'unreviewed', entry.normalizedDefinition, 'provider/model', candidateId]);
+    capturedAt, 'firecrawl', 'unreviewed', entry.normalizedDefinition, 'provider/model', candidateId,
+    capturedAt, capturedAt, '', '']);
   assert.equal(second[3], docs[1].url);
   assert.ok(csv.includes('"A ""truthful"",\r\nhonest statement about something real"'));
   const mapped = parseCsv(candidateTableCsv([entry], {senseByCandidateId: new Map([[candidateId, 'curated-sense-1']])}));
@@ -344,7 +347,7 @@ test('normalizer submits up to ten 8000-character excerpts in at most 80000 tota
   }});
   assert.equal(calls, 1);
   assert.equal(result.entries[0].normalizationModel, 'provider/actual-model');
-  assert.equal(result.entries[0].reviewStatus, 'unreviewed');
+  assert.equal(result.entries[0].reviewStatus, 'normalized-unreviewed');
 });
 
 test('normalizer model falls back to the configured model only when response model is absent', async () => {
@@ -371,7 +374,7 @@ test('normalizer rejects malformed responses without retries', async () => {
   }
 });
 
-test('refresh writes v2 JSON and a multi-source CSV when no previous file exists', async t => {
+test('refresh writes normalized JSON and a multi-source CSV without manual review', async t => {
   const {jsonPath, csvPath} = await temporaryOutput(t);
   const mock = refreshMock([item({sources: [
     {url: docs[0].url, quote, collectedAt: '2099-01-01'},
@@ -382,8 +385,12 @@ test('refresh writes v2 JSON and a multi-source CSV when no previous file exists
   const after = Date.now();
   assert.equal(mock.calls.length, 2);
   assert.equal(mock.calls[0].body.query, 'explicit query');
-  assert.equal(output.version, 2);
-  assert.equal(output.stage, 'unreviewed_candidates');
+  assert.equal(output.version, 3);
+  assert.equal(output.stage, 'normalized_dataset');
+  assert.doesNotMatch(output.note, /review each|never auto-promote|before separately curating/i);
+  assert.equal(output.entries[0].reviewStatus, 'normalized-unreviewed');
+  assert.equal(output.entries[0].firstSeenAt, output.collectedAt);
+  assert.equal(output.entries[0].lastCollectedAt, output.collectedAt);
   assert.equal(output.accepted, 1);
   assert.equal(output.rejected, 0);
   assert.equal(output.entries.length, 1);
@@ -399,8 +406,8 @@ test('refresh writes v2 JSON and a multi-source CSV when no previous file exists
   }
   assert.equal(csv[1][6], output.entries[0].sources[0].collectedAt);
   assert.equal(csv[2][6], output.entries[0].sources[1].collectedAt);
-  assert.equal(csv[1][1], '');
-  assert.equal(csv[2][1], '');
+  assert.equal(csv[1][1], 'normalized-' + output.entries[0].candidateId);
+  assert.equal(csv[2][1], 'normalized-' + output.entries[0].candidateId);
 });
 
 test('incremental refresh preserves old canonical candidates, old captures, and legacy evidence status', async t => {
@@ -424,11 +431,15 @@ test('incremental refresh preserves old canonical candidates, old captures, and 
   assert.equal(output.accepted, 2);
   assert.equal(output.entries[0].candidateId, canonical.candidateId);
   assert.deepEqual(output.entries[0].sources[0], canonical.sources[0]);
-  assert.deepEqual(output.entries[1], oldOnly);
-  assert.equal(output.entries[2].sourceEvidenceStatus, legacy.sourceEvidenceStatus);
-  assert.equal(output.entries[2].sources[0].collectedAt, null);
-  assert.equal(output.entries[2].sources[0].contentSha256, null);
-  assert.equal(output.entries[3].definition, differentMeaning);
+  assert.deepEqual(output.entries.find(entry => entry.candidateId === oldOnly.candidateId), oldOnly);
+  const keptLegacy = output.entries.find(entry => entry.term === legacy.term);
+  assert.equal(keptLegacy.sourceEvidenceStatus, legacy.sourceEvidenceStatus);
+  assert.equal(keptLegacy.sources[0].collectedAt, null);
+  assert.equal(keptLegacy.sources[0].contentSha256, null);
+  assert.equal(keptLegacy.firstSeenAt, null);
+  assert.equal(keptLegacy.lastCollectedAt, null);
+  assert.ok(output.entries.some(entry => entry.definition === differentMeaning));
+  assert.equal(output.entries.at(-1).term, legacy.term);
   assert.equal(output.entries.filter(entry => entry.term === 'no cap').length, 2);
   assert.deepEqual(output.entries[0].sources.map(source => source.url), docs.map(doc => doc.url));
   const csv = parseCsv(await readFile(customCsv, 'utf8'));

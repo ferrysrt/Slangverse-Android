@@ -2,6 +2,8 @@ import {createHash} from 'node:crypto';
 
 const whitespace = value => String(value ?? '').replace(/\s+/g, ' ').trim();
 const identityText = value => whitespace(String(value ?? '').normalize('NFKC')).toLowerCase();
+const captureRank = value => typeof value === 'string' && Number.isFinite(Date.parse(value))
+  ? Date.parse(value) : -Infinity;
 
 // The first 24 hex characters of SHA-256(JSON.stringify([term, definition])).
 // Both identity strings are NFKC-normalized, whitespace-collapsed and lowercased.
@@ -11,16 +13,36 @@ export function candidateIdFor(term, definition) {
   ])).digest('hex').slice(0, 24);
 }
 
+// Unicode word boundaries shared by collection, eligibility and mixed selection.
+// Underscores and combining marks count as word characters, so Markdown emphasis
+// ("_cap_") and accented forms ("capé") are NOT treated as standalone term matches.
+export function wholeTermPattern(term) {
+  const literal = identityText(term).trim().split(/\s+/)
+    .map(part => part.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('\\s+');
+  if (!literal) throw Error('invalid-term-pattern');
+  return new RegExp('(^|[^\\p{L}\\p{N}\\p{M}_])' + literal + '(?=$|[^\\p{L}\\p{N}\\p{M}_])', 'iu');
+}
+
+export function containsWholeTerm(haystack, term) {
+  return wholeTermPattern(term).test(String(haystack ?? ''));
+}
+
 export function validateCandidate(candidate) {
   if (!candidate || candidate.sourceEvidenceStatus !== 'literal-excerpt-unreviewed' ||
+      typeof candidate.term !== 'string' || !whitespace(candidate.term) ||
+      typeof candidate.normalizedDefinition !== 'string' || !whitespace(candidate.normalizedDefinition) ||
       candidate.candidateId !== candidateIdFor(candidate.term, candidate.normalizedDefinition) ||
-      !candidate.normalizationModel || !Array.isArray(candidate.sources) || !candidate.sources.length)
+      typeof candidate.normalizationModel !== 'string' || !candidate.normalizationModel.trim() ||
+      !Array.isArray(candidate.sources) || !candidate.sources.length)
     throw Error('candidate-needs-literal-source-review');
   for (const source of candidate.sources) {
     let url;
-    try { url = new URL(source.url); } catch { throw Error('invalid-candidate-source'); }
-    if (!['https:', 'http:'].includes(url.protocol) || !source.title || !source.quote ||
-        !Number.isFinite(Date.parse(source.collectedAt)) || source.collectionMethod !== 'firecrawl' ||
+    try { url = new URL(source?.url); } catch { throw Error('invalid-candidate-source'); }
+    if (!['https:', 'http:'].includes(url.protocol) ||
+        typeof source.title !== 'string' || !source.title.trim() ||
+        typeof source.quote !== 'string' || !source.quote.trim() ||
+        typeof source.collectedAt !== 'string' || !Number.isFinite(Date.parse(source.collectedAt)) ||
+        source.collectionMethod !== 'firecrawl' ||
         !/^[a-f0-9]{64}$/.test(source.contentSha256)) throw Error('incomplete-candidate-provenance');
   }
 }
@@ -97,13 +119,37 @@ export function mergeCandidates(previous = [], incoming = []) {
       sources: uniqueSources([...earlier.sources, ...candidate.sources])
     } : candidate);
   }
-  return [...merged.values()];
+  return sortByCapture([...merged.values()].map(entry => ({
+    ...entry, ...captureTimesFor(entry),
+    reviewStatus: normalizedSenseIdFor(entry) ? 'normalized-unreviewed' : 'unreviewed'
+  })));
+}
+
+// Unknown legacy capture times stay unknown; run/migration times are not evidence.
+export function captureTimesFor(entry) {
+  const times = sourcesFor(entry).map(source => source.collectedAt)
+    .filter(value => typeof value === 'string' && Number.isFinite(Date.parse(value)))
+    .sort((a, b) => Date.parse(a) - Date.parse(b));
+  return {firstSeenAt: times[0] ?? null, lastCollectedAt: times.at(-1) ?? null};
+}
+
+export function sortByCapture(entries) {
+  return [...entries].sort((a, b) =>
+    captureRank(captureTimesFor(b).lastCollectedAt) - captureRank(captureTimesFor(a).lastCollectedAt));
+}
+
+// Eligibility is a provenance contract, not manual or expert semantic approval.
+export function normalizedSenseIdFor(candidate) {
+  try { validateCandidate(candidate); }
+  catch { return null; }
+  return 'normalized-' + candidate.candidateId;
 }
 
 const CSV_FIELDS = [
   'term', 'sense_id', 'definition', 'source_url', 'source_title', 'source_quote',
   'collected_at', 'collection_method', 'review_status', 'normalized_definition',
-  'normalization_model', 'candidate_id'
+  'normalization_model', 'candidate_id', 'first_seen_at', 'last_collected_at',
+  'source_evidence_status', 'content_sha256'
 ];
 
 function csvCell(value) {
@@ -113,19 +159,24 @@ function csvCell(value) {
 
 // A separate row for every capture, including older sources of merged candidates.
 export function candidateTableCsv(entries, {senseByCandidateId = new Map()} = {}) {
-  const rows = [CSV_FIELDS];
+  const captures = [];
   for (const entry of entries) {
     const candidateId = entry.candidateId ?? candidateIdFor(
       entry.term, entry.normalizedDefinition ?? entry.definition
     );
+    const senseId = normalizedSenseIdFor(entry);
+    const {firstSeenAt, lastCollectedAt} = captureTimesFor(entry);
     for (const source of sourcesFor(entry)) {
-      rows.push([
-        entry.term, senseByCandidateId.get(candidateId) ?? '', entry.definition,
+      captures.push({collectedAt: source.collectedAt, row: [
+        entry.term, senseByCandidateId.get(candidateId) ?? senseId ?? '', entry.definition,
         source.url, source.title, source.quote, source.collectedAt,
-        source.collectionMethod, entry.reviewStatus ?? 'unreviewed',
-        entry.normalizedDefinition ?? entry.definition, entry.normalizationModel, candidateId
-      ]);
+        source.collectionMethod, senseId ? 'normalized-unreviewed' : (entry.reviewStatus ?? 'unreviewed'),
+        entry.normalizedDefinition ?? entry.definition, entry.normalizationModel, candidateId,
+        firstSeenAt, lastCollectedAt, entry.sourceEvidenceStatus, source.contentSha256
+      ]});
     }
   }
-  return rows.map(row => row.map(csvCell).join(',')).join('\n') + '\n';
+  captures.sort((a, b) => captureRank(b.collectedAt) - captureRank(a.collectedAt));
+  return [CSV_FIELDS, ...captures.map(capture => capture.row)]
+    .map(row => row.map(csvCell).join(',')).join('\n') + '\n';
 }

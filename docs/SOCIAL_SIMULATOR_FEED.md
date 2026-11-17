@@ -2,19 +2,27 @@
 
 The app opens directly into fictional post cards. The former “CONTEXT DETECTIVE · V3 / Read the room. Decode the slang.” welcome panel is archived under **Quests → Archived: Context Detective · V3**. The original three-slang mode remains playable there and from the glossary; its results stay separate.
 
-## Current checkpoint: Published Feed · 0.4.0 (main)
+## Current source contract: mixed published feed
 
-The social-simulator checkpoint has been promoted to main. Home now loads a random available slang (or the saved selection) from the public `question-bank/` catalogue and fetches its LLM-generated ten-question pack automatically. Users switch sense chips or refresh without rebuilding the app. The current bank contains cooked, no cap, lowkey, glow up, rizz and IYKYK: 60 GPT-6 Luna-generated items, with provisional reference status. The latter three senses come from explicitly reviewed Firecrawl candidates with persisted definition sources. Rizz and IYKYK include disclosed agent-assisted editorial corrections, marked `agent-edited` in the feed source label; they are not expert-validated.
+The user-approved design is a merged mixed-slang Home, not one selected slang with chips. Home fetches public `question-bank/` JSON, prefers schema 2 mixed `packs`, and uses legacy `senses` only when no mixed packs are advertised. An advertised mixed-pack failure is an error, not a silent legacy/mock fallback. The source loader merges up to twelve packs; ten questions is a per-pack requirement, not the total feed size. Slang chips are removed; context tabs and Saved remain.
 
-The existing social post renderer, local avatars, inline answer composer, Learning feedback, context tabs, bookmarks, current-pack quests and results use the loaded data. Generated characters get profiles from the pack, and avatar IDs remain consistent. Existing authored story quotes/follow-ups are restricted to the explicitly chosen offline sample. Generated-pack inbox entries say Learning feedback ready; the app does not fabricate extra LLM replies.
+A fresh load or explicit refresh shuffles once. Saved order remains stable during recomposition, navigation and supported activity recreation for the same loaded content; failed refreshes can retain prior published posts and their order with an explicit error. Answers/bookmarks are scoped by pack ID, content hash and question ID (legacy uses sense ID), so changed revisions do not reuse older answers. Correct/incorrect XP stays 80/15 once per question identity, not again for filters, navigation or refresh. Published, authored and archived practice remain isolated local state, not durable participant logging.
 
-The default feed rejects mock packs and mismatched catalogue checksums/terms. Loading, error and not-yet-published states are explicit. The hand-authored feed is opt-in through Question source; the original Context Detective mode remains archived. Progress is scoped to the selected pack, with answers retained by sense/content revision/question ID across ordinary navigation and pack switches. A changed pack cannot reuse an older revision's answers. Saved posts are shown for the current pack. UI saved state remains local and is not durable participant logging.
+Mixed generation samples automatically eligible normalized senses from the own Firecrawl JSON/CSV, preferring ten unique terms, requiring at least two, and assigning ten questions with nominal 5/3/2 labels. Each question links to an embedded sense reference and one of nine context categories. Categories/scenario IDs may repeat; do not force an unnatural context quota. Literal provenance and structural checks do not certify semantics. There is no manual review gate or active slangfeed snapshot. Initial own data has 16 carried-forward entries; fresh refresh is pending. Weekly collection is Monday 03:00 UTC / 10:00 WIB.
 
-The publisher generates up to three missing/outdated playable senses per run, does not retry paid requests, and preserves valid existing packs. Future catalogue additions require meaning curation. The legacy source CSV has 200 candidates. Firecrawl discovery added 16 separately stored, unreviewed candidates; three explicit mappings bring the playable catalogue to six senses. See [dataset provenance and review](DATASET_INTEGRATION.md). The client accepts up to 1000 catalogue entries and loads one ten-item pack at a time. Static grading is practice-only; source labels and provisional content boundaries remain visible. See [bank operations](../question-bank/README.md).
+`backend/scripts/publish-mixed-bank.mjs` defaults to one attempt, maximum three, with no retries/repair/mock fallback. Only `mixed-v1` is the implemented baseline. Input, rendered prompt, request, raw output/response, actual model/usage/finish reasons, validation and result persist per attempt when available; success adds a pack. Main still needs the summary CLI and workflow artifact/persistence integration even on failure. Planned `0.5.0-mixed-feed` / version code `6` is for main to set, not a claimed release or successful generation here.
 
-Phone acceptance: cold launch on a network connection loads an LLM pack in the feed; switch all available slang chips; answer correct and incorrect options; check pack-specific XP and results; visit generated profiles, Saved and the feedback inbox; switch away/back and verify no duplicate XP; refresh; try a bad URL/offline connection and confirm an explicit error with no silent demo; explicitly select the offline sample; test activity recreation. The loaded JSON/parser/build checks are not a rendered device usability test.
+The social renderer retains bundled avatars, profiles, replies visible by default and individually collapsible, an explicit inline answer composer, separate Learning feedback, context filtering, bookmarks, quests and results. Generated-pack inbox entries say Learning feedback ready; authored quotes/scripted continuations stay in the opt-in sample. The phone never calls the LLM and needs no provider key; public static grading is local practice. No final test/build/device outcome is asserted by this contract.
 
-## Previous checkpoint: UI Hierarchy · 0.3.2
+See [accepted intent and current acceptance checklist](MIXED_FEED_HANDBOOK.md), [bank operations](GITHUB_GET_QUESTIONS.md), [dataset provenance](DATASET_INTEGRATION.md) and [prompt research protocol](PROMPT_ENGINEERING.md).
+
+## Historical checkpoint: Published Feed · 0.4.0
+
+The earlier Home selected a single slang pack through chips. Six legacy packs covered cooked, no cap, lowkey, glow up, rizz and IYKYK. The latter three followed explicit provisional mappings; rizz/IYKYK retain disclosed agent-assisted corrections and `agent-edited` source labels. Those packs remain compatible, but chip selection and manual promotion are superseded for the current feed. Their publication/verification history is not a mixed-v1 experiment.
+
+The remaining checkpoint, proposal-alignment and validation notes below are retained historical descriptions of authored/single-sense behavior. They are not current mixed-feed requirements or final mixed-feed test results; use the handbook above for current acceptance.
+
+## Historical checkpoint: UI Hierarchy · 0.3.2
 
 `0.3.2-ui-hierarchy` (version code 4) completes the hierarchy recommendation. It retains author portraits at 44dp, reply/quote portraits at 30–32dp, and profile portraits at 80dp. Primary author names are 16sp/bold; handles and story metadata are 12sp with explicit line heights. Other character names remain 14sp/bold. Secondary text uses a darker muted colour for readability on the warm surfaces; nested reply connectors remain in place.
 
@@ -24,7 +32,7 @@ Archived practice and Connected Training use the same feedback surface, retainin
 
 Phone acceptance additions: check names/handles at normal and large font sizes; submit correct and wrong answers; verify the visible player reply, separate Learning feedback panel and separate fictional follow-up; check archived and static/live training disclosures. These changes are compiled and model-regression tested, not a completed device usability or accessibility evaluation.
 
-## Previous checkpoint: Profile Pictures · 0.3.1
+## Historical checkpoint: Profile Pictures · 0.3.1
 
 `0.3.1-profile-pictures` (version code 3) adds 22 local Open Peeps portraits, including the twelve recurring characters, player and guest/fallback pictures. The [asset catalogue and generator documentation](../assets/profile-pictures/README.md) includes CC0 artwork provenance, MIT renderer notices, SVG originals, a contact sheet and reproducible rendering commands.
 
@@ -34,7 +42,7 @@ The LLM prompt offers allowed `avatarId` values and canonical cast bindings. The
 
 Phone checks: inspect each identity surface, open a recurring character in multiple conversations, verify the same portrait, test an old static pack without IDs, and test generated IDs via a mock/live-backend pack. Pictures must render offline and without affecting XP. Check both large and small font settings. Local tests/builds do not establish device layout or usability.
 
-## Previous checkpoint: Social Stories · 0.3.0
+## Historical checkpoint: Social Stories · 0.3.0
 
 This revision extends the feed checkpoint on `feat/social-simulator-feed`. It adds recurring fictional profiles, nested replies, five quoted earlier posts, clickable context hashtags, visible player replies, and an in-app conversation inbox. The app version is `0.3.0-social-stories` (version code 2).
 
@@ -46,7 +54,7 @@ Filter changes, profile navigation, and inbox navigation retain the same ten-que
 
 Known boundary: saveable UI state is still not a durable participant response log. Study identifiers, durable response storage/export, consent, human content validation, and usability evaluation remain separate thesis implementation/evaluation work. This story layer does not modify the backend generation pipeline or claim those capabilities.
 
-## Proposal alignment
+## Historical proposal alignment — authored sample
 
 Based on the supplied thesis proposal, §8.2.2 (printed p. 4), the nine categories are personal experience, education, work, prediction, sports, entertainment, opinion, conversations between friends, and reactions to events. **For you** is the mixed feed, not a tenth context. **News** is the UI label for reactions to fictional events; it does not fetch real news. The other eight categories have their own filters. Saved is a personal bookmark view, not a research category. “For you” uses a curated order, not a personalized recommendation algorithm.
 
@@ -54,7 +62,7 @@ The local demonstration pack uses ten distinct posts for one slang sense: `cooke
 
 The loop follows §8.2.7 (printed p. 8): read a post and optional replies, interpret the slang using four choices, post a reply, receive correctness and contextual explanation, and review results. The question is part of a highlighted fictional user's reply. Wrong answers receive an explanation and 15 practice XP; correct answers receive 80. Answers are final per post within the local practice state. Reopening a post or changing filters cannot award XP twice.
 
-## Interaction and progression
+## Historical interaction and progression — authored sample
 
 - Browse a vertically lazy-loaded feed and horizontally scrollable context filters.
 - Replies are visible by default; collapse/expand remains per post and does not open answer choices. Connected Training and archived practice also start/reset with replies expanded, and training no longer truncates an expanded thread to three comments. Using clues has no score penalty.
@@ -67,7 +75,7 @@ Feed answers, selected filter, likes, bookmarks, focused conversation, profile s
 
 The proposal §9.8 (printed pp. 23–24) treats the game as an interactive presentation and response-recording medium. This implementation does not claim learning gains, authentic social interaction, validated content, research-grade persistence, or superior usability without evaluation. Accounts, events and conversations are fictional. No real social network, news feed, or paid LLM call is involved in local practice.
 
-## Validation
+## Historical validation commands and coverage
 
 From `android/`, with the environment toolchain activated:
 
@@ -80,11 +88,11 @@ gradle --no-daemon :app:testDebugUnitTest :app:assembleDebug
 
 Device acceptance checklist for the original feed checkpoint: cold launch shows post cards without the old hero; select every category; like and save a post; open it from Saved; expand clues; submit correct and wrong answers; change tabs and navigate away/back; confirm feedback and XP remain stable; recreate the activity; complete the finite feed and inspect results; open the archived mode; open Connected Training.
 
-## Download an APK for phone testing
+## Historical APK download instructions
 
 The Android debug workflow also runs on pushes to `feat/social-simulator-feed` that change Android files or the workflow. On GitHub, sign in, open Actions → Android debug build (no Codex), and choose a successful run whose branch is `main`. In that run's Artifacts section, download `slangverse-debug-apk`, extract the ZIP, and install `app-debug.apk` on an Android 8.0+ phone. If no successful run is available, use Run workflow and select `main`. GitHub Actions availability and account quotas apply. A successful local build does not establish that the GitHub run has finished successfully.
 
-### Social Stories phone acceptance checks
+### Historical Social Stories phone acceptance checks
 
 1. Confirm the installed version is `0.3.0-social-stories`; cold launch still shows posts without the archived hero.
 2. Tap Mira's identity, read her bio, and open her other authored conversation. Back/dismiss returns to the feed without submitting an answer.

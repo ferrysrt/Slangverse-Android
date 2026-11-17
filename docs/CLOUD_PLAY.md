@@ -1,4 +1,6 @@
-# Play Slangverse on a real Android phone with cloud GPT-6 Luna
+# Optional Connected Training — cloud GPT-6 Luna
+
+**Current boundary:** default Home uses pre-generated mixed/legacy packs through public GitHub GET, without a backend token or live phone LLM request. This guide is only for the separate single-sense REST training path; it is not required to play Home. Earlier PR/deployment instructions below are checkpoint-specific, not current release verification. See [the mixed-feed handbook](MIXED_FEED_HANDBOOK.md).
 
 **Scope:** Research/dev prototype only. The Android APK does **not** contain an OpenRouter key. The GitHub Actions build is not a server. This guide does not claim cloud deployment or phone play has already been tested.
 

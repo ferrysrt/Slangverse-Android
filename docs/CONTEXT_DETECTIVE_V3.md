@@ -1,5 +1,7 @@
 # Slangverse V3 — Context Detective
 
+**Historical/archived mode:** this page records the three-case authored V3 checkpoint, not the current Home or mixed generation contract. The welcome remains under Quests; use the [mixed-feed handbook](MIXED_FEED_HANDBOOK.md) for current accepted behavior.
+
 ## Product identity
 
 A social-context detective game, not a multiple-choice quiz disguised with XP.

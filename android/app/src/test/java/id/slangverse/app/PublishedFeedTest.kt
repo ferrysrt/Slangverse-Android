@@ -14,16 +14,20 @@ class PublishedFeedTest {
     @Test fun actualPublishedBankParsesIntoSocialConversationsWithSourceAndAvatarMetadata() {
         val catalog = parseBankCatalog(File(bank, "catalog.json").readText(), requireLlm = true)
         assertEquals("llm", catalog.generationSource)
-        assertTrue(catalog.senses.isNotEmpty())
+        assertTrue(catalog.senses.isNotEmpty() || catalog.packs.isNotEmpty())
         val ids = mutableSetOf<String>()
-        catalog.senses.forEach { sense ->
-            val loaded = parseBankSession(packText(sense.senseId), sense.senseId, true, sense.term, sense.packSha256)
+        val sessions = catalog.senses.map { sense ->
+            parseBankSession(packText(sense.senseId), sense.senseId, true, sense.term, sense.packSha256)
+        } + catalog.packs.map { pack ->
+            parseMixedBankSession(packText(pack.packId), pack.packId, pack.sha256)
+        }
+        sessions.forEach { loaded ->
             val posts = loaded.toFeedPosts()
             assertEquals(10, posts.size)
             posts.forEach { post ->
                 assertTrue(post.published)
                 assertTrue(post.sourceLabel.contains("LLM"))
-                assertEquals(sense.term.lowercase(), post.thread.term.lowercase())
+                assertTrue(loaded.session.questions.any { it.slang == post.thread.term })
                 assertTrue(ids.add(post.thread.id))
                 assertTrue(post.avatarId in ProfilePictureCatalog.ids)
                 assertEquals(post.thread.comments, post.replies!!.map { it.text })
@@ -33,7 +37,13 @@ class PublishedFeedTest {
                 posts.groupingBy { it.difficulty }.eachCount())
             assertTrue(feedProfiles(posts).keys.containsAll(posts.map { it.thread.handle }))
         }
-        assertEquals(catalog.senses.size * 10, ids.size)
+        assertEquals((catalog.senses.size + catalog.packs.size) * 10, ids.size)
+        val feed = mergePublishedFeed(sessions.filter { loaded ->
+            selectPublishedPacks(catalog).any { it.id == loaded.session.packId.ifBlank { loaded.session.senseId } }
+        })
+        assertEquals(selectPublishedPacks(catalog).size * 10, feed.size)
+        if (catalog.packs.isEmpty() && catalog.senses.size > 1)
+            assertTrue(feed.map { it.thread.term.lowercase() }.distinct().size > 1)
     }
 
     @Test fun legacyPacksWithoutEditorialMetadataKeepTheirOriginalSourceLabel() {

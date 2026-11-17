@@ -1,3 +1,22 @@
+# Mixed-feed transition verification — 2026-11-18 (Asia/Jakarta)
+
+Working tree checkpoint, **not yet pushed or built in CI**. App build configuration is `0.5.0-mixed-feed`, version code 6. No live mixed generation, dataset refresh, Android build or device test is claimed by this section until its own run evidence exists.
+
+## Actual results from this session
+
+- Backend `npm test`: **164 passed, 0 failed/cancelled/skipped**, run directly in `backend/` on this machine. Coverage now includes the normalized dataset contract, mixed selection/prompt/validation/publication, experiment-report aggregation, HTTP contract, legacy publisher compatibility and the checked-in bank.
+- Source guards: `node --test android/scripts/reply-visibility.test.mjs android/scripts/published-feed.test.mjs` → **12 passed, 0 failed**.
+- Android JUnit and APK assembly were **not** run locally: only Java 8 is available here and Gradle is absent. Android results must come from GitHub Actions.
+- `git diff --check` passed. Added `.gitattributes` pinning `*.json`/`*.csv`/bank/dataset/experiment paths to `eol=lf`, because `core.autocrlf=true` on Windows previously made exact-byte pack hash checks fail locally.
+- Shared Unicode term-boundary helper `wholeTermPattern`/`containsWholeTerm` is now used by collection, eligibility and mixed selection, so a Markdown-emphasis excerpt (`_cap_`) or accented form (`capé`) cannot be accepted by one layer and rejected by another.
+- Mixed validation now also checks the main post and other pre-answer surfaces for literal target/option disclosure; the dataset refresh writes version 3 `normalized_dataset` output with audit records (`backend/dataset-runs/…`) even when normalization fails.
+
+## Not yet established
+
+No live Firecrawl refresh, no live mixed LLM generation, no GitHub Actions run, no APK build and no phone/device acceptance for this checkpoint. See [prompt/metrics protocol](PROMPT_ENGINEERING.md) for the evidence rules that apply once real attempts exist.
+
+## Previous checkpoint verification
+
 # Replies and source-backed slang verification — 2026-11-17 (Asia/Jakarta)
 
 Code/content checkpoint `0e1c381` on **main**. The app build configuration remains `0.4.0-published-feed`, version code 5; this run built updated code/content, not a newly numbered release.

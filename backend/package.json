@@ -9,7 +9,9 @@
     "benchmark": "node scripts/benchmark.mjs",
     "test": "node --test",
     "dataset:refresh": "node dataset/refresh.mjs",
-        "dataset:curate": "node dataset/curate.mjs",
+    "dataset:migrate": "node dataset/migrate.mjs",
+    "bank:publish": "node scripts/publish-mixed-bank.mjs",
+    "experiments:report": "node scripts/report-experiments.mjs",
     "bank:export": "node scripts/export-static-demo-bank.mjs public-question-bank"
   },
   "engines": {
