@@ -1,0 +1,384 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q1",
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "slang": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "difficulty": "easy",
+      "contextId": "hallway_clock_glitch",
+      "contextCategory": "education",
+      "post": {
+        "displayName": "Mira Vale",
+        "handle": "@miramoments",
+        "hashtag": "#MondayAtSchool",
+        "content": "The hallway clock ran backward, then every locker played the same tiny tune. This school is ohio today 😭",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "text": "I heard the tune from the library too.",
+            "avatarId": "guest_01"
+          },
+          {
+            "handle": "@guest_02",
+            "text": "Please tell me someone checked the clock batteries.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Did the lockers really all start playing the same tune?",
+      "question": "What does 'ohio' mean in this post?",
+      "options": [
+        "A school building located in a particular state.",
+        "A humorous nickname for an unusually busy school day.",
+        "A surreal, strange, or cursed version of reality.",
+        "A place where students go to practice music."
+      ],
+      "correctIndex": 2,
+      "explanation": "The backward clock and synchronized locker music make the day feel bizarre, matching the post's use of ohio."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q2",
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "slang": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "difficulty": "easy",
+      "contextId": "group_chat_sound",
+      "contextCategory": "friends",
+      "post": {
+        "displayName": "Theo Park",
+        "handle": "@guest_03",
+        "hashtag": "#GroupChat",
+        "content": "My little cousin sent me a clip where a dancing toaster just chants “skibidi” over and over. The whole chat is quoting it now.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "text": "That sound is stuck in my head already.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@guest_05",
+            "text": "The toaster has better dance moves than I do.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "Why is everyone repeating skibidi in the chat?",
+      "question": "What does 'skibidi' mean in this post?",
+      "options": [
+        "A nonsense word popularized as a viral meme.",
+        "A special setting on a kitchen appliance.",
+        "A greeting used to welcome someone into a chat.",
+        "A dance lesson shared among family members."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post describes a catchy clip that people keep quoting, which fits the supplied meaning of skibidi."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q3",
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "slang": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "difficulty": "easy",
+      "contextId": "late_study_snacks",
+      "contextCategory": "personal",
+      "post": {
+        "displayName": "Nora Finch",
+        "handle": "@guest_06",
+        "hashtag": "#StudyBreak",
+        "content": "Dinner tonight: crackers, grapes, two cheese cubes, and the last pickle from the jar. My girl dinner is ready for the next chapter.",
+        "comments": [
+          {
+            "handle": "@guest_07",
+            "text": "The pickle deserves its own plate.",
+            "avatarId": "guest_07"
+          },
+          {
+            "handle": "@guest_08",
+            "text": "That sounds like a solid reading setup.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Is that everything you're having while you study?",
+      "question": "What does 'girl dinner' mean in this post?",
+      "options": [
+        "A planned meal served at a formal study gathering.",
+        "A snack challenge that requires eating quickly.",
+        "A dinner chosen by a group of classmates.",
+        "An informal meal made up of a casual or haphazard mix of snacks."
+      ],
+      "correctIndex": 3,
+      "explanation": "The post lists a casual collection of small snacks as dinner, which matches the given meaning of girl dinner."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q4",
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "slang": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "difficulty": "easy",
+      "contextId": "coffee_shop_intro",
+      "contextCategory": "friends",
+      "post": {
+        "displayName": "Jules Rowan",
+        "handle": "@guest_01",
+        "hashtag": "#MeetCute",
+        "content": "Rafi introduced himself at the café, made one gentle joke about my book, and somehow got me smiling before my drink arrived. That rizz is unreal.",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "Okay, but what book were you reading?",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@guest_03",
+            "text": "Now I want to hear the joke.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "What was it about Rafi's introduction that stood out?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "Confidence about choosing a drink.",
+        "Flirting skill or natural charisma.",
+        "A talent for remembering book titles.",
+        "A habit of making jokes at a café."
+      ],
+      "correctIndex": 1,
+      "explanation": "Rafi's charming introduction and playful joke made a good impression, pointing to flirting skill or natural charisma."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q5",
+      "senseId": "normalized-e52932ae62efe030406673c2",
+      "slang": "ate",
+      "targetMeaning": "Performed exceptionally well, especially with style or confidence.",
+      "difficulty": "easy",
+      "contextId": "school_talent_show",
+      "contextCategory": "entertainment",
+      "post": {
+        "displayName": "Tess Arden",
+        "handle": "@guest_04",
+        "hashtag": "#TalentShow",
+        "content": "Lena walked onto the talent-show stage, nailed every note, and owned the final chorus. She ate, and the crowd wouldn't stop clapping.",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "text": "That last note gave me chills.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@guest_06",
+            "text": "The applause went on forever.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "Was Lena's performance as strong as it sounds?",
+      "question": "What does 'ate' mean in this post?",
+      "options": [
+        "Finished her snack before going onstage.",
+        "Had the loudest part in the performance.",
+        "Performed exceptionally well, especially with style or confidence.",
+        "Remembered the lyrics but missed the melody."
+      ],
+      "correctIndex": 2,
+      "explanation": "Lena sang confidently and impressed the audience, showing that ate means she performed exceptionally well."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q6",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "medium",
+      "contextId": "concert_ticket_daydream",
+      "contextCategory": "prediction",
+      "post": {
+        "displayName": "Milo Chen",
+        "handle": "@guest_07",
+        "hashtag": "#MaybeSomeday",
+        "content": "I have no ticket and the show is across the ocean, but I keep picturing the singer noticing my homemade banner from the front row. Let me be delulu for one evening.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "text": "That banner idea is honestly pretty good.",
+            "avatarId": "guest_08"
+          },
+          {
+            "handle": "@guest_01",
+            "text": "At least you can start planning the outfit.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "Are you actually expecting the singer to spot your banner?",
+      "question": "What does 'delulu' mean in this post?",
+      "options": [
+        "A playful or endearing way to describe being delusional.",
+        "A practical plan for buying a concert ticket.",
+        "A serious concern about traveling overseas.",
+        "A private nickname for the singer."
+      ],
+      "correctIndex": 0,
+      "explanation": "The writer knowingly indulges an unlikely daydream and frames it playfully, fitting the meaning of delulu."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q7",
+      "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+      "slang": "bussin",
+      "targetMeaning": "Delicious or excellent, commonly describing food.",
+      "difficulty": "medium",
+      "contextId": "neighborhood_soup_swap",
+      "contextCategory": "event-reaction",
+      "post": {
+        "displayName": "Rae Ellis",
+        "handle": "@guest_02",
+        "hashtag": "#SoupSwap",
+        "content": "I came home with a jar of Mina's roasted tomato soup, and now I'm texting for the recipe before I even finish the bowl. That soup is bussin.",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "text": "Save me a little taste next time!",
+            "avatarId": "guest_03"
+          },
+          {
+            "handle": "@guest_04",
+            "text": "The soup swap was a very good idea.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "What made you ask Mina for the recipe so fast?",
+      "question": "What does 'bussin' mean in this post?",
+      "options": [
+        "Hard to find outside the neighborhood.",
+        "Made in a large quantity for sharing.",
+        "Too spicy to finish without a drink.",
+        "Delicious or excellent, commonly describing food."
+      ],
+      "correctIndex": 3,
+      "explanation": "The writer wants the recipe while enjoying the soup, signaling that bussin describes how good the food tastes."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q8",
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "slang": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "difficulty": "medium",
+      "contextId": "study_hall_selfie",
+      "contextCategory": "education",
+      "post": {
+        "displayName": "Ari Sol",
+        "handle": "@ariatwork",
+        "hashtag": "#StudyHall",
+        "content": "My lab partner keeps reminding me about mewing whenever someone takes a photo for the class page. I still forget where to put my tongue as soon as the camera appears.",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "text": "The camera timer always makes me panic too.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@guest_06",
+            "text": "At least the group picture is finally done.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "What is your lab partner reminding you to do for the photo?",
+      "question": "What does 'mewing' mean in this post?",
+      "options": [
+        "A way to smile with lips closed for a photograph.",
+        "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "A breathing exercise used before a school presentation.",
+        "A trick for holding still while a camera takes a picture."
+      ],
+      "correctIndex": 1,
+      "explanation": "The writer mentions tongue placement while discussing the reminder, which connects the post to the stated posture technique."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q9",
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "slang": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "difficulty": "hard",
+      "contextId": "rainy_rooftop_plan",
+      "contextCategory": "friends",
+      "post": {
+        "displayName": "Sana Reed",
+        "handle": "@guest_07",
+        "hashtag": "#WeekendPlans",
+        "content": "You picked the rooftop picnic spot again, even though the forecast says rain all afternoon? bsfr, are we bringing umbrellas or changing the plan?",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "text": "I can bring the big blanket either way.",
+            "avatarId": "guest_08"
+          },
+          {
+            "handle": "@guest_01",
+            "text": "The covered patio nearby might be open.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "Are you questioning the rooftop choice or asking about the forecast?",
+      "question": "What does 'bsfr' mean in this post?",
+      "options": [
+        "A reminder to reserve a rooftop table early.",
+        "A cheerful way to agree to the picnic plan.",
+        "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "A request to bring extra food for the group."
+      ],
+      "correctIndex": 2,
+      "explanation": "The writer reacts skeptically to choosing an exposed picnic spot in rainy weather and asks whether the plan is serious."
+    },
+    {
+      "id": "mixed-20261117t181815601z-a3ab2730-7330-486f-b922-3c485088338e-q10",
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "slang": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "difficulty": "hard",
+      "contextId": "blue_bench_photo",
+      "contextCategory": "opinion",
+      "post": {
+        "displayName": "Dev Moss",
+        "handle": "@guest_02",
+        "hashtag": "#AfterClass",
+        "content": "Posted the blue bench again. No caption, no explanation—just the little paper star taped underneath. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "text": "I still have mine in my notebook.",
+            "avatarId": "guest_03"
+          },
+          {
+            "handle": "@guest_04",
+            "text": "That afternoon feels like it was ages ago.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "What connects the blue bench and the paper star?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "An inside joke or niche reference, short for “if you know, you know.”",
+        "A reminder that everyone should visit the bench.",
+        "A request for followers to identify the paper star.",
+        "A way to announce a new school club."
+      ],
+      "correctIndex": 0,
+      "explanation": "The unexplained bench and paper star suggest shared context understood by only some readers, which fits the given meaning of iykyk."
+    }
+  ]
+}

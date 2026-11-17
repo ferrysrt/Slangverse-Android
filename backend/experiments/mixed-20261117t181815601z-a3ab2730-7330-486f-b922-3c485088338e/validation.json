@@ -1,0 +1,91 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "id": "json-parse",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "required-fields",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "count-10",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "difficulty-5-3-2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "four-options",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "correct-index",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "context-category",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unique-ids",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "no-surrounding-text",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reference-integrity",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "existing-question-rules",
+      "passed": false,
+      "errors": [
+        "0:question-comment-shape",
+        "2:question-comment-shape",
+        "3:question-comment-shape",
+        "4:question-comment-shape",
+        "5:question-comment-shape",
+        "6:question-comment-shape",
+        "7:question-comment-shape",
+        "8:question-comment-shape",
+        "9:question-comment-shape"
+      ]
+    },
+    {
+      "id": "social-safety",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "provider-completion",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "errors": [
+    "0:question-comment-shape",
+    "2:question-comment-shape",
+    "3:question-comment-shape",
+    "4:question-comment-shape",
+    "5:question-comment-shape",
+    "6:question-comment-shape",
+    "7:question-comment-shape",
+    "8:question-comment-shape",
+    "9:question-comment-shape"
+  ]
+}
