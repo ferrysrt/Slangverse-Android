@@ -2,7 +2,7 @@
 
 ## Scope and evidence rule
 
-The implemented mixed baseline is **`mixed-v2`**, stored in `backend/prompts/mixed-v2.txt` (with `mixed-v1.txt` retained) and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
+The implemented mixed baseline is **`mixed-v3`**, stored in `backend/prompts/mixed-v3.txt` (with v1/v2 retained) and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
 
 Report only observations backed by actual attempt files. A future prompt revision needs its own saved template, actual runs and comparable metrics before it can be described as evaluated or better.
 
@@ -91,7 +91,13 @@ One real `mixed-v1` attempt exists: [publisher run 44143393023](https://github.c
 
 The concrete failure is reproducible from the saved `output.json`: question 8 was assigned the sense `larp` ("Short for live-action role-play; used for someone living a fake or performative life for social clout"). Its `post.content` described staged photos and borrowed studio keys but never contained the literal term; the term appeared only in `questionComment`. The prompt had asked for a post "using the exact slang term" without stating that the term must be literally present in that field.
 
-Hypothesis: make the field-level obligation explicit. `mixed-v2` changes the schema example to "A natural short post that contains the exact slang term verbatim" and adds a rule that `post.content` must contain the exact reference term, that `questionComment` cannot substitute for it, and that the normalized definition belongs only in `targetMeaning`/`explanation`. Everything else is unchanged. This is one targeted revision from one observed failure — not a broad redesign, and not yet an evaluated improvement. Its outcome must come from a later real attempt.
+Hypothesis: make the field-level obligation explicit. `mixed-v2` changes the schema example to "A natural short post that contains the exact slang term verbatim" and adds a rule that `post.content` must contain the exact reference term and that the normalized definition belongs only in `targetMeaning`/`explanation`. Everything else was unchanged.
+
+A real `mixed-v2` attempt then exists: [publisher run 44144286530](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144286530), record `mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb`. One provider call, HTTP 200, `finish_reason: stop` / native `completed`. **All nine critical checks passed** — the `post-slang-missing` failure was resolved — but the additional `existing-question-rules` gate rejected four items (`5:`, `7:`, `8:`, `9:question-comment-shape`). In each, the `questionComment` omitted the literal term: e.g. `"What about Ren's presence stood out to you?"` for `aura`, and `"What is Tess suggesting about Nico's online work persona?"` for `larp`. The v2 wording that `questionComment` "may mention the term" was too weak and the model treated it as optional once the term was required in the post.
+
+`mixed-v3` removes that ambiguity: `post.content` still must contain the term verbatim, and `questionComment` now explicitly **must also contain the exact slang term verbatim, in addition to its presence in post.content**, must end with a question mark, and must not substitute a pronoun, description, real-world referent or meaning. This is a second targeted revision from a second observed failure. Like v2 before it, it is not yet an evaluated improvement; its outcome must come from a later real attempt.
+
+Both revisions are one-target-change steps from observed evidence, not a broad redesign and not a retrospective success claim.
 
 ## Revision and interpretation protocol
 

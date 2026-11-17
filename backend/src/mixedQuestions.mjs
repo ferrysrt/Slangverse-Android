@@ -4,7 +4,7 @@ import {validateQuestion, normalize} from './game.mjs';
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v2';
+export const MIXED_PROMPT_VERSION = 'mixed-v3';
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'
