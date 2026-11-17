@@ -4,7 +4,7 @@ import {validateQuestion, normalize} from './game.mjs';
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v1';
+export const MIXED_PROMPT_VERSION = 'mixed-v2';
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'
@@ -16,7 +16,7 @@ export const MIXED_EVALUATION_CHECKS = Object.freeze([
   'json-parse', 'required-fields', 'count-10', 'difficulty-5-3-2',
   'four-options', 'correct-index', 'context-category', 'unique-ids', 'no-surrounding-text'
 ]);
-const template = readFileSync(new URL('../prompts/mixed-v1.txt', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+const template = readFileSync(new URL(`../prompts/${MIXED_PROMPT_VERSION}.txt`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 const object = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const text = value => typeof value === 'string' && value.trim().length > 0;
 const termKey = value => value.normalize('NFKC').toLowerCase().replace(/\s+/g, ' ').trim();

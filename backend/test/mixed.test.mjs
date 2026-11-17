@@ -711,3 +711,16 @@ test('an invalid addition or corrupt catalog leaves the existing catalog bytes u
     provider: fakeProvider({observe: () => calls++})}), /invalid-existing-bank-catalog/);
   assert.equal(calls, 0); assert.equal(readFileSync(join(outputDir, 'catalog.json'), 'utf8'), '{invalid');
 });
+
+test('prompt versions are archived and the active template requires the term inside post.content', () => {
+  const read = version => readFileSync(new URL(`../prompts/${version}.txt`, import.meta.url), 'utf8');
+  const v1 = read('mixed-v1'), v2 = read('mixed-v2');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v2');
+  assert.ok(v1.includes('A natural short post using the exact slang term'));
+  assert.ok(v2.includes('post.content MUST contain the exact reference term verbatim'));
+  assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
+  const value = fixture();
+  const messages = createMixedPrompt({packId: value.pack.packId, ...value});
+  assert.equal(messages[1].content.includes('post.content MUST contain the exact reference term verbatim'), true);
+  assert.equal(messages[1].content.includes('{{INPUT_JSON}}'), false);
+});

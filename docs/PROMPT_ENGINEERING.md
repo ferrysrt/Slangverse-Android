@@ -2,7 +2,7 @@
 
 ## Scope and evidence rule
 
-The implemented mixed baseline is **`mixed-v1`**, stored in `backend/prompts/mixed-v1.txt` and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. There is no claimed mixed-v2 trial, improvement percentage or fabricated historical experiment. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
+The implemented mixed baseline is **`mixed-v2`**, stored in `backend/prompts/mixed-v2.txt` (with `mixed-v1.txt` retained) and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
 
 Report only observations backed by actual attempt files. A future prompt revision needs its own saved template, actual runs and comparable metrics before it can be described as evaluated or better.
 
@@ -84,6 +84,14 @@ State the prompt version, dataset version, requested and actual model, provider 
 Report raw counts with rates, never percentages alone. If examining schema compliance conditional on parse success, label that subset explicitly alongside the end-to-end denominator. Do not drop failures to improve results. Use p50/p90/p95 only with disclosed sample size and quantile method; a single observation is not a benchmark. A phone's GitHub fetch time is not generation latency. Do not infer provider cost from tokens without the actual applicable price/routing evidence; usage is not itself a billed amount.
 
 No numeric results are populated by this protocol. No live request or test count is claimed by documenting it.
+
+## Observed revision — mixed-v1 to mixed-v2
+
+One real `mixed-v1` attempt exists: [publisher run 44143393023](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44143393023), record `mixed-20261117t180156794z-17f15768-0eb7-471f-8385-c6fc20e958af`. It made **one provider call** to `openai/gpt-6-luna`, received HTTP 200 with `finish_reason: stop` / native `completed`, and reported 5,200 prompt + 3,214 completion tokens (8,414 total, provider-reported cost 0.002256925). All nine critical syntax checks passed; the pack was rejected by the additional **`reference-integrity`** gate with exactly one error, `7:post-slang-missing`.
+
+The concrete failure is reproducible from the saved `output.json`: question 8 was assigned the sense `larp` ("Short for live-action role-play; used for someone living a fake or performative life for social clout"). Its `post.content` described staged photos and borrowed studio keys but never contained the literal term; the term appeared only in `questionComment`. The prompt had asked for a post "using the exact slang term" without stating that the term must be literally present in that field.
+
+Hypothesis: make the field-level obligation explicit. `mixed-v2` changes the schema example to "A natural short post that contains the exact slang term verbatim" and adds a rule that `post.content` must contain the exact reference term, that `questionComment` cannot substitute for it, and that the normalized definition belongs only in `targetMeaning`/`explanation`. Everything else is unchanged. This is one targeted revision from one observed failure — not a broad redesign, and not yet an evaluated improvement. Its outcome must come from a later real attempt.
 
 ## Revision and interpretation protocol
 
