@@ -1,3 +1,29 @@
+# Replies and source-backed slang verification — 2026-11-17 (Asia/Jakarta)
+
+Code/content checkpoint `0e1c381` on **main**. The app build configuration remains `0.4.0-published-feed`, version code 5; this run built updated code/content, not a newly numbered release.
+
+## Actual results from this session
+
+- Backend full suite: **104 passed, 0 failed/cancelled/skipped** in a temporary sandbox using the current backend/editorial bank and canonical Git bytes for unchanged packs. The successful [backend CI run 44091691365](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44091691365) also ran the suite and legacy demo export. Existing three mock packs remain separate from the expanded LLM bank.
+- A direct backend run in this Windows checkout failed the existing published-pack hash check because Git's automatic CRLF checkout differs from the LF bytes served by GitHub Raw. That is not presented as a passing direct local run. No unchanged legacy pack was rewritten to mask it. Sandbox validation used canonical blobs; staged pack hashes and public HTTPS bytes were independently checked.
+- Replies source guards: **4 passed, 0 failed**. Checks cover default-open state, per-post saveable toggles, unchanged explicit answer composer, legacy reset defaults and all supported training comments. These source checks do not replace Compose interaction tests.
+- [Android build run 44091691386](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44091691386) on `0e1c381`: **successful** backend/reply/avatar checks, `:app:testDebugUnitTest`, `:app:assembleDebug`, and APK upload. Downloaded the current `android-unit-test-results` artifact and counted XML: **29 tests, 0 failures, 0 errors, 0 skipped** — ContextDetectiveGameTest 7, ProfilePicturesTest 2, PublishedFeedTest 9, SocialFeedGameTest 5, SocialNarrativeTest 6. Published tests parse the actual six-pack bank and cover supported reply counts, exact editorial disclosure and unchanged grading/XP. Artifact **slangverse-debug-apk** contains the installable APK.
+- No local Android Gradle build was attempted: only Java 8 is available here and Gradle is absent. Android compilation and packaging results above are from GitHub Actions, not this Windows machine. No independent new APK signature/device installation test is claimed.
+- Discovery [run 44089717679](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44089717679): **success**, one Firecrawl search and one OpenRouter normalizer call, no retries. **16 accepted, one rejected**, persisted in JSON/CSV by `60fb641`. Actual capture time `2026-11-17T13:08:28.914Z`; all accepted excerpts came from one UPrinting glossary, not sixteen independent reference pages. Existing GitHub secret names were verified without printing values; no repository Actions variables were configured.
+- Explicit source/safety mappings in `a68f019` added `glow-up-improvement`, `rizz-flirting`, `iykyk-inside-reference`. Candidate rows remain unreviewed; playable references are provisional. The cooked legacy meaning conflict remains visible and unmapped to the new exhaustion candidate.
+- Publisher [run 44090251900](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44090251900): **success**, actual result `attempted:3`, `published:3`, `available:6`, `failures:[]`; generated files committed in `d70dbe1`. No generation retries or phone-triggered paid requests. Each pack has one sense, ten questions and nominal 5 easy / 3 medium / 2 hard.
+- An agent-assisted read of all 30 new items found one overlapping IYKYK distractor and several ambiguous rizz contexts. `0e1c381` corrects them editorially, preserves LLM origin/model/time, records item-level reasons in `editorialReview`, and shows **agent-edited** in the feed for those two packs. A targeted second review found no remaining high/medium issues in the corrected items; this is **not** linguistic expert validation. No extra paid generation was used for corrections.
+- Final public HTTPS GET: catalogue and **all six packs HTTP 200**, SHA-256 matched exact downloaded bytes, all passed backend structural/reference checks. JSON and CSV dataset URLs also returned **200**. Final bank version `50455fdfb66bd3ab`, six senses / **60 questions**; the original three valid packs remain intact. New sourced packs retain candidate IDs, normalized definitions and reviewed source quotations.
+- `git diff --check` passed after CSV export record separators were made LF (quoted multiline source text is preserved). Project diagnostics reported no errors/warnings.
+
+## Remaining acceptance boundaries
+
+Phone gestures/layout, accessibility, activity recreation and mobile-network behavior remain untested in this session. On a device: verify replies are initially visible and collapsible without auto-opening choices; inspect up to five replies; use **Refresh bank** to select all six slang chips; check the edited-source labels; answer right/wrong and revisit packs without duplicate XP. Current pack hash changes intentionally isolate revised answers/progress.
+
+All reference and generated content remains provisional. This session does not establish semantic expert approval, empirical difficulty calibration, learning gains, participant usability or durable/authenticated research logging. Source discovery and schema validation are not substitutes for those evaluations.
+
+## Previous checkpoint verification
+
 # Published Feed checkpoint verification — 2026-11-16 (Asia/Jakarta)
 
 Version `0.4.0-published-feed`, version code 5, on **main**. The social simulator was fast-forwarded to main, then the bounded publisher generated and committed three genuine GPT-6 Luna packs to `question-bank/` (generation commit `329989d`).

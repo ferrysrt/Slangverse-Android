@@ -1,7 +1,9 @@
 import {readFileSync, writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {candidateTableCsv, validateCandidate, validateSourcedSense} from '../src/datasetProvenance.mjs';
+import {
+  candidateTableCsv, validateCandidate, validateSourcedSense
+} from '../src/datasetProvenance.mjs';
 
 export function curateCandidates({entries, curated, reviews}) {
   if (![entries, curated, reviews].every(Array.isArray)) throw Error('invalid-curation-input');
