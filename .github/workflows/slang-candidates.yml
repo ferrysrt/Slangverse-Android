@@ -35,7 +35,9 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-6-luna' }}
           FIRECRAWL_QUERY: ${{ inputs.query }}
-          DATASET_AUDIT_DIR: backend/dataset-runs
+          # Relative to this step's working-directory (backend/), so the audit
+          # evidence lands in backend/dataset-runs at the repository root.
+          DATASET_AUDIT_DIR: dataset-runs
         run: npm run dataset:refresh
       - name: Publish normalized dataset and run evidence
         if: ${{ always() }}
