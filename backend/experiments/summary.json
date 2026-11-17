@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "note": "Observed attempt records only. Valid means generation validation passed, not expert approval or confirmed Git publication. Incomplete records are listed, never discarded. See per-check denominators.",
-  "attemptCount": 5,
+  "attemptCount": 6,
   "byPrompt": {
     "mixed-v1": {
       "attempts": 1,
@@ -11,6 +11,9 @@
       "incomplete": 0,
       "providerCalls": 1,
       "allNinePassed": 1,
+      "itemsEvaluated": 10,
+      "itemsCompliant": 9,
+      "packsPublishable": 0,
       "checks": {
         "json-parse": {
           "evaluated": 1,
@@ -58,6 +61,9 @@
       "incomplete": 0,
       "providerCalls": 1,
       "allNinePassed": 1,
+      "itemsEvaluated": 10,
+      "itemsCompliant": 6,
+      "packsPublishable": 0,
       "checks": {
         "json-parse": {
           "evaluated": 1,
@@ -105,6 +111,9 @@
       "incomplete": 0,
       "providerCalls": 1,
       "allNinePassed": 1,
+      "itemsEvaluated": 10,
+      "itemsCompliant": 9,
+      "packsPublishable": 0,
       "checks": {
         "json-parse": {
           "evaluated": 1,
@@ -152,6 +161,9 @@
       "incomplete": 0,
       "providerCalls": 1,
       "allNinePassed": 1,
+      "itemsEvaluated": 10,
+      "itemsCompliant": 1,
+      "packsPublishable": 0,
       "checks": {
         "json-parse": {
           "evaluated": 1,
@@ -192,49 +204,52 @@
       }
     },
     "mixed-v5": {
-      "attempts": 1,
-      "terminal": 1,
-      "valid": 0,
+      "attempts": 2,
+      "terminal": 2,
+      "valid": 1,
       "failed": 1,
       "incomplete": 0,
-      "providerCalls": 1,
-      "allNinePassed": 1,
+      "providerCalls": 2,
+      "allNinePassed": 2,
+      "itemsEvaluated": 20,
+      "itemsCompliant": 19,
+      "packsPublishable": 1,
       "checks": {
         "json-parse": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "required-fields": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "count-10": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "difficulty-5-3-2": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "four-options": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "correct-index": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "context-category": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "unique-ids": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         },
         "no-surrounding-text": {
-          "evaluated": 1,
-          "passed": 1
+          "evaluated": 2,
+          "passed": 2
         }
       }
     }
@@ -281,6 +296,9 @@
       "validationErrors": [
         "7:post-slang-missing"
       ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 1,
+      "itemCompliance": 0.9,
       "selectedDistinctTerms": 10,
       "checks": {
         "json-parse": true,
@@ -340,6 +358,9 @@
         "8:question-comment-shape",
         "9:question-comment-shape"
       ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 4,
+      "itemCompliance": 0.6,
       "selectedDistinctTerms": 10,
       "checks": {
         "json-parse": true,
@@ -398,6 +419,9 @@
         "unused-reference",
         "4:key-meaning-mismatch"
       ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 1,
+      "itemCompliance": 0.9,
       "selectedDistinctTerms": 10,
       "checks": {
         "json-parse": true,
@@ -462,6 +486,9 @@
         "8:question-comment-shape",
         "9:question-comment-shape"
       ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 9,
+      "itemCompliance": 0.1,
       "selectedDistinctTerms": 10,
       "checks": {
         "json-parse": true,
@@ -519,6 +546,66 @@
         "8:term-presence",
         "8:term-presence"
       ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 1,
+      "itemCompliance": 0.9,
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597",
+      "packId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597",
+      "promptVersion": "mixed-v5",
+      "promptSha256": "0f7f22b0f43f49e89bff3ea6c57ff7081aba42fd386044b7c10fb5ee62984aed",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "valid",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-17T19:46:01.433Z",
+      "completedAt": "2026-11-17T19:46:30.813Z",
+      "durationMs": 29380,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 5364,
+        "completion_tokens": 3469,
+        "total_tokens": 8833,
+        "cost": 0.002404925,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 5361,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.002404925,
+          "upstream_inference_prompt_cost": 0.000670425,
+          "upstream_inference_completions_cost": 0.0017345
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 180,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": null,
+      "validationErrors": [],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 0,
+      "itemCompliance": 1,
       "selectedDistinctTerms": 10,
       "checks": {
         "json-parse": true,

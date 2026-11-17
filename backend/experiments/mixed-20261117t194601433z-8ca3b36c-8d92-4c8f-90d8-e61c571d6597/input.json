@@ -1,0 +1,520 @@
+{
+  "attemptId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597",
+  "packId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597",
+  "startedAt": "2026-11-17T19:46:01.433Z",
+  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+  "promptVersion": "mixed-v5",
+  "promptSha256": "0f7f22b0f43f49e89bff3ea6c57ff7081aba42fd386044b7c10fb5ee62984aed",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-e4323f9559778628325cd112",
+        "term": "iykyk",
+        "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+        "definition": "An inside joke or niche reference, short for “if you know, you know.”",
+        "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "e4323f9559778628325cd112",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "iykyk",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-531590794925282043b750f7",
+        "term": "cooked",
+        "targetMeaning": "Exhausted or mentally out of it.",
+        "definition": "Exhausted or mentally out of it.",
+        "normalizedDefinition": "Exhausted or mentally out of it.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "531590794925282043b750f7",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "cooked",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Cooked | **Physically or mentally exhausted—or just out of it.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+        "term": "mewing",
+        "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "definition": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "normalizedDefinition": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "d9bb003d473a6a36f85ebfdc",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "mewing",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Mewing | **A face-shaping posture technique (tongue to the roof of the",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+        "term": "delulu",
+        "targetMeaning": "A playful or endearing way to describe being delusional.",
+        "definition": "A playful or endearing way to describe being delusional.",
+        "normalizedDefinition": "A playful or endearing way to describe being delusional.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "9ce28e169951f5b9b2f63c78",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "delulu",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Delulu | **Delusional, but usually in a funny or endearing way.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-706632df02ac829b690ce785",
+        "term": "bsfr",
+        "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "definition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "normalizedDefinition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "706632df02ac829b690ce785",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "bsfr",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+            "collectedAt": "2026-11-17T17:55:58.638Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T17:55:58.638Z",
+        "lastCollectedAt": "2026-11-17T17:55:58.638Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-ed104716c27233570f3efbe0",
+        "term": "vibe check",
+        "targetMeaning": "An informal assessment of someone's mood or energy.",
+        "definition": "An informal assessment of someone's mood or energy.",
+        "normalizedDefinition": "An informal assessment of someone's mood or energy.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "ed104716c27233570f3efbe0",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "vibe check",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Vibe Check | **Evaluating someone’s mood or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+        "term": "scuba",
+        "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+        "definition": "A dance-like gesture used to indicate that someone or something smells bad.",
+        "normalizedDefinition": "A dance-like gesture used to indicate that someone or something smells bad.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "940baad7d6d2ccc1fe07729e",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "scuba",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+            "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+            "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+            "collectedAt": "2026-11-17T17:55:58.638Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T17:55:58.638Z",
+        "lastCollectedAt": "2026-11-17T17:55:58.638Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-da836b332facac35d6cece15",
+        "term": "rizz",
+        "targetMeaning": "Flirting skill or natural charisma.",
+        "definition": "Flirting skill or natural charisma.",
+        "normalizedDefinition": "Flirting skill or natural charisma.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "da836b332facac35d6cece15",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "rizz",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+        "term": "aura",
+        "targetMeaning": "A person's vibe or energy.",
+        "definition": "A person's vibe or energy.",
+        "normalizedDefinition": "A person's vibe or energy.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "136511f14fb26ff9c8d42bd9",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Aura | **Your vibe or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-23517fd9523bc74bc50663af",
+        "term": "girl dinner",
+        "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+        "definition": "An informal meal made up of a casual or haphazard mix of snacks.",
+        "normalizedDefinition": "An informal meal made up of a casual or haphazard mix of snacks.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "23517fd9523bc74bc50663af",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "girl dinner",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Girl Dinner | **A chaotic mix of snacks that somehow counts as a meal.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-e4323f9559778628325cd112",
+        "term": "iykyk",
+        "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+        "sourceCandidateId": "e4323f9559778628325cd112",
+        "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-531590794925282043b750f7",
+        "term": "cooked",
+        "targetMeaning": "Exhausted or mentally out of it.",
+        "sourceCandidateId": "531590794925282043b750f7",
+        "normalizedDefinition": "Exhausted or mentally out of it.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Cooked | **Physically or mentally exhausted—or just out of it.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+        "term": "mewing",
+        "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "sourceCandidateId": "d9bb003d473a6a36f85ebfdc",
+        "normalizedDefinition": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Mewing | **A face-shaping posture technique (tongue to the roof of the",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+        "term": "delulu",
+        "targetMeaning": "A playful or endearing way to describe being delusional.",
+        "sourceCandidateId": "9ce28e169951f5b9b2f63c78",
+        "normalizedDefinition": "A playful or endearing way to describe being delusional.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Delulu | **Delusional, but usually in a funny or endearing way.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-706632df02ac829b690ce785",
+        "term": "bsfr",
+        "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "sourceCandidateId": "706632df02ac829b690ce785",
+        "normalizedDefinition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+            "collectedAt": "2026-11-17T17:55:58.638Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-ed104716c27233570f3efbe0",
+        "term": "vibe check",
+        "targetMeaning": "An informal assessment of someone's mood or energy.",
+        "sourceCandidateId": "ed104716c27233570f3efbe0",
+        "normalizedDefinition": "An informal assessment of someone's mood or energy.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Vibe Check | **Evaluating someone’s mood or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+        "term": "scuba",
+        "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+        "sourceCandidateId": "940baad7d6d2ccc1fe07729e",
+        "normalizedDefinition": "A dance-like gesture used to indicate that someone or something smells bad.",
+        "referenceSources": [
+          {
+            "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+            "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+            "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+            "collectedAt": "2026-11-17T17:55:58.638Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-da836b332facac35d6cece15",
+        "term": "rizz",
+        "targetMeaning": "Flirting skill or natural charisma.",
+        "sourceCandidateId": "da836b332facac35d6cece15",
+        "normalizedDefinition": "Flirting skill or natural charisma.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+        "term": "aura",
+        "targetMeaning": "A person's vibe or energy.",
+        "sourceCandidateId": "136511f14fb26ff9c8d42bd9",
+        "normalizedDefinition": "A person's vibe or energy.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Aura | **Your vibe or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-23517fd9523bc74bc50663af",
+        "term": "girl dinner",
+        "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+        "sourceCandidateId": "23517fd9523bc74bc50663af",
+        "normalizedDefinition": "An informal meal made up of a casual or haphazard mix of snacks.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Girl Dinner | **A chaotic mix of snacks that somehow counts as a meal.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q1",
+        "senseId": "normalized-e4323f9559778628325cd112",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q2",
+        "senseId": "normalized-531590794925282043b750f7",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q3",
+        "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q4",
+        "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q5",
+        "senseId": "normalized-706632df02ac829b690ce785",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q6",
+        "senseId": "normalized-ed104716c27233570f3efbe0",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q7",
+        "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q8",
+        "senseId": "normalized-da836b332facac35d6cece15",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q9",
+        "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q10",
+        "senseId": "normalized-23517fd9523bc74bc50663af",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 22,
+      "availableDistinctTerms": 20,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

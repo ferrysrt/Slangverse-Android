@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 2,
+  "packId": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597",
+  "generationSource": "llm",
+  "promptVersion": "mixed-v5",
+  "generatorModel": "openai/gpt-6-luna",
+  "generatedAt": "2026-11-17T19:46:30.801Z",
+  "referenceStatus": "normalized-unreviewed",
+  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+  "expertValidated": false,
+  "references": [
+    {
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "term": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "sourceCandidateId": "e4323f9559778628325cd112",
+      "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-531590794925282043b750f7",
+      "term": "cooked",
+      "targetMeaning": "Exhausted or mentally out of it.",
+      "sourceCandidateId": "531590794925282043b750f7",
+      "normalizedDefinition": "Exhausted or mentally out of it.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Cooked | **Physically or mentally exhausted—or just out of it.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "term": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "sourceCandidateId": "d9bb003d473a6a36f85ebfdc",
+      "normalizedDefinition": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Mewing | **A face-shaping posture technique (tongue to the roof of the",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "term": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "sourceCandidateId": "9ce28e169951f5b9b2f63c78",
+      "normalizedDefinition": "A playful or endearing way to describe being delusional.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Delulu | **Delusional, but usually in a funny or endearing way.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "term": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "sourceCandidateId": "706632df02ac829b690ce785",
+      "normalizedDefinition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "referenceSources": [
+        {
+          "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+          "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+          "quote": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-ed104716c27233570f3efbe0",
+      "term": "vibe check",
+      "targetMeaning": "An informal assessment of someone's mood or energy.",
+      "sourceCandidateId": "ed104716c27233570f3efbe0",
+      "normalizedDefinition": "An informal assessment of someone's mood or energy.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Vibe Check | **Evaluating someone’s mood or energy.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+      "term": "scuba",
+      "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "sourceCandidateId": "940baad7d6d2ccc1fe07729e",
+      "normalizedDefinition": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "referenceSources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "term": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "sourceCandidateId": "da836b332facac35d6cece15",
+      "normalizedDefinition": "Flirting skill or natural charisma.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+      "term": "aura",
+      "targetMeaning": "A person's vibe or energy.",
+      "sourceCandidateId": "136511f14fb26ff9c8d42bd9",
+      "normalizedDefinition": "A person's vibe or energy.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Aura | **Your vibe or energy.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "term": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "sourceCandidateId": "23517fd9523bc74bc50663af",
+      "normalizedDefinition": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Girl Dinner | **A chaotic mix of snacks that somehow counts as a meal.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q1",
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "slang": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "difficulty": "easy",
+      "contextId": "bakery-window",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@guest_01",
+      "post": {
+        "displayName": "Rae Lin",
+        "handle": "@guest_01",
+        "hashtag": "#AfterSchool",
+        "content": "The bakery brought back those tiny star cookies from our old club trips. iykyk",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "The blue icing was the best part.",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@guest_03",
+            "text": "I still remember the napkin pile.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Could someone explain the little reference in the post?",
+      "question": "What does the expression in this post mean?",
+      "options": [
+        "A secret code for ordering extra cookies",
+        "An inside joke or niche reference, short for “if you know, you know.”",
+        "A reminder to bring snacks to a club meeting",
+        "A complaint about a bakery changing its menu"
+      ],
+      "correctIndex": 1,
+      "explanation": "The post points to a shared memory from the club trips, so the expression signals a niche reference that some readers will recognize."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q2",
+      "senseId": "normalized-531590794925282043b750f7",
+      "slang": "cooked",
+      "targetMeaning": "Exhausted or mentally out of it.",
+      "difficulty": "easy",
+      "contextId": "late-study-session",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_05",
+      "post": {
+        "displayName": "Milo Park",
+        "handle": "@guest_04",
+        "hashtag": "#StudyHall",
+        "content": "Three quizzes, a lab report, and the bus ride home. I need a quiet evening.",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "text": "After that schedule, I’m cooked; even my notes look blurry.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@guest_06",
+            "text": "Hope you get a real break tonight.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "What is the commenter getting across about their state after that day?",
+      "question": "What does 'cooked' mean in @guest_05's reply?",
+      "options": [
+        "Ready to start a new study group",
+        "Unable to attend class because of a schedule change",
+        "Exhausted or mentally out of it.",
+        "Pleased with how quickly the assignments were finished"
+      ],
+      "correctIndex": 2,
+      "explanation": "The packed schedule and blurry-looking notes show the commenter is worn out and mentally drained."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q3",
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "slang": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "difficulty": "easy",
+      "contextId": "mirror-practice",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@guest_07",
+      "post": {
+        "displayName": "Tess Rowan",
+        "handle": "@guest_07",
+        "hashtag": "#MorningRoutine",
+        "content": "My cousin showed me mewing in the mirror: tongue resting against the roof of the mouth while practicing the pose.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "text": "That is a very focused mirror session.",
+            "avatarId": "guest_08"
+          },
+          {
+            "handle": "@guest_01",
+            "text": "I can barely remember my hairbrush in the morning.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "What is the named technique in this post describing?",
+      "question": "What does the expression in this post mean?",
+      "options": [
+        "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "A routine of stretching the jaw before speaking",
+        "A method for keeping hair away from the face",
+        "A breathing exercise used before a mirror selfie"
+      ],
+      "correctIndex": 0,
+      "explanation": "The post describes the tongue resting against the roof of the mouth as part of the face-related posture technique."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q4",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "easy",
+      "contextId": "imaginary-award",
+      "contextCategory": "prediction",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_03",
+      "post": {
+        "displayName": "Avery Cole",
+        "handle": "@guest_02",
+        "hashtag": "#BigDreams",
+        "content": "I have submitted one poem, so naturally I expect the town to name its new library after me.",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "text": "That is delulu, but I admire the confidence.",
+            "avatarId": "guest_03"
+          },
+          {
+            "handle": "@guest_04",
+            "text": "I’ll save a spot at the opening ceremony.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "How is the reply characterizing the grand prediction?",
+      "question": "What does 'delulu' mean in @guest_03's reply?",
+      "options": [
+        "A playful or endearing way to describe being delusional.",
+        "A formal plan to submit a poem to a committee",
+        "A sign that someone is nervous about public attention",
+        "A joking name for a library opening celebration"
+      ],
+      "correctIndex": 0,
+      "explanation": "The unlikely library-naming prediction is being teased affectionately as an unrealistic idea."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q5",
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "slang": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "difficulty": "easy",
+      "contextId": "rainy-picnic-plan",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_06",
+      "post": {
+        "displayName": "Noah Bell",
+        "handle": "@guest_05",
+        "hashtag": "#WeekendPlans",
+        "content": "The forecast says heavy rain, but my friend still packed a picnic blanket for the hill.",
+        "comments": [
+          {
+            "handle": "@guest_06",
+            "text": "bsfr, are they expecting the clouds to take the afternoon off?",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@guest_07",
+            "text": "At least the blanket can dry later.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "What is the commenter signaling about the plan they heard?",
+      "question": "What does 'bsfr' mean in @guest_06's reply?",
+      "options": [
+        "A request to bring a blanket for everyone",
+        "A warning that the picnic location is closed",
+        "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "A way to confirm that the weather forecast is accurate"
+      ],
+      "correctIndex": 2,
+      "explanation": "The commenter finds the picnic plan hard to believe given the rain forecast and questions whether the friend is serious."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q6",
+      "senseId": "normalized-ed104716c27233570f3efbe0",
+      "slang": "vibe check",
+      "targetMeaning": "An informal assessment of someone's mood or energy.",
+      "difficulty": "medium",
+      "contextId": "quiet-group-chat",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@guest_08",
+      "post": {
+        "displayName": "Jules Hart",
+        "handle": "@guest_08",
+        "hashtag": "#CheckingIn",
+        "content": "Quick vibe check: you’ve been quiet since the long rehearsal. Want company, or some solo time?",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "text": "That’s a thoughtful way to ask.",
+            "avatarId": "guest_01"
+          },
+          {
+            "handle": "@guest_02",
+            "text": "A quiet walk sounds nice, thanks.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "What is the writer trying to find out from their friend?",
+      "question": "What does the expression in this post mean?",
+      "options": [
+        "A formal review of how rehearsal was organized",
+        "An informal assessment of someone's mood or energy.",
+        "A request to rate the group's performance publicly",
+        "A check that everyone has the correct rehearsal schedule"
+      ],
+      "correctIndex": 1,
+      "explanation": "The writer notices someone has been quiet and asks what kind of company they want, informally checking their mood or energy."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q7",
+      "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+      "slang": "scuba",
+      "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "difficulty": "medium",
+      "contextId": "gym-bag-surprise",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_04",
+      "post": {
+        "displayName": "Lena Moss",
+        "handle": "@guest_03",
+        "hashtag": "#LockerRoom",
+        "content": "Someone opened a forgotten gym bag after practice, and the whole team took a dramatic step back.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "text": "The little scuba move from the back row said everything.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@guest_05",
+            "text": "That bag needs a long vacation outdoors.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "What does the reply suggest that the gesture communicated?",
+      "question": "What does 'scuba' mean in @guest_04's reply?",
+      "options": [
+        "A dance-like gesture used to indicate that someone or something smells bad.",
+        "A signal that someone is ready to dive into a pool",
+        "A playful step used to make room in a crowded hallway",
+        "A movement showing that a team has finished practice"
+      ],
+      "correctIndex": 0,
+      "explanation": "The forgotten gym bag prompts the team to recoil, and the reply connects a gesture to the unpleasant smell."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q8",
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "slang": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "difficulty": "medium",
+      "contextId": "bookshop-introduction",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@guest_06",
+      "post": {
+        "displayName": "Eli North",
+        "handle": "@guest_06",
+        "hashtag": "#BookshopStory",
+        "content": "My sister introduced herself to the poet at the bookshop, made him laugh, and left with an invitation to the next reading. Serious rizz.",
+        "comments": [
+          {
+            "handle": "@guest_07",
+            "text": "She remembered his favorite line, too.",
+            "avatarId": "guest_07"
+          },
+          {
+            "handle": "@guest_08",
+            "text": "That was smoother than my last hello.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Which personal quality is being praised in the post?",
+      "question": "What does the expression in this post mean?",
+      "options": [
+        "Skill at choosing books for a reading group",
+        "Confidence in remembering names at an event",
+        "Flirting skill or natural charisma.",
+        "A habit of attending every poetry reading"
+      ],
+      "correctIndex": 2,
+      "explanation": "The sister charms someone through an easy, engaging conversation, which points to flirting skill or natural charisma."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q9",
+      "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+      "slang": "aura",
+      "targetMeaning": "A person's vibe or energy.",
+      "difficulty": "hard",
+      "contextId": "library-volunteer-shift",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_02",
+      "post": {
+        "displayName": "Mina Gray",
+        "handle": "@guest_01",
+        "hashtag": "#CommunityDay",
+        "content": "Nico arrived early, quietly set out chairs, and stayed to help stack them after the event. Nobody had to ask twice.",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "That kind of aura makes a whole room feel more welcoming.",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@guest_03",
+            "text": "The last chair was heavier than it looked.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "What aspect of Nico is the commenter saying affects the room?",
+      "question": "What does 'aura' mean in @guest_02's reply?",
+      "options": [
+        "A person's reputation for finishing tasks quickly",
+        "The calm atmosphere created by the room's lighting",
+        "A person's vibe or energy.",
+        "A volunteer's official role at a community event"
+      ],
+      "correctIndex": 2,
+      "explanation": "The commenter links Nico’s helpful presence to how the room feels, referring to the person’s vibe or energy."
+    },
+    {
+      "id": "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597-q10",
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "slang": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "difficulty": "hard",
+      "contextId": "late-train-snacks",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@guest_05",
+      "post": {
+        "displayName": "Rin Vale",
+        "handle": "@guest_05",
+        "hashtag": "#EveningAtHome",
+        "content": "Dinner is olives, crackers, two strawberries, and the last spoonful of hummus on one plate. girl dinner, apparently.",
+        "comments": [
+          {
+            "handle": "@guest_06",
+            "text": "The final spoonful always has a big job.",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@guest_07",
+            "text": "That plate has excellent variety.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "How should readers understand the improvised plate described here?",
+      "question": "What does the expression in this post mean?",
+      "options": [
+        "A carefully planned tasting menu with several courses",
+        "A snack plate prepared for guests before a full meal",
+        "A meal chosen to match a particular diet plan",
+        "An informal meal made up of a casual or haphazard mix of snacks."
+      ],
+      "correctIndex": 3,
+      "explanation": "The plate combines assorted small snacks rather than a planned dish, matching the informal, haphazard meal described."
+    }
+  ]
+}
