@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "note": "Observed attempt records only. Valid means generation validation passed, not expert approval or confirmed Git publication. Incomplete records are listed, never discarded. See per-check denominators.",
+  "attemptCount": 1,
+  "byPrompt": {
+    "mixed-v1": {
+      "attempts": 1,
+      "terminal": 1,
+      "valid": 0,
+      "failed": 1,
+      "incomplete": 0,
+      "providerCalls": 1,
+      "allNinePassed": 1,
+      "checks": {
+        "json-parse": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "required-fields": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "count-10": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "difficulty-5-3-2": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "four-options": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "correct-index": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "context-category": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "unique-ids": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "no-surrounding-text": {
+          "evaluated": 1,
+          "passed": 1
+        }
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attemptId": "mixed-20261117t180156794z-17f15768-0eb7-471f-8385-c6fc20e958af",
+      "packId": "mixed-20261117t180156794z-17f15768-0eb7-471f-8385-c6fc20e958af",
+      "promptVersion": "mixed-v1",
+      "promptSha256": "3fc9fdb15b0df123b070f32b9292be4afef2233c70728e14482fe7bd0f07887a",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "failed",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-17T18:01:56.795Z",
+      "completedAt": "2026-11-17T18:02:22.493Z",
+      "durationMs": 25698,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 5200,
+        "completion_tokens": 3214,
+        "total_tokens": 8414,
+        "cost": 0.002256925,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 5197,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.002256925,
+          "upstream_inference_prompt_cost": 0.000649925,
+          "upstream_inference_completions_cost": 0.001607
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 62,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": "mixed-validation-failed",
+      "validationErrors": [
+        "7:post-slang-missing"
+      ],
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    }
+  ]
+}

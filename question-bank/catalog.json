@@ -1,13 +1,13 @@
 {
-  "schemaVersion": 1,
-  "datasetVersion": "slangfeed-2026-10-05",
+  "schemaVersion": 2,
+  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
   "source": "github-static",
   "generationSource": "llm",
   "status": "ready",
-  "candidateCount": 200,
-  "discoveredCandidateCount": 16,
+  "candidateCount": 22,
   "expertValidated": false,
-  "bankVersion": "50455fdfb66bd3ab",
+  "discoveredCandidateCount": 16,
+  "bankVersion": "374e376db15430ab",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -60,5 +60,6 @@
       "playable": true,
       "sha256": "5c56121afa3f8cd6f69d94056b124b32bb6b03eb711038f55a8e28adb5a39816"
     }
-  ]
+  ],
+  "packs": []
 }
