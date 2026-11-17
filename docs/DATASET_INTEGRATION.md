@@ -20,7 +20,7 @@ From the repository root, with secrets supplied securely:
 node backend/dataset/refresh.mjs
 ```
 
-The workflow persists the own JSON and CSV and uploads a normalized-dataset artifact on successful collection. Runtime success of the pending refresh must be reported from its actual run, not inferred from a workflow definition. Dataset refresh and mixed question generation are separate bounded operations; a phone refresh is neither of them.
+The workflow persists the own JSON and CSV and uploads a normalized-dataset artifact with the run's audit evidence; both steps run even when collection fails. Runtime success of the pending refresh must be reported from its actual run, not inferred from a workflow definition. Dataset refresh and mixed question generation are separate bounded operations; a phone refresh is neither of them.
 
 ## Strict literal provenance, not semantic validation
 
