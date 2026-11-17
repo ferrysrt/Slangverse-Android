@@ -7,7 +7,7 @@
   "candidateCount": 200,
   "discoveredCandidateCount": 16,
   "expertValidated": false,
-  "bankVersion": "f2d6f1bb2fb0a859",
+  "bankVersion": "50455fdfb66bd3ab",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -49,7 +49,7 @@
       "sourceRelationship": "source-backed-provisional",
       "sourceCandidateId": "da836b332facac35d6cece15",
       "playable": true,
-      "sha256": "e2ecc4645de3b9cae02cf73d00df962bb350a402794291c5b48064f7ccb4ba80"
+      "sha256": "82bdf9489a311f0662bc592a7c757f70ccc803614f9fce7cb7e13f756e105904"
     },
     {
       "senseId": "iykyk-inside-reference",
@@ -58,7 +58,7 @@
       "sourceRelationship": "source-backed-provisional",
       "sourceCandidateId": "e4323f9559778628325cd112",
       "playable": true,
-      "sha256": "80b18566e78cb123e7e6f7904f512f6735e6179057bfc309310c103581b2cce9"
+      "sha256": "5c56121afa3f8cd6f69d94056b124b32bb6b03eb711038f55a8e28adb5a39816"
     }
   ]
 }

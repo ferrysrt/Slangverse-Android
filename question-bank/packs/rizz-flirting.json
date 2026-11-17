@@ -20,6 +20,38 @@
       "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
     }
   ],
+  "editorialReview": {
+    "status": "agent-edited-provisional",
+    "reviewer": "Zed coding agent — agent-assisted editorial review, not expert validation",
+    "reviewedAt": "2026-11-17T13:15:24.797Z",
+    "note": "Originally LLM-generated; the listed items received disclosed editorial changes without another generation request. Difficulty labels remain nominal.",
+    "changes": [
+      {
+        "questionId": "rizz-2",
+        "reason": "Clarify romantic game context and remove the answer-word cue from a reply."
+      },
+      {
+        "questionId": "rizz-3",
+        "reason": "Clarify that the coffee invitation is a date, not an ordinary work break."
+      },
+      {
+        "questionId": "rizz-7",
+        "reason": "Clarify a romantic invitation and remove an artificial finance context."
+      },
+      {
+        "questionId": "rizz-8",
+        "reason": "Clarify that the exhibit invitation is a date and use an entertainment navigation category."
+      },
+      {
+        "questionId": "rizz-9",
+        "reason": "Distinguish a date from a platonic post-exam group celebration."
+      },
+      {
+        "questionId": "rizz-10",
+        "reason": "Replace general volunteer-recruiting charisma with a prediction about a first date, matching the curated flirting sense."
+      }
+    ]
+  },
   "questions": [
     {
       "id": "rizz-1",
@@ -68,7 +100,7 @@
         "displayName": "Pixel Pal",
         "handle": "@pixelpal",
         "hashtag": "#LobbyLegends",
-        "content": "My character's rizz must be maxed out: the NPC accepted my tavern invite after one dialogue choice.",
+        "content": "My character's rizz must be maxed out: the adult NPC accepted a candlelit tavern date after my playful dialogue choice.",
         "comments": [
           {
             "handle": "@guest_04",
@@ -78,7 +110,7 @@
           {
             "handle": "@guest_05",
             "avatarId": "guest_05",
-            "text": "Someone check the charm stat!"
+            "text": "That romance quest moved to the next chapter!"
           }
         ]
       },
@@ -91,7 +123,7 @@
         "the number of dialogue choices"
       ],
       "correctIndex": 2,
-      "explanation": "The NPC responds to an invitation after a dialogue choice, pointing to charm or skill in flirting."
+      "explanation": "A playful dialogue choice leads to a romantic date in the game, so rizz refers to charm or skill in flirting."
     },
     {
       "id": "rizz-3",
@@ -104,7 +136,7 @@
         "displayName": "Ari at Work",
         "handle": "@ariatwork",
         "hashtag": "#OfficeAfterHours",
-        "content": "My coworker said my rizz finally worked when I asked the person from accounting to join me for coffee.",
+        "content": "My coworker said my rizz finally worked when I asked the person from accounting on a coffee date after work.",
         "comments": [
           {
             "handle": "@guest_06",
@@ -241,19 +273,20 @@
       "id": "rizz-7",
       "slang": "rizz",
       "difficulty": "medium",
-      "contextId": "finance",
+      "contextId": "book-club",
+      "contextCategory": "friends",
       "post": {
-        "id": "finance",
+        "id": "book-club",
         "avatarId": "dea",
         "displayName": "Dea Says",
         "handle": "@deasays",
-        "hashtag": "#BudgetAndBrunch",
-        "content": "My friend says rizz costs nothing: she spent the whole bus ride chatting with someone from the book club, then got asked to brunch.",
+        "hashtag": "#BookClubChats",
+        "content": "My friend's rizz turned a debate about our book-club novel on the bus into someone asking, 'Would you like to go on a brunch date with me?'",
         "comments": [
           {
             "handle": "@lilalistens",
             "avatarId": "lila",
-            "text": "A very affordable morning plan."
+            "text": "The book-club group chat wants an update."
           },
           {
             "handle": "@guest_05",
@@ -262,29 +295,30 @@
           }
         ]
       },
-      "questionComment": "Is rizz some kind of budgeting term here, or am I reading it wrong?",
+      "questionComment": "Is rizz about book recommendations here, or am I reading it wrong?",
       "question": "What does 'rizz' mean in this post?",
       "options": [
-        "a way to split a brunch bill",
+        "knowledge of every book in the club",
         "charm or skill in flirting",
-        "a discount for public transport",
-        "the price of joining a book club"
+        "a route that avoids rush-hour traffic",
+        "the fee for joining a reading group"
       ],
       "correctIndex": 1,
-      "explanation": "The conversation leads to an invitation to brunch, so rizz refers to charm or skill in flirting."
+      "explanation": "The conversation leads to an explicit invitation to a brunch date, rather than just a book-club meeting. Rizz refers to charm or skill in flirting."
     },
     {
       "id": "rizz-8",
       "slang": "rizz",
       "difficulty": "medium",
       "contextId": "event",
+      "contextCategory": "entertainment",
       "post": {
         "id": "event",
         "avatarId": "jo",
         "displayName": "Just Jo",
         "handle": "@justjo",
         "hashtag": "#GalleryOpening",
-        "content": "At the gallery opening, Kai's rizz turned a chat about the paintings into an invitation to explore the next exhibit together.",
+        "content": "At the gallery opening, Kai's rizz turned a chat about the paintings into an invitation to a date at next week's exhibit.",
         "comments": [
           {
             "handle": "@miramoments",
@@ -307,7 +341,7 @@
         "the ability to organize an exhibit"
       ],
       "correctIndex": 2,
-      "explanation": "A conversation becoming a one-on-one invitation suggests charm or skill in flirting."
+      "explanation": "The conversation leads to an invitation explicitly described as a date, which supports the flirting sense rather than art expertise."
     },
     {
       "id": "rizz-9",
@@ -320,7 +354,7 @@
         "displayName": "Study Break",
         "handle": "@studybreak7",
         "hashtag": "#FinalsWeek",
-        "content": "I went to the library hoping to review chemistry, but my rizz apparently passed the real test: my study-group partner suggested we celebrate together after finals.",
+        "content": "I went to the library hoping to review chemistry, but my rizz apparently passed the real test: my study-group partner suggested a date after finals instead of another group study session.",
         "comments": [
           {
             "handle": "@guest_08",
@@ -343,43 +377,44 @@
         "confidence about passing an exam"
       ],
       "correctIndex": 1,
-      "explanation": "The study partner suggests celebrating together, hinting that rizz means charm or skill in flirting."
+      "explanation": "The partner suggests a date rather than another group study session. The chemistry and test language is wordplay around charm or skill in flirting, not exam performance."
     },
     {
       "id": "rizz-10",
       "slang": "rizz",
       "difficulty": "hard",
-      "contextId": "application",
+      "contextId": "first-date-prediction",
+      "contextCategory": "prediction",
       "post": {
-        "id": "application",
+        "id": "first-date-prediction",
         "avatarId": "kai",
         "displayName": "Confused User",
         "handle": "@confuseduser",
-        "hashtag": "#ClubApplications",
-        "content": "The volunteer club application asked for my strongest quality. I wrote 'rizz,' and the coordinator laughed before asking if I'd like to help welcome new members with them.",
+        "hashtag": "#FirstDateTomorrow",
+        "content": "My friend predicts her rizz will disappear on tomorrow's first date: she can write a witty reply, but when her match calls, all her carefully rehearsed lines vanish.",
         "comments": [
           {
             "handle": "@townloop",
             "avatarId": "townloop",
-            "text": "That answer made a memorable first impression."
+            "text": "A pause on the phone is not a forecast for tomorrow."
           },
           {
             "handle": "@guest_02",
             "avatarId": "guest_02",
-            "text": "Sounds like orientation will be lively."
+            "text": "They already said yes to the date; take a breath."
           }
         ]
       },
-      "questionComment": "Why would rizz be a quality on an application—what does it mean here?",
+      "questionComment": "What does she think she will lose when she says her rizz might disappear?",
       "question": "What does 'rizz' mean in this post?",
       "options": [
-        "experience organizing volunteer schedules",
+        "skill at operating a dating app",
         "confidence speaking to a group",
         "charm or skill in flirting",
-        "knowledge of club application rules"
+        "the ability to remember a rehearsed script"
       ],
       "correctIndex": 2,
-      "explanation": "The playful answer makes a memorable impression in a social setting, suggesting charm or skill in flirting."
+      "explanation": "She is worried that the playful connection over messages will not carry into a romantic date. Rizz means charm or skill in flirting, not app operation or a memorized script."
     }
   ]
 }

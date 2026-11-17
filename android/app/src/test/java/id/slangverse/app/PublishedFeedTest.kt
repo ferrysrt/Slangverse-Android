@@ -36,6 +36,53 @@ class PublishedFeedTest {
         assertEquals(catalog.senses.size * 10, ids.size)
     }
 
+    @Test fun legacyPacksWithoutEditorialMetadataKeepTheirOriginalSourceLabel() {
+        val json = JSONObject(packText()).put("referenceStatus", "provisional")
+        json.remove("editorialReview")
+        val loaded = parseBankSession(json.toString(), "cooked-trouble", requireLlm = true)
+        assertFalse(ApiSession("legacy", "github-static-llm", emptyList()).editoriallyEdited)
+        assertFalse(loaded.session.editoriallyEdited)
+        assertEquals("github-static-llm", loaded.session.source)
+        assertTrue(loaded.toFeedPosts().all {
+            it.sourceLabel == "Published LLM pack · GitHub GET · locally graded · provisional"
+        })
+    }
+
+    @Test fun onlyTheExactAgentEditedProvisionalStatusMarksPacksAsEdited() {
+        for (status in listOf("", "provisional", "agent-edited-provisional-other")) {
+            val json = JSONObject(packText())
+                .put("editorialReview", JSONObject().put("status", status))
+            val loaded = parseBankSession(json.toString(), "cooked-trouble", requireLlm = true)
+            assertFalse(loaded.session.editoriallyEdited)
+            assertTrue(loaded.toFeedPosts().none { it.sourceLabel.contains("agent-edited") })
+        }
+    }
+
+    @Test fun agentEditedPacksDiscloseEditingWithoutChangingProvisionalGrading() {
+        val json = JSONObject(packText()).put("referenceStatus", "provisional")
+        json.remove("editorialReview")
+        val original = parseBankSession(json.toString(), "cooked-trouble", requireLlm = true)
+        json.put("editorialReview", JSONObject().put("status", "agent-edited-provisional"))
+        val edited = parseBankSession(json.toString(), "cooked-trouble", requireLlm = true)
+        assertTrue(edited.session.editoriallyEdited)
+        assertEquals("github-static-llm", edited.session.source)
+        assertEquals("provisional", edited.session.referenceStatus)
+        assertEquals(original.session.questions, edited.session.questions)
+        assertEquals(original.answers, edited.answers)
+        val posts = edited.toFeedPosts()
+        assertTrue(posts.all {
+            it.sourceLabel == "Published LLM pack · agent-edited · GitHub GET · locally graded · provisional"
+        })
+        val question = edited.session.questions.first()
+        val post = posts.first().thread
+        for (selected in question.options.indices) {
+            val grade = gradeStaticAnswer(edited.answers, question.id, selected, 0, 0)
+            assertEquals(gradeStaticAnswer(original.answers, question.id, selected, 0, 0), grade)
+            assertEquals(if (selected == post.correctIndex) 80 else 15, grade.xpEarned)
+            assertEquals(grade.xpEarned, FeedPracticeProgress(posts = posts).answer(post.id, selected).xp)
+        }
+    }
+
     @Test fun everySupportedCommentCountReachesThePublishedStoryInOrder() {
         for (count in 1..5) {
             val json = JSONObject(packText())

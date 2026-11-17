@@ -190,7 +190,8 @@ internal fun parseBankSession(
             senseId = senseId,
             referenceStatus = pack.optString("referenceStatus", "provisional"),
             catalogVersion = pack.optString("datasetVersion", "unknown"),
-            contentVersion = digest
+            contentVersion = digest,
+            editoriallyEdited = pack.optJSONObject("editorialReview")?.optString("status") == "agent-edited-provisional"
         ),
         answers
     )

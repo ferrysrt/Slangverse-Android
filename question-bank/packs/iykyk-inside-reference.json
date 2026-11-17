@@ -20,6 +20,18 @@
       "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
     }
   ],
+  "editorialReview": {
+    "status": "agent-edited-provisional",
+    "reviewer": "Zed coding agent — agent-assisted editorial review, not expert validation",
+    "reviewedAt": "2026-11-17T13:15:24.797Z",
+    "note": "Originally LLM-generated; one ambiguous distractor was replaced editorially without another generation request.",
+    "changes": [
+      {
+        "questionId": "iykyk-4",
+        "reason": "Replace a distractor that paraphrased the correct inside-reference meaning."
+      }
+    ]
+  },
   "questions": [
     {
       "id": "iykyk-1",
@@ -157,7 +169,7 @@
       "questionComment": "Wait, what does iykyk point to in this travel post?",
       "question": "What does 'iykyk' mean in this post?",
       "options": [
-        "a private travel reference familiar to some readers",
+        "an instruction to follow every road sign literally",
         "an inside joke or niche reference understood by those familiar with it",
         "a warning that the orchard road is closed",
         "a plan to visit the pie stand later"

@@ -42,6 +42,14 @@ New senses do not acquire invented hand-authored mock packs. Real LLM sessions c
 
 The dataset version string continues to identify the legacy snapshot; each new reference additionally has its candidate identity and literal provenance, and published content has its own exact-byte hash. `candidateCount` remains the legacy snapshot count; `discoveredCandidateCount` reports the separate Firecrawl dataset.
 
+## Verified collection and provisional mappings — 17 November 2026
+
+Discovery run [44089717679](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44089717679) succeeded: 16 candidates accepted, one rejected, capture time `2026-11-17T13:08:28.914Z`. The accepted entries all came from one [UPrinting commercial glossary](https://www.uprinting.com/blog/top-gen-z-slang-words/), not sixteen independent sources. Its snippets explicitly define the terms, but neither its marketing claims nor publication date establish current usage frequency. Actual captured URLs (including the returned query string), titles and quotes are retained in the dataset; the page was also read directly during agent-assisted review.
+
+Explicit mappings: `glow-up-improvement`, `rizz-flirting`, `iykyk-inside-reference`. Thirteen other candidates remain unplayable. The new `cooked` candidate describes exhaustion and is **not** mapped to `cooked-trouble`.
+
+Publisher run [44090251900](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44090251900) generated three new packs, preserving the original three. Rizz/IYKYK then received disclosed agent-assisted editorial corrections: several invitations were clarified as dates, an artificial finance context was removed, and one IYKYK distractor that duplicated the key was replaced. `editorialReview` metadata lists item-level reasons; the feed adds `agent-edited` to these packs' source labels. LLM origin, original generator model/time and provisional status remain intact. No additional paid generation was used for those corrections. These edits change content hashes, so progress remains isolated by the revised pack identity.
+
 ## Known legacy meaning conflict
 
 `cooked-trouble` means “in serious trouble,” while the legacy snapshot's Cooked emphasizes tiredness/overwhelm. Its `sourceRelationship: conflict` and `referenceNote` remain intact. No new source is attached to this legacy sense without a separate review.

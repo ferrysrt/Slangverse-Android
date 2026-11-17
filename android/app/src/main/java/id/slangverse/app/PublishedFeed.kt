@@ -60,7 +60,8 @@ internal fun StaticBankSession.toFeedPosts(): List<FeedPracticePost> {
                 StoryReply("$id-reply-$index", reply.handle, reply.text, avatarId = reply.avatarId)
             },
             published = true,
-            sourceLabel = "Published LLM pack · GitHub GET · locally graded · ${session.referenceStatus}")
+            sourceLabel = (if (session.editoriallyEdited) "Published LLM pack · agent-edited" else "Published LLM pack") +
+                " · GitHub GET · locally graded · ${session.referenceStatus}")
     }
 }
 

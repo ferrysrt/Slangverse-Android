@@ -127,5 +127,5 @@ export function candidateTableCsv(entries, {senseByCandidateId = new Map()} = {}
       ]);
     }
   }
-  return rows.map(row => row.map(csvCell).join(',')).join('\r\n') + '\r\n';
+  return rows.map(row => row.map(csvCell).join(',')).join('\n') + '\n';
 }

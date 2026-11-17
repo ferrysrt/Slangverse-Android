@@ -40,7 +40,8 @@ data class ApiCatalog(
 data class ApiSession(
  val id: String, val source: String, val questions: List<ApiQuestion>,
  val senseId: String = "cooked-trouble", val referenceStatus: String = "provisional",
- val catalogVersion: String = "", val contentVersion: String = ""
+ val catalogVersion: String = "", val contentVersion: String = "",
+ val editoriallyEdited: Boolean = false
 )
 data class ApiGrade(
     val correct: Boolean,

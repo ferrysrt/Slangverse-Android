@@ -1,4 +1,12 @@
-# Current checkpoint — Published Feed 0.4.0 (main)
+# Current checkpoint — Replies and sourced slang expansion (main)
+
+17 November 2026: Home retains the published LLM feed, with replies initially visible and individually collapsible. Answer choices still require player action. Connected Training and archived practice have matching reply defaults; expanded training displays all supported comments.
+
+A successful bounded Firecrawl/OpenRouter workflow persisted 16 unreviewed candidates and a source CSV. Explicit agent-assisted source/safety review mapped glow up, rizz (flirting) and IYKYK into provisional playable references, alongside the three legacy senses. The publisher produced three real packs: six senses / 60 items are published. Rizz/IYKYK then received disclosed editorial corrections to clarify the flirting sense and remove a competing correct distractor; app source labels and pack metadata disclose these edits. No expert semantic validation is claimed.
+
+Candidate-only updates do not generate questions. Source URLs, titles, literal quotes, actual capture times, page hashes and normalization model persist in `backend/data/discovered_candidates.json` and its CSV, with reviewed source copies in curated senses and new packs. The legacy 200-row snapshot remains unchanged, including the cooked meaning conflict. See [dataset operations](DATASET_INTEGRATION.md) and [current verification](TEST_RESULTS.md). Durable participant logging, expert content review, phone usability and empirical difficulty calibration remain outstanding.
+
+## Previous checkpoint — Published Feed 0.4.0
 
 This UI revision strengthens names/handles and separates Learning feedback from the social reply and story continuation. A shared feedback component retains source-specific disclosures in archived and connected modes. It builds on the offline CC0 portrait library, consistent avatar UI, LLM-selectable avatar IDs, normalization and legacy fallbacks in both Android training clients. Sources, licences, checksums and reproduction steps are in [the avatar folder](../assets/profile-pictures/README.md).
 
