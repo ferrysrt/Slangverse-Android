@@ -703,7 +703,7 @@ private fun EditorialHeader(
                     tint = if (saved) WarmEditorial.Coral else WarmEditorial.Muted)
             }
         }
-        if (expanded) StoryReplies(story.replies, onProfile, story.termTargetHandle)
+        if (expanded) StoryReplies(story.replies, onProfile, post.termTargetHandle)
         HorizontalDivider(color = WarmEditorial.Sand)
         Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(14.dp)).padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(9.dp)) {

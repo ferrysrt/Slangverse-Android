@@ -95,7 +95,7 @@ internal fun StaticBankSession.toFeedPosts(): List<FeedPracticePost> {
             },
             published = true,
             sourceLabel = (if (session.editoriallyEdited) "Published LLM pack · agent-edited" else "Published LLM pack") +
-                " · GitHub GET · locally graded · ${session.referenceStatus}"),
+                " · GitHub GET · locally graded · ${session.referenceStatus}",
             termTargetHandle = if (q.questionTarget == "reply") q.targetHandle else null
         )
     }
