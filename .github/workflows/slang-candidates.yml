@@ -1,10 +1,18 @@
 name: Slang candidate discovery - manual review
 on:
   workflow_dispatch:
+    inputs:
+      query:
+        description: 'Optional Firecrawl search query (one search, up to ten pages)'
+        type: string
+        default: ''
   schedule:
     - cron: '0 3 * * 1'
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: slang-candidate-discovery
+  cancel-in-progress: false
 jobs:
   discover:
     runs-on: ubuntu-latest
@@ -12,20 +20,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          ref: main
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Discover candidate slang via Firecrawl v2 and OpenRouter
+      - name: Test collector and curation contracts before paid requests
+        working-directory: backend
+        run: node --test test/dataset-refresh.test.mjs test/dataset-curate.test.mjs
+      - name: Discover candidate slang via one Firecrawl search and one normalization request
         working-directory: backend
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OPENROUTER_MODEL: openai/gpt-6-luna
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-6-luna' }}
+          FIRECRAWL_QUERY: ${{ inputs.query }}
         run: npm run dataset:refresh
-      - name: Publish review-only artifact (never automatically merge into game)
+      - name: Apply only explicitly committed sense reviews and export the source table
+        working-directory: backend
+        run: npm run dataset:curate
+      - name: Publish review-only artifact
         uses: actions/upload-artifact@v4
         with:
           name: unreviewed-slang-candidates
-          path: backend/data/discovered_candidates.json
+          path: |
+            backend/data/discovered_candidates.json
+            backend/data/discovered_candidates.csv
           if-no-files-found: error
+      - name: Persist unreviewed candidates and their sources (never auto-promote)
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add backend/data/discovered_candidates.json backend/data/discovered_candidates.csv
+          if git diff --cached --quiet; then exit 0; fi
+          GIT_EDITOR=true git commit -m 'Collect source-backed slang candidates'
+          GIT_EDITOR=true git pull --rebase origin main
+          git push origin HEAD:main

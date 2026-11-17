@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import {withProfilePictures} from './profilePictures.mjs';
 import { additionalMockPackage } from './mockCatalog.mjs';
+import {DATASET_VERSION,DEFAULT_SENSE_ID} from './catalog.mjs';
 
 /**
  * Research-aware DEMO dataset. Every question is hand-authored; no LLM call occurs.
@@ -124,14 +125,17 @@ export function publicQuestion(q){
   const {correctIndex,targetMeaning,explanation,...safe}=q;
   return structuredClone(safe);
 }
+export function createTrainingSession({now=Date.now(),sense=null,questions,source}){
+  return {id:randomUUID(),senseId:sense?.senseId||DEFAULT_SENSE_ID,
+    catalogVersion:DATASET_VERSION,referenceStatus:'provisional',
+    source,createdAt:new Date(now).toISOString(),expiresAt:now+30*60*1000,
+    answered:new Map(),questions:withProfilePictures(questions)};
+}
 export function createMockSession(now=Date.now(),sense=null){
-  const items=sense&&sense.senseId!=='cooked-trouble'?additionalMockPackage(sense):mockPackage;
+  const items=sense&&sense.senseId!==DEFAULT_SENSE_ID?additionalMockPackage(sense):mockPackage;
   const errs=validatePackage(items);
   if(errs.length)throw Error('Invalid curated demo pack: '+errs.join(','));
-  return {id:randomUUID(),senseId:sense?.senseId||'cooked-trouble',
-    catalogVersion:'slangfeed-2026-10-05',referenceStatus:'provisional',
-    source:'mock',createdAt:new Date(now).toISOString(),expiresAt:now+30*60*1000,
-    answered:new Map(),questions:withProfilePictures(items)};
+  return createTrainingSession({now,sense,questions:items,source:'mock'});
 }
 
 export function grade(session,questionId,selectedIndex){

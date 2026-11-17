@@ -1,32 +1,49 @@
-# SlangFeed source dataset integration (V2.3)
+# Dataset discovery, definition sources and explicit sense review
 
-This implementation imports 200 legacy SlangFeed CSV entries as **unreviewed candidates**, not validated meanings. The current source snapshot comes from `ferrysrt/slangfeed` on 11 November 2026. Legacy definitions do not include per-term source URLs. Automated discovery is review-only.
+## Separate candidate data from playable references
 
-## Architecture
+- `backend/data/slangfeed_snapshot.csv` remains the frozen 200-row, three-column legacy snapshot. Its definitions have no per-term citation; no URLs have been retroactively invented. Its parser/header are unchanged.
+- `backend/data/discovered_candidates.json` is the canonical, incremental Firecrawl dataset. Version 2 records normalized definitions separately from literal source quotations, collection times, page hashes and the actual normalizer model. All discovered entries remain `unreviewed`.
+- `backend/data/discovered_candidates.csv` is a readable source table: **one row per source capture**, preserving multiple sources in JSON and CSV. Columns include term, sense_id, definition, source_url, source_title, source_quote, collected_at, collection_method, review_status, normalized_definition, normalization_model and candidate_id. Standard CSV quoting supports commas, quotes and multiline excerpts. Do not import this as the legacy snapshot.
+- `backend/data/sense_reviews.json` explicitly maps reviewed candidate IDs to new sense IDs and a target meaning. `curated_senses.json` is the separate playable reference catalogue, still provisional, not expert certified.
 
-- Node backend loads a frozen CSV snapshot and parses three-column candidate records.
-- The game uses a separate `curated_senses.json` file containing three *provisional, manually authored* senses: `cooked-trouble`, `no-cap-truth`, `lowkey-subtle`.
-- Android API Training requests `GET /api/catalog` then chooses `senseId` for `POST /api/sessions`.
-- For each sense, a 10-question hand-authored mock pack is available. On-demand LLM generation can use selected target meaning when separately configured.
-- Research metadata differentiates candidate, provisional, mock, fallback, and LLM. No professional semantic evaluation is claimed.
+Candidate identity hashes the normalized term **and definition**, not the term alone. Distinct senses are not silently merged. Exact duplicate candidates retain all distinct source captures. A collection timestamp is the time the Firecrawl response was received, never a model-supplied date. Page hashes fingerprint captured markdown; full copyrighted pages are not republished.
 
-## HTTP usage
+## Bounded discovery workflow
 
-```
-GET /api/catalog
-GET /api/catalog/candidates?q=cooked&limit=10
-POST /api/sessions
-{"senseId":"no-cap-truth"}
-```
+Run **Actions → Slang candidate discovery - manual review**, optionally supplying a search query. The Monday 03:00 UTC schedule is retained. Each run uses at most **one Firecrawl v2 search** (ten pages) and **one OpenRouter normalization request**, with no retries. Charges/provider quotas apply. The web text is sent to the normalizer, treated as untrusted content, and limited to 80,000 prompt characters.
 
-## Weekly discovery
+Bindings are `secrets.FIRECRAWL_API_KEY`, `secrets.OPENROUTER_API_KEY`, and optional `vars.OPENROUTER_MODEL`, defaulting to `openai/gpt-6-luna`. Do not put credentials in Android or the dataset. Secret presence is distinct from local environment configuration.
 
-Workflow `.github/workflows/slang-candidates.yml` runs on Monday UTC 03:00 or manually. It requires repository Actions secrets `FIRECRAWL_API_KEY` and `OPENROUTER_API_KEY`, with optional variable `OPENROUTER_MODEL` (default `openai/gpt-oss-120b`). It searches via Firecrawl v2 and normalizes with a separate backend LLM call.
+The model must propose a literal definitional excerpt containing the term. Validation rejects URLs absent from the collected documents, invented/case-altered quotations, short excerpts and excerpts missing the term. Whitespace differences are allowed and the original captured excerpt is retained. **A matching excerpt does not prove that the normalized definition is correct**; the resulting status is `literal-excerpt-unreviewed`, not semantically validated. A developer must inspect whether it actually explains the intended sense, rather than merely mentioning the term. Legacy term-appearance-only evidence is not silently upgraded.
 
-The workflow **uploads an unreviewed artifact only**. It does NOT automatically publish to the playable glossary, does not write to the Godot repo, and does not claim per-sense linguistic accuracy.
+A successful run uploads both files as `unreviewed-slang-candidates` and commits the candidate JSON/source CSV to this repository. Sources therefore persist beyond workflow logs/artifact retention. Discovery does not create new reviews or automatically make every candidate playable, and does not touch `ferrysrt/slangfeed`. Candidate-only commits do not trigger question generation.
 
-The candidate collector locates each candidate term in the actual Firecrawl-returned page text and derives an evidence excerpt locally. Model-suggested URLs and quotations are treated as untrusted; sourceClaimMatched and modelQuoteVerified indicate whether they matched. A term appearing on a page does NOT establish that the generated definition is accurate: all outputs remain unreviewed candidates. The live test on 11 November 2026 found 13 candidates from seven scraped pages, but this is not an expert accuracy test. Manually review each candidate's source, sense, safety, and licensing before adding new playable meanings. Do not publish scraped full-text pages.
+## Review → playable sense → LLM bank
 
-## Known limitation
+1. Read the candidate's actual source quote, URL, context and normalized meaning. Check safety, source support and distinct sense identity. Revisit the source where necessary. Do not approve an ambiguous definition merely because schema validation passed.
+2. Add an explicit entry to `backend/data/sense_reviews.json`:
+   ```json
+   {
+     "candidateId": "<existing candidate ID>",
+     "senseId": "<new-stable-sense-id>",
+     "targetMeaning": "<one reviewed reference meaning>",
+     "reviewedBy": "<actual reviewer or clearly identified agent-assisted review>",
+     "reviewedAt": "<actual ISO timestamp>",
+     "referenceNote": "<source/sense/safety rationale and remaining uncertainty>"
+   }
+   ```
+   This is developer/agent-assisted source review, **not linguistic expert approval**.
+3. Run `npm --prefix backend run dataset:curate`. It verifies provenance and explicit mappings, preserves legacy senses and conflict notes, copies the supporting sources into the new provisional sense, and exports sense IDs into the CSV. Re-running is idempotent; an existing sense ID cannot silently change meaning/candidate. Commit reviews, curated senses and table together.
+4. A curated-sense change on main triggers **Publish LLM question bank**, or run it manually. The existing ceiling of three ten-question generation requests/run and no retries remains. Editing the publisher workflow alone no longer starts a paid run. Current packs are skipped; valid older packs survive provider failures. Each sourced pack also carries `sourceCandidateId`, `normalizedDefinition` and `referenceSources`; publication verifies these against its curated reference.
+5. Verify the public catalogue, hashes and packs, then **Refresh bank** on Android. New slang needs no APK rebuild. No request is made to the paid provider by the phone.
 
-The SlangFeed dataset's `Cooked` means extreme tiredness/overwhelm; the gameplay sense `cooked-trouble` means serious trouble. The latter is independently authored and is not validated by the legacy CSV definition.
+New senses do not acquire invented hand-authored mock packs. Real LLM sessions can use them directly. An unavailable provider without an authored fallback produces an explicit 503 instead of a wrong-slang or falsely labeled mock result. Existing three offline/mock senses keep their authored behavior.
+
+The dataset version string continues to identify the legacy snapshot; each new reference additionally has its candidate identity and literal provenance, and published content has its own exact-byte hash. `candidateCount` remains the legacy snapshot count; `discoveredCandidateCount` reports the separate Firecrawl dataset.
+
+## Known legacy meaning conflict
+
+`cooked-trouble` means “in serious trouble,” while the legacy snapshot's Cooked emphasizes tiredness/overwhelm. Its `sourceRelationship: conflict` and `referenceNote` remain intact. No new source is attached to this legacy sense without a separate review.
+
+All source-supported and generated content remains provisional. Structural tests do not establish semantic validity, empirically calibrated difficulty, learning gains, usability or authenticated participant logging.

@@ -34,7 +34,7 @@ internal fun ContextDetective(
     var round by remember(startCaseId) { mutableIntStateOf(0) }
     var selected by remember(startCaseId) { mutableIntStateOf(-1) }
     var pinned by remember(startCaseId) { mutableIntStateOf(-1) }
-    var expanded by remember(startCaseId) { mutableStateOf(false) }
+    var expanded by remember(startCaseId) { mutableStateOf(true) }
     var questionOpened by remember(startCaseId) { mutableStateOf(false) }
     var step by remember(startCaseId) { mutableStateOf(DetectiveStep.Investigate) }
     val decisions = remember(startCaseId) { mutableStateListOf<DetectiveDecision>() }
@@ -51,7 +51,7 @@ internal fun ContextDetective(
             round += 1
             selected = -1
             pinned = -1
-            expanded = false
+            expanded = true
             questionOpened = false
             step = DetectiveStep.Investigate
         }
@@ -60,7 +60,7 @@ internal fun ContextDetective(
         round = 0
         selected = -1
         pinned = -1
-        expanded = false
+        expanded = true
         questionOpened = false
         decisions.clear()
         step = DetectiveStep.Investigate

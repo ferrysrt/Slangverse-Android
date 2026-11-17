@@ -54,7 +54,7 @@ fun RemoteTrainingPanel() {
     var combo by remember { mutableIntStateOf(0) }
     var highestCombo by remember { mutableIntStateOf(0) }
     var finished by remember { mutableStateOf(false) }
-    var expandedReplies by remember { mutableStateOf(false) }
+    var expandedReplies by remember { mutableStateOf(true) }
     var catalog by remember { mutableStateOf<ApiCatalog?>(null) }
     var selectedSenseId by rememberSaveable { mutableStateOf("cooked-trouble") }
 
@@ -173,7 +173,7 @@ fun RemoteTrainingPanel() {
                             staticAnswers = emptyMap()
                             session = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
                         }
-                        currentIndex = 0; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; finished = false
+                        currentIndex = 0; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; finished = false; expandedReplies = true
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
                     } catch (e: Exception) { error = e.message ?: "Connection failed" }
                     finally { loading = false }
@@ -203,7 +203,7 @@ fun RemoteTrainingPanel() {
             if (activeSession.source.startsWith("github-static")) {
                 Text("Local demo scores only: answer keys are included in the publicly readable JSON.", color = Secondary, fontSize = 11.sp)
             }
-            Action("START NEW SESSION") { session = null; questionOpened = false; finished = false; error = null }
+            Action("START NEW SESSION") { session = null; questionOpened = false; finished = false; expandedReplies = true; error = null }
         }
         return
     }
@@ -238,7 +238,7 @@ fun RemoteTrainingPanel() {
         Text("♡   Reply   ↻   Share   ♧", color = Secondary, fontSize = 12.sp)
         HorizontalDivider(color = WarmEditorial.Sand)
         Text("01 · INVESTIGATE · PIN A REPLY", fontWeight = FontWeight.Bold, fontSize = 12.sp)
-        current.post.comments.take(if (expandedReplies) 3 else 1).forEachIndexed { idx, comment ->
+        current.post.comments.take(if (expandedReplies) current.post.comments.size else 1).forEachIndexed { idx, comment ->
             Row(
                 Modifier.fillMaxWidth()
                     .background(if (pinnedClueIndex == idx) PanelRaised else PanelColor, RoundedCornerShape(12.dp))
@@ -311,7 +311,7 @@ fun RemoteTrainingPanel() {
             savedClue = current.post.comments.getOrNull(pinnedClueIndex)?.text)
         Action(if (currentIndex == activeSession.questions.lastIndex) "SHOW SESSION RESULTS" else "NEXT CONVERSATION →") {
             if (currentIndex == activeSession.questions.lastIndex) finished = true
-            else { currentIndex += 1; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; expandedReplies = false; error = null }
+            else { currentIndex += 1; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; expandedReplies = true; error = null }
         }
     } else {
         Action(if (loading) "SUBMITTING…" else "POST YOUR INTERPRETATION →", enabled = selectedIndex >= 0 && !loading) {

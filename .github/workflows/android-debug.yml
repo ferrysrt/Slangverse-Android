@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Check default reply visibility and explicit answer controls
+        run: node --test android/scripts/reply-visibility.test.mjs
       - name: Verify bundled profile pictures and generated registries
         working-directory: tools/profile-pictures
         run: npm ci && npm run check
@@ -46,6 +48,13 @@ jobs:
       - name: Run gameplay and social simulation unit tests
         working-directory: android
         run: gradle --no-daemon --stacktrace :app:testDebugUnitTest
+      - name: Upload current unit test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-unit-test-results
+          path: android/app/build/test-results/testDebugUnitTest/*.xml
+          if-no-files-found: ignore
       - name: Assemble debug APK
         working-directory: android
         run: gradle --no-daemon --stacktrace :app:assembleDebug

@@ -665,7 +665,7 @@ private fun EditorialHeader(
     post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
     onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit,
     onProfile: (String) -> Unit, onContext: (FeedContext) -> Unit,
-    initiallyExpanded: Boolean = false
+    initiallyExpanded: Boolean = true
 ) {
     val thread = post.thread
     val story = SocialNarrative.story(post)

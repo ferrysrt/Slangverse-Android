@@ -7,6 +7,9 @@ export const sha256=text=>createHash('sha256').update(text).digest('hex');
 export function validatePublishedPack(pack,senseId){
  const sense=resolveSense({senseId});
  if(pack?.schemaVersion!==1||pack.senseId!==senseId||pack.generationSource!=='llm')throw Error('not-a-published-llm-pack');
+ if(sense.sourceCandidateId&&(pack.sourceCandidateId!==sense.sourceCandidateId||
+    pack.normalizedDefinition!==sense.normalizedDefinition||JSON.stringify(pack.referenceSources)!==JSON.stringify(sense.sources)))
+   throw Error('published-reference-provenance-mismatch');
  const questions=pack.questions;
  const errors=validatePackage(questions?.map(q=>({...q,targetMeaning:q.options?.[q.correctIndex]})));
  if(errors.length||questions.some(q=>normalize(q.slang)!==normalize(sense.term)||normalize(q.options[q.correctIndex])!==normalize(sense.targetMeaning)))throw Error('invalid-published-pack');
@@ -22,7 +25,8 @@ export function writePublishedCatalog(outputDir){
   senses.push({...sense,sha256:sha256(text)});
  }
  const index={schemaVersion:1,datasetVersion:catalog.datasetVersion,source:'github-static',generationSource:'llm',
-  status:senses.length?'ready':'awaiting-generation',candidateCount:catalog.candidateCount,expertValidated:false,
+  status:senses.length?'ready':'awaiting-generation',candidateCount:catalog.candidateCount,
+  discoveredCandidateCount:catalog.discoveredCandidateCount,expertValidated:false,
   bankVersion:sha256(JSON.stringify(senses)).slice(0,16),senses};
  mkdirSync(outputDir,{recursive:true});
  writeFileSync(resolve(outputDir,'catalog.json'),JSON.stringify(index,null,2)+'\n');

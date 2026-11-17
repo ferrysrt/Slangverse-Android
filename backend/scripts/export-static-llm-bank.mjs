@@ -40,6 +40,8 @@ export async function exportLiveStaticPack({
     referenceStatus:'provisional',
     datasetVersion:catalog.datasetVersion,
     expertValidated:false,
+    ...(selected.sourceCandidateId ? {sourceCandidateId:selected.sourceCandidateId,
+      normalizedDefinition:selected.normalizedDefinition, referenceSources:selected.sources} : {}),
     questions: result.session.questions.map(({targetMeaning,...q})=>structuredClone(q))
   };
   writeFileSync(resolve(target,'packs',selected.senseId+'.json'),JSON.stringify(pack,null,2)+'\n');

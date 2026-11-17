@@ -1,6 +1,7 @@
 package id.slangverse.app
 
 import java.io.File
+import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test
@@ -33,6 +34,26 @@ class PublishedFeedTest {
             assertTrue(feedProfiles(posts).keys.containsAll(posts.map { it.thread.handle }))
         }
         assertEquals(catalog.senses.size * 10, ids.size)
+    }
+
+    @Test fun everySupportedCommentCountReachesThePublishedStoryInOrder() {
+        for (count in 1..5) {
+            val json = JSONObject(packText())
+            val comments = (1..count).map { index ->
+                JSONObject().put("handle", "@reply$index").put("text", "Context clue $index")
+                    .put("avatarId", ProfilePictureCatalog.ids.first())
+            }
+            json.getJSONArray("questions").getJSONObject(0).getJSONObject("post")
+                .put("comments", JSONArray(comments))
+            val loaded = parseBankSession(json.toString(), "cooked-trouble", requireLlm = true)
+            val post = loaded.toFeedPosts().first()
+            val replies = SocialNarrative.story(post).replies
+            assertEquals(count, loaded.session.questions.first().post.comments.size)
+            assertEquals((1..count).map { "Context clue $it" }, post.thread.comments)
+            assertEquals(post.thread.comments, replies.map { it.text })
+            assertEquals((1..count).map { "@reply$it" }, replies.map { it.handle })
+            assertTrue(replies.all { it.avatarId == ProfilePictureCatalog.ids.first() })
+        }
     }
 
     @Test fun defaultFeedRejectsMockWhileLegacyTrainingCanStillOpenIt() {
