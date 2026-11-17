@@ -127,7 +127,7 @@ class MixedPublishedFeedTest {
         assertEquals("@friend", loaded.toFeedPosts().first().termTargetHandle)
         assertEquals("reply", loaded.session.questions.first().questionTarget)
 
-        reject { it.getJSONArray("questions").getJSONObject(0).put("questionTarget", "post") }
+        reject { it.getJSONArray("questions").getJSONObject(0).put("questionTarget", "reply") }
         reject { it.getJSONArray("questions").getJSONObject(0).put("questionTarget", "thread") }
         reject { it.getJSONArray("questions").getJSONObject(0).remove("questionTarget") }
         reject { it.getJSONArray("questions").getJSONObject(0).put("targetHandle", "@someone_else") }

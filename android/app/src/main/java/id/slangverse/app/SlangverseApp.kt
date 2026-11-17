@@ -707,7 +707,7 @@ private fun EditorialHeader(
         HorizontalDivider(color = WarmEditorial.Sand)
         Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(14.dp)).padding(12.dp),
             verticalArrangement = Arrangement.spacedBy(9.dp)) {
-            StoryIdentity("@confuseduser", onProfile, "Replying to ${thread.handle} · help explain", avatarSize = 32.dp)
+            StoryIdentity("@confuseduser", onProfile, "Replying to ${post.termTargetHandle ?: thread.handle} · help explain", avatarSize = 32.dp)
             Text(thread.questionComment, fontSize = 15.sp, lineHeight = 22.sp)
             if (answeredIndex == null && !replying) {
                 TextButton(onClick = { replying = true }) { Text("Reply with the meaning ↓") }
