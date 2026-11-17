@@ -1,0 +1,384 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q1",
+      "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+      "slang": "drip",
+      "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+      "difficulty": "easy",
+      "contextId": "rainy-day-outfit",
+      "contextCategory": "friends",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#ThriftFind",
+        "content": "Found this green jacket at the neighborhood thrift shop and wore it to lunch. My cousin said the drip finally matches my confidence 😄",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "text": "That jacket is such a good find!",
+            "avatarId": "guest_01"
+          },
+          {
+            "handle": "@guest_02",
+            "text": "The green really works with those shoes.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "When your cousin said drip, were they talking about the jacket or something else?",
+      "question": "What does 'drip' mean in this post?",
+      "options": [
+        "A jacket that keeps rain from soaking through.",
+        "A popular song playing at lunch.",
+        "Distinctive or impressive style, especially in clothing.",
+        "A carefully planned shopping list."
+      ],
+      "correctIndex": 2,
+      "explanation": "The cousin is reacting to the outfit and jacket, so drip refers to distinctive or impressive clothing style."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q2",
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "slang": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "difficulty": "easy",
+      "contextId": "library-glitch",
+      "contextCategory": "education",
+      "post": {
+        "displayName": "Eli Park",
+        "handle": "@guest_03",
+        "hashtag": "#StudyBreak",
+        "content": "The library clock showed 3:12, but every screen said 8:45 and the hallway ended at a door I swear wasn't there yesterday. This place is ohio today.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "text": "I took the long way around that hallway too.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@guest_05",
+            "text": "Even the printer made a noise like it was confused.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "What about the library feels ohio to you?",
+      "question": "What does 'ohio' mean in this post?",
+      "options": [
+        "A surreal, strange, or cursed version of reality.",
+        "A very quiet place meant for studying.",
+        "A room where all the clocks have been repaired.",
+        "A busy school day with too many assignments."
+      ],
+      "correctIndex": 0,
+      "explanation": "The mismatched clocks and oddly changed hallway make the library seem like a strange, surreal reality."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q3",
+      "senseId": "normalized-73cca91552b47e1831845692",
+      "slang": "glow up",
+      "targetMeaning": "A noticeable improvement in appearance or confidence.",
+      "difficulty": "easy",
+      "contextId": "first-open-mic",
+      "contextCategory": "personal",
+      "post": {
+        "displayName": "Nora Bell",
+        "handle": "@guest_06",
+        "hashtag": "#OpenMicNight",
+        "content": "Last year I wouldn't even read one poem to my friends. Tonight I went up under the lights, smiled for the photos, and actually enjoyed it. Tiny glow up!",
+        "comments": [
+          {
+            "handle": "@guest_07",
+            "text": "You looked so relaxed up there!",
+            "avatarId": "guest_07"
+          },
+          {
+            "handle": "@guest_08",
+            "text": "Please tell us when the next reading is.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Is the glow up here about the performance, the photos, or both?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "A new lamp installed above the stage.",
+        "A noticeable improvement in appearance or confidence.",
+        "A decision to stop writing poems.",
+        "A change in the event's starting time."
+      ],
+      "correctIndex": 1,
+      "explanation": "Nora contrasts her past shyness with confidently performing and enjoying the moment, showing a noticeable improvement in confidence."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q4",
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "slang": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "difficulty": "easy",
+      "contextId": "classroom-meme",
+      "contextCategory": "entertainment",
+      "post": {
+        "displayName": "Theo Moss",
+        "handle": "@guest_01",
+        "hashtag": "#GroupChat",
+        "content": "Our class made a looping clip of a paper cup wobbling to a beat, and now everyone keeps typing skibidi under it. The cup has become our mascot.",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "I saw the cup dancing in three different chats.",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@guest_03",
+            "text": "It deserves its own tiny graduation cap.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Why does skibidi keep showing up under the cup video?",
+      "question": "What does 'skibidi' mean in this post?",
+      "options": [
+        "A code word for the class mascot.",
+        "A type of beat used for dance practice.",
+        "A paper cup that is hard to balance.",
+        "A nonsense word popularized as a viral meme."
+      ],
+      "correctIndex": 3,
+      "explanation": "The word is being repeated in reactions to a looping clip, fitting a nonsense word that became popular as a viral meme."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q5",
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "slang": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "difficulty": "easy",
+      "contextId": "mirror-routine",
+      "contextCategory": "personal",
+      "post": {
+        "displayName": "Asha Reed",
+        "handle": "@guest_04",
+        "hashtag": "#MorningRoutine",
+        "content": "My brother says he's been mewing during his mirror routine, keeping his tongue up against the roof of his mouth while he practices his posture.",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "text": "He is very committed to that mirror time.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@guest_06",
+            "text": "Meanwhile I can barely remember to comb my hair.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "What is your brother doing when he says he's mewing?",
+      "question": "What does 'mewing' mean in this post?",
+      "options": [
+        "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "A way of speaking softly so no one hears.",
+        "A routine for memorizing lines in front of a mirror.",
+        "A stretch focused on relaxing the shoulders."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post specifically mentions tongue placement against the roof of the mouth as part of the technique."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q6",
+      "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+      "slang": "aura",
+      "targetMeaning": "A person's vibe or energy.",
+      "difficulty": "medium",
+      "contextId": "quiet-volunteer",
+      "contextCategory": "event-reaction",
+      "post": {
+        "displayName": "Jules Hart",
+        "handle": "@guest_07",
+        "hashtag": "#CommunityGarden",
+        "content": "The seed table was getting chaotic, but Ren just kept sorting packets and asking what everyone needed. Somehow the whole morning settled once they arrived. Strong aura.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "text": "They remembered every person's name, too.",
+            "avatarId": "guest_08"
+          },
+          {
+            "handle": "@guest_01",
+            "text": "I left with more seeds and less stress.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "What about Ren's presence stood out to you?",
+      "question": "What does 'aura' mean in this post?",
+      "options": [
+        "The number of seed packets Ren sorted.",
+        "A person's vibe or energy.",
+        "A special role assigned to garden volunteers.",
+        "The weather conditions during the morning."
+      ],
+      "correctIndex": 1,
+      "explanation": "Ren's calm, helpful presence changed the mood of the group, pointing to their vibe or energy."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q7",
+      "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+      "slang": "bussin",
+      "targetMeaning": "Delicious or excellent, commonly describing food.",
+      "difficulty": "medium",
+      "contextId": "potluck-recipe",
+      "contextCategory": "friends",
+      "post": {
+        "displayName": "Leo Finch",
+        "handle": "@guest_02",
+        "hashtag": "#PotluckNotes",
+        "content": "I thought I was full after the picnic, then I tried Mina's roasted corn with lime and herbs and went back for another serving. That side dish was bussin.",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "text": "Mina brought home an empty dish again.",
+            "avatarId": "guest_03"
+          },
+          {
+            "handle": "@guest_04",
+            "text": "I need to ask what she put in the sauce.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "What part of the picnic is Leo praising as bussin?",
+      "question": "What does 'bussin' mean in this post?",
+      "options": [
+        "Served in an unusually large portion.",
+        "Made with a difficult cooking technique.",
+        "Delicious or excellent, commonly describing food.",
+        "Packed up to take home after the picnic."
+      ],
+      "correctIndex": 2,
+      "explanation": "Leo goes back for more of Mina's dish, so he is praising how good the food tastes."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q8",
+      "senseId": "normalized-e52932ae62efe030406673c2",
+      "slang": "ate",
+      "targetMeaning": "Performed exceptionally well, especially with style or confidence.",
+      "difficulty": "medium",
+      "contextId": "debate-final",
+      "contextCategory": "education",
+      "post": {
+        "displayName": "Ravi Cole",
+        "handle": "@guest_05",
+        "hashtag": "#DebateClub",
+        "content": "Mara got the last speaking slot, listened to the other side, then delivered her closing without glancing at her notes. The room went quiet before the applause—she ate.",
+        "comments": [
+          {
+            "handle": "@guest_06",
+            "text": "That pause before everyone clapped was unreal.",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@guest_07",
+            "text": "Her timing made the ending land.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "What did Mara do in that final speaking slot?",
+      "question": "What does 'ate' mean in this post?",
+      "options": [
+        "Performed exceptionally well, especially with style or confidence.",
+        "Had the final turn because she arrived late.",
+        "Changed her argument after hearing the other side.",
+        "Read every point directly from her notes."
+      ],
+      "correctIndex": 0,
+      "explanation": "Mara delivered a poised, memorable closing, so ate describes performing exceptionally well with confidence."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q9",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "hard",
+      "contextId": "imaginary-award",
+      "contextCategory": "opinion",
+      "post": {
+        "displayName": "Sana Wells",
+        "handle": "@guest_08",
+        "hashtag": "#MondayDreams",
+        "content": "I sent one polite email about the office plant and now I've drafted my acceptance speech for Head of Greenery. Delulu? Maybe. But that fern and I have a vision.",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "text": "Please save a seat for the watering can.",
+            "avatarId": "guest_01"
+          },
+          {
+            "handle": "@guest_02",
+            "text": "The fern's campaign starts now.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "Is Sana seriously expecting a new title, or joking around?",
+      "question": "What does 'delulu' mean in this post?",
+      "options": [
+        "A reminder to take better care of the office plant.",
+        "A playful or endearing way to describe being delusional.",
+        "A formal plan to apply for a management position.",
+        "A complaint that the office is too quiet."
+      ],
+      "correctIndex": 1,
+      "explanation": "Sana jokingly imagines an unlikely title after one email, using delulu in a playful way about an unrealistic belief."
+    },
+    {
+      "id": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb-q10",
+      "senseId": "normalized-eb2c39e21b1ba57186ea3a27",
+      "slang": "larp",
+      "targetMeaning": "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+      "difficulty": "hard",
+      "contextId": "borrowed-backdrop",
+      "contextCategory": "work",
+      "post": {
+        "displayName": "Tess Rowan",
+        "handle": "@guest_03",
+        "hashtag": "#StudioNotes",
+        "content": "Nico's feed is all late-night studio shots and big talk about running a design team. At the shared workspace, I mostly see him borrowing the same empty room for photos, then leaving before anyone starts a project. Feels like a larp.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "text": "The room was booked for an actual team meeting an hour later.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@guest_05",
+            "text": "The photos never show anyone else working there.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "What is Tess suggesting about Nico's online work persona?",
+      "question": "What does 'larp' mean in this post?",
+      "options": [
+        "A short-term job leading a real design team.",
+        "A private role-playing game held at the workspace.",
+        "A plan to create more photos for a project portfolio.",
+        "Short for “live-action role-play”; used for someone living a fake or performative life for social clout."
+      ],
+      "correctIndex": 3,
+      "explanation": "The post contrasts Nico's online image with his behavior at the workspace, suggesting a performative life presented for social clout."
+    }
+  ]
+}

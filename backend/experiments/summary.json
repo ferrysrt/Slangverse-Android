@@ -1,9 +1,56 @@
 {
   "schemaVersion": 1,
   "note": "Observed attempt records only. Valid means generation validation passed, not expert approval or confirmed Git publication. Incomplete records are listed, never discarded. See per-check denominators.",
-  "attemptCount": 1,
+  "attemptCount": 2,
   "byPrompt": {
     "mixed-v1": {
+      "attempts": 1,
+      "terminal": 1,
+      "valid": 0,
+      "failed": 1,
+      "incomplete": 0,
+      "providerCalls": 1,
+      "allNinePassed": 1,
+      "checks": {
+        "json-parse": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "required-fields": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "count-10": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "difficulty-5-3-2": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "four-options": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "correct-index": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "context-category": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "unique-ids": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "no-surrounding-text": {
+          "evaluated": 1,
+          "passed": 1
+        }
+      }
+    },
+    "mixed-v2": {
       "attempts": 1,
       "terminal": 1,
       "valid": 0,
@@ -92,6 +139,65 @@
       "failureCode": "mixed-validation-failed",
       "validationErrors": [
         "7:post-slang-missing"
+      ],
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb",
+      "packId": "mixed-20261117t180657184z-b0523b3a-82b1-42cc-b286-e6da4f45cfdb",
+      "promptVersion": "mixed-v2",
+      "promptSha256": "181d55b98f17b5b88ce901c97665238cbc1a4aa43075e6f8af229664ba326bba",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "failed",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-17T18:06:57.184Z",
+      "completedAt": "2026-11-17T18:07:29.335Z",
+      "durationMs": 32151,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 5104,
+        "completion_tokens": 4176,
+        "total_tokens": 9280,
+        "cost": 0.002725925,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 5101,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.002725925,
+          "upstream_inference_prompt_cost": 0.000637925,
+          "upstream_inference_completions_cost": 0.002088
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 69,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": "mixed-validation-failed",
+      "validationErrors": [
+        "5:question-comment-shape",
+        "7:question-comment-shape",
+        "8:question-comment-shape",
+        "9:question-comment-shape"
       ],
       "selectedDistinctTerms": 10,
       "checks": {
