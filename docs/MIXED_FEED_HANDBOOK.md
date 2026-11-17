@@ -8,11 +8,11 @@ This is the accepted product/engineering plan, not a claim of supervisor-approve
 
 ## Accepted pipeline
 
-1. **Own dataset:** Firecrawl collection and LLM normalization persist in `backend/data/discovered_candidates.json` and its source CSV. There are initially 16 carried-forward entries; a fresh refresh is pending. The old slangfeed snapshot is historical only, never the active feed source.
+1. **Own dataset:** Firecrawl collection and LLM normalization persist in `backend/data/discovered_candidates.json` and its source CSV. The live refresh produced 22 normalized entries. The old slangfeed snapshot is historical only, never the active feed source.
 2. **Automatic eligibility:** entries satisfying literal provenance requirements receive stable `normalized-<candidateId>` sense IDs. No manual review gate is required. Retain `normalized-unreviewed` status and explicitly distinguish literal provenance from semantic correctness.
 3. **Weekly refresh:** Monday 03:00 UTC / 10:00 WIB, with optional manual dispatch. One Firecrawl search and one normalizer request, no retries. Provider cost/quotas and source limitations remain visible.
 4. **Mixed generation:** `backend/scripts/publish-mixed-bank.mjs` samples terms, prefers ten unique terms, and requires at least two distinct terms. Every pack has ten questions, nominal 5 easy / 3 medium / 2 hard, and per-question links to embedded sense references. If fewer than ten terms are available, selected senses may repeat.
-5. **Bounded paid work:** default one mixed attempt, maximum three per invocation, at most one provider call per attempt, no retries, repair calls or mock fallback. Only `mixed-v1` is the implemented baseline; no invented v2 experiments or claimed improvements.
+5. **Bounded paid work:** default one mixed attempt, maximum three per invocation, at most one provider call per attempt, no retries, repair calls or mock fallback. Three real attempts (`mixed-v1`…`mixed-v3`) are archived and all were rejected, so no improvement is claimed.
 6. **Auditability:** preserve actual input, rendered prompt, request parameters, raw output/response, metadata, validation and result when available; successful generation also saves a pack. Actual model, usage and finish reasons must be retained, not inferred.
 7. **Publication:** schema 2 catalogues advertise mixed `packs` and retained legacy `senses`. New mixed pack files are immutable and checksummed. Keep valid old packs for compatibility; do not rewrite their reference history as new normalized data.
 

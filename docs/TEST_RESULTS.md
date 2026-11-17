@@ -1,20 +1,30 @@
-# Mixed-feed transition verification — 2026-11-18 (Asia/Jakarta)
+# Live dataset refresh and mixed-generation attempts — 2026-11-18 (Asia/Jakarta)
 
-Code checkpoint **`627c0eb`** on **main**. App build configuration is `0.5.0-mixed-feed`, version code 6.
+Code checkpoint at report time is on **main**; the final commit and run IDs are listed after the results below. App build configuration remains `0.5.0-mixed-feed`, version code 6.
 
-## Actual results from this session
+## Actual dataset results
 
-- Backend `npm test`: **164 passed, 0 failed/cancelled/skipped**, run directly in `backend/` on this machine. Coverage includes the normalized dataset contract, mixed selection/prompt/validation/publication, experiment-report aggregation, HTTP contract, legacy publisher compatibility and the checked-in bank. [Backend CI run 44140097490](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44140097490) on `627c0eb` also passed.
-- Source guards: `node --test android/scripts/reply-visibility.test.mjs android/scripts/published-feed.test.mjs` → **12 passed, 0 failed**.
-- [Android build run 44140097650](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44140097650) on `627c0eb`: **success** — backend tests, reply/source guards, avatar registry check, `:app:testDebugUnitTest`, `:app:assembleDebug` and APK upload all passed. Downloaded the `android-unit-test-results` artifact and counted the JUnit XML: **48 tests, 0 failures, 0 errors, 0 skipped** — ContextDetectiveGameTest 7, MixedPublishedFeedTest 19, ProfilePicturesTest 2, PublishedFeedTest 9, SocialFeedGameTest 5, SocialNarrativeTest 6. Artifact **slangverse-debug-apk** contains the installable APK.
-- No local Android Gradle build was attempted: only Java 8 is available on this machine and Gradle is absent. The Android numbers above come from GitHub Actions, not this machine. No independent APK signature or device-installation test is claimed.
-- `git diff --check` passed. `.gitattributes` pins bank/dataset/experiment JSON and CSV paths to `eol=lf`, because `core.autocrlf=true` on Windows previously made exact-byte pack hash checks fail locally.
-- A shared Unicode term-boundary helper (`wholeTermPattern`/`containsWholeTerm`) is used by collection, eligibility and mixed selection, so a Markdown-emphasis excerpt (`_cap_`) or accented form (`capé`) cannot be accepted by one layer and rejected by another.
-- Mixed validation now also checks the main post and other pre-answer surfaces for literal target/option disclosure; the dataset refresh writes version 3 `normalized_dataset` output with per-run audit records (`backend/dataset-runs/…`) even when normalization fails.
+- [Refresh run 44142297195](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44142297195) succeeded (1 Firecrawl search + 1 OpenRouter normalization, no retries): 9 scraped pages, 4 accepted, 4 rejected. Its audit files were initially written to the wrong relative path, so they were not committed.
+- The `DATASET_AUDIT_DIR` path was corrected and [refresh run 44142990007](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44142990007) was repeated: **succeeded**, 9 pages, **2 accepted, 9 rejected**, HTTP 200 on both provider stages, 17.7 s wall time. Ten audit files were persisted under `backend/dataset-runs/<runId>/` and uploaded as artifact `normalized-slang-dataset-44142990007`: input, firecrawl/http/request, bounded sources, normalization request/response/http, rejections, and a terminal `result.json` with `status: succeeded`. A secret scan of that artifact found no keys or bearer values.
+- The committed dataset is `version: 3`, `stage: normalized_dataset`, **22 entries** (16 carried forward + 6 newly accepted across the two runs), all `normalized-unreviewed`. It covers three distinct source pages. `publicCatalog()` reports `datasetVersion firecrawl-normalized-1681a4e41cc4fb87c5039158`, 22 senses, ordered newest `lastCollectedAt` first. Repeated terms (`scuba`, `crine`) have distinct definitions and therefore distinct sense IDs — they were not merged.
 
-## Not yet established
+## Actual mixed-generation results
 
-No live Firecrawl dataset refresh and no live mixed LLM generation have been run for this checkpoint, so no mixed pack exists yet and no generation success rate, prompt comparison or publication outcome is claimed. Phone/device acceptance, accessibility and empirical difficulty also remain undone. See [prompt/metrics protocol](PROMPT_ENGINEERING.md) for the evidence rules that apply once real attempts exist.
+Three bounded publisher runs, one paid request each, no retries or JSON repair: [v1 44143393023](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44143393023), [v2 44144286530](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144286530), [v3 44144857363](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144857363).
+
+| Version | Provider | Critical nine | Additional gates | Outcome |
+| --- | --- | --- | --- | --- |
+| `mixed-v1` | 1 call, HTTP 200, `stop`/`completed`, 5,200+3,214 tokens, provider-reported cost 0.002256925 | 9/9 pass | `reference-integrity`: `7:post-slang-missing` | rejected |
+| `mixed-v2` | 1 call, HTTP 200, `stop`/`completed` | 9/9 pass | `existing-question-rules`: 4 × `question-comment-shape` | rejected |
+| `mixed-v3` | 1 call, HTTP 200 | 9/9 pass | `reference-mismatch`, `key-meaning-mismatch`, `unused-reference` on question 5 | rejected |
+
+**Published mixed packs: 0.** No pack entered `question-bank/packs/`; the bank still advertises the six retained legacy senses and its catalogue was not changed by these failed attempts. Three terminal attempts are archived with rendered prompts, non-secret request parameters, raw output/response, provider metadata, named checks and results in `backend/experiments/`; `summary.json` and `attempts.csv` aggregate them. See [prompt engineering](PROMPT_ENGINEERING.md) for the v1→v2→v3 hypotheses and the aggregate interpretation.
+
+Backend local `npm test` after the final prompt change: **165 passed, 0 failed/cancelled/skipped**. Source guards: **12 passed, 0 failed**. Android/JUnit results come from the earlier successful [build run 44140097650](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44140097650) (**48 tests, 0 failures/errors/skipped**); no new Android code changed in these live runs.
+
+## Not established
+
+No live generation has passed all gates, so no mixed pack, generation success rate or prompt-improvement claim exists. All returned content remains provisional and was rejected. Phone/device acceptance, expert semantic review and participant evaluation remain undone.
 
 ## Previous checkpoint verification
 

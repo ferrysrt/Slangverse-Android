@@ -14,7 +14,7 @@ Candidate evaluation metrics for later experiments:
 Research guardrails:
 - Rule-based structure checks do not prove semantic or linguistic correctness.
 - A few example contextual hints do not establish that all generated replies are appropriate or non-spoiling.
-- Label fixtures/mock/test, historical single-sense runs and real mixed LLM attempts separately. No fabricated measurements or mixed-v2 history; `mixed-v1` is the implemented baseline.
+- Label fixtures/mock/test, historical single-sense runs and real mixed LLM attempts separately. No fabricated measurements; `mixed-v3` is the active baseline with three real archived rejections.
 - Terms like "trending" are *fictional in-game curated topics*, not actual platform trends.
 - If eliminating expert raters, adjust research questions/objectives and avoid claims about validated semantic quality.
 - Preserve actual inputs, rendered prompts, non-secret requests, raw output/response, schema/prompt versions, validation decisions, actual model/usage/finish reasons and terminal outcomes. Mixed publishing has no retries; retain failures and missing evidence honestly. Summary CLI and failure-safe workflow artifact/persistence integration are pending main work.

@@ -57,7 +57,7 @@ The single-sense and ten-distinct-context rules remain a **legacy/REST contract*
 
 `backend/src/catalog.mjs` reads the own Firecrawl-normalized JSON, not the frozen slangfeed snapshot. `publicCatalog()` reports `source: firecrawl-normalized`, a content-derived `datasetVersion`, own-dataset counts, `provenanceTable`, `expertValidated: false`, `reviewStatus: normalized-unreviewed`, capture ordering and eligible senses.
 
-Eligibility automatically assigns `normalized-<candidateId>` after provenance checks; there is no manual review gate. The initial dataset has 16 carried-forward entries, with a fresh refresh pending. An active sense is not proof that its quote semantically supports its normalized definition. Historical senses remain explicitly resolvable for compatibility without populating the active catalogue. See [dataset contract](DATASET_INTEGRATION.md).
+Eligibility automatically assigns `normalized-<candidateId>` after provenance checks; there is no manual review gate. The dataset has 22 normalized entries from live refresh runs, ordered by newest recorded capture. An active sense is not proof that its quote semantically supports its normalized definition. Historical senses remain explicitly resolvable for compatibility without populating the active catalogue. See [dataset contract](DATASET_INTEGRATION.md).
 
 ## Optional Connected Training REST
 

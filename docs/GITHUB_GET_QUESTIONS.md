@@ -49,7 +49,7 @@ Android verifies checksum, origin, shape and per-question reference matching. Qu
 
 ## Audit and workflow integration
 
-Each attempt uses `backend/experiments/<attemptId>/`: `input.json`, `prompt.json`, `request.json`, raw model `output.txt`, raw provider `response.txt`, `metadata.json`, `validation.json`, `result.json`, and `pack.json` on success, as available by stage. Preserve failures; never fabricate responses for pre-call failures. `mixed-v1` is the only implemented mixed baseline, not evidence of a v1/v2 comparison.
+Each attempt uses `backend/experiments/<attemptId>/`: `input.json`, `prompt.json`, `request.json`, raw model `output.txt`, raw provider `response.txt`, `metadata.json`, `validation.json`, `result.json`, and `pack.json` on success, as available by stage. Preserve failures; never fabricate responses for pre-call failures. `mixed-v3` is the active baseline; three real attempts exist and all were rejected by validation.
 
 **Pending main work:** create the experiment-report summary CLI and update `.github/workflows/publish-question-bank.yml` to run the mixed publisher/report, default to one attempt, upload artifacts and persist available audit files even when generation fails. Publish valid additions and the catalogue consistently without losing failed-attempt evidence. The older workflow's curated-sense trigger/default-three/single-sense behavior is historical integration, not the new approved contract and not proof this pending work has run.
 

@@ -99,6 +99,20 @@ A real `mixed-v2` attempt then exists: [publisher run 44144286530](https://githu
 
 Both revisions are one-target-change steps from observed evidence, not a broad redesign and not a retrospective success claim.
 
+A real `mixed-v3` attempt exists: [publisher run 44144857363](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44144857363), record `mixed-20261117t181016380z-2806191a-d9ba-45fe-aef4-8d92d9e6adc6`. The post-term and question-comment failures did not recur. It failed differently: question 5 copied a paraphrase instead of the reference string — assigned meaning `"A dance indicating that someone or something smells bad."`, returned `"A move that signals someone or something smells bad"` — producing `4:reference-mismatch`, `4:key-meaning-mismatch` and `unused-reference`.
+
+### Aggregate observed via `mixed-v1` through `mixed-v3`
+
+| Item | Observed |
+| --- | --- |
+| Real terminal attempts | 3 (one per version) |
+| Provider calls | 3, one each, no retries |
+| Critical nine, all passing | **3/3 attempts** |
+| Publishable after additional gates | **0/3** |
+| Failure categories | v1 `post-slang-missing`; v2 four `question-comment-shape`; v3 `reference-mismatch`/`key-meaning-mismatch`/`unused-reference` |
+
+The important interpretation is that **the nine critical checks alone would have accepted all three packs**; the reference-integrity, existing-question and completion gates are what stopped them. Do not report a "100% valid generation rate" from the critical-nine subset. A fourth candidate hypothesis — require `targetMeaning` and the correct option to be copied verbatim from the reference — is recorded but **not implemented or tested**; the bounded revision loop stops at v3.
+
 ## Revision and interpretation protocol
 
 1. Freeze/archive the baseline template, rendered input, dataset identity and provider parameters before interpreting results.
