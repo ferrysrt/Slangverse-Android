@@ -714,15 +714,16 @@ test('an invalid addition or corrupt catalog leaves the existing catalog bytes u
 
 test('prompt versions are archived and the active template requires the term inside post.content', () => {
   const read = version => readFileSync(new URL(`../prompts/${version}.txt`, import.meta.url), 'utf8');
-  const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3');
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v3');
+  const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3'), v4 = read('mixed-v4');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v4');
   assert.ok(v1.includes('A natural short post using the exact slang term'));
   assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
-  assert.ok(v3.includes('post.content MUST contain the exact reference term verbatim'));
   assert.ok(v3.includes('It MUST contain the exact slang term verbatim, in addition to its presence in post.content'));
+  assert.ok(v4.includes('Copy the reference string character-for-character into BOTH `targetMeaning` and the one correct option'));
   const value = fixture();
   const messages = createMixedPrompt({packId: value.pack.packId, ...value});
   assert.equal(messages[1].content.includes('post.content MUST contain the exact reference term verbatim'), true);
   assert.equal(messages[1].content.includes('It MUST contain the exact slang term verbatim, in addition'), true);
+  assert.equal(messages[1].content.includes('A paraphrased meaning is a wrong answer'), true);
   assert.equal(messages[1].content.includes('{{INPUT_JSON}}'), false);
 });
