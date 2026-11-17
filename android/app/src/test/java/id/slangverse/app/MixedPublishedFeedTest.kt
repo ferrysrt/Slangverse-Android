@@ -116,6 +116,35 @@ class MixedPublishedFeedTest {
         reject { it.getJSONArray("questions").getJSONObject(0).getJSONArray("options").put(0, "In serious trouble.") }
     }
 
+    @Test fun mixedBindsTheTermToExactlyOneSurfaceAndMarksReplyTargets() {
+        val replyTarget = fixture()
+        val q = replyTarget.getJSONArray("questions").getJSONObject(0)
+        q.put("questionTarget", "reply").put("targetHandle", "@friend")
+            .put("question", "What does 'cooked' mean in @friend's reply?")
+        q.getJSONObject("post").put("content", "My assignment vanished just before the deadline. I'm done.")
+        q.getJSONObject("post").getJSONArray("comments").getJSONObject(0).put("text", "You're totally cooked, mate.")
+        val loaded = parse(replyTarget)
+        assertEquals("@friend", loaded.toFeedPosts().first().termTargetHandle)
+        assertEquals("reply", loaded.session.questions.first().questionTarget)
+
+        reject { it.getJSONArray("questions").getJSONObject(0).put("questionTarget", "post") }
+        reject { it.getJSONArray("questions").getJSONObject(0).put("questionTarget", "thread") }
+        reject { it.getJSONArray("questions").getJSONObject(0).remove("questionTarget") }
+        reject { it.getJSONArray("questions").getJSONObject(0).put("targetHandle", "@someone_else") }
+        reject {
+            val first = it.getJSONArray("questions").getJSONObject(0)
+            first.put("question", "What does 'cooked' mean here?")
+        }
+        reject {
+            val post = it.getJSONArray("questions").getJSONObject(0).getJSONObject("post")
+            post.getJSONArray("comments").getJSONObject(0).put("text", "You're totally cooked, mate.")
+        }
+        reject {
+            it.getJSONArray("questions").getJSONObject(0).getJSONObject("post")
+                .put("content", "My assignment vanished. I'm cooked and so are you, cooked.")
+        }
+    }
+
     @Test fun mixedRejectsDuplicateQuestionsReferencesAndIncompleteProvenance() {
         reject {
             val questions = it.getJSONArray("questions")

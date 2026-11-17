@@ -1,10 +1,10 @@
 import {readFileSync} from 'node:fs';
 import {randomInt} from 'node:crypto';
-import {validateQuestion, normalize} from './game.mjs';
+import {validateQuestion, validateTermTarget, normalize} from './game.mjs';
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v4';
+export const MIXED_PROMPT_VERSION = 'mixed-v5';
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'
@@ -129,7 +129,7 @@ export function createMixedPrompt({packId, references, assignments}) {
 
 function requiredFields(q) {
   return object(q) && ['id', 'senseId', 'slang', 'targetMeaning', 'difficulty', 'contextId',
-    'contextCategory', 'questionComment', 'question', 'explanation'].every(key => text(q[key])) &&
+    'contextCategory', 'questionComment', 'question', 'questionTarget', 'explanation'].every(key => text(q[key])) &&
     object(q.post) && ['displayName', 'handle', 'hashtag', 'content', 'avatarId'].every(key => text(q.post[key])) &&
     Array.isArray(q.post.comments) && q.post.comments.length >= 1 && q.post.comments.length <= 5 &&
     q.post.comments.every(c => object(c) && ['handle', 'text', 'avatarId'].every(key => text(c[key]))) &&
@@ -213,8 +213,8 @@ export function evaluateMixedResponse(raw, {references, assignments} = {}) {
     else {
       used.add(ref.senseId);
       if (text(ref.term)) terms.add(termKey(ref.term));
-      if (!(` ${normalize(q.post?.content)} `).includes(` ${normalize(ref.term)} `))
-        referenceErrors.push(`${i}:post-slang-missing`);
+      // The term belongs to exactly one social surface, and the declared target must name it.
+      referenceErrors.push(...validateTermTarget(q).map(error => `${i}:${error}`));
     }
     if (assignments && (q?.senseId !== assignments[i]?.senseId || q?.difficulty !== assignments[i]?.difficulty ||
         q?.id !== assignments[i]?.questionId)) referenceErrors.push(`${i}:assignment-mismatch`);

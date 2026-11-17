@@ -73,6 +73,57 @@ export const mockPackage = difficulties.map((difficulty,i)=>({
   correctIndex:correctIndexes[i],explanation:'Here, cooked describes someone being in a serious or difficult situation.'
 }));
 export const normalize = value => typeof value==='string' ? value.toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim() : '';
+
+// The slang term must appear in exactly one social surface: the post body or one reply,
+// exactly once in total. questionComment is the asking surface and is excluded.
+export function termSurfaces(q) {
+  const term = normalize(q?.slang);
+  const found = [];
+  if (!term) return {term, found};
+  const words = term.split(' ').filter(Boolean);
+  const count = value => {
+    const hay = normalize(String(value ?? '')).split(' ').filter(Boolean);
+    let total = 0;
+    for (let i = 0; i + words.length <= hay.length; i++)
+      if (hay.slice(i, i + words.length).join(' ') === term) total++;
+    return total;
+  };
+  const inPost = count(q?.post?.content);
+  if (inPost) found.push({target: 'post', handle: q.post?.handle ?? null, count: inPost});
+  for (const c of q?.post?.comments ?? []) {
+    const n = count(c?.text);
+    if (n) found.push({target: 'reply', handle: c.handle ?? null, count: n});
+  }
+  return {term, found};
+}
+
+// Exactly one occurrence, and the declared question target must name the surface that carries it.
+// Legacy packs predate questionTarget: they keep the exactly-once rule, and their target is inferred
+// without a wording requirement. Mixed packs declare the target and must bind the question to it.
+export function validateTermTarget(q) {
+  const {term, found} = termSurfaces(q);
+  if (!term) return ['term-target'];
+  const total = found.reduce((n, surface) => n + surface.count, 0);
+  if (total !== 1) return ['term-presence'];
+  if (q.questionTarget === undefined) return [];
+  const actual = found[0];
+  if (!['post', 'reply'].includes(q.questionTarget)) return ['term-target-shape'];
+  if (q.questionTarget !== actual.target) return ['term-target-mismatch'];
+  const question = normalize(q.question);
+  const errors = [];
+  if (q.questionTarget === 'post') {
+    if (!question.includes('post')) errors.push('term-question-binding');
+    if (q.targetHandle !== undefined && q.targetHandle !== q.post?.handle) errors.push('term-target-handle-mismatch');
+  } else {
+    if (typeof q.targetHandle !== 'string' || !q.targetHandle.trim()) errors.push('term-target-handle');
+    else {
+      if (q.targetHandle !== actual.handle) errors.push('term-target-handle-mismatch');
+      if (!question.includes(normalize(q.targetHandle))) errors.push('term-question-binding');
+    }
+  }
+  return [...new Set(errors)];
+}
+
 export function validateQuestion(q){
   if(!q||typeof q!=='object'||Array.isArray(q))return ['not-object'];
   const errors=[];
@@ -80,11 +131,10 @@ export function validateQuestion(q){
   if(typeof q.contextId!=='string'||!q.contextId)errors.push('context-id');
   if(!q.post||typeof q.post!=='object'||typeof q.post.content!=='string'||!q.post.content.trim()||typeof q.post.displayName!=='string'||typeof q.post.handle!=='string')errors.push('post-shape');
   if(typeof q.question!=='string'||!q.question.trim())errors.push('question-text');
-  // V3.1 optional extension for previously exported V2/V3 packs.
+  // V3.1 optional extension. The term itself lives in post.content or one reply, not here.
   if(q.questionComment!==undefined){
     const v=q.questionComment;
-    if(typeof v!=='string'||v.length<10||v.length>220||!v.includes('?')||
-       !normalize(v).includes(normalize(q.slang)))errors.push('question-comment-shape');
+    if(typeof v!=='string'||v.length<10||v.length>220||!v.includes('?'))errors.push('question-comment-shape');
     else{
       const text=normalize(v),meaning=normalize(q.targetMeaning);
       if((meaning&&text.includes(meaning))||
@@ -92,6 +142,7 @@ export function validateQuestion(q){
         errors.push('question-comment-leakage');
     }
   }
+  errors.push(...validateTermTarget(q));
   if(!Array.isArray(q.options)||q.options.length!==4||q.options.some(o=>typeof o!=='string'||!normalize(o))||new Set(q.options.map(normalize)).size!==4)errors.push('options');
   if(!Number.isInteger(q.correctIndex)||q.correctIndex<0||q.correctIndex>3)errors.push('correct-index');
   // Lexical reference-key check only. This is NOT a semantic quality assessment.

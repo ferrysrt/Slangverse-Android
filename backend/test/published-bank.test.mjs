@@ -19,7 +19,8 @@ const fixtureGenerate=async({senseId})=>{
  const sense=resolveLegacySense({senseId}),session=createMockSession();
  session.senseId=senseId;session.source='llm';
  session.questions=session.questions.map(q=>({...q,slang:sense.term,targetMeaning:sense.targetMeaning,
-  questionComment:undefined,options:q.options.map((option,index)=>index===q.correctIndex?sense.targetMeaning:option)}));
+  questionComment:undefined,post:{...q.post,content:String(q.post.content).replace(/cooked/gi,sense.term)},
+  options:q.options.map((option,index)=>index===q.correctIndex?sense.targetMeaning:option)}));
  return {session,promptVersion:PROMPT_VERSION};
 };
 function sandbox(t){const dir=mkdtempSync(join(tmpdir(),'bank-test-'));t.after(()=>rmSync(dir,{recursive:true,force:true}));return dir;}
@@ -81,6 +82,7 @@ function mixedFixture(){
   questions:Array.from({length:10},(_,i)=>{
    const q=sessions[i%2].questions[i],reference=references[i%2];
    return {...q,id:`${packId}-q${i+1}`,senseId:reference.senseId,contextCategory:MIXED_CONTEXT_CATEGORIES[i%9],
+    questionTarget:'post',question:`What does '${reference.term}' mean in this post?`,
     options:q.options.map((option,index)=>index===q.correctIndex?reference.targetMeaning:option)};
   })};
 }

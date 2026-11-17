@@ -17,7 +17,8 @@ internal data class FeedPracticePost(
     val avatarId: String = "",
     val replies: List<StoryReply>? = null,
     val published: Boolean = false,
-    val sourceLabel: String = "Hand-authored practice"
+    val sourceLabel: String = "Hand-authored practice",
+    val termTargetHandle: String? = null
 )
 
 /** Hand-authored UI practice pack. Not generated, expert-validated, or participant research data. */

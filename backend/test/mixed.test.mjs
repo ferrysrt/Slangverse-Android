@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {mkdtempSync, mkdirSync, readFileSync, writeFileSync, readdirSync, existsSync, rmSync} from 'node:fs';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
-import {mockPackage} from '../src/game.mjs';
+import {mockPackage, validateQuestion} from '../src/game.mjs';
 import {withProfilePictures} from '../src/profilePictures.mjs';
 import {candidateIdFor} from '../src/datasetProvenance.mjs';
 import {MIXED_PROMPT_VERSION, MIXED_CONTEXT_CATEGORIES, MIXED_EVALUATION_CHECKS,
@@ -38,7 +38,8 @@ function questionsFor({references, assignments}) {
       post: {displayName: `Fictional Friend ${i}`, handle: `@fictional_${i}`, hashtag: '#GroupChat',
         content: `My ${ref.term} moment after the group chat went quiet.`, avatarId: 'guest_01',
         comments: [{handle: '@fictional_reply', text: 'The group chat went quiet for a minute.', avatarId: 'guest_02'}]},
-      questionComment: `Wait, what does ${ref.term} mean in this post?`,
+      questionComment: `Wait, what does ${ref.term} mean here?`,
+      questionTarget: 'post',
       question: `What does '${ref.term}' mean in this post?`, options, correctIndex: i % 4,
       explanation: `This fixture uses ${ref.term} for ${ref.targetMeaning}.`
     };
@@ -712,18 +713,74 @@ test('an invalid addition or corrupt catalog leaves the existing catalog bytes u
   assert.equal(calls, 0); assert.equal(readFileSync(join(outputDir, 'catalog.json'), 'utf8'), '{invalid');
 });
 
-test('prompt versions are archived and the active template requires the term inside post.content', () => {
+test('prompt versions are archived and the active template binds the term to one surface', () => {
   const read = version => readFileSync(new URL(`../prompts/${version}.txt`, import.meta.url), 'utf8');
-  const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3'), v4 = read('mixed-v4');
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v4');
+  const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3'), v4 = read('mixed-v4'), v5 = read('mixed-v5');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v5');
   assert.ok(v1.includes('A natural short post using the exact slang term'));
   assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
   assert.ok(v3.includes('It MUST contain the exact slang term verbatim, in addition to its presence in post.content'));
   assert.ok(v4.includes('Copy the reference string character-for-character into BOTH `targetMeaning` and the one correct option'));
+  assert.ok(v5.includes('The exact slang term MUST appear EXACTLY ONCE'));
+  assert.ok(v5.includes('Set questionTarget to "post" when the term is in post.content'));
   const value = fixture();
   const messages = createMixedPrompt({packId: value.pack.packId, ...value});
-  assert.equal(messages[1].content.includes('post.content MUST contain the exact reference term verbatim'), true);
-  assert.equal(messages[1].content.includes('It MUST contain the exact slang term verbatim, in addition'), true);
-  assert.equal(messages[1].content.includes('A paraphrased meaning is a wrong answer'), true);
+  assert.equal(messages[1].content.includes('questionTarget'), true);
   assert.equal(messages[1].content.includes('{{INPUT_JSON}}'), false);
+});
+
+// The term belongs to exactly one social surface: post.content or one reply.
+function replyTargeted() {
+  const value = fixture();
+  value.questions = value.questions.map(q => {
+    const copy = structuredClone(q);
+    copy.post.content = 'An ordinary post that never uses the slang itself.';
+    copy.post.comments = [{handle: '@fictional_reply', text: `Honestly, that was pure ${q.slang}.`, avatarId: 'guest_02'}];
+    copy.questionComment = 'Wait, what is that supposed to mean here?';
+    copy.questionTarget = 'reply';
+    copy.targetHandle = '@fictional_reply';
+    copy.question = `What does '${q.slang}' mean in @fictional_reply's reply?`;
+    return copy;
+  });
+  return {...value, raw: JSON.stringify({questions: value.questions})};
+}
+const evaluate = value => evaluateMixedResponse(JSON.stringify({questions: value.questions}), {references: value.references});
+
+test('a reply-targeted term is valid and binds the question to that reply', () => {
+  const result = evaluate(replyTargeted());
+  assert.equal(result.valid, true, JSON.stringify(result.errors));
+});
+
+test('the term must occur exactly once and the declared target must name that surface', () => {
+  const both = replyTargeted();
+  both.questions[0].post.content = `An ordinary post that still says ${both.questions[0].slang} once.`;
+  assert.ok(evaluate(both).errors.some(e => e.includes('term-presence')));
+
+  const none = replyTargeted();
+  none.questions[0].post.comments[0].text = 'Honestly, that was a strange thing to say.';
+  assert.ok(evaluate(none).errors.some(e => e.includes('term-presence')));
+
+  const wrongTarget = replyTargeted();
+  wrongTarget.questions[0].questionTarget = 'post';
+  assert.ok(evaluate(wrongTarget).errors.some(e => e.includes('term-target-mismatch')));
+
+  const wrongHandle = replyTargeted();
+  wrongHandle.questions[0].targetHandle = '@someone_else';
+  assert.ok(evaluate(wrongHandle).errors.some(e => e.includes('term-target-handle-mismatch')));
+
+  const unbound = replyTargeted();
+  unbound.questions[0].question = `What does '${unbound.questions[0].slang}' mean here?`;
+  assert.ok(evaluate(unbound).errors.some(e => e.includes('term-question-binding')));
+
+  const badShape = replyTargeted();
+  badShape.questions[0].questionTarget = 'thread';
+  assert.ok(evaluate(badShape).errors.some(e => e.includes('term-target-shape')));
+});
+
+test('legacy questions without questionTarget keep only the exactly-once rule', () => {
+  // Legacy packs are checked by validateQuestion, not by the mixed contract.
+  const plain = fixture().questions.map(q => { const copy = structuredClone(q); delete copy.questionTarget; return copy; });
+  assert.equal(plain.some(q => validateQuestion(q).some(e => e.startsWith('term-'))), false);
+  for (const q of plain) q.post.content = 'A post that never says the slang.';
+  assert.ok(plain.some(q => validateQuestion(q).includes('term-presence')));
 });

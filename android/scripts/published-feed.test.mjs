@@ -99,4 +99,40 @@ test('test-only mixed fixture contains cross-referenced keys, nine categories, a
     assert.equal(q.options[q.correctIndex], reference.targetMeaning);
   }
   assert.deepEqual(distribution, { easy: 5, medium: 3, hard: 2 });
+  const key = (value) => String(value ?? '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim();
+  for (const q of fixture.questions) {
+    assert.ok(['post', 'reply'].includes(q.questionTarget), 'every mixed question must declare a target');
+    const surfaces = [
+      {target: 'post', handle: q.post.handle, text: q.post.content},
+      ...q.post.comments.map((c) => ({target: 'reply', handle: c.handle, text: c.text}))
+    ];
+    const words = key(q.slang).split(' ').filter(Boolean);
+    const count = (text) => {
+      const hay = key(text).split(' ').filter(Boolean);
+      let total = 0;
+      for (let i = 0; i + words.length <= hay.length; i++)
+        if (hay.slice(i, i + words.length).join(' ') === key(q.slang)) total++;
+      return total;
+    };
+    const hits = surfaces.filter((s) => count(s.text) > 0);
+    assert.equal(surfaces.reduce((n, s) => n + count(s.text), 0), 1, 'the slang must appear exactly once');
+    assert.equal(hits.length, 1, 'the slang must appear in exactly one surface');
+    assert.equal(hits[0].target, q.questionTarget, 'the declared target must name the slang surface');
+    assert.equal(hits[0].handle, q.targetHandle, 'the declared handle must match the slang surface');
+    if (q.questionTarget === 'post') {
+      assert.ok(q.question.toLowerCase().includes('post'), 'the question must name the post it asks about');
+    } else {
+      assert.ok(q.question.toLowerCase().includes(q.targetHandle.replace(/^@/, '')),
+        'the question must name the reply it asks about');
+    }
+  }
+});
+
+test('published feed binds the term target handle for reply highlighting', () => {
+  const feed = readFileSync(new URL('../app/src/main/java/id/slangverse/app/PublishedFeed.kt', import.meta.url), 'utf8');
+  assert.match(feed, /termTargetHandle = if \(q\.questionTarget == "reply"\) q\.targetHandle else null/);
+  const ui = readFileSync(new URL('../app/src/main/java/id/slangverse/app/SocialSimulationUi.kt', import.meta.url), 'utf8');
+  assert.match(ui, /highlightHandle: String\? = null/);
+  assert.match(ui, /reply\.handle == highlightHandle/);
+  assert.match(ui, /THE SLANG IS IN THIS REPLY/);
 });

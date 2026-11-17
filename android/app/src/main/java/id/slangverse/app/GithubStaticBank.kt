@@ -232,7 +232,9 @@ private fun parseStaticBankSession(
             questionComment = q.optString("questionComment", ""),
             contextCategory = q.optString("contextCategory", ""),
             senseId = q.optString("senseId", ""),
-            targetMeaning = q.optString("targetMeaning", "")
+            targetMeaning = q.optString("targetMeaning", ""),
+            questionTarget = q.optString("questionTarget", ""),
+            targetHandle = q.optString("targetHandle", "")
         )
         if (question.id.isBlank() || question.contextId.isBlank() ||
             question.question.isBlank() || question.post.content.isBlank()
@@ -245,6 +247,7 @@ private fun parseStaticBankSession(
             if (question.slang != reference.term || question.targetMeaning != reference.targetMeaning ||
                 question.options[idx] != reference.targetMeaning)
                 throw ApiException("Mixed question term, target meaning, or answer does not match its reference")
+            validateMixedTermTarget(question)
         }
         if (answers.put(question.id, StaticAnswer(idx, explanation)) != null) {
             throw ApiException("Duplicate GitHub question ID")
@@ -300,6 +303,49 @@ private fun JSONObject.requiredText(key: String): String = getString(key).also {
 // Option uniqueness is lexical only; normalized references are not expert semantic validation.
 private fun referenceKey(text: String): String = text.lowercase(Locale.ROOT)
     .replace(Regex("[^a-z0-9 ]"), " ").replace(Regex("\\s+"), " ").trim()
+
+private fun surfaceKey(text: String): String = Normalizer.normalize(text, Normalizer.Form.NFKC)
+    .lowercase(Locale.ROOT).replace(Regex("[^a-z0-9 ]"), " ").replace(Regex("\\s+"), " ").trim()
+
+private fun termCount(text: String, term: String): Int {
+    val key = surfaceKey(term)
+    if (key.isBlank()) return 0
+    val words = key.split(' ').filter { it.isNotBlank() }
+    val hay = surfaceKey(text).split(' ').filter { it.isNotBlank() }
+    var total = 0
+    var i = 0
+    while (i + words.size <= hay.size) {
+        if (hay.subList(i, i + words.size).joinToString(" ") == key) total++
+        i++
+    }
+    return total
+}
+
+/** The term belongs to exactly one social surface, exactly once, and the target must name it. */
+private fun validateMixedTermTarget(question: ApiQuestion) {
+    if (question.questionTarget != "post" && question.questionTarget != "reply")
+        throw ApiException("Mixed question has no valid question target")
+    val postCount = termCount(question.post.content, question.slang)
+    val replyCounts = question.post.comments.map { termCount(it.text, question.slang) }
+    if (postCount + replyCounts.sum() != 1)
+        throw ApiException("Mixed question slang must appear exactly once in one post or reply")
+    val inPost = postCount == 1
+    val questionText = question.question.lowercase(Locale.ROOT)
+    if (question.questionTarget == "post") {
+        if (!inPost) throw ApiException("Mixed question target does not match the slang surface")
+        if (!questionText.contains("post")) throw ApiException("Mixed question must name the post it asks about")
+        if (question.targetHandle.isNotBlank() && question.targetHandle != question.post.handle)
+            throw ApiException("Mixed question target handle does not match the post")
+    } else {
+        val index = replyCounts.indexOfFirst { it == 1 }
+        val target = question.post.comments.getOrNull(index)
+            ?: throw ApiException("Mixed question target reply does not contain the slang")
+        if (target.handle != question.targetHandle)
+            throw ApiException("Mixed question target handle does not match the slang reply")
+        if (!questionText.contains(target.handle.lowercase(Locale.ROOT)))
+            throw ApiException("Mixed question must name the reply it asks about")
+    }
+}
 
 // Match ECMAScript whitespace, including BOM/NBSP, for cross-runtime candidate IDs.
 private val mixedWhitespace = Regex("[\\s\\u00a0\\u1680\\u2000-\\u200a\\u2028\\u2029\\u202f\\u205f\\u3000\\ufeff]+")

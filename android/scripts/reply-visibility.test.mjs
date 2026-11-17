@@ -22,7 +22,7 @@ test('feed replies default open with independent per-post saveable state', () =>
   assert.match(feed, /initiallyExpanded: Boolean = true/);
   assert.match(feed, /var expanded by rememberSaveable\(thread\.id\) \{ mutableStateOf\(initiallyExpanded\) \}/);
   assert.match(feed, /onClick = \{ expanded = !expanded \}/);
-  assert.match(feed, /if \(expanded\) StoryReplies\(story\.replies, onProfile\)/);
+  assert.match(feed, /if \(expanded\) StoryReplies\(story\.replies, onProfile, story\.termTargetHandle\)/);
   assert.match(source('SocialSimulationUi'), /replies\.forEach \{ reply ->/);
 });
 

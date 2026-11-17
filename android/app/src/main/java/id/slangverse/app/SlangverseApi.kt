@@ -32,7 +32,9 @@ data class ApiQuestion(
     val questionComment: String = "",
     val contextCategory: String = "",
     val senseId: String = "",
-    val targetMeaning: String = ""
+    val targetMeaning: String = "",
+    val questionTarget: String = "",
+    val targetHandle: String = ""
 )
 data class ApiSense(val senseId: String, val term: String, val reviewStatus: String, val packSha256: String = "")
 data class ApiPack(val packId: String, val sha256: String, val questionCount: Int)

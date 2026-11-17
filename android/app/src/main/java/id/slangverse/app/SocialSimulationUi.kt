@@ -61,16 +61,30 @@ internal fun StoryQuoteCard(quote: StoryQuote, onProfile: (String) -> Unit) {
 }
 
 @Composable
-internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit) {
+internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit, highlightHandle: String? = null) {
     replies.forEach { reply ->
         val parent = replies.firstOrNull { it.id == reply.parentId }
+        val isTermTarget = highlightHandle != null && reply.handle == highlightHandle
         Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min).padding(start = if (parent == null) 0.dp else 22.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             if (parent != null) Box(Modifier.width(2.dp).fillMaxHeight().background(WarmEditorial.Sand))
-            Column(Modifier.weight(1f)) {
-                StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
-                Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
-                Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
+            if (isTermTarget) {
+                Surface(Modifier.weight(1f), shape = RoundedCornerShape(12.dp),
+                    color = WarmEditorial.Blush, border = BorderStroke(1.dp, WarmEditorial.Coral)) {
+                    Column(Modifier.fillMaxWidth().padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text("THE SLANG IS IN THIS REPLY", fontSize = 10.sp, lineHeight = 14.sp,
+                            fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
+                        StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
+                        Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+                        Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
+                    }
+                }
+            } else {
+                Column(Modifier.weight(1f)) {
+                    StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
+                    Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+                    Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
+                }
             }
         }
     }
