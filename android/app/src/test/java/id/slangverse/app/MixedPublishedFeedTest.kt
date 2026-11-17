@@ -47,7 +47,10 @@ class MixedPublishedFeedTest {
         assertEquals("fixture-v2", loaded.session.catalogVersion)
         assertEquals(hash(text), loaded.session.contentVersion)
         assertEquals(10, loaded.answers.size)
-        assertEquals(setOf("cooked-trouble", "no-cap-truth"), loaded.session.questions.map { it.senseId }.toSet())
+        val expectedSenseIds = fixture().getJSONArray("references").let { refs ->
+            (0 until refs.length()).map { index -> refs.getJSONObject(index).getString("senseId") }.toSet()
+        }
+        assertEquals(expectedSenseIds, loaded.session.questions.map { it.senseId }.toSet())
         assertEquals(mapOf("easy" to 5, "medium" to 3, "hard" to 2),
             loaded.session.questions.groupingBy { it.difficulty }.eachCount())
         val posts = loaded.toFeedPosts()
