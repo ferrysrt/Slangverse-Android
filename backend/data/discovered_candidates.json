@@ -1,12 +1,112 @@
 {
   "version": 3,
   "stage": "normalized_dataset",
-  "collectedAt": "2026-11-17T13:08:28.914Z",
-  "scrapedPages": 2,
-  "accepted": 16,
-  "rejected": 1,
-  "note": "Automatically eligible normalized definitions with literal source provenance; unreviewed and not expert validated. Ordered by newest recorded capture, not popularity. Legacy entries with incomplete provenance remain in the dataset but are not playable.",
+  "collectedAt": "2026-11-17T17:55:58.638Z",
+  "scrapedPages": 9,
+  "accepted": 4,
+  "rejected": 4,
+  "note": "Machine-normalized definitions with literal source captures, eligible for generation without a manual-review gate. Not expert-validated and not evidence of current popularity. Entries are ordered by newest recorded capture, not by popularity. Legacy provenance may be incomplete and retains its original evidence status.",
   "entries": [
+    {
+      "candidateId": "940baad7d6d2ccc1fe07729e",
+      "term": "scuba",
+      "definition": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "normalizedDefinition": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Gen Alpha slang; described as a dance involving holding the nose and fanning the air.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ],
+      "sourceUrl": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+      "sourceTitle": "The most confusing Gen Alpha slang of 2026 revealed, report",
+      "evidenceSnippet": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+      "firstSeenAt": "2026-11-17T17:55:58.638Z",
+      "lastCollectedAt": "2026-11-17T17:55:58.638Z"
+    },
+    {
+      "candidateId": "e9d8c4779aa15213d3da824d",
+      "term": "crine",
+      "definition": "An intentional misspelling of “crying” used to express extreme laughter.",
+      "normalizedDefinition": "An intentional misspelling of “crying” used to express extreme laughter.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Gen Alpha internet slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "The buzzy term “crine” is the intentional misspelling of “crying,” which Alphas use to describe extreme laughter.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ],
+      "sourceUrl": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+      "sourceTitle": "The most confusing Gen Alpha slang of 2026 revealed, report",
+      "evidenceSnippet": "The buzzy term “crine” is the intentional misspelling of “crying,” which Alphas use to describe extreme laughter.",
+      "firstSeenAt": "2026-11-17T17:55:58.638Z",
+      "lastCollectedAt": "2026-11-17T17:55:58.638Z"
+    },
+    {
+      "candidateId": "eb2c39e21b1ba57186ea3a27",
+      "term": "larp",
+      "definition": "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+      "normalizedDefinition": "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Teen slang, described in a Gen Alpha slang roundup.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "Shorthand for “live action-role-play,” teenyboppers say “larp” or “larping” when describing someone who’s leading a fake, performative lifestyle for clout.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ],
+      "sourceUrl": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+      "sourceTitle": "The most confusing Gen Alpha slang of 2026 revealed, report",
+      "evidenceSnippet": "Shorthand for “live action-role-play,” teenyboppers say “larp” or “larping” when describing someone who’s leading a fake, performative lifestyle for clout.",
+      "firstSeenAt": "2026-11-17T17:55:58.638Z",
+      "lastCollectedAt": "2026-11-17T17:55:58.638Z"
+    },
+    {
+      "candidateId": "706632df02ac829b690ce785",
+      "term": "bsfr",
+      "definition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "normalizedDefinition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Teen text slang used in digital conversation.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+          "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+          "quote": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+        }
+      ],
+      "sourceUrl": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+      "sourceTitle": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+      "evidenceSnippet": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+      "firstSeenAt": "2026-11-17T17:55:58.638Z",
+      "lastCollectedAt": "2026-11-17T17:55:58.638Z"
+    },
     {
       "candidateId": "73cca91552b47e1831845692",
       "term": "glow up",
