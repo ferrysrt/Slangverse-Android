@@ -1,0 +1,78 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "id": "json-parse",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "required-fields",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "count-10",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "difficulty-5-3-2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "four-options",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "correct-index",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "context-category",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unique-ids",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "no-surrounding-text",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reference-integrity",
+      "passed": false,
+      "errors": [
+        "8:term-presence"
+      ]
+    },
+    {
+      "id": "existing-question-rules",
+      "passed": false,
+      "errors": [
+        "8:term-presence"
+      ]
+    },
+    {
+      "id": "social-safety",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "provider-completion",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "errors": [
+    "8:term-presence",
+    "8:term-presence"
+  ]
+}
