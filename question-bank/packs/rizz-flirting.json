@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "senseId": "rizz-flirting",
+  "generationSource": "llm",
+  "generatorModel": "openai/gpt-6-luna",
+  "promptVersion": "slangverse-v3.1-inline-comment-pfp-v1",
+  "generatedAt": "2026-11-17T13:12:49.442Z",
+  "referenceStatus": "provisional",
+  "datasetVersion": "slangfeed-2026-10-05",
+  "expertValidated": false,
+  "sourceCandidateId": "da836b332facac35d6cece15",
+  "normalizedDefinition": "Flirting skill or natural charisma.",
+  "referenceSources": [
+    {
+      "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+      "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+      "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+      "collectedAt": "2026-11-17T13:08:28.914Z",
+      "collectionMethod": "firecrawl",
+      "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+    }
+  ],
+  "questions": [
+    {
+      "id": "rizz-1",
+      "slang": "rizz",
+      "difficulty": "easy",
+      "contextId": "campus",
+      "post": {
+        "id": "campus",
+        "avatarId": "campus",
+        "displayName": "Campus Account",
+        "handle": "@campusfeed",
+        "hashtag": "#CampusChaos",
+        "content": "I finally used my rizz to ask my lab partner to the spring dance, and they said yes!",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "avatarId": "guest_01",
+            "text": "The dance floor has a new duo ✨"
+          },
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "Lab partners to dance partners!"
+          }
+        ]
+      },
+      "questionComment": "Wait, what does rizz mean here—did you bring something to the dance?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "charm or skill in flirting",
+        "skill at solving lab problems",
+        "confidence on the dance floor",
+        "a plan for asking someone out"
+      ],
+      "correctIndex": 0,
+      "explanation": "They used rizz while asking someone on a date, so it means charm or skill in flirting."
+    },
+    {
+      "id": "rizz-2",
+      "slang": "rizz",
+      "difficulty": "easy",
+      "contextId": "gaming",
+      "post": {
+        "id": "gaming",
+        "avatarId": "guest_03",
+        "displayName": "Pixel Pal",
+        "handle": "@pixelpal",
+        "hashtag": "#LobbyLegends",
+        "content": "My character's rizz must be maxed out: the NPC accepted my tavern invite after one dialogue choice.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "avatarId": "guest_04",
+            "text": "That dialogue option was a critical hit."
+          },
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "Someone check the charm stat!"
+          }
+        ]
+      },
+      "questionComment": "I'm lost—what does rizz mean in this game post?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "a rare item found in the tavern",
+        "a character's speed stat",
+        "charm or skill in flirting",
+        "the number of dialogue choices"
+      ],
+      "correctIndex": 2,
+      "explanation": "The NPC responds to an invitation after a dialogue choice, pointing to charm or skill in flirting."
+    },
+    {
+      "id": "rizz-3",
+      "slang": "rizz",
+      "difficulty": "easy",
+      "contextId": "office",
+      "post": {
+        "id": "office",
+        "avatarId": "ari",
+        "displayName": "Ari at Work",
+        "handle": "@ariatwork",
+        "hashtag": "#OfficeAfterHours",
+        "content": "My coworker said my rizz finally worked when I asked the person from accounting to join me for coffee.",
+        "comments": [
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "Coffee break just got interesting."
+          },
+          {
+            "handle": "@guest_07",
+            "avatarId": "guest_07",
+            "text": "Hope the café has a nice table for two."
+          }
+        ]
+      },
+      "questionComment": "Could someone explain what rizz means in this coffee story?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "a trick for making better coffee",
+        "confidence during a work presentation",
+        "the ability to finish office tasks quickly",
+        "charm or skill in flirting"
+      ],
+      "correctIndex": 3,
+      "explanation": "The post connects rizz with asking someone out for coffee, so it means charm or skill in flirting."
+    },
+    {
+      "id": "rizz-4",
+      "slang": "rizz",
+      "difficulty": "easy",
+      "contextId": "travel",
+      "post": {
+        "id": "travel",
+        "avatarId": "naya",
+        "displayName": "Naya Wanders",
+        "handle": "@naya",
+        "hashtag": "#TrainTripTales",
+        "content": "I thought my rizz had left with the last train, but the person from the station café gave me their number.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "Plot twist before departure!"
+          },
+          {
+            "handle": "@guest_01",
+            "avatarId": "guest_01",
+            "text": "Sounds like the wait was worth it."
+          }
+        ]
+      },
+      "questionComment": "What are you calling rizz in this train-station post?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "a train ticket discount",
+        "charm or skill in flirting",
+        "confidence navigating a station",
+        "the ability to catch the last train"
+      ],
+      "correctIndex": 1,
+      "explanation": "Getting someone's number after a friendly encounter suggests charm or skill in flirting."
+    },
+    {
+      "id": "rizz-5",
+      "slang": "rizz",
+      "difficulty": "easy",
+      "contextId": "sports",
+      "post": {
+        "id": "sports",
+        "avatarId": "matchday",
+        "displayName": "Matchday Chat",
+        "handle": "@matchdaychat",
+        "hashtag": "#AfterTheWhistle",
+        "content": "He used his rizz after the match to ask the opposing team's goalkeeper to get smoothies. They exchanged numbers!",
+        "comments": [
+          {
+            "handle": "@benchside",
+            "avatarId": "ben",
+            "text": "A smooth finish after the final whistle."
+          },
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "That post-game chat had great timing."
+          }
+        ]
+      },
+      "questionComment": "When you say rizz here, are you talking about a move on the field?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "a goalkeeper's special save",
+        "confidence during a match",
+        "charm or skill in flirting",
+        "a team's post-game routine"
+      ],
+      "correctIndex": 2,
+      "explanation": "The post describes asking someone out and exchanging numbers, which fits charm or skill in flirting."
+    },
+    {
+      "id": "rizz-6",
+      "slang": "rizz",
+      "difficulty": "medium",
+      "contextId": "technology",
+      "post": {
+        "id": "technology",
+        "avatarId": "sam",
+        "displayName": "Sam",
+        "handle": "@sam",
+        "hashtag": "#AppTesting",
+        "content": "The new chat assistant has impressive rizz: it suggested a kind opening line, and my friend got invited to a second coffee date.",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "avatarId": "guest_03",
+            "text": "That suggestion had excellent timing."
+          },
+          {
+            "handle": "@guest_04",
+            "avatarId": "guest_04",
+            "text": "Round two at the café!"
+          }
+        ]
+      },
+      "questionComment": "I'm not sure what rizz refers to in this app-testing post—any clue?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "the assistant's ability to recognize faces",
+        "the app's speed at sending messages",
+        "a tool for scheduling coffee dates",
+        "charm or skill in flirting"
+      ],
+      "correctIndex": 3,
+      "explanation": "The suggested opening line helps lead to another date, indicating charm or skill in flirting."
+    },
+    {
+      "id": "rizz-7",
+      "slang": "rizz",
+      "difficulty": "medium",
+      "contextId": "finance",
+      "post": {
+        "id": "finance",
+        "avatarId": "dea",
+        "displayName": "Dea Says",
+        "handle": "@deasays",
+        "hashtag": "#BudgetAndBrunch",
+        "content": "My friend says rizz costs nothing: she spent the whole bus ride chatting with someone from the book club, then got asked to brunch.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "avatarId": "lila",
+            "text": "A very affordable morning plan."
+          },
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "Book club has a new chapter!"
+          }
+        ]
+      },
+      "questionComment": "Is rizz some kind of budgeting term here, or am I reading it wrong?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "a way to split a brunch bill",
+        "charm or skill in flirting",
+        "a discount for public transport",
+        "the price of joining a book club"
+      ],
+      "correctIndex": 1,
+      "explanation": "The conversation leads to an invitation to brunch, so rizz refers to charm or skill in flirting."
+    },
+    {
+      "id": "rizz-8",
+      "slang": "rizz",
+      "difficulty": "medium",
+      "contextId": "event",
+      "post": {
+        "id": "event",
+        "avatarId": "jo",
+        "displayName": "Just Jo",
+        "handle": "@justjo",
+        "hashtag": "#GalleryOpening",
+        "content": "At the gallery opening, Kai's rizz turned a chat about the paintings into an invitation to explore the next exhibit together.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "avatarId": "mira",
+            "text": "A promising next stop for those two."
+          },
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "The conversation really found its frame."
+          }
+        ]
+      },
+      "questionComment": "What does rizz mean in this gallery-opening story?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "knowledge of modern paintings",
+        "confidence speaking to a crowd",
+        "charm or skill in flirting",
+        "the ability to organize an exhibit"
+      ],
+      "correctIndex": 2,
+      "explanation": "A conversation becoming a one-on-one invitation suggests charm or skill in flirting."
+    },
+    {
+      "id": "rizz-9",
+      "slang": "rizz",
+      "difficulty": "hard",
+      "contextId": "exam",
+      "post": {
+        "id": "exam",
+        "avatarId": "guest_07",
+        "displayName": "Study Break",
+        "handle": "@studybreak7",
+        "hashtag": "#FinalsWeek",
+        "content": "I went to the library hoping to review chemistry, but my rizz apparently passed the real test: my study-group partner suggested we celebrate together after finals.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "Sounds like a well-earned celebration."
+          },
+          {
+            "handle": "@campusfeed",
+            "avatarId": "campus",
+            "text": "Chemistry review, with a plot twist."
+          }
+        ]
+      },
+      "questionComment": "In this finals-week post, what does rizz seem to describe?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "the ability to memorize chemistry formulas",
+        "charm or skill in flirting",
+        "a study method for working in groups",
+        "confidence about passing an exam"
+      ],
+      "correctIndex": 1,
+      "explanation": "The study partner suggests celebrating together, hinting that rizz means charm or skill in flirting."
+    },
+    {
+      "id": "rizz-10",
+      "slang": "rizz",
+      "difficulty": "hard",
+      "contextId": "application",
+      "post": {
+        "id": "application",
+        "avatarId": "kai",
+        "displayName": "Confused User",
+        "handle": "@confuseduser",
+        "hashtag": "#ClubApplications",
+        "content": "The volunteer club application asked for my strongest quality. I wrote 'rizz,' and the coordinator laughed before asking if I'd like to help welcome new members with them.",
+        "comments": [
+          {
+            "handle": "@townloop",
+            "avatarId": "townloop",
+            "text": "That answer made a memorable first impression."
+          },
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "Sounds like orientation will be lively."
+          }
+        ]
+      },
+      "questionComment": "Why would rizz be a quality on an application—what does it mean here?",
+      "question": "What does 'rizz' mean in this post?",
+      "options": [
+        "experience organizing volunteer schedules",
+        "confidence speaking to a group",
+        "charm or skill in flirting",
+        "knowledge of club application rules"
+      ],
+      "correctIndex": 2,
+      "explanation": "The playful answer makes a memorable impression in a social setting, suggesting charm or skill in flirting."
+    }
+  ]
+}

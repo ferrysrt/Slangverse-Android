@@ -5,8 +5,9 @@
   "generationSource": "llm",
   "status": "ready",
   "candidateCount": 200,
+  "discoveredCandidateCount": 16,
   "expertValidated": false,
-  "bankVersion": "4073955f7be050cc",
+  "bankVersion": "f2d6f1bb2fb0a859",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -31,6 +32,33 @@
       "sourceRelationship": "related_unverified",
       "playable": true,
       "sha256": "a661f6a380e50bba428e801dd4fbf4863811ae31b6c17829074a600c4f0bd921"
+    },
+    {
+      "senseId": "glow-up-improvement",
+      "term": "glow up",
+      "reviewStatus": "provisional",
+      "sourceRelationship": "source-backed-provisional",
+      "sourceCandidateId": "73cca91552b47e1831845692",
+      "playable": true,
+      "sha256": "7c662b08572f28d83172867dc13101d39c43f733addc8e81ab1d86b3adc42d04"
+    },
+    {
+      "senseId": "rizz-flirting",
+      "term": "rizz",
+      "reviewStatus": "provisional",
+      "sourceRelationship": "source-backed-provisional",
+      "sourceCandidateId": "da836b332facac35d6cece15",
+      "playable": true,
+      "sha256": "e2ecc4645de3b9cae02cf73d00df962bb350a402794291c5b48064f7ccb4ba80"
+    },
+    {
+      "senseId": "iykyk-inside-reference",
+      "term": "iykyk",
+      "reviewStatus": "provisional",
+      "sourceRelationship": "source-backed-provisional",
+      "sourceCandidateId": "e4323f9559778628325cd112",
+      "playable": true,
+      "sha256": "80b18566e78cb123e7e6f7904f512f6735e6179057bfc309310c103581b2cce9"
     }
   ]
 }

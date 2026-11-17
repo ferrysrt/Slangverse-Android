@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "senseId": "iykyk-inside-reference",
+  "generationSource": "llm",
+  "generatorModel": "openai/gpt-6-luna",
+  "promptVersion": "slangverse-v3.1-inline-comment-pfp-v1",
+  "generatedAt": "2026-11-17T13:13:24.060Z",
+  "referenceStatus": "provisional",
+  "datasetVersion": "slangfeed-2026-10-05",
+  "expertValidated": false,
+  "sourceCandidateId": "e4323f9559778628325cd112",
+  "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+  "referenceSources": [
+    {
+      "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+      "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+      "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+      "collectedAt": "2026-11-17T13:08:28.914Z",
+      "collectionMethod": "firecrawl",
+      "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+    }
+  ],
+  "questions": [
+    {
+      "id": "iykyk-1",
+      "slang": "iykyk",
+      "difficulty": "easy",
+      "contextId": "campus",
+      "post": {
+        "id": "campus",
+        "avatarId": "campus",
+        "displayName": "Campus Account",
+        "handle": "@campusfeed",
+        "hashtag": "#CampusChaos",
+        "content": "The library printer jammed on page one again, right before finals. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "avatarId": "guest_01",
+            "text": "It has a personal grudge against this floor."
+          },
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "I brought my own paper this time 😭"
+          }
+        ]
+      },
+      "questionComment": "I keep seeing iykyk here—what are you getting at?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a warning that the printer is out of ink",
+        "a request for someone to explain the printer",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a reminder to print before the library closes"
+      ],
+      "correctIndex": 2,
+      "explanation": "The post alludes to a familiar campus printer problem that regulars will recognize."
+    },
+    {
+      "id": "iykyk-2",
+      "slang": "iykyk",
+      "difficulty": "easy",
+      "contextId": "gaming",
+      "post": {
+        "id": "gaming",
+        "avatarId": "guest_03",
+        "displayName": "PixelPuddle",
+        "handle": "@pixelpuddle",
+        "hashtag": "#CoopNight",
+        "content": "Our squad still pauses at the blue door because of what happened in last week's run. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "avatarId": "guest_04",
+            "text": "Nobody touch that door 😂"
+          },
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "We lost ten minutes and gained a legend."
+          }
+        ]
+      },
+      "questionComment": "What does iykyk refer to here? I'm missing something.",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "an instruction to open the blue door",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a warning that the game server is unstable",
+        "a suggestion to start a new game"
+      ],
+      "correctIndex": 1,
+      "explanation": "The blue-door story is a shared reference among players who know the squad's past run."
+    },
+    {
+      "id": "iykyk-3",
+      "slang": "iykyk",
+      "difficulty": "easy",
+      "contextId": "office",
+      "post": {
+        "id": "office",
+        "avatarId": "ari",
+        "displayName": "Ari at Work",
+        "handle": "@ariatwork",
+        "hashtag": "#OfficeLife",
+        "content": "The meeting room calendar says “Room B, maybe” again. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "I’ll bring the folding chairs just in case."
+          },
+          {
+            "handle": "@guest_07",
+            "avatarId": "guest_07",
+            "text": "Room B has its own schedule apparently."
+          }
+        ]
+      },
+      "questionComment": "Could you clarify what iykyk means in this situation?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a reminder to reserve a meeting room",
+        "a complaint that the calendar is difficult to read",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a request to move the meeting online"
+      ],
+      "correctIndex": 2,
+      "explanation": "The uncertain Room B booking is a running office joke for people familiar with it."
+    },
+    {
+      "id": "iykyk-4",
+      "slang": "iykyk",
+      "difficulty": "easy",
+      "contextId": "travel",
+      "post": {
+        "id": "travel",
+        "avatarId": "townloop",
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#WeekendTrip",
+        "content": "We said we'd take the scenic route, then followed the little hand-painted arrow past the orchard again. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "That arrow has never led anywhere scenic."
+          },
+          {
+            "handle": "@guest_01",
+            "avatarId": "guest_01",
+            "text": "At least we found the pie stand."
+          }
+        ]
+      },
+      "questionComment": "Wait, what does iykyk point to in this travel post?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a private travel reference familiar to some readers",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a warning that the orchard road is closed",
+        "a plan to visit the pie stand later"
+      ],
+      "correctIndex": 1,
+      "explanation": "The post hints at a recurring detour that the travelers' friends will recognize."
+    },
+    {
+      "id": "iykyk-5",
+      "slang": "iykyk",
+      "difficulty": "easy",
+      "contextId": "sports",
+      "post": {
+        "id": "sports",
+        "avatarId": "matchday",
+        "displayName": "Matchday Chat",
+        "handle": "@matchdaychat",
+        "hashtag": "#LocalSports",
+        "content": "Warm-ups started with the same three passes and the same dramatic sigh from the coach. iykyk.",
+        "comments": [
+          {
+            "handle": "@benchside",
+            "avatarId": "ben",
+            "text": "The sigh is basically part of the routine now."
+          },
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "I can hear it from the parking lot."
+          }
+        ]
+      },
+      "questionComment": "I'm not sure I follow—what's iykyk getting at?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a reminder that warm-ups are important",
+        "a prediction that the coach will change the drills",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a request for the team to practice passing"
+      ],
+      "correctIndex": 2,
+      "explanation": "The repeated warm-up routine and coach's sigh form a familiar team reference."
+    },
+    {
+      "id": "iykyk-6",
+      "slang": "iykyk",
+      "difficulty": "medium",
+      "contextId": "technology",
+      "post": {
+        "id": "technology",
+        "avatarId": "guest_03",
+        "displayName": "Patch Notes Pal",
+        "handle": "@patchnotespal",
+        "hashtag": "#TechTuesday",
+        "content": "We updated the demo laptop and the startup chime played three times before the screen came on. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "avatarId": "guest_04",
+            "text": "That machine has a very theatrical boot sequence."
+          },
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "Nobody unplug it before the encore."
+          },
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "At least the display finally showed up."
+          }
+        ]
+      },
+      "questionComment": "What do you mean by iykyk in this laptop story?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a note that the laptop needs a new battery",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a request to install a different operating system",
+        "a warning that the demo is cancelled"
+      ],
+      "correctIndex": 1,
+      "explanation": "The laptop's oddly dramatic startup is a niche, familiar experience for people around that demo."
+    },
+    {
+      "id": "iykyk-7",
+      "slang": "iykyk",
+      "difficulty": "medium",
+      "contextId": "finance",
+      "post": {
+        "id": "finance",
+        "avatarId": "guest_07",
+        "displayName": "Penny Notebook",
+        "handle": "@pennynotebook",
+        "hashtag": "#BudgetClub",
+        "content": "Our savings jar has a tiny paper crown now, thanks to the mystery coin that appears every Friday. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "The crown stays until the next budget check-in."
+          },
+          {
+            "handle": "@guest_01",
+            "avatarId": "guest_01",
+            "text": "Friday coin is carrying the whole team."
+          }
+        ]
+      },
+      "questionComment": "Can someone tell me what iykyk means in this budget-club post?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "an inside joke or niche reference understood by those familiar with it",
+        "a reminder to add money to the savings jar",
+        "a tip to decorate a jar for budgeting",
+        "a complaint about a missing coin"
+      ],
+      "correctIndex": 0,
+      "explanation": "The recurring Friday coin and its paper crown are a shared club joke."
+    },
+    {
+      "id": "iykyk-8",
+      "slang": "iykyk",
+      "difficulty": "medium",
+      "contextId": "event",
+      "post": {
+        "id": "event",
+        "avatarId": "lila",
+        "displayName": "Lila Listens",
+        "handle": "@lilalistens",
+        "hashtag": "#CommunityNight",
+        "content": "The volunteer at the welcome table handed me a sticker before I even said hello. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "avatarId": "guest_02",
+            "text": "They spotted your tote from across the room."
+          },
+          {
+            "handle": "@guest_03",
+            "avatarId": "guest_03",
+            "text": "The sticker collection grows."
+          },
+          {
+            "handle": "@guest_07",
+            "avatarId": "guest_07",
+            "text": "Next year, bring the green one."
+          }
+        ]
+      },
+      "questionComment": "I'm curious—what does iykyk mean with the sticker?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a request to volunteer at the welcome table",
+        "a hint that the event is ending soon",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a reminder to bring a tote bag"
+      ],
+      "correctIndex": 2,
+      "explanation": "The sticker exchange seems to be a familiar event tradition for people in the know."
+    },
+    {
+      "id": "iykyk-9",
+      "slang": "iykyk",
+      "difficulty": "hard",
+      "contextId": "exam",
+      "post": {
+        "id": "exam",
+        "avatarId": "guest_04",
+        "displayName": "Quiet Study Corner",
+        "handle": "@quietstudycorner",
+        "hashtag": "#ExamWeek",
+        "content": "The review sheet ended with a single blank box labeled “Tuesday.” The whole study group just nodded. iykyk.",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "We are not tempting fate by filling that in."
+          },
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "Still bringing the extra pencils, though."
+          }
+        ]
+      },
+      "questionComment": "That Tuesday box has me puzzled; what does iykyk mean here?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a request to add another topic to the review sheet",
+        "a warning that the exam will happen on Tuesday",
+        "an inside joke or niche reference understood by those familiar with it",
+        "a reminder to bring pencils to the exam"
+      ],
+      "correctIndex": 2,
+      "explanation": "The study group understands why the blank Tuesday box matters, though the post leaves the shared reference unstated."
+    },
+    {
+      "id": "iykyk-10",
+      "slang": "iykyk",
+      "difficulty": "hard",
+      "contextId": "application",
+      "post": {
+        "id": "application",
+        "avatarId": "naya",
+        "displayName": "Naya",
+        "handle": "@naya",
+        "hashtag": "#CreativeProjects",
+        "content": "The application asked for one “unexpected skill,” and I wrote “recognizing the blue mug in every draft.” iykyk.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "avatarId": "sam",
+            "text": "The mug deserves a line in the credits."
+          },
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "I knew it would make the final cut."
+          },
+          {
+            "handle": "@jo",
+            "avatarId": "jo",
+            "text": "Somehow it survived every revision."
+          }
+        ]
+      },
+      "questionComment": "I'm lost on the blue mug reference—what does iykyk mean?",
+      "question": "What does 'iykyk' mean in this post?",
+      "options": [
+        "a request to describe an application skill in more detail",
+        "an instruction to remove the blue mug from the final draft",
+        "a claim that the application form is confusing",
+        "an inside joke or niche reference understood by those familiar with it"
+      ],
+      "correctIndex": 3,
+      "explanation": "The blue mug is a recurring detail familiar to people who followed the drafts."
+    }
+  ]
+}

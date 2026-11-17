@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "senseId": "glow-up-improvement",
+  "generationSource": "llm",
+  "generatorModel": "openai/gpt-6-luna",
+  "promptVersion": "slangverse-v3.1-inline-comment-pfp-v1",
+  "generatedAt": "2026-11-17T13:12:18.092Z",
+  "referenceStatus": "provisional",
+  "datasetVersion": "slangfeed-2026-10-05",
+  "expertValidated": false,
+  "sourceCandidateId": "73cca91552b47e1831845692",
+  "normalizedDefinition": "A noticeable improvement in appearance or confidence.",
+  "referenceSources": [
+    {
+      "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+      "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+      "quote": "| Glow Up | **A noticeable improvement in looks or confidence.**“Her post-breakup glow up could power a small city.” |",
+      "collectedAt": "2026-11-17T13:08:28.914Z",
+      "collectionMethod": "firecrawl",
+      "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+    }
+  ],
+  "questions": [
+    {
+      "id": "glow up-1",
+      "slang": "glow up",
+      "difficulty": "easy",
+      "contextId": "campus",
+      "post": {
+        "id": "campus",
+        "avatarId": "campus",
+        "displayName": "Campus Account",
+        "handle": "@campusfeed",
+        "hashtag": "#CampusChaos",
+        "content": "First day back after summer and everyone noticed my glow up—new haircut, new glasses, and I actually raised my hand in lecture!",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "avatarId": "mira",
+            "text": "That haircut really suits you!"
+          },
+          {
+            "handle": "@ari",
+            "avatarId": "ari",
+            "text": "The hand-raising era has arrived."
+          }
+        ]
+      },
+      "questionComment": "Glow up? Did you switch on some kind of lamp, or what?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a noticeable improvement in appearance or confidence",
+        "a bright light used to decorate a room",
+        "a plan to study late at night",
+        "a sudden change of class schedule"
+      ],
+      "correctIndex": 0,
+      "explanation": "The post mentions a new look and feeling confident enough to speak up in class."
+    },
+    {
+      "id": "glow up-2",
+      "slang": "glow up",
+      "difficulty": "easy",
+      "contextId": "gaming",
+      "post": {
+        "id": "gaming",
+        "avatarId": "kai",
+        "displayName": "Kai",
+        "handle": "@confuseduser",
+        "hashtag": "#CozyGameNight",
+        "content": "My avatar's glow up is wild: swapped the starter outfit for a sharp jacket, and now I finally feel ready to join the team lobby.",
+        "comments": [
+          {
+            "handle": "@ben",
+            "avatarId": "ben",
+            "text": "That jacket combo is a whole new vibe."
+          },
+          {
+            "handle": "@lilalistens",
+            "avatarId": "lila",
+            "text": "Go say hi in the lobby!"
+          }
+        ]
+      },
+      "questionComment": "When you say glow up, are you talking about a power-up in the game?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a new feature that unlocks a game level",
+        "a noticeable improvement in appearance or confidence",
+        "a pause while the game installs an update",
+        "a special move that makes an avatar shine"
+      ],
+      "correctIndex": 1,
+      "explanation": "The avatar gets a better-looking outfit, and the player feels more ready to join in."
+    },
+    {
+      "id": "glow up-3",
+      "slang": "glow up",
+      "difficulty": "easy",
+      "contextId": "office",
+      "post": {
+        "id": "office",
+        "avatarId": "ari",
+        "displayName": "Ari",
+        "handle": "@ariatwork",
+        "hashtag": "#DeskDay",
+        "content": "After weeks of practicing, my presentation glow up is real: I used to read every slide, and today I spoke clearly without notes.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "avatarId": "sam",
+            "text": "You had the room listening."
+          },
+          {
+            "handle": "@dea",
+            "avatarId": "dea",
+            "text": "Those practice runs paid off!"
+          }
+        ]
+      },
+      "questionComment": "Could you clarify what glow up means here? I thought it was just about looks.",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a more impressive set of presentation slides",
+        "a shorter meeting than the team expected",
+        "a noticeable improvement in appearance or confidence",
+        "a new office lighting arrangement"
+      ],
+      "correctIndex": 2,
+      "explanation": "Here, the improvement is in confidence and speaking ability during a presentation."
+    },
+    {
+      "id": "glow up-4",
+      "slang": "glow up",
+      "difficulty": "easy",
+      "contextId": "travel",
+      "post": {
+        "id": "travel",
+        "avatarId": "townloop",
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#WeekendWander",
+        "content": "My travel-photo glow up happened when I stopped hiding behind the camera and let my friends take a few pictures of me on the lookout trail.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "avatarId": "naya",
+            "text": "That sunset shot turned out lovely."
+          },
+          {
+            "handle": "@guest_03",
+            "avatarId": "guest_03",
+            "text": "More pictures of you in the feed, please!"
+          }
+        ]
+      },
+      "questionComment": "Wait, what does glow up mean in this travel post?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a route that climbs to a high viewpoint",
+        "a camera setting for brighter landscape photos",
+        "a noticeable improvement in appearance or confidence",
+        "a last-minute change to the travel itinerary"
+      ],
+      "correctIndex": 2,
+      "explanation": "The writer feels more comfortable being photographed and shares the pictures."
+    },
+    {
+      "id": "glow up-5",
+      "slang": "glow up",
+      "difficulty": "easy",
+      "contextId": "sports",
+      "post": {
+        "id": "sports",
+        "avatarId": "matchday",
+        "displayName": "Matchday Chat",
+        "handle": "@matchdaychat",
+        "hashtag": "#PracticeDay",
+        "content": "My teammate's glow up this season is something else: they used to avoid team photos, but now they lead warm-ups with a huge grin.",
+        "comments": [
+          {
+            "handle": "@benchside",
+            "avatarId": "ben",
+            "text": "That grin is contagious."
+          },
+          {
+            "handle": "@guest_05",
+            "avatarId": "guest_05",
+            "text": "Captain energy at practice today."
+          }
+        ]
+      },
+      "questionComment": "Is glow up a sports drill, or are you using it another way?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a new warm-up exercise for the team",
+        "a noticeable improvement in appearance or confidence",
+        "a team photo taken after practice",
+        "a change in the season's practice schedule"
+      ],
+      "correctIndex": 1,
+      "explanation": "The teammate has become more comfortable and confident around the team."
+    },
+    {
+      "id": "glow up-6",
+      "slang": "glow up",
+      "difficulty": "medium",
+      "contextId": "technology",
+      "post": {
+        "id": "technology",
+        "avatarId": "guest_01",
+        "displayName": "Pixel Pal",
+        "handle": "@guest_01",
+        "hashtag": "#CreatorCorner",
+        "content": "I used to keep my camera off during project demos, but after practicing and setting up a simple backdrop, my on-camera glow up is obvious. I even volunteered for the next walkthrough.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "avatarId": "jo",
+            "text": "The demo felt so much more relaxed."
+          },
+          {
+            "handle": "@guest_06",
+            "avatarId": "guest_06",
+            "text": "That new backdrop looks clean."
+          }
+        ]
+      },
+      "questionComment": "Does on-camera glow up mean the software changed your screen somehow?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a noticeable improvement in appearance or confidence",
+        "a camera update that increases video resolution",
+        "a new backdrop effect added to the demo software",
+        "a faster internet connection during video calls"
+      ],
+      "correctIndex": 0,
+      "explanation": "The writer looks more prepared on camera and feels confident enough to volunteer."
+    },
+    {
+      "id": "glow up-7",
+      "slang": "glow up",
+      "difficulty": "medium",
+      "contextId": "finance",
+      "post": {
+        "id": "finance",
+        "avatarId": "guest_02",
+        "displayName": "Budget Buddy",
+        "handle": "@guest_02",
+        "hashtag": "#MoneySkills",
+        "content": "After a few months of tracking expenses, my budget-planning glow up is real: I used to dread opening the spreadsheet, but now I can explain my plan without second-guessing every line.",
+        "comments": [
+          {
+            "handle": "@dea",
+            "avatarId": "dea",
+            "text": "Look at you making spreadsheets less scary."
+          },
+          {
+            "handle": "@guest_07",
+            "avatarId": "guest_07",
+            "text": "That calm explanation was impressive."
+          }
+        ]
+      },
+      "questionComment": "I'm not sure how glow up fits a budget spreadsheet—what do you mean?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a new way to divide expenses into categories",
+        "a noticeable improvement in appearance or confidence",
+        "a rise in the amount of money available to spend",
+        "a spreadsheet feature that adds brighter colors"
+      ],
+      "correctIndex": 1,
+      "explanation": "The writer has grown more confident and capable when explaining their budget plan."
+    },
+    {
+      "id": "glow up-8",
+      "slang": "glow up",
+      "difficulty": "medium",
+      "contextId": "event",
+      "post": {
+        "id": "event",
+        "avatarId": "guest_04",
+        "displayName": "Open Mic Notes",
+        "handle": "@guest_04",
+        "hashtag": "#CommunityNight",
+        "content": "A year ago I watched open mic night from the back row. Tonight's glow up: I wore the outfit I picked myself, walked onstage, and read my poem to the whole room.",
+        "comments": [
+          {
+            "handle": "@mira",
+            "avatarId": "mira",
+            "text": "Your voice carried all the way to the back."
+          },
+          {
+            "handle": "@guest_08",
+            "avatarId": "guest_08",
+            "text": "That was such a brave little leap."
+          }
+        ]
+      },
+      "questionComment": "Is glow up about the stage lights here, or something else?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a brighter lighting setup for the stage",
+        "a noticeable improvement in appearance or confidence",
+        "a poem that became popular at the event",
+        "a change in the event's order of performances"
+      ],
+      "correctIndex": 1,
+      "explanation": "The writer presents a chosen outfit and shows new confidence by performing publicly."
+    },
+    {
+      "id": "glow up-9",
+      "slang": "glow up",
+      "difficulty": "hard",
+      "contextId": "exam",
+      "post": {
+        "id": "exam",
+        "avatarId": "guest_01",
+        "displayName": "Study Desk",
+        "handle": "@guest_01",
+        "hashtag": "#StudySeason",
+        "content": "My exam-week glow up wasn't a perfect score: I went from staring at practice questions in silence to trusting my steps, showing my work, and asking for clarification when I got stuck.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "avatarId": "sam",
+            "text": "Showing your thinking is a big step."
+          },
+          {
+            "handle": "@guest_03",
+            "avatarId": "guest_03",
+            "text": "Asking questions takes nerve too."
+          }
+        ]
+      },
+      "questionComment": "When you call it an exam-week glow up, are you talking about your result or something else?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a noticeable improvement in appearance or confidence",
+        "a higher exam score than the writer expected",
+        "a shorter exam with fewer practice questions",
+        "a new method for showing work on the test"
+      ],
+      "correctIndex": 0,
+      "explanation": "The post highlights growing confidence in approaching problems, not a particular score."
+    },
+    {
+      "id": "glow up-10",
+      "slang": "glow up",
+      "difficulty": "hard",
+      "contextId": "application",
+      "post": {
+        "id": "application",
+        "avatarId": "guest_02",
+        "displayName": "Next Step Notes",
+        "handle": "@guest_02",
+        "hashtag": "#NextChapter",
+        "content": "My application-season glow up has less to do with the final draft and more with the process: I used to rewrite every sentence before anyone saw it, but now I share a clear first version and talk through my choices.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "avatarId": "ari",
+            "text": "The first version is a great place to start."
+          },
+          {
+            "handle": "@naya",
+            "avatarId": "naya",
+            "text": "You sound much more at ease talking it through."
+          }
+        ]
+      },
+      "questionComment": "I'm puzzled by glow up in an application post—what part is changing?",
+      "question": "What does 'glow up' mean in this post?",
+      "options": [
+        "a new layout for the application form",
+        "a noticeable improvement in appearance or confidence",
+        "a final draft with fewer words",
+        "a faster way to submit application materials"
+      ],
+      "correctIndex": 1,
+      "explanation": "The writer has become more confident about sharing and discussing their work."
+    }
+  ]
+}
