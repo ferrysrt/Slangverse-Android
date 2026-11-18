@@ -52,7 +52,7 @@ CSV quoting preserves commas, quotes and multiline excerpts. It is not the legac
 
 ## Normalized senses → mixed bank
 
-The mixed publisher samples eligible normalized senses directly, preferring ten distinct terms and requiring at least two. Each pack has ten questions with a nominal 5/3/2 difficulty split, references embedded per sense and each question linked by `senseId`. Nine categories are allowed, not a mandatory all-category quota. No new hand-authored mocks are invented for normalized entries.
+The mixed publisher samples eligible normalized senses directly, preferring ten distinct terms and requiring at least two. Before planning, `backend/src/termQuality.mjs` drops terms that cannot be graded as one answer (interjections such as `haha`, bare acronyms such as `bff`, ordinary words such as `fire`) and collapses duplicate spellings, so `bussin'` does not become a second term beside `bussin`. Curation never edits the dataset: a blocked term stays archived as unreviewed evidence. Each pack has ten questions with a nominal 5/3/2 difficulty split, references embedded per sense and each question linked by `senseId`. Nine categories are allowed, not a mandatory all-category quota. No new hand-authored mocks are invented for normalized entries.
 
 Run `backend/scripts/publish-mixed-bank.mjs` separately: default one attempt, maximum three, no retries or mock fallback. See [bank operations](GITHUB_GET_QUESTIONS.md), [prompt protocol](PROMPT_ENGINEERING.md) and [architecture](ARCHITECTURE.md). Main's summary CLI and failure-safe workflow artifact/persistence integration are pending, not claimed complete here.
 
