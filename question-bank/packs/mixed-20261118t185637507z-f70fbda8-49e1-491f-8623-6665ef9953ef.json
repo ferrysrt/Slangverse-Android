@@ -1,0 +1,645 @@
+{
+  "schemaVersion": 2,
+  "packId": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef",
+  "generationSource": "llm",
+  "promptVersion": "mixed-v10",
+  "generatorModel": "openai/gpt-6-luna",
+  "generatedAt": "2026-11-18T18:57:10.310Z",
+  "referenceStatus": "normalized-unreviewed",
+  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+  "expertValidated": false,
+  "references": [
+    {
+      "senseId": "normalized-65d77b08ffbf71beaa6a88fb",
+      "term": "fit check",
+      "targetMeaning": "Showing off or presenting an outfit.",
+      "sourceCandidateId": "65d77b08ffbf71beaa6a88fb",
+      "normalizedDefinition": "Showing off or presenting an outfit.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Fit Check | **Showing off your outfit.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "term": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "sourceCandidateId": "e4323f9559778628325cd112",
+      "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-531590794925282043b750f7",
+      "term": "cooked",
+      "targetMeaning": "Exhausted or mentally out of it.",
+      "sourceCandidateId": "531590794925282043b750f7",
+      "normalizedDefinition": "Exhausted or mentally out of it.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Cooked | **Physically or mentally exhausted—or just out of it.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-eb2c39e21b1ba57186ea3a27",
+      "term": "larp",
+      "targetMeaning": "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+      "sourceCandidateId": "eb2c39e21b1ba57186ea3a27",
+      "normalizedDefinition": "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+      "referenceSources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "Shorthand for “live action-role-play,” teenyboppers say “larp” or “larping” when describing someone who’s leading a fake, performative lifestyle for clout.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+      "term": "scuba",
+      "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "sourceCandidateId": "940baad7d6d2ccc1fe07729e",
+      "normalizedDefinition": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "referenceSources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "term": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "sourceCandidateId": "a2049aee81c974146462752a",
+      "normalizedDefinition": "A nonsense word popularized as a viral meme.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Skibidi | **Nonsense word turned viral meme.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "term": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "sourceCandidateId": "d9bb003d473a6a36f85ebfdc",
+      "normalizedDefinition": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Mewing | **A face-shaping posture technique (tongue to the roof of the",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-e52932ae62efe030406673c2",
+      "term": "ate",
+      "targetMeaning": "Performed exceptionally well, especially with style or confidence.",
+      "sourceCandidateId": "e52932ae62efe030406673c2",
+      "normalizedDefinition": "Performed exceptionally well, especially with style or confidence.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Ate | **Performed with style and confidence—no crumbs left.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "term": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "sourceCandidateId": "23517fd9523bc74bc50663af",
+      "normalizedDefinition": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Girl Dinner | **A chaotic mix of snacks that somehow counts as a meal.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-73cca91552b47e1831845692",
+      "term": "glow up",
+      "targetMeaning": "A noticeable improvement in appearance or confidence.",
+      "sourceCandidateId": "73cca91552b47e1831845692",
+      "normalizedDefinition": "A noticeable improvement in appearance or confidence.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Glow Up | **A noticeable improvement in looks or confidence.**“Her post-breakup glow up could power a small city.” |",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q1",
+      "senseId": "normalized-65d77b08ffbf71beaa6a88fb",
+      "slang": "fit check",
+      "targetMeaning": "Showing off or presenting an outfit.",
+      "difficulty": "easy",
+      "contextId": "closet-post",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#RainyDayLook",
+        "content": "fit check before I head out—thrifted jacket, bright socks, and the boots I finally repaired.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "Those socks are the whole plot, honestly.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@naya",
+            "text": "Boots survived another season!",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Wait, what does “fit check” mean here? Is this about checking whether the clothes fit?",
+      "question": "What does “fit check” mean in the post?",
+      "options": [
+        "Making sure clothes are the right size.",
+        "Showing off or presenting an outfit.",
+        "Asking whether a look suits the weather.",
+        "Checking that clothes are clean and ready."
+      ],
+      "correctIndex": 1,
+      "explanation": "Mira shares the pieces she is wearing, presenting her outfit to the feed.",
+      "replyTexts": [
+        "I thought fit check meant seeing whether the clothes were the right size before leaving.",
+        "I read fit check as showing everyone the outfit you put together.",
+        "I figured fit check was asking whether those clothes work for the weather.",
+        "I took fit check to mean making sure the clothes are clean and ready to wear."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q2",
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "slang": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "difficulty": "easy",
+      "contextId": "cafeteria-memory",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Kai Reed",
+        "handle": "@confuseduser",
+        "hashtag": "#OldSchoolDays",
+        "content": "Found our old cafeteria table in the yearbook. Still remember the lunch bell that never rang on Tuesdays.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "That table had a whole history.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@naya",
+            "text": "The Tuesday pudding incident, iykyk.",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "kai"
+      },
+      "questionComment": "@naya, what does “iykyk” mean here? Is it a new app abbreviation?",
+      "question": "What does “iykyk” mean in @naya’s reply?",
+      "options": [
+        "A reminder that everyone should bring lunch.",
+        "An inside joke or niche reference, short for “if you know, you know.”",
+        "A complaint about the cafeteria schedule.",
+        "A way to say the story is completely made up."
+      ],
+      "correctIndex": 1,
+      "explanation": "Naya alludes to a specific shared cafeteria memory without explaining it to everyone.",
+      "replyTexts": [
+        "I thought iykyk meant everyone should remember to pack lunch for school.",
+        "I took iykyk as a little nod to a reference only some people will recognize.",
+        "I guessed iykyk was complaining that the cafeteria timetable was unreliable.",
+        "I read iykyk as saying the whole cafeteria story was invented."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q3",
+      "senseId": "normalized-531590794925282043b750f7",
+      "slang": "cooked",
+      "targetMeaning": "Exhausted or mentally out of it.",
+      "difficulty": "easy",
+      "contextId": "study-night",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@campusfeed",
+      "post": {
+        "displayName": "Jordan Lee",
+        "handle": "@campusfeed",
+        "hashtag": "#FinalsWeek",
+        "content": "Three practice exams and a late bus later, I’m cooked. I just reread the same paragraph four times.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "text": "Close the notes and get some sleep!",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@ari",
+            "text": "That paragraph can wait until tomorrow.",
+            "avatarId": "ari"
+          }
+        ],
+        "avatarId": "campus"
+      },
+      "questionComment": "Does “cooked” mean you made something in the dorm kitchen?",
+      "question": "What does “cooked” mean in the post?",
+      "options": [
+        "Ready to start another long study session.",
+        "Exhausted or mentally out of it.",
+        "Upset because the exam was canceled.",
+        "Confident that the exam will be easy."
+      ],
+      "correctIndex": 1,
+      "explanation": "The long study stretch and repeated rereading suggest Jordan is worn out and unfocused.",
+      "replyTexts": [
+        "I thought cooked meant you were ready to keep studying for hours.",
+        "I understood cooked as being worn out and struggling to focus after all that work.",
+        "I figured cooked meant you were annoyed because the exam had been called off.",
+        "I read cooked as feeling sure the test would be easy."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q4",
+      "senseId": "normalized-eb2c39e21b1ba57186ea3a27",
+      "slang": "larp",
+      "targetMeaning": "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+      "difficulty": "easy",
+      "contextId": "luxury-posts",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Dea Park",
+        "handle": "@deasays",
+        "hashtag": "#OnlineLife",
+        "content": "My feed is full of perfect penthouses, but one creator keeps posting from the same borrowed showroom set. The comments are getting skeptical.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "The marble stairs do look familiar.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "At this point that whole luxury persona is a larp.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "@sam, what does “larp” mean there? Is it the name of a streaming platform?",
+      "question": "What does “larp” mean in @sam’s reply?",
+      "options": [
+        "A kind of short video editing style.",
+        "Short for “live-action role-play”; used for someone living a fake or performative life for social clout.",
+        "A private room where creators record videos.",
+        "A label for someone who collects expensive furniture."
+      ],
+      "correctIndex": 1,
+      "explanation": "The reply doubts that the creator’s displayed luxury lifestyle is genuine and suggests it is performed for attention.",
+      "replyTexts": [
+        "I thought larp meant a video style with quick cuts and dramatic music.",
+        "I took larp to mean someone is putting on an unreal image to get attention online.",
+        "I guessed larp was a special studio room for filming posts.",
+        "I read larp as a nickname for a person who collects pricey furniture."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q5",
+      "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+      "slang": "scuba",
+      "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "difficulty": "easy",
+      "contextId": "gym-bag-reaction",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Jo Rivera",
+        "handle": "@justjo",
+        "hashtag": "#LockerRoomMoment",
+        "content": "Someone opened the mystery gym bag and I did the scuba right away. We are airing out the whole hallway now.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "That bag has been missing since September.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@benchside",
+            "text": "Windows open, everyone!",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "What’s “scuba” here—are you talking about a diving class?",
+      "question": "What does “scuba” mean in the post?",
+      "options": [
+        "A dance-like gesture used to indicate that someone or something smells bad.",
+        "A quick stretch before going into the gym.",
+        "A hand signal asking someone to open a window.",
+        "A playful move used to start a group dance."
+      ],
+      "correctIndex": 0,
+      "explanation": "Jo links the gesture to opening a suspicious gym bag and airing out the hallway.",
+      "replyTexts": [
+        "I read scuba as a little move that signals something has a bad smell.",
+        "I thought scuba meant doing a warm-up stretch before exercising.",
+        "I guessed scuba was a silent way to ask someone to let fresh air in.",
+        "I took scuba to mean a fun dance step to get everyone moving."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q6",
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "slang": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "difficulty": "medium",
+      "contextId": "meme-catchphrase",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@ari",
+      "post": {
+        "displayName": "Naya Patel",
+        "handle": "@naya",
+        "hashtag": "#SoundOn",
+        "content": "My little cousin keeps adding the same made-up sound to every clip, and now half the class is saying it too.",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "text": "It showed up in three videos today.",
+            "avatarId": "campus"
+          },
+          {
+            "handle": "@ari",
+            "text": "That skibidi sound has taken over our group chat.",
+            "avatarId": "ari"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "@ari, what does “skibidi” mean? Is it a type of headphones?",
+      "question": "What does “skibidi” mean in @ari’s reply?",
+      "options": [
+        "A popular dance class at school.",
+        "A nonsense word popularized as a viral meme.",
+        "A name for a video-editing tool.",
+        "A warning that a clip has no sound."
+      ],
+      "correctIndex": 1,
+      "explanation": "The post describes a made-up sound spreading from clips into a group chat, matching a viral meme word.",
+      "replyTexts": [
+        "I thought skibidi was the name of a dance lesson everyone was joining.",
+        "I took skibidi as a made-up expression that caught on through an online meme.",
+        "I guessed skibidi was an editing program people use for their clips.",
+        "I read skibidi as a notice that the video audio was missing."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q7",
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "slang": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "difficulty": "medium",
+      "contextId": "camera-habit",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Lila Chen",
+        "handle": "@lilalistens",
+        "hashtag": "#PhotoPractice",
+        "content": "Trying mewing while I wait for the portrait timer: lips together, chin relaxed, tongue resting up inside my mouth. The countdown is taking forever.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "text": "The timer always feels longer when you’re posing.",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@sam",
+            "text": "At least the lighting is finally cooperating.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "Is “mewing” some kind of sound effect for the camera?",
+      "question": "What does “mewing” mean in the post?",
+      "options": [
+        "A breathing routine used to calm nerves.",
+        "A way of holding the jaw while chewing.",
+        "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "A camera setting that sharpens portraits."
+      ],
+      "correctIndex": 2,
+      "explanation": "Lila describes tongue placement and posture while preparing for a portrait.",
+      "replyTexts": [
+        "I thought mewing meant breathing slowly to settle your nerves before a photo.",
+        "I figured mewing was a habit of keeping your jaw still while chewing.",
+        "I took mewing as a posture practice with the tongue placed against the mouth’s upper roof.",
+        "I guessed mewing was a portrait-camera option that makes details sharper."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q8",
+      "senseId": "normalized-e52932ae62efe030406673c2",
+      "slang": "ate",
+      "targetMeaning": "Performed exceptionally well, especially with style or confidence.",
+      "difficulty": "medium",
+      "contextId": "open-mic",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Jo Rivera",
+        "handle": "@justjo",
+        "hashtag": "#OpenMicNight",
+        "content": "The new student walked onstage shaking, then nailed every line and held the room through the final pause. The applause went on forever.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "The room was completely locked in.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@miramoments",
+            "text": "She ate that whole performance.",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "@miramoments, what does “ate” mean here? Did she have a snack onstage?",
+      "question": "What does “ate” mean in @miramoments’s reply?",
+      "options": [
+        "Finished the performance ahead of schedule.",
+        "Performed exceptionally well, especially with style or confidence.",
+        "Forgot the lines and had to start over.",
+        "Won a prize for writing the script."
+      ],
+      "correctIndex": 1,
+      "explanation": "The post describes a confident, successful stage performance that held the audience’s attention.",
+      "replyTexts": [
+        "I thought ate meant she wrapped up her stage time earlier than expected.",
+        "I read ate as saying she delivered the performance with real skill and confidence.",
+        "I guessed ate meant she lost her place and had to begin the scene again.",
+        "I took ate to mean she received an award for writing the show."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q9",
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "slang": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "difficulty": "hard",
+      "contextId": "late-train-snacks",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@dea",
+      "post": {
+        "displayName": "Dea Park",
+        "handle": "@dea",
+        "hashtag": "#AfterTheTrain",
+        "content": "Dinner plans dissolved when the last train was delayed: olives, crackers, two strawberries, and the cheese I packed for tomorrow. Calling it girl dinner and moving on.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "That is an excellent emergency snack lineup.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@justjo",
+            "text": "Save the cheese before tomorrow-you files a complaint.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "Does “girl dinner” mean you’re waiting for someone named Dinner?",
+      "question": "What does “girl dinner” mean in the post?",
+      "options": [
+        "A meal made only for guests at a dinner party.",
+        "A planned menu served at a formal event.",
+        "An informal meal made up of a casual or haphazard mix of snacks.",
+        "A packed lunch prepared for the next day."
+      ],
+      "correctIndex": 2,
+      "explanation": "Dea combines several odds and ends into an improvised meal after her plans change.",
+      "replyTexts": [
+        "I thought girl dinner meant food prepared just for people attending a dinner party.",
+        "I guessed girl dinner was a carefully planned menu for a formal celebration.",
+        "I took girl dinner as throwing together snack bits for a casual, improvised meal.",
+        "I read girl dinner as the lunch Dea packed to eat at work tomorrow."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef-q10",
+      "senseId": "normalized-73cca91552b47e1831845692",
+      "slang": "glow up",
+      "targetMeaning": "A noticeable improvement in appearance or confidence.",
+      "difficulty": "hard",
+      "contextId": "reunion-photos",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#FiveYearReunion",
+        "content": "Scrolling through old rehearsal photos before the reunion. Sam used to hide behind the curtains; now they’re first in line to lead the group photo.",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "text": "The reunion photo lineup is going to be great.",
+            "avatarId": "campus"
+          },
+          {
+            "handle": "@sam",
+            "text": "Apparently I had a glow up between then and now.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "@sam, what does “glow up” mean here? Is it a new lighting filter?",
+      "question": "What does “glow up” mean in @sam’s reply?",
+      "options": [
+        "A new way of editing old photographs.",
+        "A change in someone’s schedule or daily routine.",
+        "A noticeable improvement in appearance or confidence.",
+        "A decision to stop taking group pictures."
+      ],
+      "correctIndex": 2,
+      "explanation": "Sam contrasts hiding from photos with confidently leading the group picture, implying a positive personal change.",
+      "replyTexts": [
+        "I thought glow up meant using a fresh filter to brighten old pictures.",
+        "I guessed glow up was changing your usual timetable between school years.",
+        "I took glow up as a clear positive change in how someone looks or carries themselves.",
+        "I read glow up as deciding you no longer want to be in group photos."
+      ]
+    }
+  ]
+}

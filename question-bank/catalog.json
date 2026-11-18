@@ -7,7 +7,7 @@
   "candidateCount": 22,
   "expertValidated": false,
   "discoveredCandidateCount": 16,
-  "bankVersion": "d793a6cc00843c98",
+  "bankVersion": "7aa0e69239416cc3",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -63,8 +63,8 @@
   ],
   "packs": [
     {
-      "packId": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3",
-      "sha256": "f98dfc8a9ba39363214e308891bffc5a7ed56e17abe0bbb5724b6dbd7c8e641a",
+      "packId": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef",
+      "sha256": "5d7d8a0207968ceb4b011873a33dd6757503c0b43227321ae0d022a44b5aa5e3",
       "questionCount": 10
     }
   ]
