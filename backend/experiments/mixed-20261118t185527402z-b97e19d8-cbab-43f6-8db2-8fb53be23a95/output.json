@@ -1,0 +1,464 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q1",
+      "senseId": "normalized-73cca91552b47e1831845692",
+      "slang": "glow up",
+      "targetMeaning": "A noticeable improvement in appearance or confidence.",
+      "difficulty": "easy",
+      "contextId": "yearbook-reunion",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#FictionalMoment",
+        "content": "Found my old school photo and took a new one today. This glow up is mostly better lighting, a haircut, and finally smiling at the camera.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "The new photo has such a sunny feel!",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@sam",
+            "text": "That haircut really suits you.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "When you say “glow up,” are we talking about a new lamp in the photo?",
+      "question": "What does “glow up” mean in the post by @miramoments?",
+      "options": [
+        "A sudden change in someone’s daily routine.",
+        "A noticeable improvement in appearance or confidence.",
+        "A new filter that makes a photo brighter.",
+        "A way to become more popular online."
+      ],
+      "correctIndex": 1,
+      "explanation": "Mira compares an old photo with a new one and mentions feeling more comfortable smiling, pointing to a positive change in appearance or confidence.",
+      "replyTexts": [
+        "I thought glow up meant switching to a different routine, like changing your morning schedule.",
+        "I read glow up as looking better or feeling surer of yourself than before.",
+        "I guessed glow up was just a brighter camera setting that makes the picture shine.",
+        "I took glow up to mean getting more followers and becoming well-known online."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q2",
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "slang": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "difficulty": "easy",
+      "contextId": "late-study-snacks",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@lila",
+      "post": {
+        "displayName": "Tess Rowan",
+        "handle": "@tessnotes",
+        "hashtag": "#FictionalMoment",
+        "content": "Long study session tonight. I put crackers, grapes, cheese, and the last few olives on one plate and called it a day.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "Honestly, girl dinner is exactly what I’m having too.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@campusfeed",
+            "text": "Save me a grape if there are any left.",
+            "avatarId": "campus"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "@lila, “girl dinner” sounds like it needs a reservation—what does that phrase mean here?",
+      "question": "What does “girl dinner” mean in @lila’s reply?",
+      "options": [
+        "A meal ordered from a restaurant for delivery.",
+        "A planned dinner party with several guests.",
+        "An informal meal made up of a casual or haphazard mix of snacks.",
+        "A late-night dessert eaten after dinner."
+      ],
+      "correctIndex": 2,
+      "explanation": "The post lists small, assorted foods gathered onto one plate, matching the assigned sense of a casual mix of snacks as a meal.",
+      "replyTexts": [
+        "I figured girl dinner meant getting a restaurant meal brought to your door.",
+        "I thought girl dinner was a carefully arranged evening meal with a group of friends.",
+        "I took girl dinner to mean piecing together a meal from whatever snack foods are around.",
+        "I read girl dinner as having something sweet once the regular meal is over."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q3",
+      "senseId": "normalized-e52932ae62efe030406673c2",
+      "slang": "ate",
+      "targetMeaning": "Performed exceptionally well, especially with style or confidence.",
+      "difficulty": "easy",
+      "contextId": "school-talent-show",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@ari",
+      "post": {
+        "displayName": "Ari Bell",
+        "handle": "@ari",
+        "hashtag": "#FictionalMoment",
+        "content": "Our class play went up after weeks of rehearsal, and Jules handled the big solo with total confidence. She ate that scene!",
+        "comments": [
+          {
+            "handle": "@dea",
+            "text": "The whole room was cheering by the end.",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@jo",
+            "text": "Jules looked so comfortable up there.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "Wait, when you say Jules “ate” the scene, did she actually bring food onstage?",
+      "question": "What does “ate” mean in the post by @ari?",
+      "options": [
+        "She forgot her lines during the scene.",
+        "She performed exceptionally well, especially with style or confidence.",
+        "She had the lead role in the play.",
+        "She finished the scene earlier than planned."
+      ],
+      "correctIndex": 1,
+      "explanation": "Ari describes Jules’s confident solo and the audience’s enthusiastic reaction, signaling an especially strong performance.",
+      "replyTexts": [
+        "I thought ate meant she blanked on her lines while she was acting.",
+        "I took ate to mean Jules delivered a standout scene with poise and flair.",
+        "I guessed ate meant she was cast as the main character in the production.",
+        "I read ate as finishing her part ahead of the scheduled time."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q4",
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "slang": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "difficulty": "easy",
+      "contextId": "odd-hallway-photo",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Noah Park",
+        "handle": "@noahpark",
+        "hashtag": "#FictionalMoment",
+        "content": "The hallway lights turned purple during the power test, and a row of tiny toy ducks somehow appeared outside the locked room. Nobody knows whose they are.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "This is so ohio, I’m not walking down there alone.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@naya",
+            "text": "Those ducks are becoming the unofficial hallway mascots.",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "@sam, I thought Ohio was a place on a map—what are you saying with that word?",
+      "question": "What does “ohio” mean in @sam’s reply?",
+      "options": [
+        "A strange, unreal-feeling version of what should be normal.",
+        "A hallway that has recently been renovated.",
+        "A place where the school keeps its extra equipment.",
+        "A situation that is completely ordinary and expected."
+      ],
+      "correctIndex": 0,
+      "explanation": "The odd lighting and unexplained toy ducks make the hallway feel surreal and unsettling, which fits the assigned sense.",
+      "replyTexts": [
+        "I thought ohio meant everything felt oddly unreal, like normal rules had stopped applying.",
+        "I guessed ohio meant the hallway had just been remodeled with new decorations.",
+        "I took ohio to mean a storage area where the school keeps spare supplies.",
+        "I read ohio as a way to say that nothing unusual was happening at all."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q5",
+      "senseId": "normalized-531590794925282043b750f7",
+      "slang": "cooked",
+      "targetMeaning": "Exhausted or mentally out of it.",
+      "difficulty": "easy",
+      "contextId": "exam-week",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@campusfeed",
+      "post": {
+        "displayName": "Campus Feed",
+        "handle": "@campusfeed",
+        "hashtag": "#FictionalMoment",
+        "content": "Three quizzes, one lab report, and a night of almost no sleep. I’m cooked; I just reread the same paragraph six times.",
+        "comments": [
+          {
+            "handle": "@kai",
+            "text": "Please take a break before the next page.",
+            "avatarId": "kai"
+          },
+          {
+            "handle": "@ben",
+            "text": "That is a serious amount of studying for one day.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "campus"
+      },
+      "questionComment": "You said “cooked”—did you burn something in the dorm kitchen?",
+      "question": "What does “cooked” mean in the post by @campusfeed?",
+      "options": [
+        "Feeling exhausted or mentally unable to focus.",
+        "Being ready to serve food to the class.",
+        "Having finished every assignment ahead of schedule.",
+        "Getting annoyed because the room is too warm."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post mentions little sleep and repeatedly rereading a paragraph, suggesting exhaustion and difficulty concentrating.",
+      "replyTexts": [
+        "I thought cooked meant being worn out or too foggy to concentrate properly.",
+        "I guessed cooked meant preparing a meal to share with classmates.",
+        "I read cooked as having completed all the work earlier than expected.",
+        "I took cooked to mean getting irritated because the classroom feels hot."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q6",
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "slang": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "difficulty": "medium",
+      "contextId": "cafeteria-chant",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@jo",
+      "post": {
+        "displayName": "Naya Reed",
+        "handle": "@naya",
+        "hashtag": "#FictionalMoment",
+        "content": "Someone at lunch started repeating a made-up sound, and soon three tables were doing it in time with the tapping tray. It followed us all the way to class.",
+        "comments": [
+          {
+            "handle": "@jo",
+            "text": "The skibidi echo has officially taken over the cafeteria.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@tessnotes",
+            "text": "Even the lunch monitor was trying not to laugh.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "@jo, is “skibidi” the name of a cafeteria dish or something?",
+      "question": "What does “skibidi” mean in @jo’s reply?",
+      "options": [
+        "A special rhythm used to keep time during lunch.",
+        "A nonsense word popularized as a viral meme.",
+        "A nickname for the school cafeteria staff.",
+        "A made-up recipe that students share online."
+      ],
+      "correctIndex": 1,
+      "explanation": "The repeated made-up sound spreading among students is presented as a viral meme word, rather than a dish, person, or recipe.",
+      "replyTexts": [
+        "I thought skibidi was a beat people use to coordinate tapping together.",
+        "I took skibidi to mean a silly made-up expression that caught on through a meme.",
+        "I guessed skibidi was a nickname for someone who works in the lunchroom.",
+        "I read skibidi as the title of a fictional recipe students keep posting."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q7",
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "slang": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "difficulty": "medium",
+      "contextId": "work-calendar-surprise",
+      "contextCategory": "work",
+      "questionTarget": "post",
+      "targetHandle": "@ariatwork",
+      "post": {
+        "displayName": "Ari Bell",
+        "handle": "@ariatwork",
+        "hashtag": "#FictionalMoment",
+        "content": "The team calendar says we have a meeting at 6 a.m. on the day after the launch. BSFR, did someone set that by accident?",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "text": "I’m checking the calendar history now.",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@ben",
+            "text": "That time looks suspiciously early.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "I’m lost at “BSFR”—is that a new calendar app?",
+      "question": "What does “bsfr” mean in the post by @ariatwork?",
+      "options": [
+        "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "A reminder to check the team calendar every morning.",
+        "A request to move a meeting to a different day.",
+        "A note that a project has received final approval."
+      ],
+      "correctIndex": 0,
+      "explanation": "Ari reacts with disbelief to the unusually early meeting and asks if it was set by accident, which matches the assigned use of the abbreviation.",
+      "replyTexts": [
+        "I read bsfr as questioning whether that strange meeting time can really be right.",
+        "I thought bsfr meant checking the shared schedule first thing each morning.",
+        "I guessed bsfr was asking the team to reschedule the meeting for another date.",
+        "I took bsfr to mean the project was officially signed off and ready."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q8",
+      "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+      "slang": "bussin",
+      "targetMeaning": "Delicious or excellent, commonly describing food.",
+      "difficulty": "medium",
+      "contextId": "community-potluck",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Sam Vale",
+        "handle": "@sam",
+        "hashtag": "#FictionalMoment",
+        "content": "My neighbor brought warm corn bread to the potluck. I thought I’d try one piece, but now I’m going back for another slice.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "That corn bread sounds bussin; I’m saving you a seat by the table.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@dea",
+            "text": "I’ll bring the napkins over.",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "sam"
+      },
+      "questionComment": "@naya, I’m not sure what “bussin” is—does it have anything to do with a bus?",
+      "question": "What does “bussin” mean in @naya’s reply?",
+      "options": [
+        "Freshly baked and still warm from the oven.",
+        "Delicious or excellent, commonly describing food.",
+        "A dish that is difficult to make at home.",
+        "A snack that has been packed for a long trip."
+      ],
+      "correctIndex": 1,
+      "explanation": "Sam is going back for another slice of the corn bread, and Naya responds approvingly about the food.",
+      "replyTexts": [
+        "I thought bussin meant the bread had only just come out of the oven.",
+        "I took bussin to mean the food tastes really good or is especially great.",
+        "I guessed bussin meant the recipe takes a lot of effort to prepare.",
+        "I read bussin as a snack packed to eat while traveling on a bus."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q9",
+      "senseId": "normalized-2c3d03f9b4a28b0be01d4b2d",
+      "slang": "crine",
+      "targetMeaning": "An intentional misspelling of “crying” used to describe extreme laughter.",
+      "difficulty": "hard",
+      "contextId": "group-chat-pet-video",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Dea Moss",
+        "handle": "@deasays",
+        "hashtag": "#FictionalMoment",
+        "content": "The clip of the cat carefully backing away from its own reflection got me crine at my desk. I’ve watched it more times than I’ll admit.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "text": "The tiny pause before it turns around is perfect.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@sam",
+            "text": "That clip is going straight into my favorites.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "“Crine” looks like a typo—did your keyboard just do something weird?",
+      "question": "What does “crine” mean in the post by @deasays?",
+      "options": [
+        "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "Feeling disappointed because something sad happened.",
+        "Making a quiet sound to avoid disturbing coworkers.",
+        "Watching a video repeatedly to find a hidden detail."
+      ],
+      "correctIndex": 0,
+      "explanation": "Dea says the cat video got her “crine” and mentions replaying it, using the word to express intense laughter.",
+      "replyTexts": [
+        "I thought crine was a playful spelling for laughing so hard you can barely stop.",
+        "I guessed crine meant feeling upset after hearing bad news.",
+        "I took crine to mean making a soft noise so nobody nearby notices.",
+        "I read crine as replaying a clip to spot something hidden in the background."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95-q10",
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "slang": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "difficulty": "hard",
+      "contextId": "book-club-introduction",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@ben",
+      "post": {
+        "displayName": "Kai Morgan",
+        "handle": "@kai",
+        "hashtag": "#FictionalMoment",
+        "content": "At book club, Mina made the new guest laugh, remembered the title they mentioned, and kept the conversation flowing without making it feel like an interview.",
+        "comments": [
+          {
+            "handle": "@ben",
+            "text": "Mina has rizz; she makes meeting new people look effortless.",
+            "avatarId": "ben"
+          },
+          {
+            "handle": "@lila",
+            "text": "She made sure everyone got a chance to join in, too.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "kai"
+      },
+      "questionComment": "@ben, “rizz” sounds like the name of a fizzy drink—what did you mean by it?",
+      "question": "What does “rizz” mean in @ben’s reply?",
+      "options": [
+        "A habit of remembering every book someone recommends.",
+        "A way of steering a group conversation back to the topic.",
+        "Flirting skill or natural charisma.",
+        "A preference for meeting new people at large events."
+      ],
+      "correctIndex": 2,
+      "explanation": "Ben links Mina’s ease in connecting with the new guest to her rizz, pointing to charisma and social or flirting skill.",
+      "replyTexts": [
+        "I thought rizz meant keeping a mental list of books people mention to you.",
+        "I guessed rizz was the ability to guide a chat back to its main subject.",
+        "I took rizz to mean having charm and a knack for flirting with someone.",
+        "I read rizz as preferring to socialize only at big gatherings."
+      ]
+    }
+  ]
+}

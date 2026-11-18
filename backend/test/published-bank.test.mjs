@@ -83,7 +83,8 @@ function mixedFixture(){
    const q=sessions[i%2].questions[i],reference=references[i%2];
    return {...q,id:`${packId}-q${i+1}`,senseId:reference.senseId,contextCategory:MIXED_CONTEXT_CATEGORIES[i%9],
     questionTarget:'post',targetHandle:q.post.handle,question:`What does '${reference.term}' mean in this post?`,
-    options:q.options.map((option,index)=>index===q.correctIndex?reference.targetMeaning:option)};
+    options:q.options.map((option,index)=>index===q.correctIndex?reference.targetMeaning:option),
+    replyTexts:q.options.map(option=>`${reference.term} stands for ${option} to me.`)};
   })};
 }
 function addMixedPack(outputDir){

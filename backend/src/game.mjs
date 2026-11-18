@@ -98,7 +98,7 @@ export function termSurfaces(q) {
 
 // Mixed-v7 binds an explicit target to a term-bearing surface; repetition is allowed.
 // Older packs retain the historical exactly-once rule and optional inferred target.
-export const REPEAT_TERM_PROMPT_VERSIONS = Object.freeze(['mixed-v7', 'mixed-v8']);
+export const REPEAT_TERM_PROMPT_VERSIONS = Object.freeze(['mixed-v7', 'mixed-v8', 'mixed-v9', 'mixed-v10']);
 export const allowsRepeatedTerm = promptVersion => REPEAT_TERM_PROMPT_VERSIONS.includes(promptVersion);
 
 export function validateTermTarget(q, {promptVersion} = {}) {

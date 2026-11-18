@@ -4,7 +4,9 @@ import {validateQuestion, validateTermTarget, normalize, allowsRepeatedTerm} fro
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v8';
+export const MIXED_PROMPT_VERSION = 'mixed-v10';
+/** Versions that ship the learner's own replies and comment-only slang surfaces. */
+const REPLY_CONTRACT_VERSIONS = new Set(['mixed-v9', 'mixed-v10']);
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'
@@ -178,6 +180,47 @@ function socialErrors(q, promptVersion) {
   return errors;
 }
 
+/** Whole-term occurrences in an arbitrary learner-facing string; punctuation-insensitive. */
+function phraseCount(value, term) {
+  const key = normalize(term);
+  if (!key) return 0;
+  const wanted = key.split(' ').filter(Boolean);
+  const hay = normalize(String(value ?? '')).split(' ').filter(Boolean);
+  let total = 0;
+  for (let i = 0; i + wanted.length <= hay.length; i++)
+    if (hay.slice(i, i + wanted.length).join(' ') === key) total++;
+  return total;
+}
+
+/**
+ * Mixed v9: the learner's own reply is part of the pack, and five of ten terms live only in a
+ * comment written by somebody other than the post author.
+ */
+function v9QuestionErrors(q) {
+  const errors = [];
+  const replies = q?.replyTexts;
+  if (!Array.isArray(replies) || replies.length !== 4 || !replies.every(text))
+    return ['reply-texts-shape'];
+  const keys = replies.map(normalize);
+  if (new Set(keys).size !== 4) errors.push('reply-texts-duplicate');
+  if (keys.some(key => (Array.isArray(q.options) ? q.options : []).map(normalize).includes(key)))
+    errors.push('reply-texts-copy-option');
+  if (replies.some(reply => reply.length > 240)) errors.push('reply-texts-long');
+  if (!replies.every(reply => phraseCount(reply, q.slang) >= 1)) errors.push('reply-texts-term');
+  const handles = [q?.post?.handle, ...(Array.isArray(q?.post?.comments) ? q.post.comments.map(c => c?.handle) : [])];
+  if (handles.some(handle => typeof handle === 'string' && /^@guest_\d+$/i.test(handle))) errors.push('handle-is-avatar-id');
+  if (q?.questionTarget === 'reply') {
+    if (phraseCount(q?.post?.content, q.slang) !== 0) errors.push('reply-target-post-has-term');
+    const comments = Array.isArray(q?.post?.comments) ? q.post.comments : [];
+    const bearing = comments.filter(comment => phraseCount(comment?.text, q.slang) > 0);
+    if (bearing.length !== 1 || bearing[0]?.handle !== q?.targetHandle) errors.push('reply-target-comment');
+    else if (bearing[0].handle === q?.post?.handle) errors.push('reply-target-author');
+  } else if (q?.questionTarget === 'post') {
+    if (phraseCount(q?.post?.content, q.slang) === 0) errors.push('post-target-surface');
+  }
+  return errors;
+}
+
 /** Nine explicit syntax/contract checks plus provenance, existing rules and social guardrails. */
 export function evaluateMixedResponse(raw, {references, assignments, promptVersion = MIXED_PROMPT_VERSION} = {}) {
   let parsed, parsedOk = false;
@@ -227,6 +270,16 @@ export function evaluateMixedResponse(raw, {references, assignments, promptVersi
   add('existing-question-rules', hasQuestions && questions.length > 0 && existingErrors.length === 0, existingErrors);
   const safetyErrors = questions.flatMap((q, i) => socialErrors(q, promptVersion).map(error => `${i}:${error}`));
   add('social-safety', hasQuestions && questions.length > 0 && safetyErrors.length === 0, safetyErrors);
+  if (REPLY_CONTRACT_VERSIONS.has(promptVersion)) {
+    // The 5/5 surface mix is a generation instruction, so it is enforced when assignments exist;
+    // published-pack replay validates the per-question contract without rewriting history.
+    const replyTargets = questions.filter(q => q?.questionTarget === 'reply').length;
+    const mixApplies = Array.isArray(assignments) && assignments.length === 10;
+    const mixPassed = !mixApplies || replyTargets === 5;
+    add('reply-target-mix', mixPassed, mixPassed ? [] : [`reply-target-count:${replyTargets}`]);
+    const v9Errors = questions.flatMap((q, i) => v9QuestionErrors(q).map(error => `${i}:${error}`));
+    add('reply-contract', hasQuestions && questions.length > 0 && v9Errors.length === 0, v9Errors);
+  }
   return {valid: checks.every(check => check.passed), checks,
     errors: checks.filter(check => !check.passed).flatMap(check => check.errors)};
 }

@@ -1,0 +1,98 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "id": "json-parse",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "required-fields",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "count-10",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "difficulty-5-3-2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "four-options",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "correct-index",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "context-category",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unique-ids",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "no-surrounding-text",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reference-integrity",
+      "passed": false,
+      "errors": [
+        "2:reference-mismatch",
+        "3:reference-mismatch",
+        "4:reference-mismatch",
+        "unused-reference"
+      ]
+    },
+    {
+      "id": "existing-question-rules",
+      "passed": false,
+      "errors": [
+        "2:key-meaning-mismatch",
+        "3:key-meaning-mismatch",
+        "4:key-meaning-mismatch"
+      ]
+    },
+    {
+      "id": "social-safety",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reply-target-mix",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reply-contract",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "provider-completion",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "errors": [
+    "2:reference-mismatch",
+    "3:reference-mismatch",
+    "4:reference-mismatch",
+    "unused-reference",
+    "2:key-meaning-mismatch",
+    "3:key-meaning-mismatch",
+    "4:key-meaning-mismatch"
+  ]
+}

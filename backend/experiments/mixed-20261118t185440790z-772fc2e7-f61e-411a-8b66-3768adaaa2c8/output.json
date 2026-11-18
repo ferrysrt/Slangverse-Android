@@ -1,0 +1,464 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q1",
+      "senseId": "normalized-73cca91552b47e1831845692",
+      "slang": "glow up",
+      "targetMeaning": "A noticeable improvement in appearance or confidence.",
+      "difficulty": "easy",
+      "contextId": "school-reunion-photo",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#OldPhotos",
+        "content": "Found my first-year campus photo and today's one. I finally feel at home in my own skin—what a glow up!",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "text": "That smile says it all, Mira!",
+            "avatarId": "campus"
+          },
+          {
+            "handle": "@lila",
+            "text": "The side-by-side is so sweet.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Wait, what does “glow up” mean here? Is it about a new lamp or something?",
+      "question": "What does “glow up” mean in the post by @miramoments?",
+      "options": [
+        "A new routine for improving sleep.",
+        "A noticeable improvement in appearance or confidence.",
+        "A sudden change in someone's hobbies.",
+        "A celebration for finishing a school year."
+      ],
+      "correctIndex": 1,
+      "explanation": "Mira compares an old photo with how she looks and feels now, suggesting a visible change in appearance or confidence.",
+      "replyTexts": [
+        "I thought glow up meant starting habits that help you sleep better at night.",
+        "I took glow up to mean someone looks or feels more self-assured than before.",
+        "I figured glow up meant suddenly getting into a different set of interests.",
+        "I read glow up as a party or milestone event at the end of the school year."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q2",
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "slang": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "difficulty": "easy",
+      "contextId": "impossible-snow-day",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Sam Reed",
+        "handle": "@sam",
+        "hashtag": "#ForecastWatch",
+        "content": "My weather app says it'll snow tomorrow, but the sky is bright blue and the forecast changed twice already.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "bsfr, are they predicting a snow day from one tiny cloud?",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@kai",
+            "text": "I packed my gloves anyway, just in case.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "sam"
+      },
+      "questionComment": "@naya, what did you mean by “bsfr” there? Is that a weather app setting?",
+      "question": "What does “bsfr” mean in @naya's reply?",
+      "options": [
+        "A request to send the forecast again.",
+        "A note that the snow is expected before sunrise.",
+        "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "A reminder to bring warm clothes outdoors."
+      ],
+      "correctIndex": 2,
+      "explanation": "Naya doubts the unlikely forecast and asks whether the prediction is serious.",
+      "replyTexts": [
+        "I thought bsfr meant asking someone to forward the weather report one more time.",
+        "I read bsfr as saying the snow should arrive early in the morning.",
+        "I took bsfr as a way to doubt the claim or check if the person really means it.",
+        "I figured bsfr was a quick reminder to dress warmly before going outside."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q3",
+      "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+      "slang": "bussin",
+      "targetMeaning": "Delicious or excellent, commonly describing food.",
+      "difficulty": "easy",
+      "contextId": "lunch-table-taste",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Dea Park",
+        "handle": "@deasays",
+        "hashtag": "#LunchBreak",
+        "content": "Tried the little noodle spot by the library. That spicy sesame bowl is bussin; I might go back tomorrow.",
+        "comments": [
+          {
+            "handle": "@jo",
+            "text": "Now I want lunch again.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@campusfeed",
+            "text": "Their lunch line is already out the door.",
+            "avatarId": "campus"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "What does “bussin” mean here—does the bowl make a loud noise?",
+      "question": "What does “bussin” mean in the post by @deasays?",
+      "options": [
+        "A meal that is especially tasty or really good.",
+        "A dish served at a very high temperature.",
+        "A restaurant that stays open late.",
+        "A bowl that is large enough to share."
+      ],
+      "correctIndex": 0,
+      "explanation": "Dea praises a noodle bowl and plans to return, so the term describes how good the food is.",
+      "replyTexts": [
+        "I thought bussin meant the noodles tasted great, which is why Dea wants another bowl.",
+        "I read bussin as saying the food was served while still extremely hot.",
+        "I figured bussin meant the place stayed open later than other restaurants.",
+        "I took bussin to mean the serving was big enough for two people to split."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q4",
+      "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+      "slang": "aura",
+      "targetMeaning": "A person's vibe or energy.",
+      "difficulty": "easy",
+      "contextId": "quiet-study-room",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@ari",
+      "post": {
+        "displayName": "Lila Chen",
+        "handle": "@lilalistens",
+        "hashtag": "#StudyGroup",
+        "content": "Our group presentation got tense, but Ari kept everyone calm and made room for each person to speak.",
+        "comments": [
+          {
+            "handle": "@ari",
+            "text": "Trying to bring a little aura to the study table today.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@ben",
+            "text": "That helped a lot. We got through the slides together.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "@ari, what did you mean by “aura” there? Is it a feature on your phone?",
+      "question": "What does “aura” mean in @ari's reply?",
+      "options": [
+        "A person's vibe or energy.",
+        "A set of notes for organizing a presentation.",
+        "A bright ring-shaped light used for filming.",
+        "A study technique for memorizing slides."
+      ],
+      "correctIndex": 0,
+      "explanation": "Ari is referring to the calm, supportive feeling they brought to the study group.",
+      "replyTexts": [
+        "I took aura to mean the kind of mood or presence someone brings into a room.",
+        "I thought aura was a collection of notes to keep the group presentation in order.",
+        "I read aura as a circular light people use to brighten video recordings.",
+        "I figured aura meant a method for learning a presentation by heart."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q5",
+      "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+      "slang": "drip",
+      "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+      "difficulty": "easy",
+      "contextId": "gallery-opening-look",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Jo Ellis",
+        "handle": "@justjo",
+        "hashtag": "#GalleryNight",
+        "content": "Borrowed my cousin's silver jacket for the opening. The whole look has drip, and I finally feel ready for the camera.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "That jacket catches the light perfectly.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@mira",
+            "text": "Have the best time tonight!",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "What does “drip” mean in Jo's post? Is the jacket leaking?",
+      "question": "What does “drip” mean in the post by @justjo?",
+      "options": [
+        "A stain left by rain on the jacket.",
+        "A jacket that is difficult to move around in.",
+        "Distinctive or impressive style, especially in clothing.",
+        "A trend of wearing only silver accessories."
+      ],
+      "correctIndex": 2,
+      "explanation": "Jo is talking about a striking jacket and overall look, so drip refers to stylish clothing.",
+      "replyTexts": [
+        "I thought drip meant the jacket had a wet mark from the rain.",
+        "I read drip as saying the jacket felt stiff and awkward to wear.",
+        "I took drip to mean Jo's outfit has a strong, memorable sense of style.",
+        "I figured drip was the name for a fashion trend focused on silver jewelry."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q6",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "medium",
+      "contextId": "concert-ticket-daydream",
+      "contextCategory": "prediction",
+      "questionTarget": "reply",
+      "targetHandle": "@lila",
+      "post": {
+        "displayName": "Naya Brooks",
+        "handle": "@naya",
+        "hashtag": "#TicketDay",
+        "content": "The queue says 40,000 people are ahead of me, but I can already picture us singing from the front row.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "delulu plans are keeping my hopes alive today.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "May the refresh button be with you.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "@lila, what did you mean by “delulu” here? Is it a kind of concert app?",
+      "question": "What does “delulu” mean in @lila's reply?",
+      "options": [
+        "A playful or endearing way to describe being delusional.",
+        "A way to track where a person is in an online queue.",
+        "A plan to listen to music while waiting for tickets.",
+        "A type of concert seat close to the stage."
+      ],
+      "correctIndex": 0,
+      "explanation": "Lila jokes about optimistic plans despite the long queue, using the term playfully for an unrealistic belief.",
+      "replyTexts": [
+        "I took delulu as a teasing, affectionate label for believing something pretty unlikely.",
+        "I thought delulu was a tool that shows your spot in the ticket line.",
+        "I read delulu as a suggestion to play music while waiting online.",
+        "I figured delulu was the name of a seat section near the stage."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q7",
+      "senseId": "normalized-ed104716c27233570f3efbe0",
+      "slang": "vibe check",
+      "targetMeaning": "An informal assessment of someone's mood or energy.",
+      "difficulty": "medium",
+      "contextId": "rainy-club-rehearsal",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@benchside",
+      "post": {
+        "displayName": "Ben Ortiz",
+        "handle": "@benchside",
+        "hashtag": "#ClubRehearsal",
+        "content": "We lost the rehearsal room and got moved to a hallway. Quick vibe check: are we still up for practicing, or should we call it?",
+        "comments": [
+          {
+            "handle": "@jo",
+            "text": "I'm in, even if we have to dance around the coat rack.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@dea",
+            "text": "Give me five minutes to find my shoes.",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "ben"
+      },
+      "questionComment": "What does “vibe check” mean in Ben's post? Is he checking the room's sound system?",
+      "question": "What does “vibe check” mean in the post by @benchside?",
+      "options": [
+        "A count of how many people arrived for rehearsal.",
+        "An informal assessment of someone's mood or energy.",
+        "A quick test of the hallway's sound quality.",
+        "A request to inspect the practice schedule."
+      ],
+      "correctIndex": 1,
+      "explanation": "Ben asks whether the group still feels ready to rehearse, checking everyone's mood and energy.",
+      "replyTexts": [
+        "I thought vibe check meant counting everyone who showed up for rehearsal.",
+        "I read vibe check as seeing how the group is feeling before deciding what to do.",
+        "I figured vibe check was a fast way to test how sound carries in the hallway.",
+        "I took vibe check to mean reviewing when the group is scheduled to practice."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q8",
+      "senseId": "normalized-65d77b08ffbf71beaa6a88fb",
+      "slang": "fit check",
+      "targetMeaning": "Showing off or presenting an outfit.",
+      "difficulty": "medium",
+      "contextId": "museum-volunteer-shift",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@dea",
+      "post": {
+        "displayName": "Ari Vega",
+        "handle": "@ariatwork",
+        "hashtag": "#MuseumShift",
+        "content": "Found a bright green vest for our volunteer shift. The pockets are huge, and somehow it matches my old sneakers.",
+        "comments": [
+          {
+            "handle": "@dea",
+            "text": "Saving this fit check for the group chat before we start.",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@ben",
+            "text": "The giant pockets are the real star here.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "@dea, what did you mean by “fit check” there? Is that a test to see whether the vest fits?",
+      "question": "What does “fit check” mean in @dea's reply?",
+      "options": [
+        "A quick test that checks whether the vest is the right size.",
+        "A list of items volunteers need to bring to the museum.",
+        "A check that the vest meets museum safety rules.",
+        "Showing off or presenting an outfit."
+      ],
+      "correctIndex": 3,
+      "explanation": "Dea plans to share Ari's look with the group chat, presenting the outfit rather than checking its size.",
+      "replyTexts": [
+        "I thought fit check meant making sure the vest wasn't too big or small.",
+        "I read fit check as a checklist of supplies needed for the volunteer shift.",
+        "I figured fit check was an inspection to confirm the vest met safety requirements.",
+        "I took fit check to mean sharing an outfit for others to see."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q9",
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "slang": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "difficulty": "hard",
+      "contextId": "camera-pose-practice",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Sam Patel",
+        "handle": "@sam",
+        "hashtag": "#PhotoPractice",
+        "content": "My cousin keeps reminding me about mewing whenever I check my profile photos. I'm just trying to look less awkward in the yearbook picture.",
+        "comments": [
+          {
+            "handle": "@kai",
+            "text": "Good luck with the photo session!",
+            "avatarId": "kai"
+          },
+          {
+            "handle": "@mira",
+            "text": "The yearbook only gets one shot, so take your time.",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "sam"
+      },
+      "questionComment": "What does “mewing” mean in Sam's post? Is it a sound effect for the camera?",
+      "question": "What does “mewing” mean in the post by @sam?",
+      "options": [
+        "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+        "A camera trick that smooths out shadows in a portrait.",
+        "A set of exercises for strengthening the neck and shoulders.",
+        "A way to choose the best lighting for a profile photo."
+      ],
+      "correctIndex": 0,
+      "explanation": "Sam connects the term to face appearance in a photo, matching the posture technique described by the reference meaning.",
+      "replyTexts": [
+        "I understood mewing as a way of holding your mouth with the tongue against the palate to try to shape the face.",
+        "I thought mewing meant using a camera filter to soften dark patches in a picture.",
+        "I read mewing as a workout routine for building stronger neck and shoulder muscles.",
+        "I figured mewing meant finding the brightest spot to take a portrait."
+      ]
+    },
+    {
+      "id": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8-q10",
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "slang": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "difficulty": "hard",
+      "contextId": "library-clock-glitch",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@townloop",
+      "post": {
+        "displayName": "Jo Ellis",
+        "handle": "@justjo",
+        "hashtag": "#LibraryOddity",
+        "content": "The library clock showed 3:17 on every screen, but the wall clock said 3:16, and the book return slot started playing a tiny chime.",
+        "comments": [
+          {
+            "handle": "@townloop",
+            "text": "This is so ohio; the building is developing its own plot.",
+            "avatarId": "townloop"
+          },
+          {
+            "handle": "@campusfeed",
+            "text": "Someone should check whether the clocks are connected.",
+            "avatarId": "campus"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "@townloop, what did you mean by “ohio” there? Is that a new kind of clock?",
+      "question": "What does “ohio” mean in @townloop's reply?",
+      "options": [
+        "A reference to a building located in a particular state.",
+        "A malfunction that makes every clock show the same time.",
+        "A surreal, strange, or cursed version of reality.",
+        "A type of mystery story set in a library."
+      ],
+      "correctIndex": 2,
+      "explanation": "The mismatched clocks and unexpected chime make the scene seem bizarre and almost unreal, which is the sense used in the reply.",
+      "replyTexts": [
+        "I thought ohio meant the library was in a certain U.S. state.",
+        "I read ohio as a technical fault causing all the clocks to display one time.",
+        "I took ohio to describe a bizarre, almost unreal situation that feels cursed.",
+        "I figured ohio was a label for a mystery tale that takes place in a library."
+      ]
+    }
+  ]
+}

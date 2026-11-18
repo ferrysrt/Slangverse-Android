@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "note": "Observed attempt records only. Valid means generation validation passed, not expert approval or confirmed Git publication. Incomplete records are listed, never discarded. See per-check denominators.",
-  "attemptCount": 9,
+  "attemptCount": 14,
   "byPrompt": {
     "mixed-v1": {
       "attempts": 1,
@@ -350,6 +350,106 @@
         "no-surrounding-text": {
           "evaluated": 1,
           "passed": 1
+        }
+      }
+    },
+    "mixed-v9": {
+      "attempts": 1,
+      "terminal": 1,
+      "valid": 0,
+      "failed": 1,
+      "incomplete": 0,
+      "providerCalls": 1,
+      "allNinePassed": 1,
+      "itemsEvaluated": 10,
+      "itemsCompliant": 3,
+      "packsPublishable": 0,
+      "checks": {
+        "json-parse": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "required-fields": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "count-10": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "difficulty-5-3-2": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "four-options": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "correct-index": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "context-category": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "unique-ids": {
+          "evaluated": 1,
+          "passed": 1
+        },
+        "no-surrounding-text": {
+          "evaluated": 1,
+          "passed": 1
+        }
+      }
+    },
+    "mixed-v10": {
+      "attempts": 4,
+      "terminal": 4,
+      "valid": 1,
+      "failed": 3,
+      "incomplete": 0,
+      "providerCalls": 4,
+      "allNinePassed": 4,
+      "itemsEvaluated": 40,
+      "itemsCompliant": 20,
+      "packsPublishable": 1,
+      "checks": {
+        "json-parse": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "required-fields": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "count-10": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "difficulty-5-3-2": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "four-options": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "correct-index": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "context-category": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "unique-ids": {
+          "evaluated": 4,
+          "passed": 4
+        },
+        "no-surrounding-text": {
+          "evaluated": 4,
+          "passed": 4
         }
       }
     }
@@ -868,6 +968,338 @@
         },
         "completion_tokens_details": {
           "reasoning_tokens": 66,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": null,
+      "validationErrors": [],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 0,
+      "itemCompliance": 1,
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261118t185313401z-66c7910a-59ce-4c85-9684-e450a77c8b9a",
+      "packId": "mixed-20261118t185313401z-66c7910a-59ce-4c85-9684-e450a77c8b9a",
+      "promptVersion": "mixed-v9",
+      "promptSha256": "e969af1e8ba75badd7693b2079823d4cd9fb9db7da79758b5b576f39536d6f0e",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "failed",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-18T18:53:13.402Z",
+      "completedAt": "2026-11-18T18:53:53.482Z",
+      "durationMs": 40080,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 6131,
+        "completion_tokens": 4643,
+        "total_tokens": 10774,
+        "cost": 0.0030878,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 6128,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0030878,
+          "upstream_inference_prompt_cost": 0.0007663,
+          "upstream_inference_completions_cost": 0.0023215
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 292,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": "mixed-validation-failed",
+      "validationErrors": [
+        "7:social-identity",
+        "9:social-identity",
+        "0:reply-texts-term",
+        "2:reply-texts-term",
+        "3:reply-texts-term",
+        "6:reply-texts-term",
+        "7:reply-texts-term",
+        "8:reply-texts-term",
+        "9:reply-texts-term"
+      ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 7,
+      "itemCompliance": 0.3,
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8",
+      "packId": "mixed-20261118t185440790z-772fc2e7-f61e-411a-8b66-3768adaaa2c8",
+      "promptVersion": "mixed-v10",
+      "promptSha256": "d9808c772a7c07755e9f31103e4a3b0adb7b7be2811fd32111453543ef04630f",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "failed",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-18T18:54:40.792Z",
+      "completedAt": "2026-11-18T18:55:14.352Z",
+      "durationMs": 33560,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 5919,
+        "completion_tokens": 4271,
+        "total_tokens": 10190,
+        "cost": 0.0028753,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 5916,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0028753,
+          "upstream_inference_prompt_cost": 0.0007398,
+          "upstream_inference_completions_cost": 0.0021355
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 275,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": "mixed-validation-failed",
+      "validationErrors": [
+        "2:reference-mismatch",
+        "unused-reference",
+        "2:key-meaning-mismatch",
+        "1:avatar-id-is-handle",
+        "2:avatar-id-is-handle",
+        "3:avatar-id-is-handle",
+        "4:avatar-id-is-handle",
+        "5:avatar-id-is-handle",
+        "6:avatar-id-is-handle",
+        "7:avatar-id-is-handle",
+        "8:avatar-id-is-handle",
+        "9:avatar-id-is-handle"
+      ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 9,
+      "itemCompliance": 0.1,
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95",
+      "packId": "mixed-20261118t185527402z-b97e19d8-cbab-43f6-8db2-8fb53be23a95",
+      "promptVersion": "mixed-v10",
+      "promptSha256": "2fb89641565ceec2928b0e511668d6a1987aa72b9f2c7b9eb3ee7aba4a05a70a",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "failed",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-18T18:55:27.403Z",
+      "completedAt": "2026-11-18T18:56:00.216Z",
+      "durationMs": 32813,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 6049,
+        "completion_tokens": 4203,
+        "total_tokens": 10252,
+        "cost": 0.00285755,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 6046,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00285755,
+          "upstream_inference_prompt_cost": 0.00075605,
+          "upstream_inference_completions_cost": 0.0021015
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 157,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": "mixed-validation-failed",
+      "validationErrors": [
+        "2:reference-mismatch",
+        "3:reference-mismatch",
+        "4:reference-mismatch",
+        "unused-reference",
+        "2:key-meaning-mismatch",
+        "3:key-meaning-mismatch",
+        "4:key-meaning-mismatch"
+      ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 3,
+      "itemCompliance": 0.7,
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261118t185604801z-45041955-1d34-4e45-9e29-d17c8e20c061",
+      "packId": "mixed-20261118t185604801z-45041955-1d34-4e45-9e29-d17c8e20c061",
+      "promptVersion": "mixed-v10",
+      "promptSha256": "a5bd5da64fb8f4a020cddc265548fe084ce292215582357339eb8d7d45a51398",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "failed",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-18T18:56:04.802Z",
+      "completedAt": "2026-11-18T18:56:37.371Z",
+      "durationMs": 32569,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 6221,
+        "completion_tokens": 4058,
+        "total_tokens": 10279,
+        "cost": 0.00280655,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 6218,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00280655,
+          "upstream_inference_prompt_cost": 0.00077755,
+          "upstream_inference_completions_cost": 0.002029
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 112,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "failureCode": "mixed-validation-failed",
+      "validationErrors": [
+        "3:reference-mismatch",
+        "unused-reference",
+        "3:key-meaning-mismatch",
+        "5:social-identity",
+        "2:reply-texts-term",
+        "2:handle-is-avatar-id",
+        "3:reply-texts-term",
+        "4:reply-texts-term",
+        "4:handle-is-avatar-id",
+        "5:reply-texts-term",
+        "6:reply-texts-term",
+        "7:reply-texts-term",
+        "7:handle-is-avatar-id",
+        "8:reply-texts-term",
+        "9:reply-texts-term"
+      ],
+      "itemsEvaluated": 10,
+      "itemsWithErrors": 8,
+      "itemCompliance": 0.2,
+      "selectedDistinctTerms": 10,
+      "checks": {
+        "json-parse": true,
+        "required-fields": true,
+        "count-10": true,
+        "difficulty-5-3-2": true,
+        "four-options": true,
+        "correct-index": true,
+        "context-category": true,
+        "unique-ids": true,
+        "no-surrounding-text": true
+      },
+      "allNinePassed": true,
+      "auditProblems": []
+    },
+    {
+      "attemptId": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef",
+      "packId": "mixed-20261118t185637507z-f70fbda8-49e1-491f-8623-6665ef9953ef",
+      "promptVersion": "mixed-v10",
+      "promptSha256": "de973a0f869e975239267def164eee73093bf12284a1a00345d2c4fc8e6aed48",
+      "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+      "status": "valid",
+      "terminal": true,
+      "providerCalls": 1,
+      "startedAt": "2026-11-18T18:56:37.509Z",
+      "completedAt": "2026-11-18T18:57:10.321Z",
+      "durationMs": 32812,
+      "actualModel": "openai/gpt-6-luna",
+      "finishReason": "stop",
+      "usage": {
+        "prompt_tokens": 6196,
+        "completion_tokens": 4120,
+        "total_tokens": 10316,
+        "cost": 0.002834425,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 6193,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.002834425,
+          "upstream_inference_prompt_cost": 0.000774425,
+          "upstream_inference_completions_cost": 0.00206
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 272,
           "image_tokens": 0,
           "audio_tokens": 0
         }

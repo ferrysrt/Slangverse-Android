@@ -32,16 +32,26 @@ function questionsFor({references, assignments}) {
     const ref = references.find(ref => ref.senseId === assignment.senseId);
     const options = ['feeling very sleepy', 'planning a holiday', 'preparing a meal'];
     options.splice(i % 4, 0, ref.targetMeaning);
+    // v9: five of ten terms live only in a comment written by somebody other than the post author.
+    const replyTargeted = i % 2 === 1, commenter = `@fictional_reply_${i}`;
+    const comments = replyTargeted
+      ? [{handle: commenter, text: `Honestly, that was pure ${ref.term}.`, avatarId: 'guest_02'}]
+      : [{handle: '@fictional_reply', text: 'The group chat went quiet for a minute.', avatarId: 'guest_02'}];
     return {
       id: assignment.questionId, senseId: ref.senseId, slang: ref.term, targetMeaning: ref.targetMeaning,
       difficulty: assignment.difficulty, contextId: 'group-chat', contextCategory: MIXED_CONTEXT_CATEGORIES[i % 9],
       post: {displayName: `Fictional Friend ${i}`, handle: `@fictional_${i}`, hashtag: '#GroupChat',
-        content: `My ${ref.term} moment after the group chat went quiet.`, avatarId: 'guest_01',
-        comments: [{handle: '@fictional_reply', text: 'The group chat went quiet for a minute.', avatarId: 'guest_02'}]},
+        content: replyTargeted ? 'The group chat went quiet after I shared my news.'
+          : `My ${ref.term} moment after the group chat went quiet.`, avatarId: 'guest_01',
+        comments},
       questionComment: `Wait, what does ${ref.term} mean here?`,
-      questionTarget: 'post', targetHandle: `@fictional_${i}`,
-      question: `What does '${ref.term}' mean in this post?`, options, correctIndex: i % 4,
-      explanation: `This fixture uses ${ref.term} for ${ref.targetMeaning}.`
+      questionTarget: replyTargeted ? 'reply' : 'post',
+      targetHandle: replyTargeted ? commenter : `@fictional_${i}`,
+      question: replyTargeted ? `What does ${commenter} mean by '${ref.term}'?`
+        : `What does '${ref.term}' mean in this post?`,
+      options, correctIndex: i % 4,
+      explanation: `This fixture uses ${ref.term} for ${ref.targetMeaning}.`,
+      replyTexts: options.map(option => `${ref.term} here just means ${option}.`)
     };
   });
 }
@@ -248,8 +258,13 @@ test('mixed-v8 renders the targeted distractor and conversational comment requir
   assert.match(prompt, /Return ONE strict JSON object with a questions array of exactly 10 questions/);
   assert.deepEqual(promptInput(messages).references, value.references);
   assert.deepEqual(promptInput(messages).assignments, value.assignments);
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v8');
-  assert.equal(value.pack.promptVersion, 'mixed-v8');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v10');
+  assert.equal(value.pack.promptVersion, 'mixed-v10');
+  // v9: five reply targets, a slang-free post for those, and the learner's own replies.
+  assert.match(prompt, /Exactly five of the ten questions MUST use questionTarget "reply"/);
+  assert.match(prompt, /post\.content MUST NOT contain the slang term/);
+  assert.match(prompt, /replyTexts has exactly four strings, aligned with options in order/);
+  assert.match(prompt, /Each one MUST contain the exact slang term at least once/);
 });
 
 test('template markers and replacement syntax in source text remain exact untrusted data', () => {
@@ -757,11 +772,15 @@ test('prompt versions are archived and the active template binds the term to one
   const read = version => readFileSync(new URL(`../prompts/${version}.txt`, import.meta.url), 'utf8');
   const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3'), v4 = read('mixed-v4');
   const v5 = read('mixed-v5'), v6 = read('mixed-v6'), v7 = read('mixed-v7'), v8 = read('mixed-v8');
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v8');
+  const v9 = read('mixed-v9');
+  const v10 = read('mixed-v10');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v10');
   // Archive rule: the template that produced a recorded attempt is never edited in place.
   assert.ok(v7.includes('The term may also occur any number of times in the post, other replies and questionComment'));
   assert.ok(v7.includes('Example for cooked: "What do you mean by cooked? Are you cooking food or something?"'));
   assert.ok(v8.includes('Never inflect, pluralize, conjugate, hyphenate or derive it'));
+  assert.ok(v9.includes('replyTexts has exactly four strings, aligned with options in order'));
+  assert.ok(v10.includes('never the @guest_01 pattern'));
   assert.ok(v6.includes('The exact slang term MUST appear EXACTLY ONCE'));
   assert.ok(v1.includes('A natural short post using the exact slang term'));
   assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
@@ -790,7 +809,8 @@ function replyTargeted() {
   });
   return {...value, raw: JSON.stringify({questions: value.questions})};
 }
-const evaluate = (value, promptVersion = MIXED_PROMPT_VERSION) => evaluateMixedResponse(JSON.stringify({questions: value.questions}), {references: value.references, promptVersion});
+// These cases pin the v7/v8 repeat-and-bind contract; v9 adds its own checks below.
+const evaluate = (value, promptVersion = 'mixed-v8') => evaluateMixedResponse(JSON.stringify({questions: value.questions}), {references: value.references, promptVersion});
 
 test('a reply-targeted term is valid and binds the question to that reply', () => {
   const result = evaluate(replyTargeted());
@@ -864,4 +884,43 @@ test('legacy questions without questionTarget keep only the exactly-once rule', 
   assert.equal(plain.some(q => validateQuestion(q).some(e => e.startsWith('term-'))), false);
   for (const q of plain) q.post.content = 'A post that never says the slang.';
   assert.ok(plain.some(q => validateQuestion(q).includes('term-presence')));
+});
+
+test('mixed-v9 enforces the 5/5 surface mix, slang-free posts and four learner replies', () => {
+  const value = fixture();
+  const v9 = questions => evaluateMixedResponse(JSON.stringify({questions}),
+    {references: value.references, assignments: value.assignments, promptVersion: 'mixed-v9'});
+  assert.equal(v9(value.questions).valid, true, JSON.stringify(v9(value.questions).errors));
+  const mix = v9(value.questions).checks.find(check => check.id === 'reply-target-mix');
+  assert.equal(mix.passed, true);
+  assert.equal(value.questions.filter(q => q.questionTarget === 'reply').length, 5);
+
+  // Every term back in its post: the target mix is a generation contract, not a replay rule.
+  const postOnly = structuredClone(value.questions).map(q => ({...q, questionTarget: 'post', targetHandle: q.post.handle,
+    post: {...q.post, content: `My ${q.slang} moment after the group chat went quiet.`},
+    question: `What does '${q.slang}' mean in this post?`}));
+  assert.ok(v9(postOnly).errors.includes('reply-target-count:0'));
+  assert.equal(evaluateMixedResponse(JSON.stringify({questions: postOnly}),
+    {references: value.references, promptVersion: 'mixed-v9'}).valid, true);
+
+  const mutate = change => {
+    const questions = structuredClone(value.questions);
+    change(questions);
+    return evaluateMixedResponse(JSON.stringify({questions}),
+      {references: value.references, promptVersion: 'mixed-v9'}).errors;
+  };
+  assert.ok(mutate(q => { q[1].post.content = `The post itself now says ${q[1].slang} once.`; })
+    .some(e => e.includes('reply-target-post-has-term')));
+  assert.ok(mutate(q => { q[3].post.comments.push({handle: '@stranger', text: `Plus ${q[3].slang}.`, avatarId: 'guest_03'}); })
+    .some(e => e.includes('reply-target-comment')));
+  assert.ok(mutate(q => { q[5].post.comments[0].handle = q[5].post.handle; q[5].targetHandle = q[5].post.handle; })
+    .some(e => e.includes('reply-target-author')));
+  assert.ok(mutate(q => { delete q[0].replyTexts; }).some(e => e.includes('reply-texts-shape')));
+  assert.ok(mutate(q => { q[0].replyTexts[1] = q[0].replyTexts[0]; }).some(e => e.includes('reply-texts-duplicate')));
+  assert.ok(mutate(q => { q[0].replyTexts[0] = q[0].options[0]; }).some(e => e.includes('reply-texts-copy-option')));
+  assert.ok(mutate(q => { q[0].replyTexts[0] = 'Not naming the word here at all, just a snack plate.'; })
+    .some(e => e.includes('reply-texts-term')));
+  assert.ok(mutate(q => { q[0].replyTexts[0] = `${q[0].slang} ${'x'.repeat(260)}`; }).some(e => e.includes('reply-texts-long')));
+  // v8 packs without the new field keep validating exactly as recorded.
+  assert.equal(evaluateMixedResponse(value.raw, {references: value.references, promptVersion: 'mixed-v8'}).valid, true);
 });
