@@ -1,0 +1,10 @@
+{
+  "runId": "2026-11-18T20-06-12-022Z-bfc6bd0d-49ec-49df-bd46-b0a1f687df17",
+  "status": "succeeded",
+  "startedAt": "2026-11-18T20:06:12.022Z",
+  "completedAt": "2026-11-18T20:09:16.667Z",
+  "scrapedPages": 10,
+  "accepted": 65,
+  "rejected": 131,
+  "failureCode": null
+}

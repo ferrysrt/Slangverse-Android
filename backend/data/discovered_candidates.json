@@ -1,12 +1,1653 @@
 {
   "version": 3,
   "stage": "normalized_dataset",
-  "collectedAt": "2026-11-18T19:55:28.784Z",
+  "collectedAt": "2026-11-18T20:06:27.191Z",
   "scrapedPages": 10,
-  "accepted": 5,
-  "rejected": 0,
+  "accepted": 65,
+  "rejected": 131,
   "note": "Machine-normalized definitions with literal source captures, eligible for generation without a manual-review gate. Not expert-validated and not evidence of current popularity. Entries are ordered by newest recorded capture, not by popularity. Legacy provenance may be incomplete and retains its original evidence status.",
   "entries": [
+    {
+      "candidateId": "7e48c57425b7ae45c98c2efa",
+      "term": "aura",
+      "definition": "A person's current reputation or charisma.",
+      "normalizedDefinition": "A person's current reputation or charisma.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang; cultivating aura is called aura farming.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "aura | An individual's current reputation or charisma.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "aura | An individual's current reputation or charisma.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "92be4b1a5c158f7cb43a77e5",
+      "term": "ate",
+      "definition": "To perform extremely well at something.",
+      "normalizedDefinition": "To perform extremely well at something.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "ate | To have performed well or extremely good at something.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "ate | To have performed well or extremely good at something.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "99cc528bf2851159d362add2",
+      "term": "ball knowledge",
+      "definition": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "normalizedDefinition": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang; the entry also gives “elite ball knowledge” and “knowing ball” as alternatives.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "47522d454074c15267431f2f",
+      "term": "beige flag",
+      "definition": "A behavior or personality trait that is neither good nor bad.",
+      "normalizedDefinition": "A behavior or personality trait that is neither good nor bad.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed among relationship-related slang, by analogy with green flag and red flag.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "beige flag | A behavior or personality trait that is neither good nor bad.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "beige flag | A behavior or personality trait that is neither good nor bad.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "f6920a2ec1787315071eb434",
+      "term": "bet",
+      "definition": "A casual way to agree; means yes, okay, or sure.",
+      "normalizedDefinition": "A casual way to agree; means yes, okay, or sure.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "bet | Agreeing to something; yes; okay; sure.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "bet | Agreeing to something; yes; okay; sure.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "69619210a860151e9203683a",
+      "term": "big yikes",
+      "definition": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+      "normalizedDefinition": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as a reaction term in 2020s slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "big yikes | something embarrassing or cringeworthy, particularly in response to an offensive comment.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "big yikes | something embarrassing or cringeworthy, particularly in response to an offensive comment.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "5aa4611f07842001749f3189",
+      "term": "buns",
+      "definition": "Something considered bad or low quality.",
+      "normalizedDefinition": "Something considered bad or low quality.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "buns | Something that is considered bad or low quality.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "buns | Something that is considered bad or low quality.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "2356684f7e32025ce8ed8ee0",
+      "term": "bussin'",
+      "definition": "Extremely good or excellent; originally used in AAVE for delicious food.",
+      "normalizedDefinition": "Extremely good or excellent; originally used in AAVE for delicious food.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The entry describes the term as originating in African-American vernacular for delicious food.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "bussin' | Extremely good, excellent. Originated from African-American vernacular for delicious food.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "bussin' | Extremely good, excellent. Originated from African-American vernacular for delicious food.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "490a833c90fce690cd833bf6",
+      "term": "caught in 4k",
+      "definition": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+      "normalizedDefinition": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The entry links the phrase to 4K video resolution.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "caught in 4K | Refers to someone being indisputably caught doing something wrong or incriminating on camera or with evidence to prove it",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "caught in 4K | Refers to someone being indisputably caught doing something wrong or incriminating on camera or with evidence to prove it",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "7b6aada4a9a530f31b0c4ce2",
+      "term": "clapback",
+      "definition": "A swift, witty response to an insult or critique.",
+      "normalizedDefinition": "A swift, witty response to an insult or critique.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "clapback | Swift and witty response to an insult or critique.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "clapback | Swift and witty response to an insult or critique.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "bfb72ec59776ab3a58688999",
+      "term": "crash out",
+      "definition": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+      "normalizedDefinition": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The entry says the term originated in the African-American community and became popular on TikTok in 2024.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "crash out / crashout | To have a bout of rage or upset. Sometimes more generally used to refer to anger or strong displeasure.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "crash out / crashout | To have a bout of rage or upset. Sometimes more generally used to refer to anger or strong displeasure.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "b1b758041e0972efaca13b95",
+      "term": "delusionship",
+      "definition": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+      "normalizedDefinition": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The entry connects the term to “delulu,” describing someone who holds such beliefs.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "delusionship | A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "delusionship | A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "60f29ef90ffa450378a9b462",
+      "term": "finna",
+      "definition": "A colloquial way to say “I am going to” or “I am about to.”",
+      "normalizedDefinition": "A colloquial way to say “I am going to” or “I am about to.”",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The entry traces the term to AAVE and says it is often interchangeable with “gonna.”",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "finna | Term used meaning \"I am going to\" or \"I am about to\".",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "finna | Term used meaning \"I am going to\" or \"I am about to\".",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "df1227d6ae4652b2929e0dde",
+      "term": "fire",
+      "definition": "A term used to describe something impressive, good, or pleasant.",
+      "normalizedDefinition": "A term used to describe something impressive, good, or pleasant.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "fire | Term used to describe that something is impressive, good, or pleasant.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "fire | Term used to describe that something is impressive, good, or pleasant.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "9491904bceb7036f8eb2b882",
+      "term": "fit check",
+      "definition": "A way to highlight or draw attention to one's outfit or fashion.",
+      "normalizedDefinition": "A way to highlight or draw attention to one's outfit or fashion.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The entry says “fit” is shortened from “outfit.”",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "fit/fit check | Term used to highlight or bring attention to one's outfit or fashion.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "fit/fit check | Term used to highlight or bring attention to one's outfit or fashion.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "d2a26a8e055ee958bd214e30",
+      "term": "function",
+      "definition": "An event, party, hangout, or social gathering.",
+      "normalizedDefinition": "An event, party, hangout, or social gathering.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Listed as 2020s English-language slang for a social event.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "function | An event, party, hangout, or social gathering.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "function | An event, party, hangout, or social gathering.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "fe4d446ea6788a150b7be2a8",
+      "term": "skibidi",
+      "definition": "A versatile word with no fixed meaning, derived from the web series Skibidi Toilet and often associated with brain rot.",
+      "normalizedDefinition": "A versatile word with no fixed meaning, derived from the web series Skibidi Toilet and often associated with brain rot.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Derived from the web series Skibidi Toilet.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "Word of multiple parts of speech that derives from the web-series _[Skibidi Toilet](https://en.wikipedia.org/wiki/Skibidi_Toilet \"Skibidi Toilet\")_ with no real meaning, and often associated with [brain rot]",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "Word of multiple parts of speech that derives from the web-series _[Skibidi Toilet](https://en.wikipedia.org/wiki/Skibidi_Toilet \"Skibidi Toilet\")_ with no real meaning, and often associated with [brain rot]",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "a16c0651d7f505d5037f77fa",
+      "term": "glizzy",
+      "definition": "A slang term for a hot dog.",
+      "normalizedDefinition": "A slang term for a hot dog.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Reportedly originated in the greater Washington, D.C., area; the cited text says it is a euphemism for hot dog and connects the term to how people described a Glock.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "glizzy is another term for hot dog",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ],
+      "sourceUrl": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+      "sourceTitle": "Glossary of 2020s slang",
+      "evidenceSnippet": "glizzy is another term for hot dog",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "4e603836bd1aa6a71ff3e172",
+      "term": "biblically accurate",
+      "definition": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+      "normalizedDefinition": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A humorous reference to depictions of biblically accurate angels.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://gabb.com/blog/teen-slang/",
+          "title": "200+ Gen Z & Teen Slang Terms: A Parent's Guide 2026",
+          "quote": "Describes something strange, overwhelming, or unsettling to look at, referencing depictions of “biblically accurate angels.”",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "3159b04eee4de4bbbb1ca359e17cdbecfc59daeb31f40cadb0960cf610533756"
+        }
+      ],
+      "sourceUrl": "https://gabb.com/blog/teen-slang/",
+      "sourceTitle": "200+ Gen Z & Teen Slang Terms: A Parent's Guide 2026",
+      "evidenceSnippet": "Describes something strange, overwhelming, or unsettling to look at, referencing depictions of “biblically accurate angels.”",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "bfabfc4ae6b3480b410a6d81",
+      "term": "cheugy",
+      "definition": "Something slightly off-trend or outdated.",
+      "normalizedDefinition": "Something slightly off-trend or outdated.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A Gen Z slang term discussed in the article’s background section.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "For instance, the term “Cheugy” was coined by Gen Z to describe things that are slightly off-trend or outdated.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "For instance, the term “Cheugy” was coined by Gen Z to describe things that are slightly off-trend or outdated.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "ac01154b11ec2c9d945d29cf",
+      "term": "ceo",
+      "definition": "A person who is highly skilled or a master at something.",
+      "normalizedDefinition": "A person who is highly skilled or a master at something.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A slang use of an existing acronym, discussed in the article’s background section.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Another example of Gen Z slang is the term “CEO,” which refers to someone who is highly skilled or a master at something.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Another example of Gen Z slang is the term “CEO,” which refers to someone who is highly skilled or a master at something.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "0b61bed81b1a72d2f7486621",
+      "term": "soulm8",
+      "definition": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+      "normalizedDefinition": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s social media post, analyzed as a letter-homophone example.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Furthermore, PB used the term “soulm8” to mean “soulmate” by creatively replacing the letters “ate” with the number “8.”",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Furthermore, PB used the term “soulm8” to mean “soulmate” by creatively replacing the letters “ate” with the number “8.”",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "1583656d17cc6c7ca9c40d82",
+      "term": "weeheeeee",
+      "definition": "A playful sound-like spelling used to convey excitement or enjoyment.",
+      "normalizedDefinition": "A playful sound-like spelling used to convey excitement or enjoyment.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s post about booking a trip, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Referring to Table 7, it can be observed that PE used “weeheeeee” in an attempt to imitate the sound of excitement or enjoyment.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Referring to Table 7, it can be observed that PE used “weeheeeee” in an attempt to imitate the sound of excitement or enjoyment.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "ec5566b58a477fd3381f2c23",
+      "term": "hehe",
+      "definition": "A light expression of laughter or amusement.",
+      "normalizedDefinition": "A light expression of laughter or amusement.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s post, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Additionally, “hehe” and “haha” were used by PE and PD to represent laughter or amusement.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Additionally, “hehe” and “haha” were used by PE and PD to represent laughter or amusement.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "70a644bc4d0f3d0a7b89d477",
+      "term": "haha",
+      "definition": "A sound-like spelling used to represent laughter or amusement.",
+      "normalizedDefinition": "A sound-like spelling used to represent laughter or amusement.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s post, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Additionally, “hehe” and “haha” were used by PE and PD to represent laughter or amusement.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Additionally, “hehe” and “haha” were used by PE and PD to represent laughter or amusement.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "a84a45ce3ad918f9320034c9",
+      "term": "huhu",
+      "definition": "A sound-like spelling used to express sighing or loneliness.",
+      "normalizedDefinition": "A sound-like spelling used to express sighing or loneliness.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s post about being alone, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Aside from that, PC used “huhu” to express sighs or feelings of loneliness",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Aside from that, PC used “huhu” to express sighs or feelings of loneliness",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "0371aedb710f6bc019b8ae9a",
+      "term": "ugh",
+      "definition": "An interjection used to express annoyance or frustration.",
+      "normalizedDefinition": "An interjection used to express annoyance or frustration.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s post about jet lag, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "while “ugh” represented annoyance or frustration for PE.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "while “ugh” represented annoyance or frustration for PE.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "330effbe57a625b2ac2401fb",
+      "term": "husbum",
+      "definition": "A playful misspelling of “husband.”",
+      "normalizedDefinition": "A playful misspelling of “husband.”",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A social media post using a playful spelling, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Lastly, PB creatively used “husbum” and “waifu” as playful misspellings of the terms “husband” and “wife.”",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Lastly, PB creatively used “husbum” and “waifu” as playful misspellings of the terms “husband” and “wife.”",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "77a447ea2a73a02c1b2e1cf7",
+      "term": "waifu",
+      "definition": "A playful misspelling of “wife.”",
+      "normalizedDefinition": "A playful misspelling of “wife.”",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A social media post using a playful spelling, analyzed as an onomatopoeic spelling.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "Lastly, PB creatively used “husbum” and “waifu” as playful misspellings of the terms “husband” and “wife.”",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "Lastly, PB creatively used “husbum” and “waifu” as playful misspellings of the terms “husband” and “wife.”",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "b8a9001052b62a8891427bf3",
+      "term": "bff",
+      "definition": "An abbreviation for “best friend.”",
+      "normalizedDefinition": "An abbreviation for “best friend.”",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A shortened form used in an influencer’s social media post.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "**“bff”** = best friend |",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "**“bff”** = best friend |",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "e21d1d5883ad2789d249356f",
+      "term": "xmas",
+      "definition": "A shortened spelling of “Christmas.”",
+      "normalizedDefinition": "A shortened spelling of “Christmas.”",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A shortened form used in an influencer’s social media post.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "| **“xmas”** = christmas |",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "| **“xmas”** = christmas |",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "ff096d997e2b934b8213b0c6",
+      "term": "priv",
+      "definition": "A clipped form of “private.”",
+      "normalizedDefinition": "A clipped form of “private.”",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A shortened word used in a post about an Instagram account.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "| **“priv”** = private |",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "| **“priv”** = private |",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "cb058e7385bd15234b676d26",
+      "term": "vlogmas",
+      "definition": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+      "normalizedDefinition": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "An influencer’s post announcing a weekly vlog, analyzed as compounding.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+          "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+          "quote": "| **” vlogmas** **”** = vlog (noun) + Christmas (noun), |",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+        }
+      ],
+      "sourceUrl": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+      "sourceTitle": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+      "evidenceSnippet": "| **” vlogmas** **”** = vlog (noun) + Christmas (noun), |",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "011c94e1d056d4615adf91eb",
+      "term": "lowkenuinely",
+      "definition": "To tell the truth or share information sincerely, calmly, or in a laid-back way.",
+      "normalizedDefinition": "To tell the truth or share information sincerely, calmly, or in a laid-back way.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a TikTok blend of “lowkey” and “genuinely,” used as a softer alternative to “actually” or “seriously.”",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Lowkenuinely’ means to tell the truth or share information in a sincere, calm, or laid-back way.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Lowkenuinely’ means to tell the truth or share information in a sincere, calm, or laid-back way.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "52f71348debab92d90d3c908",
+      "term": "cortisol spike",
+      "definition": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+      "normalizedDefinition": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as originating as a joke on X and later appearing with exaggerated cortisol-meter memes.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Cortisol spike’ is a viral internet joke used to describe moments of shock, embarrassment, or awkwardness.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Cortisol spike’ is a viral internet joke used to describe moments of shock, embarrassment, or awkwardness.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "4329449a2a5861a4355368fe",
+      "term": "boy kibble",
+      "definition": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+      "normalizedDefinition": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a playful counterpart to “girl dinner,” jokingly comparing plain ingredients to dog food.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Boy kibble’ is a viral social media food featuring simple, high-protein meals, typically including ground meat and white rice.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Boy kibble’ is a viral social media food featuring simple, high-protein meals, typically including ground meat and white rice.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "131f921e36c9f83c07a987ad",
+      "term": "future faking",
+      "definition": "Making empty promises about the future to get something one wants in the present.",
+      "normalizedDefinition": "Making empty promises about the future to get something one wants in the present.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a modern term for a set of behaviors that can occur early in a relationship.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Future faking’ refers to a behaviour where someone provides empty promises for the future to get something they presently want.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Future faking’ refers to a behaviour where someone provides empty promises for the future to get something they presently want.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "6ee6680bdcae26f6e4f525de",
+      "term": "the saxophones are getting louder",
+      "definition": "A way to say that something bad, negative, or inevitable is getting closer.",
+      "normalizedDefinition": "A way to say that something bad, negative, or inevitable is getting closer.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a TikTok meme based on a film scene in which swelling saxophones foreshadow danger.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘The saxophones are getting louder’ means that something bad, negative, or inevitable is getting closer.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘The saxophones are getting louder’ means that something bad, negative, or inevitable is getting closer.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "3ccb1c5f89d2f8f86c047b76",
+      "term": "looksmaxxing",
+      "definition": "Trying to improve someone’s physical appearance or attractiveness as much as possible.",
+      "normalizedDefinition": "Trying to improve someone’s physical appearance or attractiveness as much as possible.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as emerging from TikTok and social-media subcultures focused on maximizing physical appearance.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Looksmaxxing’ refers to trying to improve someone’s physical appearance or attractiveness as much as possible.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Looksmaxxing’ refers to trying to improve someone’s physical appearance or attractiveness as much as possible.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "9246f5d64d7f7aa4f0540ad1",
+      "term": "everything hallelujah",
+      "definition": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+      "normalizedDefinition": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a casual suffix inspired by Justin Bieber’s viral Coachella performance.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Everything hallelujah’ is typically used after a short sentence or statement to celebrate everyday micro-wins and express gratitude.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Everything hallelujah’ is typically used after a short sentence or statement to celebrate everyday micro-wins and express gratitude.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "13a4921d56c4628b115d8d77",
+      "term": "mogging",
+      "definition": "Outshining someone or looking significantly better than them.",
+      "normalizedDefinition": "Outshining someone or looking significantly better than them.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as spreading on social media, especially TikTok, with use often jokingly focused on appearance.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Mogging’ is a viral TikTok phrase meaning to outshine or look significantly better than someone else.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Mogging’ is a viral TikTok phrase meaning to outshine or look significantly better than someone else.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "a1ce27ff678cbb47b996cc42",
+      "term": "you the birthday",
+      "definition": "A compliment suggesting someone is the main character or the center of attention in a room.",
+      "normalizedDefinition": "A compliment suggesting someone is the main character or the center of attention in a room.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a quirky, vague phrase commonly used as a compliment without a literal meaning.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘You the birthday’ is a compliment to say that someone is the ‘main character’ or main attention of the room.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘You the birthday’ is a compliment to say that someone is the ‘main character’ or main attention of the room.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "e2536364707443c3b1781199",
+      "term": "larp",
+      "definition": "An adjective for someone perceived as performative.",
+      "normalizedDefinition": "An adjective for someone perceived as performative.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as slang derived from “Live Action Role Play,” shifted from an acronym into an adjective.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘LARP’ is used as an adjective to describe someone who is perceived to be performative.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘LARP’ is used as an adjective to describe someone who is perceived to be performative.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "20013dab9f1edc3269926d17",
+      "term": "quiet on the creek",
+      "definition": "To be quiet or keep something to yourself.",
+      "normalizedDefinition": "To be quiet or keep something to yourself.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as TikTok-born slang interpreted as keeping plans, achievements, or relationships private.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "The phrase ‘quiet on the creek’ means to be quiet or keep something to yourself.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "The phrase ‘quiet on the creek’ means to be quiet or keep something to yourself.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "6d2f8e4e25f0bb418ccafb87",
+      "term": "polyester",
+      "definition": "A criticism of online content perceived as low-quality, generic, or inauthentic.",
+      "normalizedDefinition": "A criticism of online content perceived as low-quality, generic, or inauthentic.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a familiar word given a new slang meaning for calling out content and lifestyles seen as inauthentic.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Polyester’ is used as a critique to call out content that is perceived as low-quality, generic, or inauthentic online.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Polyester’ is used as a critique to call out content that is perceived as low-quality, generic, or inauthentic online.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "4762da019c15a98a0c2a4cc7",
+      "term": "meat proxy",
+      "definition": "Someone who forwards or uses AI-generated content without reading, understanding, or editing it.",
+      "normalizedDefinition": "Someone who forwards or uses AI-generated content without reading, understanding, or editing it.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as emerging corporate and tech slang expressing frustration with AI content and diminished authenticity.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Meat proxy’ refers to someone who forwards or uses AI-generated content without reading, understanding, or editing it.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Meat proxy’ refers to someone who forwards or uses AI-generated content without reading, understanding, or editing it.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "04841782085c2e730ae19eb6",
+      "term": "cap",
+      "definition": "A lie; used in “no cap” to emphasize that something is true.",
+      "normalizedDefinition": "A lie; used in “no cap” to emphasize that something is true.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source associates its popularization with Atlanta hip-hop in 2017, while noting earlier use in rap music.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://promova.com/blog/brainrot-slang",
+          "title": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+          "quote": "“Cap” = lie, “No cap” = telling the truth.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "664f262624dd1d0927943182defd5af76617cae0beac27f379edaf620949e32b"
+        }
+      ],
+      "sourceUrl": "https://promova.com/blog/brainrot-slang",
+      "sourceTitle": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+      "evidenceSnippet": "“Cap” = lie, “No cap” = telling the truth.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "aa9af6df1b48d1bfa6b18115",
+      "term": "skibidi",
+      "definition": "A nonsensical catchphrase that became a meme, commonly associated with chaotic, surreal short videos.",
+      "normalizedDefinition": "A nonsensical catchphrase that became a meme, commonly associated with chaotic, surreal short videos.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source connects its initial attention to a 2018 song and its wider spread to the “skibidi toilet” trend in 2023.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://promova.com/blog/brainrot-slang",
+          "title": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+          "quote": "A nonsensical catchphrase turned meme. Most commonly associated with chaotic, surreal YouTube shorts videos featuring characters like “skibidi toilet”.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "664f262624dd1d0927943182defd5af76617cae0beac27f379edaf620949e32b"
+        }
+      ],
+      "sourceUrl": "https://promova.com/blog/brainrot-slang",
+      "sourceTitle": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+      "evidenceSnippet": "A nonsensical catchphrase turned meme. Most commonly associated with chaotic, surreal YouTube shorts videos featuring characters like “skibidi toilet”.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "d0299ff33939de7fa098210d",
+      "term": "vibe check",
+      "definition": "A casual check on how people are doing; passing it means someone is pleasant to be around.",
+      "normalizedDefinition": "A casual check on how people are doing; passing it means someone is pleasant to be around.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The article presents it as a Gen-Z way of asking what is going on or how everyone is.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "A “vibe check” is the Gen-Z version of asking “What’s going on?” or “How is everyone?”",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ],
+      "sourceUrl": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+      "sourceTitle": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+      "evidenceSnippet": "A “vibe check” is the Gen-Z version of asking “What’s going on?” or “How is everyone?”",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "d6f1aaf1317cfb2eb524480f",
+      "term": "delulu",
+      "definition": "Short for “delusional”; used for an overly optimistic or unrealistic belief, often about a crush, job, or hoped-for outcome.",
+      "normalizedDefinition": "Short for “delusional”; used for an overly optimistic or unrealistic belief, often about a crush, job, or hoped-for outcome.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source traces its spread to K-pop stan culture on Twitter.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Delulu” is short for delusional, and it almost always describes someone’s own overly optimistic or unrealistic belief",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Delulu” is short for delusional, and it almost always describes someone’s own overly optimistic or unrealistic belief",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "1a0ac6bb2470c2a2e78b4658",
+      "term": "aura farming",
+      "definition": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+      "normalizedDefinition": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source links the phrase to sports and gaming clip culture.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "a18841aab9e7763da0a0a911",
+      "term": "canon event",
+      "definition": "An unavoidable, defining moment in someone’s life story.",
+      "normalizedDefinition": "An unavoidable, defining moment in someone’s life story.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Borrowed from fandom language about what counts as real in a fictional universe, then applied to everyday life.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "A “canon event” is a moment framed as an unavoidable, defining part of someone’s story",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "A “canon event” is a moment framed as an unavoidable, defining part of someone’s story",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "9bf32d0d825b18023bcde321",
+      "term": "chopped",
+      "definition": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+      "normalizedDefinition": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Used in fashion, beauty, roasting, and commentary about someone’s prospects.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://slang.net/blog/2025_top_slang_terms",
+          "title": "Top 10 Slang Terms from 2025",
+          "quote": "Chopped is slang for something that looks unattractive, unappealing, or generally \"messed up,\" as if it's been badly cut or ruined.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+        },
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "Calling someone or something “chopped” means it looks bad or has no real shot",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://slang.net/blog/2025_top_slang_terms",
+      "sourceTitle": "Top 10 Slang Terms from 2025",
+      "evidenceSnippet": "Chopped is slang for something that looks unattractive, unappealing, or generally \"messed up,\" as if it's been badly cut or ruined.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "776d436197526ca30c47b9b7",
+      "term": "mewing",
+      "definition": "A tongue-posture technique that some people believe can sharpen jawline definition.",
+      "normalizedDefinition": "A tongue-posture technique that some people believe can sharpen jawline definition.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source says the technique predates its current meme status and its aesthetic claims are unverified.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Mewing” refers to a tongue-posture technique some people believe sharpens jawline definition",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Mewing” refers to a tongue-posture technique some people believe sharpens jawline definition",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "c209c307e51e63013470b4b0",
+      "term": "unc",
+      "definition": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+      "normalizedDefinition": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source traces it to Black American English, where it could be affectionate before broader internet use.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Unc” describes someone, usually a man, acting older, more out of touch, or more cautious than his actual age suggests",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Unc” describes someone, usually a man, acting older, more out of touch, or more cautious than his actual age suggests",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "72ab6963688d7b15ff9978fb",
+      "term": "brat",
+      "definition": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+      "normalizedDefinition": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source describes a pop-culture-driven shift from the older meaning of a spoiled child.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Brat” now describes someone confidently unbothered, a little messy, and unapologetically themselves",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Brat” now describes someone confidently unbothered, a little messy, and unapologetically themselves",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "bcbf7f27fcc56ffd2b4f33a7",
+      "term": "biblically accurate",
+      "definition": "Describes something strange, overwhelming, or unsettling, referencing depictions of angels drawn as described in scripture.",
+      "normalizedDefinition": "Describes something strange, overwhelming, or unsettling, referencing depictions of angels drawn as described in scripture.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source connects the usage to a meme sparked by religious-art depictions of angels.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "Calling something “biblically accurate” means it looks strange, overwhelming, or unsettling",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "Calling something “biblically accurate” means it looks strange, overwhelming, or unsettling",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "d475f2b7e4b85c0687816519",
+      "term": "beige flag",
+      "definition": "A personality quirk that is neither a real warning sign nor a positive trait, but is mildly odd or unremarkable.",
+      "normalizedDefinition": "A personality quirk that is neither a real warning sign nor a positive trait, but is mildly odd or unremarkable.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "A dating term that extends the red-flag and green-flag framework with a neutral middle category.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "A “beige flag” is a personality quirk that isn’t a genuine warning sign and isn’t a positive trait either",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "A “beige flag” is a personality quirk that isn’t a genuine warning sign and isn’t a positive trait either",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "87b536fba0c4c6a030df92a9",
+      "term": "npc energy",
+      "definition": "Behavior that seems scripted or makes someone blend into the background, evoking a non-player character in a video game.",
+      "normalizedDefinition": "Behavior that seems scripted or makes someone blend into the background, evoking a non-player character in a video game.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source says a livestream trend involving repetitive behavior helped push the phrase beyond gaming.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“NPC energy” describes someone acting like they’re following a script or blending into the background",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“NPC energy” describes someone acting like they’re following a script or blending into the background",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "eea96f732eb9d00c37f3774b",
+      "term": "brain rot",
+      "definition": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+      "normalizedDefinition": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source describes it as starting as a self-aware joke about scrolling habits and later becoming a descriptor for content.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Brain rot” describes low-value, low-effort content, or the mentally foggy feeling that comes from consuming too much of it",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        },
+        {
+          "url": "https://slang.net/blog/2025_top_slang_terms",
+          "title": "Top 10 Slang Terms from 2025",
+          "quote": "Brain rot (or \"brainrot\") describes content, media, or experiences that are fun but mind-numbing",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Brain rot” describes low-value, low-effort content, or the mentally foggy feeling that comes from consuming too much of it",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "dfb407bd5a95cbb2bcb35d3a",
+      "term": "skibidi",
+      "definition": "An absurdist filler word with no fixed meaning.",
+      "normalizedDefinition": "An absurdist filler word with no fixed meaning.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source roots it in an animated meme series and describes its use as sound- and repetition-driven.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Skibidi” has no fixed meaning and functions as pure absurdist filler",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ],
+      "sourceUrl": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+      "sourceTitle": "14 Internet Slang Terms of 2026, Actually Explained",
+      "evidenceSnippet": "“Skibidi” has no fixed meaning and functions as pure absurdist filler",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "034538f41afbd0a336a27472",
+      "term": "glazing",
+      "definition": "Excessively praising or flattering someone in a way that feels forced or embarrassing.",
+      "normalizedDefinition": "Excessively praising or flattering someone in a way that feels forced or embarrassing.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source says it spread across TikTok, Twitch, and Discord in the early 2020s.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://slang.net/blog/2025_top_slang_terms",
+          "title": "Top 10 Slang Terms from 2025",
+          "quote": "Glazing refers to excessively praising or sucking up to someone in a way that feels forced or embarrassing.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+        }
+      ],
+      "sourceUrl": "https://slang.net/blog/2025_top_slang_terms",
+      "sourceTitle": "Top 10 Slang Terms from 2025",
+      "evidenceSnippet": "Glazing refers to excessively praising or sucking up to someone in a way that feels forced or embarrassing.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "3625d1f67650a8572b913a55",
+      "term": "slay",
+      "definition": "Used to praise someone’s confidence, style, or ability to do something impressively.",
+      "normalizedDefinition": "Used to praise someone’s confidence, style, or ability to do something impressively.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source describes it as a continuing compliment in texts and online comments.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://slang.net/blog/2025_top_slang_terms",
+          "title": "Top 10 Slang Terms from 2025",
+          "quote": "slay is used to compliment someone's confidence, style, or ability to \"own it.\"",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+        }
+      ],
+      "sourceUrl": "https://slang.net/blog/2025_top_slang_terms",
+      "sourceTitle": "Top 10 Slang Terms from 2025",
+      "evidenceSnippet": "slay is used to compliment someone's confidence, style, or ability to \"own it.\"",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "ce08e63718c97bf932ed7228",
+      "term": "zesty",
+      "definition": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+      "normalizedDefinition": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source attributes renewed popularity to viral TikTok edits and online commentary.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://slang.net/blog/2025_top_slang_terms",
+          "title": "Top 10 Slang Terms from 2025",
+          "quote": "Zesty describes something lively, energetic, or slightly chaotic in a fun way.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+        }
+      ],
+      "sourceUrl": "https://slang.net/blog/2025_top_slang_terms",
+      "sourceTitle": "Top 10 Slang Terms from 2025",
+      "evidenceSnippet": "Zesty describes something lively, energetic, or slightly chaotic in a fun way.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
+    {
+      "candidateId": "801826f884c18da71a5472d4",
+      "term": "mogging",
+      "definition": "Outshining or dominating someone, especially in looks, skills, or status.",
+      "normalizedDefinition": "Outshining or dominating someone, especially in looks, skills, or status.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "The source associates it with fitness, gaming, and meme communities, where it can signal bragging or playful competition.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://slang.net/blog/2025_top_slang_terms",
+          "title": "Top 10 Slang Terms from 2025",
+          "quote": "Mogging comes from online culture and refers to outshining or \"dominating\" someone, especially in terms of looks, skills, or status.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+        }
+      ],
+      "sourceUrl": "https://slang.net/blog/2025_top_slang_terms",
+      "sourceTitle": "Top 10 Slang Terms from 2025",
+      "evidenceSnippet": "Mogging comes from online culture and refers to outshining or \"dominating\" someone, especially in terms of looks, skills, or status.",
+      "firstSeenAt": "2026-11-18T20:06:27.191Z",
+      "lastCollectedAt": "2026-11-18T20:06:27.191Z"
+    },
     {
       "candidateId": "e8c037838a50c096b8d7a4f3",
       "term": "lowkenuinely",
