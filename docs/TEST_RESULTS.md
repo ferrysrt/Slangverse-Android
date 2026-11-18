@@ -2,6 +2,15 @@
 
 Code checkpoint at report time is on **main**; the final commit and run IDs are listed after the results below. App build configuration remains `0.5.0-mixed-feed`, version code 6.
 
+## Device acceptance — 2026-11-19 (Asia/Jakarta)
+
+First on-device run of the feed, on one physical Xiaomi `22071219CG` (Android 14, SDK 34, MIUI), not an emulator and not the cloud phone.
+
+- Build: local `assembleDebug` at commit `78ac9dc`, `app-debug.apk` of 18,301,616 bytes, SHA-256 `95666e7a97b9a7bebff4436595f735e4e0916ea1ac99db5c677d66cfdaca1ec3`, signed with the debug certificate (`CN=Android Debug`), installed over the previous build with `adb install -r`.
+- Published catalogue from `main` loaded over HTTPS: cards rendered, replies expanded, the reply-the-meaning sheet opened, and one answer was graded locally as correct (+80 practice XP, combo 1) with the pack's explanation. The `normalized-unreviewed` provenance label is visible in the feedback panel.
+- A repeated-term pack was exercised **without publishing it**: branch `test/mixed-v8-verify` served the recorded `mixed-v8` attempt (`f98dfc8a…e641a`) through an abbreviated catalogue. This client accepted it (`promptVersion mixed-v8`) and rendered the ten items; the question appeared as an ordinary reply from `@confuseduser`, "Is delulu a concert app? I can't tell from the context.", and the option set carried a distractor that mirrors that wrong guess. The phone was returned to the `main` bank afterwards.
+- Not established here: release/distribution signing, a release build, store packaging, more than one device, expert semantic review, and any quality claim about the v8 pack. That pack stays unpublished and `question-bank/` on `main` is unchanged.
+
 ## Actual dataset results
 
 - [Refresh run 44142297195](https://github.com/ferrysrt/Slangverse-Android/actions/runs/44142297195) succeeded (1 Firecrawl search + 1 OpenRouter normalization, no retries): 9 scraped pages, 4 accepted, 4 rejected. Its audit files were initially written to the wrong relative path, so they were not committed.
@@ -29,7 +38,7 @@ Backend local `npm test` after the publisher change: **170 passed, 0 failed/canc
 
 ## Not established
 
-One pack over six attempts is a real but tiny sample; no prompt-improvement claim, semantic-quality claim or success-rate generalisation follows from it. The new `cooked` sense in the mixed pack is the dataset's exhaustion meaning, not the legacy "in serious trouble" pack. Phone/device acceptance, expert semantic review and participant evaluation remain undone.
+One pack over six attempts is a real but tiny sample; no prompt-improvement claim, semantic-quality claim or success-rate generalisation follows from it. The new `cooked` sense in the mixed pack is the dataset's exhaustion meaning, not the legacy "in serious trouble" pack. Phone/device acceptance was still outstanding for this checkpoint; a later run covered it on 2026-11-19 (see the device acceptance section above). Expert semantic review and participant evaluation remain undone.
 
 ## Previous checkpoint verification
 
