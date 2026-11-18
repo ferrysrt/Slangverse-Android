@@ -1,0 +1,101 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "id": "json-parse",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "required-fields",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "count-10",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "difficulty-5-3-2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "four-options",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "correct-index",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "context-category",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unique-ids",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "no-surrounding-text",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reference-integrity",
+      "passed": false,
+      "errors": [
+        "5:term-target-mismatch",
+        "8:term-target-handle-mismatch"
+      ]
+    },
+    {
+      "id": "existing-question-rules",
+      "passed": false,
+      "errors": [
+        "5:term-target-mismatch",
+        "8:term-target-handle-mismatch"
+      ]
+    },
+    {
+      "id": "social-safety",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reply-target-mix",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reply-contract",
+      "passed": false,
+      "errors": [
+        "4:handle-is-avatar-id",
+        "5:reply-target-comment",
+        "6:handle-is-avatar-id",
+        "8:handle-is-avatar-id"
+      ]
+    },
+    {
+      "id": "provider-completion",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "errors": [
+    "5:term-target-mismatch",
+    "8:term-target-handle-mismatch",
+    "5:term-target-mismatch",
+    "8:term-target-handle-mismatch",
+    "4:handle-is-avatar-id",
+    "5:reply-target-comment",
+    "6:handle-is-avatar-id",
+    "8:handle-is-avatar-id"
+  ]
+}

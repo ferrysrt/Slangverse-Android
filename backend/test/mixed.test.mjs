@@ -12,6 +12,8 @@ import {MIXED_PROMPT_VERSION, MIXED_CONTEXT_CATEGORIES, MIXED_EVALUATION_CHECKS,
 import {createMixedProvider, safeMixedFailureCode} from '../src/mixedProvider.mjs';
 import {generateMixedPack, createMixedPackId} from '../src/mixedGeneration.mjs';
 import {publishMixedBank, writeMixedCatalog, writeImmutableMixedPack, mixedSha256} from '../src/mixedBank.mjs';
+import {planPackTerms, sensesForTerms, countPublishedTerms} from '../src/mixedTermPlanner.mjs';
+import {generatePackRound} from '../scripts/generate-mixed-pack-batch.mjs';
 
 // Synthetic responses/provenance only. No test contacts a provider or labels fixture history as real.
 function normalizedSense(term, normalizedDefinition) {
@@ -923,4 +925,63 @@ test('mixed-v9 enforces the 5/5 surface mix, slang-free posts and four learner r
   assert.ok(mutate(q => { q[0].replyTexts[0] = `${q[0].slang} ${'x'.repeat(260)}`; }).some(e => e.includes('reply-texts-long')));
   // v8 packs without the new field keep validating exactly as recorded.
   assert.equal(evaluateMixedResponse(value.raw, {references: value.references, promptVersion: 'mixed-v8'}).valid, true);
+});
+
+// Growth plan: unused terms first, then least-used terms, one term per question.
+test('the next pack covers unused slang first, then the least-used terms', () => {
+  const pool = senses(20);
+  const first = planPackTerms(pool, {usedCounts: new Map()});
+  assert.equal(first.length, 10);
+  assert.equal(new Set(first).size, 10);
+  const usedOnce = new Map(first.map(term => [term, 1]));
+  const second = planPackTerms(pool, {usedCounts: usedOnce});
+  assert.equal(new Set([...first, ...second]).size, 20);
+  const balanced = new Map([...first, ...second].map(term => [term, 1]));
+  const third = planPackTerms(pool, {usedCounts: balanced});
+  assert.equal(third.length, 10);
+  assert.ok(third.every(term => balanced.get(term) === 1), 'least-used terms repeat before a third use');
+  const scoped = sensesForTerms(pool, third);
+  assert.ok(scoped.length >= 10);
+  assert.ok(scoped.every(sense => third.includes(sense.term)));
+  assert.throws(() => planPackTerms(senses(5), {usedCounts: new Map()}), /not-enough-distinct-terms/);
+  assert.throws(() => planPackTerms([], {}), /invalid-normalized-dataset/);
+  assert.throws(() => planPackTerms(senses(12), {usedCounts: []}), /invalid-term-usage/);
+});
+
+test('published-term counts are derived from the questions a catalog already indexes', () => {
+  const counts = countPublishedTerms([fixture().pack]);
+  assert.equal(counts.size, 10);
+  assert.ok([...counts.values()].every(value => value === 1));
+  assert.throws(() => countPublishedTerms('not-a-list'), /invalid-published-pack-list/);
+});
+
+test('a batch round spends attempts on the planned terms and publishes only a valid pack', async t => {
+  const {outputDir, experimentsDir} = sandbox(t);
+  writeMixedCatalog({outputDir, datasetVersion: 'fixture-dataset-v1', candidateCount: 20});
+  const pool = senses(20);
+  const result = await generatePackRound({senses: pool, usedCounts: new Map(), outputDir, experimentsDir,
+    provider: fakeProvider(), maxAttempts: 2});
+  assert.equal(result.ok, true, JSON.stringify(result.attempts));
+  assert.equal(result.attempts.length, 1);
+  assert.deepEqual(result.terms.slice().sort(), planPackTerms(pool, {usedCounts: new Map()}).slice().sort());
+  const catalog = jsonFile(outputDir, 'catalog.json');
+  assert.equal(catalog.packs.length, 1);
+  const pack = jsonFile(outputDir, 'packs', catalog.packs[0].packId + '.json');
+  assert.equal(pack.questions.length, 10);
+  assert.deepEqual([...new Set(pack.questions.map(q => q.slang))].sort(), result.terms.slice().sort());
+  assert.deepEqual([...countPublishedTerms([pack]).keys()].sort(), result.terms.slice().sort());
+});
+
+test('a failed batch round audits every attempt and publishes nothing', async t => {
+  const {outputDir, experimentsDir} = sandbox(t);
+  writeMixedCatalog({outputDir, datasetVersion: 'fixture-dataset-v1', candidateCount: 20});
+  const provider = createMixedProvider({apiKey: 'fixture-secret-never-persist', model: 'fixture/requested-model',
+    fetchImpl: async () => new Response(JSON.stringify(envelope('{"questions":[]}')), {status: 200})});
+  const result = await generatePackRound({senses: senses(20), usedCounts: new Map(), outputDir, experimentsDir,
+    provider, maxAttempts: 3});
+  assert.equal(result.ok, false);
+  assert.equal(result.attempts.length, 3);
+  assert.ok(result.attempts.every(attempt => attempt.status === 'failed'));
+  assert.equal(jsonFile(outputDir, 'catalog.json').packs.length, 0);
+  assert.deepEqual(existsSync(join(outputDir, 'packs')) ? readdirSync(join(outputDir, 'packs')) : [], []);
 });

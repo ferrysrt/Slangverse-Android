@@ -1,0 +1,520 @@
+{
+  "attemptId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6",
+  "packId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6",
+  "startedAt": "2026-11-18T19:12:31.395Z",
+  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+  "promptVersion": "mixed-v10",
+  "promptSha256": "09c3265c257c2ec4b49477244981edf97557575b9580b59067f3b1d445935ea8",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-2c3d03f9b4a28b0be01d4b2d",
+        "term": "crine",
+        "targetMeaning": "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "definition": "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "normalizedDefinition": "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "2c3d03f9b4a28b0be01d4b2d",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "crine",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+            "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+            "quote": "The buzzy term “crine” is the intentional misspelling of “crying,” which Alphas use to describe extreme laughter.",
+            "collectedAt": "2026-11-17T17:59:47.033Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T17:59:47.033Z",
+        "lastCollectedAt": "2026-11-17T17:59:47.033Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-ed104716c27233570f3efbe0",
+        "term": "vibe check",
+        "targetMeaning": "An informal assessment of someone's mood or energy.",
+        "definition": "An informal assessment of someone's mood or energy.",
+        "normalizedDefinition": "An informal assessment of someone's mood or energy.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "ed104716c27233570f3efbe0",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "vibe check",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Vibe Check | **Evaluating someone’s mood or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+        "term": "bussin",
+        "targetMeaning": "Delicious or excellent, commonly describing food.",
+        "definition": "Delicious or excellent, commonly describing food.",
+        "normalizedDefinition": "Delicious or excellent, commonly describing food.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "48ed1369e7a93b4fcad7800b",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "bussin",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Bussin | **Delicious or amazing, usually about food.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-a42fde412654a7a34291ab9c",
+        "term": "ohio",
+        "targetMeaning": "A surreal, strange, or cursed version of reality.",
+        "definition": "A surreal, strange, or cursed version of reality.",
+        "normalizedDefinition": "A surreal, strange, or cursed version of reality.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "a42fde412654a7a34291ab9c",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "ohio",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Ohio | **A surreal or cursed version of reality.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+        "term": "delulu",
+        "targetMeaning": "A playful or endearing way to describe being delusional.",
+        "definition": "A playful or endearing way to describe being delusional.",
+        "normalizedDefinition": "A playful or endearing way to describe being delusional.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "9ce28e169951f5b9b2f63c78",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "delulu",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Delulu | **Delusional, but usually in a funny or endearing way.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+        "term": "drip",
+        "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+        "definition": "Distinctive or impressive style, especially in clothing.",
+        "normalizedDefinition": "Distinctive or impressive style, especially in clothing.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "88dc00f37466fa2b8d9291f4",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "drip",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Drip | **Killer style, usually clothes.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-706632df02ac829b690ce785",
+        "term": "bsfr",
+        "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "definition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "normalizedDefinition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "706632df02ac829b690ce785",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "bsfr",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+            "collectedAt": "2026-11-17T17:55:58.638Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T17:55:58.638Z",
+        "lastCollectedAt": "2026-11-17T17:55:58.638Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+        "term": "aura",
+        "targetMeaning": "A person's vibe or energy.",
+        "definition": "A person's vibe or energy.",
+        "normalizedDefinition": "A person's vibe or energy.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "136511f14fb26ff9c8d42bd9",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Aura | **Your vibe or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-da836b332facac35d6cece15",
+        "term": "rizz",
+        "targetMeaning": "Flirting skill or natural charisma.",
+        "definition": "Flirting skill or natural charisma.",
+        "normalizedDefinition": "Flirting skill or natural charisma.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "da836b332facac35d6cece15",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "rizz",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-529b06d4ecd506b1dc844088",
+        "term": "yap",
+        "targetMeaning": "To talk too much, especially in an annoying way.",
+        "definition": "To talk too much, especially in an annoying way.",
+        "normalizedDefinition": "To talk too much, especially in an annoying way.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "529b06d4ecd506b1dc844088",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "yap",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Yap | **Talking too much, especially in an annoying way.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ],
+        "firstSeenAt": "2026-11-17T13:08:28.914Z",
+        "lastCollectedAt": "2026-11-17T13:08:28.914Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-2c3d03f9b4a28b0be01d4b2d",
+        "term": "crine",
+        "targetMeaning": "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "sourceCandidateId": "2c3d03f9b4a28b0be01d4b2d",
+        "normalizedDefinition": "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "referenceSources": [
+          {
+            "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+            "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+            "quote": "The buzzy term “crine” is the intentional misspelling of “crying,” which Alphas use to describe extreme laughter.",
+            "collectedAt": "2026-11-17T17:59:47.033Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-ed104716c27233570f3efbe0",
+        "term": "vibe check",
+        "targetMeaning": "An informal assessment of someone's mood or energy.",
+        "sourceCandidateId": "ed104716c27233570f3efbe0",
+        "normalizedDefinition": "An informal assessment of someone's mood or energy.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Vibe Check | **Evaluating someone’s mood or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+        "term": "bussin",
+        "targetMeaning": "Delicious or excellent, commonly describing food.",
+        "sourceCandidateId": "48ed1369e7a93b4fcad7800b",
+        "normalizedDefinition": "Delicious or excellent, commonly describing food.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Bussin | **Delicious or amazing, usually about food.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-a42fde412654a7a34291ab9c",
+        "term": "ohio",
+        "targetMeaning": "A surreal, strange, or cursed version of reality.",
+        "sourceCandidateId": "a42fde412654a7a34291ab9c",
+        "normalizedDefinition": "A surreal, strange, or cursed version of reality.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Ohio | **A surreal or cursed version of reality.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+        "term": "delulu",
+        "targetMeaning": "A playful or endearing way to describe being delusional.",
+        "sourceCandidateId": "9ce28e169951f5b9b2f63c78",
+        "normalizedDefinition": "A playful or endearing way to describe being delusional.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Delulu | **Delusional, but usually in a funny or endearing way.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+        "term": "drip",
+        "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+        "sourceCandidateId": "88dc00f37466fa2b8d9291f4",
+        "normalizedDefinition": "Distinctive or impressive style, especially in clothing.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Drip | **Killer style, usually clothes.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-706632df02ac829b690ce785",
+        "term": "bsfr",
+        "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "sourceCandidateId": "706632df02ac829b690ce785",
+        "normalizedDefinition": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vIwgspvfH1VPFirTCQ97aG4dsANwKd2pMK3VgB7MeTsSPbhriEG",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**BSFR**— Stands for \"Be So For Real\". Means \"Are you serious?\" Similar to “don’t lie”, used to express disbelief",
+            "collectedAt": "2026-11-17T17:55:58.638Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+        "term": "aura",
+        "targetMeaning": "A person's vibe or energy.",
+        "sourceCandidateId": "136511f14fb26ff9c8d42bd9",
+        "normalizedDefinition": "A person's vibe or energy.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Aura | **Your vibe or energy.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-da836b332facac35d6cece15",
+        "term": "rizz",
+        "targetMeaning": "Flirting skill or natural charisma.",
+        "sourceCandidateId": "da836b332facac35d6cece15",
+        "normalizedDefinition": "Flirting skill or natural charisma.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-529b06d4ecd506b1dc844088",
+        "term": "yap",
+        "targetMeaning": "To talk too much, especially in an annoying way.",
+        "sourceCandidateId": "529b06d4ecd506b1dc844088",
+        "normalizedDefinition": "To talk too much, especially in an annoying way.",
+        "referenceSources": [
+          {
+            "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+            "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+            "quote": "| Yap | **Talking too much, especially in an annoying way.**",
+            "collectedAt": "2026-11-17T13:08:28.914Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q1",
+        "senseId": "normalized-2c3d03f9b4a28b0be01d4b2d",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q2",
+        "senseId": "normalized-ed104716c27233570f3efbe0",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q3",
+        "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q4",
+        "senseId": "normalized-a42fde412654a7a34291ab9c",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q5",
+        "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q6",
+        "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q7",
+        "senseId": "normalized-706632df02ac829b690ce785",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q8",
+        "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q9",
+        "senseId": "normalized-da836b332facac35d6cece15",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t191231395z-56c73417-2b3e-4b22-b4c6-12cd0de326d6-q10",
+        "senseId": "normalized-529b06d4ecd506b1dc844088",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 11,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

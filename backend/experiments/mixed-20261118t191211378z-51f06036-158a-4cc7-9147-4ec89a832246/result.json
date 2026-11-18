@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t191211378z-51f06036-158a-4cc7-9147-4ec89a832246",
+  "packId": "mixed-20261118t191211378z-51f06036-158a-4cc7-9147-4ec89a832246",
+  "startedAt": "2026-11-18T19:12:11.378Z",
+  "completedAt": "2026-11-18T19:12:31.394Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "llm-timeout",
+  "actualModel": null
+}

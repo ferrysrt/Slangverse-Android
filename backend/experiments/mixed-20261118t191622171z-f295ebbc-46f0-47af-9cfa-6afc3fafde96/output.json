@@ -1,0 +1,464 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q1",
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "slang": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "difficulty": "easy",
+      "contextId": "school-lab-surprise",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Naya Notes",
+        "handle": "@naya",
+        "hashtag": "#LabDay",
+        "content": "Our tiny plant grew three inches overnight. bsfr, I measured it twice and still can't believe it.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "The ruler is in the photo too 😂",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@kai",
+            "text": "That plant is on a mission.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "Wait, what does “bsfr” mean here? Is it the name of a new science app?",
+      "question": "What does “bsfr” mean in @naya's post?",
+      "options": [
+        "A quick way to say someone should hurry up.",
+        "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "A label for a plant that grows unusually fast.",
+        "A reminder to check a measurement one more time."
+      ],
+      "correctIndex": 1,
+      "explanation": "Naya is reacting with disbelief to the surprising growth, which fits the assigned meaning.",
+      "replyTexts": [
+        "I thought bsfr meant hurry up, like they're asking the plant to grow faster.",
+        "I took bsfr as a way of saying, “Come on, is this actually true?”",
+        "I figured bsfr was a nickname for a plant with speedy growth.",
+        "I read bsfr as a nudge to measure the plant again just to be sure."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q2",
+      "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+      "slang": "aura",
+      "targetMeaning": "A person's vibe or energy.",
+      "difficulty": "easy",
+      "contextId": "gallery-evening",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@lila",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#GalleryNight",
+        "content": "We wandered through the quiet gallery after closing and barely said a word the whole way home.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "That place has such a calm aura; I could've stayed all night.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@ari",
+            "text": "The blue room was my favorite.",
+            "avatarId": "ari"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "@lila, what did you mean by “aura” there? Is that a special feature of the gallery?",
+      "question": "What does “aura” mean in @lila's reply?",
+      "options": [
+        "A person's vibe or energy.",
+        "A kind of lighting used in galleries.",
+        "A room's official visitor capacity.",
+        "A feeling of being tired after walking."
+      ],
+      "correctIndex": 0,
+      "explanation": "Lila describes the calm impression the gallery gives, connecting the word to a person's or place's vibe or energy.",
+      "replyTexts": [
+        "I thought aura was about the overall feeling or energy that a person gives off.",
+        "I read aura as the special lamps that museums use to light their rooms.",
+        "I figured aura meant the maximum number of people allowed inside the gallery.",
+        "I took aura to mean feeling worn out after walking around for a long time."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q3",
+      "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+      "slang": "bussin",
+      "targetMeaning": "Delicious or excellent, commonly describing food.",
+      "difficulty": "easy",
+      "contextId": "picnic-snack",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Sam Park",
+        "handle": "@sam",
+        "hashtag": "#PicnicPlate",
+        "content": "My aunt packed those spicy corn cakes again and they’re bussin. I asked her to save me the last one.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "Please tell me there are extras.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@kai",
+            "text": "That crunchy edge looks incredible.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "sam"
+      },
+      "questionComment": "“Bussin” sounds like a bus route to me—what are you saying in this post?",
+      "question": "What does “bussin” mean in @sam's post?",
+      "options": [
+        "A snack that is difficult to carry outdoors.",
+        "A dish that is served only at family gatherings.",
+        "A food item that has gone cold.",
+        "Delicious or excellent, commonly describing food."
+      ],
+      "correctIndex": 3,
+      "explanation": "Sam wants another corn cake and praises the snack, so the food-related meaning fits.",
+      "replyTexts": [
+        "I thought bussin meant the snack was awkward to bring along on a picnic.",
+        "I read bussin as food that's mainly made for big family get-togethers.",
+        "I took bussin to mean the corn cakes had cooled down too much to enjoy.",
+        "I meant the corn cakes taste great, and I really want another one."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q4",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "easy",
+      "contextId": "concert-ticket-dream",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@ari",
+      "post": {
+        "displayName": "Jo Rivera",
+        "handle": "@justjo",
+        "hashtag": "#TourWish",
+        "content": "I entered the ticket giveaway from three different devices, even though I know the odds are tiny. Still dreaming big.",
+        "comments": [
+          {
+            "handle": "@ari",
+            "text": "You’re delulu if you think all three entries will win, but I respect the optimism.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@naya",
+            "text": "Manifesting a ticket for you anyway.",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "@ari, what does “delulu” mean in your reply? Is it a concert venue?",
+      "question": "What does “delulu” mean in @ari's reply?",
+      "options": [
+        "A person who has forgotten the concert date.",
+        "A fan who collects concert posters.",
+        "A playful or endearing way to describe being delusional.",
+        "Someone who prefers watching concerts online."
+      ],
+      "correctIndex": 2,
+      "explanation": "Ari gently jokes about Jo's unrealistic hope while keeping the tone affectionate.",
+      "replyTexts": [
+        "I thought delulu meant a fan who couldn't remember when the show was happening.",
+        "I took delulu to mean somebody who likes gathering posters from music events.",
+        "I meant you're being a little unrealistically hopeful, but I'm saying it affectionately.",
+        "I read delulu as a person who would rather stream a concert at home."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q5",
+      "senseId": "normalized-e9d8c4779aa15213d3da824d",
+      "slang": "crine",
+      "targetMeaning": "An intentional misspelling of “crying” used to express extreme laughter.",
+      "difficulty": "easy",
+      "contextId": "classroom-cartoon",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@kai",
+      "post": {
+        "displayName": "Kai Chen",
+        "handle": "@kai",
+        "hashtag": "#CartoonBreak",
+        "content": "That cartoon duck tried to wear four hats at once and fell into a laundry basket. crine at the last frame.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "The tiny hat at the end got me.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "We need a replay of that scene.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "kai"
+      },
+      "questionComment": "I don't know what “crine” is supposed to be—is it a cartoon character?",
+      "question": "What does “crine” mean in @kai's post?",
+      "options": [
+        "A fictional character from an old cartoon.",
+        "An intentional misspelling of “crying” used to express extreme laughter.",
+        "A sound effect for someone falling over.",
+        "A way to say the scene was unexpectedly sad."
+      ],
+      "correctIndex": 1,
+      "explanation": "Kai is reacting to a funny scene; here “crine” expresses intense laughter.",
+      "replyTexts": [
+        "I thought crine was the name of a character from a classic animated show.",
+        "I used crine to say I was laughing really hard at that ridiculous moment.",
+        "I read crine as the noise a cartoon makes when somebody tumbles over.",
+        "I took crine as saying the ending made the viewer feel sad."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q6",
+      "senseId": "normalized-ed104716c27233570f3efbe0",
+      "slang": "vibe check",
+      "targetMeaning": "An informal assessment of someone's mood or energy.",
+      "difficulty": "medium",
+      "contextId": "group-study-break",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Lila Moss",
+        "handle": "@lilalistens",
+        "hashtag": "#StudyHall",
+        "content": "We’ve been at the library for hours, and everyone’s gone quiet over their notes. Should we take five before the next chapter?",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "Quick vibe check: are we still focused, or is it snack-break time?",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@ben",
+            "text": "I can bring fruit from the lounge.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "@naya, what do you mean by “vibe check” here? Is that a feature on your phone?",
+      "question": "What does “vibe check” mean in @naya's reply?",
+      "options": [
+        "A way to count how many pages the group has read.",
+        "An informal assessment of someone's mood or energy.",
+        "A quick test of whether the library's Wi-Fi is working.",
+        "A reminder to reserve a group study room."
+      ],
+      "correctIndex": 1,
+      "explanation": "Naya is checking how the group feels before deciding whether to pause studying.",
+      "replyTexts": [
+        "I thought vibe check meant tallying the pages everybody had finished.",
+        "I meant casually finding out how everyone's feeling and whether they still have energy to study.",
+        "I read vibe check as testing the wireless connection before taking a break.",
+        "I figured vibe check was a prompt to book a room for the study group."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q7",
+      "senseId": "normalized-529b06d4ecd506b1dc844088",
+      "slang": "yap",
+      "targetMeaning": "To talk too much, especially in an annoying way.",
+      "difficulty": "medium",
+      "contextId": "meeting-story",
+      "contextCategory": "work",
+      "questionTarget": "post",
+      "targetHandle": "@ari",
+      "post": {
+        "displayName": "Ari Bell",
+        "handle": "@ariatwork",
+        "hashtag": "#TeamMeeting",
+        "content": "I had one slide left, but I kept going through every tiny detail. My teammate finally sent me a timer and a very pointed look. I need to stop my yap next time.",
+        "comments": [
+          {
+            "handle": "@dea",
+            "text": "The timer was a subtle hint, I think.",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@sam",
+            "text": "We’ve all done that in a meeting.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "What does “yap” mean in this post? Is it a new meeting timer?",
+      "question": "What does “yap” mean in @ari's post?",
+      "options": [
+        "To speak at length past the point people want to hear.",
+        "To skip over details during a presentation.",
+        "To use a timer to keep a meeting on schedule.",
+        "To quietly take notes while another person presents."
+      ],
+      "correctIndex": 0,
+      "explanation": "Ari recognizes that they kept talking through too many details, prompting the teammate's hint.",
+      "replyTexts": [
+        "I meant I went on talking longer than people wanted, especially about details that weren't needed.",
+        "I thought yap meant leaving out some of the important parts of my presentation.",
+        "I read yap as setting a countdown so the meeting would finish on time.",
+        "I took yap to mean writing notes while somebody else had the floor."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q8",
+      "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+      "slang": "drip",
+      "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+      "difficulty": "medium",
+      "contextId": "photo-day-fit",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@ben",
+      "post": {
+        "displayName": "Naya Singh",
+        "handle": "@naya",
+        "hashtag": "#PhotoDay",
+        "content": "Found an old jacket at the back of my closet and paired it with bright green sneakers for the class photo. Keeping this look simple otherwise.",
+        "comments": [
+          {
+            "handle": "@ben",
+            "text": "That drip is going to make the whole photo pop.",
+            "avatarId": "ben"
+          },
+          {
+            "handle": "@lila",
+            "text": "The colors work surprisingly well together.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "@ben, what did you mean by “drip” in your reply? Is the jacket leaking?",
+      "question": "What does “drip” mean in @ben's reply?",
+      "options": [
+        "A stain left on the jacket after washing.",
+        "A jacket made for rainy weather.",
+        "A trend involving colorful sneakers only.",
+        "Distinctive or impressive style, especially in clothing."
+      ],
+      "correctIndex": 3,
+      "explanation": "Ben reacts to Naya's coordinated outfit, so the style-related meaning applies.",
+      "replyTexts": [
+        "I thought drip meant a mark the jacket picked up in the wash.",
+        "I read drip as a coat designed to keep rain off the wearer.",
+        "I took drip to mean a fashion trend that's only about bright shoes.",
+        "I meant the outfit has a distinctive look, especially because of what you're wearing."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q9",
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "slang": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "difficulty": "hard",
+      "contextId": "bookshop-introduction",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@jo",
+      "post": {
+        "displayName": "Jo Ellis",
+        "handle": "@justjo",
+        "hashtag": "#BookshopMeet",
+        "content": "I got introduced to someone while browsing, and somehow we spent an hour comparing favorite poems. My friend said I should let them pick the next place we meet. Apparently my rizz finally showed up.",
+        "comments": [
+          {
+            "handle": "@ari",
+            "text": "That sounds like a very promising chapter.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@naya",
+            "text": "I hope they have a good poetry section too.",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "What does “rizz” mean in this post? Is it a bookshop membership?",
+      "question": "What does “rizz” mean in @jo's post?",
+      "options": [
+        "An ability to remember the titles of many books.",
+        "Flirting skill or natural charisma.",
+        "A preference for meeting people at bookstores.",
+        "A way of choosing which poem to read aloud."
+      ],
+      "correctIndex": 1,
+      "explanation": "Jo's friend connects the enjoyable conversation and possible next meeting to Jo's flirting ability or charisma.",
+      "replyTexts": [
+        "I thought rizz meant being able to recall lots of book titles from memory.",
+        "I meant I might have a natural charm that helped the conversation click.",
+        "I read rizz as a liking for meeting new people specifically in bookstores.",
+        "I figured rizz was about picking a poem to share with someone."
+      ]
+    },
+    {
+      "id": "mixed-20261118t191622171z-f295ebbc-46f0-47af-9cfa-6afc3fafde96-q10",
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "slang": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "difficulty": "hard",
+      "contextId": "town-square-glitch",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Town Loop Updates",
+        "handle": "@townloop",
+        "hashtag": "#MarketMorning",
+        "content": "The fountain switched on during the market, and its spray made a perfect ring around a single shopping basket. Nobody nearby seemed to know how it happened.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "This is so ohio; even the basket looks confused.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@kai",
+            "text": "The ring is almost too perfect to be accidental.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "townloop"
+      },
+      "questionComment": "@sam, what does “ohio” mean in your reply? Is it a place the basket came from?",
+      "question": "What does “ohio” mean in @sam's reply?",
+      "options": [
+        "A local nickname for the market's fountain.",
+        "A shopping basket designed to float in water.",
+        "A surreal, strange, or cursed version of reality.",
+        "A rule that keeps shoppers away from the fountain."
+      ],
+      "correctIndex": 2,
+      "explanation": "The oddly perfect fountain mishap feels strange and unreal, which matches the assigned meaning.",
+      "replyTexts": [
+        "I thought ohio was the name locals gave to that particular fountain.",
+        "I read ohio as a basket built to stay afloat when the fountain sprays it.",
+        "I meant the scene feels bizarre, like reality has taken a weird turn.",
+        "I figured ohio was a market policy that keeps customers away from the water."
+      ]
+    }
+  ]
+}

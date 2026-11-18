@@ -12,6 +12,7 @@
     "dataset:migrate": "node dataset/migrate.mjs",
     "bank:publish": "node scripts/publish-mixed-bank.mjs",
     "bank:try": "node --env-file=.env scripts/try-mixed-pack.mjs",
+    "bank:grow": "node --env-file=.env scripts/generate-mixed-pack-batch.mjs",
     "questions:analyze": "node scripts/analyze-mixed-attempt.mjs",
     "experiments:report": "node scripts/report-experiments.mjs",
     "bank:export": "node scripts/export-static-demo-bank.mjs public-question-bank"

@@ -1,0 +1,464 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q1",
+      "senseId": "normalized-531590794925282043b750f7",
+      "slang": "cooked",
+      "targetMeaning": "Exhausted or mentally out of it.",
+      "difficulty": "easy",
+      "contextId": "late-study-session",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@campusfeed",
+      "post": {
+        "displayName": "Campus Feed",
+        "handle": "@campusfeed",
+        "hashtag": "#StudyNight",
+        "content": "Three hours of revision, two quizzes, and now I’m cooked. I just reread the same page five times.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "That page owes you an apology.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@kai",
+            "text": "Logging off and getting some sleep sounds wise.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "campus"
+      },
+      "questionComment": "Wait, what do you mean by cooked here? Did something happen in the kitchen?",
+      "question": "What does “cooked” mean in the post?",
+      "options": [
+        "In trouble because of a mistake.",
+        "Exhausted or mentally out of it.",
+        "Ready to start a difficult task.",
+        "Feeling unusually hungry."
+      ],
+      "correctIndex": 1,
+      "explanation": "After hours of studying and struggling to focus, the post uses cooked to mean exhausted or mentally out of it.",
+      "replyTexts": [
+        "I thought cooked meant I’d messed up badly and was about to get in trouble.",
+        "I read cooked as being too worn out to think straight after all that studying.",
+        "I figured cooked meant I was gearing up to tackle another big study session.",
+        "I took cooked to mean I needed food after spending the evening at my desk."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q2",
+      "senseId": "normalized-48ed1369e7a93b4fcad7800b",
+      "slang": "bussin",
+      "targetMeaning": "Delicious or excellent, commonly describing food.",
+      "difficulty": "easy",
+      "contextId": "lunchbox-review",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@lila",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#LunchBreak",
+        "content": "Tried my cousin’s homemade noodle bowl at lunch, and I’m already asking for the recipe.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "Those noodles are bussin; I need a second bowl immediately.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "Save me a bite next time!",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "@lila, what do you mean by “bussin” there? Is it a new kitchen gadget?",
+      "question": "What does “bussin” mean in @lila’s reply?",
+      "options": [
+        "Difficult to eat without making a mess.",
+        "Delicious or excellent, commonly describing food.",
+        "Too spicy to finish comfortably.",
+        "A dish that takes a long time to prepare."
+      ],
+      "correctIndex": 1,
+      "explanation": "@lila is reacting to the noodle bowl with enthusiasm, so bussin means delicious or excellent, commonly describing food.",
+      "replyTexts": [
+        "I thought bussin meant the noodles were so messy they were hard to eat.",
+        "I read bussin as saying the food tasted fantastic and deserved another bowl.",
+        "I took bussin to mean the dish was painfully hot from too much spice.",
+        "I figured bussin meant the recipe must take ages to make from scratch."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q3",
+      "senseId": "normalized-2c3d03f9b4a28b0be01d4b2d",
+      "slang": "crine",
+      "targetMeaning": "An intentional misspelling of “crying” used to describe extreme laughter.",
+      "difficulty": "easy",
+      "contextId": "group-chat-joke",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Sam Reed",
+        "handle": "@sam",
+        "hashtag": "#ComedyClip",
+        "content": "That clip of the dog carefully carrying one sock and dropping the other has me crine. I replayed it six times.",
+        "comments": [
+          {
+            "handle": "@ari",
+            "text": "The serious little walk makes it even better.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@jo",
+            "text": "That dog has a whole comedy routine.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "sam"
+      },
+      "questionComment": "I’m lost—what does “crine” mean in your post? Is it a camera setting?",
+      "question": "What does “crine” mean in the post?",
+      "options": [
+        "An intentional misspelling of “crying” used to describe extreme laughter.",
+        "Feeling sad about something that happened.",
+        "Making a quiet noise to get someone’s attention.",
+        "Watching a clip repeatedly to notice small details."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post describes replaying a funny dog clip, so crine is an intentional misspelling of “crying” used to describe extreme laughter.",
+      "replyTexts": [
+        "I thought crine meant laughing so hard I could barely catch my breath.",
+        "I read crine as feeling genuinely upset about the dog dropping its sock.",
+        "I figured crine meant calling softly to get the dog to come closer.",
+        "I took crine to mean replaying the clip to spot something I missed."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q4",
+      "senseId": "normalized-65d77b08ffbf71beaa6a88fb",
+      "slang": "fit check",
+      "targetMeaning": "Showing off or presenting an outfit.",
+      "difficulty": "easy",
+      "contextId": "gallery-opening-look",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Ari Cole",
+        "handle": "@ariatwork",
+        "hashtag": "#GalleryOpening",
+        "content": "Found a bright jacket for tonight’s gallery opening and finally picked shoes that match. Heading out in a minute.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "Fit check before you go—the jacket is a whole moment.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@ben",
+            "text": "The colors sound perfect for the opening.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "@naya, what does “fit check” mean here? Are you checking whether the jacket fits?",
+      "question": "What does “fit check” mean in @naya’s reply?",
+      "options": [
+        "Making sure the clothes are clean before leaving.",
+        "Showing off or presenting an outfit.",
+        "Checking the event dress code with the host.",
+        "Trying on several sizes to find comfortable clothes."
+      ],
+      "correctIndex": 1,
+      "explanation": "The reply responds to the jacket and shoes, using fit check to mean showing off or presenting an outfit.",
+      "replyTexts": [
+        "I thought fit check meant inspecting the clothes for stains before heading out.",
+        "I took fit check as sharing the look so everyone can see the outfit.",
+        "I figured fit check meant asking the host what guests are allowed to wear.",
+        "I read fit check as testing different sizes to find something comfortable."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q5",
+      "senseId": "normalized-136511f14fb26ff9c8d42bd9",
+      "slang": "aura",
+      "targetMeaning": "A person's vibe or energy.",
+      "difficulty": "easy",
+      "contextId": "quiet-library-helper",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@dea",
+      "post": {
+        "displayName": "Dea Morgan",
+        "handle": "@deasays",
+        "hashtag": "#LibraryDay",
+        "content": "The new librarian remembered everyone’s name and somehow made a noisy room feel calm. Her aura is so welcoming.",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "text": "She made my first visit feel easy too.",
+            "avatarId": "campus"
+          },
+          {
+            "handle": "@lila",
+            "text": "More people should get that kind of welcome.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "What does “aura” mean in your post? Is it a special kind of library pass?",
+      "question": "What does “aura” mean in the post?",
+      "options": [
+        "A person's vibe or energy.",
+        "A formal rule about how quietly people must behave.",
+        "A skill for remembering names and details.",
+        "A feeling of worry about meeting new people."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post describes the librarian’s welcoming presence and calming effect, which points to a person's vibe or energy.",
+      "replyTexts": [
+        "I read aura as the welcoming energy she gives off around the library.",
+        "I thought aura meant an official pass that lets someone into the library.",
+        "I figured aura was her particular knack for remembering visitors’ names.",
+        "I took aura to mean she feels anxious when meeting people for the first time."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q6",
+      "senseId": "normalized-706632df02ac829b690ce785",
+      "slang": "bsfr",
+      "targetMeaning": "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+      "difficulty": "medium",
+      "contextId": "impossible-weather-claim",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@jo",
+      "post": {
+        "displayName": "Kai Rivers",
+        "handle": "@confuseduser",
+        "hashtag": "#WeatherTalk",
+        "content": "My neighbor says it’s going to snow tomorrow, even though the forecast shows clear skies all week. I’m not sure what to believe.",
+        "comments": [
+          {
+            "handle": "@jo",
+            "text": "bsfr, they said the same thing last month and it was sunny.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@townloop",
+            "text": "I’m sticking with the forecast for now.",
+            "avatarId": "townloop"
+          }
+        ],
+        "avatarId": "kai"
+      },
+      "questionComment": "@jo, what does “bsfr” mean here? Is that the name of a weather app?",
+      "question": "What does “bsfr” mean in @jo’s reply?",
+      "options": [
+        "A request to check the forecast in another town.",
+        "An abbreviation for “be so for real,” used to express disbelief or ask whether someone is serious.",
+        "A reminder to prepare for a sudden change in temperature.",
+        "A way to say the neighbor has reliable weather equipment."
+      ],
+      "correctIndex": 1,
+      "explanation": "@jo doubts the neighbor’s claim by pointing to a past forecast, so bsfr expresses disbelief or asks whether someone is serious.",
+      "replyTexts": [
+        "I thought bsfr meant checking weather reports from somewhere else nearby.",
+        "I read bsfr as questioning whether that snow prediction could really be serious.",
+        "I figured bsfr meant getting ready in case the weather suddenly turns cold.",
+        "I took bsfr to mean the neighbor owns equipment that predicts the weather well."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q7",
+      "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+      "slang": "drip",
+      "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+      "difficulty": "medium",
+      "contextId": "school-photo-day",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@ben",
+      "post": {
+        "displayName": "Ben Park",
+        "handle": "@benchside",
+        "hashtag": "#PhotoDay",
+        "content": "Showed up for the class photo in my uncle’s old patterned coat and got three compliments before homeroom. The drip survived another year.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "That coat absolutely belongs in the front row.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@ari",
+            "text": "Please tell me you kept the matching hat.",
+            "avatarId": "ari"
+          }
+        ],
+        "avatarId": "ben"
+      },
+      "questionComment": "What do you mean by “drip” in the post? Is the coat leaking?",
+      "question": "What does “drip” mean in the post?",
+      "options": [
+        "A stain or tear that needs to be repaired.",
+        "A distinctive or impressive look, especially in clothes.",
+        "A pattern that is difficult to match with other clothes.",
+        "A coat that has been handed down through a family."
+      ],
+      "correctIndex": 1,
+      "explanation": "The compliments on the patterned coat signal that drip refers to distinctive or impressive style, especially in clothing.",
+      "replyTexts": [
+        "I thought drip meant the old coat had a leak or a tear that needed fixing.",
+        "I read drip as saying the outfit has a memorable, stylish look.",
+        "I figured drip meant the coat’s pattern was hard to coordinate with anything.",
+        "I took drip to mean the coat had been passed between relatives for years."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q8",
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "slang": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "difficulty": "medium",
+      "contextId": "snack-plate-evening",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@mira",
+      "post": {
+        "displayName": "Lila Park",
+        "handle": "@lilalistens",
+        "hashtag": "#AfterWorkEats",
+        "content": "I got home late and put crackers, apple slices, olives, and two cheese cubes on a plate. That’s dinner handled.",
+        "comments": [
+          {
+            "handle": "@mira",
+            "text": "Girl dinner has entered the chat; honestly, that plate sounds great.",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@sam",
+            "text": "The apple and cheese combo never misses.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "@mira, what does “girl dinner” mean here? Is it a meal from a café?",
+      "question": "What does “girl dinner” mean in @mira’s reply?",
+      "options": [
+        "A carefully planned meal with several cooked courses.",
+        "An informal meal made up of a casual or haphazard mix of snacks.",
+        "A meal ordered for a group celebration at a restaurant.",
+        "A small snack eaten before preparing a proper dinner."
+      ],
+      "correctIndex": 1,
+      "explanation": "The plate combines several casual snack foods, matching girl dinner as an informal meal made up of a casual or haphazard mix of snacks.",
+      "replyTexts": [
+        "I thought girl dinner meant she had cooked a whole set of planned courses.",
+        "I read girl dinner as dinner pieced together from whatever snacks were around.",
+        "I figured girl dinner meant ordering a restaurant meal for a group celebration.",
+        "I took girl dinner to mean a snack before making a separate full meal."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q9",
+      "senseId": "normalized-e52932ae62efe030406673c2",
+      "slang": "ate",
+      "targetMeaning": "Performed exceptionally well, especially with style or confidence.",
+      "difficulty": "hard",
+      "contextId": "open-mic-performance",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@ariatwork",
+      "post": {
+        "displayName": "Ari Cole",
+        "handle": "@ariatwork",
+        "hashtag": "#OpenMicNight",
+        "content": "Mina walked into the open mic with no notes, held the room through every pause, and left to a standing ovation. She ate.",
+        "comments": [
+          {
+            "handle": "@jo",
+            "text": "The room was still talking about that last line on the way out.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@dea",
+            "text": "You could feel everyone leaning in.",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "What does “ate” mean in your post? Did she have a snack onstage?",
+      "question": "What does “ate” mean in the post?",
+      "options": [
+        "Accepted an invitation to perform at the open mic.",
+        "Forgot the prepared material and had to improvise.",
+        "Performed exceptionally well, especially with style or confidence.",
+        "Stayed onstage longer than the other performers."
+      ],
+      "correctIndex": 2,
+      "explanation": "The held attention and standing ovation show that Mina performed exceptionally well, especially with style or confidence.",
+      "replyTexts": [
+        "I thought ate meant Mina agreed to take part in the open mic event.",
+        "I read ate as saying she lost her notes and had to make things up.",
+        "I took ate as praise for how confidently and skillfully she performed.",
+        "I figured ate meant she kept the microphone longer than everyone else."
+      ]
+    },
+    {
+      "id": "mixed-20261118t192455638z-8d5ed7e5-ffa8-4b18-9eb9-c9ef1ca061a3-q10",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "hard",
+      "contextId": "unlikely-booking-dream",
+      "contextCategory": "prediction",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Naya Ortiz",
+        "handle": "@naya",
+        "hashtag": "#BigDreamEnergy",
+        "content": "I sent one demo to a tiny local venue and have already pictured the encore, the lights, and my aunt cheering from the front row. No reply yet.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "A little delulu, but I’m keeping the front-row seat open for your aunt.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@ben",
+            "text": "I hope they write back soon; the venue looks lovely.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "@sam, what does “delulu” mean here? Is that a venue’s nickname?",
+      "question": "What does “delulu” mean in @sam’s reply?",
+      "options": [
+        "A playful or endearing way to describe being delusional.",
+        "A reminder to send the demo to several venues.",
+        "A private joke about the aunt’s favorite seat.",
+        "A label for someone who avoids performing in public."
+      ],
+      "correctIndex": 0,
+      "explanation": "@sam gently jokes about Naya imagining an encore before hearing back, using delulu playfully or endearingly to describe being delusional.",
+      "replyTexts": [
+        "I read delulu as a teasing, affectionate way to say she might be imagining too much.",
+        "I thought delulu meant she should send her demo to more places before deciding.",
+        "I figured delulu was an inside joke about where her aunt likes to sit.",
+        "I took delulu to mean she gets nervous and stays away from performing."
+      ]
+    }
+  ]
+}
