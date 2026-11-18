@@ -2,6 +2,15 @@
 
 Code checkpoint at report time is on **main**; the final commit and run IDs are listed after the results below. App build configuration remains `0.5.0-mixed-feed`, version code 6.
 
+## UI density pass on a branch — 2026-11-19 (Asia/Jakarta)
+
+Branch `ui/feed-density-pass-20261119` (from `9fa0617`) reworks the feed hierarchy only. No pack, prompt or grading rule changed, so the published bank and every recorded attempt stay untouched.
+
+- What moved: the bank provenance line and its two buttons collapsed into a single row ("Published questions · fetched over HTTPS", Refresh, Source); the URL field and the offline-sample switch live behind **Source**. Removed: the dead `FEED` label, the duplicated handle (`guest_05 / @guest_05`), the `time · fictional story` suffix, the repeated `Replying to the post` line, and a hashtag the post body already prints. Context replies start collapsed unless the slang sits inside a reply, so the practice card is reachable without scrolling past scripted chatter.
+- Selected answers now flood the row in `CoralDeep` with white text and a white check. The primary button uses the same deep coral because white on the brand coral measures 2.9:1. Filter chips use the peach palette instead of Material's lavender default.
+- Verified on the same Xiaomi `22071219CG`: local `assembleDebug` of this branch, 18,303,916 bytes, SHA-256 `7a282a35af72543ff2e122da21aad4ded8d05add93af8cc128b847da1f4a05df`, debug certificate. The `main` bank loaded, a card rendered without the duplicate metadata, the interpretation options opened from the new button, the selected option showed the filled state, and `POST REPLY` graded +80 practice XP with combo 1 and the feedback panel. The Progress screen still renders with the tighter card radius.
+- Tests: 65 JUnit tests, 0 failures, on this branch. Not addressed here: dark theme, the four empty bottom tabs, and moving the provenance label out of the reward card — the rest of the same review.
+
 ## Device acceptance — 2026-11-19 (Asia/Jakarta)
 
 First on-device run of the feed, on one physical Xiaomi `22071219CG` (Android 14, SDK 34, MIUI), not an emulator and not the cloud phone.

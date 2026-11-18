@@ -58,7 +58,8 @@ internal object SocialNarrative {
     fun story(post: FeedPracticePost): PostStory {
         val id = post.thread.id
         if (post.published) return PostStory(
-            time = "Published story", replies = post.replies.orEmpty(),
+            // Published packs carry no real timestamp; an empty time hides the meta line entirely.
+            time = "", replies = post.replies.orEmpty(),
             followUpHandle = post.thread.handle, followUp = "")
         val firstHandle = when (post.context) {
             FeedContext.Sports -> "@matchdaychat"

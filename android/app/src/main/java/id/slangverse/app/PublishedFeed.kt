@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -126,27 +127,38 @@ internal fun PublishedBankControls(
 ) {
     var settings by rememberSaveable { mutableStateOf(false) }
     var draftRoot by rememberSaveable(root) { mutableStateOf(root) }
-    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(if (demo) "OFFLINE SAMPLE · HAND-AUTHORED" else "PUBLISHED LLM QUESTIONS · GITHUB GET",
-            fontSize = 11.sp, color = WarmEditorial.CoralDeep)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            TextButton(onClick = onRefresh, enabled = !loading && !demo) { Text("Refresh bank") }
-            TextButton(onClick = { settings = !settings }) { Text("Question source") }
+    // Source plumbing stays collapsed: the feed opens on conversations, not on fetch diagnostics.
+    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text(if (demo) "Offline sample · hand-authored" else "Published questions · fetched over HTTPS",
+                fontSize = 11.sp, color = WarmEditorial.CoralDeep, modifier = Modifier.weight(1f))
+            if (!demo) TextButton(onClick = onRefresh, enabled = !loading,
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)) {
+                Text("Refresh", fontSize = 11.sp)
+            }
+            TextButton(onClick = { settings = !settings },
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)) {
+                Text(if (settings) "Close" else "Source", fontSize = 11.sp)
+            }
         }
         if (settings) {
             OutlinedTextField(value = draftRoot, onValueChange = { draftRoot = it }, singleLine = true,
                 label = { Text("Public GitHub bank folder URL") }, modifier = Modifier.fillMaxWidth())
-            Button(onClick = { onRoot(draftRoot.trim()) }, enabled = draftRoot.isNotBlank() && !loading) { Text("Use this bank") }
-            TextButton(onClick = { onMode(!demo) }) {
-                Text(if (demo) "Return to published LLM questions" else "Open hand-authored offline sample")
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = { onRoot(draftRoot.trim()) }, enabled = draftRoot.isNotBlank() && !loading) {
+                    Text("Use this bank")
+                }
+                TextButton(onClick = { onMode(!demo) }) {
+                    Text(if (demo) "Return to published questions" else "Open offline sample")
+                }
             }
-            Text("GitHub distributes pre-generated packs. No API key or live LLM call is used on your phone. Static grading is local practice.",
-                fontSize = 12.sp, color = WarmEditorial.Muted)
+            Text("GitHub serves pre-generated packs. No API key and no live LLM call happen on your phone; grading is local practice.",
+                fontSize = 12.sp, lineHeight = 17.sp, color = WarmEditorial.Muted)
         }
         if (loading) {
-            LinearProgressIndicator(Modifier.fillMaxWidth())
-            Text("Loading published questions…", fontSize = 13.sp)
+            LinearProgressIndicator(Modifier.fillMaxWidth().height(3.dp))
+            Text("Loading published questions…", fontSize = 12.sp)
         }
-        if (error != null) Text(error, color = WarmEditorial.CoralDeep, fontSize = 13.sp)
+        if (error != null) Text(error, color = WarmEditorial.CoralDeep, fontSize = 12.sp, lineHeight = 17.sp)
     }
 }

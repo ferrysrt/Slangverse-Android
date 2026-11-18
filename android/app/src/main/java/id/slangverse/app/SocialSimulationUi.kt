@@ -35,15 +35,17 @@ internal fun StoryIdentity(
     avatarSize: Dp = 36.dp, emphasized: Boolean = false
 ) {
     val profile = visibleProfile(handle)
+    // Published guest accounts use the same string for name and handle; printing both looks broken.
+    val handleEchoesName = profile.name.trim().equals(handle.trimStart('@').trim(), ignoreCase = true)
     Row(Modifier.fillMaxWidth().clickable(onClickLabel = "View ${profile.name}'s fictional profile") { onProfile(handle) }
-        .heightIn(min = 48.dp).padding(vertical = 4.dp),
+        .heightIn(min = 48.dp).padding(vertical = 2.dp),
         horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
         ProfilePicture(handle, profile.avatarId, size = avatarSize)
         Column(Modifier.weight(1f)) {
             Text(profile.name, fontWeight = FontWeight.Bold, fontSize = if (emphasized) 16.sp else 14.sp,
-                lineHeight = if (emphasized) 22.sp else 20.sp)
-            Text(handle, fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
-            if (subtitle != null) Text(subtitle, fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+                lineHeight = if (emphasized) 21.sp else 19.sp)
+            if (!handleEchoesName) Text(handle, fontSize = 12.sp, lineHeight = 17.sp, color = WarmEditorial.Muted)
+            if (subtitle != null) Text(subtitle, fontSize = 11.sp, lineHeight = 16.sp, color = WarmEditorial.Muted)
         }
     }
 }
@@ -82,7 +84,9 @@ internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit
             } else {
                 Column(Modifier.weight(1f)) {
                     StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
-                    Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+                    // "Replying to the post" on every direct reply restated the card it sits inside.
+                    if (parent != null) Text("Replying to ${parent.handle}", fontSize = 11.sp,
+                        lineHeight = 16.sp, color = WarmEditorial.Muted)
                     Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
                 }
             }

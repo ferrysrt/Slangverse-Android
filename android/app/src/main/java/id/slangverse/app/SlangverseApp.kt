@@ -189,7 +189,8 @@ fun SlangverseApp() {
     MaterialTheme(
         colorScheme = lightColorScheme(
             primary = WarmEditorial.Coral,
-            onPrimary = Color.White,
+            // Navy on coral measures 5.4:1; white on coral measured 2.9:1.
+            onPrimary = WarmEditorial.Ink,
             background = WarmEditorial.Paper,
             onBackground = WarmEditorial.Ink,
             surface = WarmEditorial.Card,
@@ -250,7 +251,7 @@ fun SlangverseApp() {
                                 val visiblePosts = if (feedTab == "Saved")
                                     feedProgress.posts.filter { it.thread.id in savedPosts }
                                 else feedProgress.posts.filter { context == null || it.context == context }
-                                LazyColumn(verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                                LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                     item(key = "published-source") {
                                         PublishedBankControls(bankRoot, bankLoading, bankError, offlineSample,
                                             onRoot = {
@@ -270,7 +271,13 @@ fun SlangverseApp() {
                                                 .filter { it != FeedContext.EventReaction }.map { it.label } + "Saved")
                                                 .forEach { tab ->
                                                     FilterChip(selected = feedTab == tab,
-                                                        onClick = { feedTab = tab }, label = { Text(tab) })
+                                                        onClick = { feedTab = tab },
+                                                        label = { Text(tab, fontSize = 12.sp) },
+                                                        // Material's default selected fill is lavender, the only purple in this palette.
+                                                        colors = FilterChipDefaults.filterChipColors(
+                                                            selectedContainerColor = WarmEditorial.Peach,
+                                                            selectedLabelColor = WarmEditorial.CoralDeep,
+                                                            labelColor = WarmEditorial.Ink))
                                                 }
                                         }
                                     }
@@ -558,15 +565,15 @@ private fun EditorialHeader(
     unreadUpdates: Int, onInbox: () -> Unit
 ) {
     Column(Modifier.fillMaxWidth().background(WarmEditorial.Paper)
-        .padding(horizontal = 18.dp, vertical = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(7.dp)) {
+        .padding(horizontal = 18.dp, vertical = 7.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween) {
             Column(Modifier.weight(1f)) {
                 Text("Slangverse ✳", fontFamily = WarmEditorial.Display,
-                    fontSize = 29.sp, color = WarmEditorial.Ink)
+                    fontSize = 24.sp, color = WarmEditorial.Ink)
                 Text("A FICTIONAL SOCIAL FEED FOR SLANG PRACTICE",
-                    fontWeight = FontWeight.Bold, letterSpacing = 1.2.sp,
+                    fontWeight = FontWeight.Bold, letterSpacing = 1.1.sp,
                     fontSize = 8.sp, color = WarmEditorial.Muted)
             }
             if (screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges,
@@ -586,22 +593,25 @@ private fun EditorialHeader(
             verticalAlignment = Alignment.CenterVertically) {
             EditorialTag("★ " + xp + " PRACTICE XP")
             EditorialTag("♨ COMBO " + combo, selected = true)
-            Spacer(Modifier.weight(1f))
-            Text(
-                when (screen) {
-                    EditorialScreen.Feed -> "FEED"
-                    EditorialScreen.Detective -> "CONTEXT DETECTIVE"
-                    EditorialScreen.Learn -> "LEARN"
-                    EditorialScreen.Challenges -> "QUESTS"
-                    EditorialScreen.Progress -> "PROGRESS"
-                    EditorialScreen.Profile -> "PROFILE"
-                    EditorialScreen.ApiSession -> "API SESSION"
-                    EditorialScreen.Activity -> "UPDATES"
-                    EditorialScreen.Conversation -> "THREAD"
-                },
-                fontSize = 9.sp, fontWeight = FontWeight.Bold,
-                color = WarmEditorial.CoralDeep, letterSpacing = 0.5.sp
-            )
+            // "FEED" on the feed screen labelled the tab the user is already looking at.
+            if (screen != EditorialScreen.Feed) {
+                Spacer(Modifier.weight(1f))
+                Text(
+                    when (screen) {
+                        EditorialScreen.Detective -> "CONTEXT DETECTIVE"
+                        EditorialScreen.Learn -> "LEARN"
+                        EditorialScreen.Challenges -> "QUESTS"
+                        EditorialScreen.Progress -> "PROGRESS"
+                        EditorialScreen.Profile -> "PROFILE"
+                        EditorialScreen.ApiSession -> "API SESSION"
+                        EditorialScreen.Activity -> "UPDATES"
+                        EditorialScreen.Conversation -> "THREAD"
+                        EditorialScreen.Feed -> "FEED"
+                    },
+                    fontSize = 9.sp, fontWeight = FontWeight.Bold,
+                    color = WarmEditorial.CoralDeep, letterSpacing = 0.5.sp
+                )
+            }
         }
     }
 }
@@ -628,12 +638,12 @@ private fun EditorialHeader(
     background: Color = WarmEditorial.Card,
     content: @Composable ColumnScope.() -> Unit
 ) {
-    val shape = RoundedCornerShape(21.dp)
+    val shape = RoundedCornerShape(16.dp)
     Column(
-        modifier.fillMaxWidth().shadow(3.dp, shape)
+        modifier.fillMaxWidth().shadow(2.dp, shape)
             .background(background, shape)
-            .border(1.dp, WarmEditorial.Sand, shape).padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(11.dp),
+            .border(1.dp, WarmEditorial.Sand, shape).padding(13.dp),
+        verticalArrangement = Arrangement.spacedBy(9.dp),
         content = content
     )
 }
@@ -655,9 +665,10 @@ private fun EditorialHeader(
     label: String, enabled: Boolean = true, onClick: () -> Unit
 ) {
     Button(
-        onClick = onClick, enabled = enabled, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = WarmEditorial.Coral, contentColor = Color.White),
-        shape = RoundedCornerShape(17.dp)
+        onClick = onClick, enabled = enabled, modifier = Modifier.fillMaxWidth().heightIn(min = 46.dp),
+        // Deep coral instead of the brand coral: white text needs 5.1:1, not 2.9:1.
+        colors = ButtonDefaults.buttonColors(containerColor = WarmEditorial.CoralDeep, contentColor = Color.White),
+        shape = RoundedCornerShape(14.dp)
     ) {
         Text(label, fontSize = 13.sp, fontWeight = FontWeight.Bold)
     }
@@ -677,7 +688,8 @@ private fun EditorialHeader(
     post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
     onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit,
     onProfile: (String) -> Unit, onContext: (FeedContext) -> Unit,
-    initiallyExpanded: Boolean = true
+    // Collapse context replies unless the slang itself lives inside one; the question card stays visible.
+    initiallyExpanded: Boolean = post.termTargetHandle != null
 ) {
     val thread = post.thread
     val displayedOptions = displayAnswerOptions(thread.options)
@@ -686,11 +698,15 @@ private fun EditorialHeader(
     var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
     var selected by rememberSaveable(thread.id) { mutableIntStateOf(-1) }
     PaperCard {
-        StoryIdentity(thread.handle, onProfile, "${story.time} · fictional story", avatarSize = 44.dp, emphasized = true)
-        Text(thread.post, color = WarmEditorial.Ink, fontSize = 18.sp, lineHeight = 26.sp)
+        StoryIdentity(thread.handle, onProfile, story.time.ifBlank { null }, avatarSize = 40.dp, emphasized = true)
+        Text(thread.post, color = WarmEditorial.Ink, fontSize = 16.sp, lineHeight = 23.sp)
         story.quote?.let { StoryQuoteCard(it, onProfile) }
-        TextButton(onClick = { post.context?.let(onContext) }, enabled = post.context != null) {
-            Text(thread.hashtag, fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+        // The pack often repeats the hashtag inside the post body; printing the chip twice is noise.
+        if (thread.hashtag.isNotBlank() && !thread.post.contains(thread.hashtag, ignoreCase = true)) {
+            TextButton(onClick = { post.context?.let(onContext) }, enabled = post.context != null,
+                contentPadding = PaddingValues(horizontal = 0.dp, vertical = 0.dp)) {
+                Text(thread.hashtag, fontSize = 12.sp, color = WarmEditorial.CoralDeep)
+            }
         }
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween) {
@@ -711,16 +727,16 @@ private fun EditorialHeader(
         }
         if (expanded) StoryReplies(story.replies, onProfile, post.termTargetHandle)
         HorizontalDivider(color = WarmEditorial.Sand)
-        Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(14.dp)).padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(9.dp)) {
-            StoryIdentity("@confuseduser", onProfile, "Replying to ${post.termTargetHandle ?: thread.handle} · help explain", avatarSize = 32.dp)
-            Text(thread.questionComment, fontSize = 15.sp, lineHeight = 22.sp)
+        Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(12.dp)).padding(11.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            StoryIdentity("@confuseduser", onProfile, "Replying to ${post.termTargetHandle ?: thread.handle}", avatarSize = 30.dp)
+            Text(thread.questionComment, fontSize = 15.sp, lineHeight = 21.sp)
             if (displayedOptions == null) {
                 Text("This question has ambiguous answer choices and is unavailable for practice.", fontSize = 12.sp)
             } else if (answeredIndex == null && !replying) {
-                TextButton(onClick = { replying = true }) { Text("Reply with the meaning ↓") }
+                EditorialPrimary("Reply with the meaning") { replying = true }
             } else if (answeredIndex == null) {
-                Text("Choose your interpretation", fontSize = 11.sp, color = WarmEditorial.Muted)
+                Text("Choose your interpretation", fontSize = 12.sp, color = WarmEditorial.Muted)
                 displayedOptions.forEachIndexed { index, option ->
                     EditorialOption(index, option, selected == index, false, false) { selected = index }
                 }
@@ -751,26 +767,36 @@ private fun EditorialHeader(
     index: Int, label: String, selected: Boolean, correct: Boolean,
     reveal: Boolean, onClick: () -> Unit
 ) {
-    val bg = if (reveal && correct) WarmEditorial.Sage
-        else if (selected) WarmEditorial.Blush else WarmEditorial.Card
-    val outline = if (reveal && correct) WarmEditorial.Olive
-        else if (selected) WarmEditorial.Coral else WarmEditorial.Sand
+    val marked = selected || (reveal && correct)
+    // A 2dp border on a peach card was invisible; a selected answer now floods the row.
+    val bg = when {
+        reveal && correct -> WarmEditorial.Sage
+        selected -> WarmEditorial.CoralDeep
+        else -> WarmEditorial.Card
+    }
+    val outline = when {
+        reveal && correct -> WarmEditorial.Olive
+        selected -> WarmEditorial.CoralDeep
+        else -> WarmEditorial.Sand
+    }
+    val content = if (selected && !reveal) Color.White else WarmEditorial.Ink
     Surface(
         onClick = onClick, enabled = !reveal,
-        color = bg, border = BorderStroke(if (selected || correct) 2.dp else 1.dp, outline),
-        shape = RoundedCornerShape(14.dp)
+        color = bg, border = BorderStroke(if (marked) 2.dp else 1.dp, outline),
+        shape = RoundedCornerShape(12.dp)
     ) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 13.dp),
+        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 11.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(('A' + index).toString() + ".", fontFamily = WarmEditorial.Display,
-                fontSize = 19.sp, color = WarmEditorial.Ink)
-            Text(label, color = WarmEditorial.Ink,
-                fontSize = 13.sp, modifier = Modifier.weight(1f))
-            if ((reveal && correct) || (!reveal && selected)) {
-                Icon(Icons.Outlined.CheckCircle, contentDescription = "Selected",
-                    tint = if (reveal) WarmEditorial.Olive else WarmEditorial.CoralDeep,
-                    modifier = Modifier.size(21.dp))
+                fontSize = 16.sp, color = content)
+            Text(label, color = content,
+                fontSize = 15.sp, lineHeight = 20.sp, modifier = Modifier.weight(1f))
+            if (marked) {
+                Icon(Icons.Outlined.CheckCircle,
+                    contentDescription = if (reveal) "Correct answer" else "Selected",
+                    tint = if (reveal) WarmEditorial.Olive else Color.White,
+                    modifier = Modifier.size(22.dp))
             }
         }
     }
