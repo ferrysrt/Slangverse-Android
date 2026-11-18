@@ -1,12 +1,137 @@
 {
   "version": 3,
   "stage": "normalized_dataset",
-  "collectedAt": "2026-11-17T17:59:47.033Z",
-  "scrapedPages": 9,
-  "accepted": 2,
-  "rejected": 9,
+  "collectedAt": "2026-11-18T19:55:28.784Z",
+  "scrapedPages": 10,
+  "accepted": 5,
+  "rejected": 0,
   "note": "Machine-normalized definitions with literal source captures, eligible for generation without a manual-review gate. Not expert-validated and not evidence of current popularity. Entries are ordered by newest recorded capture, not by popularity. Legacy provenance may be incomplete and retains its original evidence status.",
   "entries": [
+    {
+      "candidateId": "e8c037838a50c096b8d7a4f3",
+      "term": "lowkenuinely",
+      "definition": "To speak sincerely or share information in a calm, low-key way.",
+      "normalizedDefinition": "To speak sincerely or share information in a calm, low-key way.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a TikTok-originated blend of “lowkey” and “genuinely,” used as a softer alternative to “actually” or “seriously.”",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Lowkenuinely’ means to tell the truth or share information in a sincere, calm, or laid-back way.",
+          "collectedAt": "2026-11-18T19:55:28.784Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Lowkenuinely’ means to tell the truth or share information in a sincere, calm, or laid-back way.",
+      "firstSeenAt": "2026-11-18T19:55:28.784Z",
+      "lastCollectedAt": "2026-11-18T19:55:28.784Z"
+    },
+    {
+      "candidateId": "ddc63d7fd3027f309d6f7160",
+      "term": "cortisol spike",
+      "definition": "A humorous expression for a moment of shock, embarrassment, or awkwardness.",
+      "normalizedDefinition": "A humorous expression for a moment of shock, embarrassment, or awkwardness.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Reportedly began as a joke on X and later spread as a viral expression, often paired with an exaggerated cortisol-meter meme.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Cortisol spike’ is a viral internet joke used to describe moments of shock, embarrassment, or awkwardness.",
+          "collectedAt": "2026-11-18T19:55:28.784Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Cortisol spike’ is a viral internet joke used to describe moments of shock, embarrassment, or awkwardness.",
+      "firstSeenAt": "2026-11-18T19:55:28.784Z",
+      "lastCollectedAt": "2026-11-18T19:55:28.784Z"
+    },
+    {
+      "candidateId": "98ffc6efb04f9cd02b944791",
+      "term": "boy kibble",
+      "definition": "A joking name for a simple, high-protein meal, often made with ground meat and white rice.",
+      "normalizedDefinition": "A joking name for a simple, high-protein meal, often made with ground meat and white rice.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Presented as a playful counterpart to “girl dinner,” contrasting snack-like assortments with plain, protein-focused meals.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Boy kibble’ is a viral social media food featuring simple, high-protein meals, typically including ground meat and white rice.",
+          "collectedAt": "2026-11-18T19:55:28.784Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Boy kibble’ is a viral social media food featuring simple, high-protein meals, typically including ground meat and white rice.",
+      "firstSeenAt": "2026-11-18T19:55:28.784Z",
+      "lastCollectedAt": "2026-11-18T19:55:28.784Z"
+    },
+    {
+      "candidateId": "9a177f3cfb81e5fba7575d8a",
+      "term": "future faking",
+      "definition": "Making empty promises about the future to obtain something in the present.",
+      "normalizedDefinition": "Making empty promises about the future to obtain something in the present.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Described as a modern term for a pattern of behavior that may occur early in a relationship.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘Future faking’ refers to a behaviour where someone provides empty promises for the future to get something they presently want.",
+          "collectedAt": "2026-11-18T19:55:28.784Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘Future faking’ refers to a behaviour where someone provides empty promises for the future to get something they presently want.",
+      "firstSeenAt": "2026-11-18T19:55:28.784Z",
+      "lastCollectedAt": "2026-11-18T19:55:28.784Z"
+    },
+    {
+      "candidateId": "f1a0cdfde080fc7e3276174e",
+      "term": "the saxophones are getting louder",
+      "definition": "A phrase signaling that something bad, negative, or inevitable is approaching.",
+      "normalizedDefinition": "A phrase signaling that something bad, negative, or inevitable is approaching.",
+      "normalizationModel": "openai/gpt-6-luna",
+      "originContext": "Linked to swelling saxophone music foreshadowing danger in the film Boyz n the Hood; online videos use it to signal impending doom.",
+      "reviewStatus": "normalized-unreviewed",
+      "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+      "sources": [
+        {
+          "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+          "title": "Top slang phrases & statistics for 2026",
+          "quote": "‘The saxophones are getting louder’ means that something bad, negative, or inevitable is getting closer.",
+          "collectedAt": "2026-11-18T19:55:28.784Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+        }
+      ],
+      "sourceUrl": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+      "sourceTitle": "Top slang phrases & statistics for 2026",
+      "evidenceSnippet": "‘The saxophones are getting louder’ means that something bad, negative, or inevitable is getting closer.",
+      "firstSeenAt": "2026-11-18T19:55:28.784Z",
+      "lastCollectedAt": "2026-11-18T19:55:28.784Z"
+    },
     {
       "candidateId": "2c3d03f9b4a28b0be01d4b2d",
       "term": "crine",

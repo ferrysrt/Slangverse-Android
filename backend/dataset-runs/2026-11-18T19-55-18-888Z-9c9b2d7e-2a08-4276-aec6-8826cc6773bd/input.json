@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "runId": "2026-11-18T19-55-18-888Z-9c9b2d7e-2a08-4276-aec6-8826cc6773bd",
+  "startedAt": "2026-11-18T19:55:18.888Z",
+  "query": "",
+  "normalizerModel": "openai/gpt-6-luna",
+  "outputUrl": "file:///home/runner/work/Slangverse-Android/Slangverse-Android/backend/data/discovered_candidates.json",
+  "csvOutputUrl": null
+}
