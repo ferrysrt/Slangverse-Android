@@ -88,7 +88,8 @@ internal fun StaticBankSession.toFeedPosts(): List<FeedPracticePost> {
         FeedPracticePost(
             thread = DetectiveCase(id, q.slang, q.options[answer.correctIndex], q.post.displayName,
                 q.post.handle, q.post.hashtag, q.post.content, q.post.comments.map { it.text },
-                q.questionComment.ifBlank { q.question }, q.options, answer.correctIndex, answer.explanation),
+                q.questionComment.ifBlank { q.question }, q.options, answer.correctIndex, answer.explanation,
+                replyTexts = q.replyTexts),
             context = context,
             difficulty = when (q.difficulty) {
                 "easy" -> FeedDifficulty.Easy

@@ -1,5 +1,14 @@
 package id.slangverse.app
 
+/**
+ * The reply that actually gets posted. Packs may carry a natural sentence per option; older packs
+ * keep posting the chosen option so the thread never goes blank.
+ */
+internal fun postedReply(thread: DetectiveCase, index: Int): String =
+    thread.replyTexts.getOrNull(index)?.takeIf { it.isNotBlank() }
+        ?: displayAnswerOptions(thread.options)?.getOrNull(index)
+        ?: thread.options.getOrNull(index).orEmpty()
+
 /** Presentation only; null means the normalized choices cannot be answered unambiguously. */
 internal fun displayAnswerOptions(options: List<String>): List<String>? {
     val labels = options.map { option ->

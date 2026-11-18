@@ -16,7 +16,9 @@ internal data class DetectiveCase(
     val questionComment: String,
     val options: List<String>,
     val correctIndex: Int,
-    val explanation: String
+    val explanation: String,
+    /** The learner's own posted reply per option; empty means fall back to the option text. */
+    val replyTexts: List<String> = emptyList()
 )
 
 internal data class DetectiveDecision(

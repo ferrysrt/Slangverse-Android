@@ -235,7 +235,10 @@ private fun parseStaticBankSession(
             senseId = q.optString("senseId", ""),
             targetMeaning = q.optString("targetMeaning", ""),
             questionTarget = q.optString("questionTarget", ""),
-            targetHandle = q.optString("targetHandle", "")
+            targetHandle = q.optString("targetHandle", ""),
+            // Optional: a malformed list degrades to the option text instead of blanking the feed.
+            replyTexts = q.optJSONArray("replyTexts")?.asStrings()
+                ?.map { it.trim() }?.takeIf { it.size == options.size && it.none(String::isBlank) }.orEmpty()
         )
         if (question.id.isBlank() || question.contextId.isBlank() ||
             question.question.isBlank() || question.post.content.isBlank()
@@ -297,7 +300,7 @@ private val mixedContextCategories = setOf(
 )
 
 /** Prompt versions whose contract allows the term to repeat and binds it to one named surface. */
-private val repeatTermPromptVersions = setOf("mixed-v7", "mixed-v8")
+private val repeatTermPromptVersions = setOf("mixed-v7", "mixed-v8", "mixed-v9", "mixed-v10")
 
 private data class MixedReference(val term: String, val targetMeaning: String)
 

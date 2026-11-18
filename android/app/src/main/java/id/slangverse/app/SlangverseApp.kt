@@ -462,7 +462,7 @@ fun SlangverseApp() {
                                         if (displayedOptions == null) {
                                             Text("This question has ambiguous answer choices and is unavailable for review.", fontSize = 12.sp)
                                         } else {
-                                            Text("Your reply: ${displayedOptions[result.selectedIndex]}", fontSize = 12.sp)
+                                            Text("Your reply: ${postedReply(post.thread, result.selectedIndex)}", fontSize = 12.sp)
                                             Text("Meaning here: ${displayedOptions[post.thread.correctIndex]}", fontSize = 12.sp)
                                         }
                                         Text(if (result.correct) "✓ Meaning matched · +${result.xpEarned} XP"
@@ -742,7 +742,7 @@ private fun EditorialHeader(
                 }
                 EditorialPrimary("Send reply", enabled = selected in thread.options.indices) { onAnswer(selected) }
             } else {
-                StoryPlayerReply(displayedOptions[answeredIndex])
+                StoryPlayerReply(postedReply(thread, answeredIndex))
             }
         }
         if (answeredIndex != null && displayedOptions != null) {

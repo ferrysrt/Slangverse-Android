@@ -204,6 +204,34 @@ class MixedPublishedFeedTest {
         reject { it.getJSONArray("questions").getJSONObject(0).put("correctIndex", -1) }
     }
 
+    @Test fun learnerRepliesFromThePackArePostedAndOldPacksFallBackToTheOption() {
+        val json = fixture()
+        val q = json.getJSONArray("questions").getJSONObject(0)
+        val options = (0 until q.getJSONArray("options").length()).map { q.getJSONArray("options").getString(it) }
+        val term = q.getString("slang")
+        q.put("replyTexts", JSONArray(options.mapIndexed { index, _ ->
+            "Honestly, that $term thing is reading $index to me."
+        }))
+        val loaded = parse(json)
+        val thread = loaded.toFeedPosts().first().thread
+        assertEquals(listOf("Honestly, that $term thing is reading 0 to me.",
+            "Honestly, that $term thing is reading 1 to me.",
+            "Honestly, that $term thing is reading 2 to me.",
+            "Honestly, that $term thing is reading 3 to me."), thread.replyTexts)
+        assertEquals("Honestly, that $term thing is reading 2 to me.", postedReply(thread, 2))
+
+        // Packs published before v9 carry no replyTexts: the chosen option is still posted.
+        val legacy = parse().toFeedPosts().first().thread
+        assertTrue(legacy.replyTexts.isEmpty())
+        assertEquals(checkNotNull(displayAnswerOptions(legacy.options))[1], postedReply(legacy, 1))
+
+        // A malformed list is dropped instead of rejecting the whole pack.
+        val broken = fixture()
+        broken.getJSONArray("questions").getJSONObject(0)
+            .put("replyTexts", JSONArray(listOf("only one reply")))
+        assertTrue(parse(broken).session.questions.first().replyTexts.isEmpty())
+    }
+
     @Test fun mixedRequiresTenQuestionsAndFiveThreeTwoDifficulties() {
         reject { it.getJSONArray("questions").remove(9) }
         reject { it.getJSONArray("questions").put(it.getJSONArray("questions").getJSONObject(0)) }

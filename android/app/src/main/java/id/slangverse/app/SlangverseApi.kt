@@ -34,7 +34,9 @@ data class ApiQuestion(
     val senseId: String = "",
     val targetMeaning: String = "",
     val questionTarget: String = "",
-    val targetHandle: String = ""
+    val targetHandle: String = "",
+    /** Four natural in-thread replies, one per option; empty when the pack predates them. */
+    val replyTexts: List<String> = emptyList()
 )
 data class ApiSense(val senseId: String, val term: String, val reviewStatus: String, val packSha256: String = "")
 data class ApiPack(val packId: String, val sha256: String, val questionCount: Int)
