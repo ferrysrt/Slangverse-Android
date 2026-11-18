@@ -9,6 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.random.Random
 
 internal object PublishedFeedDefaults {
@@ -42,25 +45,64 @@ internal fun publishedContext(category: String, contextId: String): FeedContext?
 
 internal data class PublishedPackRequest(val id: String, val sha256: String, val legacyTerm: String? = null)
 
+/**
+ * What one bank load produced. [problems] keeps the packs that did not arrive instead of throwing
+ * them away: on a phone network a single timed-out pack used to blank the whole feed, so the packs
+ * that did arrive are still worth showing. Every session here belongs to the same catalog snapshot,
+ * and each question ID carries its pack and content version, so a partial set cannot mix revisions.
+ */
+internal data class PublishedFeedLoad(
+    val sessions: List<StaticBankSession>,
+    val problems: List<String> = emptyList()
+) {
+    val requestedCount: Int get() = sessions.size + problems.size
+    val isPartial: Boolean get() = sessions.isNotEmpty() && problems.isNotEmpty()
+}
+
 internal fun selectPublishedPacks(catalog: ApiCatalog): List<PublishedPackRequest> =
     if (catalog.packs.isNotEmpty()) catalog.packs.take(12).map { PublishedPackRequest(it.packId, it.sha256) }
     else catalog.senses.take(12).map { PublishedPackRequest(it.senseId, it.packSha256, it.term) }
 
+/**
+ * Loads the selected packs concurrently, because up to twelve sequential HTTPS GETs on a slow mobile
+ * connection kept the feed empty for the better part of a minute. A pack that fails is recorded and
+ * the rest still load; only a load where nothing at all arrived is reported as a failure.
+ */
 internal suspend fun loadPublishedSessions(
-    catalog: ApiCatalog, fetch: suspend (PublishedPackRequest) -> StaticBankSession
-): List<StaticBankSession> {
+    catalog: ApiCatalog,
+    onProgress: (loaded: Int, total: Int) -> Unit = { _, _ -> },
+    fetch: suspend (PublishedPackRequest) -> StaticBankSession
+): PublishedFeedLoad {
     if (catalog.generationSource != "llm") throw ApiException("Default feed requires a published LLM catalog")
     val requests = selectPublishedPacks(catalog)
     if (requests.isEmpty()) throw ApiException("No generated packs have been published yet (${catalog.status})")
-    return requests.map { request ->
-        try {
-            fetch(request)
-        } catch (cancelled: CancellationException) {
-            throw cancelled
-        } catch (error: Exception) {
-            throw ApiException("Pack ${request.id}: ${error.message ?: "download failed"}")
+    val sessions = arrayOfNulls<StaticBankSession>(requests.size)
+    val problems = arrayOfNulls<String>(requests.size)
+    val cancellations = arrayOfNulls<CancellationException>(requests.size)
+    val completed = AtomicInteger()
+    onProgress(0, requests.size)
+    coroutineScope {
+        requests.forEachIndexed { index, request ->
+            launch {
+                try {
+                    sessions[index] = fetch(request)
+                    onProgress(completed.incrementAndGet(), requests.size)
+                } catch (cancellation: CancellationException) {
+                    // Kept, not swallowed: a cancelled fetch must not look like a pack that simply
+                    // did not arrive, so it is rethrown after the scope has settled.
+                    cancellations[index] = cancellation
+                } catch (error: Exception) {
+                    problems[index] = "Pack ${request.id}: ${error.message ?: "download failed"}"
+                    onProgress(completed.incrementAndGet(), requests.size)
+                }
+            }
         }
     }
+    cancellations.filterNotNull().firstOrNull()?.let { throw it }
+    val arrived = sessions.filterNotNull()
+    val failed = problems.filterNotNull()
+    if (arrived.isEmpty() && failed.isNotEmpty()) throw ApiException(failed.joinToString("; "))
+    return PublishedFeedLoad(arrived, failed)
 }
 
 internal fun mergePublishedFeed(
@@ -123,8 +165,8 @@ internal fun feedProfiles(posts: List<FeedPracticePost>): Map<String, FictionalP
 
 @Composable
 internal fun PublishedBankControls(
-    root: String, loading: Boolean, error: String?, demo: Boolean,
-    onRoot: (String) -> Unit, onRefresh: () -> Unit, onMode: (Boolean) -> Unit
+    root: String, loading: Boolean, loadedPacks: Int, totalPacks: Int, error: String?, notice: String?,
+    demo: Boolean, onRoot: (String) -> Unit, onRefresh: () -> Unit, onMode: (Boolean) -> Unit
 ) {
     var settings by rememberSaveable { mutableStateOf(false) }
     var draftRoot by rememberSaveable(root) { mutableStateOf(root) }
@@ -158,8 +200,10 @@ internal fun PublishedBankControls(
         }
         if (loading) {
             LinearProgressIndicator(Modifier.fillMaxWidth().height(3.dp))
-            Text("Loading published questions…", fontSize = 12.sp)
+            Text(if (totalPacks > 0) "Loading published questions… $loadedPacks / $totalPacks packs"
+                else "Loading published questions…", fontSize = 12.sp)
         }
+        if (notice != null) Text(notice, fontSize = 12.sp, lineHeight = 17.sp, color = WarmEditorial.Muted)
         if (error != null) Text(error, color = WarmEditorial.CoralDeep, fontSize = 12.sp, lineHeight = 17.sp)
     }
 }

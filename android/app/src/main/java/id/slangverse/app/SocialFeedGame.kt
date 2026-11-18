@@ -123,4 +123,7 @@ internal data class FeedPracticeProgress(
         require(selectedIndex in post.thread.options.indices)
         return if (postId in answers) this else copy(answers = answers + (postId to selectedIndex))
     }
+
+    /** Drops every reply so XP, combo, matches and the history rows all fall back to zero. */
+    fun reset(): FeedPracticeProgress = copy(answers = emptyMap())
 }

@@ -9,6 +9,7 @@ import org.junit.Assume
 import org.junit.Test
 import java.io.File
 import java.security.MessageDigest
+import java.util.Collections
 import kotlin.random.Random
 
 class MixedPublishedFeedTest {
@@ -370,45 +371,76 @@ class MixedPublishedFeedTest {
 
     @Test fun successfulLoaderFetchesAllSixLegacyPacksOrAtMostTwelveMixedPacks() = runBlocking {
         val catalog = parseBankCatalog(catalogJson(20).toString(), true)
-        val mixedRequests = mutableListOf<PublishedPackRequest>()
+        val mixedRequests = Collections.synchronizedList(mutableListOf<PublishedPackRequest>())
         val mixed = loadPublishedSessions(catalog) { request ->
             mixedRequests += request
             parse(fixture().put("packId", request.id))
         }
         assertEquals(12, mixedRequests.size)
-        assertEquals(120, mergePublishedFeed(mixed, Random(42)).size)
+        assertTrue(mixed.problems.isEmpty())
+        assertFalse(mixed.isPartial)
+        assertEquals((1..12).map { "mixed-$it" }.toSet(), mixed.sessions.map { it.session.packId }.toSet())
+        assertEquals(120, mergePublishedFeed(mixed.sessions, Random(42)).size)
         val legacyCatalog = catalog.copy(packs = emptyList(), senses = (1..6).map {
             ApiSense("legacy-$it", "cooked", "provisional", "b".repeat(64))
         })
-        val legacyRequests = mutableListOf<PublishedPackRequest>()
+        val legacyRequests = Collections.synchronizedList(mutableListOf<PublishedPackRequest>())
         val legacy = loadPublishedSessions(legacyCatalog) { request ->
             legacyRequests += request
             parseBankSession(legacyFixture().put("senseId", request.id).toString(), request.id, true, request.legacyTerm)
         }
-        assertEquals((1..6).map { "legacy-$it" }, legacyRequests.map { it.id })
-        assertEquals(60, mergePublishedFeed(legacy, Random(42)).size)
+        assertEquals((1..6).map { "legacy-$it" }.toSet(), legacyRequests.map { it.id }.toSet())
+        assertEquals(60, mergePublishedFeed(legacy.sessions, Random(42)).size)
     }
 
-    @Test fun failedMixedLoadReturnsNoPartialReplacementAndNeverFallsBackToLegacy() {
-        val catalog = parseBankCatalog(catalogJson(3).toString(), true)
-        val loadedBefore = parse().toFeedPosts()
-        var progress = FeedPracticeProgress(posts = loadedBefore).answer(loadedBefore.first().thread.id, 0)
-        val before = progress
-        val requests = mutableListOf<PublishedPackRequest>()
-        val error = assertThrows(ApiException::class.java) {
-            runBlocking {
-                val sessions = loadPublishedSessions(catalog) { request ->
-                    requests += request
-                    if (request.id == "mixed-2") throw ApiException("checksum mismatch")
-                    parse(fixture().put("packId", request.id))
-                }
-                progress = progress.copy(posts = mergePublishedFeed(sessions, Random(42)))
-            }
+    @Test fun progressCountsEveryPackOnceAndEndsAtTheTotal() = runBlocking {
+        val catalog = parseBankCatalog(catalogJson(4).toString(), true)
+        val calls = Collections.synchronizedList(mutableListOf<Pair<Int, Int>>())
+        val load = loadPublishedSessions(catalog, onProgress = { loaded, total -> calls += loaded to total }) { request ->
+            parse(fixture().put("packId", request.id))
         }
-        assertEquals(listOf("mixed-1", "mixed-2"), requests.map { it.id })
+        assertEquals(4, load.sessions.size)
+        assertTrue(calls.all { it.second == 4 })
+        assertEquals(0, calls.first().first)
+        assertEquals((1..4).toList(), calls.drop(1).map { it.first }.sorted())
+    }
+
+    /**
+     * A single timed-out pack used to discard the other eleven, which is exactly what left the feed
+     * empty on a real phone. The pack that failed is named, the rest are kept in catalog order.
+     */
+    @Test fun aPackThatFailsIsNamedWhileEveryOtherPackStillLoads() = runBlocking {
+        val catalog = parseBankCatalog(catalogJson(3).toString(), true)
+        val requests = Collections.synchronizedList(mutableListOf<PublishedPackRequest>())
+        val load = loadPublishedSessions(catalog) { request ->
+            requests += request
+            if (request.id == "mixed-2") throw ApiException("checksum mismatch")
+            parse(fixture().put("packId", request.id))
+        }
+        assertEquals((1..3).map { "mixed-$it" }.toSet(), requests.map { it.id }.toSet())
         assertTrue(requests.all { it.legacyTerm == null })
-        assertTrue(error.message!!.contains("mixed-2"))
-        assertEquals(before, progress)
+        assertEquals(listOf("mixed-1", "mixed-3"), load.sessions.map { it.session.packId })
+        assertEquals(3, load.requestedCount)
+        assertTrue(load.isPartial)
+        assertEquals(1, load.problems.size)
+        assertTrue(load.problems.single().startsWith("Pack mixed-2: "))
+        assertTrue(load.problems.single().contains("checksum mismatch"))
+        // What did arrive is a real replacement: old answers stay keyed to posts that are gone.
+        val loadedBefore = parse().toFeedPosts()
+        val progress = FeedPracticeProgress(posts = loadedBefore).answer(loadedBefore.first().thread.id, 0)
+        val replaced = progress.copy(posts = mergePublishedFeed(load.sessions, Random(42)))
+        assertEquals(20, replaced.posts.size)
+        assertEquals(0, replaced.completedCount)
+        assertEquals(0, replaced.xp)
+    }
+
+    @Test fun aLoadWhereNoPackArrivesStillFailsAndNamesThem() {
+        val catalog = parseBankCatalog(catalogJson(3).toString(), true)
+        val error = assertThrows(ApiException::class.java) {
+            runBlocking { loadPublishedSessions(catalog) { throw ApiException("timeout") } }
+        }
+        assertTrue(error.message!!.contains("mixed-1"))
+        assertTrue(error.message!!.contains("mixed-3"))
     }
 
     @Test fun emptyOrMockCatalogsFailExplicitlyAndCancellationPropagates() {

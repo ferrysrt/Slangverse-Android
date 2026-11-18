@@ -6,6 +6,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.StandardCharsets
@@ -54,14 +55,20 @@ class GithubStaticBank(rawRootUrl: String) {
         parseMixedBankSession(getText("packs/$packId.json"), packId, expectedSha256)
     }
 
-    suspend fun fetchPublishedSessions(catalog: ApiCatalog): List<StaticBankSession> =
-        loadPublishedSessions(catalog) { request ->
+    internal suspend fun fetchPublishedSessions(
+        catalog: ApiCatalog, onProgress: (loaded: Int, total: Int) -> Unit = { _, _ -> }
+    ): PublishedFeedLoad =
+        loadPublishedSessions(catalog, onProgress) { request ->
             if (request.legacyTerm == null) fetchMixedSession(request.id, request.sha256)
             else fetchSession(request.id, requireLlm = true,
                 expectedTerm = request.legacyTerm, expectedSha256 = request.sha256)
         }
 
-    private fun getText(path: String): String {
+    // A dropped connection or a stalled read is a phone-network problem, not a bank defect, so it
+    // gets one second chance before the pack is reported as missing.
+    private fun getText(path: String): String = withTransportRetry { readText(path) }
+
+    private fun readText(path: String): String {
         val url = URL("$root/$path?refresh=${System.currentTimeMillis()}")
         val connection = url.openConnection() as HttpURLConnection
         try {
@@ -72,10 +79,14 @@ class GithubStaticBank(rawRootUrl: String) {
             connection.setRequestProperty("Accept", "application/json")
             connection.setRequestProperty("Cache-Control", "no-cache")
             val status = connection.responseCode
-            if (status != 200) throw ApiException(
-                if (status == 404) "Question bank not found (404). Check its URL and publication status"
-                else "GitHub GET failed (HTTP $status)"
-            )
+            if (status != 200) {
+                // GitHub's own 5xx pages are worth another attempt; 404 and 403 mean the URL is wrong.
+                if (status in 500..599) throw IOException("GitHub GET failed (HTTP $status)")
+                throw ApiException(
+                    if (status == 404) "Question bank not found (404). Check its URL and publication status"
+                    else "GitHub GET failed (HTTP $status)"
+                )
+            }
             val text = connection.inputStream.use { stream ->
                 val maxBytes = 1_000_000
                 val output = ByteArrayOutputStream()
@@ -97,8 +108,28 @@ class GithubStaticBank(rawRootUrl: String) {
 
 
 private val mixedPackIdPattern = Regex("mixed-[a-z0-9]+(?:-[a-z0-9]+)*")
-private fun validMixedPackId(id: String): Boolean = id.length <= 80 && id.matches(mixedPackIdPattern)
 private val bankHashPattern = Regex("[a-fA-F0-9]{64}")
+private fun validMixedPackId(id: String): Boolean = id.length <= 80 && id.matches(mixedPackIdPattern)
+
+/**
+ * Repeats [block] when the transport fails: a dropped socket, a stalled read or a GitHub 5xx page.
+ * Bank defects are deterministic and are not retried — a wrong URL or a checksum mismatch would only
+ * cost the reader another wait. The pause runs on the caller's IO dispatcher.
+ */
+internal inline fun <T> withTransportRetry(
+    attempts: Int = 2, pauseMillis: Long = 350, block: () -> T
+): T {
+    var lastError: IOException? = null
+    for (attempt in 1..attempts) {
+        try {
+            return block()
+        } catch (error: IOException) {
+            lastError = error
+            if (attempt < attempts && pauseMillis > 0) Thread.sleep(pauseMillis)
+        }
+    }
+    throw lastError ?: IOException("GitHub GET failed")
+}
 
 private fun requireBankSchema(json: JSONObject, vararg supported: Int) {
     if (json.optInt("schemaVersion", -1) !in supported) throw ApiException("Unsupported GitHub bank schema")

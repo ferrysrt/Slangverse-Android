@@ -130,10 +130,16 @@ fun SlangverseApp() {
     var loadedBankRefresh by rememberSaveable { mutableIntStateOf(-1) }
     var publishedOrder by rememberSaveable { mutableStateOf(emptyList<String>()) }
     var bankLoading by remember { mutableStateOf(false) }
+    var bankLoadedPacks by remember { mutableIntStateOf(0) }
+    var bankTotalPacks by remember { mutableIntStateOf(0) }
     var bankError by remember { mutableStateOf<String?>(null) }
+    var bankNotice by remember { mutableStateOf<String?>(null) }
 
     LaunchedEffect(bankRoot, bankRefresh, offlineSample) {
         bankError = null
+        bankNotice = null
+        bankLoadedPacks = 0
+        bankTotalPacks = 0
         if (offlineSample) {
             bankLoading = false
             feedProgress = feedProgress.copy(posts = SocialFeedGame.posts)
@@ -145,19 +151,26 @@ fun SlangverseApp() {
         try {
             val bank = GithubStaticBank(bankRoot)
             val catalog = bank.fetchCatalog(requireLlm = true)
-            val sessions = bank.fetchPublishedSessions(catalog)
+            // A pack that does not arrive is reported instead of blanking the whole feed.
+            val load = bank.fetchPublishedSessions(catalog) { loaded, total ->
+                bankLoadedPacks = loaded
+                bankTotalPacks = total
+            }
             val savedOrder = if (loadedBankRoot == bankRoot && loadedBankRefresh == bankRefresh)
                 publishedOrder else emptyList()
-            val posts = mergePublishedFeed(sessions, savedOrder = savedOrder)
+            val posts = mergePublishedFeed(load.sessions, savedOrder = savedOrder)
             feedProgress = feedProgress.copy(posts = posts)
             publishedOrder = posts.map { it.thread.id }
             loadedBankRoot = bankRoot
             loadedBankRefresh = bankRefresh
+            bankNotice = if (load.isPartial)
+                "${load.sessions.size} of ${load.requestedCount} packs loaded; ${load.problems.size} did not " +
+                    "arrive (${load.problems.first()}). Refresh to retry." else null
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (error: Exception) {
             val retained = if (feedProgress.posts.isNotEmpty())
-                " Showing previously loaded published questions in their existing order." else " No sample was loaded."
+                " Showing the ${feedProgress.posts.size} questions already loaded." else " Nothing has loaded yet."
             bankError = "Published questions unavailable: ${error.message ?: "check your connection"}.$retained Use Refresh to retry."
         } finally {
             bankLoading = false
@@ -270,7 +283,8 @@ fun SlangverseApp() {
                                 else feedProgress.posts.filter { context == null || it.context == context }
                                 LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                     item(key = "published-source") {
-                                        PublishedBankControls(bankRoot, bankLoading, bankError, offlineSample,
+                                        PublishedBankControls(bankRoot, bankLoading, bankLoadedPacks, bankTotalPacks,
+                                            bankError, bankNotice, offlineSample,
                                             onRoot = {
                                                 if (offlineSample) feedProgress = feedProgress.copy(posts = emptyList())
                                                 bankRoot = it; offlineSample = false; bankRefresh++
@@ -491,6 +505,15 @@ fun SlangverseApp() {
                                 Text("Local practice only; not a measure of mastery or participant research data.",
                                     fontSize = 11.sp, color = WarmEditorial.Muted)
                                 EditorialPrimary("RETURN TO FEED →") { screen = EditorialScreen.Feed }
+                                PracticeResetCard(
+                                    answered = feedProgress.completedCount,
+                                    likes = likedPosts.size,
+                                    saves = savedPosts.size
+                                ) {
+                                    feedProgress = feedProgress.reset()
+                                    likedPosts = emptyList()
+                                    savedPosts = emptyList()
+                                }
                                 if (sampleCompletedCases > 0) PaperCard {
                                     EditorialEyebrow("ARCHIVED DEMO · LAST CASE FILE")
                                     Text("$sampleCompletedCases cases · $sampleCorrectCases matched · $sampleXp XP · ending combo $sampleCombo",
@@ -701,7 +724,46 @@ private fun EditorialHeader(
     }
 }
 
-// Internal rather than private so the instrumented layout test can compose the real card.
+/**
+ * Destructive local action, so it asks a second time: one stray tap on the Progress screen should
+ * not cost a reader every reply this phone remembers.
+ */
+@Composable internal fun PracticeResetCard(
+    answered: Int, likes: Int, saves: Int, onReset: () -> Unit
+) {
+    var confirming by rememberSaveable { mutableStateOf(false) }
+    val anySaved = answered > 0 || likes > 0 || saves > 0
+    PaperCard {
+        EditorialTitle("Reset local practice", 23)
+        Text(
+            "Clears everything saved on this phone: $answered answered, $likes liked, $saves bookmarked. " +
+                "The questions stay in the feed; this cannot be undone.",
+            fontSize = 12.sp, lineHeight = 17.sp, color = WarmEditorial.Muted
+        )
+        if (!anySaved) {
+            Text("Nothing has been saved on this phone yet.", fontSize = 12.sp, color = WarmEditorial.Muted)
+        } else if (confirming) {
+            Text("Reset all of it to zero?", fontSize = 13.sp, fontWeight = FontWeight.Bold)
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(
+                    onClick = { confirming = false; onReset() },
+                    colors = ButtonDefaults.buttonColors(containerColor = WarmEditorial.CoralDeep, contentColor = Color.White),
+                    shape = RoundedCornerShape(14.dp)
+                ) {
+                    Text("YES, RESET", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                }
+                TextButton(onClick = { confirming = false }) { Text("CANCEL", fontSize = 12.sp) }
+            }
+        } else {
+            TextButton(onClick = { confirming = true }) {
+                Text("RESET LOCAL PRACTICE", fontSize = 12.sp, fontWeight = FontWeight.Bold,
+                    color = WarmEditorial.CoralDeep)
+            }
+        }
+    }
+}
+
+// Internal rather than private so the JVM layout test can compose the real card.
 @Composable internal fun FeedSocialPost(
     post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
     onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit,
