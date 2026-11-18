@@ -98,10 +98,13 @@ export function termSurfaces(q) {
 
 // Mixed-v7 binds an explicit target to a term-bearing surface; repetition is allowed.
 // Older packs retain the historical exactly-once rule and optional inferred target.
+export const REPEAT_TERM_PROMPT_VERSIONS = Object.freeze(['mixed-v7', 'mixed-v8']);
+export const allowsRepeatedTerm = promptVersion => REPEAT_TERM_PROMPT_VERSIONS.includes(promptVersion);
+
 export function validateTermTarget(q, {promptVersion} = {}) {
   const {term, found} = termSurfaces(q);
   if (!term) return ['term-target'];
-  if (promptVersion === 'mixed-v7') {
+  if (allowsRepeatedTerm(promptVersion)) {
     if (!['post', 'reply'].includes(q.questionTarget)) return ['term-target-shape'];
     if (typeof q.targetHandle !== 'string' || !q.targetHandle.trim()) return ['term-target-handle'];
     const errors = [];
@@ -150,13 +153,15 @@ export function validateQuestion(q, {promptVersion} = {}){
   if(!q.post||typeof q.post!=='object'||typeof q.post.content!=='string'||!q.post.content.trim()||typeof q.post.displayName!=='string'||typeof q.post.handle!=='string')errors.push('post-shape');
   if(typeof q.question!=='string'||!q.question.trim())errors.push('question-text');
   // V3.1 optional extension. The term itself lives in post.content or one reply, not here.
+  // Punctuation of the closing mark is deliberately not gated: a comment phrased as a question and
+  // ending with an aside reads more natural, so the analyzer reports it instead of rejecting a pack.
   if(q.questionComment!==undefined){
     const v=q.questionComment;
     if(typeof v!=='string'||v.length<10||v.length>220||!v.includes('?'))errors.push('question-comment-shape');
     else{
       const text=normalize(v),meaning=normalize(q.targetMeaning);
       if((meaning&&text.includes(meaning))||
-         (promptVersion === 'mixed-v7' && normalize(q.explanation) && text.includes(normalize(q.explanation)))||
+         (allowsRepeatedTerm(promptVersion) && normalize(q.explanation) && text.includes(normalize(q.explanation)))||
          q.options?.some(o=>{const opt=normalize(o);return opt&&text.includes(opt);}))
         errors.push('question-comment-leakage');
     }

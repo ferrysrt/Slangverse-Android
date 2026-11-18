@@ -2,7 +2,7 @@
 
 ## Scope and evidence rule
 
-The active generation template is **`mixed-v7`**, stored in `backend/prompts/mixed-v7.txt`; prior versions remain archived. The existing published mixed pack was generated with `mixed-v5`, not v7. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology or expert content validation. Earlier single-sense smoke runs are separate exploratory evidence.
+The active generation template is **`mixed-v8`**, stored in `backend/prompts/mixed-v8.txt`; v1–v7 remain archived. The existing published mixed pack was generated with `mixed-v5`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology or expert content validation. Earlier single-sense smoke runs are separate exploratory evidence.
 
 Report only observations backed by actual attempt files. A future prompt revision needs its own saved template, actual runs and comparable metrics before it can be described as evaluated or better.
 
@@ -128,7 +128,55 @@ Editorial review of the published mixed-v5 pack found that `questionComment` oft
 
 **Deployment compatibility:** Android builds predating v7 retain the exactly-once parser and can reject a v7 pack with repeated occurrences. Release the compatible Android client before publishing such a pack; the unchanged currently published v5 pack remains compatible. This change alone does not rewrite existing questions or visually restyle comments.
 
-**Hypothesis, not a measured outcome:** this revision may make the interaction feel more like a genuine conversation. It changes both the prompt and the occurrence contract, so comparisons against v5/v6 must disclose this confound. No real v7 provider call, output or evaluation is established by this change; fixture tests are not a generation experiment. Evaluate actual outputs for target clarity, naturalness, answer leakage and distractor quality, recording all attempts and using an approved paid budget before claiming any improvement.
+**Hypothesis, not a measured outcome:** this revision may make the interaction feel more like a genuine conversation. It changes both the prompt and the occurrence contract, so comparisons against v5/v6 must disclose this confound. Evaluate actual outputs for target clarity, naturalness, answer leakage and distractor quality, recording all attempts and using an approved paid budget before claiming any improvement.
+
+## First real v7 attempt (n=1, raw output preserved)
+
+One local attempt on 2026-11-18 used `mixed-v7` with `openai/gpt-6-luna` through OpenRouter: one provider call, 8,993 tokens, USD 0.00249, `finish_reason` `stop`. Audit files are in `backend/experiments/mixed-20261118t132315785z-ccc0514b-e27e-4dbf-9a51-386fd0c7eeb5/`. The attempt **failed validation and published nothing**; the bank and the released pack were untouched because the run used the non-publishing runner.
+
+Failure codes, all model-side: `0:key-meaning-mismatch` and `3:key-meaning-mismatch` (the option at `correctIndex` paraphrased the reference instead of copying it — 2 of 10 items), `3:reference-mismatch`, `3:term-target-mismatch` (the reply said "larping" while the contract term is "larp", so the exact term was absent from the target surface), and `unused-reference`. Structural checks, social guardrails and provider completion passed.
+
+Editorial signals from `npm run questions:analyze` on that raw output, compared with the published v5 pack:
+
+| Signal | published v5 | v7 attempt |
+| --- | --- | --- |
+| Comments addressing the feed as an object ("the post", "the commenter", "readers") | 10/10 | 0/10 |
+| Comments opening as an exam question | 8/10 | 0/10 |
+| Comments quoting the term | 0/10 | 5/10 |
+| Comments mentioning the target handle | 0/10 | 5/10 |
+| Correct option verbatim | 10/10 | 8/10 |
+
+The comment register clearly changed in the intended direction. It is still **one attempt**, not an evaluation: no comparison condition, no second run, no human rating, and difficulty labels remain nominal.
+
+**A limit that matters:** the analyzer reported 0 shared content words between the v7 comments and the reference meanings, yet manual reading found three comments that gesture at the answer by paraphrase (“are you saying he is actually acting out a character?” for *larp*, “or are you talking about how Kai feels?” for *cooked*). Word-overlap heuristics therefore give false comfort on this specific risk; only human review of each pack catches it. Two comments also ended with an aside rather than a question mark, which was left un-gated on purpose: those read more natural, and rejecting a whole pack over closing punctuation would cost another paid attempt for no reader benefit.
+
+## Revision — mixed-v8 answers the observed defects
+
+`mixed-v8` exists because editing `mixed-v7` in place would break the provenance of the attempt above: the archived template must stay byte-identical to what produced a recorded run. v8 keeps v7's conversational comment and repeat-permitting contract and adds three requirements aimed at the codes actually observed — write the term uninflected ("larp", not "larping"), copy the reference meaning character-for-character, and never let the comment describe or narrow the correct sense even as a wrong guess. It also ends with an explicit pre-return self-check.
+
+Both v7 and v8 share the repeat-term validator branch (`REPEAT_TERM_PROMPT_VERSIONS` in `backend/src/game.mjs`, mirrored by `repeatTermPromptVersions` in the Android parser). Earlier versions keep exactly-once. A v8 pack remains rejectable by any Android build that predates this parser, so the compatibility gate below is unchanged.
+
+Reproduce with `npm run bank:try` (one paid call, writes only to `backend/experiments/`, never to `question-bank/`) and inspect with `npm run questions:analyze <attempt-dir>`. The analyzer emits heuristics, not verdicts.
+
+## First real v8 attempt (n=1, valid, unpublished)
+
+One local attempt on 2026-11-18 used `mixed-v8` with `openai/gpt-6-luna`: one provider call, 9,009 tokens, USD 0.00241, `finish_reason` `stop`, **validation passed with zero error codes**. The validated pack is `backend/experiments/mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3/pack.json`. It was deliberately **not published**: the runner never writes the bank, and the release gate below still applies.
+
+What the two attempts together show, with the caveat that the sampled terms differ so they are not a controlled comparison:
+
+| Signal | published v5 | v7 attempt (invalid) | v8 attempt (valid) |
+| --- | --- | --- | --- |
+| Feed-as-object comments | 10/10 | 0/10 | 0/10 |
+| Exam-opener comments | 8/10 | 0/10 | 0/10 |
+| Correct option verbatim | 10/10 | 8/10 | 10/10 |
+| Term uninflected on target | 10/10 | 9/10 | 10/10 |
+| Reply-targeted items | 5/10 | 5/10 | 0/10 |
+
+The three added requirements appear to have fixed the two defect classes observed in v7, at least in this attempt. A new observation replaces them: **every v8 item puts the term in the post body**, so the reply-target feature (the highlighted reply in the feed) is never exercised. That is either sampling luck or a side effect of emphasising the untouched term on the target surface, and one attempt cannot tell the two apart.
+
+Naturalness is also not settled. The v8 comments are conversational, but two of them reach toward the answer indirectly (“I keep seeing it under outfit photos” for *fit check*; a “meal for a girls' night” for *girl dinner*), which the deterministic checks cannot see. Four of ten also end with an aside rather than a question mark; as noted above that was left un-gated on purpose.
+
+**Status: two recorded attempts, one valid pack, no published change, no evaluation.** Claims of improvement remain hypotheses until there are repeated runs with a fixed reference set and, for naturalness or leakage, human ratings.
 
 ## Revision and interpretation protocol
 

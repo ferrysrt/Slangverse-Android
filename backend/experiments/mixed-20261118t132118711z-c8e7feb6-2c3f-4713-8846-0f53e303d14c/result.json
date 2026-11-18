@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t132118711z-c8e7feb6-2c3f-4713-8846-0f53e303d14c",
+  "packId": "mixed-20261118t132118711z-c8e7feb6-2c3f-4713-8846-0f53e303d14c",
+  "startedAt": "2026-11-18T13:21:18.720Z",
+  "completedAt": "2026-11-18T13:21:18.814Z",
+  "status": "failed",
+  "providerCalls": 0,
+  "failureCode": "missing-provider-config",
+  "actualModel": null
+}

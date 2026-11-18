@@ -157,6 +157,10 @@ class MixedPublishedFeedTest {
         q.put("questionTarget", "reply").put("targetHandle", "@friend")
             .put("question", "What does cooked mean in @friend's reply?")
         assertEquals("@friend", parse(v7).toFeedPosts().first().termTargetHandle)
+        // v8 inherits the same repeat-and-bind contract.
+        v7.put("promptVersion", "mixed-v8")
+        assertEquals("@friend", parse(v7).toFeedPosts().first().termTargetHandle)
+        v7.put("promptVersion", "mixed-v7")
         fun invalid(change: (JSONObject) -> Unit) {
             val copy = JSONObject(v7.toString())
             change(copy.getJSONArray("questions").getJSONObject(0))

@@ -248,7 +248,7 @@ private fun parseStaticBankSession(
             if (question.slang != reference.term || question.targetMeaning != reference.targetMeaning ||
                 question.options[idx] != reference.targetMeaning)
                 throw ApiException("Mixed question term, target meaning, or answer does not match its reference")
-            if (promptVersion == "mixed-v7") validateMixedV7TermTarget(question)
+            if (promptVersion in repeatTermPromptVersions) validateMixedV7TermTarget(question)
             else validateMixedTermTarget(question)
         }
         if (answers.put(question.id, StaticAnswer(idx, explanation)) != null) {
@@ -295,6 +295,9 @@ private val mixedContextCategories = setOf(
     "personal", "education", "work", "prediction", "sports",
     "entertainment", "opinion", "friends", "event-reaction"
 )
+
+/** Prompt versions whose contract allows the term to repeat and binds it to one named surface. */
+private val repeatTermPromptVersions = setOf("mixed-v7", "mixed-v8")
 
 private data class MixedReference(val term: String, val targetMeaning: String)
 

@@ -1,10 +1,10 @@
 import {readFileSync} from 'node:fs';
 import {randomInt} from 'node:crypto';
-import {validateQuestion, validateTermTarget, normalize} from './game.mjs';
+import {validateQuestion, validateTermTarget, normalize, allowsRepeatedTerm} from './game.mjs';
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v7';
+export const MIXED_PROMPT_VERSION = 'mixed-v8';
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'
@@ -173,7 +173,7 @@ function socialErrors(q, promptVersion) {
   }
   const hints = [q.post.content, q.questionComment, ...q.post.comments.map(c => c.text)];
   if (hints.some(s => /\b(?:correct\s+(?:answer|option)|answer\s+(?:is|index)|correctIndex)\s*[:=]?\s*(?:[a-d0-3]\b)/i.test(s) ||
-    (promptVersion === 'mixed-v7' && /\bis\s+(?:the\s+)?answer\s*[:=]?\s*[a-d0-3]\b/i.test(s))))
+    (allowsRepeatedTerm(promptVersion) && /\bis\s+(?:the\s+)?answer\s*[:=]?\s*[a-d0-3]\b/i.test(s))))
     errors.push('answer-index-leakage');
   return errors;
 }
