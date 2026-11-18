@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -96,17 +97,31 @@ private val editorialPosts = listOf(
 
 @Composable
 fun SlangverseApp() {
+    val appContext = LocalContext.current.applicationContext
+    val practiceStore = remember(appContext) { PracticeProgressStore(appContext) }
+    // Answers, likes and saves outlive the process; XP, combo and the history rows are derived from
+    // those answers plus the loaded feed, so there is no second copy that could drift.
+    val restoredPractice = remember(practiceStore) { practiceStore.load() }
     var screen by rememberSaveable { mutableStateOf(EditorialScreen.Feed) }
     var feedTab by rememberSaveable { mutableStateOf("For you") }
-    var likedPosts by rememberSaveable { mutableStateOf(emptyList<String>()) }
-    var savedPosts by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    var likedPosts by rememberSaveable { mutableStateOf(restoredPractice.liked) }
+    var savedPosts by rememberSaveable { mutableStateOf(restoredPractice.saved) }
     var archiveExpanded by rememberSaveable { mutableStateOf(false) }
     var feedProgress by rememberSaveable(stateSaver = listSaver<FeedPracticeProgress, String>(
         save = { progress -> progress.answers.map { (id, index) -> "$id:$index" } },
         restore = { entries -> FeedPracticeProgress(entries.associate {
             it.substringBeforeLast(":") to it.substringAfterLast(":").toInt()
         }, posts = emptyList()) }
-    )) { mutableStateOf(FeedPracticeProgress(posts = emptyList())) }
+    )) {
+        mutableStateOf(
+            FeedPracticeProgress(posts = emptyList(), answers = restoredPractice.answers.toMap())
+        )
+    }
+    LaunchedEffect(feedProgress.answers, likedPosts, savedPosts) {
+        practiceStore.save(
+            LocalPracticeSnapshot(feedProgress.answers.toList(), likedPosts, savedPosts)
+        )
+    }
 
     var bankRoot by rememberSaveable { mutableStateOf(PublishedFeedDefaults.BANK_ROOT) }
     var offlineSample by rememberSaveable { mutableStateOf(false) }
@@ -686,7 +701,8 @@ private fun EditorialHeader(
     }
 }
 
-@Composable private fun FeedSocialPost(
+// Internal rather than private so the instrumented layout test can compose the real card.
+@Composable internal fun FeedSocialPost(
     post: FeedPracticePost, answeredIndex: Int?, liked: Boolean, saved: Boolean,
     onLike: () -> Unit, onSave: () -> Unit, onAnswer: (Int) -> Unit,
     onProfile: (String) -> Unit, onContext: (FeedContext) -> Unit,
@@ -884,3 +900,5 @@ private fun EditorialHeader(
             "Connected Training labels its question sources separately.",
         fontSize = 10.sp, lineHeight = 14.sp, color = WarmEditorial.Muted)
 }
+
+
