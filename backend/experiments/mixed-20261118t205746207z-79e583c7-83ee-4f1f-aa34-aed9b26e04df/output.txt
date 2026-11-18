@@ -1,0 +1,235 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t205746207z-79e583c7-83ee-4f1f-aa34-aed9b26e04df-q1",
+      "senseId": "normalized-0b61bed81b1a72d2f7486621",
+      "slang": "soulm8",
+      "targetMeaning": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+      "difficulty": "easy",
+      "contextId": "ctx-soulm8-family-meet",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@kaylee_m",
+      "post": {
+        "displayName": "Kaylee M.",
+        "handle": "@kaylee_m",
+        "hashtag": "#TwoYearsStrong",
+        "content": "Two years of texting and he finally asked to meet my family. Honestly, we are so soulm8 right now.",
+        "comments": [
+          {
+            "handle": "@devon_r",
+            "text": "Two years! Tell me everything after the dinner.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "Wait, is soulm8 the name of a new board game?",
+      "question": "In this post by @kaylee_m, what does the slang mean?",
+      "options": [
+        "A dating app feature that matches people by their horoscope.",
+        "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "A joking way to say someone has eight close friends.",
+        "A slang term for a nervous first date."
+      ],
+      "correctIndex": 1,
+      "explanation": "Kaylee has been texting this person for two years and now they want to meet her family, which fits a deep bond. The stylized spelling soulm8 replaces the “ate” in soulmate with the number 8.",
+      "replyTexts": [
+        "I'd guess soulm8 is some app that sets you up using star signs, so you swipe by zodiac.",
+        "Oh, soulm8 is just a playful spelling of soulmate where the ate turns into an 8, right?",
+        "So soulm8 means someone has eight close friends, like a joke about counting besties?",
+        "I thought soulm8 was the word for a nervous first date, the awkward kind of meetup."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205746207z-79e583c7-83ee-4f1f-aa34-aed9b26e04df-q2",
+      "senseId": "normalized-1583656d17cc6c7ca9c40d82",
+      "slang": "weeheeeee",
+      "targetMeaning": "A playful sound-like spelling used to convey excitement or enjoyment.",
+      "difficulty": "easy",
+      "contextId": "ctx-weeheeeee-festival",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@priya_notes",
+      "post": {
+        "displayName": "Devon Reyes",
+        "handle": "@devon_r",
+        "hashtag": "#FilmFestPick",
+        "content": "Just got the email. My short film got picked for the local festival screening next month!",
+        "comments": [
+          {
+            "handle": "@priya_notes",
+            "text": "Congrats!! weeheeeee, that's huge. Front row seats are on me.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@ravi_plays",
+            "text": "Proud of you, let's celebrate this weekend.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "@priya_notes wait, what do you mean by weeheeeee? Is it a new dance move or a snack?",
+      "question": "In @priya_notes's reply, what does the slang mean?",
+      "options": [
+        "A laughing reaction to a joke someone else made online.",
+        "A spelling mistake for a word meaning tired or sleepy.",
+        "A way to say that a plan has been cancelled at the last minute.",
+        "A playful sound-like spelling used to convey excitement or enjoyment."
+      ],
+      "correctIndex": 3,
+      "explanation": "Priya is reacting to a film being picked for a festival, so the stretched, sound-like spelling works as a happy squeal of excitement.",
+      "replyTexts": [
+        "I'd say weeheeeee is just a typed laugh at someone else's joke, like a quick giggle in text.",
+        "I think weeheeeee is a typo someone makes when they are too tired to spell properly.",
+        "I figured weeheeeee means the plans fell through, so we're not meeting up after all.",
+        "I think weeheeeee is a goofy way of typing a happy squeal when something good happens."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205746207z-79e583c7-83ee-4f1f-aa34-aed9b26e04df-q3",
+      "senseId": "normalized-6ee6680bdcae26f6e4f525de",
+      "slang": "the saxophones are getting louder",
+      "targetMeaning": "A way to say that something bad, negative, or inevitable is getting closer.",
+      "difficulty": "easy",
+      "contextId": "ctx-saxophones-monday",
+      "contextCategory": "prediction",
+      "questionTarget": "post",
+      "targetHandle": "@noor_daily",
+      "post": {
+        "displayName": "Noor Haddad",
+        "handle": "@noor_daily",
+        "hashtag": "#MondayMess",
+        "content": "Rent went up again, the car needs repairs, and the group chat just said the exam moved to tomorrow. The saxophones are getting louder, honestly.",
+        "comments": [
+          {
+            "handle": "@mo_reviews",
+            "text": "Oof, that is a rough list. Want to get coffee and vent?",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Wait, why are the saxophones getting louder? Is a jazz band coming down our street?",
+      "question": "In this post by @noor_daily, what does the slang mean?",
+      "options": [
+        "A way to say that something bad, negative, or inevitable is getting closer.",
+        "A way to say that a live band is about to start playing.",
+        "A rule that music must stay quiet after midnight in buildings.",
+        "A joke about a friend who always brings a musical instrument."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post lists rising rent, a broken car, and a moved exam, so the saxophones line signals that bad news is closing in.",
+      "replyTexts": [
+        "I think the saxophones are getting louder means bad stuff is piling up and it's about to hit us.",
+        "I figured the saxophones are getting louder means a live band is about to start playing down the street.",
+        "I think the saxophones are getting louder is a rule that music has to be quiet after midnight, right?",
+        "I bet the saxophones are getting louder is a joke about someone who always shows up with an instrument."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205746207z-79e583c7-83ee-4f1f-aa34-aed9b26e04df-q4",
+      "senseId": "normalized-c209c307e51e63013470b4b0",
+      "slang": "unc",
+      "targetMeaning": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+      "difficulty": "easy",
+      "contextId": "ctx-unc-rooftop-party",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@tess_loop",
+      "post": {
+        "displayName": "Mo Rivera",
+        "handle": "@mo_reviews",
+        "hashtag": "#RooftopNights",
+        "content": "Went to the rooftop party last night. I left at nine because my feet hurt, and I was in bed before the DJ even finished.",
+        "comments": [
+          {
+            "handle": "@tess_loop",
+            "text": "Lol unc, you were asleep before the DJ even finished the first set.",
+            "avatarId": "guest_08"
+          },
+          {
+            "handle": "@devon_r",
+            "text": "Next time bring a lawn chair and a thermos.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "@tess_loop wait, what do you mean by unc? Is that a dance crew or a kind of sandwich?",
+      "question": "In @tess_loop's reply, what does the slang mean?",
+      "options": [
+        "A familiar term for a fan who runs a band's official account online.",
+        "A familiar term for a friend who always forgets birthdays and events.",
+        "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "A familiar term for a guest who is loudest at the party and most excited."
+      ],
+      "correctIndex": 2,
+      "explanation": "Mo left early and went to bed before the DJ finished, so Tess teases him as acting older and more cautious than his age suggests.",
+      "replyTexts": [
+        "I think unc is a nickname for a fan who runs a band's official page online, right?",
+        "I figured unc means a friend who always forgets birthdays, so you should set reminders for them.",
+        "I think unc is an online jab at a guy who acts older or more cautious than his age, like dad energy.",
+        "I thought unc was a name for the loudest guest at a party, the one who gets way too excited."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205746207z-79e583c7-83ee-4f1f-aa34-aed9b26e04df-q5",
+      "senseId": "normalized-ce08e63718c97bf932ed7228",
+      "slang": "zesty",
+      "targetMeaning": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+      "difficulty": "easy",
+      "contextId": "ctx-zesty-potluck",
+      "contextCategory": "work",
+      "questionTarget": "post",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Jo Martinez",
+        "handle": "@justjo",
+        "hashtag": "#OfficePotluck",
+        "content": "Our office potluck turned into a zesty dance-off with three kids, a dog, and the printer making its own noises.",
+        "comments": [
+          {
+            "handle": "@sana_notes",
+            "text": "Who won the dance-off? I need the full report.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "Is zesty a type of cheese? Did the potluck have some?",
+      "question": "In this post by @justjo, what does the slang mean?",
+      "options": [
+        "A description of food that tastes sour, sharp, and tangy.",
+        "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "Describes a quiet room with soft lighting and calm music.",
+        "Describes an outfit that is too tight to move in comfortably."
+      ],
+      "correctIndex": 1,
+      "explanation": "A potluck that becomes a dance-off with kids, a dog, and a noisy printer is lively and a bit chaotic in a fun way, which matches the zesty sense.",
+      "replyTexts": [
+        "I think zesty means the food was sharp and tangy, like lemon or vinegar in the dips.",
+        "I think zesty means the whole night felt lively and energetic, with a bit of fun chaos mixed in.",
+        "I figured zesty meant the room was quiet and calm, with soft lights and gentle music.",
+        "I thought zesty was a word for clothes that are too tight to move in comfortably."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205746207z-79e583c7-83ee-4f1f-aa34-aed9b26e04df-q6",
+      "senseId": "normalized-92be4b1a5c158f7cb43a77e5",
+      "slang": "ate",
+      "targetMeaning": "To perform extremely well at something.",
+      "difficulty": "medium",
+      "contextId": "ctx-ate-group-project",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@sana_notes",
+      "post": {
+        "displayName": "Maddie Kim",
+        "handle": "@maddie_k",
+        "hashtag": "#ClassPresentation",
+        "content": "Our group project presentation was Monday. Nobody had rehearsed, and Jenna still carried the whole room with her slides.",
+        "comments": [
+          {
+            "handle": "

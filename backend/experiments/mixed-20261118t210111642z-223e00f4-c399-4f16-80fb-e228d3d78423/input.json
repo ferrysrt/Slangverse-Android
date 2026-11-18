@@ -1,0 +1,520 @@
+{
+  "attemptId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423",
+  "packId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423",
+  "startedAt": "2026-11-18T21:01:11.642Z",
+  "datasetVersion": "firecrawl-normalized-e1d7e28483e8f2fb124e61db",
+  "promptVersion": "mixed-v11",
+  "promptSha256": "000ac4237c5faf372b8b99c46b7cf4dd0b777d14cb8a2e2e8d63703c6f4a3495",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-cb058e7385bd15234b676d26",
+        "term": "vlogmas",
+        "targetMeaning": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "definition": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "normalizedDefinition": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "cb058e7385bd15234b676d26",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "vlogmas",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "| **” vlogmas** **”** = vlog (noun) + Christmas (noun), |",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-77a447ea2a73a02c1b2e1cf7",
+        "term": "waifu",
+        "targetMeaning": "A playful misspelling of “wife.”",
+        "definition": "A playful misspelling of “wife.”",
+        "normalizedDefinition": "A playful misspelling of “wife.”",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "77a447ea2a73a02c1b2e1cf7",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "waifu",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "Lastly, PB creatively used “husbum” and “waifu” as playful misspellings of the terms “husband” and “wife.”",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-0b61bed81b1a72d2f7486621",
+        "term": "soulm8",
+        "targetMeaning": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "definition": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "normalizedDefinition": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "0b61bed81b1a72d2f7486621",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "soulm8",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "Furthermore, PB used the term “soulm8” to mean “soulmate” by creatively replacing the letters “ate” with the number “8.”",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-c209c307e51e63013470b4b0",
+        "term": "unc",
+        "targetMeaning": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "definition": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "normalizedDefinition": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "c209c307e51e63013470b4b0",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "unc",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Unc” describes someone, usually a man, acting older, more out of touch, or more cautious than his actual age suggests",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-ce08e63718c97bf932ed7228",
+        "term": "zesty",
+        "targetMeaning": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "definition": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "normalizedDefinition": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "ce08e63718c97bf932ed7228",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "zesty",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://slang.net/blog/2025_top_slang_terms",
+            "title": "Top 10 Slang Terms from 2025",
+            "quote": "Zesty describes something lively, energetic, or slightly chaotic in a fun way.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-7e48c57425b7ae45c98c2efa",
+        "term": "aura",
+        "targetMeaning": "A person's current reputation or charisma.",
+        "definition": "A person's current reputation or charisma.",
+        "normalizedDefinition": "A person's current reputation or charisma.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "7e48c57425b7ae45c98c2efa",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "aura | An individual's current reputation or charisma.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-6ee6680bdcae26f6e4f525de",
+        "term": "the saxophones are getting louder",
+        "targetMeaning": "A way to say that something bad, negative, or inevitable is getting closer.",
+        "definition": "A way to say that something bad, negative, or inevitable is getting closer.",
+        "normalizedDefinition": "A way to say that something bad, negative, or inevitable is getting closer.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "6ee6680bdcae26f6e4f525de",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "the saxophones are getting louder",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘The saxophones are getting louder’ means that something bad, negative, or inevitable is getting closer.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-1583656d17cc6c7ca9c40d82",
+        "term": "weeheeeee",
+        "targetMeaning": "A playful sound-like spelling used to convey excitement or enjoyment.",
+        "definition": "A playful sound-like spelling used to convey excitement or enjoyment.",
+        "normalizedDefinition": "A playful sound-like spelling used to convey excitement or enjoyment.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "1583656d17cc6c7ca9c40d82",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "weeheeeee",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "Referring to Table 7, it can be observed that PE used “weeheeeee” in an attempt to imitate the sound of excitement or enjoyment.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-a1ce27ff678cbb47b996cc42",
+        "term": "you the birthday",
+        "targetMeaning": "A compliment suggesting someone is the main character or the center of attention in a room.",
+        "definition": "A compliment suggesting someone is the main character or the center of attention in a room.",
+        "normalizedDefinition": "A compliment suggesting someone is the main character or the center of attention in a room.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "a1ce27ff678cbb47b996cc42",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "you the birthday",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘You the birthday’ is a compliment to say that someone is the ‘main character’ or main attention of the room.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-92be4b1a5c158f7cb43a77e5",
+        "term": "ate",
+        "targetMeaning": "To perform extremely well at something.",
+        "definition": "To perform extremely well at something.",
+        "normalizedDefinition": "To perform extremely well at something.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "92be4b1a5c158f7cb43a77e5",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "ate",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "ate | To have performed well or extremely good at something.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-cb058e7385bd15234b676d26",
+        "term": "vlogmas",
+        "targetMeaning": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "sourceCandidateId": "cb058e7385bd15234b676d26",
+        "normalizedDefinition": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "referenceSources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "| **” vlogmas** **”** = vlog (noun) + Christmas (noun), |",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-77a447ea2a73a02c1b2e1cf7",
+        "term": "waifu",
+        "targetMeaning": "A playful misspelling of “wife.”",
+        "sourceCandidateId": "77a447ea2a73a02c1b2e1cf7",
+        "normalizedDefinition": "A playful misspelling of “wife.”",
+        "referenceSources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "Lastly, PB creatively used “husbum” and “waifu” as playful misspellings of the terms “husband” and “wife.”",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-0b61bed81b1a72d2f7486621",
+        "term": "soulm8",
+        "targetMeaning": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "sourceCandidateId": "0b61bed81b1a72d2f7486621",
+        "normalizedDefinition": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "referenceSources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "Furthermore, PB used the term “soulm8” to mean “soulmate” by creatively replacing the letters “ate” with the number “8.”",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-c209c307e51e63013470b4b0",
+        "term": "unc",
+        "targetMeaning": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "sourceCandidateId": "c209c307e51e63013470b4b0",
+        "normalizedDefinition": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "referenceSources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Unc” describes someone, usually a man, acting older, more out of touch, or more cautious than his actual age suggests",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-ce08e63718c97bf932ed7228",
+        "term": "zesty",
+        "targetMeaning": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "sourceCandidateId": "ce08e63718c97bf932ed7228",
+        "normalizedDefinition": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "referenceSources": [
+          {
+            "url": "https://slang.net/blog/2025_top_slang_terms",
+            "title": "Top 10 Slang Terms from 2025",
+            "quote": "Zesty describes something lively, energetic, or slightly chaotic in a fun way.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-7e48c57425b7ae45c98c2efa",
+        "term": "aura",
+        "targetMeaning": "A person's current reputation or charisma.",
+        "sourceCandidateId": "7e48c57425b7ae45c98c2efa",
+        "normalizedDefinition": "A person's current reputation or charisma.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "aura | An individual's current reputation or charisma.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-6ee6680bdcae26f6e4f525de",
+        "term": "the saxophones are getting louder",
+        "targetMeaning": "A way to say that something bad, negative, or inevitable is getting closer.",
+        "sourceCandidateId": "6ee6680bdcae26f6e4f525de",
+        "normalizedDefinition": "A way to say that something bad, negative, or inevitable is getting closer.",
+        "referenceSources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘The saxophones are getting louder’ means that something bad, negative, or inevitable is getting closer.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-1583656d17cc6c7ca9c40d82",
+        "term": "weeheeeee",
+        "targetMeaning": "A playful sound-like spelling used to convey excitement or enjoyment.",
+        "sourceCandidateId": "1583656d17cc6c7ca9c40d82",
+        "normalizedDefinition": "A playful sound-like spelling used to convey excitement or enjoyment.",
+        "referenceSources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "Referring to Table 7, it can be observed that PE used “weeheeeee” in an attempt to imitate the sound of excitement or enjoyment.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-a1ce27ff678cbb47b996cc42",
+        "term": "you the birthday",
+        "targetMeaning": "A compliment suggesting someone is the main character or the center of attention in a room.",
+        "sourceCandidateId": "a1ce27ff678cbb47b996cc42",
+        "normalizedDefinition": "A compliment suggesting someone is the main character or the center of attention in a room.",
+        "referenceSources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘You the birthday’ is a compliment to say that someone is the ‘main character’ or main attention of the room.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-92be4b1a5c158f7cb43a77e5",
+        "term": "ate",
+        "targetMeaning": "To perform extremely well at something.",
+        "sourceCandidateId": "92be4b1a5c158f7cb43a77e5",
+        "normalizedDefinition": "To perform extremely well at something.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "ate | To have performed well or extremely good at something.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q1",
+        "senseId": "normalized-cb058e7385bd15234b676d26",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q2",
+        "senseId": "normalized-77a447ea2a73a02c1b2e1cf7",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q3",
+        "senseId": "normalized-0b61bed81b1a72d2f7486621",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q4",
+        "senseId": "normalized-c209c307e51e63013470b4b0",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q5",
+        "senseId": "normalized-ce08e63718c97bf932ed7228",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q6",
+        "senseId": "normalized-7e48c57425b7ae45c98c2efa",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q7",
+        "senseId": "normalized-6ee6680bdcae26f6e4f525de",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q8",
+        "senseId": "normalized-1583656d17cc6c7ca9c40d82",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q9",
+        "senseId": "normalized-a1ce27ff678cbb47b996cc42",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q10",
+        "senseId": "normalized-92be4b1a5c158f7cb43a77e5",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 10,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

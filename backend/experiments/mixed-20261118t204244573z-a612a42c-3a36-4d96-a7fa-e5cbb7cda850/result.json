@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t204244573z-a612a42c-3a36-4d96-a7fa-e5cbb7cda850",
+  "packId": "mixed-20261118t204244573z-a612a42c-3a36-4d96-a7fa-e5cbb7cda850",
+  "startedAt": "2026-11-18T20:42:44.574Z",
+  "completedAt": "2026-11-18T20:43:47.759Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "llm-missing-content",
+  "actualModel": "deepseek/deepseek-v4.1-flash"
+}

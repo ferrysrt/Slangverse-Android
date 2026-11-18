@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t204811466z-0a36a7ab-db33-4074-abf4-4ef31db5d24b",
+  "packId": "mixed-20261118t204811466z-0a36a7ab-db33-4074-abf4-4ef31db5d24b",
+  "startedAt": "2026-11-18T20:48:11.466Z",
+  "completedAt": "2026-11-18T20:48:58.528Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "llm-missing-content",
+  "actualModel": "anthropic/claude-haiku-5.5"
+}

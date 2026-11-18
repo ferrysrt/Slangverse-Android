@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7",
+  "packId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7",
+  "startedAt": "2026-11-18T20:47:23.465Z",
+  "completedAt": "2026-11-18T20:48:11.460Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "mixed-validation-failed",
+  "actualModel": "anthropic/claude-haiku-5.5"
+}

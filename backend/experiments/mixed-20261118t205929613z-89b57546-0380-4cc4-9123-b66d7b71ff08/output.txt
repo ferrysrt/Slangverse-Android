@@ -1,0 +1,249 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t205929613z-89b57546-0380-4cc4-9123-b66d7b71ff08-q1",
+      "senseId": "normalized-7e48c57425b7ae45c98c2efa",
+      "slang": "aura",
+      "targetMeaning": "A person's current reputation or charisma.",
+      "difficulty": "easy",
+      "contextId": "ctx-study-group-aura",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@nadia_notes",
+      "post": {
+        "displayName": "Nadia Notes",
+        "handle": "@nadia_notes",
+        "hashtag": "#FinalsWeekMoments",
+        "content": "Walked into the study group with zero sleep and everyone still wanted to sit by me. Pure aura today.",
+        "comments": [
+          {
+            "handle": "@tomk_",
+            "text": "Lol the whole room was watching you, no wonder.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Wait, is aura a candle scent you burn during finals?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A sleep schedule that someone keeps during exams.",
+        "A person's current reputation or charisma.",
+        "A small group chat that is muted most of the time.",
+        "A type of study room booked for quiet sessions."
+      ],
+      "correctIndex": 1,
+      "explanation": "Aura means a person's current reputation or charisma. Everyone wanting to sit near the poster despite no sleep points to that charisma in the moment.",
+      "replyTexts": [
+        "I think aura means a sleep schedule people keep during exams, so your late nights count, right?",
+        "No, I meant aura as someone's reputation or charisma right now, the vibe people pick up from you lately.",
+        "I figured aura was a small group chat people mute most of the time, so you probably saw that.",
+        "I thought aura was a quiet study room you book for sessions, which is why everyone sat near you."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205929613z-89b57546-0380-4cc4-9123-b66d7b71ff08-q2",
+      "senseId": "normalized-cb058e7385bd15234b676d26",
+      "slang": "vlogmas",
+      "targetMeaning": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+      "difficulty": "easy",
+      "contextId": "ctx-holiday-filming",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@peachfilms",
+      "post": {
+        "displayName": "Molly Tinsel",
+        "handle": "@tinselmolly",
+        "hashtag": "#HolidayFeedDiaries",
+        "content": "Tree is up, lights are blinking, and I am filming every day of the season. Stay tuned.",
+        "comments": [
+          {
+            "handle": "@peachfilms",
+            "text": "Ready for another round of vlogmas with the tree in every shot!",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@tallyroom",
+            "text": "Your tree is the best co-star, honestly.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "@peachfilms what is vlogmas, a new brand of popcorn?",
+      "question": "What does the slang in @peachfilms's reply mean?",
+      "options": [
+        "A hashtag used for holiday snack recipes.",
+        "A dance challenge set to winter pop songs.",
+        "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "A group chat for planning family gift exchanges."
+      ],
+      "correctIndex": 2,
+      "explanation": "Vlogmas blends vlog and Christmas, so it names a vlog tied to the Christmas season. The commenter is planning another month of holiday filming.",
+      "replyTexts": [
+        "I figured vlogmas is a hashtag for holiday snack recipes, so my feed is about to get hungry.",
+        "I bet vlogmas is a dance challenge set to winter pop songs, so the holiday playlist is getting real.",
+        "Pretty sure vlogmas is the mix of daily video diaries and the holiday season, so you are doing that.",
+        "I guess vlogmas is a group chat for planning family gift swaps, so who is in that chat?"
+      ]
+    },
+    {
+      "id": "mixed-20261118t205929613z-89b57546-0380-4cc4-9123-b66d7b71ff08-q3",
+      "senseId": "normalized-0b61bed81b1a72d2f7486621",
+      "slang": "soulm8",
+      "targetMeaning": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+      "difficulty": "easy",
+      "contextId": "ctx-anniversary-soulm8",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@rivkaplans",
+      "post": {
+        "displayName": "Riv Kaplan",
+        "handle": "@rivkaplans",
+        "hashtag": "#TwoYearsStrong",
+        "content": "Two years today and you are still my soulm8. Thank you for every late night ride home.",
+        "comments": [
+          {
+            "handle": "@dan_k",
+            "text": "Aww, post a photo of the two of you, please!",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Is soulm8 the name of a new road trip playlist?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "A nickname for a friend who always splits the bill.",
+        "A joke about a pet who refuses to nap.",
+        "A mix of a sports team name and a dinner order."
+      ],
+      "correctIndex": 0,
+      "explanation": "Soulm8 is a stylized spelling of soulmate that swaps the ending for the number 8. The two-year anniversary and late night rides make the romantic meaning clear.",
+      "replyTexts": [
+        "Oh, soulm8 is just a fun way to spell soulmate using the digit eight in place of that last part.",
+        "I think soulm8 is a nickname for a friend who always splits the bill, so you two are close.",
+        "I bet soulm8 is a joke about a pet who refuses to nap, which is random for your anniversary.",
+        "I figured soulm8 is a mix of a sports team name and a dinner order, so the plan is confusing."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205929613z-89b57546-0380-4cc4-9123-b66d7b71ff08-q4",
+      "senseId": "normalized-1583656d17cc6c7ca9c40d82",
+      "slang": "weeheeeee",
+      "targetMeaning": "A playful sound-like spelling used to convey excitement or enjoyment.",
+      "difficulty": "easy",
+      "contextId": "ctx-concert-tickets",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@sunnyhops",
+      "post": {
+        "displayName": "Mirror Kay",
+        "handle": "@mirror_kay",
+        "hashtag": "#FrontRowFeelings",
+        "content": "Just found out the concert tickets are real and we are going together! Front row, can you believe it?",
+        "comments": [
+          {
+            "handle": "@sunnyhops",
+            "text": "weeheeeee, front row! I am so jealous, send photos!",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "@sunnyhops what is weeheeeee, a new dance move, or a meme?",
+      "question": "What does the slang in @sunnyhops's reply mean?",
+      "options": [
+        "A warning shout used when someone is about to fall.",
+        "A slow nickname for a friend who arrives late.",
+        "A word for an unexpected fee from a concert venue.",
+        "A playful sound-like spelling used to convey excitement or enjoyment."
+      ],
+      "correctIndex": 3,
+      "explanation": "Weeheeeee is a playful sound-like spelling that stretches out a cheer. The excited reply about front row tickets shows that enthusiasm.",
+      "replyTexts": [
+        "I figured weeheeeee was a warning shout for when someone is about to fall, so watch your step!",
+        "I thought weeheeeee was a slow nickname for a friend who always arrives late, which is kind of funny.",
+        "I thought weeheeeee meant the surprise fee a concert venue charges, which would be less fun.",
+        "Oh, weeheeeee is just a silly stretched sound people type when they feel excited or having fun."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205929613z-89b57546-0380-4cc4-9123-b66d7b71ff08-q5",
+      "senseId": "normalized-c209c307e51e63013470b4b0",
+      "slang": "unc",
+      "targetMeaning": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+      "difficulty": "easy",
+      "contextId": "ctx-bedtime-unc",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@rowan_daily",
+      "post": {
+        "displayName": "Rowan Daily",
+        "handle": "@rowan_daily",
+        "hashtag": "#EarlyNightLife",
+        "content": "Bed by nine again and my friends already said I am so unc about it. Cozy life is the best life.",
+        "comments": [
+          {
+            "handle": "@sammy_loops",
+            "text": "Respect, you are getting cozy and careful, my friend.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Wait, is unc short for uncooked food or something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A mispronounced version of the word uncle used for a relative.",
+        "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "A dance move where someone freezes in place for a beat.",
+        "A text shortcut meaning unconfirmed, for plans that are not final."
+      ],
+      "correctIndex": 1,
+      "explanation": "Unc is used online for someone, usually a man, who acts older or more cautious than their age suggests. The early bedtime and cozy routine fit that teasing.",
+      "replyTexts": [
+        "I thought unc was just a sloppy way to say uncle for a relative, so you were calling me family.",
+        "Right, unc is what people type about a guy who acts older or more cautious than his real age.",
+        "I figured unc was a dance move where you freeze for a beat, which sounds fun, honestly.",
+        "I thought unc was shorthand for unconfirmed plans, so my bedtime plan is not final yet."
+      ]
+    },
+    {
+      "id": "mixed-20261118t205929613z-89b57546-0380-4cc4-9123-b66d7b71ff08-q6",
+      "senseId": "normalized-92be4b1a5c158f7cb43a77e5",
+      "slang": "ate",
+      "targetMeaning": "To perform extremely well at something.",
+      "difficulty": "medium",
+      "contextId": "ctx-debate-round",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@kaliwrites",
+      "post": {
+        "displayName": "Bramble Coach",
+        "handle": "@bramblecoach",
+        "hashtag": "#DebateFinals",
+        "content": "Final round today, clean win, and the judges barely had questions. Hard work paid off.",
+        "comments": [
+          {
+            "handle": "@kaliwrites",
+            "text": "You absolutely ate that round, the crowd went wild!",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "@kaliwrites wait, you ate that round? Like you had a snack during it?",
+      "question": "What does the slang in @kaliwrites's reply mean?",
+      "options": [
+        "To eat a big meal before a competition starts.",
+        "To quit an activity halfway through without warning.",
+        "To perform extremely well at something.",
+        "To lose a game while looking confident about it."
+      ],
+      "correctIndex": 2,
+      "explanation": "Ate here means to perform extremely well at something. The debate win and the crowd reaction show a standout performance, not an actual meal.",
+      "replyTexts": [
+        "Ha, I meant you ate a big meal before the round, so that is what got you through.",
+        "I fig

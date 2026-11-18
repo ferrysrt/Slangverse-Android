@@ -1,0 +1,429 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q1",
+      "senseId": "normalized-cb058e7385bd15234b676d26",
+      "slang": "vlogmas",
+      "targetMeaning": "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+      "difficulty": "easy",
+      "contextId": "ctx-vlogmas-tree",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@tessalane",
+      "post": {
+        "displayName": "Tessa Lane",
+        "handle": "@tessalane",
+        "hashtag": "#DecemberDiaries",
+        "content": "Day 3 of my vlogmas series: tangled lights, burnt cocoa, and a tree that refuses to stand up straight.",
+        "comments": [
+          {
+            "handle": "@cocoacorner",
+            "text": "Can't wait to see the tree drama again. Last year's episode was legendary.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Wait, is vlogmas a new kind of holiday I haven't heard of?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A cooking show format posted every December.",
+        "A blend of “vlog” and “Christmas,” used for a vlog associated with Christmas.",
+        "A slow-motion clip of snow falling on a town.",
+        "A playlist of holiday songs shared online."
+      ],
+      "correctIndex": 1,
+      "explanation": "Vlogmas blends vlog and Christmas for a video diary tied to the holidays. The tree-decorating episodes in the post show that kind of holiday vlog.",
+      "replyTexts": [
+        "I thought vlogmas meant a cooking show every December, so I was picturing recipes all month long.",
+        "Vlogmas is a video diary series about the holidays, squished together from vlog and Christmas.",
+        "I figured vlogmas was a slow-motion clip of snow, so I kept expecting winter scenery in the videos.",
+        "Vlogmas must be a holiday playlist people share online, so I'd start looking for music links."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q2",
+      "senseId": "normalized-77a447ea2a73a02c1b2e1cf7",
+      "slang": "waifu",
+      "targetMeaning": "A playful misspelling of “wife.”",
+      "difficulty": "easy",
+      "contextId": "ctx-anniversary-dinner",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@nessaroams",
+      "post": {
+        "displayName": "Marcus Bell",
+        "handle": "@marcusbakes",
+        "hashtag": "#AnniversaryWeek",
+        "content": "Anniversary dinner tonight with my partner. She finally laughed at my dessert pun, which is a personal record.",
+        "comments": [
+          {
+            "handle": "@nessaroams",
+            "text": "Look at you calling her your waifu now, the dessert pun clearly worked.",
+            "avatarId": "guest_03"
+          },
+          {
+            "handle": "@kellyc_",
+            "text": "Happy anniversary, you two! Save me a bite of that dessert.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "@nessaroams wait, is waifu an anime character you're talking about?",
+      "question": "What does the slang in the reply from @nessaroams mean?",
+      "options": [
+        "A pet name for a close friend who arrives late.",
+        "An anime fan's name for a favorite character.",
+        "A nickname for a sibling who always wins arguments.",
+        "A playful misspelling of “wife.”"
+      ],
+      "correctIndex": 3,
+      "explanation": "Waifu is a playful misspelling of wife. The anniversary dinner and the partner's laugh make that reading fit the reply.",
+      "replyTexts": [
+        "I'd guess waifu is a cute nickname for a close friend who always arrives late, like a running joke.",
+        "I figured waifu was an anime fan's pick for a favorite character, since that world uses it a lot.",
+        "I thought waifu was a nickname for a sibling who always wins arguments, so I pictured family debates.",
+        "I think waifu is just a goofy misspelling of wife, which fits a couple celebrating an anniversary."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q3",
+      "senseId": "normalized-0b61bed81b1a72d2f7486621",
+      "slang": "soulm8",
+      "targetMeaning": "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+      "difficulty": "easy",
+      "contextId": "ctx-thrift-raincoat",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@inkandcoffee",
+      "post": {
+        "displayName": "Nora Vale",
+        "handle": "@inkandcoffee",
+        "hashtag": "#ThriftFinds",
+        "content": "Met my soulm8 at the thrift store today, and we both reached for the same yellow raincoat.",
+        "comments": [
+          {
+            "handle": "@pennyrunsmall",
+            "text": "That's the cutest thrift store story I've heard all year.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Wait, is soulm8 a thrift store coupon or some kind of shopping rule?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A stylized spelling of “soulmate,” replacing “ate” with the number 8.",
+        "A nickname for a roommate who always shares snacks.",
+        "A style of yellow raincoat sold at thrift shops.",
+        "A slang term for a coworker who lends office supplies."
+      ],
+      "correctIndex": 0,
+      "explanation": "Soulm8 is a stylized spelling of soulmate, with the number 8 replacing ate. The post describes a romantic meet-cute, which fits that meaning.",
+      "replyTexts": [
+        "I'd say soulm8 is a nickname for a roommate who shares snacks with you, which fits the story.",
+        "I thought soulm8 was just a jacket style, a yellow raincoat people buy at thrift shops.",
+        "I figured soulm8 meant a coworker who lends pens, so the thrift store part confused me.",
+        "I'm pretty sure soulm8 is a playful spelling of soulmate with the number eight swapped in."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q4",
+      "senseId": "normalized-c209c307e51e63013470b4b0",
+      "slang": "unc",
+      "targetMeaning": "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+      "difficulty": "easy",
+      "contextId": "ctx-early-bedtime",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@rowanmaps",
+      "post": {
+        "displayName": "Leo Sandoval",
+        "handle": "@leolunch",
+        "hashtag": "#EarlyNight",
+        "content": "Turned down the late party tonight, asked for an early bedtime, and bought a cardigan. Calling it a win.",
+        "comments": [
+          {
+            "handle": "@rowanmaps",
+            "text": "Look at you, total unc move turning down the party for an early bedtime.",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@jamiesunday",
+            "text": "Rest up, you earned it. Enjoy the cardigan too.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "@rowanmaps wait, is unc a sports team nickname or something?",
+      "question": "What does the slang in the reply from @rowanmaps mean?",
+      "options": [
+        "A name for a sports team's home stadium.",
+        "A familiar term for a teenager who sleeps in late.",
+        "A familiar term, usually for a man, used online for someone acting older, more out of touch, or more cautious than their age suggests.",
+        "A slang word for a fashion trend involving cardigans."
+      ],
+      "correctIndex": 2,
+      "explanation": "Unc is a familiar online term, usually for a man, for someone acting older or more cautious than their age. Turning down the party for an early bedtime fits that cautious image.",
+      "replyTexts": [
+        "I think unc is what people call a sports team's home stadium, so I'm not sure how that fits.",
+        "I figured unc is a familiar name for a teenager who sleeps in late, since the post mentions bedtime.",
+        "I'm pretty sure unc is a teasing label for someone who acts older or more careful than their years, often a guy.",
+        "I thought unc was a slang word for a cardigan trend, so the post made sense to me."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q5",
+      "senseId": "normalized-ce08e63718c97bf932ed7228",
+      "slang": "zesty",
+      "targetMeaning": "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+      "difficulty": "easy",
+      "contextId": "ctx-roller-rink",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@maxmoves",
+      "post": {
+        "displayName": "Max Ortiz",
+        "handle": "@maxmoves",
+        "hashtag": "#RinkNights",
+        "content": "Friday night at the roller rink got zesty when the DJ dropped three bangers back to back.",
+        "comments": [
+          {
+            "handle": "@tessainlight",
+            "text": "Best night ever, my legs are still shaking from all that skating.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "Wait, is zesty a skating term for a specific trick you do on wheels?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A description of food with a strong citrus flavor.",
+        "Describes something lively, energetic, or slightly chaotic in an enjoyable way.",
+        "A word for a skating move done on one foot.",
+        "A label for someone who always arrives late to events."
+      ],
+      "correctIndex": 1,
+      "explanation": "Zesty describes something lively, energetic, or slightly chaotic in a fun way. The DJ, the back-to-back songs, and the tired skaters all fit that meaning.",
+      "replyTexts": [
+        "I took zesty to mean food with a sharp citrus flavor, like lemon or lime in a dish.",
+        "I think zesty means a night that feels lively and full of fun energy, maybe a bit wild.",
+        "I figured zesty was a one-foot skating move, so I pictured someone spinning on the rink.",
+        "I thought zesty described a friend who always shows up late to every party."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q6",
+      "senseId": "normalized-7e48c57425b7ae45c98c2efa",
+      "slang": "aura",
+      "targetMeaning": "A person's current reputation or charisma.",
+      "difficulty": "medium",
+      "contextId": "ctx-team-lead",
+      "contextCategory": "work",
+      "questionTarget": "reply",
+      "targetHandle": "@priyaplans",
+      "post": {
+        "displayName": "Daniel Okafor",
+        "handle": "@danieldesk",
+        "hashtag": "#OfficeLife",
+        "content": "Took the team lead role today after a rough month. Everyone in the office says the vibe changed when I walked in.",
+        "comments": [
+          {
+            "handle": "@priyaplans",
+            "text": "Your aura in that meeting was unreal, people were still talking about it at lunch.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@jacobwrites",
+            "text": "Congrats on the new role. You'll be great at it.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "@priyaplans wait, is aura a fitness class they have at the office?",
+      "question": "What does the slang in the reply from @priyaplans mean?",
+      "options": [
+        "A rumor about a coworker spread during a meeting.",
+        "A plan to skip meetings without telling anyone.",
+        "A kind of ergonomic chair used in offices.",
+        "A person's current reputation or charisma."
+      ],
+      "correctIndex": 3,
+      "explanation": "Aura refers to a person's current reputation or charisma. The post's talk of the vibe changing after the promotion points to that reading.",
+      "replyTexts": [
+        "I took aura to mean a rumor about a coworker that spreads around a meeting, so that's my guess.",
+        "I thought aura was a plan for skipping meetings quietly, which fits the office setting in the post.",
+        "I figured aura was a kind of office chair meant for better posture, so the comment confused me.",
+        "I'd say aura is the charm and standing someone currently has with the people around them."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q7",
+      "senseId": "normalized-6ee6680bdcae26f6e4f525de",
+      "slang": "the saxophones are getting louder",
+      "targetMeaning": "A way to say that something bad, negative, or inevitable is getting closer.",
+      "difficulty": "medium",
+      "contextId": "ctx-monday-bills",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@kiranwrites",
+      "post": {
+        "displayName": "Kiran Shah",
+        "handle": "@kiranwrites",
+        "hashtag": "#MondayMood",
+        "content": "Three bills came in this morning, the car needs repairs, and the saxophones are getting louder.",
+        "comments": [
+          {
+            "handle": "@rubyroom",
+            "text": "Ugh, don't remind me. I just paid off my own bills last week.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Wait, are the saxophones a real band playing somewhere nearby, or is that a joke?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A way to say that something bad, negative, or inevitable is getting closer.",
+        "A way to say a live band is about to start playing.",
+        "A way to say a neighbor is making too much noise.",
+        "A way to say a restaurant line is getting longer."
+      ],
+      "correctIndex": 0,
+      "explanation": "The phrase means that something bad or inevitable is getting closer. Here the bills and car repairs pile up, so the trouble feels like it is approaching.",
+      "replyTexts": [
+        "I think the saxophones are getting louder means bad stuff is coming closer, like trouble on the way.",
+        "I thought the saxophones are getting louder meant a live band is about to start, so the post was about a gig.",
+        "I figured the saxophones are getting louder was a way to say a neighbor is being noisy at night.",
+        "I took the saxophones are getting louder to mean the restaurant line is getting longer, which seems random."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q8",
+      "senseId": "normalized-1583656d17cc6c7ca9c40d82",
+      "slang": "weeheeeee",
+      "targetMeaning": "A playful sound-like spelling used to convey excitement or enjoyment.",
+      "difficulty": "medium",
+      "contextId": "ctx-internship-news",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@mayaclassroom",
+      "post": {
+        "displayName": "Ivy Freshair",
+        "handle": "@ivyfreshair",
+        "hashtag": "#InternshipNews",
+        "content": "Got the letter today, my application for the summer design internship was accepted! Celebrating with a tiny dance in the kitchen.",
+        "comments": [
+          {
+            "handle": "@mayaclassroom",
+            "text": "Yes! Finally, weeheeeee, you deserve every bit of this one.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "@mayaclassroom wait, is weeheeeee a squeaky toy noise you're making?",
+      "question": "What does the slang in the reply from @mayaclassroom mean?",
+      "options": [
+        "A sound effect used to mark a mistake or a failed test.",
+        "A nickname for a summer internship at a design studio.",
+        "A playful sound-like spelling used to convey excitement or enjoyment.",
+        "A phrase for a meeting that has been cancelled."
+      ],
+      "correctIndex": 2,
+      "explanation": "Weeheeeee is a playful sound-like spelling that conveys excitement or enjoyment. The internship acceptance and the kitchen dance make that cheerful reading fit.",
+      "replyTexts": [
+        "I took weeheeeee as a sound effect for a mistake or a failed test, like a buzzer going off.",
+        "I thought weeheeeee was just a nickname for a summer internship at a design studio, nothing more.",
+        "I'd say weeheeeee is a silly spelling that sounds like excitement, so the reply is cheering the news.",
+        "I figured weeheeeee was a phrase for a meeting being cancelled, which seems odd after good news."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q9",
+      "senseId": "normalized-a1ce27ff678cbb47b996cc42",
+      "slang": "you the birthday",
+      "targetMeaning": "A compliment suggesting someone is the main character or the center of attention in a room.",
+      "difficulty": "hard",
+      "contextId": "ctx-cafe-coat",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@cafelinda",
+      "post": {
+        "displayName": "Linda Cruz",
+        "handle": "@cafelinda",
+        "hashtag": "#CafeScene",
+        "content": "Walked into the cafe in a bright red coat and the whole room went quiet. Then the barista looked up and said, you the birthday, and laughed.",
+        "comments": [
+          {
+            "handle": "@dianne_b",
+            "text": "Honestly, that coat was a power move and everyone noticed.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Wait, is you the birthday a line from a party game or a birthday song?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A teasing way to say someone arrived late to a party.",
+        "A compliment suggesting someone is the main character or the center of attention in a room.",
+        "A phrase used to ask who is hosting a birthday celebration.",
+        "A joke about someone who forgot a friend's birthday."
+      ],
+      "correctIndex": 1,
+      "explanation": "You the birthday is a compliment that calls someone the main character or center of attention. The room going quiet and the barista's praise show that spotlight.",
+      "replyTexts": [
+        "I took you the birthday as a teasing jab that someone showed up late to the party, which is funny.",
+        "I think you the birthday is a compliment saying someone is the center of attention right now.",
+        "I figured you the birthday was a way of asking who is hosting the birthday party tonight.",
+        "I thought you the birthday was a joke about someone who forgot a friend's birthday, so it's a roast."
+      ]
+    },
+    {
+      "id": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423-q10",
+      "senseId": "normalized-92be4b1a5c158f7cb43a77e5",
+      "slang": "ate",
+      "targetMeaning": "To perform extremely well at something.",
+      "difficulty": "hard",
+      "contextId": "ctx-swim-meet",
+      "contextCategory": "sports",
+      "questionTarget": "reply",
+      "targetHandle": "@lanebyline",
+      "post": {
+        "displayName": "Rina Castillo",
+        "handle": "@swimwithrina",
+        "hashtag": "#MeetDay",
+        "content": "Final heat of the swim meet tonight. I pushed through the last lap and set a personal best.",
+        "comments": [
+          {
+            "handle": "@lanebyline",
+            "text": "Honestly you ate that race, I'm so proud of you!",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "@lanebyline wait, did you mean you actually had a big meal after the race?",
+      "question": "What does the slang in the reply from @lanebyline mean?",
+      "options": [
+        "To finish a race or event after everyone else.",
+        "To eat a large meal after a long workout.",
+        "To cancel a plan at the last minute.",
+        "To perform extremely well at something."
+      ],
+      "correctIndex": 3,
+      "explanation": "Ate means to perform extremely well at something. The personal best in the final heat and the praise in the reply both show a standout performance.",
+      "replyTexts": [
+        "I think ate means finishing a race after everyone else, so you were last, which sounds rough.",
+        "I took ate as you having a big meal after a workout, so the race part confused me.",
+        "I figured ate meant cancelling a plan at the last minute, like backing out of the swim meet.",
+        "I'd say ate means you did something exceptionally well, like a top performance at the meet."
+      ]
+    }
+  ]
+}

@@ -25,6 +25,7 @@ export function createMixedProvider({
   baseUrl = process.env.LLM_API_BASE_URL || 'https://openrouter.ai/api/v1',
   timeoutMs = Number(process.env.LLM_TIMEOUT_MS || 120000),
   maxTokens = Number(process.env.LLM_MAX_TOKENS || 10000),
+  reasoningEffort = process.env.LLM_REASONING_EFFORT || 'low',
   fetchImpl = globalThis.fetch
 } = {}) {
   if (typeof apiKey !== 'string' || !apiKey.trim() || typeof model !== 'string' || !/^[a-z0-9._:/-]{1,200}$/i.test(model))
@@ -34,10 +35,14 @@ export function createMixedProvider({
   if ((url.protocol !== 'https:' && !(url.protocol === 'http:' && ['127.0.0.1', 'localhost'].includes(url.hostname))) ||
       url.username || url.password || url.search || url.hash) throw providerError('unsafe-provider-url');
   if (!Number.isInteger(timeoutMs) || timeoutMs < 1000 || timeoutMs > 120000) throw providerError('bad-provider-timeout');
-  if (!Number.isInteger(maxTokens) || maxTokens < 512 || maxTokens > 12000) throw providerError('bad-provider-max-tokens');
+  // A reasoning model can spend most of the budget before writing any JSON, so the
+  // ceiling has to leave room for the answer itself. "none" omits the field entirely.
+  if (!Number.isInteger(maxTokens) || maxTokens < 512 || maxTokens > 32000) throw providerError('bad-provider-max-tokens');
+  if (!['none', 'low', 'medium', 'high'].includes(reasoningEffort)) throw providerError('bad-provider-reasoning');
   const endpoint = url.toString().replace(/\/$/, '') + '/chat/completions';
   const parameters = Object.freeze({model, temperature: 0.5, max_tokens: maxTokens,
-    response_format: Object.freeze({type: 'json_object'}), reasoning: Object.freeze({effort: 'low'})});
+    response_format: Object.freeze({type: 'json_object'}),
+    ...(reasoningEffort === 'none' ? {} : {reasoning: Object.freeze({effort: reasoningEffort})})});
   const provider = async ({messages}) => {
     const startedAt = new Date().toISOString();
     let response, rawResponse;

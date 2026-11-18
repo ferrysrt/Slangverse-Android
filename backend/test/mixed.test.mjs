@@ -401,7 +401,10 @@ test('provider rejects unsafe configuration and budgets above the hard caps', ()
   for (const baseUrl of ['http://remote.invalid/v1', 'https://user:password@example.invalid', 'https://example.invalid/?key=secret'])
     assert.throws(() => createMixedProvider({...config, baseUrl}), /unsafe-provider-url/);
   for (const timeoutMs of [0, 120001, NaN]) assert.throws(() => createMixedProvider({...config, timeoutMs}), /bad-provider-timeout/);
-  for (const maxTokens of [511, 12001, 1.5]) assert.throws(() => createMixedProvider({...config, maxTokens}), /bad-provider-max-tokens/);
+  for (const maxTokens of [511, 32001, 1.5]) assert.throws(() => createMixedProvider({...config, maxTokens}), /bad-provider-max-tokens/);
+  // Reasoning is optional and must never be sent as an unknown field for models that reject it.
+  for (const effort of ['none', 'low', 'medium', 'high']) assert.doesNotThrow(() => createMixedProvider({...config, reasoningEffort: effort}));
+  assert.throws(() => createMixedProvider({...config, reasoningEffort: 'maximal'}), /bad-provider-reasoning/);
   assert.throws(() => createMixedProvider({...config, apiKey: ''}), /missing-provider-config/);
   assert.equal(safeMixedFailureCode(Error('secret provider failure')), 'mixed-attempt-failed');
 });

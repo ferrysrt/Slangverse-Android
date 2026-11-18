@@ -4,10 +4,10 @@
   "source": "github-static",
   "generationSource": "llm",
   "status": "ready",
-  "candidateCount": 22,
+  "candidateCount": 92,
   "expertValidated": false,
   "discoveredCandidateCount": 16,
-  "bankVersion": "cb48f181a2e2f458",
+  "bankVersion": "2259da78fd3d2263",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -62,6 +62,21 @@
     }
   ],
   "packs": [
+    {
+      "packId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423",
+      "sha256": "d19e3d87385666c9e0d320acd1a29e6b6769576b318de76a046305ade5a7f272",
+      "questionCount": 10
+    },
+    {
+      "packId": "mixed-20261118t205611969z-96243b25-be6b-42a0-afbb-4d83fff4c7b5",
+      "sha256": "cfef1d3b33f525513aabe36604728e67f0f4e63f9b398865c3b060604f294102",
+      "questionCount": 10
+    },
+    {
+      "packId": "mixed-20261118t205459484z-a4f6fcd3-f783-4e0d-9d7d-dea358db363c",
+      "sha256": "a5739d937180554bb5292aa0f8e58931c8987a79ed5f959b8f8136d5fe06461f",
+      "questionCount": 10
+    },
     {
       "packId": "mixed-20261118t202918725z-2241f8de-9f18-4c86-ad98-5448856084ca",
       "sha256": "1e71fa0f8c42a8e4ee865d26c8077a44d26e345506b66b2f6748eb2e737c634e",

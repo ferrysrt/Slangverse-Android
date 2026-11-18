@@ -1,0 +1,536 @@
+{
+  "attemptId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7",
+  "packId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7",
+  "startedAt": "2026-11-18T20:47:23.465Z",
+  "datasetVersion": "firecrawl-normalized-e1d7e28483e8f2fb124e61db",
+  "promptVersion": "mixed-v11",
+  "promptSha256": "557c6f9cb8602e356ea4a9e49a8f44c83ea74b66a013aa3f7c3f36d956438058",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-d2a26a8e055ee958bd214e30",
+        "term": "function",
+        "targetMeaning": "An event, party, hangout, or social gathering.",
+        "definition": "An event, party, hangout, or social gathering.",
+        "normalizedDefinition": "An event, party, hangout, or social gathering.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "d2a26a8e055ee958bd214e30",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "function",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "function | An event, party, hangout, or social gathering.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-9bf32d0d825b18023bcde321",
+        "term": "chopped",
+        "targetMeaning": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "definition": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "normalizedDefinition": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "9bf32d0d825b18023bcde321",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "chopped",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://slang.net/blog/2025_top_slang_terms",
+            "title": "Top 10 Slang Terms from 2025",
+            "quote": "Chopped is slang for something that looks unattractive, unappealing, or generally \"messed up,\" as if it's been badly cut or ruined.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+          },
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "Calling someone or something “chopped” means it looks bad or has no real shot",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-52f71348debab92d90d3c908",
+        "term": "cortisol spike",
+        "targetMeaning": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "definition": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "normalizedDefinition": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "52f71348debab92d90d3c908",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "cortisol spike",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Cortisol spike’ is a viral internet joke used to describe moments of shock, embarrassment, or awkwardness.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-9246f5d64d7f7aa4f0540ad1",
+        "term": "everything hallelujah",
+        "targetMeaning": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "definition": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "normalizedDefinition": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "9246f5d64d7f7aa4f0540ad1",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "everything hallelujah",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Everything hallelujah’ is typically used after a short sentence or statement to celebrate everyday micro-wins and express gratitude.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-7b6aada4a9a530f31b0c4ce2",
+        "term": "clapback",
+        "targetMeaning": "A swift, witty response to an insult or critique.",
+        "definition": "A swift, witty response to an insult or critique.",
+        "normalizedDefinition": "A swift, witty response to an insult or critique.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "7b6aada4a9a530f31b0c4ce2",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "clapback",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "clapback | Swift and witty response to an insult or critique.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-60f29ef90ffa450378a9b462",
+        "term": "finna",
+        "targetMeaning": "A colloquial way to say “I am going to” or “I am about to.”",
+        "definition": "A colloquial way to say “I am going to” or “I am about to.”",
+        "normalizedDefinition": "A colloquial way to say “I am going to” or “I am about to.”",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "60f29ef90ffa450378a9b462",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "finna",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "finna | Term used meaning \"I am going to\" or \"I am about to\".",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-bfb72ec59776ab3a58688999",
+        "term": "crash out",
+        "targetMeaning": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "definition": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "normalizedDefinition": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "bfb72ec59776ab3a58688999",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "crash out",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "crash out / crashout | To have a bout of rage or upset. Sometimes more generally used to refer to anger or strong displeasure.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-b1b758041e0972efaca13b95",
+        "term": "delusionship",
+        "targetMeaning": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "definition": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "normalizedDefinition": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "b1b758041e0972efaca13b95",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "delusionship",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "delusionship | A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-131f921e36c9f83c07a987ad",
+        "term": "future faking",
+        "targetMeaning": "Making empty promises about the future to get something one wants in the present.",
+        "definition": "Making empty promises about the future to get something one wants in the present.",
+        "normalizedDefinition": "Making empty promises about the future to get something one wants in the present.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "131f921e36c9f83c07a987ad",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "future faking",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Future faking’ refers to a behaviour where someone provides empty promises for the future to get something they presently want.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-bfabfc4ae6b3480b410a6d81",
+        "term": "cheugy",
+        "targetMeaning": "Something slightly off-trend or outdated.",
+        "definition": "Something slightly off-trend or outdated.",
+        "normalizedDefinition": "Something slightly off-trend or outdated.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "bfabfc4ae6b3480b410a6d81",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "cheugy",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "For instance, the term “Cheugy” was coined by Gen Z to describe things that are slightly off-trend or outdated.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-d2a26a8e055ee958bd214e30",
+        "term": "function",
+        "targetMeaning": "An event, party, hangout, or social gathering.",
+        "sourceCandidateId": "d2a26a8e055ee958bd214e30",
+        "normalizedDefinition": "An event, party, hangout, or social gathering.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "function | An event, party, hangout, or social gathering.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-9bf32d0d825b18023bcde321",
+        "term": "chopped",
+        "targetMeaning": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "sourceCandidateId": "9bf32d0d825b18023bcde321",
+        "normalizedDefinition": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "referenceSources": [
+          {
+            "url": "https://slang.net/blog/2025_top_slang_terms",
+            "title": "Top 10 Slang Terms from 2025",
+            "quote": "Chopped is slang for something that looks unattractive, unappealing, or generally \"messed up,\" as if it's been badly cut or ruined.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+          },
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "Calling someone or something “chopped” means it looks bad or has no real shot",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-52f71348debab92d90d3c908",
+        "term": "cortisol spike",
+        "targetMeaning": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "sourceCandidateId": "52f71348debab92d90d3c908",
+        "normalizedDefinition": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "referenceSources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Cortisol spike’ is a viral internet joke used to describe moments of shock, embarrassment, or awkwardness.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-9246f5d64d7f7aa4f0540ad1",
+        "term": "everything hallelujah",
+        "targetMeaning": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "sourceCandidateId": "9246f5d64d7f7aa4f0540ad1",
+        "normalizedDefinition": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "referenceSources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Everything hallelujah’ is typically used after a short sentence or statement to celebrate everyday micro-wins and express gratitude.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-7b6aada4a9a530f31b0c4ce2",
+        "term": "clapback",
+        "targetMeaning": "A swift, witty response to an insult or critique.",
+        "sourceCandidateId": "7b6aada4a9a530f31b0c4ce2",
+        "normalizedDefinition": "A swift, witty response to an insult or critique.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "clapback | Swift and witty response to an insult or critique.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-60f29ef90ffa450378a9b462",
+        "term": "finna",
+        "targetMeaning": "A colloquial way to say “I am going to” or “I am about to.”",
+        "sourceCandidateId": "60f29ef90ffa450378a9b462",
+        "normalizedDefinition": "A colloquial way to say “I am going to” or “I am about to.”",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "finna | Term used meaning \"I am going to\" or \"I am about to\".",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-bfb72ec59776ab3a58688999",
+        "term": "crash out",
+        "targetMeaning": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "sourceCandidateId": "bfb72ec59776ab3a58688999",
+        "normalizedDefinition": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "crash out / crashout | To have a bout of rage or upset. Sometimes more generally used to refer to anger or strong displeasure.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-b1b758041e0972efaca13b95",
+        "term": "delusionship",
+        "targetMeaning": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "sourceCandidateId": "b1b758041e0972efaca13b95",
+        "normalizedDefinition": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "delusionship | A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-131f921e36c9f83c07a987ad",
+        "term": "future faking",
+        "targetMeaning": "Making empty promises about the future to get something one wants in the present.",
+        "sourceCandidateId": "131f921e36c9f83c07a987ad",
+        "normalizedDefinition": "Making empty promises about the future to get something one wants in the present.",
+        "referenceSources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Future faking’ refers to a behaviour where someone provides empty promises for the future to get something they presently want.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-bfabfc4ae6b3480b410a6d81",
+        "term": "cheugy",
+        "targetMeaning": "Something slightly off-trend or outdated.",
+        "sourceCandidateId": "bfabfc4ae6b3480b410a6d81",
+        "normalizedDefinition": "Something slightly off-trend or outdated.",
+        "referenceSources": [
+          {
+            "url": "https://rsisinternational.org/journals/ijriss/articles/the-use-of-slang-by-gen-z-female-influencers-on-instagram-and-twitter-x/",
+            "title": "The Use of Slang by Gen Z Female Influencers on Instagram and Twitter ...",
+            "quote": "For instance, the term “Cheugy” was coined by Gen Z to describe things that are slightly off-trend or outdated.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "57b08c5e4cffe5d71f5bdad9243c7146f239d0545f9a621577b85f8c74bcb752"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q1",
+        "senseId": "normalized-d2a26a8e055ee958bd214e30",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q2",
+        "senseId": "normalized-9bf32d0d825b18023bcde321",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q3",
+        "senseId": "normalized-52f71348debab92d90d3c908",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q4",
+        "senseId": "normalized-9246f5d64d7f7aa4f0540ad1",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q5",
+        "senseId": "normalized-7b6aada4a9a530f31b0c4ce2",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q6",
+        "senseId": "normalized-60f29ef90ffa450378a9b462",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q7",
+        "senseId": "normalized-bfb72ec59776ab3a58688999",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q8",
+        "senseId": "normalized-b1b758041e0972efaca13b95",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q9",
+        "senseId": "normalized-131f921e36c9f83c07a987ad",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t204723465z-84c5bfd4-2a47-4ea2-ac90-f0201b719ba7-q10",
+        "senseId": "normalized-bfabfc4ae6b3480b410a6d81",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 10,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}
