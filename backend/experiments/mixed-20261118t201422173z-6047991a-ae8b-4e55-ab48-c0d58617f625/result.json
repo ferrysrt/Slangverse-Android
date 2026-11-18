@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t201422173z-6047991a-ae8b-4e55-ab48-c0d58617f625",
+  "packId": "mixed-20261118t201422173z-6047991a-ae8b-4e55-ab48-c0d58617f625",
+  "startedAt": "2026-11-18T20:14:22.174Z",
+  "completedAt": "2026-11-18T20:14:58.060Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "mixed-validation-failed",
+  "actualModel": "openai/gpt-6-luna"
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
-  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+  "datasetVersion": "firecrawl-normalized-e1d7e28483e8f2fb124e61db",
   "source": "github-static",
   "generationSource": "llm",
   "status": "ready",
   "candidateCount": 22,
   "expertValidated": false,
   "discoveredCandidateCount": 16,
-  "bankVersion": "7287c69816efd3ee",
+  "bankVersion": "cb48f181a2e2f458",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -62,6 +62,11 @@
     }
   ],
   "packs": [
+    {
+      "packId": "mixed-20261118t202918725z-2241f8de-9f18-4c86-ad98-5448856084ca",
+      "sha256": "1e71fa0f8c42a8e4ee865d26c8077a44d26e345506b66b2f6748eb2e737c634e",
+      "questionCount": 10
+    },
     {
       "packId": "mixed-20261118t191849462z-c1a77b37-fc07-4232-9754-fc665fae8d08",
       "sha256": "fdfee64c26c22ce7d2447aec2105d4d523fc76bd2e0d4380687594c446396d19",

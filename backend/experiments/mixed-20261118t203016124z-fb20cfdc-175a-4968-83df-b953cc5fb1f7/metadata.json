@@ -1,0 +1,35 @@
+{
+  "requestedModel": "google/gemini-3.5-flash",
+  "startedAt": "2026-11-18T20:30:16.139Z",
+  "completedAt": "2026-11-18T20:30:39.540Z",
+  "httpStatus": 200,
+  "actualModel": "google/gemini-3.5-flash",
+  "responseId": "gen-1795033816-gBxFm8pdu1T4Lw95OnD8",
+  "provider": "Google",
+  "providerCreated": 1795033816,
+  "usage": {
+    "prompt_tokens": 6975,
+    "completion_tokens": 6076,
+    "total_tokens": 13051,
+    "cost": 0.0651465,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0651465,
+      "upstream_inference_prompt_cost": 0.0104625,
+      "upstream_inference_completions_cost": 0.054684
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finishReason": "stop",
+  "nativeFinishReason": "STOP"
+}

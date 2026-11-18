@@ -1,0 +1,448 @@
+{
+  "packId": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1",
+  "questions": [
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q1",
+      "senseId": "normalized-1a0ac6bb2470c2a2e78b4658",
+      "slang": "aura farming",
+      "targetMeaning": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+      "difficulty": "easy",
+      "contextId": "library_posing",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira",
+        "handle": "@miramoments",
+        "hashtag": "#LibraryVibes",
+        "content": "Saw a guy in the library slowly putting on sunglasses and staring out the window for ten minutes. The aura farming is getting out of hand.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "text": "He probably practiced that in the mirror for hours.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@lilalistens",
+            "text": "I would have laughed out loud honestly.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Wait, are they trying to grow crops in the library? What does aura farming mean here?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Trying to grow plants or start an organic garden indoors.",
+        "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+        "Collecting virtual currency in an online multiplayer game.",
+        "Practicing meditation techniques to clean one's spiritual energy."
+      ],
+      "correctIndex": 1,
+      "explanation": "In this context, the person is posing dramatically to look cool, which represents 'aura farming' because it looks highly staged and try-hard.",
+      "replyTexts": [
+        "No, aura farming has nothing to do with growing plants or gardening indoors.",
+        "Yes, aura farming means he is deliberately acting in a way to look effortlessly cool, even if it looks a bit try-hard.",
+        "It's not about gaming or collecting virtual currency; aura farming is about trying to look cool in public.",
+        "No, he isn't meditating. When you say someone is aura farming, they are just trying to project a cool vibe."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q2",
+      "senseId": "normalized-a18841aab9e7763da0a0a911",
+      "slang": "canon event",
+      "targetMeaning": "An unavoidable, defining moment in someone’s life story.",
+      "difficulty": "easy",
+      "contextId": "dining_hall_fail",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Campus Feed",
+        "handle": "@campusfeed",
+        "hashtag": "#FreshmanYear",
+        "content": "Just saw a freshman drop their entire lunch tray in the crowded dining hall. Everyone went completely silent.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "Don't worry, that's just a crucial canon event for every college student.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@ariatwork",
+            "text": "We've all been there, honestly.",
+            "avatarId": "ari"
+          }
+        ],
+        "avatarId": "campus"
+      },
+      "questionComment": "What do you mean by canon event? Is this some kind of military reenactment?",
+      "question": "What does the slang mean in the reply by @lilalistens?",
+      "options": [
+        "An unavoidable, defining moment in someone’s life story.",
+        "A historical military reenactment using replica weapons.",
+        "A major rule violation that leads to immediate suspension.",
+        "An official celebration organized by a school or university."
+      ],
+      "correctIndex": 0,
+      "explanation": "Dropping a tray is framed as a classic, unavoidable rite of passage, making 'canon event' the perfect term for a defining life moment.",
+      "replyTexts": [
+        "Exactly! A canon event is an unavoidable, defining moment in someone's life story that they just have to go through.",
+        "No, a canon event has nothing to do with military reenactments or weapons.",
+        "It's not a rule violation. Calling it a canon event just means it's a necessary development in their life.",
+        "No, a canon event isn't an official school celebration; it's just a crucial moment in your personal story."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q3",
+      "senseId": "normalized-eea96f732eb9d00c37f3774b",
+      "slang": "brain rot",
+      "targetMeaning": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+      "difficulty": "easy",
+      "contextId": "scrolling_loop",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Just Jo",
+        "handle": "@justjo",
+        "hashtag": "#Doomscrolling",
+        "content": "I've been scrolling through 5-second videos of dancing vegetables for four hours straight. My brain rot is reaching critical levels.",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "text": "Put the phone down and go touch some grass immediately!",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@sam",
+            "text": "But the vegetable song is so catchy.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "Wait, is brain rot an actual medical disease? What does that mean?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A medical condition caused by lack of sleep.",
+        "A type of computer virus that deletes media files.",
+        "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "The frustration of studying for extremely difficult exams."
+      ],
+      "correctIndex": 2,
+      "explanation": "Spending hours watching meaningless short clips causes a foggy, numbed mental state, which is referred to as 'brain rot'.",
+      "replyTexts": [
+        "No, brain rot isn't an actual medical condition from sleep loss, just a joke about watching silly videos.",
+        "It's not a computer virus. We use brain rot to describe that foggy feeling from watching low-value content.",
+        "Yes, brain rot refers to low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "No, it's not about exam frustration. You get brain rot from mindlessly consuming easy, low-effort media."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q4",
+      "senseId": "normalized-490a833c90fce690cd833bf6",
+      "slang": "caught in 4k",
+      "targetMeaning": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+      "difficulty": "easy",
+      "contextId": "fridge_thief",
+      "contextCategory": "work",
+      "questionTarget": "reply",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Ari at Work",
+        "handle": "@ariatwork",
+        "hashtag": "#OfficeDrama",
+        "content": "Someone ate my labeled sandwich from the office fridge, but they didn't realize the new security camera was pointed right at the breakroom door.",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "text": "Oh wow, they got caught in 4k and there is absolutely no denying it now!",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@benchside",
+            "text": "Please post the video in the company Slack channel.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "What does caught in 4k mean? Are they talking about a high-definition television screen?",
+      "question": "What does the slang mean in the reply by @deasays?",
+      "options": [
+        "Fined a large sum of money for a minor misdemeanor.",
+        "Promoted to a high-paying executive position unexpectedly.",
+        "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "Photographed by a professional photographer for a magazine."
+      ],
+      "correctIndex": 2,
+      "explanation": "The thief was caught on a security camera with undeniable proof, which is the definition of being 'caught in 4k'.",
+      "replyTexts": [
+        "No, being caught in 4k doesn't mean getting fined money.",
+        "It definitely doesn't mean getting promoted. It means they were caught in 4k with clear proof of doing wrong.",
+        "Yes, caught in 4k means they were indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "No, it's not about professional magazine photography. To be caught in 4k means there is clear evidence of your mistake."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q5",
+      "senseId": "normalized-4329449a2a5861a4355368fe",
+      "slang": "boy kibble",
+      "targetMeaning": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+      "difficulty": "easy",
+      "contextId": "gym_meal_prep",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@benchside",
+      "post": {
+        "displayName": "Ben",
+        "handle": "@benchside",
+        "hashtag": "#GymLife",
+        "content": "My meal prep this week is literally just a giant container of ground beef and plain white rice. Peak boy kibble lifestyle.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "text": "No seasoning? You are a machine.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@miramoments",
+            "text": "At least add some hot sauce!",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "ben"
+      },
+      "questionComment": "Wait, boy kibble? Are you eating actual dry dog food?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "Cheap dry food formulated specifically for household pets.",
+        "A slang term for protein powders and pre-workout supplements.",
+        "Quick snacks consumed while playing video games with friends."
+      ],
+      "correctIndex": 0,
+      "explanation": "Ben's meal consists of basic ground beef and white rice for protein, which fits the 'boy kibble' trend of simple, high-protein gym meals.",
+      "replyTexts": [
+        "Yes, boy kibble is a social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "Haha no, boy kibble isn't actual pet food! It's just a funny name for basic gym meals.",
+        "No, it's not protein powder. We call this plain meat and rice meal prep boy kibble.",
+        "It's not gaming snacks. It's boy kibble, which means a very simple, high-protein meal like beef and rice."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q6",
+      "senseId": "normalized-72ab6963688d7b15ff9978fb",
+      "slang": "brat",
+      "targetMeaning": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+      "difficulty": "medium",
+      "contextId": "messy_roommate",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Naya",
+        "handle": "@naya",
+        "hashtag": "#RoommateLife",
+        "content": "My roommate went to the corner store in neon green pajamas, mismatched slippers, and messy hair, singing at the top of her lungs.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "Honestly, she is such a brat and I absolutely love her for it.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@lilalistens",
+            "text": "That is unmatched confidence right there.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "What does brat mean in this context? Isn't that just a spoiled, misbehaving child?",
+      "question": "What does the slang mean in the reply by @sam?",
+      "options": [
+        "A spoiled child who throws tantrums when they don't get their way.",
+        "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "A person who deliberately ruins plans or spoils fun for others.",
+        "Someone who is obsessed with high-end fashion and luxury brands."
+      ],
+      "correctIndex": 1,
+      "explanation": "The roommate's messy, confident, and unapologetic attitude represents the modern slang meaning of 'brat'.",
+      "replyTexts": [
+        "No, she isn't acting like a spoiled child. Calling her a brat means she is just living her best life unapologetically.",
+        "Yes, brat is a label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "She isn't ruining plans! Being a brat means she's confidently messy and doesn't care what people think.",
+        "No, it's not about luxury brands. She's a brat because she is confidently unbothered in her messy pajamas."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q7",
+      "senseId": "normalized-47522d454074c15267431f2f",
+      "slang": "beige flag",
+      "targetMeaning": "A behavior or personality trait that is neither good nor bad.",
+      "difficulty": "medium",
+      "contextId": "wikipedia_habit",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@townloop",
+      "post": {
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#Relationships",
+        "content": "My partner's biggest beige flag is that they have to read the entire Wikipedia page of a movie before we watch it.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "text": "That is so specific, but honestly harmless.",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@justjo",
+            "text": "Mine does that too! No spoilers allowed though.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "townloop"
+      },
+      "questionComment": "Wait, what's a beige flag? Is it like a warning sign at a beach?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A warning sign that a relationship is bound to fail immediately.",
+        "A highly desirable quality that makes someone the perfect partner.",
+        "A boring habit that makes a person completely uninteresting to talk to.",
+        "A behavior or personality trait that is neither good nor bad."
+      ],
+      "correctIndex": 3,
+      "explanation": "Reading a movie's Wikipedia page beforehand is a quirky, neutral habit. It is neither a dealbreaker nor a major benefit, making it a 'beige flag'.",
+      "replyTexts": [
+        "No, a beige flag isn't a relationship warning sign. It's just a neutral, quirky habit.",
+        "It's not a super positive thing either. A beige flag is just something neutral about them.",
+        "It doesn't make them boring! A beige flag is just a habit that is neither good nor bad.",
+        "Exactly! A beige flag is a behavior or personality trait that is neither good nor bad."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q8",
+      "senseId": "normalized-4e603836bd1aa6a71ff3e172",
+      "slang": "biblically accurate",
+      "targetMeaning": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+      "difficulty": "medium",
+      "contextId": "wild_chandelier",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_02",
+      "post": {
+        "displayName": "Traveler",
+        "handle": "@guest_01",
+        "hashtag": "#HotelDesign",
+        "content": "Look at this wild modern chandelier in the hotel lobby. It has thirty glowing glass eyes and metallic wings pointing in every direction.",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "That looks biblically accurate and honestly it's kind of terrifying to stand under.",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@deasays",
+            "text": "I would not want that in my house.",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "What do you mean by biblically accurate? Is that chandelier from some old religious book?",
+      "question": "What does the slang mean in the reply by @guest_02?",
+      "options": [
+        "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "Strictly adhering to historical facts and ancient religious texts.",
+        "Extremely old-fashioned and out of touch with modern design.",
+        "Beautifully hand-crafted using traditional wooden tools."
+      ],
+      "correctIndex": 0,
+      "explanation": "The chandelier has a bizarre, overwhelming design with many eyes and wings, which is humorously described as 'biblically accurate' due to its unsettling appearance.",
+      "replyTexts": [
+        "Yes! We say biblically accurate to describe something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "No, it's not actually from ancient religious texts. Calling it biblically accurate is just a joke about how weird it looks.",
+        "It's not about being old-fashioned. It's biblically accurate because the design is totally overwhelming and strange.",
+        "No, it's not about being hand-crafted. It's biblically accurate because it looks unsettling with all those eyes."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q9",
+      "senseId": "normalized-69619210a860151e9203683a",
+      "slang": "big yikes",
+      "targetMeaning": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+      "difficulty": "hard",
+      "contextId": "seminar_fail",
+      "contextCategory": "work",
+      "questionTarget": "post",
+      "targetHandle": "@guest_03",
+      "post": {
+        "displayName": "Alex",
+        "handle": "@guest_03",
+        "hashtag": "#AwkwardWork",
+        "content": "The speaker at the seminar just made an incredibly offensive joke about the interns, and the entire room went dead silent. That was a big yikes.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "text": "Oh no, I would have walked out of the room.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@campusfeed",
+            "text": "The secondhand embarrassment is real.",
+            "avatarId": "campus"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "What does big yikes mean? Is it like a big surprise or shock?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A loud scream of terror during a scary movie.",
+        "An expression of extreme excitement or celebration.",
+        "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "A formal complaint filed with human resources."
+      ],
+      "correctIndex": 2,
+      "explanation": "The speaker's offensive joke caused a deeply awkward, cringeworthy silence, which is described as a 'big yikes'.",
+      "replyTexts": [
+        "No, a big yikes isn't a scream of terror during a movie.",
+        "It's definitely not for excitement! You say big yikes when something is super cringeworthy or offensive.",
+        "Exactly, big yikes is an expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "It's not a formal HR complaint, although that offensive joke might lead to one after that big yikes moment."
+      ]
+    },
+    {
+      "id": "mixed-20261118t202837882z-2856c64a-ef5e-40d5-a79a-61d0bc4552c1-q10",
+      "senseId": "normalized-99cc528bf2851159d362add2",
+      "slang": "ball knowledge",
+      "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "difficulty": "hard",
+      "contextId": "obscure_tv_show",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@guest_04",
+      "post": {
+        "displayName": "Matchday Chat",
+        "handle": "@matchdaychat",
+        "hashtag": "#PopCultureTrivia",
+        "content": "Who remembers that obscure 2004 reality TV show where contestants had to live in a giant plastic bubble for a week?",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "text": "Wow, remembering that show proves you have some elite ball knowledge right there.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@sam",
+            "text": "I completely forgot that existed!",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "matchday"
+      },
+      "questionComment": "What does ball knowledge mean? Does it have something to do with soccer or basketball?",
+      "question": "What does the slang mean in the reply by @

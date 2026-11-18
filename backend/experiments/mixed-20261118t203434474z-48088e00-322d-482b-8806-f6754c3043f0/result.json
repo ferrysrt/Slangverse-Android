@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t203434474z-48088e00-322d-482b-8806-f6754c3043f0",
+  "packId": "mixed-20261118t203434474z-48088e00-322d-482b-8806-f6754c3043f0",
+  "startedAt": "2026-11-18T20:34:34.474Z",
+  "completedAt": "2026-11-18T20:34:34.548Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "llm-http-403",
+  "actualModel": null
+}

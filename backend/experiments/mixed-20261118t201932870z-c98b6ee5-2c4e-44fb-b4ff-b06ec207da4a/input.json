@@ -1,0 +1,536 @@
+{
+  "attemptId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a",
+  "packId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a",
+  "startedAt": "2026-11-18T20:19:32.871Z",
+  "datasetVersion": "firecrawl-normalized-e1d7e28483e8f2fb124e61db",
+  "promptVersion": "mixed-v11",
+  "promptSha256": "3c6c4c76109fef7e9717657daa5fd1258211e405b43930555ca5235554423a4d",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-47522d454074c15267431f2f",
+        "term": "beige flag",
+        "targetMeaning": "A behavior or personality trait that is neither good nor bad.",
+        "definition": "A behavior or personality trait that is neither good nor bad.",
+        "normalizedDefinition": "A behavior or personality trait that is neither good nor bad.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "47522d454074c15267431f2f",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "beige flag",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "beige flag | A behavior or personality trait that is neither good nor bad.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-1a0ac6bb2470c2a2e78b4658",
+        "term": "aura farming",
+        "targetMeaning": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+        "definition": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+        "normalizedDefinition": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "1a0ac6bb2470c2a2e78b4658",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura farming",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-490a833c90fce690cd833bf6",
+        "term": "caught in 4k",
+        "targetMeaning": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "definition": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "normalizedDefinition": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "490a833c90fce690cd833bf6",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "caught in 4k",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "caught in 4K | Refers to someone being indisputably caught doing something wrong or incriminating on camera or with evidence to prove it",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-72ab6963688d7b15ff9978fb",
+        "term": "brat",
+        "targetMeaning": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "definition": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "normalizedDefinition": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "72ab6963688d7b15ff9978fb",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "brat",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Brat” now describes someone confidently unbothered, a little messy, and unapologetically themselves",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-a18841aab9e7763da0a0a911",
+        "term": "canon event",
+        "targetMeaning": "An unavoidable, defining moment in someone’s life story.",
+        "definition": "An unavoidable, defining moment in someone’s life story.",
+        "normalizedDefinition": "An unavoidable, defining moment in someone’s life story.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "a18841aab9e7763da0a0a911",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "canon event",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "A “canon event” is a moment framed as an unavoidable, defining part of someone’s story",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-4329449a2a5861a4355368fe",
+        "term": "boy kibble",
+        "targetMeaning": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "definition": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "normalizedDefinition": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "4329449a2a5861a4355368fe",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "boy kibble",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Boy kibble’ is a viral social media food featuring simple, high-protein meals, typically including ground meat and white rice.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-69619210a860151e9203683a",
+        "term": "big yikes",
+        "targetMeaning": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "definition": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "normalizedDefinition": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "69619210a860151e9203683a",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "big yikes",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "big yikes | something embarrassing or cringeworthy, particularly in response to an offensive comment.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-eea96f732eb9d00c37f3774b",
+        "term": "brain rot",
+        "targetMeaning": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "definition": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "normalizedDefinition": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "eea96f732eb9d00c37f3774b",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "brain rot",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Brain rot” describes low-value, low-effort content, or the mentally foggy feeling that comes from consuming too much of it",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          },
+          {
+            "url": "https://slang.net/blog/2025_top_slang_terms",
+            "title": "Top 10 Slang Terms from 2025",
+            "quote": "Brain rot (or \"brainrot\") describes content, media, or experiences that are fun but mind-numbing",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-99cc528bf2851159d362add2",
+        "term": "ball knowledge",
+        "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "definition": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "normalizedDefinition": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "99cc528bf2851159d362add2",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "ball knowledge",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-4e603836bd1aa6a71ff3e172",
+        "term": "biblically accurate",
+        "targetMeaning": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "definition": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "normalizedDefinition": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "4e603836bd1aa6a71ff3e172",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "biblically accurate",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://gabb.com/blog/teen-slang/",
+            "title": "200+ Gen Z & Teen Slang Terms: A Parent's Guide 2026",
+            "quote": "Describes something strange, overwhelming, or unsettling to look at, referencing depictions of “biblically accurate angels.”",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "3159b04eee4de4bbbb1ca359e17cdbecfc59daeb31f40cadb0960cf610533756"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-47522d454074c15267431f2f",
+        "term": "beige flag",
+        "targetMeaning": "A behavior or personality trait that is neither good nor bad.",
+        "sourceCandidateId": "47522d454074c15267431f2f",
+        "normalizedDefinition": "A behavior or personality trait that is neither good nor bad.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "beige flag | A behavior or personality trait that is neither good nor bad.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-1a0ac6bb2470c2a2e78b4658",
+        "term": "aura farming",
+        "targetMeaning": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+        "sourceCandidateId": "1a0ac6bb2470c2a2e78b4658",
+        "normalizedDefinition": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+        "referenceSources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-490a833c90fce690cd833bf6",
+        "term": "caught in 4k",
+        "targetMeaning": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "sourceCandidateId": "490a833c90fce690cd833bf6",
+        "normalizedDefinition": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "caught in 4K | Refers to someone being indisputably caught doing something wrong or incriminating on camera or with evidence to prove it",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-72ab6963688d7b15ff9978fb",
+        "term": "brat",
+        "targetMeaning": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "sourceCandidateId": "72ab6963688d7b15ff9978fb",
+        "normalizedDefinition": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "referenceSources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Brat” now describes someone confidently unbothered, a little messy, and unapologetically themselves",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-a18841aab9e7763da0a0a911",
+        "term": "canon event",
+        "targetMeaning": "An unavoidable, defining moment in someone’s life story.",
+        "sourceCandidateId": "a18841aab9e7763da0a0a911",
+        "normalizedDefinition": "An unavoidable, defining moment in someone’s life story.",
+        "referenceSources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "A “canon event” is a moment framed as an unavoidable, defining part of someone’s story",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-4329449a2a5861a4355368fe",
+        "term": "boy kibble",
+        "targetMeaning": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "sourceCandidateId": "4329449a2a5861a4355368fe",
+        "normalizedDefinition": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "referenceSources": [
+          {
+            "url": "https://preply.com/en/blog/2026-slang-definitions-and-statistics/",
+            "title": "Top slang phrases & statistics for 2026",
+            "quote": "‘Boy kibble’ is a viral social media food featuring simple, high-protein meals, typically including ground meat and white rice.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "13f315a5896470b07c24430cce19368f175b84bedc5d056ec30ca140f094d366"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-69619210a860151e9203683a",
+        "term": "big yikes",
+        "targetMeaning": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "sourceCandidateId": "69619210a860151e9203683a",
+        "normalizedDefinition": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "big yikes | something embarrassing or cringeworthy, particularly in response to an offensive comment.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-eea96f732eb9d00c37f3774b",
+        "term": "brain rot",
+        "targetMeaning": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "sourceCandidateId": "eea96f732eb9d00c37f3774b",
+        "normalizedDefinition": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+        "referenceSources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Brain rot” describes low-value, low-effort content, or the mentally foggy feeling that comes from consuming too much of it",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          },
+          {
+            "url": "https://slang.net/blog/2025_top_slang_terms",
+            "title": "Top 10 Slang Terms from 2025",
+            "quote": "Brain rot (or \"brainrot\") describes content, media, or experiences that are fun but mind-numbing",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "abbfab64020564877ff82fea1b6ebf89ee2e3db3ac6e80bf2dea8ed70730c47d"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-99cc528bf2851159d362add2",
+        "term": "ball knowledge",
+        "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "sourceCandidateId": "99cc528bf2851159d362add2",
+        "normalizedDefinition": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-4e603836bd1aa6a71ff3e172",
+        "term": "biblically accurate",
+        "targetMeaning": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "sourceCandidateId": "4e603836bd1aa6a71ff3e172",
+        "normalizedDefinition": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+        "referenceSources": [
+          {
+            "url": "https://gabb.com/blog/teen-slang/",
+            "title": "200+ Gen Z & Teen Slang Terms: A Parent's Guide 2026",
+            "quote": "Describes something strange, overwhelming, or unsettling to look at, referencing depictions of “biblically accurate angels.”",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "3159b04eee4de4bbbb1ca359e17cdbecfc59daeb31f40cadb0960cf610533756"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q1",
+        "senseId": "normalized-47522d454074c15267431f2f",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q2",
+        "senseId": "normalized-1a0ac6bb2470c2a2e78b4658",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q3",
+        "senseId": "normalized-490a833c90fce690cd833bf6",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q4",
+        "senseId": "normalized-72ab6963688d7b15ff9978fb",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q5",
+        "senseId": "normalized-a18841aab9e7763da0a0a911",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q6",
+        "senseId": "normalized-4329449a2a5861a4355368fe",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q7",
+        "senseId": "normalized-69619210a860151e9203683a",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q8",
+        "senseId": "normalized-eea96f732eb9d00c37f3774b",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q9",
+        "senseId": "normalized-99cc528bf2851159d362add2",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t201932870z-c98b6ee5-2c4e-44fb-b4ff-b06ec207da4a-q10",
+        "senseId": "normalized-4e603836bd1aa6a71ff3e172",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 10,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

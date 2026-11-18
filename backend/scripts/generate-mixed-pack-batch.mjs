@@ -46,7 +46,7 @@ export async function generatePackRound({senses, usedCounts, outputDir = DEFAULT
     attempts.push({attemptId: result.attemptId, status: result.status, failureCode: result.failureCode,
       cost: attemptCost(result.logDir), errors: result.validation?.errors ?? []});
     if (!result.ok) { lastFailure = result; continue; }
-    const {entry} = publishRecordedMixedPack(result.logDir, {outputDir, retention});
+    const {entry} = publishRecordedMixedPack(result.logDir, {outputDir, retention, candidateCount: senses.length});
     return {ok: true, terms, curation, attempts, entry, packId: result.packId};
   }
   return {ok: false, terms, curation, attempts, failureCode: lastFailure?.failureCode ?? 'generation-failed'};

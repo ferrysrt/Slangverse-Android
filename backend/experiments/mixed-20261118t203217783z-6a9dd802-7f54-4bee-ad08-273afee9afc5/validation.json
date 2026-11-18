@@ -1,0 +1,146 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "id": "json-parse",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "required-fields",
+      "passed": false,
+      "errors": [
+        "required-fields"
+      ]
+    },
+    {
+      "id": "count-10",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "difficulty-5-3-2",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "four-options",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "correct-index",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "context-category",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "unique-ids",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "no-surrounding-text",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reference-integrity",
+      "passed": false,
+      "errors": [
+        "3:reference-mismatch",
+        "4:reference-mismatch",
+        "5:reference-mismatch",
+        "6:reference-mismatch",
+        "7:reference-mismatch",
+        "8:reference-mismatch",
+        "9:reference-mismatch",
+        "unused-reference"
+      ]
+    },
+    {
+      "id": "existing-question-rules",
+      "passed": false,
+      "errors": [
+        "3:key-meaning-mismatch",
+        "3:target-meaning",
+        "4:key-meaning-mismatch",
+        "4:target-meaning",
+        "5:key-meaning-mismatch",
+        "5:target-meaning",
+        "6:key-meaning-mismatch",
+        "6:target-meaning",
+        "7:key-meaning-mismatch",
+        "7:target-meaning",
+        "8:key-meaning-mismatch",
+        "8:target-meaning",
+        "9:key-meaning-mismatch",
+        "9:target-meaning"
+      ]
+    },
+    {
+      "id": "social-safety",
+      "passed": false,
+      "errors": [
+        "3:social-shape",
+        "4:social-shape",
+        "5:social-shape",
+        "6:social-shape",
+        "7:social-shape",
+        "8:social-shape",
+        "9:social-shape"
+      ]
+    },
+    {
+      "id": "reply-target-mix",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "reply-contract",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "id": "provider-completion",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "errors": [
+    "required-fields",
+    "3:reference-mismatch",
+    "4:reference-mismatch",
+    "5:reference-mismatch",
+    "6:reference-mismatch",
+    "7:reference-mismatch",
+    "8:reference-mismatch",
+    "9:reference-mismatch",
+    "unused-reference",
+    "3:key-meaning-mismatch",
+    "3:target-meaning",
+    "4:key-meaning-mismatch",
+    "4:target-meaning",
+    "5:key-meaning-mismatch",
+    "5:target-meaning",
+    "6:key-meaning-mismatch",
+    "6:target-meaning",
+    "7:key-meaning-mismatch",
+    "7:target-meaning",
+    "8:key-meaning-mismatch",
+    "8:target-meaning",
+    "9:key-meaning-mismatch",
+    "9:target-meaning",
+    "3:social-shape",
+    "4:social-shape",
+    "5:social-shape",
+    "6:social-shape",
+    "7:social-shape",
+    "8:social-shape",
+    "9:social-shape"
+  ]
+}

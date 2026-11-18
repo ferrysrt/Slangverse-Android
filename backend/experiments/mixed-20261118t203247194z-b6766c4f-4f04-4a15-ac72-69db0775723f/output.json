@@ -1,0 +1,464 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q1",
+      "senseId": "normalized-9bf32d0d825b18023bcde321",
+      "slang": "chopped",
+      "targetMeaning": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+      "difficulty": "easy",
+      "contextId": "fashion_fail",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira Moments",
+        "handle": "@miramoments",
+        "hashtag": "#OOTDFail",
+        "content": "Tried to cut my own bangs before the party tonight and now my whole look is completely chopped. I can't even step outside looking like this.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "Oh no, did you use kitchen scissors?",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@justjo",
+            "text": "We can fix it with some clips!",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Wait, did you actually chop your hair off with a knife or something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Refers to being physically injured during a DIY project.",
+        "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "Indicates that a plan has been canceled last minute.",
+        "Means being extremely exhausted after a long day of work."
+      ],
+      "correctIndex": 1,
+      "explanation": "Mira uses 'chopped' to describe her ruined haircut and overall look as highly unappealing and messed up.",
+      "replyTexts": [
+        "No, I didn't hurt myself! I used the word chopped to say I got a physical injury while trying to cut my hair.",
+        "No, I mean my hair looks totally unappealing and messed up now, so my whole style is chopped.",
+        "No, I mean the party got canceled and the plans were chopped last minute.",
+        "No, I'm just saying I feel completely chopped and exhausted after trying to fix this hair all day."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q2",
+      "senseId": "normalized-60f29ef90ffa450378a9b462",
+      "slang": "finna",
+      "targetMeaning": "A colloquial way to say “I am going to” or “I am about to.”",
+      "difficulty": "easy",
+      "contextId": "study_session",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@campusfeed",
+      "post": {
+        "displayName": "Just Jo",
+        "handle": "@justjo",
+        "hashtag": "#LibraryLife",
+        "content": "The library is closing in ten minutes and I still have three pages of my essay left to write.",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "text": "I am finna head over to the 24-hour diner to finish my work if you want to join.",
+            "avatarId": "campus"
+          },
+          {
+            "handle": "@deasays",
+            "text": "Save me a seat!",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "What does finna mean here? Is that a typo for a location?",
+      "question": "What does the slang mean in the reply by @campusfeed?",
+      "options": [
+        "A colloquial way to say “I am going to” or “I am about to.”",
+        "An expression meaning to find a quiet place to study.",
+        "A slang term for feeling extremely stressed or overwhelmed.",
+        "A short term for finally finishing a difficult task."
+      ],
+      "correctIndex": 0,
+      "explanation": "@campusfeed uses 'finna' to state that they are about to or going to head over to the diner.",
+      "replyTexts": [
+        "It's not a typo! I used finna to say I am about to head over to the diner right now.",
+        "I used finna to say I need to find a quiet place to study at the diner.",
+        "I used finna because I am feeling incredibly stressed out about this essay.",
+        "I used finna to say I finally finished my work at the diner."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q3",
+      "senseId": "normalized-b1b758041e0972efaca13b95",
+      "slang": "delusionship",
+      "targetMeaning": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+      "difficulty": "easy",
+      "contextId": "crush_drama",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Lila Listens",
+        "handle": "@lilalistens",
+        "hashtag": "#CrushProblems",
+        "content": "I've been planning our wedding in my head even though we've only made eye contact once in the hallway. I am fully committed to this delusionship.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "text": "We've all been there, honestly.",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@justjo",
+            "text": "Is the wedding venue nice at least?",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "Is a delusionship a new type of official long-distance partnership?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A formal long-distance relationship facilitated by online apps.",
+        "A secret romance that is hidden from friends and family.",
+        "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "A temporary friendship that is expected to end soon."
+      ],
+      "correctIndex": 2,
+      "explanation": "Lila uses 'delusionship' to describe her highly unrealistic, imagined romance with someone she barely knows.",
+      "replyTexts": [
+        "No, I used delusionship to describe a long-distance partnership that we manage online.",
+        "No, I mean a delusionship is when you hold totally unrealistic and overly idealistic beliefs about a romance that isn't actually real.",
+        "No, I used delusionship to mean a secret romance that we are hiding from everyone.",
+        "No, I meant that this is just a temporary friendship that will probably end next week."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q4",
+      "senseId": "normalized-131f921e36c9f83c07a987ad",
+      "slang": "future faking",
+      "targetMeaning": "Making empty promises about the future to get something one wants in the present.",
+      "difficulty": "easy",
+      "contextId": "landlord_trouble",
+      "contextCategory": "work",
+      "questionTarget": "reply",
+      "targetHandle": "@ariatwork",
+      "post": {
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#OfficeLife",
+        "content": "My landlord keeps saying they will upgrade the office heating system next week, but they've said that every month since winter started just so I'll sign the lease renewal.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "text": "That is classic future faking to keep you locked in.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@benchside",
+            "text": "Time to find a new space.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "townloop"
+      },
+      "questionComment": "Does future faking mean they are using virtual reality to show you the office?",
+      "question": "What does the slang mean in the reply by @ariatwork?",
+      "options": [
+        "Using advanced digital simulations to preview renovations.",
+        "Making empty promises about the future to get something one wants in the present.",
+        "Pretending to have a different career path on social media.",
+        "Delaying a decision until a contract officially expires."
+      ],
+      "correctIndex": 1,
+      "explanation": "Ari points out that the landlord is 'future faking' by making empty promises about heating upgrades to get the tenant to sign the lease renewal now.",
+      "replyTexts": [
+        "No, I meant they are using virtual reality and digital simulations to show you future faking designs.",
+        "No, I used future faking to describe how they make empty promises about the future just to get what they want from you right now.",
+        "No, I meant they are pretending to have a different career path online to look better.",
+        "No, I meant they are just delaying their decision and future faking until the lease expires."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q5",
+      "senseId": "normalized-d2a26a8e055ee958bd214e30",
+      "slang": "function",
+      "targetMeaning": "An event, party, hangout, or social gathering.",
+      "difficulty": "easy",
+      "contextId": "weekend_plans",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Dea Says",
+        "handle": "@deasays",
+        "hashtag": "#WeekendVibes",
+        "content": "Who is hosting the function tonight? I need to know where we are all meeting up.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "I think Sam is hosting at his place!",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "Yep, doors open at 8!",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "Are you asking about a mathematical formula or a computer program?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A mathematical equation used to coordinate group schedules.",
+        "An event, party, hangout, or social gathering.",
+        "A professional networking seminar or job fair.",
+        "A specific task or duty assigned to a team member."
+      ],
+      "correctIndex": 1,
+      "explanation": "Dea uses 'function' to refer to a social gathering or party that her friends are planning to attend.",
+      "replyTexts": [
+        "No, I was asking about a complex mathematical formula to coordinate our schedules.",
+        "I used function to mean a party, hangout, or social gathering we are all going to tonight.",
+        "No, I was asking about a professional networking seminar for work.",
+        "No, I meant a specific task or duty that someone was assigned to do tonight."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q6",
+      "senseId": "normalized-bfb72ec59776ab3a58688999",
+      "slang": "crash out",
+      "targetMeaning": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+      "difficulty": "medium",
+      "contextId": "gaming_rage",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Just Jo",
+        "handle": "@justjo",
+        "hashtag": "#GamerLife",
+        "content": "I lost my 50-game winning streak because of a sudden lag spike right at the final boss fight.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "I would honestly crash out if that happened to me.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@miramoments",
+            "text": "I would have thrown my controller.",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "What does crash out mean? Are you going to fall asleep immediately?",
+      "question": "What does the slang mean in the reply by @sam?",
+      "options": [
+        "To fall asleep instantly due to extreme physical exhaustion.",
+        "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "To experience a complete computer system failure.",
+        "To quit a game permanently out of boredom."
+      ],
+      "correctIndex": 1,
+      "explanation": "Sam uses 'crash out' to describe having a major fit of rage or expressing intense anger over losing a gaming streak.",
+      "replyTexts": [
+        "No, I didn't mean falling asleep! I meant I would crash out from being so physically tired.",
+        "I mean I would have a massive fit of rage or express serious anger if I lost like that, which is why I'd crash out.",
+        "No, I meant my computer system would crash out and completely fail.",
+        "No, I meant I would permanently quit playing and crash out of the gaming community."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q7",
+      "senseId": "normalized-bfabfc4ae6b3480b410a6d81",
+      "slang": "cheugy",
+      "targetMeaning": "Something slightly off-trend or outdated.",
+      "difficulty": "medium",
+      "contextId": "fashion_trends",
+      "contextCategory": "opinion",
+      "questionTarget": "post",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Lila Listens",
+        "handle": "@lilalistens",
+        "hashtag": "#StyleTalk",
+        "content": "My sister told me that wearing skinny jeans and using this specific font makes my entire social feed look so cheugy.",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "text": "Embrace it! Comfort over trends.",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@miramoments",
+            "text": "I still love skinny jeans anyway.",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "Is cheugy a new brand of designer clothing?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A high-end designer aesthetic popular with influencers.",
+        "Something slightly off-trend or outdated.",
+        "A style that is incredibly futuristic and avant-garde.",
+        "Clothing that is extremely cheap or poorly made."
+      ],
+      "correctIndex": 1,
+      "explanation": "Lila uses 'cheugy' to describe how her style choices are seen as slightly outdated or off-trend.",
+      "replyTexts": [
+        "No, I'm not talking about a high-end designer brand being cheugy.",
+        "I mean my style is slightly off-trend or outdated, which is what makes it cheugy.",
+        "No, I don't mean it looks futuristic or avant-garde when it's cheugy.",
+        "No, I didn't mean my clothes are cheap or poorly made when I called them cheugy."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q8",
+      "senseId": "normalized-7b6aada4a9a530f31b0c4ce2",
+      "slang": "clapback",
+      "targetMeaning": "A swift, witty response to an insult or critique.",
+      "difficulty": "medium",
+      "contextId": "online_debate",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#Drama",
+        "content": "Did you see how the chef responded to that terrible online review of his restaurant?",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "text": "Yes! That clapback was absolutely legendary and shut down the critic completely.",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@sam",
+            "text": "He really had the perfect receipts.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "townloop"
+      },
+      "questionComment": "What is a clapback? Is it a physical applause or a dance move?",
+      "question": "What does the slang mean in the reply by @deasays?",
+      "options": [
+        "A physical gesture of applause to show appreciation.",
+        "A formal apology issued after a public misunderstanding.",
+        "A swift, witty response to an insult or critique.",
+        "A legal threat sent to silence online critics."
+      ],
+      "correctIndex": 2,
+      "explanation": "Dea uses 'clapback' to describe the chef's quick, sharp, and clever response to the critic's negative review.",
+      "replyTexts": [
+        "No, I didn't mean he gave a physical applause or did a clapback dance.",
+        "No, I didn't mean he issued a formal apology with that clapback.",
+        "I meant his swift, witty response to the critique was an amazing clapback.",
+        "No, I didn't mean he sent a legal threat when I mentioned his clapback."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q9",
+      "senseId": "normalized-52f71348debab92d90d3c908",
+      "slang": "cortisol spike",
+      "targetMeaning": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+      "difficulty": "hard",
+      "contextId": "awkward_encounter",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira Moments",
+        "handle": "@miramoments",
+        "hashtag": "#Awkward",
+        "content": "Accidentally liked a photo from my ex's profile from three years ago while stalking, and the immediate cortisol spike was unreal.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "My heart stopped just reading this.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@justjo",
+            "text": "Did you unlike it fast enough?!",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Are you talking about a medical emergency or a hormone test?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A medical diagnosis requiring immediate clinical attention.",
+        "A physical fitness term for high-intensity interval training.",
+        "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "A scientific method used to measure daily stress levels."
+      ],
+      "correctIndex": 2,
+      "explanation": "Mira uses 'cortisol spike' as a humorous, dramatic internet joke to describe her sudden feeling of intense panic and embarrassment after making an online mistake.",
+      "replyTexts": [
+        "No, I didn't mean I had an actual medical emergency requiring a doctor when I said cortisol spike.",
+        "No, I'm not talking about fitness training; I used cortisol spike as a joke about my sudden shock and embarrassment.",
+        "I mean I used cortisol spike as a viral joke to describe that intense moment of shock and awkwardness.",
+        "No, I wasn't referring to a scientific method or test to measure my stress levels."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203247194z-b6766c4f-4f04-4a15-ac72-69db0775723f-q10",
+      "senseId": "normalized-9246f5d64d7f7aa4f0540ad1",
+      "slang": "everything hallelujah",
+      "targetMeaning": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+      "difficulty": "hard",
+      "contextId": "daily_wins",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Just Jo",
+        "handle": "@justjo",
+        "hashtag": "#Gratitude",
+        "content": "Finally found my car keys right before I was about to be late for my morning meeting.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "Found the keys, everything hallelujah!",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@deasays",
+            "text": "That is the best feeling.",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "Are you joining a church choir or starting a religious debate?",
+      "question": "What does the slang mean in the reply by @sam?",
+      "options": [
+        "A religious chant used during formal church services.",
+        "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "An expression of extreme relief after surviving a dangerous event.",
+        "A sarcastic remark used when someone complains about minor issues."
+      ],
+      "correctIndex": 1,
+      "explanation": "Sam uses 'everything hallelujah' to celebrate Jo's small daily win of finding her keys and to express a sense of gratitude.",
+      "replyTexts": [
+        "No, I'm not chanting a religious hymn in the thread!",
+        "I used everything hallelujah as a fun way to celebrate a small daily win and show some gratitude.",
+        "No, I didn't mean she survived a highly dangerous event when I said everything hallelujah.",
+        "No, I wasn't being sarcastic or mocking her complaints with everything hallelujah."
+      ]
+    }
+  ]
+}

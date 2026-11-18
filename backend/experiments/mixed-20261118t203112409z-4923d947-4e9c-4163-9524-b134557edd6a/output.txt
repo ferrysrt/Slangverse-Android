@@ -1,0 +1,429 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q1",
+      "senseId": "normalized-bfb72ec59776ab3a58688999",
+      "slang": "crash out",
+      "targetMeaning": "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+      "difficulty": "easy",
+      "contextId": "gaming_rage",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Jo",
+        "handle": "@justjo",
+        "hashtag": "#GamingRage",
+        "content": "I lost my 15-game win streak because of a lag spike and I'm about to crash out on this keyboard.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "Please spare the hardware, it did nothing wrong!",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "Take a deep breath and walk away.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "Did you actually break your keyboard or are you going to sleep?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "To fall asleep suddenly from extreme physical exhaustion.",
+        "To have a bout of rage or upset; more broadly, to express anger or strong displeasure.",
+        "To experience a complete computer system failure.",
+        "To cancel plans at the very last minute."
+      ],
+      "correctIndex": 1,
+      "explanation": "In this context, 'crash out' refers to Jo's intense anger and frustration over losing a game streak due to lag.",
+      "replyTexts": [
+        "No, I didn't mean I was going to sleep! When I crash out, it means I'm going to take a quick nap because I'm so tired.",
+        "Yes, I meant I'm about to crash out and completely lose my temper because of this game.",
+        "No, my computer didn't break. I said crash out to show that my system is totally frozen and won't respond.",
+        "No, I'm not canceling plans. I used crash out to say I'm going to flake on our meetup tonight."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q2",
+      "senseId": "normalized-d2a26a8e055ee958bd214e30",
+      "slang": "function",
+      "targetMeaning": "An event, party, hangout, or social gathering.",
+      "difficulty": "easy",
+      "contextId": "weekend_plans",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Naya",
+        "handle": "@naya",
+        "hashtag": "#WeekendVibes",
+        "content": "Finally done with midterms! Who has the details for tonight? I need to celebrate.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "We are heading to the function on 4th Street around 9 PM, pull up!",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@lilalistens",
+            "text": "I'll be there too!",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "Wait, what do you mean by function? Is it some math homework or a job?",
+      "question": "What does the slang mean in the reply by @sam?",
+      "options": [
+        "An event, party, hangout, or social gathering.",
+        "A mathematical equation that needs solving.",
+        "A formal job responsibility or official duty.",
+        "A software feature that needs testing."
+      ],
+      "correctIndex": 0,
+      "explanation": "In social contexts, a 'function' is slang for a party or social gathering where people meet up.",
+      "replyTexts": [
+        "I mean we are going to a fun function, which is just a party or hangout with friends to celebrate.",
+        "No, I meant we have to finish a math function for our calculus homework before we can go out.",
+        "I meant we have an official function to attend, like a formal work duty or professional task.",
+        "No, I'm talking about coding a new function for our computer science project tonight."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q3",
+      "senseId": "normalized-9bf32d0d825b18023bcde321",
+      "slang": "chopped",
+      "targetMeaning": "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+      "difficulty": "easy",
+      "contextId": "haircut_fail",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Dea",
+        "handle": "@deasays",
+        "hashtag": "#BadHairDay",
+        "content": "I tried to cut my own bangs in the bathroom mirror and now my whole face looks completely chopped.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "text": "Oh no, it can't be that bad! Wear a hat?",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@justjo",
+            "text": "We've all been there, let it grow out.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "What do you mean by chopped? Did you actually cut your skin with the scissors?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Physically injured or cut with a sharp object.",
+        "Extremely cold or shivering from the weather.",
+        "Describes something as unattractive, unappealing, or generally messed up; it can also mean someone has little chance of succeeding.",
+        "Prepared and sliced like vegetables for cooking."
+      ],
+      "correctIndex": 2,
+      "explanation": "Dea uses 'chopped' to describe her bad haircut as looking highly unattractive and messed up.",
+      "replyTexts": [
+        "No, I didn't hurt myself! I used chopped to say I got a physical cut on my face.",
+        "No, I meant I was feeling chopped, like I was freezing cold from the bathroom draft.",
+        "I meant my hair looks totally chopped, meaning it's really unattractive and messed up right now.",
+        "No, I meant my hair looks chopped like diced onions for a recipe."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q4",
+      "senseId": "normalized-131f921e36c9f83c07a987ad",
+      "slang": "future faking",
+      "targetMeaning": "Making empty promises about the future to get something one wants in the present.",
+      "difficulty": "easy",
+      "contextId": "landlord_drama",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Mira",
+        "handle": "@miramoments",
+        "hashtag": "#RentingLife",
+        "content": "My landlord keeps saying they will install a brand new AC unit next month if I sign the lease renewal today.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "Don't fall for it, that is classic future faking to get your signature.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "What is future faking? Is it like pretending to be a time traveler?",
+      "question": "What does the slang mean in the reply by @lilalistens?",
+      "options": [
+        "Pretending to have high-tech gadgets that don't exist yet.",
+        "Making empty promises about the future to get something one wants in the present.",
+        "Predicting the stock market using fake data.",
+        "Lying about your age on social media profiles."
+      ],
+      "correctIndex": 1,
+      "explanation": "Lila uses 'future faking' to describe the landlord making empty promises about a future AC unit just to get a lease signed right now.",
+      "replyTexts": [
+        "No, I meant they are future faking by pretending to own futuristic technology that isn't real.",
+        "I mean they are future faking, which is making empty promises about the future to get what they want right now.",
+        "No, I meant they are future faking by using fake economic predictions to scam you.",
+        "No, I meant they are future faking by pretending to be younger or older than they actually are."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q5",
+      "senseId": "normalized-60f29ef90ffa450378a9b462",
+      "slang": "finna",
+      "targetMeaning": "A colloquial way to say “I am going to” or “I am about to.”",
+      "difficulty": "easy",
+      "contextId": "library_study",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@campusfeed",
+      "post": {
+        "displayName": "Campus Feed",
+        "handle": "@campusfeed",
+        "hashtag": "#StudyGrind",
+        "content": "The library is packed but I am finna find a study desk even if I have to search all five floors.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "text": "Try the basement, it's usually quieter!",
+            "avatarId": "ari"
+          }
+        ],
+        "avatarId": "campus"
+      },
+      "questionComment": "What does finna mean here? Is it a typo for finding something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A colloquial way to say “I am going to” or “I am about to.”",
+        "Struggling or having extreme difficulty.",
+        "Hoping or wishing for a lucky break.",
+        "Refusing to do something out of stubbornness."
+      ],
+      "correctIndex": 0,
+      "explanation": "'Finna' is a common colloquial contraction meaning 'going to' or 'about to' do something.",
+      "replyTexts": [
+        "It means I am finna find a spot, as in I am about to or going to find one soon.",
+        "No, I used finna to show that I am struggling hard to get a desk.",
+        "No, I meant I am finna, which means I am just wishing and hoping for some luck.",
+        "No, I meant I am finna, meaning I absolutely refuse to look anywhere else."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q6",
+      "senseId": "normalized-9246f5d64d7f7aa4f0540ad1",
+      "slang": "everything hallelujah",
+      "targetMeaning": "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+      "difficulty": "medium",
+      "contextId": "morning_win",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira",
+        "handle": "@miramoments",
+        "hashtag": "#Grateful",
+        "content": "Caught the green light on my way to work and got the last warm croissant. Today is everything hallelujah.",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "text": "That is the absolute best feeling to start the day!",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "What do you mean by everything hallelujah? Are you attending a church service?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A formal religious declaration of faith.",
+        "A phrase added after a short statement to celebrate everyday small wins and express gratitude.",
+        "A sarcastic complaint about waking up too early.",
+        "An exaggeration used when someone is feeling completely overwhelmed."
+      ],
+      "correctIndex": 1,
+      "explanation": "Mira uses 'everything hallelujah' to celebrate minor positive moments in her morning, like catching a green light and getting a warm pastry.",
+      "replyTexts": [
+        "No, I meant everything hallelujah as a formal religious statement of my faith.",
+        "I used everything hallelujah to celebrate my small wins this morning and show some gratitude.",
+        "No, I meant everything hallelujah as a sarcastic way to complain about my early morning commute.",
+        "No, I meant everything hallelujah to show that I am feeling totally overwhelmed by my schedule."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q7",
+      "senseId": "normalized-7b6aada4a9a530f31b0c4ce2",
+      "slang": "clapback",
+      "targetMeaning": "A swift, witty response to an insult or critique.",
+      "difficulty": "medium",
+      "contextId": "social_media_drama",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Dea",
+        "handle": "@deasays",
+        "hashtag": "#PopCulture",
+        "content": "Did you see how the singer responded to that rude interviewer on the red carpet? She didn't hesitate at all.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "text": "Yes! That clapback was so fast and clever, the interviewer looked speechless.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "What is a clapback? Is it a type of dance move or applause?",
+      "question": "What does the slang mean in the reply by @justjo?",
+      "options": [
+        "A physical gesture of applause to show support.",
+        "A swift, witty response to an insult or critique.",
+        "A sudden reversal of a previous opinion.",
+        "A dance trend popular on social media."
+      ],
+      "correctIndex": 1,
+      "explanation": "Jo is referring to the singer's quick, sharp, and clever retort to the interviewer's rude question.",
+      "replyTexts": [
+        "No, I meant a clapback is when the audience gives a physical round of applause.",
+        "I meant her response was a great clapback, which is a quick and witty comeback to criticism.",
+        "No, I meant a clapback is when someone completely changes their mind on an issue.",
+        "No, I meant a clapback is a popular new dance move everyone is doing."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q8",
+      "senseId": "normalized-52f71348debab92d90d3c908",
+      "slang": "cortisol spike",
+      "targetMeaning": "A viral joke for moments of shock, embarrassment, or awkwardness.",
+      "difficulty": "medium",
+      "contextId": "accidental_text",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Lila",
+        "handle": "@lilalistens",
+        "hashtag": "#Awkward",
+        "content": "Sending a screenshot of a text thread back to the exact same person who sent it... instant cortisol spike.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "Oh no, that is my absolute worst nightmare!",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "Are you talking about a medical condition or hormone levels?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A medical diagnosis requiring immediate clinical treatment.",
+        "A viral joke for moments of shock, embarrassment, or awkwardness.",
+        "An energy boost felt after drinking strong coffee.",
+        "A feeling of intense happiness and excitement."
+      ],
+      "correctIndex": 1,
+      "explanation": "Lila uses 'cortisol spike' as a humorous, dramatic way to describe the sudden shock and embarrassment of making a texting mistake.",
+      "replyTexts": [
+        "No, I meant cortisol spike in a literal medical sense, like a dangerous hormonal imbalance.",
+        "I used cortisol spike as a joke to describe that sudden, funny moment of pure shock and embarrassment.",
+        "No, I meant cortisol spike to describe the big burst of energy I got from my morning espresso.",
+        "No, I meant cortisol spike to show that I was feeling incredibly happy and thrilled about the text."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q9",
+      "senseId": "normalized-bfabfc4ae6b3480b410a6d81",
+      "slang": "cheugy",
+      "targetMeaning": "Something slightly off-trend or outdated.",
+      "difficulty": "hard",
+      "contextId": "fashion_trends",
+      "contextCategory": "opinion",
+      "questionTarget": "reply",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Mira",
+        "handle": "@miramoments",
+        "hashtag": "#OOTD",
+        "content": "Just found my old chevron-patterned scarf and skinny jeans from college in the back of the closet.",
+        "comments": [
+          {
+            "handle": "@deasays",
+            "text": "Honestly, keeping those might be a bit cheugy but they look so cozy!",
+            "avatarId": "dea"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "What does cheugy mean? Is it a brand name or a style of fabric?",
+      "question": "What does the slang mean in the reply by @deasays?",
+      "options": [
+        "Extremely high-fashion and modern.",
+        "Something slightly off-trend or outdated.",
+        "Made of cheap or low-quality materials.",
+        "A vintage style that has become highly valuable."
+      ],
+      "correctIndex": 1,
+      "explanation": "Dea uses 'cheugy' to describe the chevron scarf and skinny jeans as being slightly outdated or no longer on-trend.",
+      "replyTexts": [
+        "No, I meant cheugy means the clothes are super fashionable and trendy right now.",
+        "I meant they are a bit cheugy, meaning they are slightly outdated or off-trend nowadays.",
+        "No, I used cheugy to say that the fabric of the scarf is cheap and poorly made.",
+        "No, I meant cheugy describes rare vintage items that are worth a lot of money."
+      ]
+    },
+    {
+      "id": "mixed-20261118t203112409z-4923d947-4e9c-4163-9524-b134557edd6a-q10",
+      "senseId": "normalized-b1b758041e0972efaca13b95",
+      "slang": "delusionship",
+      "targetMeaning": "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+      "difficulty": "hard",
+      "contextId": "celebrity_crush",
+      "contextCategory": "opinion",
+      "questionTarget": "post",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Lila",
+        "handle": "@lilalistens",
+        "hashtag": "#Daydreaming",
+        "content": "Planning our wedding after the barista smiled at me is proof that I am in a full delusionship.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "We've all designed a whole life with a stranger before!",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "What is a delusionship? Is it a real legal term for a partnership?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A long-distance relationship supported by video calls.",
+        "A relationship in which someone holds unrealistic or overly idealistic beliefs.",
+        "A business partnership built on fraudulent contracts.",
+        "A friendship that has lasted since early childhood."
+      ],
+      "correctIndex": 1,
+      "explanation": "Lila jokingly calls her imaginary romance with the barista a 'delusionship' because she is holding highly unrealistic, daydream-based expectations about a stranger.",
+      "replyTexts": [
+        "No, I meant a delusionship is just a long-distance romance where you only talk online.",
+        "I meant I'm in a delusionship, which is a relationship where you have totally unrealistic or idealistic ideas about someone.",
+        "No, I meant a delusionship is a business deal that is based on lies and fake agreements.",
+        "No, I used delusionship to describe a lifelong friendship that started when we were kids."
+      ]
+    }
+  ]
+}

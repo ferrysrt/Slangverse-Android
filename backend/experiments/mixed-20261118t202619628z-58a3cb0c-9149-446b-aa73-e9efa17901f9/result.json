@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t202619628z-58a3cb0c-9149-446b-aa73-e9efa17901f9",
+  "packId": "mixed-20261118t202619628z-58a3cb0c-9149-446b-aa73-e9efa17901f9",
+  "startedAt": "2026-11-18T20:26:19.628Z",
+  "completedAt": "2026-11-18T20:28:02.065Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "mixed-validation-failed",
+  "actualModel": "anthropic/claude-sonnet-4.5"
+}

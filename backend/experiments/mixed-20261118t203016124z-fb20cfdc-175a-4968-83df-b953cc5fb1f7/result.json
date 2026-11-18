@@ -1,0 +1,10 @@
+{
+  "attemptId": "mixed-20261118t203016124z-fb20cfdc-175a-4968-83df-b953cc5fb1f7",
+  "packId": "mixed-20261118t203016124z-fb20cfdc-175a-4968-83df-b953cc5fb1f7",
+  "startedAt": "2026-11-18T20:30:16.124Z",
+  "completedAt": "2026-11-18T20:30:39.545Z",
+  "status": "failed",
+  "providerCalls": 1,
+  "failureCode": "mixed-validation-failed",
+  "actualModel": "google/gemini-3.5-flash"
+}

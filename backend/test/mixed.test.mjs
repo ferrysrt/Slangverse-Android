@@ -972,6 +972,8 @@ test('a batch round spends attempts on the planned terms and publishes only a va
   assert.deepEqual(result.terms.slice().sort(), planPackTerms(pool, {usedCounts: new Map()}).slice().sort());
   const catalog = jsonFile(outputDir, 'catalog.json');
   assert.equal(catalog.packs.length, 1);
+  // The catalogue's candidate count tracks the dataset the pack was planned from.
+  assert.equal(catalog.candidateCount, pool.length);
   const pack = jsonFile(outputDir, 'packs', catalog.packs[0].packId + '.json');
   assert.equal(pack.questions.length, 10);
   assert.deepEqual([...new Set(pack.questions.map(q => q.slang))].sort(), result.terms.slice().sort());

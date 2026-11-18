@@ -1,0 +1,464 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q1",
+      "senseId": "normalized-a18841aab9e7763da0a0a911",
+      "slang": "canon event",
+      "targetMeaning": "An unavoidable, defining moment in someone’s life story.",
+      "difficulty": "easy",
+      "contextId": "missed-train-milestone",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@miramoments",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@miramoments",
+        "hashtag": "#FirstDay",
+        "content": "Missed my train, got soaked, and still made it to my first day at the new studio. This feels like a canon event I’ll tell stories about later.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "At least you arrived with a dramatic entrance!",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@sam",
+            "text": "Hope the studio has a towel waiting.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "When you say “canon event,” are you talking about a new kind of train pass?",
+      "question": "What does “canon event” mean in @miramoments’s post?",
+      "options": [
+        "A planned celebration for a personal milestone.",
+        "An unavoidable, defining moment in someone’s life story.",
+        "A surprising event that changes someone else’s plans.",
+        "A memorable story someone invents for social media."
+      ],
+      "correctIndex": 1,
+      "explanation": "Mira treats the chaotic first-day mishap as an unavoidable moment that will become part of her personal story.",
+      "replyTexts": [
+        "I thought a canon event was a party someone plans to celebrate a milestone. That train ride would need better decorations.",
+        "I meant canon event as one of those unavoidable moments that ends up shaping your personal story. I’ll remember this first day.",
+        "I figured canon event meant a sudden change that mainly disrupts another person’s plans. The driver probably had a day too.",
+        "I thought canon event meant a story made up for followers, not something that happened on the way to work."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q2",
+      "senseId": "normalized-4329449a2a5861a4355368fe",
+      "slang": "boy kibble",
+      "targetMeaning": "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+      "difficulty": "easy",
+      "contextId": "quick-lunch-post",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@jo",
+      "post": {
+        "displayName": "Dev Shah",
+        "handle": "@devsnacks",
+        "hashtag": "#LunchBreak",
+        "content": "I have ten minutes before class and exactly one pan. Ground turkey, rice, and a little sauce are going in.",
+        "comments": [
+          {
+            "handle": "@jo",
+            "text": "boy kibble again; your lunch prep is more consistent than my sleep schedule.",
+            "avatarId": "jo"
+          },
+          {
+            "handle": "@lila",
+            "text": "Save me a spoonful if you made extra.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "@jo, what does “boy kibble” mean here—are you naming a pet-food brand?",
+      "question": "What does “boy kibble” mean in @jo’s reply?",
+      "options": [
+        "A social-media food trend featuring simple, high-protein meals, often ground meat and white rice.",
+        "A meal kit designed for people who want to cook elaborate dinners.",
+        "A nickname for a lunch that is mostly snacks and sweets.",
+        "A meal-planning app that tracks calories and grocery lists."
+      ],
+      "correctIndex": 0,
+      "explanation": "Jo is reacting to the simple ground-meat-and-rice meal as an example of the food trend.",
+      "replyTexts": [
+        "I meant boy kibble as the simple protein-heavy meal trend, usually something like meat with white rice. Dev’s lunch fits the vibe.",
+        "I thought boy kibble was a box with ingredients for a fancy dinner. That would take more than ten minutes, though.",
+        "I figured boy kibble meant a lunch made mostly of candy and little snacks. Maybe I’m just hungry.",
+        "I thought boy kibble was a phone app for planning meals and shopping. I need to update my grocery list."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q3",
+      "senseId": "normalized-69619210a860151e9203683a",
+      "slang": "big yikes",
+      "targetMeaning": "An expression for something embarrassing or cringeworthy, especially an offensive comment.",
+      "difficulty": "easy",
+      "contextId": "class-chat-misstep",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@campusfeed",
+      "post": {
+        "displayName": "Campus Feed",
+        "handle": "@campusfeed",
+        "hashtag": "#ClassChat",
+        "content": "Someone replied to the group project thread by mocking a classmate’s accent. The room went quiet, and honestly: big yikes.",
+        "comments": [
+          {
+            "handle": "@ari",
+            "text": "That was painful to read. I hope they apologize.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@mira",
+            "text": "The silence said everything.",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "campus"
+      },
+      "questionComment": "Does “big yikes” refer to a huge noise or something else in this post?",
+      "question": "What does “big yikes” mean in @campusfeed’s post?",
+      "options": [
+        "A loud interruption that makes a classroom lose focus.",
+        "A serious mistake that causes a project to be canceled.",
+        "A funny surprise that everyone in the room enjoys.",
+        "An expression for something embarrassing or cringeworthy, especially an offensive comment."
+      ],
+      "correctIndex": 3,
+      "explanation": "The post describes a hurtful remark that makes the group uncomfortable, prompting an expression of embarrassment and disapproval.",
+      "replyTexts": [
+        "I thought big yikes meant a sudden loud noise that derailed class. I probably would’ve jumped too.",
+        "I figured big yikes described a project disaster bad enough that the whole assignment got canceled. What a mess.",
+        "I thought big yikes was for a hilarious surprise that gets everyone laughing together. Wrong kind of room reaction.",
+        "I meant big yikes as my reaction to an embarrassing, cringeworthy remark, especially one that crosses a line. That comment was rough."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q4",
+      "senseId": "normalized-1a0ac6bb2470c2a2e78b4658",
+      "slang": "aura farming",
+      "targetMeaning": "Deliberately acting or moving to appear effortlessly cool, often in a way that others mock as try-hard.",
+      "difficulty": "easy",
+      "contextId": "hallway-entrance",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Naya Patel",
+        "handle": "@naya",
+        "hashtag": "#HallwayScene",
+        "content": "Kai walked into the cafeteria in slow motion while holding a juice box, then leaned against the doorframe until someone noticed.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "That was some serious aura farming; the juice box nearly stole the scene.",
+            "avatarId": "sam"
+          },
+          {
+            "handle": "@kai",
+            "text": "I was just trying not to spill it.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "naya"
+      },
+      "questionComment": "@sam, what does “aura farming” mean? Is it a new gardening game?",
+      "question": "What does “aura farming” mean in @sam’s reply?",
+      "options": [
+        "A technique for growing plants indoors with special lights.",
+        "A way to make a hallway look brighter for photos.",
+        "Deliberately acting or moving to seem effortlessly cool, sometimes getting mocked as try-hard.",
+        "A routine for keeping a drink from spilling while walking."
+      ],
+      "correctIndex": 2,
+      "explanation": "Sam jokes that Kai’s deliberately dramatic entrance seems designed to look cool, but comes across as overdone.",
+      "replyTexts": [
+        "I thought aura farming was an indoor gardening method with lamps and planters. I should really get a houseplant.",
+        "I figured aura farming meant arranging lights so a hallway looks better in photos. That entrance had good lighting, at least.",
+        "I meant aura farming as acting or moving like you’re effortlessly cool, even if people tease you for trying too hard. That slow walk was a lot.",
+        "I thought aura farming was a trick for carrying drinks without spilling them. Kai may still need that skill."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q5",
+      "senseId": "normalized-47522d454074c15267431f2f",
+      "slang": "beige flag",
+      "targetMeaning": "A behavior or personality trait that is neither good nor bad.",
+      "difficulty": "easy",
+      "contextId": "roommate-habit",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Lila Chen",
+        "handle": "@lilalistens",
+        "hashtag": "#RoommateNotes",
+        "content": "My roommate labels every leftover container with the weekday, even when it’s obviously from tonight. Tiny beige flag, but honestly it keeps the fridge organized.",
+        "comments": [
+          {
+            "handle": "@dea",
+            "text": "I’d rather have that than mystery leftovers.",
+            "avatarId": "dea"
+          },
+          {
+            "handle": "@jo",
+            "text": "My containers would still lose their labels by morning.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "Is “beige flag” about a literal flag in the kitchen, or something else?",
+      "question": "What does “beige flag” mean in @lilalistens’s post?",
+      "options": [
+        "A warning sign that a roommate is dangerous to live with.",
+        "A behavior or personality trait that is neither good nor bad.",
+        "A strict rule that everyone sharing a home must follow.",
+        "A decorating choice that makes a kitchen look plain."
+      ],
+      "correctIndex": 1,
+      "explanation": "The labeling habit is presented as neutral—not especially good or bad—and even mildly useful.",
+      "replyTexts": [
+        "I thought beige flag meant a warning that a roommate might be unsafe. That would be a much more serious situation.",
+        "I meant beige flag as a habit that’s basically neutral, neither a plus nor a problem. The labels are harmless.",
+        "I figured beige flag was a house rule that every roommate has to obey. Our fridge would have a lot of rules.",
+        "I thought beige flag described a plain color choice for decorating the kitchen. Maybe I need to repaint mine."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q6",
+      "senseId": "normalized-490a833c90fce690cd833bf6",
+      "slang": "caught in 4k",
+      "targetMeaning": "Indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+      "difficulty": "medium",
+      "contextId": "office-cookie-video",
+      "contextCategory": "work",
+      "questionTarget": "reply",
+      "targetHandle": "@ariatwork",
+      "post": {
+        "displayName": "Ben Ortiz",
+        "handle": "@benchside",
+        "hashtag": "#OfficeKitchen",
+        "content": "The last cookie vanished before lunch, but the hallway camera shows exactly who came back for a second one. Guess we know where to look.",
+        "comments": [
+          {
+            "handle": "@ariatwork",
+            "text": "Caught in 4k by the snack-cabinet camera. No appeal for the cookie thief.",
+            "avatarId": "ari"
+          },
+          {
+            "handle": "@naya",
+            "text": "The crumbs were already telling on somebody.",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "benchside"
+      },
+      "questionComment": "@ariatwork, what does “caught in 4k” mean? Is that a camera setting?",
+      "question": "What does “caught in 4k” mean in @ariatwork’s reply?",
+      "options": [
+        "Being surprised by a coworker while sharing a snack.",
+        "Being recorded in a high-resolution video while doing something harmless.",
+        "Being indisputably caught doing something wrong or incriminating, with camera footage or other evidence.",
+        "Being assigned a task that takes four thousand minutes to finish."
+      ],
+      "correctIndex": 2,
+      "explanation": "The camera footage clearly shows who took the extra cookie, so the evidence makes the wrongdoing hard to deny.",
+      "replyTexts": [
+        "I thought caught in 4k meant someone walked in and surprised you while you were eating. That cookie would be awkward to explain.",
+        "I figured caught in 4k meant a clear video of something totally innocent, like making tea. The camera probably got that too.",
+        "I meant caught in 4k as being proven to have done something wrong by footage or other solid evidence. That camera settles the cookie mystery.",
+        "I thought caught in 4k meant getting stuck with a job that takes thousands of minutes. I’d ask for a different task."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q7",
+      "senseId": "normalized-72ab6963688d7b15ff9978fb",
+      "slang": "brat",
+      "targetMeaning": "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+      "difficulty": "medium",
+      "contextId": "rainy-concert-outfit",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Dea Morgan",
+        "handle": "@deasays",
+        "hashtag": "#RainOrShine",
+        "content": "Show started in a downpour, my eyeliner ran, and I kept dancing in mismatched boots. My friends called me brat, and I took it as a compliment.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "You committed to the look. Respect.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@sam",
+            "text": "The boots deserve their own tour poster.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "When your friends called you “brat,” were they talking about a younger sibling?",
+      "question": "What does “brat” mean in @deasays’s post?",
+      "options": [
+        "A label for someone confidently unbothered, somewhat messy, and unapologetically themselves.",
+        "A person who ruins a concert by interrupting the performers.",
+        "A fan who always arrives early to claim the best seat.",
+        "A child who refuses to wear shoes in the rain."
+      ],
+      "correctIndex": 0,
+      "explanation": "Dea embraces the label while dancing through the rain in a messy, self-assured way.",
+      "replyTexts": [
+        "I meant brat as someone who’s confidently themselves, a bit messy, and not bothered by people’s opinions. I was having fun.",
+        "I thought brat meant a person who interrupts a show and annoys everyone. I hope I wasn’t that person.",
+        "I figured brat was the fan who gets to the venue early and saves a seat. I should try that next time.",
+        "I thought brat referred to a kid who refuses to put on shoes in wet weather. The boots were definitely on."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q8",
+      "senseId": "normalized-eea96f732eb9d00c37f3774b",
+      "slang": "brain rot",
+      "targetMeaning": "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it.",
+      "difficulty": "medium",
+      "contextId": "endless-video-scroll",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Sam Reed",
+        "handle": "@sam",
+        "hashtag": "#LateNightScroll",
+        "content": "I opened one short clip after dinner and somehow kept swiping until midnight. I forgot what I meant to search for and now I can barely focus on my book.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "That’s brain rot territory; put the phone across the room for a bit.",
+            "avatarId": "naya"
+          },
+          {
+            "handle": "@kai",
+            "text": "I’ve done that and then had to reread the same page five times.",
+            "avatarId": "kai"
+          }
+        ],
+        "avatarId": "sam"
+      },
+      "questionComment": "@naya, what does “brain rot” mean here? Is it a medical term?",
+      "question": "What does “brain rot” mean in @naya’s reply?",
+      "options": [
+        "A software glitch that makes a phone restart repeatedly.",
+        "A serious injury that requires immediate hospital care.",
+        "A reading technique for remembering details from a book.",
+        "Low-value, low-effort content, or the mentally foggy feeling associated with consuming too much of it."
+      ],
+      "correctIndex": 3,
+      "explanation": "Sam’s endless clip scrolling and difficulty focusing reflect the mentally foggy feeling linked to consuming too much low-effort content.",
+      "replyTexts": [
+        "I thought brain rot meant a bug that keeps rebooting your phone. Mine freezes whenever I open too many apps.",
+        "I figured brain rot was a severe medical injury. That would need a doctor, not just a break from scrolling.",
+        "I thought brain rot was a study method to help remember a book. I could use a better one for exams.",
+        "I meant brain rot as the foggy feeling after too much low-effort scrolling, or the content that keeps you stuck there. I need a screen break."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q9",
+      "senseId": "normalized-99cc528bf2851159d362add2",
+      "slang": "ball knowledge",
+      "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "difficulty": "hard",
+      "contextId": "old-show-reference",
+      "contextCategory": "opinion",
+      "questionTarget": "post",
+      "targetHandle": "@townloop",
+      "post": {
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#DeepCut",
+        "content": "Only one person in the study group recognized the background tune from that tiny animated series we watched on weekend mornings years ago. Respect the ball knowledge.",
+        "comments": [
+          {
+            "handle": "@mira",
+            "text": "I knew it sounded familiar but couldn’t place it.",
+            "avatarId": "mira"
+          },
+          {
+            "handle": "@jo",
+            "text": "Now I’m going to spend the evening looking up old theme songs.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "townloop"
+      },
+      "questionComment": "Is “ball knowledge” about knowing the rules of a particular sport?",
+      "question": "What does “ball knowledge” mean in @townloop’s post?",
+      "options": [
+        "A detailed understanding of how to maintain sports equipment.",
+        "Niche or uncommon knowledge, often involving pop-culture references.",
+        "A prediction about which team will win a close game.",
+        "A skill for remembering the names of everyone in a study group."
+      ],
+      "correctIndex": 1,
+      "explanation": "Recognizing a theme from an obscure old animated series is an example of niche pop-culture knowledge.",
+      "replyTexts": [
+        "I thought ball knowledge meant being able to care for sports gear properly. I’d still lose the ball bag.",
+        "I meant ball knowledge as the kind of niche fact or reference not many people recognize, especially from pop culture. That theme was a deep cut.",
+        "I figured ball knowledge was a prediction about who would win a game. I don’t know enough teams to guess.",
+        "I thought ball knowledge meant memorizing the names of everyone in a study group. That’s useful, but not what I meant."
+      ]
+    },
+    {
+      "id": "mixed-20261118t201645953z-c8158129-ccad-4a65-a4f3-80d6b1e9a0cd-q10",
+      "senseId": "normalized-4e603836bd1aa6a71ff3e172",
+      "slang": "biblically accurate",
+      "targetMeaning": "Describes something strange, overwhelming, or unsettling in appearance, often humorously.",
+      "difficulty": "hard",
+      "contextId": "school-mascot-costume",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@lila",
+      "post": {
+        "displayName": "Ari Bell",
+        "handle": "@ariatwork",
+        "hashtag": "#MascotReveal",
+        "content": "The school’s new mascot costume has six feathered wings and so many glowing eyes that the photographer asked for a second take.",
+        "comments": [
+          {
+            "handle": "@lila",
+            "text": "That costume is biblically accurate in the most chaotic way possible.",
+            "avatarId": "lila"
+          },
+          {
+            "handle": "@ben",
+            "text": "The kids in the front row look absolutely stunned.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "@lila, what does “biblically accurate” mean here? Is it a note about the costume’s sewing pattern?",
+      "question": "What does “biblically accurate” mean in @lila’s reply?",
+      "options": [
+        "A costume made from fabric that appears especially old and fragile.",
+        "A mascot outfit copied from a specific school uniform.",
+        "A costume that is strange, overwhelming, or unsettling in appearance, often humorously.",
+        "A set of wings designed to fold neatly for storage."
+      ],
+      "correctIndex": 2,
+      "explanation": "The many wings and glowing eyes make the costume look strange and overwhelming, which Lila describes humorously.",
+      "replyTexts": [
+        "I thought biblically accurate meant the costume used old-looking, fragile fabric. It does look like it needs careful storage.",
+        "I figured biblically accurate meant someone copied the school uniform exactly. That would be a very different mascot.",
+        "I meant biblically accurate for an appearance that’s strange or overwhelming, sometimes in a funny, unsettling way. Those glowing eyes are a lot.",
+        "I thought biblically accurate described wings that fold neatly away. This costume probably needs a very large closet."
+      ]
+    }
+  ]
+}
