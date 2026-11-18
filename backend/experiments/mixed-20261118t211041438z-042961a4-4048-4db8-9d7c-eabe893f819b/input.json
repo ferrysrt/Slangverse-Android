@@ -1,0 +1,520 @@
+{
+  "attemptId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b",
+  "packId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b",
+  "startedAt": "2026-11-18T21:10:41.440Z",
+  "datasetVersion": "firecrawl-normalized-d4179cbd1968a8bb0075780a",
+  "promptVersion": "mixed-v11",
+  "promptSha256": "1b2eff93b5bdfa3b07ee8a730c99087302f555313ede0f7e6e640c4ebb126ebc",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-315ec98baf8db6011319d8ff",
+        "term": "aura points",
+        "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "definition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "normalizedDefinition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "315ec98baf8db6011319d8ff",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura points",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“ [Aura points](https://www.tiktok.com/@mr_lindsay_sped/video/7379390300281654571?lang=en)” **measure your coolness or charisma**, and certain actions can either **boost** or **drop** your score.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-72d4202575ac535ff2f4201d",
+        "term": "doommaxxing",
+        "targetMeaning": "Leaning into pessimism or hopelessness as an identity.",
+        "definition": "Leaning into pessimism or hopelessness as an identity.",
+        "normalizedDefinition": "Leaning into pessimism or hopelessness as an identity.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "72d4202575ac535ff2f4201d",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "doommaxxing",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Doommaxxing**— Leaning into pessimism or hopelessness as an identity.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-2f9b9ecd013763d04b2b4d0e",
+        "term": "brainrot",
+        "targetMeaning": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+        "definition": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+        "normalizedDefinition": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "2f9b9ecd013763d04b2b4d0e",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "brainrot",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://promova.com/blog/brainrot-slang",
+            "title": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+            "quote": "Brain rot (or brainrot) is a viral internet slang term used to describe the feeling of mental overload or “mush brain” after consuming too much fast, low-effort online content.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "664f262624dd1d0927943182defd5af76617cae0beac27f379edaf620949e32b"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-92a97dd1c287d3f945b899a0",
+        "term": "bones day",
+        "targetMeaning": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+        "definition": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+        "normalizedDefinition": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "92a97dd1c287d3f945b899a0",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "bones day",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "if Noodle stayed up, it was a **“bones day” — meaning a good day to go and be productive.**",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-9dfb1c5655e745a161601dcf",
+        "term": "caught a vibe",
+        "targetMeaning": "Felt a good mood or connection.",
+        "definition": "Felt a good mood or connection.",
+        "normalizedDefinition": "Felt a good mood or connection.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "9dfb1c5655e745a161601dcf",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "caught a vibe",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "We caught a vibe at the beach last night.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-38187bf3d1912d9d8b1b77a6",
+        "term": "coded",
+        "targetMeaning": "Having or embodying traits stereotypically associated with a particular group or type.",
+        "definition": "Having or embodying traits stereotypically associated with a particular group or type.",
+        "normalizedDefinition": "Having or embodying traits stereotypically associated with a particular group or type.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "38187bf3d1912d9d8b1b77a6",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "coded",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Coded” **refers to someone or something that embodies specific traits**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-1bd8e464b598874afa58bd54",
+        "term": "demure",
+        "targetMeaning": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+        "definition": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+        "normalizedDefinition": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "1bd8e464b598874afa58bd54",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "demure",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "Being “demure” is about **being mindful, subtle, and not doing too much**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-6bcec05364ceeb294877d30e",
+        "term": "be so for real",
+        "targetMeaning": "A playful but pointed way to call out something unbelievable or over-the-top.",
+        "definition": "A playful but pointed way to call out something unbelievable or over-the-top.",
+        "normalizedDefinition": "A playful but pointed way to call out something unbelievable or over-the-top.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "6bcec05364ceeb294877d30e",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "be so for real",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Be so for real” is a **playful yet pointed way to call out a moment that feels unbelievable or over-the-top**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-f503422bc65cc3c5ff57aea4",
+        "term": "for the plot",
+        "targetMeaning": "Doing something bold or absurd to add spontaneity and excitement to life.",
+        "definition": "Doing something bold or absurd to add spontaneity and excitement to life.",
+        "normalizedDefinition": "Doing something bold or absurd to add spontaneity and excitement to life.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "f503422bc65cc3c5ff57aea4",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "for the plot",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“for the plot” **means to do bold (and sometimes absurd) things to add spice and spontaneity to your life**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-a179230eac303fdf429c5e17",
+        "term": "chat",
+        "targetMeaning": "A casual way to address an audience or group, like “everyone” or “guys.”",
+        "definition": "A casual way to address an audience or group, like “everyone” or “guys.”",
+        "normalizedDefinition": "A casual way to address an audience or group, like “everyone” or “guys.”",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "a179230eac303fdf429c5e17",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "chat",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "Here, “chat” **refers to a fourth person**, similar to “guys” or “everyone.”",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-315ec98baf8db6011319d8ff",
+        "term": "aura points",
+        "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "sourceCandidateId": "315ec98baf8db6011319d8ff",
+        "normalizedDefinition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“ [Aura points](https://www.tiktok.com/@mr_lindsay_sped/video/7379390300281654571?lang=en)” **measure your coolness or charisma**, and certain actions can either **boost** or **drop** your score.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-72d4202575ac535ff2f4201d",
+        "term": "doommaxxing",
+        "targetMeaning": "Leaning into pessimism or hopelessness as an identity.",
+        "sourceCandidateId": "72d4202575ac535ff2f4201d",
+        "normalizedDefinition": "Leaning into pessimism or hopelessness as an identity.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Doommaxxing**— Leaning into pessimism or hopelessness as an identity.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-2f9b9ecd013763d04b2b4d0e",
+        "term": "brainrot",
+        "targetMeaning": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+        "sourceCandidateId": "2f9b9ecd013763d04b2b4d0e",
+        "normalizedDefinition": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+        "referenceSources": [
+          {
+            "url": "https://promova.com/blog/brainrot-slang",
+            "title": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+            "quote": "Brain rot (or brainrot) is a viral internet slang term used to describe the feeling of mental overload or “mush brain” after consuming too much fast, low-effort online content.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "664f262624dd1d0927943182defd5af76617cae0beac27f379edaf620949e32b"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-92a97dd1c287d3f945b899a0",
+        "term": "bones day",
+        "targetMeaning": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+        "sourceCandidateId": "92a97dd1c287d3f945b899a0",
+        "normalizedDefinition": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "if Noodle stayed up, it was a **“bones day” — meaning a good day to go and be productive.**",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-9dfb1c5655e745a161601dcf",
+        "term": "caught a vibe",
+        "targetMeaning": "Felt a good mood or connection.",
+        "sourceCandidateId": "9dfb1c5655e745a161601dcf",
+        "normalizedDefinition": "Felt a good mood or connection.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "We caught a vibe at the beach last night.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-38187bf3d1912d9d8b1b77a6",
+        "term": "coded",
+        "targetMeaning": "Having or embodying traits stereotypically associated with a particular group or type.",
+        "sourceCandidateId": "38187bf3d1912d9d8b1b77a6",
+        "normalizedDefinition": "Having or embodying traits stereotypically associated with a particular group or type.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Coded” **refers to someone or something that embodies specific traits**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-1bd8e464b598874afa58bd54",
+        "term": "demure",
+        "targetMeaning": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+        "sourceCandidateId": "1bd8e464b598874afa58bd54",
+        "normalizedDefinition": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "Being “demure” is about **being mindful, subtle, and not doing too much**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-6bcec05364ceeb294877d30e",
+        "term": "be so for real",
+        "targetMeaning": "A playful but pointed way to call out something unbelievable or over-the-top.",
+        "sourceCandidateId": "6bcec05364ceeb294877d30e",
+        "normalizedDefinition": "A playful but pointed way to call out something unbelievable or over-the-top.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Be so for real” is a **playful yet pointed way to call out a moment that feels unbelievable or over-the-top**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-f503422bc65cc3c5ff57aea4",
+        "term": "for the plot",
+        "targetMeaning": "Doing something bold or absurd to add spontaneity and excitement to life.",
+        "sourceCandidateId": "f503422bc65cc3c5ff57aea4",
+        "normalizedDefinition": "Doing something bold or absurd to add spontaneity and excitement to life.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“for the plot” **means to do bold (and sometimes absurd) things to add spice and spontaneity to your life**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-a179230eac303fdf429c5e17",
+        "term": "chat",
+        "targetMeaning": "A casual way to address an audience or group, like “everyone” or “guys.”",
+        "sourceCandidateId": "a179230eac303fdf429c5e17",
+        "normalizedDefinition": "A casual way to address an audience or group, like “everyone” or “guys.”",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "Here, “chat” **refers to a fourth person**, similar to “guys” or “everyone.”",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q1",
+        "senseId": "normalized-315ec98baf8db6011319d8ff",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q2",
+        "senseId": "normalized-72d4202575ac535ff2f4201d",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q3",
+        "senseId": "normalized-2f9b9ecd013763d04b2b4d0e",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q4",
+        "senseId": "normalized-92a97dd1c287d3f945b899a0",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q5",
+        "senseId": "normalized-9dfb1c5655e745a161601dcf",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q6",
+        "senseId": "normalized-38187bf3d1912d9d8b1b77a6",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q7",
+        "senseId": "normalized-1bd8e464b598874afa58bd54",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q8",
+        "senseId": "normalized-6bcec05364ceeb294877d30e",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q9",
+        "senseId": "normalized-f503422bc65cc3c5ff57aea4",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t211041438z-042961a4-4048-4db8-9d7c-eabe893f819b-q10",
+        "senseId": "normalized-a179230eac303fdf429c5e17",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 10,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

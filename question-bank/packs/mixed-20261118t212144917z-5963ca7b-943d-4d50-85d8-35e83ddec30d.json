@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 2,
+  "packId": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d",
+  "generationSource": "llm",
+  "promptVersion": "mixed-v11",
+  "generatorModel": "anthropic/claude-haiku-5.5",
+  "generatedAt": "2026-11-18T21:23:21.981Z",
+  "referenceStatus": "normalized-unreviewed",
+  "datasetVersion": "firecrawl-normalized-d4179cbd1968a8bb0075780a",
+  "expertValidated": false,
+  "references": [
+    {
+      "senseId": "normalized-7e62b63f0954162fa6e2a266",
+      "term": "yassify",
+      "targetMeaning": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+      "sourceCandidateId": "7e62b63f0954162fa6e2a266",
+      "normalizedDefinition": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+      "referenceSources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang - Wikipedia",
+          "quote": "To \"yassify\" something is to apply several beauty filters to a picture using FaceApp",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-1dfaca65e1a3f642561272a8",
+      "term": "aura farming",
+      "targetMeaning": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+      "sourceCandidateId": "1dfaca65e1a3f642561272a8",
+      "normalizedDefinition": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+      "referenceSources": [
+        {
+          "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+          "title": "14 Internet Slang Terms of 2026, Actually Explained",
+          "quote": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-e0713d49aa02d870a302b5d2",
+      "term": "soft-blocking irl",
+      "targetMeaning": "Avoiding someone in person without directly confronting them.",
+      "sourceCandidateId": "e0713d49aa02d870a302b5d2",
+      "normalizedDefinition": "Avoiding someone in person without directly confronting them.",
+      "referenceSources": [
+        {
+          "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+          "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+          "quote": "**Soft-Blocking IRL**— Avoiding someone in real life (IRL) without direct confrontation.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-99cc528bf2851159d362add2",
+      "term": "ball knowledge",
+      "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "sourceCandidateId": "99cc528bf2851159d362add2",
+      "normalizedDefinition": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "referenceSources": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+          "title": "Glossary of 2020s slang",
+          "quote": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+          "collectedAt": "2026-11-18T20:06:27.191Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-1a21de9a5dbed74bed69c34f",
+      "term": "winter arc",
+      "targetMeaning": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+      "sourceCandidateId": "1a21de9a5dbed74bed69c34f",
+      "normalizedDefinition": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+      "referenceSources": [
+        {
+          "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+          "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+          "quote": "**Winter arc** _—_A period of intense discipline and self-improvement during the last few months of the year, focusing on goals like fitness or academics before the new year.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-af52358408d5342669bd0848",
+      "term": "spiral posting",
+      "targetMeaning": "Rapid, emotional social media posting during distress.",
+      "sourceCandidateId": "af52358408d5342669bd0848",
+      "normalizedDefinition": "Rapid, emotional social media posting during distress.",
+      "referenceSources": [
+        {
+          "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+          "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+          "quote": "**Spiral Posting**— Rapid, emotional social media posting during distress.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-942c1bf225135a87df10257d",
+      "term": "situationship",
+      "targetMeaning": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+      "sourceCandidateId": "942c1bf225135a87df10257d",
+      "normalizedDefinition": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+      "referenceSources": [
+        {
+          "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+          "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+          "quote": "We’re not dating… it’s more of a situationship.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-315ec98baf8db6011319d8ff",
+      "term": "aura points",
+      "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+      "sourceCandidateId": "315ec98baf8db6011319d8ff",
+      "normalizedDefinition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "“ [Aura points](https://www.tiktok.com/@mr_lindsay_sped/video/7379390300281654571?lang=en)” **measure your coolness or charisma**, and certain actions can either **boost** or **drop** your score.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-c715ca9c136395695cc34269",
+      "term": "soft launch",
+      "targetMeaning": "A subtle or quiet reveal, usually of a relationship or project.",
+      "sourceCandidateId": "c715ca9c136395695cc34269",
+      "normalizedDefinition": "A subtle or quiet reveal, usually of a relationship or project.",
+      "referenceSources": [
+        {
+          "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+          "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+          "quote": "She posted his shoes in her story—classic soft launch. They’re definitely dating.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-2c4fb380b6bb3f71baad311b",
+      "term": "soft life",
+      "targetMeaning": "A way of describing gentle, relaxed living.",
+      "sourceCandidateId": "2c4fb380b6bb3f71baad311b",
+      "normalizedDefinition": "A way of describing gentle, relaxed living.",
+      "referenceSources": [
+        {
+          "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+          "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+          "quote": "I’m done being a night nurse. I’m ready for my soft life.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q1",
+      "senseId": "normalized-7e62b63f0954162fa6e2a266",
+      "slang": "yassify",
+      "targetMeaning": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+      "difficulty": "easy",
+      "contextId": "ctx-glowup-01",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@jun_daily",
+      "post": {
+        "displayName": "Jun Daily",
+        "handle": "@jun_daily",
+        "hashtag": "#WeekendNotes",
+        "content": "Did I yassify my profile pic last night? Maybe a little. Those eyes look way brighter now, no regrets.",
+        "comments": [
+          {
+            "handle": "@mo_clips",
+            "text": "Those eyes look amazing, what did you use for that?",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Wait, what do you mean by yassify? Did you just invent a new word?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "To pose awkwardly for a group photo before the flash goes off.",
+        "To apply several beauty filters to an image, using FaceApp or similar editing.",
+        "To delete old photos from a shared album to free up storage.",
+        "To reupload a video after it was flagged for poor lighting."
+      ],
+      "correctIndex": 1,
+      "explanation": "Yassify is slang for piling beauty filters onto an image, here done with FaceApp-style editing, as the post's brighter eyes and touched-up look suggest.",
+      "replyTexts": [
+        "Oh, yassify just means I struck a goofy pose before the flash went off, nothing to do with editing my photo.",
+        "Haha, yassify is when I tossed my selfie into an editing app and piled on a stack of glow-up filters.",
+        "Yassify means I cleared out old pictures from the shared album so my phone would have more room.",
+        "Yassify means I reuploaded the clip because the lighting was too dim for anyone to see much of it."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q2",
+      "senseId": "normalized-1dfaca65e1a3f642561272a8",
+      "slang": "aura farming",
+      "targetMeaning": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+      "difficulty": "easy",
+      "contextId": "ctx-gym-02",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@zoe_hallway",
+      "post": {
+        "displayName": "Nolan Skate",
+        "handle": "@nolan_skate",
+        "hashtag": "#GymFloor",
+        "content": "Walked into the gym like the whole room was watching, slowed down at the mirror, adjusted my hoodie twice. Nobody asked me to.",
+        "comments": [
+          {
+            "handle": "@zoe_hallway",
+            "text": "Bro you were doing that slow walk again, full aura farming energy at the gym today.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "@zoe_hallway, wait, what's aura farming? Is that a gardening thing?",
+      "question": "What does @zoe_hallway's reply mean?",
+      "options": [
+        "Repeating the same workout routine every day until a fitness goal is reached.",
+        "Sharing a gym selfie to gain followers during the morning rush.",
+        "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+        "Hiding in a crowded room to avoid talking to classmates."
+      ],
+      "correctIndex": 2,
+      "explanation": "Aura farming describes deliberately acting cool, and the post's slow mirror walk and hoodie adjustments show that effort, which the reply teases.",
+      "replyTexts": [
+        "I thought aura farming meant doing the same workout over and over until you hit some fitness goal, like a streak thing.",
+        "Oh so aura farming is posting gym selfies in the morning just to pull in more followers, right? That makes sense now.",
+        "I think aura farming is when someone works hard at looking effortlessly chill, and everyone kinda laughs at how hard they're trying.",
+        "So aura farming is hiding in a crowded room so nobody can start a conversation with you, basically dodging people?"
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q3",
+      "senseId": "normalized-e0713d49aa02d870a302b5d2",
+      "slang": "soft-blocking irl",
+      "targetMeaning": "Avoiding someone in person without directly confronting them.",
+      "difficulty": "easy",
+      "contextId": "ctx-campus-03",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@hana_sketch",
+      "post": {
+        "displayName": "Hana Sketch",
+        "handle": "@hana_sketch",
+        "hashtag": "#CampusLife",
+        "content": "Been soft-blocking irl all week. Dodged Mara at the library, ducked behind a shelf when Jai walked by, let a few texts sit unanswered too.",
+        "comments": [
+          {
+            "handle": "@dev_notes",
+            "text": "Mara is probably thinking the same thing about you, lol.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "Wait, what does soft-blocking irl mean? Is it a sneaker brand?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Blocking a classmate's phone number so they can't send any messages.",
+        "Ignoring the group chat during a project to focus on homework.",
+        "Cancelling plans with friends by text to avoid a long dinner.",
+        "Avoiding someone in person without directly confronting them."
+      ],
+      "correctIndex": 3,
+      "explanation": "Soft-blocking irl means quietly avoiding someone in real life instead of confronting them, which is what dodging Mara and ducking behind a shelf shows.",
+      "replyTexts": [
+        "Soft-blocking irl just means I blocked their number so they can't text me, which is kind of harsh honestly.",
+        "I think soft-blocking irl is when you stop replying in a project chat so you can focus on your homework.",
+        "Soft-blocking irl is cancelling dinner plans by text so I can skip a long meal with friends, that's my take.",
+        "I mean soft-blocking irl is when I keep dodging someone face to face without saying anything directly to them."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q4",
+      "senseId": "normalized-99cc528bf2851159d362add2",
+      "slang": "ball knowledge",
+      "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+      "difficulty": "easy",
+      "contextId": "ctx-trivia-04",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@kenji_quiz",
+      "post": {
+        "displayName": "Tamsin Reads",
+        "handle": "@tamsin_reads",
+        "hashtag": "#TriviaNight",
+        "content": "Trivia night went great. Our team crushed the music round and the movie round, even the weird one about the 1990s cartoon.",
+        "comments": [
+          {
+            "handle": "@kenji_quiz",
+            "text": "Honestly my ball knowledge about that 90s cartoon saved us, nobody else knew the voice actor.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Wait, ball knowledge? Is that a sports drill or something?",
+      "question": "What does @kenji_quiz's reply mean?",
+      "options": [
+        "Niche or uncommon knowledge, often involving pop-culture references.",
+        "Skill at throwing a ball accurately during a school sports practice.",
+        "Memorized facts from a textbook chapter about world history.",
+        "Snacks brought to a game night to share with the rest of the team."
+      ],
+      "correctIndex": 0,
+      "explanation": "Ball knowledge describes uncommon, niche facts, often pop-culture trivia, which is why the commenter's cartoon knowledge helped the team win.",
+      "replyTexts": [
+        "Ball knowledge means having niche facts that most people don't know, usually pop culture stuff like that cartoon.",
+        "I thought ball knowledge meant being good at throwing a ball in practice, like a technique thing.",
+        "I figured ball knowledge was just memorizing textbook history chapters for a big exam, right?",
+        "Ball knowledge is like bringing snacks to game night for the whole team, so everyone gets something."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q5",
+      "senseId": "normalized-1a21de9a5dbed74bed69c34f",
+      "slang": "winter arc",
+      "targetMeaning": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+      "difficulty": "easy",
+      "contextId": "ctx-goals-05",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@sol_plans",
+      "post": {
+        "displayName": "Sol Plans",
+        "handle": "@sol_plans",
+        "hashtag": "#ResetMode",
+        "content": "Starting my winter arc now. Gym at six every morning, essays done early, no late-night snacks until New Year.",
+        "comments": [
+          {
+            "handle": "@amber_runs",
+            "text": "Good luck, I'm tapping out by Wednesday honestly.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "Wait, what's a winter arc? Is that a ski trip thing?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A long holiday trip where a family drives across several states together.",
+        "A seasonal sale at a clothing store with discounts on winter coats.",
+        "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+        "A snowy weather pattern that delays school for several days in a row."
+      ],
+      "correctIndex": 2,
+      "explanation": "A winter arc is an end-of-year push for discipline and self-improvement, and the post's early gym and essay goals show that focus.",
+      "replyTexts": [
+        "A winter arc means a long road trip with the family across a few states, so I guess you're going somewhere.",
+        "I think a winter arc is when stores have big sales on coats, so you should grab one before they're gone.",
+        "A winter arc is a stretch at the end of the year where you push hard on self-improvement, like training or studying more.",
+        "A winter arc is basically when the weather gets snowy and school closes for days, right? Hope that's the case."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q6",
+      "senseId": "normalized-af52358408d5342669bd0848",
+      "slang": "spiral posting",
+      "targetMeaning": "Rapid, emotional social media posting during distress.",
+      "difficulty": "medium",
+      "contextId": "ctx-feed-06",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@ruby_cloud",
+      "post": {
+        "displayName": "Maya Notes",
+        "handle": "@maya_notes",
+        "hashtag": "#LongDay",
+        "content": "Long day. Posted four updates in twenty minutes, then deleted two, then posted again. Sorry for the noise.",
+        "comments": [
+          {
+            "handle": "@ruby_cloud",
+            "text": "Saw your feed all afternoon, full spiral posting mode today. Take a break, friend.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Wait, what's spiral posting? Is it a dance move?",
+      "question": "What does @ruby_cloud's reply mean?",
+      "options": [
+        "Sharing a long series of cooking videos to show off a new recipe.",
+        "Rapid, emotional social media posting during distress.",
+        "Quickly scrolling through old photos to pick the best one for a profile.",
+        "Writing a long essay in one sitting to finish an assignment before a deadline."
+      ],
+      "correctIndex": 1,
+      "explanation": "Spiral posting is rapid, emotional posting while upset, and the post's quick updates and deletions point to that kind of distress.",
+      "replyTexts": [
+        "Spiral posting is when someone shares tons of cooking videos to show off a new recipe, which is lowkey fun.",
+        "I think spiral posting is when someone keeps firing off emotional social media posts because they're upset, like a rush of feelings.",
+        "Spiral posting must mean scrolling old photos to pick a profile picture, right? Took me forever once.",
+        "Spiral posting is basically writing a huge essay in one go before a deadline, so I'd get it done fast."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q7",
+      "senseId": "normalized-942c1bf225135a87df10257d",
+      "slang": "situationship",
+      "targetMeaning": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+      "difficulty": "medium",
+      "contextId": "ctx-dating-07",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@theo_room",
+      "post": {
+        "displayName": "Theo Room",
+        "handle": "@theo_room",
+        "hashtag": "#AskingForAFriend",
+        "content": "He texts at midnight, we hang out only when it suits us, and when I asked what we are he just laughed. Total situationship energy.",
+        "comments": [
+          {
+            "handle": "@nina_tallies",
+            "text": "Oof, that's rough. Did you finally ask him directly?",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "Is a situationship like a sitcom with a weekly plot twist?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A formal engagement where two people plan a wedding together.",
+        "A group project where classmates share a study schedule for finals.",
+        "A friendship with a strict agreement to meet every weekend.",
+        "A romantic or flirtatious relationship without clear labels, commitment, or expectations."
+      ],
+      "correctIndex": 3,
+      "explanation": "A situationship is a romantic or flirtatious connection with no labels or commitment, which the late texts, irregular plans, and laughed-off question suggest.",
+      "replyTexts": [
+        "I think a situationship is a formal engagement where two people plan a wedding together, so they're basically engaged.",
+        "A situationship is when classmates share a study schedule for finals, which is basically what my group chat is.",
+        "A situationship means a friendship where you agree to hang out every weekend, nothing romantic about it at all.",
+        "A situationship is when you're seeing someone romantically or flirting, but there's no label, no commitment, no real plans."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q8",
+      "senseId": "normalized-315ec98baf8db6011319d8ff",
+      "slang": "aura points",
+      "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+      "difficulty": "medium",
+      "contextId": "ctx-presentation-08",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@lin_campus",
+      "post": {
+        "displayName": "Dani Orbit",
+        "handle": "@dani_orbit",
+        "hashtag": "#ClassPresentation",
+        "content": "Class presentation went fine, but I froze during Q&A and tripped on the way back to my seat. Oof.",
+        "comments": [
+          {
+            "handle": "@lin_campus",
+            "text": "Tripping on the way back was rough, but the way you bounced back? Your aura points went up, honestly.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "Wait, @lin_campus, what are aura points? Like gym points?",
+      "question": "What does @lin_campus's reply mean?",
+      "options": [
+        "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "A points system used by a school to track attendance and homework grades.",
+        "A quiet early reveal of a new song or video before its official release date.",
+        "A bonus score for finishing a puzzle or game level before the timer runs out."
+      ],
+      "correctIndex": 0,
+      "explanation": "Aura points is a playful way of rating someone's coolness or charisma, which can rise or fall, and the reply credits the speaker's graceful recovery.",
+      "replyTexts": [
+        "Aura points is a playful way of saying your coolness or charisma can go up or down depending on what you do.",
+        "I figured aura points were the school's attendance and homework scores, the ones that go on the report card.",
+        "I think aura points are a quiet early reveal of a new song, like a soft preview before it drops.",
+        "I thought aura points were a bonus score for beating a puzzle level before the timer runs out, a little reward."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q9",
+      "senseId": "normalized-c715ca9c136395695cc34269",
+      "slang": "soft launch",
+      "targetMeaning": "A subtle or quiet reveal, usually of a relationship or project.",
+      "difficulty": "hard",
+      "contextId": "ctx-story-09",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@ivy_threads",
+      "post": {
+        "displayName": "Ivy Threads",
+        "handle": "@ivy_threads",
+        "hashtag": "#StoryTime",
+        "content": "Just put his coffee cup in my story from the café, no face, no tag. Soft launch, don't read into it.",
+        "comments": [
+          {
+            "handle": "@sage_lane",
+            "text": "Who is he? Tell us everything.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Wait, what do you mean by soft launch in that story? Did you launch something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A bold public announcement with a full photo and caption of a new job.",
+        "A quick unplanned trip to a coffee shop to try a new drink on the menu.",
+        "A subtle or quiet reveal, usually of a relationship or project.",
+        "A sudden launch of a new café menu that changes every season."
+      ],
+      "correctIndex": 2,
+      "explanation": "A soft launch is a low-key reveal, and the post shows it by sharing a hint of a relationship without a face, tag, or big announcement.",
+      "replyTexts": [
+        "A soft launch is like a big public announcement with a full photo and caption, the opposite of that quiet story.",
+        "I think soft launch means you go to a coffee shop quietly to try something new on the menu, like a drink test.",
+        "Soft launch means a quiet reveal, like posting a little hint about a relationship or project without making a big deal of it.",
+        "I figured soft launch is when a café quickly rolls out a new seasonal menu that changes all the time."
+      ]
+    },
+    {
+      "id": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d-q10",
+      "senseId": "normalized-2c4fb380b6bb3f71baad311b",
+      "slang": "soft life",
+      "targetMeaning": "A way of describing gentle, relaxed living.",
+      "difficulty": "hard",
+      "contextId": "ctx-weekend-10",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@ren_vignettes",
+      "post": {
+        "displayName": "Hollis Notes",
+        "handle": "@hollis_notes",
+        "hashtag": "#SundaySlow",
+        "content": "Finally finished the double shift stretch. Gonna sleep till noon, make pancakes, and watch nothing important on the couch.",
+        "comments": [
+          {
+            "handle": "@ren_vignettes",
+            "text": "Taking the whole weekend off, slow mornings, no emails. My soft life starts right now, honestly.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "@ren_vignettes, what do you mean by soft life? Is that a skincare routine?",
+      "question": "What does @ren_vignettes's reply mean?",
+      "options": [
+        "A rigid daily schedule that fills every hour with work and study.",
+        "A way of describing gentle, relaxed living.",
+        "A plan to save money by cutting back on expensive dinners out.",
+        "A lifestyle focused on hosting big parties for close friends."
+      ],
+      "correctIndex": 1,
+      "explanation": "Soft life describes gentle, relaxed living, which matches the reply's plans for slow mornings and no emails after a long stretch of work.",
+      "replyTexts": [
+        "Soft life sounds like a strict daily plan where every hour is packed with work and study, which is not how I'd describe it.",
+        "I mean soft life is that gentle, easygoing way of living where things feel relaxed and you have room to breathe.",
+        "Soft life is when you cut back on dinners out to save money, and honestly that's what I'm trying to do too.",
+        "Soft life means hosting big parties for close friends every weekend, so the house is always full of people."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,434 @@
+{
+  "questions": [
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q1",
+      "senseId": "normalized-400f00cd93684a2dcc931632",
+      "slang": "let them cook",
+      "targetMeaning": "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+      "difficulty": "easy",
+      "contextId": "ctx-living-room-fort-01",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@bake_mia",
+      "post": {
+        "displayName": "Mia Bakes",
+        "handle": "@bake_mia",
+        "hashtag": "#FamilyWeekend",
+        "content": "The twins are building a fort out of couch cushions and an old bedsheet. Let them cook.",
+        "comments": [
+          {
+            "handle": "@mo_reads",
+            "text": "The cushions will not survive this, but okay.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "Wait, you want the twins cooking in the living room? Is that a recipe thing?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Slow-cooking a meal in the kitchen for the whole family.",
+        "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+        "Ending a conversation before anyone else can reply.",
+        "Warning someone that their plan will probably fail badly."
+      ],
+      "correctIndex": 1,
+      "explanation": "The twins are building an inventive fort, and the speaker is telling others to let them keep going because the project could turn out fun or successful.",
+      "replyTexts": [
+        "So let them cook just means someone is slow-cooking dinner in the kitchen, right?",
+        "I think let them cook means keep going with what you're doing since it might turn out interesting or good.",
+        "Ah, so let them cook means we should end the chat now before anyone can reply and argue.",
+        "Got it, let them cook is a warning that someone's plan is going to flop badly."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q2",
+      "senseId": "normalized-8f54be9dbe3b401b941883f3",
+      "slang": "lore drop",
+      "targetMeaning": "Revealing a piece of personal history or backstory.",
+      "difficulty": "easy",
+      "contextId": "ctx-group-chat-marco-01",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@rio_chatter",
+      "post": {
+        "displayName": "Tessa Plans",
+        "handle": "@tessa_plans",
+        "hashtag": "#GroupChatNews",
+        "content": "Okay, the group chat just found out Marco used to be a competitive yo-yo champion. Nobody saw that coming.",
+        "comments": [
+          {
+            "handle": "@rio_chatter",
+            "text": "Ha, that was a lore drop, we needed that from him all year!",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@skye_notes",
+            "text": "Wait, he really did that? Tell us more.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Wait, a lore drop? Is that a fancy new drink at the cafe?",
+      "question": "What does the slang mean in the reply from @rio_chatter?",
+      "options": [
+        "Releasing a new track or video to followers online.",
+        "Asking a friend for a favor without warning them first.",
+        "Quitting a group chat suddenly without any explanation.",
+        "Revealing a piece of personal history or backstory."
+      ],
+      "correctIndex": 3,
+      "explanation": "Marco's yo-yo past is a personal detail that the group just learned, so calling it a lore drop means it was a reveal of his history.",
+      "replyTexts": [
+        "So a lore drop is when someone posts a new song or video for their fans, right?",
+        "I think a lore drop means asking a friend for a big favor out of nowhere.",
+        "Ah, lore drop is when you quit a group chat without any warning, yeah?",
+        "Right, a lore drop is when someone finally opens up about a chunk of their own past."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q3",
+      "senseId": "normalized-9f7ae31505ae9180fc1a2d0b",
+      "slang": "out of pocket",
+      "targetMeaning": "Acting wildly, inappropriately, or out of line.",
+      "difficulty": "easy",
+      "contextId": "ctx-restaurant-straw-02",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@jun_rides",
+      "post": {
+        "displayName": "Jun Rides",
+        "handle": "@jun_rides",
+        "hashtag": "#DinnerDrama",
+        "content": "He yelled at the waiter over a missing straw, then threw his whole drink on the floor. Totally out of pocket.",
+        "comments": [
+          {
+            "handle": "@nolan_ro",
+            "text": "Unreal. The poor server did not even do anything.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "Out of pocket? Did he leave his wallet at home or something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Acting wildly, inappropriately, or out of line.",
+        "Covering someone else's bill without asking them first.",
+        "Running out of cash in the middle of a trip.",
+        "Refusing to tip when the service was too slow."
+      ],
+      "correctIndex": 0,
+      "explanation": "Yelling and throwing a drink over a missing straw is wild, inappropriate behavior, which is what out of pocket describes here.",
+      "replyTexts": [
+        "Right, out of pocket means he behaved wildly and crossed a line at the restaurant.",
+        "I thought out of pocket meant covering someone's bill without asking, like a surprise treat.",
+        "So out of pocket means he ran out of cash during the trip and couldn't pay.",
+        "Oh, out of pocket is when you skip the tip because the service was slow, right?"
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q4",
+      "senseId": "normalized-af63580820c9e880624c021a",
+      "slang": "girl math",
+      "targetMeaning": "Creative reasoning used to rationalize purchases or spending decisions.",
+      "difficulty": "easy",
+      "contextId": "ctx-thrift-jackets-03",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@sol_tracks",
+      "post": {
+        "displayName": "Ivy Thrift",
+        "handle": "@ivy_thrift",
+        "hashtag": "#ShoppingSpree",
+        "content": "Bought three more jackets today, but they were all on sale, so technically I saved money. Thoughts?",
+        "comments": [
+          {
+            "handle": "@maya_nook",
+            "text": "Your savings count is getting scary.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@sol_tracks",
+            "text": "Girl math says the jackets were basically free, so we are good.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Girl math? Is that a school subject or a new app for counting calories?",
+      "question": "What does the slang mean in the reply from @sol_tracks?",
+      "options": [
+        "Calculating exact taxes for a small online business.",
+        "Splitting a restaurant bill evenly among many friends.",
+        "Creative reasoning used to rationalize purchases or spending decisions.",
+        "Memorizing formulas for a standardized test."
+      ],
+      "correctIndex": 2,
+      "explanation": "The jacket purchases are justified by pretending they were a bargain or free, which is the creative reasoning the reference describes.",
+      "replyTexts": [
+        "So girl math means working out business taxes carefully, got it.",
+        "I think girl math is just the way we split restaurant bills between friends.",
+        "Right, girl math is when someone clever argues a purchase is actually fine or free.",
+        "Ah, girl math must be about memorizing formulas for a test, right?"
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q5",
+      "senseId": "normalized-c9ae0a097313abc80bf52c5e",
+      "slang": "fridgescaping",
+      "targetMeaning": "The art of decorating the interior of a refrigerator.",
+      "difficulty": "easy",
+      "contextId": "ctx-kitchen-shelves-04",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@hana_eats",
+      "post": {
+        "displayName": "Hana Eats",
+        "handle": "@hana_eats",
+        "hashtag": "#KitchenReset",
+        "content": "Spent an hour lining up jars, herbs, and little bowls on every shelf of my fridge. Fridgescaping at its finest.",
+        "comments": [
+          {
+            "handle": "@lena_r",
+            "text": "The lighting in there looks so good.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "Fridgescaping? Is that a new way to hang your grocery list on the door?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Quickly clearing out expired food from a messy fridge.",
+        "The art of decorating the interior of a refrigerator.",
+        "Photographing food for a restaurant's social media page.",
+        "Scrubbing kitchen appliances with special cleaners each weekend."
+      ],
+      "correctIndex": 1,
+      "explanation": "Arranging jars, herbs, and bowls on the shelves to make the fridge look styled is decorating its interior, which is fridgescaping.",
+      "replyTexts": [
+        "So fridgescaping is just a quick cleanup to toss out old food, right?",
+        "I figured fridgescaping means making the inside of the fridge look artful and styled.",
+        "Oh, fridgescaping must be snapping food photos for a restaurant's page, yeah?",
+        "Got it, fridgescaping is when you scrub the appliances with cleaner every weekend."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q6",
+      "senseId": "normalized-cf89d7c6cd3bbdf700e9bc2b",
+      "slang": "real ones know",
+      "targetMeaning": "A phrase implying that only insiders will understand something.",
+      "difficulty": "medium",
+      "contextId": "ctx-film-cameo-05",
+      "contextCategory": "entertainment",
+      "questionTarget": "reply",
+      "targetHandle": "@theo_quill",
+      "post": {
+        "displayName": "Fern Writes",
+        "handle": "@fern_writes",
+        "hashtag": "#MovieNightTalk",
+        "content": "Caught the director's cameo in the last scene of the new film. My cousins had no idea it was even there.",
+        "comments": [
+          {
+            "handle": "@theo_quill",
+            "text": "Real ones know that cameo was the best hidden detail in the whole film.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@nico_films",
+            "text": "Lol, I missed it completely the first time.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "Real ones know what, exactly? The ending or the snacks at the theater?",
+      "question": "What does the slang mean in the reply from @theo_quill?",
+      "options": [
+        "A sign that someone is an experienced movie critic.",
+        "A challenge to name the director of an old movie.",
+        "A request to act out a scene from a film.",
+        "A phrase implying that only insiders will understand something."
+      ],
+      "correctIndex": 3,
+      "explanation": "Theo is hinting that only people who really paid attention will appreciate the cameo, which is the insider meaning of real ones know.",
+      "replyTexts": [
+        "So real ones know means someone is a seasoned critic who has seen every film, right?",
+        "I think real ones know is a challenge to name who directed an old movie.",
+        "Oh, real ones know is basically asking friends to act out a scene from the film.",
+        "Got it, real ones know means only people in the loop will catch what's being hinted at."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q7",
+      "senseId": "normalized-0825808d1ddd6c3a185e83ed",
+      "slang": "ick",
+      "targetMeaning": "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+      "difficulty": "medium",
+      "contextId": "ctx-cafe-date-06",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@mika_hangs",
+      "post": {
+        "displayName": "Mika Hangs",
+        "handle": "@mika_hangs",
+        "hashtag": "#FirstDateTales",
+        "content": "Got a bit of an ick when he started loudly reciting cereal box ads during our first coffee date.",
+        "comments": [
+          {
+            "handle": "@lu_saves",
+            "text": "Oof, that would have made me cringe too.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "An ick? Is that a bug in the coffee machine or something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+        "A small allergic reaction after eating something sugary.",
+        "A sudden urge to leave a cafe during a busy shift.",
+        "A dare to order the strangest drink on the menu."
+      ],
+      "correctIndex": 0,
+      "explanation": "The embarrassing cereal box recitation on a first date causes a sudden turn-off, which is the mild disgust that the ick describes.",
+      "replyTexts": [
+        "So an ick is when a date does something cringey and suddenly you're turned off by them, yeah?",
+        "I thought ick meant a small allergy flare-up after eating sweets, so I'm confused.",
+        "So ick must mean wanting to bolt out of the cafe because the shift is busy, right?",
+        "Oh, ick is basically a dare to order the weirdest drink on the menu, yeah?"
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q8",
+      "senseId": "normalized-b28e8c6de3dcbb73b3e4a60b",
+      "slang": "silent slay",
+      "targetMeaning": "Impressing others quietly or without trying.",
+      "difficulty": "medium",
+      "contextId": "ctx-dance-studio-07",
+      "contextCategory": "event-reaction",
+      "questionTarget": "reply",
+      "targetHandle": "@priya_flow",
+      "post": {
+        "displayName": "Nadia Moves",
+        "handle": "@nadia_moves",
+        "hashtag": "#StudioMoments",
+        "content": "Walked into the dance studio without saying a word, and the whole room turned around. Pure confidence.",
+        "comments": [
+          {
+            "handle": "@priya_flow",
+            "text": "She did not say a thing, that was a silent slay.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Silent slay? Did she sing during the entrance or something?",
+      "question": "What does the slang mean in the reply from @priya_flow?",
+      "options": [
+        "Performing an entire routine with loud music and costumes.",
+        "Arriving late to an event on purpose for attention.",
+        "Impressing others quietly or without trying.",
+        "Practicing a dance move until it looks perfect."
+      ],
+      "correctIndex": 2,
+      "explanation": "Nadia commands the room just by walking in and saying nothing, which is impressing others quietly and without effort.",
+      "replyTexts": [
+        "I figured silent slay means a loud routine with music and costumes, honestly.",
+        "So silent slay means showing up late on purpose so everyone looks at you, right?",
+        "Right, silent slay is when you wow people just by being yourself, without even trying.",
+        "I thought silent slay meant practicing a move over and over until it's perfect."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q9",
+      "senseId": "normalized-f82316591744dbf1b22a09da",
+      "slang": "lock in",
+      "targetMeaning": "To focus and commit fully to an activity or longer-term goal.",
+      "difficulty": "hard",
+      "contextId": "ctx-finals-prep-08",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@rhea_focus",
+      "post": {
+        "displayName": "Rhea Focus",
+        "handle": "@rhea_focus",
+        "hashtag": "#FinalsSeason",
+        "content": "Phone is in the drawer, planner is open, and I told my friends I won't reply until finals are over. Lock in time.",
+        "comments": [
+          {
+            "handle": "@kenji_notes",
+            "text": "Respect. The group chat can survive until June.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "Lock in? Like a seatbelt or a door for the exam room?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "To quietly leave a group chat without explaining why.",
+        "To focus and commit fully to an activity or longer-term goal.",
+        "To stay awake late to finish a video game.",
+        "To fix a broken phone screen before a big exam."
+      ],
+      "correctIndex": 1,
+      "explanation": "Rhea is putting her phone away and cutting off friends until finals end, showing full commitment to a longer-term academic goal.",
+      "replyTexts": [
+        "So lock in means quietly leaving the group chat without saying why, right?",
+        "Right, lock in means you fully focus and commit to the big goal you're working toward.",
+        "Ah, lock in must mean staying up late to finish a video game, I bet.",
+        "Got it, lock in is about getting my broken phone screen fixed before the exam."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q10",
+      "senseId": "normalized-77de5f7d46fccee3e00332e2",
+      "slang": "lore",
+      "targetMeaning": "Someone’s backstory, or the accumulated knowledge about a person or subject.",
+      "difficulty": "hard",
+      "contextId": "ctx-roommate-boat-09",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@dani_loops",
+      "post": {
+        "displayName": "Sana Notes",
+        "handle": "@sana_notes",
+        "hashtag": "#RoommateStories",
+        "content": "Our new roommate casually mentioned he once lived on a fishing boat for two years. Nobody asked, he just said it.",
+        "comments": [
+          {
+            "handle": "@hollis_m",
+            "text": "He has been keeping that quiet all semester, huh?",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@dani_loops",
+            "text": "Thanks for sharing, now I need the full lore on that boat.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "Lore? Is that a fishing term for the bait you use on the boat?",
+      "question": "What does the slang mean in the reply from @dani_loops?",
+      "options": [
+        "A set of rules for living on a boat during a long trip.",
+        "A bait used when going fishing offshore.",
+        "A traditional song sung by sailors on a long voyage.",
+        "Someone’s backstory, or the accumulated knowledge about a person or subject."
+      ],
+      "correctIndex": 3,
+      "explanation": "Dani wants the full story about the roommate's boat years, which is his backstory and what people collectively know about his past.",
+      "replyTexts": [
+        "So lore is just a set of rules for living on a boat during long trips, right?",
+        "I thought lore was a kind of bait for fishing offshore, like the stuff you hook with.",
+        "Oh, lore must be the old sailor songs people sing on long voyages, yeah?",
+        "Right, lore is the story of his past and everything people collectively know about him."
+      ]
+    }
+  ]
+}

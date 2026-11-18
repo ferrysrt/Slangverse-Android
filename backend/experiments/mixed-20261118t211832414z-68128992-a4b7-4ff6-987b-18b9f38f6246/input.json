@@ -1,0 +1,520 @@
+{
+  "attemptId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246",
+  "packId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246",
+  "startedAt": "2026-11-18T21:18:32.414Z",
+  "datasetVersion": "firecrawl-normalized-d4179cbd1968a8bb0075780a",
+  "promptVersion": "mixed-v11",
+  "promptSha256": "b38b16a233af8f1497d179fc75b7f6a59aa93dc144e05719063845bddfd3470f",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-400f00cd93684a2dcc931632",
+        "term": "let them cook",
+        "targetMeaning": "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+        "definition": "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+        "normalizedDefinition": "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "400f00cd93684a2dcc931632",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "let them cook",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "The phrase “let them cook” **means stepping back to let someone continue what they’re doing**—either because it’s interesting or might lead to something great.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-8f54be9dbe3b401b941883f3",
+        "term": "lore drop",
+        "targetMeaning": "Revealing a piece of personal history or backstory.",
+        "definition": "Revealing a piece of personal history or backstory.",
+        "normalizedDefinition": "Revealing a piece of personal history or backstory.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "8f54be9dbe3b401b941883f3",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "lore drop",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "Revealing a piece of private info is a \"lore drop,\" while a \"lore dump\" involves sharing many details at once.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-9f7ae31505ae9180fc1a2d0b",
+        "term": "out of pocket",
+        "targetMeaning": "Acting wildly, inappropriately, or out of line.",
+        "definition": "Acting wildly, inappropriately, or out of line.",
+        "normalizedDefinition": "Acting wildly, inappropriately, or out of line.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "9f7ae31505ae9180fc1a2d0b",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "out of pocket",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "That joke was so out of pocket.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-af63580820c9e880624c021a",
+        "term": "girl math",
+        "targetMeaning": "Creative reasoning used to rationalize purchases or spending decisions.",
+        "definition": "Creative reasoning used to rationalize purchases or spending decisions.",
+        "normalizedDefinition": "Creative reasoning used to rationalize purchases or spending decisions.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "af63580820c9e880624c021a",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "girl math",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Girl math” describes how people (especially young women) **use creative logical maneuvers to rationalize their purchases**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-c9ae0a097313abc80bf52c5e",
+        "term": "fridgescaping",
+        "targetMeaning": "The art of decorating the interior of a refrigerator.",
+        "definition": "The art of decorating the interior of a refrigerator.",
+        "normalizedDefinition": "The art of decorating the interior of a refrigerator.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "c9ae0a097313abc80bf52c5e",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "fridgescaping",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Fridgescaping” is **the art of decorating your refrigerator’s interior**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-cf89d7c6cd3bbdf700e9bc2b",
+        "term": "real ones know",
+        "targetMeaning": "A phrase implying that only insiders will understand something.",
+        "definition": "A phrase implying that only insiders will understand something.",
+        "normalizedDefinition": "A phrase implying that only insiders will understand something.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "cf89d7c6cd3bbdf700e9bc2b",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "real ones know",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "Real ones know. Who directed Star Wars?",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-0825808d1ddd6c3a185e83ed",
+        "term": "ick",
+        "targetMeaning": "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+        "definition": "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+        "normalizedDefinition": "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "0825808d1ddd6c3a185e83ed",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "ick",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "the \"ick\" is that **feeling of mild disgust when you see a prospective romantic partner doing something embarrassing or gross**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-b28e8c6de3dcbb73b3e4a60b",
+        "term": "silent slay",
+        "targetMeaning": "Impressing others quietly or without trying.",
+        "definition": "Impressing others quietly or without trying.",
+        "normalizedDefinition": "Impressing others quietly or without trying.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "b28e8c6de3dcbb73b3e4a60b",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "silent slay",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "She just walked in and owned the room—silent slay.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-f82316591744dbf1b22a09da",
+        "term": "lock in",
+        "targetMeaning": "To focus and commit fully to an activity or longer-term goal.",
+        "definition": "To focus and commit fully to an activity or longer-term goal.",
+        "normalizedDefinition": "To focus and commit fully to an activity or longer-term goal.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "f82316591744dbf1b22a09da",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "lock in",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "To “lock in” means to **focus and commit fully**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-77de5f7d46fccee3e00332e2",
+        "term": "lore",
+        "targetMeaning": "Someone’s backstory, or the accumulated knowledge about a person or subject.",
+        "definition": "Someone’s backstory, or the accumulated knowledge about a person or subject.",
+        "normalizedDefinition": "Someone’s backstory, or the accumulated knowledge about a person or subject.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "77de5f7d46fccee3e00332e2",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "lore",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "If someone asks you about your “lore,” what they’re really asking for is **your backstory**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-400f00cd93684a2dcc931632",
+        "term": "let them cook",
+        "targetMeaning": "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+        "sourceCandidateId": "400f00cd93684a2dcc931632",
+        "normalizedDefinition": "Encouraging someone to continue what they are doing because it could be interesting or successful.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "The phrase “let them cook” **means stepping back to let someone continue what they’re doing**—either because it’s interesting or might lead to something great.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-8f54be9dbe3b401b941883f3",
+        "term": "lore drop",
+        "targetMeaning": "Revealing a piece of personal history or backstory.",
+        "sourceCandidateId": "8f54be9dbe3b401b941883f3",
+        "normalizedDefinition": "Revealing a piece of personal history or backstory.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "Revealing a piece of private info is a \"lore drop,\" while a \"lore dump\" involves sharing many details at once.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-9f7ae31505ae9180fc1a2d0b",
+        "term": "out of pocket",
+        "targetMeaning": "Acting wildly, inappropriately, or out of line.",
+        "sourceCandidateId": "9f7ae31505ae9180fc1a2d0b",
+        "normalizedDefinition": "Acting wildly, inappropriately, or out of line.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "That joke was so out of pocket.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-af63580820c9e880624c021a",
+        "term": "girl math",
+        "targetMeaning": "Creative reasoning used to rationalize purchases or spending decisions.",
+        "sourceCandidateId": "af63580820c9e880624c021a",
+        "normalizedDefinition": "Creative reasoning used to rationalize purchases or spending decisions.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Girl math” describes how people (especially young women) **use creative logical maneuvers to rationalize their purchases**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-c9ae0a097313abc80bf52c5e",
+        "term": "fridgescaping",
+        "targetMeaning": "The art of decorating the interior of a refrigerator.",
+        "sourceCandidateId": "c9ae0a097313abc80bf52c5e",
+        "normalizedDefinition": "The art of decorating the interior of a refrigerator.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“Fridgescaping” is **the art of decorating your refrigerator’s interior**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-cf89d7c6cd3bbdf700e9bc2b",
+        "term": "real ones know",
+        "targetMeaning": "A phrase implying that only insiders will understand something.",
+        "sourceCandidateId": "cf89d7c6cd3bbdf700e9bc2b",
+        "normalizedDefinition": "A phrase implying that only insiders will understand something.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "Real ones know. Who directed Star Wars?",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-0825808d1ddd6c3a185e83ed",
+        "term": "ick",
+        "targetMeaning": "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+        "sourceCandidateId": "0825808d1ddd6c3a185e83ed",
+        "normalizedDefinition": "A feeling of mild disgust toward a prospective romantic partner prompted by something embarrassing or off-putting.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "the \"ick\" is that **feeling of mild disgust when you see a prospective romantic partner doing something embarrassing or gross**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-b28e8c6de3dcbb73b3e4a60b",
+        "term": "silent slay",
+        "targetMeaning": "Impressing others quietly or without trying.",
+        "sourceCandidateId": "b28e8c6de3dcbb73b3e4a60b",
+        "normalizedDefinition": "Impressing others quietly or without trying.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "She just walked in and owned the room—silent slay.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-f82316591744dbf1b22a09da",
+        "term": "lock in",
+        "targetMeaning": "To focus and commit fully to an activity or longer-term goal.",
+        "sourceCandidateId": "f82316591744dbf1b22a09da",
+        "normalizedDefinition": "To focus and commit fully to an activity or longer-term goal.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "To “lock in” means to **focus and commit fully**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-77de5f7d46fccee3e00332e2",
+        "term": "lore",
+        "targetMeaning": "Someone’s backstory, or the accumulated knowledge about a person or subject.",
+        "sourceCandidateId": "77de5f7d46fccee3e00332e2",
+        "normalizedDefinition": "Someone’s backstory, or the accumulated knowledge about a person or subject.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "If someone asks you about your “lore,” what they’re really asking for is **your backstory**.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q1",
+        "senseId": "normalized-400f00cd93684a2dcc931632",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q2",
+        "senseId": "normalized-8f54be9dbe3b401b941883f3",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q3",
+        "senseId": "normalized-9f7ae31505ae9180fc1a2d0b",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q4",
+        "senseId": "normalized-af63580820c9e880624c021a",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q5",
+        "senseId": "normalized-c9ae0a097313abc80bf52c5e",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q6",
+        "senseId": "normalized-cf89d7c6cd3bbdf700e9bc2b",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q7",
+        "senseId": "normalized-0825808d1ddd6c3a185e83ed",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q8",
+        "senseId": "normalized-b28e8c6de3dcbb73b3e4a60b",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q9",
+        "senseId": "normalized-f82316591744dbf1b22a09da",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246-q10",
+        "senseId": "normalized-77de5f7d46fccee3e00332e2",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 10,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

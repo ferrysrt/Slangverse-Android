@@ -1,0 +1,129 @@
+{
+  "valid": false,
+  "checks": [
+    {
+      "id": "json-parse",
+      "passed": false,
+      "errors": [
+        "json-parse"
+      ]
+    },
+    {
+      "id": "required-fields",
+      "passed": false,
+      "errors": [
+        "required-fields"
+      ]
+    },
+    {
+      "id": "count-10",
+      "passed": false,
+      "errors": [
+        "count-10"
+      ]
+    },
+    {
+      "id": "difficulty-5-3-2",
+      "passed": false,
+      "errors": [
+        "difficulty-5-3-2"
+      ]
+    },
+    {
+      "id": "four-options",
+      "passed": false,
+      "errors": [
+        "four-options"
+      ]
+    },
+    {
+      "id": "correct-index",
+      "passed": false,
+      "errors": [
+        "correct-index"
+      ]
+    },
+    {
+      "id": "context-category",
+      "passed": false,
+      "errors": [
+        "context-category"
+      ]
+    },
+    {
+      "id": "unique-ids",
+      "passed": false,
+      "errors": [
+        "unique-ids"
+      ]
+    },
+    {
+      "id": "no-surrounding-text",
+      "passed": false,
+      "errors": [
+        "no-surrounding-text"
+      ]
+    },
+    {
+      "id": "reference-integrity",
+      "passed": false,
+      "errors": [
+        "unused-reference",
+        "mixed-needs-two-distinct-terms"
+      ]
+    },
+    {
+      "id": "existing-question-rules",
+      "passed": false,
+      "errors": [
+        "existing-question-rules"
+      ]
+    },
+    {
+      "id": "social-safety",
+      "passed": false,
+      "errors": [
+        "social-safety"
+      ]
+    },
+    {
+      "id": "reply-target-mix",
+      "passed": false,
+      "errors": [
+        "reply-target-count:0"
+      ]
+    },
+    {
+      "id": "reply-contract",
+      "passed": false,
+      "errors": [
+        "reply-contract"
+      ]
+    },
+    {
+      "id": "provider-completion",
+      "passed": false,
+      "errors": [
+        "provider-completion"
+      ]
+    }
+  ],
+  "errors": [
+    "json-parse",
+    "required-fields",
+    "count-10",
+    "difficulty-5-3-2",
+    "four-options",
+    "correct-index",
+    "context-category",
+    "unique-ids",
+    "no-surrounding-text",
+    "unused-reference",
+    "mixed-needs-two-distinct-terms",
+    "existing-question-rules",
+    "social-safety",
+    "reply-target-count:0",
+    "reply-contract",
+    "provider-completion"
+  ]
+}

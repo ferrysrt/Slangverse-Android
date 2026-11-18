@@ -1,0 +1,35 @@
+{
+  "requestedModel": "anthropic/claude-haiku-5.5",
+  "startedAt": "2026-11-18T21:20:02.838Z",
+  "completedAt": "2026-11-18T21:21:44.909Z",
+  "httpStatus": 200,
+  "actualModel": "anthropic/claude-haiku-5.5",
+  "responseId": "gen-1795036803-1H20I9DfR6AcB6EvmfV6",
+  "provider": "Claude Platform on AWS",
+  "providerCreated": 1795036803,
+  "usage": {
+    "prompt_tokens": 8530,
+    "completion_tokens": 24000,
+    "total_tokens": 32530,
+    "cost": 0.012853,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.012853,
+      "upstream_inference_prompt_cost": 0.000853,
+      "upstream_inference_completions_cost": 0.012
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 20665,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finishReason": "length",
+  "nativeFinishReason": "max_tokens"
+}

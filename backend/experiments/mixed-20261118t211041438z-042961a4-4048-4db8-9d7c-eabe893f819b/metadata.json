@@ -1,0 +1,35 @@
+{
+  "requestedModel": "deepseek/deepseek-v4.1-flash",
+  "startedAt": "2026-11-18T21:10:41.472Z",
+  "completedAt": "2026-11-18T21:13:02.100Z",
+  "httpStatus": 200,
+  "actualModel": "deepseek/deepseek-v4.1-flash",
+  "responseId": "gen-1795036242-GRx1U3dmsquYkoAm2KNA",
+  "provider": "Baidu",
+  "providerCreated": 1795036242,
+  "usage": {
+    "prompt_tokens": 6004,
+    "completion_tokens": 24000,
+    "total_tokens": 30004,
+    "cost": 0.0051716028,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.0051716028,
+      "upstream_inference_prompt_cost": 0.0003044028,
+      "upstream_inference_completions_cost": 0.0048672
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 24005,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "finishReason": "length",
+  "nativeFinishReason": "length"
+}

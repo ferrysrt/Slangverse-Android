@@ -1,13 +1,13 @@
 {
   "schemaVersion": 2,
-  "datasetVersion": "firecrawl-normalized-e1d7e28483e8f2fb124e61db",
+  "datasetVersion": "firecrawl-normalized-d4179cbd1968a8bb0075780a",
   "source": "github-static",
   "generationSource": "llm",
   "status": "ready",
-  "candidateCount": 92,
+  "candidateCount": 148,
   "expertValidated": false,
   "discoveredCandidateCount": 16,
-  "bankVersion": "2259da78fd3d2263",
+  "bankVersion": "7e1e593cea34524f",
   "senses": [
     {
       "senseId": "cooked-trouble",
@@ -62,6 +62,21 @@
     }
   ],
   "packs": [
+    {
+      "packId": "mixed-20261118t212144917z-5963ca7b-943d-4d50-85d8-35e83ddec30d",
+      "sha256": "50cf908006cda74da12f3dc7683392d1d2ed6f3fec6f0b5fe89273cba22554da",
+      "questionCount": 10
+    },
+    {
+      "packId": "mixed-20261118t211832414z-68128992-a4b7-4ff6-987b-18b9f38f6246",
+      "sha256": "e6196bc5557f740b9526a54351b846a073a7eefdbf7720417e085963bedfb0e9",
+      "questionCount": 10
+    },
+    {
+      "packId": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e",
+      "sha256": "ca2b152a2ce02a038b91c8291bcd2299bc76ed52f4a906658d7e17161efc91c0",
+      "questionCount": 10
+    },
     {
       "packId": "mixed-20261118t210111642z-223e00f4-c399-4f16-80fb-e228d3d78423",
       "sha256": "d19e3d87385666c9e0d320acd1a29e6b6769576b318de76a046305ade5a7f272",

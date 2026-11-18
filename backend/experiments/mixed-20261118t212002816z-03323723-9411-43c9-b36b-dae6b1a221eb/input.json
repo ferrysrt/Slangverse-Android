@@ -1,0 +1,520 @@
+{
+  "attemptId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb",
+  "packId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb",
+  "startedAt": "2026-11-18T21:20:02.816Z",
+  "datasetVersion": "firecrawl-normalized-d4179cbd1968a8bb0075780a",
+  "promptVersion": "mixed-v11",
+  "promptSha256": "8d2d82e247da8bdfa24b0dc1d9d28090fe7936af3ef00aeb89e268e4a5c030d9",
+  "selection": {
+    "senses": [
+      {
+        "senseId": "normalized-1a21de9a5dbed74bed69c34f",
+        "term": "winter arc",
+        "targetMeaning": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+        "definition": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+        "normalizedDefinition": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "1a21de9a5dbed74bed69c34f",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "winter arc",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Winter arc** _—_A period of intense discipline and self-improvement during the last few months of the year, focusing on goals like fitness or academics before the new year.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-e0713d49aa02d870a302b5d2",
+        "term": "soft-blocking irl",
+        "targetMeaning": "Avoiding someone in person without directly confronting them.",
+        "definition": "Avoiding someone in person without directly confronting them.",
+        "normalizedDefinition": "Avoiding someone in person without directly confronting them.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "e0713d49aa02d870a302b5d2",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "soft-blocking irl",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Soft-Blocking IRL**— Avoiding someone in real life (IRL) without direct confrontation.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-942c1bf225135a87df10257d",
+        "term": "situationship",
+        "targetMeaning": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+        "definition": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+        "normalizedDefinition": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "942c1bf225135a87df10257d",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "situationship",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "We’re not dating… it’s more of a situationship.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-af52358408d5342669bd0848",
+        "term": "spiral posting",
+        "targetMeaning": "Rapid, emotional social media posting during distress.",
+        "definition": "Rapid, emotional social media posting during distress.",
+        "normalizedDefinition": "Rapid, emotional social media posting during distress.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "af52358408d5342669bd0848",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "spiral posting",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Spiral Posting**— Rapid, emotional social media posting during distress.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-c715ca9c136395695cc34269",
+        "term": "soft launch",
+        "targetMeaning": "A subtle or quiet reveal, usually of a relationship or project.",
+        "definition": "A subtle or quiet reveal, usually of a relationship or project.",
+        "normalizedDefinition": "A subtle or quiet reveal, usually of a relationship or project.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "c715ca9c136395695cc34269",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "soft launch",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "She posted his shoes in her story—classic soft launch. They’re definitely dating.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-315ec98baf8db6011319d8ff",
+        "term": "aura points",
+        "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "definition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "normalizedDefinition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "315ec98baf8db6011319d8ff",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura points",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“ [Aura points](https://www.tiktok.com/@mr_lindsay_sped/video/7379390300281654571?lang=en)” **measure your coolness or charisma**, and certain actions can either **boost** or **drop** your score.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-2c4fb380b6bb3f71baad311b",
+        "term": "soft life",
+        "targetMeaning": "A way of describing gentle, relaxed living.",
+        "definition": "A way of describing gentle, relaxed living.",
+        "normalizedDefinition": "A way of describing gentle, relaxed living.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "2c4fb380b6bb3f71baad311b",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "soft life",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "I’m done being a night nurse. I’m ready for my soft life.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-7e62b63f0954162fa6e2a266",
+        "term": "yassify",
+        "targetMeaning": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+        "definition": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+        "normalizedDefinition": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "7e62b63f0954162fa6e2a266",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "yassify",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang - Wikipedia",
+            "quote": "To \"yassify\" something is to apply several beauty filters to a picture using FaceApp",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-99cc528bf2851159d362add2",
+        "term": "ball knowledge",
+        "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "definition": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "normalizedDefinition": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "99cc528bf2851159d362add2",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "ball knowledge",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T20:06:27.191Z",
+        "lastCollectedAt": "2026-11-18T20:06:27.191Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      },
+      {
+        "senseId": "normalized-1dfaca65e1a3f642561272a8",
+        "term": "aura farming",
+        "targetMeaning": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+        "definition": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+        "normalizedDefinition": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+        "normalizationModel": "openai/gpt-6-luna",
+        "sourceCandidateId": "1dfaca65e1a3f642561272a8",
+        "sourceDataset": "firecrawl",
+        "sourceDatasetTerm": "aura farming",
+        "sourceRelationship": "source-backed-normalized-unreviewed",
+        "sourceEvidenceStatus": "literal-excerpt-unreviewed",
+        "sources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ],
+        "firstSeenAt": "2026-11-18T21:07:25.297Z",
+        "lastCollectedAt": "2026-11-18T21:07:25.297Z",
+        "reviewStatus": "normalized-unreviewed",
+        "playable": true
+      }
+    ],
+    "references": [
+      {
+        "senseId": "normalized-1a21de9a5dbed74bed69c34f",
+        "term": "winter arc",
+        "targetMeaning": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+        "sourceCandidateId": "1a21de9a5dbed74bed69c34f",
+        "normalizedDefinition": "A period of intense discipline and self-improvement in the last months of the year, often focused on goals such as fitness or academics.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Winter arc** _—_A period of intense discipline and self-improvement during the last few months of the year, focusing on goals like fitness or academics before the new year.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-e0713d49aa02d870a302b5d2",
+        "term": "soft-blocking irl",
+        "targetMeaning": "Avoiding someone in person without directly confronting them.",
+        "sourceCandidateId": "e0713d49aa02d870a302b5d2",
+        "normalizedDefinition": "Avoiding someone in person without directly confronting them.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Soft-Blocking IRL**— Avoiding someone in real life (IRL) without direct confrontation.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-942c1bf225135a87df10257d",
+        "term": "situationship",
+        "targetMeaning": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+        "sourceCandidateId": "942c1bf225135a87df10257d",
+        "normalizedDefinition": "A romantic or flirtatious relationship without clear labels, commitment, or expectations.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "We’re not dating… it’s more of a situationship.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-af52358408d5342669bd0848",
+        "term": "spiral posting",
+        "targetMeaning": "Rapid, emotional social media posting during distress.",
+        "sourceCandidateId": "af52358408d5342669bd0848",
+        "normalizedDefinition": "Rapid, emotional social media posting during distress.",
+        "referenceSources": [
+          {
+            "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+            "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+            "quote": "**Spiral Posting**— Rapid, emotional social media posting during distress.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-c715ca9c136395695cc34269",
+        "term": "soft launch",
+        "targetMeaning": "A subtle or quiet reveal, usually of a relationship or project.",
+        "sourceCandidateId": "c715ca9c136395695cc34269",
+        "normalizedDefinition": "A subtle or quiet reveal, usually of a relationship or project.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "She posted his shoes in her story—classic soft launch. They’re definitely dating.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-315ec98baf8db6011319d8ff",
+        "term": "aura points",
+        "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "sourceCandidateId": "315ec98baf8db6011319d8ff",
+        "normalizedDefinition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+        "referenceSources": [
+          {
+            "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+            "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+            "quote": "“ [Aura points](https://www.tiktok.com/@mr_lindsay_sped/video/7379390300281654571?lang=en)” **measure your coolness or charisma**, and certain actions can either **boost** or **drop** your score.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-2c4fb380b6bb3f71baad311b",
+        "term": "soft life",
+        "targetMeaning": "A way of describing gentle, relaxed living.",
+        "sourceCandidateId": "2c4fb380b6bb3f71baad311b",
+        "normalizedDefinition": "A way of describing gentle, relaxed living.",
+        "referenceSources": [
+          {
+            "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+            "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+            "quote": "I’m done being a night nurse. I’m ready for my soft life.",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-7e62b63f0954162fa6e2a266",
+        "term": "yassify",
+        "targetMeaning": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+        "sourceCandidateId": "7e62b63f0954162fa6e2a266",
+        "normalizedDefinition": "To apply several beauty filters to an image, using FaceApp or similar editing.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang - Wikipedia",
+            "quote": "To \"yassify\" something is to apply several beauty filters to a picture using FaceApp",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-99cc528bf2851159d362add2",
+        "term": "ball knowledge",
+        "targetMeaning": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "sourceCandidateId": "99cc528bf2851159d362add2",
+        "normalizedDefinition": "Niche or uncommon knowledge, often involving pop-culture references.",
+        "referenceSources": [
+          {
+            "url": "https://en.wikipedia.org/wiki/Glossary_of_2020s_slang",
+            "title": "Glossary of 2020s slang",
+            "quote": "ball knowledge | niche or uncommon knowledge, usually niche references, often in pop culture.",
+            "collectedAt": "2026-11-18T20:06:27.191Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9feb04fd0e0083e85a53402c0821de2c9b6b5dd2df1ffc19dde9502f180429b0"
+          }
+        ]
+      },
+      {
+        "senseId": "normalized-1dfaca65e1a3f642561272a8",
+        "term": "aura farming",
+        "targetMeaning": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+        "sourceCandidateId": "1dfaca65e1a3f642561272a8",
+        "normalizedDefinition": "Deliberately acting or moving to look effortlessly cool, often with an implication that the effort is being mocked.",
+        "referenceSources": [
+          {
+            "url": "https://bamfuzzle.com/blog/2026-internet-slang-terms-explained/",
+            "title": "14 Internet Slang Terms of 2026, Actually Explained",
+            "quote": "“Aura farming” describes deliberately acting or moving in a way designed to look effortlessly cool",
+            "collectedAt": "2026-11-18T21:07:25.297Z",
+            "collectionMethod": "firecrawl",
+            "contentSha256": "9917e2caa6dfad063db44c52264bca731b8c0058ab084398c2259d02a71dfc5d"
+          }
+        ]
+      }
+    ],
+    "assignments": [
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q1",
+        "senseId": "normalized-1a21de9a5dbed74bed69c34f",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q2",
+        "senseId": "normalized-e0713d49aa02d870a302b5d2",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q3",
+        "senseId": "normalized-942c1bf225135a87df10257d",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q4",
+        "senseId": "normalized-af52358408d5342669bd0848",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q5",
+        "senseId": "normalized-c715ca9c136395695cc34269",
+        "difficulty": "easy"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q6",
+        "senseId": "normalized-315ec98baf8db6011319d8ff",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q7",
+        "senseId": "normalized-2c4fb380b6bb3f71baad311b",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q8",
+        "senseId": "normalized-7e62b63f0954162fa6e2a266",
+        "difficulty": "medium"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q9",
+        "senseId": "normalized-99cc528bf2851159d362add2",
+        "difficulty": "hard"
+      },
+      {
+        "questionId": "mixed-20261118t212002816z-03323723-9411-43c9-b36b-dae6b1a221eb-q10",
+        "senseId": "normalized-1dfaca65e1a3f642561272a8",
+        "difficulty": "hard"
+      }
+    ],
+    "parameters": {
+      "strategy": "unique-terms-first-v1",
+      "candidateCount": 10,
+      "availableDistinctTerms": 10,
+      "preferredUniqueTerms": 10,
+      "minimumDistinctTerms": 2,
+      "selectedDistinctTerms": 10,
+      "questionCount": 10,
+      "difficultyCounts": {
+        "easy": 5,
+        "medium": 3,
+        "hard": 2
+      }
+    }
+  }
+}

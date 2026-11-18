@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 2,
+  "packId": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e",
+  "generationSource": "llm",
+  "promptVersion": "mixed-v11",
+  "generatorModel": "anthropic/claude-haiku-5.5",
+  "generatedAt": "2026-11-18T21:16:48.374Z",
+  "referenceStatus": "normalized-unreviewed",
+  "datasetVersion": "firecrawl-normalized-d4179cbd1968a8bb0075780a",
+  "expertValidated": false,
+  "references": [
+    {
+      "senseId": "normalized-72d4202575ac535ff2f4201d",
+      "term": "doommaxxing",
+      "targetMeaning": "Leaning into pessimism or hopelessness as an identity.",
+      "sourceCandidateId": "72d4202575ac535ff2f4201d",
+      "normalizedDefinition": "Leaning into pessimism or hopelessness as an identity.",
+      "referenceSources": [
+        {
+          "url": "https://www.bark.us/blog/teen-text-speak-codes-every-parent-should-know/?srsltid=AYCX9vJKjQxGqGnOTP-r9tSi6k9d0XNo4zrRsuXw4EvVQqi2MFuzoOjA",
+          "title": "2026 Teen Slang & Text Codes Every Parent Must Know - Bark",
+          "quote": "**Doommaxxing**— Leaning into pessimism or hopelessness as an identity.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "6a1f2e6ccc33aa27fc0885cc330c4726dc54e1e1d023f88b13ba4d8b09651020"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-38187bf3d1912d9d8b1b77a6",
+      "term": "coded",
+      "targetMeaning": "Having or embodying traits stereotypically associated with a particular group or type.",
+      "sourceCandidateId": "38187bf3d1912d9d8b1b77a6",
+      "normalizedDefinition": "Having or embodying traits stereotypically associated with a particular group or type.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "“Coded” **refers to someone or something that embodies specific traits**.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-1bd8e464b598874afa58bd54",
+      "term": "demure",
+      "targetMeaning": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+      "sourceCandidateId": "1bd8e464b598874afa58bd54",
+      "normalizedDefinition": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "Being “demure” is about **being mindful, subtle, and not doing too much**.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-315ec98baf8db6011319d8ff",
+      "term": "aura points",
+      "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+      "sourceCandidateId": "315ec98baf8db6011319d8ff",
+      "normalizedDefinition": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "“ [Aura points](https://www.tiktok.com/@mr_lindsay_sped/video/7379390300281654571?lang=en)” **measure your coolness or charisma**, and certain actions can either **boost** or **drop** your score.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-6bcec05364ceeb294877d30e",
+      "term": "be so for real",
+      "targetMeaning": "A playful but pointed way to call out something unbelievable or over-the-top.",
+      "sourceCandidateId": "6bcec05364ceeb294877d30e",
+      "normalizedDefinition": "A playful but pointed way to call out something unbelievable or over-the-top.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "“Be so for real” is a **playful yet pointed way to call out a moment that feels unbelievable or over-the-top**.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-a179230eac303fdf429c5e17",
+      "term": "chat",
+      "targetMeaning": "A casual way to address an audience or group, like “everyone” or “guys.”",
+      "sourceCandidateId": "a179230eac303fdf429c5e17",
+      "normalizedDefinition": "A casual way to address an audience or group, like “everyone” or “guys.”",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "Here, “chat” **refers to a fourth person**, similar to “guys” or “everyone.”",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-f503422bc65cc3c5ff57aea4",
+      "term": "for the plot",
+      "targetMeaning": "Doing something bold or absurd to add spontaneity and excitement to life.",
+      "sourceCandidateId": "f503422bc65cc3c5ff57aea4",
+      "normalizedDefinition": "Doing something bold or absurd to add spontaneity and excitement to life.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "“for the plot” **means to do bold (and sometimes absurd) things to add spice and spontaneity to your life**.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-9dfb1c5655e745a161601dcf",
+      "term": "caught a vibe",
+      "targetMeaning": "Felt a good mood or connection.",
+      "sourceCandidateId": "9dfb1c5655e745a161601dcf",
+      "normalizedDefinition": "Felt a good mood or connection.",
+      "referenceSources": [
+        {
+          "url": "https://www.ohla.com/blog/tiktok-slang-in-2025/",
+          "title": "Top 25 TikTok Slang Terms in 2025 - OHLA Blog",
+          "quote": "We caught a vibe at the beach last night.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "0d2d99ffe023f7fed69a3cdab248119934285af98177084dfaeee085ec5b2f7e"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-92a97dd1c287d3f945b899a0",
+      "term": "bones day",
+      "targetMeaning": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+      "sourceCandidateId": "92a97dd1c287d3f945b899a0",
+      "normalizedDefinition": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+      "referenceSources": [
+        {
+          "url": "https://www.ubiquitousinfluence.com/post/tiktok-slang",
+          "title": "The Ultimate Glossary of TikTok Slang for 2025 - UBIQUITOUS",
+          "quote": "if Noodle stayed up, it was a **“bones day” — meaning a good day to go and be productive.**",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "11df0c4344b9729715487b372e87d60c6c295b6955bc4a138cda7fa96f9d156f"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-2f9b9ecd013763d04b2b4d0e",
+      "term": "brainrot",
+      "targetMeaning": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+      "sourceCandidateId": "2f9b9ecd013763d04b2b4d0e",
+      "normalizedDefinition": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+      "referenceSources": [
+        {
+          "url": "https://promova.com/blog/brainrot-slang",
+          "title": "Brainrot Slang Meaning: Gen Z & Gen Alpha Brainrot Words A–Z ...",
+          "quote": "Brain rot (or brainrot) is a viral internet slang term used to describe the feeling of mental overload or “mush brain” after consuming too much fast, low-effort online content.",
+          "collectedAt": "2026-11-18T21:07:25.297Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "664f262624dd1d0927943182defd5af76617cae0beac27f379edaf620949e32b"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q1",
+      "senseId": "normalized-72d4202575ac535ff2f4201d",
+      "slang": "doommaxxing",
+      "targetMeaning": "Leaning into pessimism or hopelessness as an identity.",
+      "difficulty": "easy",
+      "contextId": "ctx-personal-weather-01",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@rae_writes",
+      "post": {
+        "displayName": "Rae Writes",
+        "handle": "@rae_writes",
+        "hashtag": "#FictionalMoment",
+        "content": "Forecast says sunny, but I'm still bracing for a storm. Lost my umbrella, missed the bus, and I'm sure the week will be a disaster. Honestly, doommaxxing is my full-time job now.",
+        "comments": [
+          {
+            "handle": "@jules_k",
+            "text": "Hope the bus at least showed up today.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "Wait, is doommaxxing a new morning workout routine people do before school?",
+      "question": "What does the slang mean in this post?",
+      "options": [
+        "Leaning into pessimism or hopelessness as an identity.",
+        "Sharing old photos to celebrate a friend's birthday.",
+        "Overthinking small decisions until a plan falls apart.",
+        "Checking the forecast constantly before going outside."
+      ],
+      "correctIndex": 0,
+      "explanation": "Doommaxxing describes treating pessimism or hopelessness as a personal identity, which the post shows through its constant expectation of disaster.",
+      "replyTexts": [
+        "I think doommaxxing means you've decided being pessimistic and hopeless is basically who you are, so you lean into it.",
+        "I figured doommaxxing means sharing old photos to celebrate a friend's birthday, like a nostalgic throwback post.",
+        "I took doommaxxing to mean overthinking every small choice until the plan falls apart, like getting stuck in your head.",
+        "My guess is doommaxxing means checking the forecast nonstop before stepping outside, just to stay safe from rain."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q2",
+      "senseId": "normalized-38187bf3d1912d9d8b1b77a6",
+      "slang": "coded",
+      "targetMeaning": "Having or embodying traits stereotypically associated with a particular group or type.",
+      "difficulty": "easy",
+      "contextId": "ctx-education-project-02",
+      "contextCategory": "education",
+      "questionTarget": "reply",
+      "targetHandle": "@benchside",
+      "post": {
+        "displayName": "Lila Notes",
+        "handle": "@lilalistens",
+        "hashtag": "#GroupProjectLife",
+        "content": "Our group project got three revisions and the presentation still ran long. Honestly, we need a quieter team next time.",
+        "comments": [
+          {
+            "handle": "@benchside",
+            "text": "Those three in the back were so coded, always matching hoodies and sharing the same inside jokes.",
+            "avatarId": "ben"
+          }
+        ],
+        "avatarId": "lila"
+      },
+      "questionComment": "Wait, @benchside, what do you mean by coded? Is that a secret programming language?",
+      "question": "What does the slang mean in the reply from @benchside?",
+      "options": [
+        "Written in a secret programming language only experts can read.",
+        "Hidden behind a private account that blocks new followers.",
+        "Having or embodying traits stereotypically associated with a particular group or type.",
+        "Gossiping about classmates in a way that others overhear."
+      ],
+      "correctIndex": 2,
+      "explanation": "Coded here means having traits stereotypically linked to a group or type, such as matching hoodies and shared inside jokes.",
+      "replyTexts": [
+        "I figured coded meant something written in a secret programming language, like a puzzle only experts can read.",
+        "I thought coded meant someone who keeps their account private and blocks new followers, so they're hard to reach.",
+        "To me, coded means someone clearly shows the typical traits people link with a certain group or type.",
+        "I took coded to mean talking about classmates where others can overhear, like sneaky gossip in the hallway."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q3",
+      "senseId": "normalized-1bd8e464b598874afa58bd54",
+      "slang": "demure",
+      "targetMeaning": "Mindful, subtle, and restrained in how one acts or presents oneself.",
+      "difficulty": "easy",
+      "contextId": "ctx-dinner-party-03",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@ariatwork",
+      "post": {
+        "displayName": "Aria at Work",
+        "handle": "@ariatwork",
+        "hashtag": "#DinnerPartyNotes",
+        "content": "Wore a simple dress to the dinner party, kept my voice low, and only had one dessert. Being demure is my whole vibe tonight.",
+        "comments": [
+          {
+            "handle": "@miramoments",
+            "text": "Your dress was perfect, and that one dessert was a strong choice.",
+            "avatarId": "mira"
+          }
+        ],
+        "avatarId": "ari"
+      },
+      "questionComment": "Wait, is demure a kind of fabric the dress was made from?",
+      "question": "What does the slang mean in this post?",
+      "options": [
+        "Dressing up loudly to get noticed at every event.",
+        "Mindful, subtle, and restrained in how one acts or presents oneself.",
+        "Speaking quickly to show off how much you know.",
+        "Acting shy and avoiding eye contact with new people."
+      ],
+      "correctIndex": 1,
+      "explanation": "Demure means being mindful, subtle, and restrained, which matches the low-key dress, quiet voice, and single dessert.",
+      "replyTexts": [
+        "I think demure means dressing loudly so people notice you, which is the opposite of what you described.",
+        "To me, demure means being careful and understated in how you act or present yourself, not making a scene.",
+        "I read demure as talking fast to show how much you know, so you sound smart in the room.",
+        "My guess is demure means acting shy and avoiding eye contact, like hiding from people you just met."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q4",
+      "senseId": "normalized-315ec98baf8db6011319d8ff",
+      "slang": "aura points",
+      "targetMeaning": "A playful measure of someone’s coolness or charisma, which actions can increase or decrease.",
+      "difficulty": "easy",
+      "contextId": "ctx-match-save-04",
+      "contextCategory": "sports",
+      "questionTarget": "reply",
+      "targetHandle": "@naya",
+      "post": {
+        "displayName": "Town Loop",
+        "handle": "@townloop",
+        "hashtag": "#MatchNightMoments",
+        "content": "Pulled off a last-minute save in the match, and the whole crowd started cheering.",
+        "comments": [
+          {
+            "handle": "@naya",
+            "text": "You're up 500 aura points after that save, no question.",
+            "avatarId": "naya"
+          }
+        ],
+        "avatarId": "townloop"
+      },
+      "questionComment": "Wait, @naya, do you earn aura points by collecting stadium tickets or something?",
+      "question": "What does the slang mean in the reply from @naya?",
+      "options": [
+        "A ranking of which fans bought the most merchandise this season.",
+        "A penalty score given to players for committing fouls.",
+        "A sports bonus paid to teams for filling the stadium.",
+        "A playful measure of someone’s coolness or charisma, which actions can increase or decrease."
+      ],
+      "correctIndex": 3,
+      "explanation": "Aura points are a playful coolness score, so a dramatic save would boost it, which is why the comment jokes about gaining points.",
+      "replyTexts": [
+        "I figured aura points is a ranking of which fans bought the most merch this season, like a loyalty leaderboard.",
+        "I think aura points are penalties players get for fouls, so they lose them when they break rules on the pitch.",
+        "Maybe aura points are bonuses teams earn for filling up the stadium, like an attendance reward.",
+        "I'd say aura points are a silly way to track how cool or charming someone seems, and small moves can raise or lower it."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q5",
+      "senseId": "normalized-6bcec05364ceeb294877d30e",
+      "slang": "be so for real",
+      "targetMeaning": "A playful but pointed way to call out something unbelievable or over-the-top.",
+      "difficulty": "easy",
+      "contextId": "ctx-coupon-05",
+      "contextCategory": "opinion",
+      "questionTarget": "post",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Just Jo",
+        "handle": "@justjo",
+        "hashtag": "#CoffeeCounterDrama",
+        "content": "Someone tried to pay for a three dollar coffee with a yacht discount coupon, and I just thought, be so for real.",
+        "comments": [
+          {
+            "handle": "@matchdaychat",
+            "text": "Lol, you should have said it out loud.",
+            "avatarId": "matchday"
+          }
+        ],
+        "avatarId": "jo"
+      },
+      "questionComment": "Wait, is be so for real the name of a new coffee shop downtown?",
+      "question": "What does the slang mean in this post?",
+      "options": [
+        "A playful but pointed way to call out something unbelievable or over-the-top.",
+        "A friendly greeting used to start a conversation with a stranger.",
+        "A request for someone to speak more honestly about their feelings.",
+        "A phrase praising a plan that is neatly organized and easy to follow."
+      ],
+      "correctIndex": 0,
+      "explanation": "Be so for real playfully calls out a moment that feels unbelievable, here a yacht discount coupon offered for a small coffee.",
+      "replyTexts": [
+        "To me, be so for real is a playful way to point out that something is totally unbelievable or over the top.",
+        "I'd guess be so for real is just a casual hello you say to a stranger to start talking.",
+        "Maybe be so for real is a way to ask someone to be honest about how they feel, like a deep check-in.",
+        "I read be so for real as praise for a plan that's neatly organized and simple to follow for everyone."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q6",
+      "senseId": "normalized-a179230eac303fdf429c5e17",
+      "slang": "chat",
+      "targetMeaning": "A casual way to address an audience or group, like “everyone” or “guys.”",
+      "difficulty": "medium",
+      "contextId": "ctx-group-trip-06",
+      "contextCategory": "friends",
+      "questionTarget": "reply",
+      "targetHandle": "@lilalistens",
+      "post": {
+        "displayName": "Mira Moments",
+        "handle": "@miramoments",
+        "hashtag": "#TripPrep",
+        "content": "Lots of updates on the group trip. The bus leaves at seven, pack light, and bring snacks for the ride.",
+        "comments": [
+          {
+            "handle": "@lilalistens",
+            "text": "Hey chat, who has the spare charger? My phone is at five percent.",
+            "avatarId": "lila"
+          }
+        ],
+        "avatarId": "mira"
+      },
+      "questionComment": "Wait, @lilalistens, is chat someone on the trip who has the charger?",
+      "question": "What does the slang mean in the reply from @lilalistens?",
+      "options": [
+        "A private message sent to one person to ask for help.",
+        "A spoken pause used to think before answering a question.",
+        "A casual way to address an audience or group, like “everyone” or “guys.”",
+        "A short reply meaning yes, used when agreeing quickly."
+      ],
+      "correctIndex": 2,
+      "explanation": "Chat is used to address the whole group, like everyone or guys, as in the charger request sent to the trip members.",
+      "replyTexts": [
+        "I thought chat meant a private message to one person asking for help, like a direct note just for you.",
+        "I figured chat was a filler sound people say while they think, like um, before answering a question.",
+        "Oh, chat is just a casual way to speak to the whole group, the same way people say everyone or guys.",
+        "I took chat as a quick yes you say when agreeing fast, like a short affirmative reply in conversation."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q7",
+      "senseId": "normalized-f503422bc65cc3c5ff57aea4",
+      "slang": "for the plot",
+      "targetMeaning": "Doing something bold or absurd to add spontaneity and excitement to life.",
+      "difficulty": "medium",
+      "contextId": "ctx-open-mic-07",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@deasays",
+      "post": {
+        "displayName": "Dea Says",
+        "handle": "@deasays",
+        "hashtag": "#WeekendEnergy",
+        "content": "I signed up for a surprise karaoke open mic, painted my nails neon, and ordered the spiciest noodles just for the plot.",
+        "comments": [
+          {
+            "handle": "@campusfeed",
+            "text": "Pics or it didn't happen.",
+            "avatarId": "campus"
+          }
+        ],
+        "avatarId": "dea"
+      },
+      "questionComment": "Wait, is for the plot a mystery novel genre I haven't heard of?",
+      "question": "What does the slang mean in this post?",
+      "options": [
+        "Following a strict schedule to finish all tasks on time.",
+        "Doing something bold or absurd to add spontaneity and excitement to life.",
+        "Telling a long story to keep an audience entertained.",
+        "Writing a detailed plan for a future trip or project."
+      ],
+      "correctIndex": 1,
+      "explanation": "For the plot means doing bold or absurd things to add spontaneity, and the karaoke signup, neon nails, and spicy noodles all fit that.",
+      "replyTexts": [
+        "I think for the plot means following a strict schedule so every task gets finished on time, with nothing spontaneous at all.",
+        "To me, for the plot means doing something bold or a bit ridiculous just to add excitement and surprise to your life.",
+        "I figured for the plot means telling a long story so the audience stays entertained the whole time, like a storyteller.",
+        "My guess is for the plot means writing a detailed plan for a future trip or project so nothing gets missed."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q8",
+      "senseId": "normalized-9dfb1c5655e745a161601dcf",
+      "slang": "caught a vibe",
+      "targetMeaning": "Felt a good mood or connection.",
+      "difficulty": "medium",
+      "contextId": "ctx-lake-walk-08",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@justjo",
+      "post": {
+        "displayName": "Skye Notes",
+        "handle": "@skye_notes",
+        "hashtag": "#EveningWalk",
+        "content": "Long walk by the lake this evening. Nobody talked much, just watched the sun drop behind the trees.",
+        "comments": [
+          {
+            "handle": "@justjo",
+            "text": "We totally caught a vibe on that walk, the lake was calm and we both felt it.",
+            "avatarId": "jo"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Wait, @justjo, did you catch a cold from the lake or something?",
+      "question": "What does the slang mean in the reply from @justjo?",
+      "options": [
+        "Got distracted by a funny video and lost track of time.",
+        "Noticed a strange sound coming from the lake area.",
+        "Felt sick after being outside too long in the cold.",
+        "Felt a good mood or connection."
+      ],
+      "correctIndex": 3,
+      "explanation": "Caught a vibe means felt a good mood or connection, which fits the calm, quiet walk both people enjoyed together.",
+      "replyTexts": [
+        "I think caught a vibe means I got sidetracked watching a funny video and forgot the time, so it's distraction.",
+        "I'd guess caught a vibe means I heard something weird near the lake, like a strange noise I couldn't place.",
+        "I figured caught a vibe means I got sick from being outside too long in the cold air by the water.",
+        "To me, caught a vibe means we both felt a happy mood and an easy connection during the walk together."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q9",
+      "senseId": "normalized-92a97dd1c287d3f945b899a0",
+      "slang": "bones day",
+      "targetMeaning": "A good day to be productive, based on whether a pug stays standing after being helped up.",
+      "difficulty": "hard",
+      "contextId": "ctx-proposal-09",
+      "contextCategory": "work",
+      "questionTarget": "post",
+      "targetHandle": "@rivermorning",
+      "post": {
+        "displayName": "River Morning",
+        "handle": "@rivermorning",
+        "hashtag": "#MorningReset",
+        "content": "Helped Noodle up off the rug and he stayed standing for five whole seconds. Dishes done, inbox empty, and I'm finally sending the proposal I've been dodging. Total bones day.",
+        "comments": [
+          {
+            "handle": "@matchdaychat",
+            "text": "Noodle is a legend, five whole seconds is huge.",
+            "avatarId": "matchday"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Wait, is bones day a holiday for napping dogs, or what do you mean?",
+      "question": "What does the slang mean in this post?",
+      "options": [
+        "A day when pets are most playful and energetic at home.",
+        "A day off reserved for resting, based on how tired someone feels.",
+        "A good day to be productive, based on whether a pug stays standing after being helped up.",
+        "A lucky day to start a new project after a quick good omen."
+      ],
+      "correctIndex": 2,
+      "explanation": "Bones day marks a good day to be productive, judged by whether the pug Noodle stays standing, and the post ties that to finishing work.",
+      "replyTexts": [
+        "I think bones day means a day when pets are at their most playful and energetic at home, like a puppy zoomies day.",
+        "I figured bones day is a rest day, so you take it easy and recover because you feel tired.",
+        "To me, bones day is a good day to get stuff done, judged by whether my pug can stand up after I help him.",
+        "I took bones day to mean a lucky start for a new project, like a good omen for whatever you begin next."
+      ]
+    },
+    {
+      "id": "mixed-20261118t211511508z-d54cd461-8a8d-4207-88ed-7b5fe0642c2e-q10",
+      "senseId": "normalized-2f9b9ecd013763d04b2b4d0e",
+      "slang": "brainrot",
+      "targetMeaning": "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+      "difficulty": "hard",
+      "contextId": "ctx-screen-time-10",
+      "contextCategory": "personal",
+      "questionTarget": "reply",
+      "targetHandle": "@sam",
+      "post": {
+        "displayName": "Quiet Mara",
+        "handle": "@quietmara",
+        "hashtag": "#ScreenTimeCheck",
+        "content": "Spent the whole afternoon scrolling short clips and I can't remember a single thing I watched. Feeling slow and blank.",
+        "comments": [
+          {
+            "handle": "@sam",
+            "text": "I'm completely brainrot after that clip marathon, can't form full sentences.",
+            "avatarId": "sam"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "Wait, @sam, is brainrot a kind of cold medicine you took?",
+      "question": "What does the slang mean in the reply from @sam?",
+      "options": [
+        "A slang term for a rushed snack order eaten while gaming late at night.",
+        "A slang term for mental overload or a “mush brain” feeling attributed to consuming too much fast, low-effort online content; it can also describe absurd, meme-driven content or language.",
+        "A slang term for a friend group that argues constantly over meme trends.",
+        "A slang term for a clumsy attempt at humor that falls completely flat online."
+      ],
+      "correctIndex": 1,
+      "explanation": "Brainrot describes mental overload or a mush-brain feeling after too much fast, low-effort content, which matches the blank, slow feeling in the post.",
+      "replyTexts": [
+        "I think brainrot means a rushed snack you eat late at night while gaming, like a quick treat before bed.",
+        "To me brainrot is that foggy, mushy feeling after too much fast, low-effort content, plus absurd memes.",
+        "I took brainrot to mean a group of friends who always fight about meme trends online.",
+        "I figured brainrot was a joke that totally flops online, like a clumsy attempt at humor nobody laughs at."
+      ]
+    }
+  ]
+}
