@@ -68,6 +68,11 @@ internal fun mergePublishedFeed(
     val posts = sessions.flatMap { it.toFeedPosts() }
     val byId = posts.associateBy { it.thread.id }
     require(byId.size == posts.size) { "Duplicate published pack/question identity" }
+    val ambiguous = posts.filter { displayAnswerOptions(it.thread.options) == null }
+    if (ambiguous.isNotEmpty()) {
+        throw ApiException("${ambiguous.size} question(s) have ambiguous answer choices: " +
+            ambiguous.joinToString { it.thread.id })
+    }
     return if (savedOrder.size == posts.size && savedOrder.toSet() == byId.keys)
         savedOrder.map { byId.getValue(it) }
     else posts.shuffled(random)

@@ -448,11 +448,16 @@ fun SlangverseApp() {
                                 }
                                 feedProgress.decisions.forEach { result ->
                                     val post = feedProgress.posts.first { it.thread.id == result.caseId }
+                                    val displayedOptions = displayAnswerOptions(post.thread.options)
                                     PaperCard {
                                         EditorialEyebrow(post.context?.label?.uppercase() ?: "OTHER CONTEXT")
                                         Text(post.thread.post, fontSize = 13.sp)
-                                        Text("Your reply: ${post.thread.options[result.selectedIndex]}", fontSize = 12.sp)
-                                        Text("Meaning here: ${post.thread.meaning}", fontSize = 12.sp)
+                                        if (displayedOptions == null) {
+                                            Text("This question has ambiguous answer choices and is unavailable for review.", fontSize = 12.sp)
+                                        } else {
+                                            Text("Your reply: ${displayedOptions[result.selectedIndex]}", fontSize = 12.sp)
+                                            Text("Meaning here: ${displayedOptions[post.thread.correctIndex]}", fontSize = 12.sp)
+                                        }
                                         Text(if (result.correct) "✓ Meaning matched · +${result.xpEarned} XP"
                                             else "↺ Review · +${result.xpEarned} XP", color = WarmEditorial.CoralDeep)
                                         Text(post.thread.explanation, fontSize = 12.sp)
@@ -675,6 +680,7 @@ private fun EditorialHeader(
     initiallyExpanded: Boolean = true
 ) {
     val thread = post.thread
+    val displayedOptions = displayAnswerOptions(thread.options)
     val story = SocialNarrative.story(post)
     var expanded by rememberSaveable(thread.id) { mutableStateOf(initiallyExpanded) }
     var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
@@ -709,24 +715,26 @@ private fun EditorialHeader(
             verticalArrangement = Arrangement.spacedBy(9.dp)) {
             StoryIdentity("@confuseduser", onProfile, "Replying to ${post.termTargetHandle ?: thread.handle} · help explain", avatarSize = 32.dp)
             Text(thread.questionComment, fontSize = 15.sp, lineHeight = 22.sp)
-            if (answeredIndex == null && !replying) {
+            if (displayedOptions == null) {
+                Text("This question has ambiguous answer choices and is unavailable for practice.", fontSize = 12.sp)
+            } else if (answeredIndex == null && !replying) {
                 TextButton(onClick = { replying = true }) { Text("Reply with the meaning ↓") }
             } else if (answeredIndex == null) {
                 Text("Choose your interpretation", fontSize = 11.sp, color = WarmEditorial.Muted)
-                thread.options.forEachIndexed { index, option ->
+                displayedOptions.forEachIndexed { index, option ->
                     EditorialOption(index, option, selected == index, false, false) { selected = index }
                 }
                 EditorialPrimary("POST REPLY →", enabled = selected in thread.options.indices) { onAnswer(selected) }
             } else {
-                StoryPlayerReply(thread.options[answeredIndex])
+                StoryPlayerReply(displayedOptions[answeredIndex])
             }
         }
-        if (answeredIndex != null) {
+        if (answeredIndex != null && displayedOptions != null) {
             val correct = answeredIndex == thread.correctIndex
             LearningFeedbackPanel(
                 correct = correct,
                 xp = if (correct) ContextDetectiveGame.CORRECT_XP else ContextDetectiveGame.PRACTICE_XP,
-                meaning = thread.meaning, explanation = thread.explanation,
+                meaning = displayedOptions[thread.correctIndex], explanation = thread.explanation,
                 sourceLabel = post.sourceLabel)
             if (story.followUp.isNotBlank()) {
                 HorizontalDivider(color = WarmEditorial.Sand)

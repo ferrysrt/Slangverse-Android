@@ -167,11 +167,13 @@ fun RemoteTrainingPanel() {
                     try {
                         if (questionMode == "github") {
                             val downloaded = GithubStaticBank(githubRoot).fetchSession(selectedSenseId)
+                            val candidate = validateTrainingSession(downloaded.session)
                             staticAnswers = downloaded.answers
-                            session = downloaded.session
+                            session = candidate
                         } else {
+                            val candidate = validateTrainingSession(SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId))
                             staticAnswers = emptyMap()
-                            session = SlangverseApi(serverUrl, clientToken).createSession(selectedSenseId)
+                            session = candidate
                         }
                         currentIndex = 0; selectedIndex = -1; pinnedClueIndex = -1; questionOpened = false; result = null; finished = false; expandedReplies = true
                         correctCount = 0; combo = 0; highestCombo = 0; totalXp = 0
@@ -281,11 +283,15 @@ fun RemoteTrainingPanel() {
             }
             Text("“" + current.questionComment.ifBlank { current.question } + "”",
                 fontSize = 18.sp, lineHeight = 25.sp, color = Night)
-            if (!questionOpened && result == null) {
+            val displayedOptions = displayAnswerOptions(current.options)
+            if (displayedOptions == null) {
+                Text("This question has ambiguous answer choices and is unavailable for practice.", fontSize = 12.sp)
+                Action("START NEW SESSION") { session = null; error = null }
+            } else if (!questionOpened && result == null) {
                 Action("REPLY WITH THE MEANING ↓") { questionOpened = true }
             } else {
     Text("YOUR REPLY · CHOOSE THE MEANING", color = CoralPink, fontSize = 11.sp, fontWeight = FontWeight.Bold)
-    current.options.forEachIndexed { index, option ->
+    displayedOptions.forEachIndexed { index, option ->
         val isSelected = selectedIndex == index
         val isCorrect = result?.correctIndex == index
         Surface(
@@ -302,7 +308,7 @@ fun RemoteTrainingPanel() {
     if (result != null) {
         LearningFeedbackPanel(
             correct = result!!.correct, xp = result!!.xpEarned,
-            meaning = current.options.getOrElse(result!!.correctIndex) { "See the explanation below" },
+            meaning = displayedOptions.getOrElse(result!!.correctIndex) { "See the explanation below" },
             explanation = result!!.explanation,
             sourceLabel = "Question source: ${activeSession.source}. " +
                 if (activeSession.source.startsWith("github-static"))

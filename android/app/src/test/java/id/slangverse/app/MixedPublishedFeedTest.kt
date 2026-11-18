@@ -254,6 +254,27 @@ class MixedPublishedFeedTest {
         assertEquals(refreshed, mergePublishedFeed(sessions, Random(84), listOf("stale-id")))
     }
 
+    @Test fun ambiguousChoicesRejectTheWholeReplacementWithCountAndKeepPreviousProgress() {
+        val valid = parse()
+        val questions = valid.session.questions.toMutableList()
+        questions[0] = questions[0].copy(options = listOf("in serious trouble", "in serious trouble.", "doing well", "taking a break"))
+        questions[1] = questions[1].copy(options = listOf("He said “yes.”", "He said “yes”", "Other", "Third"))
+        val invalid = valid.copy(session = valid.session.copy(questions = questions))
+        val oldPosts = mergePublishedFeed(listOf(valid), Random(42))
+        var progress = FeedPracticeProgress(posts = oldPosts).answer(oldPosts.first().thread.id, 0)
+        val before = progress
+        val error = assertThrows(ApiException::class.java) {
+            progress = progress.copy(posts = mergePublishedFeed(listOf(invalid), Random(42)))
+        }
+        assertTrue(error.message!!.contains("2"))
+        assertTrue(error.message!!.contains("q1"))
+        assertTrue(error.message!!.contains("q2"))
+        assertEquals(before, progress)
+        assertEquals(oldPosts.size, progress.posts.size)
+        assertEquals(1, progress.completedCount)
+        assertEquals(10, mergePublishedFeed(listOf(valid), Random(42), oldPosts.map { it.thread.id }).size)
+    }
+
     @Test fun collidingRawIdsAcrossPacksAndHashRevisionsCannotShareAnswersOrFarmXp() {
         val first = parse()
         val secondJson = fixture().put("packId", "mixed-second")

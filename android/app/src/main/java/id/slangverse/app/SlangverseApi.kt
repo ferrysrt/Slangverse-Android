@@ -59,6 +59,14 @@ data class ApiGrade(
     val totalXp: Int
 )
 
+internal fun validateTrainingSession(session: ApiSession): ApiSession {
+    val invalid = session.questions.filter { it.options.size != 4 || displayAnswerOptions(it.options) == null }
+    if (invalid.isNotEmpty()) throw ApiException(
+        "${invalid.size} question(s) have ambiguous answer choices: " + invalid.joinToString { it.id }
+    )
+    return session
+}
+
 class ApiException(message: String) : Exception(message)
 
 class SlangverseApi(rawBaseUrl: String, private val clientToken: String = "") {

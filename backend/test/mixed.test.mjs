@@ -232,6 +232,22 @@ test('versioned disk prompt preserves exact inputs, includes safety constraints,
   assert.equal(messages[1].content.includes('{{INPUT_JSON}}'), false);
 });
 
+test('mixed-v6 renders the targeted distractor requirements with verbatim references', () => {
+  const value = fixture();
+  const messages = createMixedPrompt({packId: value.pack.packId, ...value});
+  const prompt = messages[1].content;
+  assert.match(prompt, /All options must be grammatically similar/);
+  assert.match(prompt, /Distractors must be relevant to the context and reflect plausible misunderstandings/);
+  assert.match(prompt, /Never create a second defensible correct option/);
+  assert.match(prompt, /Four distinct, similarly concise options: exactly one is the targetMeaning VERBATIM/);
+  assert.match(prompt, /Copy the reference string character-for-character into BOTH `targetMeaning` and the one correct option/);
+  assert.match(prompt, /Return ONE strict JSON object with a questions array of exactly 10 questions/);
+  assert.deepEqual(promptInput(messages).references, value.references);
+  assert.deepEqual(promptInput(messages).assignments, value.assignments);
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v6');
+  assert.equal(value.pack.promptVersion, 'mixed-v6');
+});
+
 test('template markers and replacement syntax in source text remain exact untrusted data', () => {
   const value = fixture();
   const source = value.references[0].referenceSources[0];
@@ -736,7 +752,7 @@ test('an invalid addition or corrupt catalog leaves the existing catalog bytes u
 test('prompt versions are archived and the active template binds the term to one surface', () => {
   const read = version => readFileSync(new URL(`../prompts/${version}.txt`, import.meta.url), 'utf8');
   const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3'), v4 = read('mixed-v4'), v5 = read('mixed-v5');
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v5');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v6');
   assert.ok(v1.includes('A natural short post using the exact slang term'));
   assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
   assert.ok(v3.includes('It MUST contain the exact slang term verbatim, in addition to its presence in post.content'));
