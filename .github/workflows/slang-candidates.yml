@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       query:
-        description: 'Optional Firecrawl search query (one search, up to ten pages)'
+        description: 'Optional Firecrawl search query; the default embeds the current UTC date and names tiktok/twitter/instagram (one search, 20 results, at least 10 pages required)'
         type: string
         default: ''
   schedule:

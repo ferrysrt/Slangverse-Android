@@ -7,7 +7,8 @@ import {join} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {
-  collectDocuments, validateDiscoveries, extractCandidates, refreshDataset, SEARCH_URL
+  collectDocuments, validateDiscoveries, extractCandidates, refreshDataset, SEARCH_URL,
+  buildRecentSlangQuery, MIN_DOCUMENTS, SEARCH_RESULT_LIMIT
 } from '../dataset/refresh.mjs';
 import {candidateIdFor, mergeCandidates, candidateTableCsv} from '../src/datasetProvenance.mjs';
 
@@ -20,6 +21,12 @@ const docs = [
   {url: 'https://example.net/glossary', title: 'Another source', collectedAt: capturedAt,
     markdown: 'An independent glossary.\n' + secondQuote}
 ];
+// A refresh is only attempted from a full capture, so the default mock answers
+// with the floor of ten distinct pages; docs[0] and docs[1] stay the cited ones.
+const fullDocs = [...docs, ...Array.from({length: 10 - docs.length}, (_, index) => ({
+  url: 'https://example.org/filler-' + index, title: 'Filler ' + index, collectedAt: capturedAt,
+  markdown: 'An extra independent glossary page.\n' + quote
+}))];
 const hash = text => createHash('sha256').update(text).digest('hex');
 const jsonResponse = data => ({ok: true, status: 200, json: async () => data});
 const item = (overrides = {}) => ({
@@ -32,7 +39,7 @@ const normalizerResponse = (items, model = 'provider/actual-model') => ({
   model, choices: [{message: {content: JSON.stringify({items})}}]
 });
 
-function refreshMock(items, pages = docs) {
+function refreshMock(items, pages = fullDocs) {
   const calls = [];
   return {
     calls,
@@ -86,7 +93,7 @@ const refreshOptions = {
   normalizerModel: 'configured/model'
 };
 
-test('Firecrawl uses one v2 search, limit 10, markdown, and the explicit query', async () => {
+test('Firecrawl uses one v2 search, newest-first sort, twenty results, markdown, and the explicit query', async () => {
   const calls = [];
   const before = Date.now();
   const found = await collectDocuments({key: 'fake', query: 'recent slang', fetchImpl: async (url, options) => {
@@ -99,7 +106,7 @@ test('Firecrawl uses one v2 search, limit 10, markdown, and the explicit query',
   assert.equal(calls.length, 1);
   assert.equal(calls[0].url, SEARCH_URL);
   assert.deepEqual(calls[0].body, {
-    query: 'recent slang', limit: 10, sources: [{type: 'web'}],
+    query: 'recent slang', limit: SEARCH_RESULT_LIMIT, tbs: 'sbd:1', sources: [{type: 'web'}],
     scrapeOptions: {formats: [{type: 'markdown'}]}
   });
   assert.equal(found.length, 2);
@@ -108,6 +115,54 @@ test('Firecrawl uses one v2 search, limit 10, markdown, and the explicit query',
     assert.equal(doc.contentSha256, hash(docs[index].markdown));
     assert.equal(doc.collectionMethod, 'firecrawl');
   }
+});
+
+test('the default query carries the current UTC date and the named social platforms', async () => {
+  const query = buildRecentSlangQuery(new Date('2026-11-19T23:59:00.000Z'));
+  assert.equal(query,
+    'latest internet slang November 19 2026 tiktok twitter instagram viral terms -site:youtube.com');
+  const previous = process.env.FIRECRAWL_QUERY;
+  delete process.env.FIRECRAWL_QUERY;
+  const bodies = [];
+  try {
+    await collectDocuments({key: 'fake', fetchImpl: async (url, options) => {
+      bodies.push(JSON.parse(options.body));
+      return jsonResponse({data: {web: fullDocs}});
+    }});
+  } finally {
+    if (previous !== undefined) process.env.FIRECRAWL_QUERY = previous;
+  }
+  assert.match(bodies[0].query, /^latest internet slang [A-Z][a-z]+ \d{1,2} \d{4} tiktok twitter instagram viral terms -site:youtube\.com$/);
+  assert.equal(bodies[0].limit, SEARCH_RESULT_LIMIT);
+  assert.equal(bodies[0].tbs, 'sbd:1');
+});
+
+test('a capture below the ten-page floor fails before the normalizer and changes no files', async t => {
+  const {jsonPath, csvPath} = await temporaryOutput(t);
+  const original = JSON.stringify({version: 2, entries: validate([item()]).entries});
+  await writeFile(jsonPath, original);
+  await writeFile(csvPath, 'kept companion\r\n');
+  const thin = fullDocs.slice(0, MIN_DOCUMENTS - 1);
+  let calls = 0;
+  await assert.rejects(refreshDataset({...refreshOptions, outputUrl: jsonPath, fetchImpl: async url => {
+    calls++; assert.equal(url, SEARCH_URL);
+    return jsonResponse({data: {web: thin}});
+  }}), /insufficient-scraped-documents/);
+  assert.equal(calls, 1);
+  assert.equal(await readFile(jsonPath, 'utf8'), original);
+  assert.equal(await readFile(csvPath, 'utf8'), 'kept companion\r\n');
+});
+
+test('invalid and duplicate results inside twenty are skipped so ten pages still survive', async () => {
+  const pages = [
+    {url: 'file:///nope', markdown: quote}, {url: 'https://empty.example', markdown: '   '},
+    ...Array.from({length: 13}, (_, index) => ({...docs[0], url: 'https://dup.example/' + index})),
+    ...Array.from({length: 5}, (_, index) => ({...docs[0], url: 'https://valid.example/' + index}))
+  ];
+  const found = await collectDocuments({key: 'fake', fetchImpl: async () => jsonResponse({data: {web: pages}})});
+  assert.equal(found.length, 10);
+  assert.equal(new Set(found.map(doc => doc.url)).size, 10);
+  assert.ok(found.every(doc => doc.url.startsWith('https://dup.example/') || doc.url.startsWith('https://valid.example/')));
 });
 
 test('collection discards invalid and duplicate pages and never exceeds ten documents', async () => {
@@ -500,7 +555,7 @@ test('HTTP and network failures do not retry either paid service', async t => {
       let calls = 0;
       const fetchImpl = async url => {
         calls++;
-        if (stage === 'openrouter' && url === SEARCH_URL) return jsonResponse({data: {web: docs}});
+        if (stage === 'openrouter' && url === SEARCH_URL) return jsonResponse({data: {web: fullDocs}});
         if (kind === 'http') return {ok: false, status: 429};
         if (kind === 'timeout') throw Object.assign(Error('timeout'), {name: 'TimeoutError'});
         throw Error('unavailable');

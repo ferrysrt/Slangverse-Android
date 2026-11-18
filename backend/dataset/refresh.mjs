@@ -7,6 +7,13 @@ import {auditedPost, auditDocuments, auditJson, createDatasetRun, safeFailureCod
 
 export {candidateIdFor, mergeCandidates, candidateTableCsv, wholeTermPattern} from '../src/datasetProvenance.mjs';
 export const SEARCH_URL = 'https://api.firecrawl.dev/v2/search';
+// One paid search request, but enough results that a few login-walled or empty
+// pages cannot push the capture below the floor the normalizer needs.
+export const SEARCH_RESULT_LIMIT = 20;
+export const MIN_DOCUMENTS = 10;
+export const MAX_DOCUMENTS = 10;
+// Sort newest first instead of relying on the provider's default ranking.
+export const RECENCY_TBS = 'sbd:1';
 const NORMALIZER_URL = 'https://openrouter.ai/api/v1/chat/completions';
 export const DEFAULT_AUDIT_DIR = new URL('../dataset-runs/', import.meta.url);
 const whitespace = value => String(value ?? '').replace(/\s+/g, ' ').trim();
@@ -24,19 +31,27 @@ async function post(fetchImpl, url, key, payload, {timeoutMs = 50000, auditDir} 
     timeoutMs, auditDir});
 }
 
+// The current UTC date is part of the query text itself, so a scheduled run
+// asks for this month/day/year instead of a timeless "latest slang" string.
+export function buildRecentSlangQuery(now = new Date()) {
+  const month = now.toLocaleString('en-US', {month: 'long', timeZone: 'UTC'});
+  return 'latest internet slang ' + month + ' ' + now.getUTCDate() + ' ' + now.getUTCFullYear() +
+    ' tiktok twitter instagram viral terms -site:youtube.com';
+}
+
 export async function collectDocuments({key, fetchImpl = fetch, query = process.env.FIRECRAWL_QUERY, auditDir} = {}) {
   if (!key) throw Error('missing-firecrawl-key');
-  const date = new Date();
-  const month = date.toLocaleString('en-US', {month: 'long', timeZone: 'UTC'});
   const response = await post(fetchImpl, SEARCH_URL, key, {
-    query: query || ('latest internet slang ' + month + ' ' + date.getUTCFullYear() + ' -site:tiktok.com -site:youtube.com'),
-    limit: 10, sources: [{type: 'web'}], scrapeOptions: {formats: [{type: 'markdown'}]}
-  }, {auditDir});
+    query: query || buildRecentSlangQuery(),
+    limit: SEARCH_RESULT_LIMIT, tbs: RECENCY_TBS,
+    sources: [{type: 'web'}], scrapeOptions: {formats: [{type: 'markdown'}]}
+  }, {timeoutMs: 120000, auditDir});
   if (!Array.isArray(response?.data?.web)) throw Error('invalid-firecrawl-v2-response');
   // All pages are captured in this single search response, not at a model-claimed time.
   const collectedAt = new Date().toISOString();
   const docs = [], seen = new Set();
-  for (const row of response.data.web.slice(0, 10)) {
+  for (const row of response.data.web.slice(0, SEARCH_RESULT_LIMIT)) {
+    if (docs.length >= MAX_DOCUMENTS) break;
     const url = String(row?.url ?? '').trim();
     const markdown = typeof row?.markdown === 'string' ? row.markdown : '';
     if (!validUrl(url) || url.length > 2000 || !markdown.trim() || seen.has(url)) continue;
@@ -188,7 +203,10 @@ export async function refreshDataset({
     const previous = await previousEntries(outputUrl);
     const docs = await collectDocuments({key: firecrawlKey, fetchImpl, query, auditDir: run?.auditDir});
     await auditDocuments(run?.auditDir, docs);
-    console.log('[dataset] collected document count: ' + docs.length);
+    console.log('[dataset] collected document count: ' + docs.length + ' (minimum ' + MIN_DOCUMENTS + ')');
+    // A thin crawl must not overwrite a healthy dataset. Fail loudly instead of
+    // silently refreshing from a handful of surviving pages.
+    if (docs.length < MIN_DOCUMENTS) throw Error('insufficient-scraped-documents');
     const extracted = await extractCandidates({docs, key: normalizerKey, model: normalizerModel, fetchImpl,
       auditDir: run?.auditDir});
     console.log('[dataset] accepted candidates: ' + extracted.entries.length + '; rejected: ' + extracted.rejected.length);

@@ -2,7 +2,7 @@
 
 ## Current source of truth
 
-`backend/data/discovered_candidates.json` is the canonical active dataset; `backend/data/discovered_candidates.csv` is its inspectable source table. The initial dataset has **16 entries** carried forward from the recorded collection. A fresh refresh is pending; migration/normalization does not count as new collection or evidence of current popularity.
+`backend/data/discovered_candidates.json` is the canonical active dataset; `backend/data/discovered_candidates.csv` is its inspectable source table. The dataset currently holds **22 entries**: 16 carried forward from the recorded initial collection and 6 added by later refreshes. A fresh refresh is pending; migration/normalization does not count as new collection or evidence of current popularity.
 
 Eligible entries automatically become playable `normalized-<candidateId>` senses with `reviewStatus: normalized-unreviewed`. **There is no manual review or sense-review mapping gate in the current pipeline.** Eligibility is a provenance contract, not semantic approval. `backend/dataset/normalized.mjs` builds these references, and `backend/src/catalog.mjs` exposes them as `firecrawl-normalized`.
 
@@ -10,7 +10,7 @@ The frozen 200-row `backend/data/slangfeed_snapshot.csv`, `sense_reviews.json` a
 
 ## Refresh and cost boundary
 
-**Actions → Refresh normalized slang dataset** (`.github/workflows/slang-candidates.yml`) supports manual dispatch and runs weekly **Monday 03:00 UTC / 10:00 WIB** (`0 3 * * 1`). Each run is bounded to one Firecrawl v2 search of up to ten pages and one OpenRouter normalization request, without retries. Provider charges and quotas apply. Search results are not a representative usage survey.
+**Actions → Refresh normalized slang dataset** (`.github/workflows/slang-candidates.yml`) supports manual dispatch and runs weekly **Monday 03:00 UTC / 10:00 WIB** (`0 3 * * 1`). Each run is bounded to one Firecrawl v2 search returning up to twenty results with `tbs: sbd:1` (newest first) and one OpenRouter normalization request, without retries. The default query embeds the current UTC month, day and year and names tiktok, twitter and instagram, so a scheduled run asks for that day's slang rather than a timeless "latest slang" string. A run whose capture yields fewer than **ten surviving pages** fails with `insufficient-scraped-documents` before the normalizer and leaves the previous dataset untouched. Provider charges and quotas apply. Search results are not a representative usage survey.
 
 Credentials stay in `FIRECRAWL_API_KEY` and `OPENROUTER_API_KEY` repository secrets; optional `OPENROUTER_MODEL` defaults to `openai/gpt-6-luna`. Captured web text is sent to the normalizer as untrusted data, with an 80,000-character prompt bundle limit. No provider key belongs in Android, public JSON or experiment logs.
 

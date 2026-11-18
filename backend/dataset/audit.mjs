@@ -10,7 +10,8 @@ export const AUDIT_LIMITS = Object.freeze({
 const directoryPath = value => value instanceof URL ? fileURLToPath(value) : String(value);
 const knownErrors = new Set([
   'missing-firecrawl-key', 'missing-normalizer-config', 'invalid-existing-candidates',
-  'invalid-firecrawl-v2-response', 'no-scraped-documents', 'normalizer-empty-output',
+  'invalid-firecrawl-v2-response', 'no-scraped-documents', 'insufficient-scraped-documents',
+  'normalizer-empty-output',
   'normalizer-json-invalid', 'normalizer-shape-invalid', 'no-evidence-backed-candidates',
   'dataset-audit-write-failed', 'dataset-output-write-failed', 'dataset-refresh-failed'
 ]);
