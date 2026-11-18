@@ -32,18 +32,26 @@ class AnswerOptionDisplayTest {
         }
     }
 
-    @Test fun publishedMixedQ1RemovesPeriodInsideClosingQuoteWithoutChangingOptions() {
+    @Test fun everyPublishedPackOptionSurvivesDisplayNormalisation() {
+        // Any published pack is exercised: the previous version pinned one pack ID and its Q1 text,
+        // so publishing a newer pack broke a test that has nothing to do with the published data.
         val bank = java.io.File(System.getProperty("slangverse.repositoryRoot"), "question-bank")
         val catalog = parseBankCatalog(java.io.File(bank, "catalog.json").readText(), requireLlm = true)
-        val pack = catalog.packs.single { it.packId == "mixed-20261117t194601433z-8ca3b36c-8d92-4c8f-90d8-e61c571d6597" }
-        val session = parseMixedBankSession(java.io.File(bank, "packs/${pack.packId}.json").readText(), pack.packId, pack.sha256)
-        val question = session.session.questions.single { it.id == "${pack.packId}-q1" }
-        val original = question.options.toList()
-        val labels = requireNotNull(display(question.options))
-        val quoted = "An inside joke or niche reference, short for “if you know, you know.”"
-        assertTrue(original.contains(quoted))
-        assertEquals("An inside joke or niche reference, short for “if you know, you know”", labels[original.indexOf(quoted)])
-        assertEquals(original, question.options)
+        assertTrue("expected at least one published mixed pack", catalog.packs.isNotEmpty())
+        catalog.packs.forEach { pack ->
+            val session = parseMixedBankSession(java.io.File(bank, "packs/${pack.packId}.json").readText(),
+                pack.packId, pack.sha256)
+            session.session.questions.forEach { question ->
+                val original = question.options.toList()
+                val labels = requireNotNull(display(original)) { "Display collision in ${question.id}" }
+                assertEquals(original.size, labels.size)
+                assertTrue("${question.id}: ${labels}", labels.none { it.endsWith('.') })
+                // The graded option stays the verbatim reference meaning; only the label loses the period.
+                assertEquals(original, question.options)
+                assertEquals(original[session.answers.getValue(question.id).correctIndex],
+                    question.options[session.answers.getValue(question.id).correctIndex])
+            }
+        }
     }
 
     @Test fun otherPunctuationInternalPeriodsAndWhitespaceRemainSafe() {
