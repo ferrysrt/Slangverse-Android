@@ -2,7 +2,7 @@
 
 ## Scope and evidence rule
 
-The implemented mixed baseline is **`mixed-v4`**, stored in `backend/prompts/mixed-v4.txt` (with v1/v2/v3 retained) and rendered by `backend/src/mixedQuestions.mjs`. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology, expert content validation or successful live generation. Earlier single-sense smoke runs are separate exploratory evidence, not this baseline.
+The active generation template is **`mixed-v7`**, stored in `backend/prompts/mixed-v7.txt`; prior versions remain archived. The existing published mixed pack was generated with `mixed-v5`, not v7. Product intent is accepted by the user; this is not a claim of supervisor-approved methodology or expert content validation. Earlier single-sense smoke runs are separate exploratory evidence.
 
 Report only observations backed by actual attempt files. A future prompt revision needs its own saved template, actual runs and comparable metrics before it can be described as evaluated or better.
 
@@ -56,8 +56,8 @@ These stable IDs are emitted by `evaluateMixedResponse`; report them individuall
 
 All nine are necessary but insufficient for publication. Additional checks include:
 
-- **Reference integrity:** supplied normalized sense IDs, exact term/meaning, correct option equal to the reference, slang present in the post, assignment match and use of all selected references, with at least two distinct terms. References preserve source evidence, not semantic endorsement.
-- **Existing lexical question rules:** valid question-comment shape and literal target/option leakage checks in the question comment and ordinary replies. These do not reliably detect semantic spoilers.
+- **Reference integrity:** supplied normalized sense IDs, exact term/meaning, correct option equal to the reference, slang present in the designated post or reply, assignment match and use of all selected references, with at least two distinct terms. References preserve source evidence, not semantic endorsement.
+- **Existing lexical question rules:** valid question-comment shape and literal option leakage checks in the question comment and ordinary replies. Version-specific rules govern term mentions. These do not reliably detect semantic spoilers.
 - **Deterministic social guardrails:** fictional handle/avatar shape, approved bundled avatar IDs, no player-avatar impersonation, image payload fields, URLs/contact strings or explicit answer-index leaks in checked surfaces. Prompt prohibitions on harmful content are not a semantic safety classifier.
 - **Provider completion and pack integrity:** returned model/completion metadata, pack origin/status/schema, embedded references, immutable IDs and catalogue hashes. Provider completion is a separate gate, not a tenth item in the critical-nine list.
 
@@ -119,6 +119,16 @@ A real `mixed-v3` attempt exists: [publisher run 44144857363](https://github.com
 The important interpretation is that **the nine critical checks alone would have accepted all six packs**; the reference-integrity, existing-question and completion gates are what stopped five of them. Do not report a "100% valid generation rate" from the critical-nine subset.
 
 A single valid pack from six attempts is a real observation, not a rate: with a three-attempt budget the first multi-attempt run published on its second try and stopped early. The bounded revision loop stopped at `mixed-v5`; the remaining hypothesis (deterministic term placement, disclosed as a repair) is recorded but **not implemented**.
+
+## Proposed revision — conversational comments in mixed-v7
+
+Editorial review of the published mixed-v5 pack found that `questionComment` often reads like a reading-comprehension test rather than a social reply, for example “Which personal quality is being praised in the post?” This is an editorial observation, not a participant study. The `mixed-v6` prompt asks for natural comments but also prohibits quoting the term, and still requires exactly one occurrence in social surfaces.
+
+`mixed-v7` asks for varied, context-specific, conversational confusion and allows quoting the slang or a playful literal misunderstanding, e.g. “What do you mean by cooked? Are you cooking food or something?” The example is instructional, not generated evidence or a mandatory template. It permits repeated occurrences across post, ordinary replies and question comment, while requiring the declared target post or uniquely identified reply to contain the term. It retains the other answer-integrity and non-disclosure rules; deterministic checks cannot ensure naturalness or detect every semantic spoiler. Earlier prompt versions and historical packs remain unchanged.
+
+**Deployment compatibility:** Android builds predating v7 retain the exactly-once parser and can reject a v7 pack with repeated occurrences. Release the compatible Android client before publishing such a pack; the unchanged currently published v5 pack remains compatible. This change alone does not rewrite existing questions or visually restyle comments.
+
+**Hypothesis, not a measured outcome:** this revision may make the interaction feel more like a genuine conversation. It changes both the prompt and the occurrence contract, so comparisons against v5/v6 must disclose this confound. No real v7 provider call, output or evaluation is established by this change; fixture tests are not a generation experiment. Evaluate actual outputs for target clarity, naturalness, answer leakage and distractor quality, recording all attempts and using an approved paid budget before claiming any improvement.
 
 ## Revision and interpretation protocol
 

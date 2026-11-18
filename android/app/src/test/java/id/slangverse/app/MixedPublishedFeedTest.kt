@@ -145,6 +145,39 @@ class MixedPublishedFeedTest {
         }
     }
 
+    @Test fun mixedV7AllowsRepeatedTermsButRequiresAnUnambiguousTargetSurface() {
+        val v7 = fixture().put("promptVersion", "mixed-v7")
+        val q = v7.getJSONArray("questions").getJSONObject(0)
+        val post = q.getJSONObject("post")
+        val comments = post.getJSONArray("comments")
+        comments.getJSONObject(0).put("text", "You are cooked, cooked!")
+        q.put("questionComment", "Why cooked?")
+        assertEquals("post", parse(v7).session.questions.first().questionTarget)
+
+        q.put("questionTarget", "reply").put("targetHandle", "@friend")
+            .put("question", "What does cooked mean in @friend's reply?")
+        assertEquals("@friend", parse(v7).toFeedPosts().first().termTargetHandle)
+        fun invalid(change: (JSONObject) -> Unit) {
+            val copy = JSONObject(v7.toString())
+            change(copy.getJSONArray("questions").getJSONObject(0))
+            assertThrows(ApiException::class.java) { parse(copy) }
+        }
+        invalid { it.put("targetHandle", "") }
+        invalid { it.put("targetHandle", "@missing") }
+        invalid { it.put("questionTarget", "thread") }
+        invalid { it.getJSONObject("post").getJSONArray("comments").getJSONObject(0).put("text", "No term here") }
+        invalid { it.getJSONObject("post").getJSONArray("comments").put(JSONObject().put("handle", "@friend").put("text", "Different text")) }
+        invalid { it.getJSONObject("post").getJSONArray("comments").put(JSONObject().put("handle", "@FRIEND").put("text", "Different text")) }
+        invalid { it.put("question", "What does cooked mean in @friend_extra's reply?") }
+        invalid { it.put("questionTarget", "post").put("targetHandle", "@student").put("question", "What does this poster mean?") }
+        invalid { it.put("questionTarget", "post").put("targetHandle", "@friend").put("question", "What does cooked mean in this post?") }
+        invalid { it.put("questionTarget", "post").put("targetHandle", "@student").put("question", "What does cooked mean in this post?")
+            .getJSONObject("post").put("content", "No term here") }
+        // Older mixed packs retain their exact-once rule, despite the same data being valid in v7.
+        v7.put("promptVersion", "mixed-v5")
+        assertThrows(ApiException::class.java) { parse(v7) }
+    }
+
     @Test fun mixedRejectsDuplicateQuestionsReferencesAndIncompleteProvenance() {
         reject {
             val questions = it.getJSONArray("questions")

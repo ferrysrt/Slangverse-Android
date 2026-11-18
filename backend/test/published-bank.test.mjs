@@ -82,7 +82,7 @@ function mixedFixture(){
   questions:Array.from({length:10},(_,i)=>{
    const q=sessions[i%2].questions[i],reference=references[i%2];
    return {...q,id:`${packId}-q${i+1}`,senseId:reference.senseId,contextCategory:MIXED_CONTEXT_CATEGORIES[i%9],
-    questionTarget:'post',question:`What does '${reference.term}' mean in this post?`,
+    questionTarget:'post',targetHandle:q.post.handle,question:`What does '${reference.term}' mean in this post?`,
     options:q.options.map((option,index)=>index===q.correctIndex?reference.targetMeaning:option)};
   })};
 }

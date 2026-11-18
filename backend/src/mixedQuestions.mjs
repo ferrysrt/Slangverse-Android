@@ -4,7 +4,7 @@ import {validateQuestion, validateTermTarget, normalize} from './game.mjs';
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v6';
+export const MIXED_PROMPT_VERSION = 'mixed-v7';
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'
@@ -136,14 +136,14 @@ function requiredFields(q) {
     Array.isArray(q.options) && Object.hasOwn(q, 'correctIndex');
 }
 
-function existingQuestionErrors(q) {
+function existingQuestionErrors(q, promptVersion) {
   // The legacy validator assumes options.some exists in its leakage checks.
   // Reject malformed options separately instead of letting hostile JSON crash evaluation.
-  try { return validateQuestion(object(q) ? {...q, options: Array.isArray(q.options) ? q.options : []} : q); }
+  try { return validateQuestion(object(q) ? {...q, options: Array.isArray(q.options) ? q.options : []} : q, {promptVersion}); }
   catch { return ['invalid-question-shape']; }
 }
 
-function socialErrors(q) {
+function socialErrors(q, promptVersion) {
   if (!requiredFields(q)) return ['social-shape'];
   const errors = [];
   const actors = [q.post, ...q.post.comments];
@@ -172,13 +172,14 @@ function socialErrors(q) {
     if (answers.some(answer => visible.includes(` ${answer} `))) errors.push(`${name}-answer-leakage`);
   }
   const hints = [q.post.content, q.questionComment, ...q.post.comments.map(c => c.text)];
-  if (hints.some(s => /\b(?:correct\s+(?:answer|option)|answer\s+(?:is|index)|correctIndex)\s*[:=]?\s*(?:[a-d0-3]\b)/i.test(s)))
+  if (hints.some(s => /\b(?:correct\s+(?:answer|option)|answer\s+(?:is|index)|correctIndex)\s*[:=]?\s*(?:[a-d0-3]\b)/i.test(s) ||
+    (promptVersion === 'mixed-v7' && /\bis\s+(?:the\s+)?answer\s*[:=]?\s*[a-d0-3]\b/i.test(s))))
     errors.push('answer-index-leakage');
   return errors;
 }
 
 /** Nine explicit syntax/contract checks plus provenance, existing rules and social guardrails. */
-export function evaluateMixedResponse(raw, {references, assignments} = {}) {
+export function evaluateMixedResponse(raw, {references, assignments, promptVersion = MIXED_PROMPT_VERSION} = {}) {
   let parsed, parsedOk = false;
   if (typeof raw === 'string') {
     try { parsed = JSON.parse(raw); parsedOk = true; } catch { /* Never strip fences or extract a JSON substring. */ }
@@ -213,8 +214,8 @@ export function evaluateMixedResponse(raw, {references, assignments} = {}) {
     else {
       used.add(ref.senseId);
       if (text(ref.term)) terms.add(termKey(ref.term));
-      // The term belongs to exactly one social surface, and the declared target must name it.
-      referenceErrors.push(...validateTermTarget(q).map(error => `${i}:${error}`));
+      // Apply the target contract belonging to the response's prompt version.
+      referenceErrors.push(...validateTermTarget(q, {promptVersion}).map(error => `${i}:${error}`));
     }
     if (assignments && (q?.senseId !== assignments[i]?.senseId || q?.difficulty !== assignments[i]?.difficulty ||
         q?.id !== assignments[i]?.questionId)) referenceErrors.push(`${i}:assignment-mismatch`);
@@ -222,9 +223,9 @@ export function evaluateMixedResponse(raw, {references, assignments} = {}) {
   if (used.size !== byId.size) referenceErrors.push('unused-reference');
   if (terms.size < 2) referenceErrors.push('mixed-needs-two-distinct-terms');
   add('reference-integrity', hasQuestions && referenceErrors.length === 0, referenceErrors);
-  const existingErrors = questions.flatMap((q, i) => existingQuestionErrors(q).map(error => `${i}:${error}`));
+  const existingErrors = questions.flatMap((q, i) => existingQuestionErrors(q, promptVersion).map(error => `${i}:${error}`));
   add('existing-question-rules', hasQuestions && questions.length > 0 && existingErrors.length === 0, existingErrors);
-  const safetyErrors = questions.flatMap((q, i) => socialErrors(q).map(error => `${i}:${error}`));
+  const safetyErrors = questions.flatMap((q, i) => socialErrors(q, promptVersion).map(error => `${i}:${error}`));
   add('social-safety', hasQuestions && questions.length > 0 && safetyErrors.length === 0, safetyErrors);
   return {valid: checks.every(check => check.passed), checks,
     errors: checks.filter(check => !check.passed).flatMap(check => check.errors)};
@@ -238,7 +239,7 @@ export function validatePublishedMixedPack(pack, {packId = pack?.packId, expecte
     throw Error('invalid-published-mixed-pack');
   if (expectedReferences && JSON.stringify(pack.references) !== JSON.stringify(expectedReferences))
     throw Error('mixed-reference-provenance-mismatch');
-  const validation = evaluateMixedResponse(JSON.stringify({questions: pack.questions}), {references: pack.references});
+  const validation = evaluateMixedResponse(JSON.stringify({questions: pack.questions}), {references: pack.references, promptVersion: pack.promptVersion});
   if (!validation.valid) throw Error('invalid-published-mixed-questions');
   return pack;
 }

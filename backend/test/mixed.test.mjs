@@ -39,7 +39,7 @@ function questionsFor({references, assignments}) {
         content: `My ${ref.term} moment after the group chat went quiet.`, avatarId: 'guest_01',
         comments: [{handle: '@fictional_reply', text: 'The group chat went quiet for a minute.', avatarId: 'guest_02'}]},
       questionComment: `Wait, what does ${ref.term} mean here?`,
-      questionTarget: 'post',
+      questionTarget: 'post', targetHandle: `@fictional_${i}`,
       question: `What does '${ref.term}' mean in this post?`, options, correctIndex: i % 4,
       explanation: `This fixture uses ${ref.term} for ${ref.targetMeaning}.`
     };
@@ -232,7 +232,7 @@ test('versioned disk prompt preserves exact inputs, includes safety constraints,
   assert.equal(messages[1].content.includes('{{INPUT_JSON}}'), false);
 });
 
-test('mixed-v6 renders the targeted distractor requirements with verbatim references', () => {
+test('mixed-v7 renders the targeted distractor requirements with verbatim references', () => {
   const value = fixture();
   const messages = createMixedPrompt({packId: value.pack.packId, ...value});
   const prompt = messages[1].content;
@@ -240,12 +240,12 @@ test('mixed-v6 renders the targeted distractor requirements with verbatim refere
   assert.match(prompt, /Distractors must be relevant to the context and reflect plausible misunderstandings/);
   assert.match(prompt, /Never create a second defensible correct option/);
   assert.match(prompt, /Four distinct, similarly concise options: exactly one is the targetMeaning VERBATIM/);
-  assert.match(prompt, /Copy the reference string character-for-character into BOTH `targetMeaning` and the one correct option/);
+  assert.match(prompt, /Copy the reference string character-for-character into BOTH targetMeaning and the one correct option/);
   assert.match(prompt, /Return ONE strict JSON object with a questions array of exactly 10 questions/);
   assert.deepEqual(promptInput(messages).references, value.references);
   assert.deepEqual(promptInput(messages).assignments, value.assignments);
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v6');
-  assert.equal(value.pack.promptVersion, 'mixed-v6');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v7');
+  assert.equal(value.pack.promptVersion, 'mixed-v7');
 });
 
 test('template markers and replacement syntax in source text remain exact untrusted data', () => {
@@ -752,7 +752,7 @@ test('an invalid addition or corrupt catalog leaves the existing catalog bytes u
 test('prompt versions are archived and the active template binds the term to one surface', () => {
   const read = version => readFileSync(new URL(`../prompts/${version}.txt`, import.meta.url), 'utf8');
   const v1 = read('mixed-v1'), v2 = read('mixed-v2'), v3 = read('mixed-v3'), v4 = read('mixed-v4'), v5 = read('mixed-v5');
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v6');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v7');
   assert.ok(v1.includes('A natural short post using the exact slang term'));
   assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
   assert.ok(v3.includes('It MUST contain the exact slang term verbatim, in addition to its presence in post.content'));
@@ -780,7 +780,7 @@ function replyTargeted() {
   });
   return {...value, raw: JSON.stringify({questions: value.questions})};
 }
-const evaluate = value => evaluateMixedResponse(JSON.stringify({questions: value.questions}), {references: value.references});
+const evaluate = (value, promptVersion = 'mixed-v7') => evaluateMixedResponse(JSON.stringify({questions: value.questions}), {references: value.references, promptVersion});
 
 test('a reply-targeted term is valid and binds the question to that reply', () => {
   const result = evaluate(replyTargeted());
@@ -790,14 +790,16 @@ test('a reply-targeted term is valid and binds the question to that reply', () =
 test('the term must occur exactly once and the declared target must name that surface', () => {
   const both = replyTargeted();
   both.questions[0].post.content = `An ordinary post that still says ${both.questions[0].slang} once.`;
-  assert.ok(evaluate(both).errors.some(e => e.includes('term-presence')));
+  assert.ok(evaluate(both, 'mixed-v6').errors.some(e => e.includes('term-presence')));
+  assert.equal(evaluate(both).valid, true);
 
   const none = replyTargeted();
   none.questions[0].post.comments[0].text = 'Honestly, that was a strange thing to say.';
-  assert.ok(evaluate(none).errors.some(e => e.includes('term-presence')));
+  assert.ok(evaluate(none).errors.some(e => e.includes('term-target-mismatch')));
 
   const wrongTarget = replyTargeted();
   wrongTarget.questions[0].questionTarget = 'post';
+  wrongTarget.questions[0].targetHandle = wrongTarget.questions[0].post.handle;
   assert.ok(evaluate(wrongTarget).errors.some(e => e.includes('term-target-mismatch')));
 
   const wrongHandle = replyTargeted();
@@ -811,6 +813,37 @@ test('the term must occur exactly once and the declared target must name that su
   const badShape = replyTargeted();
   badShape.questions[0].questionTarget = 'thread';
   assert.ok(evaluate(badShape).errors.some(e => e.includes('term-target-shape')));
+});
+
+test('mixed-v7 targets a unique named surface, permits repeats and still blocks disclosures', () => {
+  const value = replyTargeted();
+  const q = value.questions[0];
+  q.post.content = `${q.slang} and ${q.slang} showed up in the post.`;
+  q.post.comments.push({handle: '@other', text: `I heard ${q.slang} too.`, avatarId: 'guest_03'});
+  q.questionComment = `Wait, what does ${q.slang} mean here?`;
+  assert.equal(evaluate(value).valid, true, JSON.stringify(evaluate(value).errors));
+  const pack = {...value.pack, questions: value.questions, promptVersion: 'mixed-v7'};
+  assert.doesNotThrow(() => validatePublishedMixedPack(pack));
+  assert.throws(() => validatePublishedMixedPack({...pack, promptVersion: 'mixed-v6'}), /invalid-published-mixed-questions/);
+  assert.ok(validateQuestion(q).includes('term-presence'));
+  assert.equal(validateQuestion(q, {promptVersion: 'mixed-v7'}).length, 0);
+  q.post.comments.push({handle: '@FICTIONAL_REPLY', text: 'Another reply.', avatarId: 'guest_03'});
+  assert.ok(evaluate(value).errors.some(e => e.includes('term-target-handle-ambiguous')));
+  q.post.comments.pop();
+  q.targetHandle = '@other';
+  q.post.comments[1].text = 'No slang in this reply.';
+  q.question = `What does it mean in @other's reply?`;
+  assert.ok(evaluate(value).errors.some(e => e.includes('term-target-mismatch')));
+  q.targetHandle = '@fictional_reply';
+  q.question = `What does it mean in @fictional_reply's reply?`;
+  q.questionComment = `Does ${q.slang} mean ${q.targetMeaning}?`;
+  assert.ok(evaluate(value).errors.some(e => e.includes('question-comment-leakage')));
+  q.questionComment = `Is ${q.slang} ${q.options.find(o => o !== q.targetMeaning)}?`;
+  assert.ok(evaluate(value).errors.some(e => e.includes('question-comment-leakage')));
+  q.questionComment = `Is the answer B for ${q.slang}?`;
+  assert.ok(evaluate(value).errors.some(e => e.includes('answer-index-leakage')));
+  delete q.targetHandle;
+  assert.ok(evaluate(value).errors.some(e => e.includes('term-target-handle')));
 });
 
 test('legacy questions without questionTarget keep only the exactly-once rule', () => {

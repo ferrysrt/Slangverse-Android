@@ -183,10 +183,11 @@ private fun parseStaticBankSession(
         throw ApiException("The question bank changed during download. Refresh to load its current version.")
     val pack = JSONObject(text)
     requireBankSchema(pack, if (mixed) 2 else 1)
+    val promptVersion = if (mixed) pack.requiredText("promptVersion") else ""
     if (mixed) {
         if (!validMixedPackId(identity) || pack.getString("packId") != identity)
             throw ApiException("GitHub package pack ID mismatch")
-        listOf("promptVersion", "generatorModel", "datasetVersion").forEach { pack.requiredText(it) }
+        listOf("generatorModel", "datasetVersion").forEach { pack.requiredText(it) }
         pack.requireTimestamp("generatedAt")
         if (pack.getBoolean("expertValidated")) throw ApiException("Mixed packs must remain explicitly unreviewed")
         if (pack.optString("referenceStatus") != "normalized-unreviewed")
@@ -247,7 +248,8 @@ private fun parseStaticBankSession(
             if (question.slang != reference.term || question.targetMeaning != reference.targetMeaning ||
                 question.options[idx] != reference.targetMeaning)
                 throw ApiException("Mixed question term, target meaning, or answer does not match its reference")
-            validateMixedTermTarget(question)
+            if (promptVersion == "mixed-v7") validateMixedV7TermTarget(question)
+            else validateMixedTermTarget(question)
         }
         if (answers.put(question.id, StaticAnswer(idx, explanation)) != null) {
             throw ApiException("Duplicate GitHub question ID")
@@ -344,6 +346,29 @@ private fun validateMixedTermTarget(question: ApiQuestion) {
             throw ApiException("Mixed question target handle does not match the slang reply")
         if (!questionText.contains(target.handle.lowercase(Locale.ROOT)))
             throw ApiException("Mixed question must name the reply it asks about")
+    }
+}
+
+/** V7 targets one named surface; other surfaces may repeat the same term. */
+private fun validateMixedV7TermTarget(question: ApiQuestion) {
+    if (question.targetHandle.isBlank()) throw ApiException("Mixed question requires a target handle")
+    val questionText = question.question.lowercase(Locale.ROOT)
+    when (question.questionTarget) {
+        "post" -> {
+            if (question.targetHandle != question.post.handle || termCount(question.post.content, question.slang) == 0)
+                throw ApiException("Mixed question target does not match the slang post")
+            if (!Regex("\\bpost\\b").containsMatchIn(questionText)) throw ApiException("Mixed question must name the post it asks about")
+        }
+        "reply" -> {
+            val targets = question.post.comments.filter { it.handle.equals(question.targetHandle, ignoreCase = true) }
+            if (targets.size != 1 || targets.single().handle != question.targetHandle) throw ApiException("Mixed question target reply handle is missing or ambiguous")
+            if (termCount(targets.single().text, question.slang) == 0)
+                throw ApiException("Mixed question target reply does not contain the slang")
+            val binding = Regex(Regex.escape(question.targetHandle) + "(?![a-z0-9_])")
+            if (!binding.containsMatchIn(question.question))
+                throw ApiException("Mixed question must name the reply it asks about")
+        }
+        else -> throw ApiException("Mixed question has no valid question target")
     }
 }
 

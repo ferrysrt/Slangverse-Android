@@ -74,8 +74,7 @@ export const mockPackage = difficulties.map((difficulty,i)=>({
 }));
 export const normalize = value => typeof value==='string' ? value.toLowerCase().replace(/[^a-z0-9 ]/g,' ').replace(/\s+/g,' ').trim() : '';
 
-// The slang term must appear in exactly one social surface: the post body or one reply,
-// exactly once in total. questionComment is the asking surface and is excluded.
+// Count occurrences in targetable social surfaces; questionComment is not a target.
 export function termSurfaces(q) {
   const term = normalize(q?.slang);
   const found = [];
@@ -97,12 +96,31 @@ export function termSurfaces(q) {
   return {term, found};
 }
 
-// Exactly one occurrence, and the declared question target must name the surface that carries it.
-// Legacy packs predate questionTarget: they keep the exactly-once rule, and their target is inferred
-// without a wording requirement. Mixed packs declare the target and must bind the question to it.
-export function validateTermTarget(q) {
+// Mixed-v7 binds an explicit target to a term-bearing surface; repetition is allowed.
+// Older packs retain the historical exactly-once rule and optional inferred target.
+export function validateTermTarget(q, {promptVersion} = {}) {
   const {term, found} = termSurfaces(q);
   if (!term) return ['term-target'];
+  if (promptVersion === 'mixed-v7') {
+    if (!['post', 'reply'].includes(q.questionTarget)) return ['term-target-shape'];
+    if (typeof q.targetHandle !== 'string' || !q.targetHandle.trim()) return ['term-target-handle'];
+    const errors = [];
+    if (q.questionTarget === 'post') {
+      if (q.targetHandle !== q.post?.handle) errors.push('term-target-handle-mismatch');
+      if (!found.some(surface => surface.target === 'post')) errors.push('term-target-mismatch');
+      if (!/\bpost\b/i.test(q.question ?? '')) errors.push('term-question-binding');
+    } else {
+      const comments = Array.isArray(q.post?.comments) ? q.post.comments : [];
+      const matches = comments.filter(c => typeof c?.handle === 'string' && c.handle.toLowerCase() === q.targetHandle.toLowerCase());
+      if (matches.length > 1) errors.push('term-target-handle-ambiguous');
+      else if (!matches.length || matches[0].handle !== q.targetHandle) errors.push('term-target-handle-mismatch');
+      else if (!found.some(surface => surface.target === 'reply' && surface.handle === q.targetHandle)) errors.push('term-target-mismatch');
+      const question = typeof q.question === 'string' ? q.question : '';
+      const escaped = q.targetHandle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (!new RegExp(`${escaped}(?![a-z0-9_])`).test(question)) errors.push('term-question-binding');
+    }
+    return errors;
+  }
   const total = found.reduce((n, surface) => n + surface.count, 0);
   if (total !== 1) return ['term-presence'];
   if (q.questionTarget === undefined) return [];
@@ -124,7 +142,7 @@ export function validateTermTarget(q) {
   return [...new Set(errors)];
 }
 
-export function validateQuestion(q){
+export function validateQuestion(q, {promptVersion} = {}){
   if(!q||typeof q!=='object'||Array.isArray(q))return ['not-object'];
   const errors=[];
   if(typeof q.id!=='string'||!q.id||typeof q.slang!=='string'||!q.slang)errors.push('question-identity');
@@ -138,11 +156,12 @@ export function validateQuestion(q){
     else{
       const text=normalize(v),meaning=normalize(q.targetMeaning);
       if((meaning&&text.includes(meaning))||
+         (promptVersion === 'mixed-v7' && normalize(q.explanation) && text.includes(normalize(q.explanation)))||
          q.options?.some(o=>{const opt=normalize(o);return opt&&text.includes(opt);}))
         errors.push('question-comment-leakage');
     }
   }
-  errors.push(...validateTermTarget(q));
+  errors.push(...validateTermTarget(q, {promptVersion}));
   if(!Array.isArray(q.options)||q.options.length!==4||q.options.some(o=>typeof o!=='string'||!normalize(o))||new Set(q.options.map(normalize)).size!==4)errors.push('options');
   if(!Number.isInteger(q.correctIndex)||q.correctIndex<0||q.correctIndex>3)errors.push('correct-index');
   // Lexical reference-key check only. This is NOT a semantic quality assessment.
@@ -159,11 +178,11 @@ export function validateQuestion(q){
   }
   return [...new Set(errors)];
 }
-export function validatePackage(pkg,{requireDistinctContexts=true}={}){
+export function validatePackage(pkg,{requireDistinctContexts=true,promptVersion}={}){
   if(!Array.isArray(pkg)||pkg.length!==10)return ['package-size'];
   const errors=[],counts={easy:0,medium:0,hard:0};
   for(const [index,q] of pkg.entries()){
-    errors.push(...validateQuestion(q).map(e=>`${index}:${e}`));
+    errors.push(...validateQuestion(q, {promptVersion}).map(e=>`${index}:${e}`));
     if(q?.difficulty in counts)counts[q.difficulty]++;
   }
   if(counts.easy!==5||counts.medium!==3||counts.hard!==2)errors.push('difficulty-ratio');
