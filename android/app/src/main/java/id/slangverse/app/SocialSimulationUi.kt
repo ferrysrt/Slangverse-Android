@@ -122,13 +122,13 @@ internal fun LearningFeedbackPanel(
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Icon(Icons.AutoMirrored.Outlined.MenuBook, contentDescription = null, tint = accent,
                     modifier = Modifier.size(20.dp))
-                Text("Learning feedback", modifier = Modifier.semantics { heading() },
+                Text("What it meant", modifier = Modifier.semantics { heading() },
                     fontSize = 14.sp, fontWeight = FontWeight.Bold)
             }
-            Text(if (correct) "✓ Meaning matched" else "↺ Review this interpretation",
+            Text(if (correct) "✓ You got it" else "↺ Not quite",
                 fontSize = 18.sp, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold)
             Text("+$xp practice XP", fontSize = 13.sp, fontWeight = FontWeight.Bold, color = accent)
-            Text("Meaning in this context", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
+            Text("In this context it means", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
             Text(meaning, fontSize = 15.sp, lineHeight = 22.sp, fontWeight = FontWeight.SemiBold)
             Text(explanation, fontSize = 14.sp, lineHeight = 21.sp)
             if (savedClue != null) Text("Your saved clue: “$savedClue”", fontSize = 12.sp, lineHeight = 18.sp)

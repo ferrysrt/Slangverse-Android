@@ -734,13 +734,13 @@ private fun EditorialHeader(
             if (displayedOptions == null) {
                 Text("This question has ambiguous answer choices and is unavailable for practice.", fontSize = 12.sp)
             } else if (answeredIndex == null && !replying) {
-                EditorialPrimary("Reply with the meaning") { replying = true }
+                EditorialPrimary("Answer Kai") { replying = true }
             } else if (answeredIndex == null) {
-                Text("Choose your interpretation", fontSize = 12.sp, color = WarmEditorial.Muted)
+                Text("Which meaning fits?", fontSize = 12.sp, color = WarmEditorial.Muted)
                 displayedOptions.forEachIndexed { index, option ->
                     EditorialOption(index, option, selected == index, false, false) { selected = index }
                 }
-                EditorialPrimary("POST REPLY →", enabled = selected in thread.options.indices) { onAnswer(selected) }
+                EditorialPrimary("Send reply", enabled = selected in thread.options.indices) { onAnswer(selected) }
             } else {
                 StoryPlayerReply(displayedOptions[answeredIndex])
             }
