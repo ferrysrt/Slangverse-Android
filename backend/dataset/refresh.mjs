@@ -1,4 +1,4 @@
-import {createHash} from 'node:crypto';
+﻿import {createHash} from 'node:crypto';
 import {readFile, writeFile} from 'node:fs/promises';
 import {resolve} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
@@ -9,7 +9,7 @@ export {candidateIdFor, mergeCandidates, candidateTableCsv, wholeTermPattern} fr
 export const SEARCH_URL = 'https://api.firecrawl.dev/v2/search';
 // One paid search request, but enough results that a few login-walled or empty
 // pages cannot push the capture below the floor the normalizer needs.
-export const SEARCH_RESULT_LIMIT = 20;
+export const SEARCH_RESULT_LIMIT = 40;
 export const MIN_DOCUMENTS = 10;
 export const MAX_DOCUMENTS = 10;
 // Sort newest first instead of relying on the provider's default ranking.
@@ -276,3 +276,4 @@ if (isCli) {
     process.exitCode = 1;
   });
 }
+
