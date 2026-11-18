@@ -13,6 +13,7 @@ import {createMixedProvider, safeMixedFailureCode} from '../src/mixedProvider.mj
 import {generateMixedPack, createMixedPackId} from '../src/mixedGeneration.mjs';
 import {publishMixedBank, writeMixedCatalog, writeImmutableMixedPack, mixedSha256} from '../src/mixedBank.mjs';
 import {planPackTerms, sensesForTerms, countPublishedTerms} from '../src/mixedTermPlanner.mjs';
+import {selectPlayableSenses, termQualityReason} from '../src/termQuality.mjs';
 import {generatePackRound} from '../scripts/generate-mixed-pack-batch.mjs';
 
 // Synthetic responses/provenance only. No test contacts a provider or labels fixture history as real.
@@ -984,4 +985,47 @@ test('a failed batch round audits every attempt and publishes nothing', async t 
   assert.ok(result.attempts.every(attempt => attempt.status === 'failed'));
   assert.equal(jsonFile(outputDir, 'catalog.json').packs.length, 0);
   assert.deepEqual(existsSync(join(outputDir, 'packs')) ? readdirSync(join(outputDir, 'packs')) : [], []);
+});
+
+test('term quality rejects interjections, bare acronyms and unanswerable forms', () => {
+  for (const [term, reason] of [
+    ['hehe', 'blocked-term'], ['BFF', 'blocked-term'], ['fire', 'blocked-term'], ['cap', 'blocked-term'],
+    ['xmas', 'blocked-term'], ['hahahaha', 'interjection-only'], ['ab', 'too-few-letters'],
+    ['a b c d e f g', 'too-many-words'], ['', 'empty-term'], ['!!!', 'empty-term']
+  ]) assert.equal(termQualityReason(term), reason, term);
+  for (const term of ['beige flag', 'caught in 4k', 'girl dinner', 'aura farming', 'bussin']) {
+    assert.equal(termQualityReason(term), null, term);
+  }
+});
+
+test('curation drops blocked terms and collapses duplicate spellings, keeping dataset order', () => {
+  const pool = [
+    normalizedSense("bussin'", 'used to describe food that tastes extremely good'),
+    normalizedSense('bussin', 'used to describe something that is extremely good'),
+    normalizedSense('hehe', 'a written laugh used in casual messages'),
+    normalizedSense('bff', 'a friend who is regarded as a best friend'),
+    normalizedSense('beige flag', 'a trait that is mildly concerning but not a red flag'),
+    normalizedSense('xmas', 'a shortened written form of christmas')
+  ];
+  const {senses: playable, rejected} = selectPlayableSenses(pool);
+  assert.deepEqual(playable.map(sense => sense.term), ["bussin'", 'beige flag']);
+  assert.deepEqual(rejected.map(item => item.reason),
+    ['duplicate-term', 'blocked-term', 'blocked-term', 'blocked-term']);
+  assert.throws(() => selectPlayableSenses('not-a-list'), /invalid-normalized-dataset/);
+});
+
+test('a batch round never plans a blocked term even from a noisy pool', async t => {
+  const {outputDir, experimentsDir} = sandbox(t);
+  writeMixedCatalog({outputDir, datasetVersion: 'fixture-dataset-v1', candidateCount: 20});
+  const noisy = [
+    normalizedSense('haha', 'a written laugh used in casual messages'),
+    normalizedSense('ugh', 'an exclamation of annoyance or disappointment'),
+    ...senses(14)
+  ];
+  const result = await generatePackRound({senses: noisy, usedCounts: new Map(), outputDir, experimentsDir,
+    provider: fakeProvider(), maxAttempts: 1});
+  assert.equal(result.ok, true, JSON.stringify(result.attempts));
+  assert.deepEqual(result.curation, {playable: 14, rejected: 2});
+  assert.ok(!result.terms.includes('haha') && !result.terms.includes('ugh'));
+  assert.equal(result.terms.length, 10);
 });

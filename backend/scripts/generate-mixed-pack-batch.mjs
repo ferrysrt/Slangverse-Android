@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {listNormalizedSenses, DATASET_VERSION} from '../src/catalog.mjs';
 import {generateMixedPack, DEFAULT_MIXED_EXPERIMENTS_DIR} from '../src/mixedGeneration.mjs';
 import {planPackTerms, sensesForTerms, countPublishedTerms} from '../src/mixedTermPlanner.mjs';
+import {selectPlayableSenses} from '../src/termQuality.mjs';
 import {publishRecordedMixedPack} from './publish-recorded-mixed-pack.mjs';
 import {DEFAULT_MIXED_BANK_DIR, MIXED_CATALOG_RETENTION} from '../src/mixedBank.mjs';
 
@@ -31,8 +32,11 @@ export async function generatePackRound({senses, usedCounts, outputDir = DEFAULT
   experimentsDir = DEFAULT_MIXED_EXPERIMENTS_DIR, maxAttempts = 4, retention = MIXED_CATALOG_RETENTION,
   provider, providerOptions} = {}) {
   if (!Number.isInteger(maxAttempts) || maxAttempts < 1) throw Error('invalid-max-attempts');
-  const terms = planPackTerms(senses, {usedCounts});
-  const scoped = sensesForTerms(senses, terms);
+  // Curation happens here, not in the dataset: archived evidence stays intact.
+  const curated = selectPlayableSenses(senses);
+  const terms = planPackTerms(curated.senses, {usedCounts});
+  const scoped = sensesForTerms(curated.senses, terms);
+  const curation = {playable: curated.senses.length, rejected: curated.rejected.length};
   const attempts = [];
   let lastFailure = null;
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
@@ -43,39 +47,51 @@ export async function generatePackRound({senses, usedCounts, outputDir = DEFAULT
       cost: attemptCost(result.logDir), errors: result.validation?.errors ?? []});
     if (!result.ok) { lastFailure = result; continue; }
     const {entry} = publishRecordedMixedPack(result.logDir, {outputDir, retention});
-    return {ok: true, terms, attempts, entry, packId: result.packId};
+    return {ok: true, terms, curation, attempts, entry, packId: result.packId};
   }
-  return {ok: false, terms, attempts, failureCode: lastFailure?.failureCode ?? 'generation-failed'};
+  return {ok: false, terms, curation, attempts, failureCode: lastFailure?.failureCode ?? 'generation-failed'};
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  if (!process.env.LLM_API_KEY) {
+  const intArg = (name, fallback) => {
+    const found = process.argv.find(value => value.startsWith(`--${name}=`));
+    if (!found) return fallback;
+    const parsed = Number(found.split('=')[1]);
+    if (!Number.isInteger(parsed) || parsed < 1) throw Error(`invalid-${name}`);
+    return parsed;
+  };
+  const packs = intArg('packs', 1);
+  const maxAttempts = intArg('max-attempts', 4);
+  // A ten-question JSON pack needs more than the live server's short request budget.
+  const timeoutMs = intArg('timeout-ms', 120000);
+  if (timeoutMs > 120000) throw Error('invalid-timeout-ms');
+  const senses = listNormalizedSenses();
+  if (process.argv.includes('--dry-run')) {
+    // Shows exactly which terms would be planned, with no provider call at all.
+    const curated = selectPlayableSenses(senses);
+    const usedCounts = countPublishedTerms(publishedPacks());
+    for (let round = 0; round < packs; round++) {
+      const terms = planPackTerms(curated.senses, {usedCounts});
+      for (const term of terms) usedCounts.set(term, (usedCounts.get(term) ?? 0) + 1);
+      console.log(JSON.stringify({event: 'mixed-pack-plan', pack: round + 1, terms}));
+    }
+    console.log(JSON.stringify({event: 'mixed-pack-curation', senses: senses.length,
+      playable: curated.senses.length, rejected: curated.rejected.length,
+      blockedTerms: curated.rejected.filter(item => item.reason === 'blocked-term').map(item => item.term)}));
+  } else if (!process.env.LLM_API_KEY) {
     console.error('missing LLM_API_KEY: set it in the environment or run with --env-file=.env');
     process.exitCode = 2;
   } else {
-    const intArg = (name, fallback) => {
-      const found = process.argv.find(value => value.startsWith(`--${name}=`));
-      if (!found) return fallback;
-      const parsed = Number(found.split('=')[1]);
-      if (!Number.isInteger(parsed) || parsed < 1) throw Error(`invalid-${name}`);
-      return parsed;
-    };
-    const packs = intArg('packs', 1);
-    const maxAttempts = intArg('max-attempts', 4);
-    // A ten-question JSON pack needs more than the live server's short request budget.
-    const timeoutMs = intArg('timeout-ms', 120000);
-    if (timeoutMs > 120000) throw Error('invalid-timeout-ms');
     const providerOptions = {timeoutMs};
-    const senses = listNormalizedSenses();
     const rounds = [];
     let failed = null;
     for (let round = 0; round < packs; round++) {
       const usedCounts = countPublishedTerms(publishedPacks());
       const result = await generatePackRound({senses, usedCounts, maxAttempts, providerOptions});
       rounds.push(result.ok
-        ? {event: 'mixed-pack-round', pack: result.entry.packId, terms: result.terms,
+        ? {event: 'mixed-pack-round', pack: result.entry.packId, terms: result.terms, curation: result.curation,
           attempts: result.attempts.map(a => ({status: a.status, failureCode: a.failureCode, cost: a.cost}))}
-        : {event: 'mixed-pack-round-failed', failureCode: result.failureCode, terms: result.terms,
+        : {event: 'mixed-pack-round-failed', failureCode: result.failureCode, terms: result.terms, curation: result.curation,
           attempts: result.attempts.map(a => ({status: a.status, failureCode: a.failureCode, cost: a.cost, errors: a.errors}))});
       if (!result.ok) { failed = result; break; }
     }
