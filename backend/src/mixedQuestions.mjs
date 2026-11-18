@@ -4,9 +4,9 @@ import {validateQuestion, validateTermTarget, normalize, allowsRepeatedTerm} fro
 import {avatarIds, avatarPromptInstructions} from './profilePictures.mjs';
 import {candidateIdFor, wholeTermPattern} from './datasetProvenance.mjs';
 
-export const MIXED_PROMPT_VERSION = 'mixed-v10';
+export const MIXED_PROMPT_VERSION = 'mixed-v11';
 /** Versions that ship the learner's own replies and comment-only slang surfaces. */
-const REPLY_CONTRACT_VERSIONS = new Set(['mixed-v9', 'mixed-v10']);
+const REPLY_CONTRACT_VERSIONS = new Set(['mixed-v9', 'mixed-v10', 'mixed-v11']);
 export const MIXED_CONTEXT_CATEGORIES = Object.freeze([
   'personal', 'education', 'work', 'prediction', 'sports',
   'entertainment', 'opinion', 'friends', 'event-reaction'

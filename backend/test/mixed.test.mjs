@@ -261,8 +261,8 @@ test('mixed-v8 renders the targeted distractor and conversational comment requir
   assert.match(prompt, /Return ONE strict JSON object with a questions array of exactly 10 questions/);
   assert.deepEqual(promptInput(messages).references, value.references);
   assert.deepEqual(promptInput(messages).assignments, value.assignments);
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v10');
-  assert.equal(value.pack.promptVersion, 'mixed-v10');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v11');
+  assert.equal(value.pack.promptVersion, 'mixed-v11');
   // v9: five reply targets, a slang-free post for those, and the learner's own replies.
   assert.match(prompt, /Exactly five of the ten questions MUST use questionTarget "reply"/);
   assert.match(prompt, /post\.content MUST NOT contain the slang term/);
@@ -777,13 +777,18 @@ test('prompt versions are archived and the active template binds the term to one
   const v5 = read('mixed-v5'), v6 = read('mixed-v6'), v7 = read('mixed-v7'), v8 = read('mixed-v8');
   const v9 = read('mixed-v9');
   const v10 = read('mixed-v10');
-  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v10');
+  const v11 = read('mixed-v11');
+  assert.equal(MIXED_PROMPT_VERSION, 'mixed-v11');
   // Archive rule: the template that produced a recorded attempt is never edited in place.
   assert.ok(v7.includes('The term may also occur any number of times in the post, other replies and questionComment'));
   assert.ok(v7.includes('Example for cooked: "What do you mean by cooked? Are you cooking food or something?"'));
   assert.ok(v8.includes('Never inflect, pluralize, conjugate, hyphenate or derive it'));
   assert.ok(v9.includes('replyTexts has exactly four strings, aligned with options in order'));
   assert.ok(v10.includes('never the @guest_01 pattern'));
+  // v11 keeps v10's wording and adds an explicit build order for the correct option.
+  assert.ok(v11.includes('Build that correct option FIRST'));
+  assert.ok(v11.includes('Treat the reference as an opaque value to copy'));
+  assert.ok(v11.includes('never the @guest_01 pattern'));
   assert.ok(v6.includes('The exact slang term MUST appear EXACTLY ONCE'));
   assert.ok(v1.includes('A natural short post using the exact slang term'));
   assert.ok(v2.includes('questionComment may mention the term but cannot substitute'));
