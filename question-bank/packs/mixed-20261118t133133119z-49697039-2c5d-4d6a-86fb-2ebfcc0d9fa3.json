@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 2,
+  "packId": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3",
+  "generationSource": "llm",
+  "promptVersion": "mixed-v8",
+  "generatorModel": "openai/gpt-6-luna",
+  "generatedAt": "2026-11-18T13:32:01.950Z",
+  "referenceStatus": "normalized-unreviewed",
+  "datasetVersion": "firecrawl-normalized-1681a4e41cc4fb87c5039158",
+  "expertValidated": false,
+  "references": [
+    {
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "term": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "sourceCandidateId": "23517fd9523bc74bc50663af",
+      "normalizedDefinition": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Girl Dinner | **A chaotic mix of snacks that somehow counts as a meal.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-65d77b08ffbf71beaa6a88fb",
+      "term": "fit check",
+      "targetMeaning": "Showing off or presenting an outfit.",
+      "sourceCandidateId": "65d77b08ffbf71beaa6a88fb",
+      "normalizedDefinition": "Showing off or presenting an outfit.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Fit Check | **Showing off your outfit.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "term": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "sourceCandidateId": "e4323f9559778628325cd112",
+      "normalizedDefinition": "An inside joke or niche reference, short for “if you know, you know.”",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| IYKYK | **An inside joke or niche reference. (If You Know, You Know)**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "term": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "sourceCandidateId": "a2049aee81c974146462752a",
+      "normalizedDefinition": "A nonsense word popularized as a viral meme.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Skibidi | **Nonsense word turned viral meme.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+      "term": "scuba",
+      "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "sourceCandidateId": "940baad7d6d2ccc1fe07729e",
+      "normalizedDefinition": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "referenceSources": [
+        {
+          "url": "https://www.google.com/goto?url=CAESoAEBxCJF16l_f0O1WPesf33e-OcaQZbn_LRbGM1M1bo-KsavVGzu0rfES-Cr8j3GAzrDpuvNHXSClTB282t4v9spKhgpBPWEm3TJMhKDGozravyu1ITLYdWYStCN-My5XYZnTnbhsep7iCpL2l4zZ4uP72vU82oxq5OSaJvxnu6Cuqw_LobfdllPmqJcFrNn8SYVsdjtbZYoVtusl8-AcZpO&gsessionid=QpeQQHQeV8u2pjbOziW921TU_ahJ9DkINJlbssTrPhs1UADjcHcTew",
+          "title": "The most confusing Gen Alpha slang of 2026 revealed, report",
+          "quote": "To Gen Alphas, “scuba” is a dance indicating that someone or something stinks.",
+          "collectedAt": "2026-11-17T17:55:58.638Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "449d825f3e985d737a4ed68f285044425b3eddf47a4d020fcddfdd930b0a8df1"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+      "term": "drip",
+      "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+      "sourceCandidateId": "88dc00f37466fa2b8d9291f4",
+      "normalizedDefinition": "Distinctive or impressive style, especially in clothing.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Drip | **Killer style, usually clothes.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "term": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "sourceCandidateId": "9ce28e169951f5b9b2f63c78",
+      "normalizedDefinition": "A playful or endearing way to describe being delusional.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Delulu | **Delusional, but usually in a funny or endearing way.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "term": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "sourceCandidateId": "d9bb003d473a6a36f85ebfdc",
+      "normalizedDefinition": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Mewing | **A face-shaping posture technique (tongue to the roof of the",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "term": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "sourceCandidateId": "da836b332facac35d6cece15",
+      "normalizedDefinition": "Flirting skill or natural charisma.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Rizz | **Smooth flirting skills or natural charisma.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    },
+    {
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "term": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "sourceCandidateId": "a42fde412654a7a34291ab9c",
+      "normalizedDefinition": "A surreal, strange, or cursed version of reality.",
+      "referenceSources": [
+        {
+          "url": "https://www.uprinting.com/blog/top-gen-z-slang-words/?srsltid=AYCX9vI7vR5jAbjkTaHKoGAQqAHfac983jjoWK9PFlT71eVzGdwq7nFm",
+          "title": "The Top 60 Gen Z Slang Words in 2025 (With Examples ...",
+          "quote": "| Ohio | **A surreal or cursed version of reality.**",
+          "collectedAt": "2026-11-17T13:08:28.914Z",
+          "collectionMethod": "firecrawl",
+          "contentSha256": "fc5882740f21c278357acd43bd397821c5c8bf2a5d8a1acaaea8a630d61b7eed"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q1",
+      "senseId": "normalized-23517fd9523bc74bc50663af",
+      "slang": "girl dinner",
+      "targetMeaning": "An informal meal made up of a casual or haphazard mix of snacks.",
+      "difficulty": "easy",
+      "contextId": "late-study-snacks",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@guest_01",
+      "post": {
+        "displayName": "Mira Lane",
+        "handle": "@guest_01",
+        "hashtag": "#StudyBreak",
+        "content": "My dinner tonight is crackers, grapes, cheese cubes, and the last two olives in the fridge. girl dinner, apparently. #StudyBreak",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "The tiny plate makes it feel fancy somehow.",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@guest_03",
+            "text": "Save me one of those olives!",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Wait, does girl dinner mean a meal for a girls' night, or am I reading that wrong?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A meal ordered for a group of friends.",
+        "An informal meal made up of a casual or haphazard mix of snacks.",
+        "A dinner that is prepared in advance for the week.",
+        "A meal eaten late after a formal event."
+      ],
+      "correctIndex": 1,
+      "explanation": "The post lists a loose assortment of snack foods as the evening meal, matching the given meaning."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q2",
+      "senseId": "normalized-65d77b08ffbf71beaa6a88fb",
+      "slang": "fit check",
+      "targetMeaning": "Showing off or presenting an outfit.",
+      "difficulty": "easy",
+      "contextId": "school-photo-day",
+      "contextCategory": "education",
+      "questionTarget": "post",
+      "targetHandle": "@guest_04",
+      "post": {
+        "displayName": "Noah Park",
+        "handle": "@guest_04",
+        "hashtag": "#PhotoDay",
+        "content": "Before the yearbook photos: green jacket, striped shirt, and sneakers that somehow survived the rain. fit check! #PhotoDay",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "text": "Those sneakers deserve their own portrait.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@guest_06",
+            "text": "The jacket color really works.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "Is fit check some kind of health inspection? I keep seeing it under outfit photos.",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A quick test to see if clothes are comfortable.",
+        "A reminder to check the weather before leaving.",
+        "Showing off or presenting an outfit.",
+        "A list of clothes someone plans to buy."
+      ],
+      "correctIndex": 2,
+      "explanation": "The post highlights the jacket, shirt, and sneakers for a photo, so the phrase is presenting the outfit."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q3",
+      "senseId": "normalized-e4323f9559778628325cd112",
+      "slang": "iykyk",
+      "targetMeaning": "An inside joke or niche reference, short for “if you know, you know.”",
+      "difficulty": "easy",
+      "contextId": "library-elevator-joke",
+      "contextCategory": "friends",
+      "questionTarget": "post",
+      "targetHandle": "@guest_07",
+      "post": {
+        "displayName": "Asha Bell",
+        "handle": "@guest_07",
+        "hashtag": "#CampusDays",
+        "content": "The third-floor library elevator played that same three-note tune again. iykyk. #CampusDays",
+        "comments": [
+          {
+            "handle": "@guest_08",
+            "text": "It got stuck between floors last week too.",
+            "avatarId": "guest_08"
+          },
+          {
+            "handle": "@guest_01",
+            "text": "That tune is going to live in my head all day.",
+            "avatarId": "guest_01"
+          }
+        ],
+        "avatarId": "guest_07"
+      },
+      "questionComment": "Does iykyk stand for some kind of campus club? I’m lost here.",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A complaint about a building being too noisy.",
+        "A reminder that everyone should use the elevator.",
+        "A short code for reserving a library room.",
+        "An inside joke or niche reference, short for “if you know, you know.”"
+      ],
+      "correctIndex": 3,
+      "explanation": "The post points to a recurring elevator oddity that familiar readers would recognize as a niche reference."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q4",
+      "senseId": "normalized-a2049aee81c974146462752a",
+      "slang": "skibidi",
+      "targetMeaning": "A nonsense word popularized as a viral meme.",
+      "difficulty": "easy",
+      "contextId": "meme-caption",
+      "contextCategory": "entertainment",
+      "questionTarget": "post",
+      "targetHandle": "@guest_02",
+      "post": {
+        "displayName": "Theo Finch",
+        "handle": "@guest_02",
+        "hashtag": "#MemeArchive",
+        "content": "I opened the app for one clip and somehow watched a dancing toaster montage for twenty minutes. The caption just said skibidi. #MemeArchive",
+        "comments": [
+          {
+            "handle": "@guest_03",
+            "text": "The toaster had better choreography than me.",
+            "avatarId": "guest_03"
+          },
+          {
+            "handle": "@guest_04",
+            "text": "The algorithm knows exactly how to trap us.",
+            "avatarId": "guest_04"
+          }
+        ],
+        "avatarId": "guest_02"
+      },
+      "questionComment": "Is skibidi the name of that toaster character, or did I miss something?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A nonsense word popularized as a viral meme.",
+        "A nickname for a popular video creator.",
+        "A label for a series of dance lessons.",
+        "A sound effect used to signal the end of a clip."
+      ],
+      "correctIndex": 0,
+      "explanation": "The post describes a strange viral clip and its caption, fitting the meaning provided for the word."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q5",
+      "senseId": "normalized-940baad7d6d2ccc1fe07729e",
+      "slang": "scuba",
+      "targetMeaning": "A dance-like gesture used to indicate that someone or something smells bad.",
+      "difficulty": "easy",
+      "contextId": "gym-locker-room",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@guest_05",
+      "post": {
+        "displayName": "Rory Vale",
+        "handle": "@guest_05",
+        "hashtag": "#AfterPractice",
+        "content": "Someone opened the old gym bag by the lockers and my cousin did the scuba move before sprinting for the door. #AfterPractice",
+        "comments": [
+          {
+            "handle": "@guest_06",
+            "text": "That bag has been missing since autumn.",
+            "avatarId": "guest_06"
+          },
+          {
+            "handle": "@guest_07",
+            "text": "Please tell me it got washed after this.",
+            "avatarId": "guest_07"
+          }
+        ],
+        "avatarId": "guest_05"
+      },
+      "questionComment": "Scuba? Did your cousin suddenly remember a swimming lesson?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A quick gesture asking someone to move aside.",
+        "A signal that someone is ready to leave practice.",
+        "A dance-like gesture used to indicate that someone or something smells bad.",
+        "A playful move people do when they hear music."
+      ],
+      "correctIndex": 2,
+      "explanation": "The old gym bag prompts the gesture in a smelly situation, which connects to the provided meaning."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q6",
+      "senseId": "normalized-88dc00f37466fa2b8d9291f4",
+      "slang": "drip",
+      "targetMeaning": "Distinctive or impressive style, especially in clothing.",
+      "difficulty": "medium",
+      "contextId": "gallery-opening-look",
+      "contextCategory": "opinion",
+      "questionTarget": "post",
+      "targetHandle": "@guest_08",
+      "post": {
+        "displayName": "Inez Cole",
+        "handle": "@guest_08",
+        "hashtag": "#OpeningNight",
+        "content": "Everyone kept asking where the cobalt coat came from; it caught the light in every photo. My brother said the drip was doing all the talking. #OpeningNight",
+        "comments": [
+          {
+            "handle": "@guest_01",
+            "text": "That coat was impossible to miss in the best way.",
+            "avatarId": "guest_01"
+          },
+          {
+            "handle": "@guest_02",
+            "text": "Now I want to see the photos.",
+            "avatarId": "guest_02"
+          }
+        ],
+        "avatarId": "guest_08"
+      },
+      "questionComment": "Did he mean the coat had a leak? That sounds like an odd thing to say.",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A high price paid for a special coat.",
+        "A noticeable stain left on the coat.",
+        "A trend where people wear the same color.",
+        "Distinctive or impressive style, especially in clothing."
+      ],
+      "correctIndex": 3,
+      "explanation": "The striking coat draws attention in the photos, so the comment refers to the outfit's style."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q7",
+      "senseId": "normalized-9ce28e169951f5b9b2f63c78",
+      "slang": "delulu",
+      "targetMeaning": "A playful or endearing way to describe being delusional.",
+      "difficulty": "medium",
+      "contextId": "concert-ticket-daydream",
+      "contextCategory": "prediction",
+      "questionTarget": "post",
+      "targetHandle": "@guest_03",
+      "post": {
+        "displayName": "Jun Reed",
+        "handle": "@guest_03",
+        "hashtag": "#TicketWatch",
+        "content": "I have no tickets and the show is sold out, but I keep picturing the band inviting me onstage because I waved at them once. My roommate says I’m delulu. #TicketWatch",
+        "comments": [
+          {
+            "handle": "@guest_04",
+            "text": "Manifesting an incredible story for you.",
+            "avatarId": "guest_04"
+          },
+          {
+            "handle": "@guest_05",
+            "text": "At least your imaginary set list is ready.",
+            "avatarId": "guest_05"
+          }
+        ],
+        "avatarId": "guest_03"
+      },
+      "questionComment": "Is delulu a concert app? I can’t tell from the context.",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A playful or endearing way to describe being delusional.",
+        "A nickname for someone who always buys concert tickets.",
+        "A way to describe being unusually calm before a show.",
+        "A term for forgetting the lyrics to a favorite song."
+      ],
+      "correctIndex": 0,
+      "explanation": "The imagined invitation despite having no ticket is an unrealistic hope described with playful affection."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q8",
+      "senseId": "normalized-d9bb003d473a6a36f85ebfdc",
+      "slang": "mewing",
+      "targetMeaning": "A face-shaping posture technique involving the tongue resting against the roof of the mouth.",
+      "difficulty": "medium",
+      "contextId": "study-group-selfie",
+      "contextCategory": "personal",
+      "questionTarget": "post",
+      "targetHandle": "@guest_06",
+      "post": {
+        "displayName": "Tess Rowan",
+        "handle": "@guest_06",
+        "hashtag": "#StudyGroup",
+        "content": "We tried to take a serious study-group selfie, but Eli kept reminding himself about mewing instead of looking at the camera. #StudyGroup",
+        "comments": [
+          {
+            "handle": "@guest_07",
+            "text": "The blurry photo is still my favorite one.",
+            "avatarId": "guest_07"
+          },
+          {
+            "handle": "@guest_08",
+            "text": "Nobody was ready when the timer went off.",
+            "avatarId": "guest_08"
+          }
+        ],
+        "avatarId": "guest_06"
+      },
+      "questionComment": "Is mewing a new study sound people make to stay awake?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A breathing exercise done before taking a photo.",
+        "A pose used to make a group selfie look coordinated.",
+        "A method for memorizing notes by repeating them aloud.",
+        "A face-shaping posture technique involving the tongue resting against the roof of the mouth."
+      ],
+      "correctIndex": 3,
+      "explanation": "The post links mewing to someone adjusting their face during a selfie, which matches the posture technique described."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q9",
+      "senseId": "normalized-da836b332facac35d6cece15",
+      "slang": "rizz",
+      "targetMeaning": "Flirting skill or natural charisma.",
+      "difficulty": "hard",
+      "contextId": "fundraiser-small-talk",
+      "contextCategory": "work",
+      "questionTarget": "post",
+      "targetHandle": "@guest_01",
+      "post": {
+        "displayName": "Mara Quinn",
+        "handle": "@guest_01",
+        "hashtag": "#CommunityNight",
+        "content": "At the fundraiser, Dev made the awkward silent auction line feel easy; even the person guarding the raffle tickets stayed to chat. Someone later credited his rizz. #CommunityNight",
+        "comments": [
+          {
+            "handle": "@guest_02",
+            "text": "He somehow got the whole room talking.",
+            "avatarId": "guest_02"
+          },
+          {
+            "handle": "@guest_03",
+            "text": "The auction line was usually the quietest part.",
+            "avatarId": "guest_03"
+          }
+        ],
+        "avatarId": "guest_01"
+      },
+      "questionComment": "Rizz sounds like a kind of prize ticket—was he handing those out?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "Skill at persuading people to donate to a cause.",
+        "Flirting skill or natural charisma.",
+        "A knack for finding bargains at an auction.",
+        "Confidence when speaking in front of a large audience."
+      ],
+      "correctIndex": 1,
+      "explanation": "The post emphasizes Dev's ease and appeal in conversation, pointing to charisma and social charm."
+    },
+    {
+      "id": "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3-q10",
+      "senseId": "normalized-a42fde412654a7a34291ab9c",
+      "slang": "ohio",
+      "targetMeaning": "A surreal, strange, or cursed version of reality.",
+      "difficulty": "hard",
+      "contextId": "town-square-fog",
+      "contextCategory": "event-reaction",
+      "questionTarget": "post",
+      "targetHandle": "@guest_04",
+      "post": {
+        "displayName": "Cal Moss",
+        "handle": "@guest_04",
+        "hashtag": "#MorningCommute",
+        "content": "The town square clock was chiming thirteen, every bench faced the fountain, and the fog swallowed the bakery sign before sunrise. Today feels very ohio. #MorningCommute",
+        "comments": [
+          {
+            "handle": "@guest_05",
+            "text": "I took the long way around after seeing that fog.",
+            "avatarId": "guest_05"
+          },
+          {
+            "handle": "@guest_06",
+            "text": "The clock has been acting strange all week.",
+            "avatarId": "guest_06"
+          }
+        ],
+        "avatarId": "guest_04"
+      },
+      "questionComment": "Are you talking about a trip to Ohio, or is that a local event name?",
+      "question": "What does the slang mean in the post?",
+      "options": [
+        "A busy place that is difficult to navigate.",
+        "A town tradition held before sunrise.",
+        "A surreal, strange, or cursed version of reality.",
+        "A weather pattern that brings heavy fog."
+      ],
+      "correctIndex": 2,
+      "explanation": "The impossible clock and eerie, rearranged surroundings make the scene feel surreal and strange."
+    }
+  ]
+}
