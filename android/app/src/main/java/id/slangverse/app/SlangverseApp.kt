@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -697,6 +699,29 @@ private fun EditorialHeader(
     var expanded by rememberSaveable(thread.id) { mutableStateOf(initiallyExpanded) }
     var replying by rememberSaveable(thread.id) { mutableStateOf(false) }
     var selected by rememberSaveable(thread.id) { mutableIntStateOf(-1) }
+    // The answer panel opens inside a scrolling card, so on a tall phone it pushed the last option
+    // and the Send reply button below the fold until the reader swiped. Ask the enclosing list to
+    // move the panel into view the moment it appears, and again for the graded result afterwards.
+    val answerPanel = remember { BringIntoViewRequester() }
+    val gradedResult = remember { BringIntoViewRequester() }
+    // The first composition must not scroll: a card the reader scrolls past may already be answered,
+    // and pulling it into view on mount would fight the reader's own swipe.
+    var hasComposed by remember { mutableStateOf(false) }
+    LaunchedEffect(replying, answeredIndex) {
+        val target = when {
+            answeredIndex != null -> gradedResult
+            replying -> answerPanel
+            else -> null
+        }
+        if (!hasComposed) {
+            hasComposed = true
+            return@LaunchedEffect
+        }
+        if (target != null) {
+            withFrameNanos { }
+            target.bringIntoView()
+        }
+    }
     PaperCard {
         StoryIdentity(thread.handle, onProfile, story.time.ifBlank { null }, avatarSize = 40.dp, emphasized = true)
         Text(thread.post, color = WarmEditorial.Ink, fontSize = 16.sp, lineHeight = 23.sp)
@@ -727,7 +752,8 @@ private fun EditorialHeader(
         }
         if (expanded) StoryReplies(story.replies, onProfile, post.termTargetHandle)
         HorizontalDivider(color = WarmEditorial.Sand)
-        Column(Modifier.fillMaxWidth().background(WarmEditorial.Blush, RoundedCornerShape(12.dp)).padding(11.dp),
+        Column(Modifier.fillMaxWidth().bringIntoViewRequester(answerPanel)
+            .background(WarmEditorial.Blush, RoundedCornerShape(12.dp)).padding(11.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)) {
             StoryIdentity("@confuseduser", onProfile, "Replying to ${post.termTargetHandle ?: thread.handle}", avatarSize = 30.dp)
             Text(thread.questionComment, fontSize = 15.sp, lineHeight = 21.sp)
@@ -747,11 +773,13 @@ private fun EditorialHeader(
         }
         if (answeredIndex != null && displayedOptions != null) {
             val correct = answeredIndex == thread.correctIndex
-            LearningFeedbackPanel(
-                correct = correct,
-                xp = if (correct) ContextDetectiveGame.CORRECT_XP else ContextDetectiveGame.PRACTICE_XP,
-                meaning = displayedOptions[thread.correctIndex], explanation = thread.explanation,
-                sourceLabel = post.sourceLabel)
+            Box(Modifier.bringIntoViewRequester(gradedResult)) {
+                LearningFeedbackPanel(
+                    correct = correct,
+                    xp = if (correct) ContextDetectiveGame.CORRECT_XP else ContextDetectiveGame.PRACTICE_XP,
+                    meaning = displayedOptions[thread.correctIndex], explanation = thread.explanation,
+                    sourceLabel = post.sourceLabel)
+            }
             if (story.followUp.isNotBlank()) {
                 HorizontalDivider(color = WarmEditorial.Sand)
                 Text("Later in this story · scripted follow-up", fontSize = 12.sp,
@@ -785,18 +813,20 @@ private fun EditorialHeader(
         color = bg, border = BorderStroke(if (marked) 2.dp else 1.dp, outline),
         shape = RoundedCornerShape(12.dp)
     ) {
-        Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 11.dp),
+        // Compact rows: four meanings plus the Send reply button must fit one phone screen, so the
+        // option row trades padding and 1sp of label size rather than forcing a swipe to see B-D.
+        Row(Modifier.fillMaxWidth().padding(horizontal = 10.dp, vertical = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            horizontalArrangement = Arrangement.spacedBy(9.dp)) {
             Text(('A' + index).toString() + ".", fontFamily = WarmEditorial.Display,
-                fontSize = 16.sp, color = content)
+                fontSize = 15.sp, color = content)
             Text(label, color = content,
-                fontSize = 15.sp, lineHeight = 20.sp, modifier = Modifier.weight(1f))
+                fontSize = 14.sp, lineHeight = 18.sp, modifier = Modifier.weight(1f))
             if (marked) {
                 Icon(Icons.Outlined.CheckCircle,
                     contentDescription = if (reveal) "Correct answer" else "Selected",
                     tint = if (reveal) WarmEditorial.Olive else Color.White,
-                    modifier = Modifier.size(22.dp))
+                    modifier = Modifier.size(20.dp))
             }
         }
     }
