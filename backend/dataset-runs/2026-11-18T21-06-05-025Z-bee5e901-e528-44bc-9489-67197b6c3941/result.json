@@ -1,0 +1,10 @@
+{
+  "runId": "2026-11-18T21-06-05-025Z-bee5e901-e528-44bc-9489-67197b6c3941",
+  "status": "failed",
+  "startedAt": "2026-11-18T21:06:05.025Z",
+  "completedAt": "2026-11-18T21:06:16.398Z",
+  "scrapedPages": null,
+  "accepted": null,
+  "rejected": null,
+  "failureCode": "insufficient-scraped-documents"
+}
