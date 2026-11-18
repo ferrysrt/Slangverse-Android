@@ -8,7 +8,8 @@ import {fileURLToPath, pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {
   collectDocuments, validateDiscoveries, extractCandidates, refreshDataset, SEARCH_URL,
-  buildRecentSlangQuery, MIN_DOCUMENTS, SEARCH_RESULT_LIMIT
+  buildRecentSlangQuery, buildNormalizerChunks, MIN_DOCUMENTS, SEARCH_RESULT_LIMIT,
+  PROMPT_CHUNK_CHARS, MAX_NORMALIZER_CALLS
 } from '../dataset/refresh.mjs';
 import {candidateIdFor, mergeCandidates, candidateTableCsv} from '../src/datasetProvenance.mjs';
 
@@ -377,32 +378,47 @@ test('CSV can retain legacy references without inventing capture metadata or a s
   assert.equal(row[11], candidateIdFor('no cap', item().definition));
 });
 
-test('normalizer submits up to ten 8000-character excerpts in at most 80000 total characters', async () => {
-  const pages = Array.from({length: 11}, (_, index) => ({...docs[0],
-    url: 'https://example.org/page-' + index, title: 'Page ' + index,
-    markdown: quote + 'x'.repeat(8000 - quote.length) + 'NEVER-SUBMIT-TAIL'
-  }));
-  let calls = 0;
-  const result = await extractCandidates({docs: pages, key: 'mock', model: 'configured/model', fetchImpl: async (url, options) => {
-    calls++;
-    assert.equal(url, 'https://openrouter.ai/api/v1/chat/completions');
-    const body = JSON.parse(options.body);
-    assert.equal(body.model, 'configured/model');
-    const prompt = body.messages[0].content, bundle = body.messages[1].content;
-    assert.ok(bundle.length <= 80000 && bundle.length > 75000);
-    assert.equal((bundle.match(/SOURCE URL:/g) ?? []).length, 10);
-    assert.ok(bundle.includes(pages[9].url));
-    assert.ok(!bundle.includes(pages[10].url));
-    assert.ok(!bundle.includes('NEVER-SUBMIT-TAIL'));
-    for (const chunk of bundle.split('\n---\n')) assert.ok(chunk.split('\nTEXT:\n')[1].length <= 8000);
-    assert.match(prompt, /case-sensitive definitional excerpt/);
-    assert.match(prompt, /at least five words/);
-    assert.match(prompt, /supporting the normalized definition, not merely mentioning/);
-    return jsonResponse(normalizerResponse([item({sourceUrl: pages[0].url, normalizationModel: 'invented'})]));
-  }});
-  assert.equal(calls, 1);
+test('the normalizer reads every captured character across size-bounded chunks', async () => {
+  const tail = 'FAR-END-MARKER';
+  const markdown = quote + '\n' + 'x'.repeat(PROMPT_CHUNK_CHARS) + '\n' + tail;
+  const pages = [{url: 'https://big.example/page', title: 'Big page', collectedAt: capturedAt, markdown}];
+  const bundles = [];
+  const result = await extractCandidates({docs: pages, key: 'mock', model: 'configured/model',
+    fetchImpl: async (url, options) => {
+      assert.equal(url, 'https://openrouter.ai/api/v1/chat/completions');
+      const body = JSON.parse(options.body);
+      assert.equal(body.model, 'configured/model');
+      const prompt = body.messages[0].content;
+      assert.match(prompt, /case-sensitive definitional excerpt/);
+      assert.match(prompt, /at least five words/);
+      assert.match(prompt, /supporting the normalized definition, not merely mentioning/);
+      bundles.push(body.messages[1].content);
+      return jsonResponse(normalizerResponse([item({sourceUrl: pages[0].url, normalizationModel: 'invented'})]));
+    }});
+  // A 60k-character page no longer fits one truncated excerpt; it is split, and
+  // the tail that used to be dropped is actually submitted.
+  assert.ok(bundles.length >= 2, 'expected one request per chunk');
+  for (const bundle of bundles) {
+    assert.ok(bundle.length <= PROMPT_CHUNK_CHARS, 'chunk holds ' + bundle.length + ' chars');
+    assert.match(bundle, /SOURCE URL: https:\/\/big\.example\/page/);
+  }
+  assert.ok(bundles.at(-1).includes(tail));
+  assert.ok(buildNormalizerChunks(pages).join('').includes(tail));
+  assert.equal(result.entries.length, 1);
   assert.equal(result.entries[0].normalizationModel, 'provider/actual-model');
   assert.equal(result.entries[0].reviewStatus, 'normalized-unreviewed');
+});
+
+test('normalizer fan-out over the call budget fails instead of dropping text', async () => {
+  const pages = Array.from({length: 10}, (_, index) => ({
+    url: 'https://huge.example/' + index, title: 'Huge ' + index, markdown: 'word '.repeat(60000)
+  }));
+  assert.ok(buildNormalizerChunks(pages).length > MAX_NORMALIZER_CALLS);
+  let calls = 0;
+  await assert.rejects(extractCandidates({docs: pages, key: 'mock', model: 'mock', fetchImpl: async () => {
+    calls++; return jsonResponse(normalizerResponse([item()]));
+  }}), /normalizer-call-budget-exceeded/);
+  assert.equal(calls, 0);
 });
 
 test('normalizer model falls back to the configured model only when response model is absent', async () => {

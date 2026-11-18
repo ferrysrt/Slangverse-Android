@@ -4,14 +4,14 @@ import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 export const AUDIT_LIMITS = Object.freeze({
-  documents: 10, markdownCharsPerDocument: 200000, totalMarkdownChars: 1000000,
-  firecrawlResponseBytes: 12 * 1024 * 1024, normalizationResponseBytes: 2 * 1024 * 1024
+  documents: 10, markdownCharsPerDocument: 400000, totalMarkdownChars: 2000000,
+  firecrawlResponseBytes: 24 * 1024 * 1024, normalizationResponseBytes: 2 * 1024 * 1024
 });
 const directoryPath = value => value instanceof URL ? fileURLToPath(value) : String(value);
 const knownErrors = new Set([
   'missing-firecrawl-key', 'missing-normalizer-config', 'invalid-existing-candidates',
   'invalid-firecrawl-v2-response', 'no-scraped-documents', 'insufficient-scraped-documents',
-  'normalizer-empty-output',
+  'normalizer-empty-output', 'normalizer-call-budget-exceeded',
   'normalizer-json-invalid', 'normalizer-shape-invalid', 'no-evidence-backed-candidates',
   'dataset-audit-write-failed', 'dataset-output-write-failed', 'dataset-refresh-failed'
 ]);
@@ -82,8 +82,8 @@ async function readBoundedText(response, maxBytes, stage) {
   return Buffer.concat(chunks).toString('utf8');
 }
 
-export async function auditedPost({fetchImpl, url, key, payload, stage, timeoutMs = 50000, auditDir}) {
-  const prefix = stage === 'openrouter' ? 'normalization' : 'firecrawl';
+export async function auditedPost({fetchImpl, url, key, payload, stage, timeoutMs = 50000, auditDir, label}) {
+  const prefix = (stage === 'openrouter' ? 'normalization' : 'firecrawl') + (label ? '-' + label : '');
   const started = Date.now();
   const metadata = {startedAt: new Date(started).toISOString(), finishedAt: null,
     status: 'running', httpStatus: null, errorCode: null};
