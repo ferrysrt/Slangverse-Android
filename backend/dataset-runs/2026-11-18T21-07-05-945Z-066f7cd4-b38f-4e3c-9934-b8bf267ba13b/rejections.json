@@ -1,0 +1,578 @@
+{
+  "accepted": 63,
+  "rejected": 143,
+  "items": [
+    {
+      "index": 0,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 1,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 2,
+      "reason": "source-quote-too-short"
+    },
+    {
+      "index": 3,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 4,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 5,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 6,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 7,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 8,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 9,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 10,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 11,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 12,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 13,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 14,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 15,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 16,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 17,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 18,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 19,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 20,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 21,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 22,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 23,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 24,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 25,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 26,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 27,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 28,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 29,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 30,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 31,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 32,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 33,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 34,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 35,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 36,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 37,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 38,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 39,
+      "reason": "source-quote-too-short"
+    },
+    {
+      "index": 40,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 41,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 42,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 43,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 44,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 45,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 46,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 47,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 48,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 55,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 60,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 64,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 65,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 66,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 71,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 73,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 74,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 75,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 76,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 77,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 78,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 79,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 80,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 81,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 82,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 83,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 84,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 85,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 86,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 87,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 88,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 89,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 90,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 91,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 92,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 93,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 94,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 95,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 96,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 97,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 98,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 99,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 100,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 101,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 102,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 103,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 104,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 105,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 106,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 107,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 108,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 109,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 110,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 111,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 112,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 113,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 114,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 115,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 116,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 117,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 118,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 119,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 120,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 121,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 123,
+      "reason": "source-url-not-collected"
+    },
+    {
+      "index": 125,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 128,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 130,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 131,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 133,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 139,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 140,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 142,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 143,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 144,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 145,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 147,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 148,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 149,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 150,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 151,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 152,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 153,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 154,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 155,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 156,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 157,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 158,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 160,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 161,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 162,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 163,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 164,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 165,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 166,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 167,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 175,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 179,
+      "reason": "term-not-in-source-quote"
+    },
+    {
+      "index": 185,
+      "reason": "source-quote-not-literal"
+    },
+    {
+      "index": 187,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 192,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 193,
+      "reason": "malformed-term-or-definition"
+    },
+    {
+      "index": 195,
+      "reason": "term-not-in-source-quote"
+    }
+  ]
+}
