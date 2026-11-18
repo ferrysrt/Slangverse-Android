@@ -5,7 +5,9 @@ import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
+import org.junit.Assume
 import org.junit.Test
+import java.io.File
 import java.security.MessageDigest
 import kotlin.random.Random
 
@@ -392,5 +394,26 @@ class MixedPublishedFeedTest {
             runBlocking { loadPublishedSessions(parseBankCatalog(catalogJson().toString(), true)) { throw cancelled } }
         }
         assertSame(cancelled, error)
+    }
+
+    /**
+     * Guards the recorded, immutable mixed-v8 attempt: the very bytes that were validated upstream
+     * must also pass this client's stricter parser before anything is published. Kept as a specific
+     * record instead of a moving target, because that attempt can never be regenerated.
+     */
+    @Test fun recordedMixedV8AttemptParsesInThisClientBeforeAnyPublish() {
+        val pack = File(System.getProperty("slangverse.repositoryRoot"),
+            "backend/experiments/mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3/pack.json")
+        Assume.assumeTrue("Recorded mixed-v8 attempt is not present in this checkout", pack.isFile)
+        val text = pack.readText(Charsets.UTF_8)
+        val loaded = parseMixedBankSession(text, "mixed-20261118t133133119z-49697039-2c5d-4d6a-86fb-2ebfcc0d9fa3")
+        assertEquals("mixed-v8", JSONObject(text).getString("promptVersion"))
+        assertEquals(10, loaded.answers.size)
+        assertEquals(mapOf("easy" to 5, "medium" to 3, "hard" to 2),
+            loaded.session.questions.groupingBy { it.difficulty }.eachCount())
+        assertEquals(10, mergePublishedFeed(listOf(loaded)).size)
+        // Observation recorded in docs: this attempt binds every term to the post body, so the reply
+        // highlight has nothing to show. Not asserted as a contract - a later pack may mix targets.
+        assertTrue(loaded.toFeedPosts().all { post -> post.termTargetHandle == null })
     }
 }
