@@ -8,7 +8,7 @@ The user-approved product direction is an offline-generated, mixed-slang social 
 flowchart TD
     A[Weekly Monday 03:00 UTC / 10:00 WIB or manual refresh]
     B[One Firecrawl search with captured page text]
-    C[One LLM normalization request]
+    C[Bounded LLM normalization of captured chunks]
     D[Literal provenance checks]
     E[Own normalized JSON and source CSV]
     F[Automatically eligible normalized sense IDs]

@@ -1,4 +1,4 @@
-﻿name: Refresh normalized slang dataset
+name: Refresh normalized slang dataset
 on:
   workflow_dispatch:
     inputs:
@@ -28,7 +28,7 @@ jobs:
       - name: Test dataset and historical compatibility contracts before paid requests
         working-directory: backend
         run: node --test test/dataset-refresh.test.mjs test/dataset-curate.test.mjs test/dataset-normalized.test.mjs test/catalog.test.mjs
-      - name: Discover candidate slang via one Firecrawl search and one normalization request
+      - name: Discover candidate slang via one Firecrawl search and bounded normalization
         working-directory: backend
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}

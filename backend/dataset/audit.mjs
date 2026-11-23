@@ -12,6 +12,7 @@ const knownErrors = new Set([
   'missing-firecrawl-key', 'missing-normalizer-config', 'invalid-existing-candidates',
   'invalid-firecrawl-v2-response', 'no-scraped-documents', 'insufficient-scraped-documents',
   'normalizer-empty-output', 'normalizer-call-budget-exceeded',
+  'normalizer-output-truncated', 'normalizer-incomplete-output',
   'normalizer-json-invalid', 'normalizer-shape-invalid', 'no-evidence-backed-candidates',
   'dataset-audit-write-failed', 'dataset-output-write-failed', 'dataset-refresh-failed'
 ]);
@@ -123,14 +124,14 @@ export async function auditedPost({fetchImpl, url, key, payload, stage, timeoutM
     }
     // Only successful normalization responses are archived raw. Firecrawl source
     // captures are archived separately, bounded to ten documents with explicit truncation.
-    if (stage === 'openrouter') await auditText(auditDir, 'normalization-response.txt', text);
+    if (stage === 'openrouter') await auditText(auditDir, prefix + '-response.txt', text);
     let parsed;
     try { parsed = JSON.parse(text); }
     catch { throw Error(stage + '-response-json-invalid'); }
     if (auditDir && stage === 'openrouter') {
       try {
-        await rename(join(directoryPath(auditDir), 'normalization-response.txt'),
-          join(directoryPath(auditDir), 'normalization-response.json'));
+        await rename(join(directoryPath(auditDir), prefix + '-response.txt'),
+          join(directoryPath(auditDir), prefix + '-response.json'));
       } catch { throw Error('dataset-audit-write-failed'); }
     }
     metadata.status = 'received';

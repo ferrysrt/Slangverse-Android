@@ -21,10 +21,11 @@ test('Home has context tabs but no slang selection chips or selected-bank-sense 
   assert.match(app, /it\.context == context/);
 });
 
-test('published load merges all validated sessions before replacing the feed once', () => {
+test('published load merges available validated sessions before replacing the feed once', () => {
   assert.match(success, /bank\.fetchCatalog\(requireLlm = true\)/);
-  assert.match(success, /val sessions = bank\.fetchPublishedSessions\(catalog\)/);
-  assert.match(success, /val posts = mergePublishedFeed\(sessions, savedOrder = savedOrder\)/);
+  assert.match(success, /val load = bank\.fetchPublishedSessions\(catalog\)/);
+  assert.match(success, /val posts = mergePublishedFeed\(load\.sessions, savedOrder = savedOrder\)/);
+  assert.match(success, /bankNotice = if \(load\.isPartial\)/);
   assert.equal((success.match(/feedProgress = feedProgress\.copy\(posts = posts\)/g) ?? []).length, 1);
   assert.doesNotMatch(app, /\.shuffled\(|\.random\(/);
   assert.match(published, /sessions\.flatMap \{ it\.toFeedPosts\(\) \}/);
@@ -44,10 +45,10 @@ test('display order survives recreation and changes only on explicit reload or r
 
 test('refresh failures retain published content and report errors without a sample fallback', () => {
   assert.doesNotMatch(failure, /feedProgress\s*=|offlineSample\s*=|SocialFeedGame/);
-  assert.match(failure, /Showing previously loaded published questions in their existing order/);
-  assert.match(failure, /No sample was loaded/);
+  assert.match(failure, /val retained = if \(feedProgress\.posts\.isNotEmpty\(\)\)/);
+  assert.match(failure, /bankError = [^\n]+\$retained/);
   assert.match(effect, /if \(feedProgress\.posts\.any \{ !it\.published \}\) feedProgress = feedProgress\.copy\(posts = emptyList\(\)\)/);
-  assert.match(published, /catch \(cancelled: CancellationException\) \{\s*throw cancelled/);
+  assert.match(effect, /catch \(cancelled: CancellationException\) \{\s*throw cancelled/);
   assert.match(published, /requests\.isEmpty\(\).*throw ApiException/);
   assert.match(published, /generationSource != "llm".*throw ApiException/);
 });

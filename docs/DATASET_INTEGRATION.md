@@ -1,4 +1,4 @@
-﻿# Active dataset — own Firecrawl-normalized slang
+# Active dataset — own Firecrawl-normalized slang
 
 ## Current source of truth
 
@@ -10,9 +10,11 @@ The frozen 200-row `backend/data/slangfeed_snapshot.csv`, `sense_reviews.json` a
 
 ## Refresh and cost boundary
 
-**Actions → Refresh normalized slang dataset** (`.github/workflows/slang-candidates.yml`) supports manual dispatch and runs weekly **Monday 03:00 UTC / 10:00 WIB** (`0 3 * * 1`). Each run is bounded to one Firecrawl v2 search returning up to forty results with `tbs: sbd:1` (newest first) and one OpenRouter normalization request, without retries. The default query embeds the current UTC month, day and year and names tiktok, twitter and instagram, so a scheduled run asks for that day's slang rather than a timeless "latest slang" string. A run whose capture yields fewer than **ten surviving pages** fails with `insufficient-scraped-documents` before the normalizer and leaves the previous dataset untouched. Provider charges and quotas apply. Search results are not a representative usage survey.
+**Actions → Refresh normalized slang dataset** (`.github/workflows/slang-candidates.yml`) supports manual dispatch and runs weekly **Monday 03:00 UTC / 10:00 WIB** (`0 3 * * 1`). Each run makes one Firecrawl v2 search returning up to forty results with `tbs: sbd:1` (newest first), then normalizes the captured text with OpenRouter. The default query includes the current UTC date and names TikTok, Twitter and Instagram. Fewer than **ten surviving pages** triggers `insufficient-scraped-documents` before normalization and preserves the previous dataset. Provider charges and quotas apply. Search results are not a representative usage survey.
 
-Credentials stay in `FIRECRAWL_API_KEY` and `OPENROUTER_API_KEY` repository secrets; optional `OPENROUTER_MODEL` defaults to `openai/gpt-6-luna`. Captured web text is sent to the normalizer as untrusted data. Every captured character is submitted: the capture is split into ~60,000-character chunks with ~2,000 characters of overlap and one `normalizer-v2` request is made per chunk, so a 200,000-character glossary is read end to end instead of being truncated to its first 8,000 characters. Chunk candidates are merged by `candidateId`, and each citation is still verified against the full captured markdown. An explicit budget of 40 normalizer requests per run fails the run rather than silently dropping text. No provider key belongs in Android, public JSON or experiment logs.
+Credentials stay in `FIRECRAWL_API_KEY` and `OPENROUTER_API_KEY` repository secrets. Optional `OPENROUTER_MODEL` defaults to `openai/gpt-6-luna`. The `normalizer-v3` prompt gets the full capture as untrusted data in ~60,000-character chunks with ~2,000 characters of overlap. Chunk candidates are merged by `candidateId` and each citation is verified against the full captured markdown.
+
+Each request keeps the 6,000-token output limit. On `finish_reason: length`, the normalizer discards the response and retries that chunk once with the same text and a 10-item prompt limit instead of 25. Only truncation triggers a retry. The **40-call budget** includes retries and reserves a first attempt for each planned chunk. A second truncation fails with `normalizer-output-truncated`. An exhausted budget fails with `normalizer-call-budget-exceeded`. Normalization failures preserve both dataset files, and per-attempt audit files retain the provider response and finish reason when available. Provider keys stay out of Android, public JSON and experiment logs.
 
 From the repository root, with secrets supplied securely:
 

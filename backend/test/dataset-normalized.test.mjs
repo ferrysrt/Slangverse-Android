@@ -179,7 +179,7 @@ test('weekly workflow keeps its budget and persists normalized files without man
  assert.match(workflow,/cron: '0 3 \* \* 1'/);
  assert.doesNotMatch(workflow,/dataset:curate|manual review|review-only|never auto-promote/);
  assert.equal(workflow.match(/run: npm run dataset:refresh/g)?.length,1);
- assert.match(workflow,/one Firecrawl search and one normalization request/);
+ assert.match(workflow,/one Firecrawl search and bounded normalization/);
  assert.match(workflow,/git add backend\/data\/discovered_candidates.json backend\/data\/discovered_candidates.csv/);
  assert.match(workflow,/dataset-normalized.test.mjs/);
 });
