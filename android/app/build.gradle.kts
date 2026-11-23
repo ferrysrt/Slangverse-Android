@@ -10,8 +10,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 6
-        versionName = "0.5.0-mixed-feed"
+        versionCode = 9
+        versionName = "0.8.0-intelligent-learning"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -50,4 +50,5 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     systemProperty("slangverse.repositoryRoot", rootProject.projectDir.parentFile.absolutePath)
+    systemProperty("robolectric.dependency.repo.url", "https://maven-central.storage-download.googleapis.com/maven2")
 }

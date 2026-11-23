@@ -37,7 +37,7 @@ import kotlinx.coroutines.CancellationException
  * Feed replies drive local practice progress; profiles and content remain fictional/curated.
  * The API Training route continues to use the existing GitHub GET and live backend clients.
  */
-private enum class EditorialScreen { Feed, Detective, Learn, Challenges, Progress, Profile, ApiSession, Activity, Conversation }
+private enum class EditorialScreen { Feed, Detective, Learn, Collection, Challenges, Progress, Profile, ApiSession, Activity, Conversation }
 
 private data class EditorialReply(val handle: String, val text: String)
 
@@ -104,6 +104,7 @@ fun SlangverseApp() {
     val restoredPractice = remember(practiceStore) { practiceStore.load() }
     var screen by rememberSaveable { mutableStateOf(EditorialScreen.Feed) }
     var feedTab by rememberSaveable { mutableStateOf("For you") }
+    var practiceOrder by rememberSaveable { mutableStateOf(practiceStore.loadOrder()) }
     var likedPosts by rememberSaveable { mutableStateOf(restoredPractice.liked) }
     var savedPosts by rememberSaveable { mutableStateOf(restoredPractice.saved) }
     var archiveExpanded by rememberSaveable { mutableStateOf(false) }
@@ -122,9 +123,13 @@ fun SlangverseApp() {
             LocalPracticeSnapshot(feedProgress.answers.toList(), likedPosts, savedPosts)
         )
     }
+    LaunchedEffect(practiceOrder) { practiceStore.saveOrder(practiceOrder) }
+    val learning = remember(feedProgress) { PracticeLearning(feedProgress) }
+    val displayedPosts = remember(feedProgress.posts, practiceOrder) { learning.orderedPosts(practiceOrder) }
 
     var bankRoot by rememberSaveable { mutableStateOf(PublishedFeedDefaults.BANK_ROOT) }
-    var offlineSample by rememberSaveable { mutableStateOf(false) }
+    var practiceSample by rememberSaveable { mutableStateOf<PracticeSample?>(null) }
+    val offlineSample = practiceSample != null
     var bankRefresh by rememberSaveable { mutableIntStateOf(0) }
     var loadedBankRoot by rememberSaveable { mutableStateOf("") }
     var loadedBankRefresh by rememberSaveable { mutableIntStateOf(-1) }
@@ -142,7 +147,7 @@ fun SlangverseApp() {
         bankTotalPacks = 0
         if (offlineSample) {
             bankLoading = false
-            feedProgress = feedProgress.copy(posts = SocialFeedGame.posts)
+            feedProgress = feedProgress.copy(posts = checkNotNull(practiceSample).posts)
             return@LaunchedEffect
         }
         bankLoading = true
@@ -188,7 +193,8 @@ fun SlangverseApp() {
     var expandedTerm by rememberSaveable { mutableStateOf("cooked") }
     var profileHandle by rememberSaveable { mutableStateOf<String?>(null) }
     var focusedPostId by rememberSaveable { mutableStateOf<String?>(null) }
-    var readUpdateIds by rememberSaveable { mutableStateOf(emptyList<String>()) }
+    var readUpdateIds by rememberSaveable { mutableStateOf(practiceStore.loadReadUpdates()) }
+    LaunchedEffect(readUpdateIds) { practiceStore.saveReadUpdates(readUpdateIds) }
     val conversationUpdates = SocialNarrative.updates(feedProgress)
     val unreadUpdates = conversationUpdates.count { it.postId !in readUpdateIds }
 
@@ -209,9 +215,12 @@ fun SlangverseApp() {
         screen = EditorialScreen.Detective
     }
 
-    BackHandler(screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges, EditorialScreen.Progress, EditorialScreen.Profile)) {
-        screen = EditorialScreen.Feed
+    fun backFromDetail() {
+        screen = if (screen == EditorialScreen.Collection) EditorialScreen.Learn else EditorialScreen.Feed
     }
+
+    BackHandler(screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges, EditorialScreen.Progress, EditorialScreen.Profile),
+        onBack = ::backFromDetail)
 
     CompositionLocalProvider(
         LocalStoryProfiles provides feedProfiles(feedProgress.posts), LocalStoryPosts provides feedProgress.posts
@@ -264,14 +273,15 @@ fun SlangverseApp() {
                     screen = screen,
                     xp = feedProgress.xp,
                     combo = feedProgress.combo,
-                    onBack = { screen = EditorialScreen.Feed },
+                    onBack = ::backFromDetail,
                     unreadUpdates = unreadUpdates,
                     onInbox = { screen = EditorialScreen.Activity }
                 )
                 key(screen, focusedPostId) {
                     Column(
                         Modifier.fillMaxSize()
-                            .then(if (screen == EditorialScreen.Feed) Modifier else Modifier.verticalScroll(rememberScrollState()))
+                            .then(if (screen == EditorialScreen.Feed || screen == EditorialScreen.Collection) Modifier
+                                else Modifier.verticalScroll(rememberScrollState()))
                             .padding(horizontal = 17.dp, vertical = 12.dp),
                         verticalArrangement = Arrangement.spacedBy(14.dp)
                     ) {
@@ -279,20 +289,23 @@ fun SlangverseApp() {
                             EditorialScreen.Feed -> {
                                 val context = FeedContext.entries.firstOrNull { it.label == feedTab }
                                 val visiblePosts = if (feedTab == "Saved")
-                                    feedProgress.posts.filter { it.thread.id in savedPosts }
-                                else feedProgress.posts.filter { context == null || it.context == context }
+                                    displayedPosts.filter { it.thread.id in savedPosts }
+                                else displayedPosts.filter { context == null || it.context == context }
                                 LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                                     item(key = "published-source") {
                                         PublishedBankControls(bankRoot, bankLoading, bankLoadedPacks, bankTotalPacks,
-                                            bankError, bankNotice, offlineSample,
+                                            bankError, bankNotice, practiceSample, practiceOrder,
+                                            onOrder = {
+                                                practiceOrder = it; feedTab = "For you"
+                                            },
                                             onRoot = {
                                                 if (offlineSample) feedProgress = feedProgress.copy(posts = emptyList())
-                                                bankRoot = it; offlineSample = false; bankRefresh++
+                                                bankRoot = it; practiceSample = null; bankRefresh++
                                             },
                                             onRefresh = { bankRefresh++ },
                                             onMode = {
                                                 feedProgress = feedProgress.copy(posts = emptyList())
-                                                offlineSample = it; feedTab = "For you"
+                                                practiceSample = it; feedTab = "For you"; bankRefresh++
                                             })
                                     }
                                     item(key = "feed-tabs") {
@@ -310,6 +323,11 @@ fun SlangverseApp() {
                                                             selectedLabelColor = WarmEditorial.CoralDeep,
                                                             labelColor = WarmEditorial.Ink))
                                                 }
+                                        }
+                                    }
+                                    if (practiceOrder == PracticeOrder.Adaptive && feedTab == "For you" && displayedPosts.isNotEmpty()) {
+                                        item(key = "next-practice") {
+                                            NextPracticeCard(learning.recommendation, ::openConversation)
                                         }
                                     }
                                     items(visiblePosts, key = { it.thread.id }) { post ->
@@ -390,6 +408,7 @@ fun SlangverseApp() {
 
                             EditorialScreen.Learn -> {
                                 EditorialSection("Glossary / Learn", "Explore one curated meaning at a time")
+                                EditorialSecondary("OPEN SLANG COLLECTION →") { screen = EditorialScreen.Collection }
                                 OutlinedTextField(
                                     value = glossaryQuery,
                                     onValueChange = { glossaryQuery = it },
@@ -448,14 +467,20 @@ fun SlangverseApp() {
                                 EditorialResearchNote()
                             }
 
+                            EditorialScreen.Collection -> SlangCollection(learning, ::openConversation)
+
                             EditorialScreen.Challenges -> {
                                 EditorialSection("Your quests", "Small goals, at your own pace")
                                 EditorialChallenge("Decode ten conversations", "${feedProgress.completedCount.coerceAtMost(10)} / 10",
                                     (feedProgress.completedCount / 10f).coerceAtMost(1f), "PRACTICE", "◎")
                                 EditorialChallenge("Explore this feed’s contexts", "${feedProgress.contexts} / ${feedProgress.contextCount}",
                                     feedProgress.contexts.toFloat() / feedProgress.contextCount.coerceAtLeast(1), "EXPLORE", "▤")
-                                EditorialChallenge("Match five meanings", "${feedProgress.correct.coerceAtMost(5)} / 5",
-                                    (feedProgress.correct / 5f).coerceAtMost(1f), "REVIEW", "✳")
+                                EditorialChallenge("Match five different meanings", "${learning.matchedSenses.coerceAtMost(5)} / 5",
+                                    (learning.matchedSenses / 5f).coerceAtMost(1f), "COLLECTION", "✳")
+                                if (learning.collection.any { it.availableContexts >= 2 }) {
+                                    EditorialChallenge("Master a meaning in two contexts", "${learning.masteredSenses.coerceAtMost(1)} / 1",
+                                        learning.masteredSenses.coerceAtMost(1).toFloat(), "CONTEXT SWITCH", "↗")
+                                }
                                 EditorialPrimary("BACK TO THE CONVERSATIONS →") { screen = EditorialScreen.Feed }
                                 PaperCard {
                                     TextButton(onClick = { archiveExpanded = !archiveExpanded }) {
@@ -483,6 +508,7 @@ fun SlangverseApp() {
                                     EditorialMetric("Contexts explored", "${feedProgress.contexts} / ${feedProgress.contextCount}")
                                     Text("One reward per post. Likes and bookmarks never affect your score.",
                                         fontSize = 12.sp, color = WarmEditorial.Muted)
+                                    EditorialSecondary("OPEN SLANG COLLECTION →") { screen = EditorialScreen.Collection }
                                 }
                                 feedProgress.decisions.forEach { result ->
                                     val post = feedProgress.posts.first { it.thread.id == result.caseId }
@@ -511,6 +537,7 @@ fun SlangverseApp() {
                                     saves = savedPosts.size
                                 ) {
                                     feedProgress = feedProgress.reset()
+                                    readUpdateIds = emptyList()
                                     likedPosts = emptyList()
                                     savedPosts = emptyList()
                                 }
@@ -619,7 +646,8 @@ private fun EditorialHeader(
             if (screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges,
                     EditorialScreen.Progress, EditorialScreen.Profile)) {
                 IconButton(onClick = onBack) {
-                    Icon(Icons.Outlined.ArrowBack, "Back to Feed", tint = WarmEditorial.CoralDeep)
+                    Icon(Icons.Outlined.ArrowBack, if (screen == EditorialScreen.Collection) "Back to Learn" else "Back to Feed",
+                        tint = WarmEditorial.CoralDeep)
                 }
             }
             IconButton(onClick = onInbox) {
@@ -640,6 +668,7 @@ private fun EditorialHeader(
                     when (screen) {
                         EditorialScreen.Detective -> "CONTEXT DETECTIVE"
                         EditorialScreen.Learn -> "LEARN"
+                        EditorialScreen.Collection -> "COLLECTION"
                         EditorialScreen.Challenges -> "QUESTS"
                         EditorialScreen.Progress -> "PROGRESS"
                         EditorialScreen.Profile -> "PROFILE"
@@ -862,7 +891,7 @@ private fun EditorialHeader(
                 HorizontalDivider(color = WarmEditorial.Sand)
                 Text("Later in this story · scripted follow-up", fontSize = 12.sp,
                     lineHeight = 18.sp, color = WarmEditorial.Muted)
-                StoryIdentity(story.followUpHandle, onProfile, avatarSize = 32.dp)
+                StoryIdentity(story.followUpHandle, onProfile, subtitle = "Replying to you", avatarSize = 32.dp)
                 Text(story.followUp, fontSize = 13.sp, lineHeight = 20.sp)
             }
         }
