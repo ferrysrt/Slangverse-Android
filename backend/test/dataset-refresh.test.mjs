@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {mkdtemp, readFile, writeFile, rm} from 'node:fs/promises';
+import {mkdtemp, readFile, readdir, writeFile, rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
@@ -421,6 +421,17 @@ test('normalizer fan-out over the call budget fails instead of dropping text', a
   assert.equal(calls, 0);
 });
 
+test('a full chunk budget leaves no capacity to retry a truncated response', async () => {
+  const pages = [{...docs[0], markdown: 'x'.repeat(PROMPT_CHUNK_CHARS * 38)}];
+  assert.equal(buildNormalizerChunks(pages).length, MAX_NORMALIZER_CALLS);
+  let calls = 0;
+  await assert.rejects(extractCandidates({docs: pages, key: 'mock', model: 'mock', fetchImpl: async () => {
+    calls++;
+    return jsonResponse({choices: [{finish_reason: 'length', message: {content: '{"items":['}}]});
+  }}), /normalizer-call-budget-exceeded/);
+  assert.equal(calls, 1);
+});
+
 test('normalizer model falls back to the configured model only when response model is absent', async () => {
   for (const model of [undefined, '', '   ']) {
     const response = normalizerResponse([item()]);
@@ -434,6 +445,7 @@ test('normalizer model falls back to the configured model only when response mod
 test('normalizer rejects malformed responses without retries', async () => {
   for (const [response, error] of [
     [{choices: []}, /normalizer-empty-output/],
+    [{choices: [{finish_reason: 'content_filter', message: {content: '{"items":[]}'}}]}, /normalizer-incomplete-output/],
     [{choices: [{message: {content: 'not JSON'}}]}, /normalizer-json-invalid/],
     [{choices: [{message: {content: '{"items":{}}'}}]}, /normalizer-shape-invalid/]
   ]) {
@@ -443,6 +455,65 @@ test('normalizer rejects malformed responses without retries', async () => {
     }}), error);
     assert.equal(calls, 1);
   }
+});
+
+test('a length-limited chunk is retried once with a smaller item limit and its own audit files', async t => {
+  const {directory, jsonPath} = await temporaryOutput(t);
+  const auditRoot = join(directory, 'audit');
+  const pages = fullDocs.map((doc, index) => index === 0
+    ? {...doc, markdown: doc.markdown + 'x'.repeat(PROMPT_CHUNK_CHARS)} : doc);
+  const requests = [];
+  const output = await refreshDataset({...refreshOptions, outputUrl: jsonPath, auditDir: auditRoot,
+    fetchImpl: async (url, options) => {
+      if (url === SEARCH_URL) return jsonResponse({data: {web: pages}});
+      const request = JSON.parse(options.body);
+      requests.push(request);
+      assert.ok(requests.length <= 3);
+      if (requests.length === 1) return jsonResponse(normalizerResponse([item()]));
+      if (requests.length === 2) return jsonResponse({choices: [{finish_reason: 'length',
+        message: {content: JSON.stringify({items: [item({definition: 'A partial result that must never be published'})]})}}]});
+      return jsonResponse(normalizerResponse([]));
+    }});
+  assert.equal(requests.length, 3);
+  assert.equal(output.entries.length, 1);
+  assert.equal(output.entries[0].definition, item().definition);
+  assert.equal(requests[1].messages[1].content, requests[2].messages[1].content);
+  assert.match(requests[1].messages[0].content, /At most 25 items/);
+  assert.match(requests[2].messages[0].content, /At most 10 items/);
+  assert.ok(requests.every(request => request.max_tokens === 6000));
+  const [run] = await readdir(auditRoot);
+  const auditPath = join(auditRoot, run);
+  const readAudit = async name => JSON.parse(await readFile(join(auditPath, name), 'utf8'));
+  assert.equal((await readAudit('normalization-chunk-2-response.json')).choices[0].finish_reason, 'length');
+  assert.deepEqual((await readAudit('normalization-chunk-2-retry-response.json')).choices,
+    normalizerResponse([]).choices);
+  assert.equal((await readAudit('result.json')).status, 'succeeded');
+});
+
+test('persistent truncation after a successful chunk preserves both dataset files byte for byte', async t => {
+  const {directory, jsonPath, csvPath} = await temporaryOutput(t);
+  const auditRoot = join(directory, 'audit');
+  const previousJson = Buffer.from('{"entries":[]}\r\n');
+  const previousCsv = Buffer.from('term,definition\r\n');
+  await writeFile(jsonPath, previousJson);
+  await writeFile(csvPath, previousCsv);
+  const pages = fullDocs.map((doc, index) => index === 0
+    ? {...doc, markdown: doc.markdown + 'x'.repeat(PROMPT_CHUNK_CHARS)} : doc);
+  let normalizerCalls = 0;
+  await assert.rejects(refreshDataset({...refreshOptions, outputUrl: jsonPath, auditDir: auditRoot,
+    fetchImpl: async url => {
+      if (url === SEARCH_URL) return jsonResponse({data: {web: pages}});
+      normalizerCalls++;
+      if (normalizerCalls === 1) return jsonResponse(normalizerResponse([item()]));
+      return jsonResponse({choices: [{finish_reason: 'length', message: {content: '{"items":['}}]});
+    }}), /normalizer-output-truncated/);
+  assert.equal(normalizerCalls, 3);
+  assert.deepEqual(await readFile(jsonPath), previousJson);
+  assert.deepEqual(await readFile(csvPath), previousCsv);
+  const [run] = await readdir(auditRoot);
+  const result = JSON.parse(await readFile(join(auditRoot, run, 'result.json'), 'utf8'));
+  assert.equal(result.status, 'failed');
+  assert.equal(result.failureCode, 'normalizer-output-truncated');
 });
 
 test('refresh writes normalized JSON and a multi-source CSV without manual review', async t => {

@@ -6,8 +6,7 @@ import test from 'node:test';
 // These do not replace Compose interaction or saved-state restoration tests.
 const source = (name) => readFileSync(
   new URL(`../app/src/main/java/id/slangverse/app/${name}.kt`, import.meta.url), 'utf8');
-const feed = source('SlangverseApp').split('@Composable private fun FeedSocialPost(')[1]
-  .split('@Composable private fun EditorialOption(')[0];
+const feed = source('SlangverseApp').match(/\bfun FeedSocialPost\(([\s\S]*?)\n\}/)?.[1];
 const training = source('RemoteTrainingPanel');
 const detective = source('ContextDetective');
 
@@ -18,8 +17,9 @@ function assertResetsExpanded(text, name, expectedCount) {
   assert.match(text, new RegExp(`${name} = !${name}`), 'Replies must remain collapsible');
 }
 
-test('feed replies default open with independent per-post saveable state', () => {
-  assert.match(feed, /initiallyExpanded: Boolean = true/);
+test('feed opens replies by default when they contain the target slang', () => {
+  assert.ok(feed, 'FeedSocialPost source not found');
+  assert.match(feed, /initiallyExpanded: Boolean = post\.termTargetHandle != null/);
   assert.match(feed, /var expanded by rememberSaveable\(thread\.id\) \{ mutableStateOf\(initiallyExpanded\) \}/);
   assert.match(feed, /onClick = \{ expanded = !expanded \}/);
   assert.match(feed, /if \(expanded\) StoryReplies\(story\.replies, onProfile, post\.termTargetHandle\)/);
@@ -29,8 +29,8 @@ test('feed replies default open with independent per-post saveable state', () =>
 test('feed answer choices still require opening the reply composer', () => {
   assert.match(feed, /var replying by rememberSaveable\(thread\.id\) \{ mutableStateOf\(false\) \}/);
   assert.match(feed, /if \(answeredIndex == null && !replying\)/);
-  assert.match(feed, /onClick = \{ replying = true \}/);
-  assert.match(feed, /else if \(answeredIndex == null\) \{\s*Text\("Choose your interpretation"/);
+  assert.match(feed, /EditorialPrimary\("Answer Kai"\) \{ replying = true \}/);
+  assert.match(feed, /else if \(answeredIndex == null\) \{\s*Text\([^\n]+\n\s*displayedOptions\.forEachIndexed/);
   assert.match(feed, /enabled = selected in thread\.options\.indices\) \{ onAnswer\(selected\) \}/);
 });
 
