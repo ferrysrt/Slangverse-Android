@@ -76,7 +76,9 @@ internal object SocialFeedGame {
             "The late venue change leaves the team and its equipment in the wrong place with little time to recover."),
         Scene("education-followup", FeedContext.Education, "Mira", "@miramoments",
             "The submission portal says closed. My finished assignment is still sitting in drafts. Cooked.",
-            listOf("The course page says late uploads are disabled.", "Email the lecturer and explain what happened."),
+            listOf("Is the file still in drafts? Screenshot it with the timestamp.",
+                "Yep. I watched that spinner until the portal locked. The screenshot's ready.",
+                "Send it through the course inbox. Put our section number in the subject."),
             "The work is finished, so what does cooked refer to?",
             "Finishing the assignment did not resolve the missed submission. The closed portal creates the problem.")
     )

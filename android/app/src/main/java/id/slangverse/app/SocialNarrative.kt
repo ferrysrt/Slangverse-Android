@@ -52,7 +52,7 @@ internal object SocialNarrative {
         "opinion" to "Ari and I are adding backup owners to the project tasks.",
         "friends" to "Sam found the confirmation email. We're asking the gate staff if they can scan it.",
         "news" to "The team has called the new venue to explain the delivery problem.",
-        "education-followup" to "I emailed the lecturer. Waiting for their reply before I assume anything."
+        "education-followup" to "Screenshot sent. It's still marked missing, but at least there's a paper trail."
     )
 
     fun story(post: FeedPracticePost): PostStory {
@@ -75,10 +75,13 @@ internal object SocialNarrative {
         }
         return PostStory(
             time = if (id == "education-followup") "Later that night" else "Earlier today",
-            replies = listOf(
-                StoryReply("$id-clue", firstHandle, post.thread.comments[0]),
-                StoryReply("$id-response", secondHandle, post.thread.comments[1], "$id-clue")
-            ),
+            replies = buildList {
+                add(StoryReply("$id-clue", firstHandle, post.thread.comments[0]))
+                add(StoryReply("$id-response", secondHandle, post.thread.comments[1], "$id-clue"))
+                if (id == "education-followup") {
+                    add(StoryReply("$id-next-step", firstHandle, post.thread.comments[2], "$id-response"))
+                }
+            },
             quote = quotes[id], followUpHandle = post.thread.handle,
             followUp = followUps.getValue(id)
         )

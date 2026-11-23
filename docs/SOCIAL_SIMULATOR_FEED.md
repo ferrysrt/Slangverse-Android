@@ -12,9 +12,13 @@ Mixed generation samples automatically eligible normalized senses from the own F
 
 `backend/scripts/publish-mixed-bank.mjs` defaults to one attempt, maximum three, with no retries/repair/mock fallback. `mixed-v3` is the active baseline; three real attempts are archived, all rejected. Input, rendered prompt, request, raw output/response, actual model/usage/finish reasons, validation and result persist per attempt when available; success adds a pack. The summary CLI and workflow artifact/persistence are wired even on failure. `0.5.0-mixed-feed` / version code `6` is built in GitHub Actions; no live generation has passed all gates.
 
-The social renderer retains bundled avatars, profiles, replies visible by default and individually collapsible, an explicit inline answer composer, separate Learning feedback, context filtering, bookmarks, quests and results. Generated-pack inbox entries say Learning feedback ready; authored quotes/scripted continuations stay in the opt-in sample. The phone never calls the LLM and needs no provider key; public static grading is local practice. No final test/build/device outcome is asserted by this contract.
+The social renderer retains bundled avatars, profiles, individually collapsible replies, an explicit inline answer composer, separate Learning feedback, context filtering, bookmarks, quests and results. Context replies start collapsed unless the target slang appears in a reply. Generated-pack inbox entries say Learning feedback ready; authored quotes/scripted continuations stay in the opt-in sample. The phone never calls the LLM and needs no provider key; public static grading is local practice. No final test/build/device outcome is asserted by this contract.
 
 See [accepted intent and current acceptance checklist](MIXED_FEED_HANDBOOK.md), [bank operations](GITHUB_GET_QUESTIONS.md), [dataset provenance](DATASET_INTEGRATION.md) and [prompt research protocol](PROMPT_ENGINEERING.md).
+
+## V0.6.0 pilot — Mira's late submission
+
+Open **Feed → Source → Open offline sample → Education** and find Mira's post about the closed submission portal. Expand its replies to see Naya ask for evidence, Mira reply, and Naya answer Mira at the next indentation level. After submitting an interpretation, Mira's scripted update appears below the learning feedback and in the conversation inbox. Both answer outcomes unlock the same update. Correctness and XP still come from the separate grading panel. The pilot uses the authored sample and requires no changes to the published question bank.
 
 ## Historical checkpoint: Published Feed · 0.4.0
 

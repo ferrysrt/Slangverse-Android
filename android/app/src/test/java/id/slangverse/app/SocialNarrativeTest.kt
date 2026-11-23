@@ -47,6 +47,27 @@ class SocialNarrativeTest {
         assertTrue(SocialNarrative.story(SocialFeedGame.posts.last()).quote!!.text.contains("midnight"))
     }
 
+    @Test fun lateSubmissionPilotKeepsNestedVoicesAndOneNeutralFollowUp() {
+        val post = SocialFeedGame.posts.single { it.thread.id == "education-followup" }
+        val story = SocialNarrative.story(post)
+        val (clue, response, nextStep) = story.replies
+        assertEquals(listOf("@naya", "@miramoments", "@naya"), story.replies.map { it.handle })
+        assertNull(clue.parentId)
+        assertEquals(clue.id, response.parentId)
+        assertEquals(response.id, nextStep.parentId)
+
+        val initial = FeedPracticeProgress(posts = listOf(post))
+        val correctIndex = post.thread.correctIndex
+        val correct = initial.answer(post.thread.id, correctIndex)
+        val incorrect = initial.answer(post.thread.id, (correctIndex + 1) % post.thread.options.size)
+        assertTrue(SocialNarrative.updates(initial).isEmpty())
+        val update = SocialNarrative.updates(correct).single()
+        assertEquals(ConversationUpdate(post.thread.id, "@miramoments", story.followUp), update)
+        assertEquals(listOf(update), SocialNarrative.updates(incorrect))
+        assertEquals(80, correct.xp)
+        assertEquals(15, incorrect.xp)
+    }
+
     @Test fun updatesAppearOnlyAfterSubmissionAndNeverDuplicate() {
         assertTrue(SocialNarrative.updates(FeedPracticeProgress()).isEmpty())
         val post = SocialFeedGame.posts.first().thread

@@ -64,10 +64,16 @@ internal fun StoryQuoteCard(quote: StoryQuote, onProfile: (String) -> Unit) {
 
 @Composable
 internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit, highlightHandle: String? = null) {
+    val repliesById = replies.associateBy { it.id }
     replies.forEach { reply ->
-        val parent = replies.firstOrNull { it.id == reply.parentId }
+        val parent = reply.parentId?.let(repliesById::get)
+        val indent = when {
+            parent == null -> 0.dp
+            parent.parentId?.let(repliesById::containsKey) == true -> 36.dp
+            else -> 22.dp
+        }
         val isTermTarget = highlightHandle != null && reply.handle == highlightHandle
-        Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min).padding(start = if (parent == null) 0.dp else 22.dp),
+        Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min).padding(start = indent),
             horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             if (parent != null) Box(Modifier.width(2.dp).fillMaxHeight().background(WarmEditorial.Sand))
             if (isTermTarget) {
