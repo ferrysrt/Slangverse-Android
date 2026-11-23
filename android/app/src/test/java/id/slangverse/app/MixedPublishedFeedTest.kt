@@ -64,6 +64,7 @@ class MixedPublishedFeedTest {
             assertEquals(answer.correctIndex, post.thread.correctIndex)
             assertEquals(q.post.comments.map { it.text }, SocialNarrative.story(post).replies.map { it.text })
             assertEquals(q.post.avatarId, post.avatarId)
+            assertEquals(q.senseId, post.learningSenseId)
             assertEquals("mixed-fixture/${hash(text)}/${q.id}", post.thread.id)
             assertTrue(post.published)
             assertTrue(post.sourceLabel.endsWith("normalized-unreviewed"))

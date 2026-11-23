@@ -18,7 +18,9 @@ internal data class FeedPracticePost(
     val replies: List<StoryReply>? = null,
     val published: Boolean = false,
     val sourceLabel: String = "Hand-authored practice",
-    val termTargetHandle: String? = null
+    val termTargetHandle: String? = null,
+    val learningSenseId: String? = null,
+    val authoredStory: PostStory? = null
 )
 
 /** Hand-authored UI practice pack. Not generated, expert-validated, or participant research data. */
@@ -41,7 +43,9 @@ internal object SocialFeedGame {
             "The lost presentation and approaching deadline put the author in serious trouble."),
         Scene("work", FeedContext.Work, "Ari", "@ariatwork",
             "Sent the client the wrong file and the meeting starts in two minutes. I'm cooked.",
-            listOf("Send the corrected version now.", "I'll ask them to wait before opening it."),
+            listOf("Send only the corrected file. I can stall the meeting.",
+                "Sent. Of course both attachments have almost the same name.",
+                "Pin the right version in the project chat. I'll point everyone there."),
             "What are they saying about their situation with cooked?",
             "The wrong file reaching a client just before a meeting creates an urgent problem."),
         Scene("prediction", FeedContext.Prediction, "Matchday Chat", "@matchdaychat",
@@ -66,7 +70,9 @@ internal object SocialFeedGame {
             "The opinion criticizes a fragile plan: a single absence could cause serious problems."),
         Scene("friends", FeedContext.Friends, "Jo", "@justjo",
             "Me: you brought the tickets, right? Sam: I thought you had them. We're cooked.",
-            listOf("The gate closes in ten minutes.", "Check if the confirmation email has a QR code."),
+            listOf("Gate closes in ten. I'm searching my inbox now.",
+                "Search the venue name. I booked it the night we picked the seats.",
+                "Found the booking. Keep our spot while I ask if the QR code still works."),
             "Why are these friends calling themselves cooked?",
             "Neither friend has the tickets and entry closes soon; they risk missing the event."),
         Scene("news", FeedContext.EventReaction, "Town Loop", "@townloop",

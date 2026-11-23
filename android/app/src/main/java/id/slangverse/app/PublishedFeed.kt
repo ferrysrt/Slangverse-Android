@@ -145,7 +145,8 @@ internal fun StaticBankSession.toFeedPosts(): List<FeedPracticePost> {
             published = true,
             sourceLabel = (if (session.editoriallyEdited) "Published LLM pack · agent-edited" else "Published LLM pack") +
                 " · GitHub GET · locally graded · ${session.referenceStatus}",
-            termTargetHandle = if (q.questionTarget == "reply") q.targetHandle else null
+            termTargetHandle = if (q.questionTarget == "reply") q.targetHandle else null,
+            learningSenseId = q.senseId.ifBlank { session.senseId }.ifBlank { null }
         )
     }
 }
@@ -166,16 +167,17 @@ internal fun feedProfiles(posts: List<FeedPracticePost>): Map<String, FictionalP
 @Composable
 internal fun PublishedBankControls(
     root: String, loading: Boolean, loadedPacks: Int, totalPacks: Int, error: String?, notice: String?,
-    demo: Boolean, onRoot: (String) -> Unit, onRefresh: () -> Unit, onMode: (Boolean) -> Unit
+    sample: PracticeSample?, order: PracticeOrder, onOrder: (PracticeOrder) -> Unit,
+    onRoot: (String) -> Unit, onRefresh: () -> Unit, onMode: (PracticeSample?) -> Unit
 ) {
     var settings by rememberSaveable { mutableStateOf(false) }
     var draftRoot by rememberSaveable(root) { mutableStateOf(root) }
     // Source plumbing stays collapsed: the feed opens on conversations, not on fetch diagnostics.
     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            Text(if (demo) "Offline sample · hand-authored" else "Published questions · fetched over HTTPS",
+            Text(sample?.sourceLabel ?: "Published questions · fetched over HTTPS",
                 fontSize = 11.sp, color = WarmEditorial.CoralDeep, modifier = Modifier.weight(1f))
-            if (!demo) TextButton(onClick = onRefresh, enabled = !loading,
+            if (sample == null) TextButton(onClick = onRefresh, enabled = !loading,
                 contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)) {
                 Text("Refresh", fontSize = 11.sp)
             }
@@ -191,12 +193,14 @@ internal fun PublishedBankControls(
                 Button(onClick = { onRoot(draftRoot.trim()) }, enabled = draftRoot.isNotBlank() && !loading) {
                     Text("Use this bank")
                 }
-                TextButton(onClick = { onMode(!demo) }) {
-                    Text(if (demo) "Return to published questions" else "Open offline sample")
-                }
             }
+                if (sample == null) {
+                    TextButton(onClick = { onMode(PracticeSample.Stories) }) { Text("Open offline sample") }
+                    TextButton(onClick = { onMode(PracticeSample.Contexts) }) { Text("Open context practice") }
+                } else TextButton(onClick = { onMode(null) }) { Text("Return to published questions") }
             Text("GitHub serves pre-generated packs. No API key and no live LLM call happen on your phone; grading is local practice.",
                 fontSize = 12.sp, lineHeight = 17.sp, color = WarmEditorial.Muted)
+            PracticeOrderPicker(order, onOrder)
         }
         if (loading) {
             LinearProgressIndicator(Modifier.fillMaxWidth().height(3.dp))

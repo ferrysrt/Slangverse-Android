@@ -192,7 +192,7 @@ internal fun ConversationInbox(updates: List<ConversationUpdate>, readIds: List<
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     ProfilePicture(update.handle, profile.avatarId)
                     Text("${if (update.postId in readIds) "Read" else "New"} · " +
-                        if (update.isFeedback) "Learning feedback ready" else "${profile.name} continued the story",
+                        if (update.isFeedback) "${profile.name} replied · learning feedback ready" else "${profile.name} continued the story",
                         fontSize = 13.sp, fontWeight = FontWeight.Bold)
                 }
                 Text(update.text, fontSize = 13.sp, lineHeight = 20.sp)

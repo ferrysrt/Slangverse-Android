@@ -12,13 +12,15 @@ Mixed generation samples automatically eligible normalized senses from the own F
 
 `backend/scripts/publish-mixed-bank.mjs` defaults to one attempt, maximum three, with no retries/repair/mock fallback. `mixed-v3` is the active baseline; three real attempts are archived, all rejected. Input, rendered prompt, request, raw output/response, actual model/usage/finish reasons, validation and result persist per attempt when available; success adds a pack. The summary CLI and workflow artifact/persistence are wired even on failure. `0.5.0-mixed-feed` / version code `6` is built in GitHub Actions; no live generation has passed all gates.
 
-The social renderer retains bundled avatars, profiles, individually collapsible replies, an explicit inline answer composer, separate Learning feedback, context filtering, bookmarks, quests and results. Context replies start collapsed unless the target slang appears in a reply. Generated-pack inbox entries say Learning feedback ready; authored quotes/scripted continuations stay in the opt-in sample. The phone never calls the LLM and needs no provider key; public static grading is local practice. No final test/build/device outcome is asserted by this contract.
+The social renderer retains bundled avatars, profiles, individually collapsible replies, an explicit inline answer composer, separate learning feedback, context filtering, bookmarks, quests and results. Context replies start collapsed unless the target slang appears in a reply. Kai posts a neutral scripted response after the player answers a published conversation. The same response appears in the inbox for either grading outcome. Inbox read status survives a restart. The authored sample adds quoted posts and multi-level replies from consistent recurring characters. Grading and story responses run locally.
 
 See [accepted intent and current acceptance checklist](MIXED_FEED_HANDBOOK.md), [bank operations](GITHUB_GET_QUESTIONS.md), [dataset provenance](DATASET_INTEGRATION.md) and [prompt research protocol](PROMPT_ENGINEERING.md).
 
-## V0.6.0 pilot — Mira's late submission
+## V0.6.0 social experience
 
 Open **Feed → Source → Open offline sample → Education** and find Mira's post about the closed submission portal. Expand its replies to see Naya ask for evidence, Mira reply, and Naya answer Mira at the next indentation level. After submitting an interpretation, Mira's scripted update appears below the learning feedback and in the conversation inbox. Both answer outcomes unlock the same update. Correctness and XP still come from the separate grading panel. The pilot uses the authored sample and requires no changes to the published question bank.
+
+The **Work** and **Friends** examples use the same reply structure with a different cast. Dea gives practical work instructions and Ari follows up on the file mix-up. Sam and Jo play out finding the tickets before the gate closes.
 
 ## Historical checkpoint: Published Feed · 0.4.0
 

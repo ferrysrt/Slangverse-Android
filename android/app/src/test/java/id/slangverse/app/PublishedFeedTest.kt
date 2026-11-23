@@ -31,7 +31,10 @@ class PublishedFeedTest {
                 assertTrue(ids.add(post.thread.id))
                 assertTrue(post.avatarId in ProfilePictureCatalog.ids)
                 assertEquals(post.thread.comments, post.replies!!.map { it.text })
-                assertTrue(SocialNarrative.story(post).followUp.isEmpty())
+                val story = SocialNarrative.story(post)
+                assertEquals("@confuseduser", story.followUpHandle)
+                assertTrue(story.followUp.isNotBlank())
+                assertNull(story.quote)
             }
             assertEquals(mapOf(FeedDifficulty.Easy to 5, FeedDifficulty.Medium to 3, FeedDifficulty.Hard to 2),
                 posts.groupingBy { it.difficulty }.eachCount())
@@ -147,6 +150,10 @@ class PublishedFeedTest {
         val update = SocialNarrative.updates(restored).single()
         assertTrue(update.isFeedback)
         assertEquals(post.id, update.postId)
+        assertEquals("@confuseduser", update.handle)
+        assertEquals(SocialNarrative.story(first.first()).followUp, update.text)
+        val incorrect = FeedPracticeProgress(posts = first).answer(post.id, (post.correctIndex + 1) % post.options.size)
+        assertEquals(listOf(update), SocialNarrative.updates(incorrect))
     }
 
     @Test fun bankRevisionChangesInvalidateOldAnswersAndEmptyCatalogIsNotADemo() {

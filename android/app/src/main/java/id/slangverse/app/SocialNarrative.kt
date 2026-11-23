@@ -45,22 +45,28 @@ internal object SocialNarrative {
     private val followUps = mapOf(
         "personal" to "I reached my flatmate from the cafe. Waiting here until they arrive.",
         "education" to "I'm checking the shared drive with my group now. Thanks for joining the conversation.",
-        "work" to "I sent a correction and asked the client to use the new file.",
+        "work" to "Client got the right file. The next export is getting a date and the word FINAL just once.",
         "prediction" to "The coach is working on the lineup. We'll know more at kickoff.",
         "sports" to "Final whistle. We stayed to support the team; tomorrow's training is going to be busy.",
         "entertainment" to "The stage manager has called the understudy. We're waiting for an update.",
         "opinion" to "Ari and I are adding backup owners to the project tasks.",
-        "friends" to "Sam found the confirmation email. We're asking the gate staff if they can scan it.",
+        "friends" to "They scanned it! Sam has already put the next gig's tickets in our group chat.",
         "news" to "The team has called the new venue to explain the delivery problem.",
         "education-followup" to "Screenshot sent. It's still marked missing, but at least there's a paper trail."
     )
 
     fun story(post: FeedPracticePost): PostStory {
+        post.authoredStory?.let { return it }
         val id = post.thread.id
         if (post.published) return PostStory(
             // Published packs carry no real timestamp; an empty time hides the meta line entirely.
             time = "", replies = post.replies.orEmpty(),
-            followUpHandle = post.thread.handle, followUp = "")
+            followUpHandle = "@confuseduser", followUp = when (post.context) {
+                FeedContext.Education -> "Thanks for jumping in. I'm going to read the campus thread again with the replies in mind."
+                FeedContext.Work -> "Thanks for replying. I read that too quickly the first time through."
+                FeedContext.Friends, FeedContext.Personal -> "Thanks for joining in. I wanted to ask before the chat moved on."
+                else -> "Thanks for joining the thread. I'm going back to see how the replies fit together."
+            })
         val firstHandle = when (post.context) {
             FeedContext.Sports -> "@matchdaychat"
             FeedContext.Prediction -> "@benchside"
@@ -78,8 +84,8 @@ internal object SocialNarrative {
             replies = buildList {
                 add(StoryReply("$id-clue", firstHandle, post.thread.comments[0]))
                 add(StoryReply("$id-response", secondHandle, post.thread.comments[1], "$id-clue"))
-                if (id == "education-followup") {
-                    add(StoryReply("$id-next-step", firstHandle, post.thread.comments[2], "$id-response"))
+                post.thread.comments.getOrNull(2)?.let { nextStep ->
+                    add(StoryReply("$id-next-step", firstHandle, nextStep, "$id-response"))
                 }
             },
             quote = quotes[id], followUpHandle = post.thread.handle,
@@ -92,8 +98,6 @@ internal object SocialNarrative {
         .asReversed().map { decision ->
             val post = progress.posts.first { it.thread.id == decision.caseId }
             val story = story(post)
-            if (post.published) ConversationUpdate(post.thread.id, post.thread.handle,
-                "Review your interpretation of “${post.thread.term}” and its learning feedback.", isFeedback = true)
-            else ConversationUpdate(post.thread.id, story.followUpHandle, story.followUp)
+            ConversationUpdate(post.thread.id, story.followUpHandle, story.followUp, isFeedback = post.published)
         }
 }
