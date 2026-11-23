@@ -1,0 +1,10 @@
+{
+  "runId": "2026-11-23T11-52-56-145Z-a66a8795-646d-49ee-93c4-458cebc3ebcb",
+  "status": "failed",
+  "startedAt": "2026-11-23T11:52:56.145Z",
+  "completedAt": "2026-11-23T11:54:27.862Z",
+  "scrapedPages": null,
+  "accepted": null,
+  "rejected": null,
+  "failureCode": "normalizer-json-invalid"
+}

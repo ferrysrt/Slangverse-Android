@@ -1,0 +1,20 @@
+{
+  "url": "https://api.firecrawl.dev/v2/search",
+  "payload": {
+    "query": "latest internet slang November 23 2026 tiktok twitter instagram viral terms -site:youtube.com",
+    "limit": 40,
+    "tbs": "sbd:1",
+    "sources": [
+      {
+        "type": "web"
+      }
+    ],
+    "scrapeOptions": {
+      "formats": [
+        {
+          "type": "markdown"
+        }
+      ]
+    }
+  }
+}
