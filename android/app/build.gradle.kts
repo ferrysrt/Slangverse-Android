@@ -50,5 +50,5 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     systemProperty("slangverse.repositoryRoot", rootProject.projectDir.parentFile.absolutePath)
-    systemProperty("robolectric.dependency.repo.url", "https://repo.maven.apache.org/maven2")
+    systemProperty("robolectric.dependency.repo.url", "https://maven-central.storage-download.googleapis.com/maven2")
 }
