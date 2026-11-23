@@ -182,5 +182,5 @@ class SlangverseApi(rawBaseUrl: String, private val clientToken: String = "") {
     }
 }
 
-private fun JSONArray.objects(): List<JSONObject> = (0 until length()).map { getJSONObject(it) }
+internal fun JSONArray.objects(): List<JSONObject> = (0 until length()).map { getJSONObject(it) }
 private fun JSONArray.strings(): List<String> = (0 until length()).map { getString(it) }

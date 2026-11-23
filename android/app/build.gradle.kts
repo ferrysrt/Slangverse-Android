@@ -10,8 +10,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 9
-        versionName = "0.8.0-intelligent-learning"
+        versionCode = 10
+        versionName = "0.9.0-research-pilot"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

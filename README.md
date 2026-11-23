@@ -1,6 +1,6 @@
 # Slangverse Android — mixed social feed
 
-**Current direction:** Slangverse uses the project's own Firecrawl-normalized slang dataset and pre-generated mixed-slang question packs. `0.8.0-intelligent-learning` (Android version code `9`) adds scripted social responses, a slang collection and optional adaptive practice on device. This repository is separate from `ferrysrt/slangfeed`.
+**Current direction:** Slangverse uses the project's own Firecrawl-normalized slang dataset and pre-generated mixed-slang question packs. `0.9.0-research-pilot` (Android version code `10`) adds a separate, locked 30-question pilot with local response recording and CSV export. See the [pilot setup and review guide](docs/RESEARCH_PILOT.md).
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret slang from posts and indirect reply hints. Product approval does not establish supervisor approval of the research methodology, semantic validity, calibrated difficulty or learning gains.
 

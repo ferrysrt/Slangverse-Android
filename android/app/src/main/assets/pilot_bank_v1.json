@@ -1,0 +1,597 @@
+{
+  "id": "slangverse-context-pilot-v1",
+  "senses": [
+    {
+      "id": "cooked",
+      "term": "cooked",
+      "meaning": "In serious trouble because a situation is going badly"
+    },
+    {
+      "id": "no-cap",
+      "term": "no cap",
+      "meaning": "Emphasizing that a statement is honest or not exaggerated"
+    },
+    {
+      "id": "lowkey",
+      "term": "lowkey",
+      "meaning": "Expressing a mild feeling or preference without making a big deal of it"
+    },
+    {
+      "id": "sus",
+      "term": "sus",
+      "meaning": "Suspicious or giving a reason to doubt something"
+    },
+    {
+      "id": "spill-the-tea",
+      "term": "spill the tea",
+      "meaning": "Tell the interesting details behind a situation"
+    },
+    {
+      "id": "rent-free",
+      "term": "rent-free",
+      "meaning": "Staying on someone's mind and coming back repeatedly"
+    },
+    {
+      "id": "read-the-room",
+      "term": "read the room",
+      "meaning": "Notice how people are feeling and adjust what you do"
+    },
+    {
+      "id": "mid",
+      "term": "mid",
+      "meaning": "Mediocre or less impressive than expected"
+    },
+    {
+      "id": "locked-in",
+      "term": "locked in",
+      "meaning": "Fully focused on a task or activity"
+    },
+    {
+      "id": "ghosted",
+      "term": "ghosted",
+      "meaning": "Abruptly stopped communicating without explaining why"
+    }
+  ],
+  "questions": [
+    {
+      "id": "pilot-01",
+      "sense": "cooked",
+      "context": "Education",
+      "author": "@miramoments",
+      "body": "I promised the tutor our edit was finished. Just opened the upload and it's yesterday's blank draft. I'm cooked.",
+      "replyAuthor": "@naya",
+      "reply": "The tutor has already opened the folder for grading.",
+      "question": "What does Mira expect now?",
+      "options": [
+        "A chance to help a group that hasn't finished.",
+        "Serious trouble over the wrong file.",
+        "A new assignment from the tutor.",
+        "A chance to start a practice version."
+      ],
+      "answerIndex": 1,
+      "explanation": "Grading has begun, and Mira submitted the wrong file."
+    },
+    {
+      "id": "pilot-02",
+      "sense": "no-cap",
+      "context": "Sports",
+      "author": "@benchside",
+      "body": "No cap, I was behind the goal and heard the ball scrape both posts before it went in.",
+      "replyAuthor": "@matchdaychat",
+      "reply": "The replay from that end just went up.",
+      "question": "What does Ben want readers to understand?",
+      "options": [
+        "He is repeating an official score announcement.",
+        "He wants people to stop talking about the goal.",
+        "He is guessing where the shot went.",
+        "He really witnessed that unusually close goal."
+      ],
+      "answerIndex": 3,
+      "explanation": "Ben emphasizes the honesty of a surprising detail he witnessed."
+    },
+    {
+      "id": "pilot-03",
+      "sense": "lowkey",
+      "context": "Personal",
+      "author": "@miramoments",
+      "body": "I'm lowkey excited to spend Sunday at home with the windows open and nowhere to be.",
+      "replyAuthor": "@naya",
+      "reply": "You can leave the weekend poll unanswered for now.",
+      "question": "How does Mira express her excitement?",
+      "options": [
+        "She shares a quiet feeling without making a fuss.",
+        "She insists everyone stay home too.",
+        "She announces a firm plan for the whole group.",
+        "She admits she dislikes the idea of staying home."
+      ],
+      "answerIndex": 0,
+      "explanation": "Mira shares a modest feeling about a quiet Sunday."
+    },
+    {
+      "id": "pilot-04",
+      "sense": "sus",
+      "context": "Work",
+      "author": "@ariatwork",
+      "body": "That message asking for the handoff file is sus. It has the client's logo but came from an address I've never seen.",
+      "replyAuthor": "@deasays",
+      "reply": "The client usually writes in the existing project thread.",
+      "question": "What is Ari suggesting about the message?",
+      "options": [
+        "It is an urgent but routine reminder.",
+        "It follows the usual rules for handoff messages.",
+        "There is reason to doubt that the client sent it.",
+        "The client forgot to specify the format for the file."
+      ],
+      "answerIndex": 2,
+      "explanation": "The unfamiliar address and unexpected message give Ari grounds to doubt its origin."
+    },
+    {
+      "id": "pilot-05",
+      "sense": "spill-the-tea",
+      "context": "Friends",
+      "author": "@justjo",
+      "body": "You said the group dinner moved twice in one hour, then deleted your message. Sam, spill the tea.",
+      "replyAuthor": "@sam",
+      "reply": "At least let me get off this bus before I tell you.",
+      "question": "What does Jo want from Sam?",
+      "options": [
+        "A reservation somewhere quieter.",
+        "The story behind the confusing dinner changes.",
+        "A list of what the restaurant serves.",
+        "Permission to remove more messages from the chat."
+      ],
+      "answerIndex": 1,
+      "explanation": "Jo is asking for the interesting details behind what happened."
+    },
+    {
+      "id": "pilot-06",
+      "sense": "rent-free",
+      "context": "Entertainment",
+      "author": "@lilalistens",
+      "body": "That two-note piano line from the show lives rent-free in my head. I was humming it while folding chairs this morning.",
+      "replyAuthor": "@sam",
+      "reply": "It was only in one scene, wasn't it?",
+      "question": "What happened to the piano line for Lila?",
+      "options": [
+        "It keeps coming back to her mind.",
+        "She needs to pay to hear the full recording.",
+        "She has forgotten what it sounded like.",
+        "She has been asked to play it at every rehearsal."
+      ],
+      "answerIndex": 0,
+      "explanation": "Lila keeps thinking of the tune after the scene has ended."
+    },
+    {
+      "id": "pilot-07",
+      "sense": "read-the-room",
+      "context": "Education",
+      "author": "@naya",
+      "body": "Ben tried to start a victory chant right after half the class found out they had to redo the assignment. Please read the room.",
+      "replyAuthor": "@miramoments",
+      "reply": "Two people were still asking how the regrade worked.",
+      "question": "What does Naya want Ben to do?",
+      "options": [
+        "Read the assignment to the people who have to redo it.",
+        "Ask the lecturer to move the class somewhere bigger.",
+        "Find out how many classmates passed.",
+        "Notice the classmates' mood and change how he acts."
+      ],
+      "answerIndex": 3,
+      "explanation": "The chant clashes with a group that is upset and seeking answers."
+    },
+    {
+      "id": "pilot-08",
+      "sense": "mid",
+      "context": "Friends",
+      "author": "@sam",
+      "body": "Everyone hyped the new burger spot for months. The one I got was mid. I'd eat it again if we happened to be nearby.",
+      "replyAuthor": "@justjo",
+      "reply": "So you wouldn't wait in that line a second time?",
+      "question": "How did Sam rate the burger?",
+      "options": [
+        "It was so bad Sam couldn't finish it.",
+        "It was excellent despite the uncomfortable seating.",
+        "It was ordinary and fell short of the hype.",
+        "It was a pleasant surprise because expectations were low."
+      ],
+      "answerIndex": 2,
+      "explanation": "Sam would still eat it but doesn't think it warrants the excitement."
+    },
+    {
+      "id": "pilot-09",
+      "sense": "locked-in",
+      "context": "Work",
+      "author": "@deasays",
+      "body": "I'm locked in for the next hour. Notifications off, one file open, and the export checklist on paper.",
+      "replyAuthor": "@ariatwork",
+      "reply": "I'll save my questions for the next handoff.",
+      "question": "What is Dea doing for that hour?",
+      "options": [
+        "Concentrating on finishing the export.",
+        "Waiting for someone to grant access to the file.",
+        "Staying available for new calls and questions.",
+        "Reviewing whether the checklist needs replacing."
+      ],
+      "answerIndex": 0,
+      "explanation": "Removing notifications and laying out the checklist show focused work."
+    },
+    {
+      "id": "pilot-10",
+      "sense": "ghosted",
+      "context": "Friends",
+      "author": "@justjo",
+      "body": "We agreed to look at the apartment together. Sam's cousin ghosted me after I asked what time to meet.",
+      "replyAuthor": "@sam",
+      "reply": "Did they ever give you another day?",
+      "question": "What happened after Jo asked for a time?",
+      "options": [
+        "The other person replied and asked to meet elsewhere.",
+        "Jo received a formal cancellation from the landlord.",
+        "Jo stopped replying before the other person could answer.",
+        "The other person stopped replying without explaining."
+      ],
+      "answerIndex": 3,
+      "explanation": "Jo had an active conversation that stopped at the scheduling question."
+    },
+    {
+      "id": "pilot-11",
+      "sense": "cooked",
+      "context": "Sports",
+      "author": "@benchside",
+      "body": "One keeper injured, the backup already sent off, and eight minutes still to play. We're cooked.",
+      "replyAuthor": "@matchdaychat",
+      "reply": "A midfielder has borrowed the keeper's shirt.",
+      "question": "What is Ben saying about the team's position?",
+      "options": [
+        "They're saving substitutions for a later match.",
+        "They're in deep trouble with so little cover in goal.",
+        "They have time to try a stronger formation.",
+        "They have settled the problem by choosing a midfielder."
+      ],
+      "answerIndex": 1,
+      "explanation": "They lost both regular keepers and still have to finish the match."
+    },
+    {
+      "id": "pilot-12",
+      "sense": "no-cap",
+      "context": "Work",
+      "author": "@ariatwork",
+      "body": "No cap, that old slide deck has last year's prices in three different tables. I checked against the approved sheet.",
+      "replyAuthor": "@deasays",
+      "reply": "Send me the page numbers before I share it.",
+      "question": "How should Dea take Ari's claim?",
+      "options": [
+        "Ari is asking whether last year's prices were approved.",
+        "Ari is passing on a rumor that needs a first check.",
+        "Ari means the price problem is real and isn't overstating it.",
+        "Ari deliberately left out the affected pages to save time."
+      ],
+      "answerIndex": 2,
+      "explanation": "Ari stresses the discrepancy is genuine and cites a check against the approved sheet."
+    },
+    {
+      "id": "pilot-13",
+      "sense": "lowkey",
+      "context": "Entertainment",
+      "author": "@lilalistens",
+      "body": "Everyone came for the headline singer, but I'm lowkey more excited about the drummer's solo.",
+      "replyAuthor": "@sam",
+      "reply": "I'll save us a spot on that side of the stage.",
+      "question": "How does Lila present her preference?",
+      "options": [
+        "As a personal preference she hasn't made a fuss about.",
+        "As a request to replace the headline singer.",
+        "As a claim about what the whole crowd wants.",
+        "As a reason to leave before the concert starts."
+      ],
+      "answerIndex": 0,
+      "explanation": "Lila admits a preference without making it the center of attention."
+    },
+    {
+      "id": "pilot-14",
+      "sense": "sus",
+      "context": "Personal",
+      "author": "@miramoments",
+      "body": "The parcel notice says I missed delivery at seven, but my camera shows nobody all evening. That seems sus.",
+      "replyAuthor": "@naya",
+      "reply": "The notice has a different tracking number from the order.",
+      "question": "What does Mira think about the notice?",
+      "options": [
+        "It probably confirms that the parcel arrived.",
+        "Its details give reason to question whether it is genuine.",
+        "It proves Mira gave the wrong street address.",
+        "It is a routine update that matches what she saw."
+      ],
+      "answerIndex": 1,
+      "explanation": "The camera and notice conflict, and the tracking numbers differ."
+    },
+    {
+      "id": "pilot-15",
+      "sense": "spill-the-tea",
+      "context": "Entertainment",
+      "author": "@lilalistens",
+      "body": "Opening night moved back an hour, then everyone got a laughing fit at rehearsal. Someone spill the tea.",
+      "replyAuthor": "@sam",
+      "reply": "You missed the argument about the borrowed fog machine.",
+      "question": "What is Lila asking the group to do?",
+      "options": [
+        "Help move the fog machine onto the stage.",
+        "Tell her the new official call time only.",
+        "Explain how to stop laughing during a performance.",
+        "Tell her the juicy backstory to the schedule change."
+      ],
+      "answerIndex": 3,
+      "explanation": "Lila knows the schedule changed and wants the inside story behind it."
+    },
+    {
+      "id": "pilot-16",
+      "sense": "rent-free",
+      "context": "Education",
+      "author": "@miramoments",
+      "body": "The question I left blank in the oral exam is living rent-free in my head. I thought of the answer halfway to the bus.",
+      "replyAuthor": "@naya",
+      "reply": "You brought it up again at lunch too.",
+      "question": "What does Mira say about the exam question?",
+      "options": [
+        "It will probably be removed from the score.",
+        "She has found a way to resit the exam for free.",
+        "She keeps thinking about it after the exam.",
+        "She no longer remembers why it was difficult."
+      ],
+      "answerIndex": 2,
+      "explanation": "The moment keeps returning to Mira's thoughts across the day."
+    },
+    {
+      "id": "pilot-17",
+      "sense": "read-the-room",
+      "context": "Work",
+      "author": "@deasays",
+      "body": "The client just said the launch is delayed again. If you were about to joke about early finishes, read the room.",
+      "replyAuthor": "@ariatwork",
+      "reply": "I had that slide queued up. I'll skip it.",
+      "question": "What does Dea want the team to consider?",
+      "options": [
+        "How the client feels before making a joke.",
+        "Whether the launch slide contains the right date.",
+        "Whether the meeting room has been booked twice.",
+        "How many people at the meeting heard the old joke."
+      ],
+      "answerIndex": 0,
+      "explanation": "The client is dealing with a setback, so the joke would land badly."
+    },
+    {
+      "id": "pilot-18",
+      "sense": "mid",
+      "context": "Sports",
+      "author": "@benchside",
+      "body": "The highlight reel made the match look wild. I watched the whole thing and most of it was mid. Ten good minutes, tops.",
+      "replyAuthor": "@matchdaychat",
+      "reply": "All the clips seem to come from the last stretch.",
+      "question": "How did Ben find most of the match?",
+      "options": [
+        "Too hard to follow without watching the highlights first.",
+        "Better than the clips made it look.",
+        "Fairly average despite the exciting clips.",
+        "Uneven only because one team played without a keeper."
+      ],
+      "answerIndex": 2,
+      "explanation": "Ben recognizes a few good minutes but rates the rest as mediocre."
+    },
+    {
+      "id": "pilot-19",
+      "sense": "locked-in",
+      "context": "Education",
+      "author": "@miramoments",
+      "body": "I was locked in on the geometry proof until the bell. I didn't even notice Naya putting a snack on my desk.",
+      "replyAuthor": "@naya",
+      "reply": "I waved first. You were staring right through me.",
+      "question": "What does Mira mean about her attention?",
+      "options": [
+        "She was waiting for the classroom door to be unlocked.",
+        "She chose to ignore Naya because she was upset.",
+        "She already knew the proof and was taking a break.",
+        "She was absorbed in working out the proof."
+      ],
+      "answerIndex": 3,
+      "explanation": "Mira was focused enough that nearby activity went unnoticed."
+    },
+    {
+      "id": "pilot-20",
+      "sense": "ghosted",
+      "context": "Work",
+      "author": "@ariatwork",
+      "body": "The freelance illustrator sent a rough sketch, then ghosted us after I asked whether they could revise the colors.",
+      "replyAuthor": "@deasays",
+      "reply": "There hasn't been a reply in the project thread since.",
+      "question": "What is Ari describing?",
+      "options": [
+        "The illustrator finished the revision without announcing it.",
+        "The illustrator fell silent after they had already started talking.",
+        "The client canceled the project after seeing the sketch.",
+        "The team postponed the color request because the deadline moved."
+      ],
+      "answerIndex": 1,
+      "explanation": "The illustrator stopped replying during an ongoing exchange."
+    },
+    {
+      "id": "pilot-21",
+      "sense": "cooked",
+      "context": "Friends",
+      "author": "@justjo",
+      "body": "We said we'd bring the birthday cake. I checked the order and the pickup is tomorrow, after the party. We're cooked.",
+      "replyAuthor": "@sam",
+      "reply": "The bakery is closing right now.",
+      "question": "What trouble does Jo see ahead?",
+      "options": [
+        "They may fail to bring the cake they promised.",
+        "They expect to have more food than the guests can eat.",
+        "They have plenty of time to change the pickup.",
+        "They think the bakery used the wrong recipe."
+      ],
+      "answerIndex": 0,
+      "explanation": "The booked pickup misses the party and the bakery is about to close."
+    },
+    {
+      "id": "pilot-22",
+      "sense": "no-cap",
+      "context": "Personal",
+      "author": "@miramoments",
+      "body": "No cap, my missing library card was inside the cookbook I haven't used since winter.",
+      "replyAuthor": "@naya",
+      "reply": "That's the book you checked right before you moved house?",
+      "question": "Why does Mira start that way?",
+      "options": [
+        "To hint that someone hid the card as a joke.",
+        "To suggest that the cookbook belongs to the library.",
+        "To say she hasn't looked for the card properly yet.",
+        "To stress that the odd hiding place is really where she found it."
+      ],
+      "answerIndex": 3,
+      "explanation": "The phrase underlines that a surprising detail is true."
+    },
+    {
+      "id": "pilot-23",
+      "sense": "lowkey",
+      "context": "Work",
+      "author": "@deasays",
+      "body": "I'm lowkey relieved the client picked the simple version. I had no idea how we'd support all those extra screens.",
+      "replyAuthor": "@ariatwork",
+      "reply": "The timeline just got easier to explain.",
+      "question": "How does Dea express her relief?",
+      "options": [
+        "She publicly asks the client to cancel the extra work.",
+        "She signals that the decision has no effect on her.",
+        "She shares some relief without making a big announcement.",
+        "She says she is celebrating with the entire team."
+      ],
+      "answerIndex": 2,
+      "explanation": "Dea admits some relief in a quiet work exchange."
+    },
+    {
+      "id": "pilot-24",
+      "sense": "sus",
+      "context": "Friends",
+      "author": "@sam",
+      "body": "Jo says the last cookie disappeared on its own, but there's a trail of crumbs to their seat. That story is sus.",
+      "replyAuthor": "@justjo",
+      "reply": "I can explain the crumbs. Probably.",
+      "question": "What does Sam think of Jo's explanation?",
+      "options": [
+        "It is a convincing account of where the cookie went.",
+        "It is doubtful given the crumbs.",
+        "It is an apology for forgetting to buy more cookies.",
+        "It is mainly about how the cookie tasted."
+      ],
+      "answerIndex": 1,
+      "explanation": "The crumbs make Jo's version questionable."
+    },
+    {
+      "id": "pilot-25",
+      "sense": "spill-the-tea",
+      "context": "Education",
+      "author": "@naya",
+      "body": "Mira came out of the club meeting laughing. They were supposed to choose a booth idea. Spill the tea when you get back.",
+      "replyAuthor": "@miramoments",
+      "reply": "All I'll say now is that nobody voted for the giant cardboard frog.",
+      "question": "What is Naya asking Mira to share?",
+      "options": [
+        "A formal list of every idea submitted.",
+        "An invitation to help build the booth.",
+        "What happened in the meeting and why it was funny.",
+        "The exact time and location of the next meeting."
+      ],
+      "answerIndex": 2,
+      "explanation": "Naya wants the entertaining behind-the-scenes account."
+    },
+    {
+      "id": "pilot-26",
+      "sense": "rent-free",
+      "context": "Work",
+      "author": "@ariatwork",
+      "body": "That typo on yesterday's demo slide is still living rent-free in my head. I caught myself rehearsing the corrected line on the train.",
+      "replyAuthor": "@deasays",
+      "reply": "The corrected slide is in the shared folder now.",
+      "question": "What does Ari say about the typo?",
+      "options": [
+        "Ari keeps revisiting the mistake in their thoughts.",
+        "Ari can't remember which slide had the typo.",
+        "The client wants the file sent without a charge.",
+        "The corrected line must be read aloud at the next meeting."
+      ],
+      "answerIndex": 0,
+      "explanation": "Even after the fix, Ari is still thinking about the mistake."
+    },
+    {
+      "id": "pilot-27",
+      "sense": "read-the-room",
+      "context": "Friends",
+      "author": "@sam",
+      "body": "Jo just got off a rough call. Before you start teasing them about being quiet, read the room.",
+      "replyAuthor": "@justjo",
+      "reply": "I'd rather sit for a minute before we order.",
+      "question": "What is Sam asking the others to do?",
+      "options": [
+        "Find a quieter table so Jo can call back.",
+        "Notice Jo's mood and hold off on teasing.",
+        "Tell Jo they have to order quickly.",
+        "Ask everyone to recount what happened on the call."
+      ],
+      "answerIndex": 1,
+      "explanation": "Sam asks the others to react to how Jo is feeling."
+    },
+    {
+      "id": "pilot-28",
+      "sense": "mid",
+      "context": "Entertainment",
+      "author": "@lilalistens",
+      "body": "The sequel was mid. Nice lighting and two good jokes, but I forgot half the plot before we reached the bus stop.",
+      "replyAuthor": "@sam",
+      "reply": "Would you recommend it to the group?",
+      "question": "What rating does Lila imply?",
+      "options": [
+        "The film was excellent despite a complicated plot.",
+        "The film was confusing because she missed the beginning.",
+        "The film was bad solely because the jokes failed.",
+        "The film was middling and not especially memorable."
+      ],
+      "answerIndex": 3,
+      "explanation": "Lila acknowledges a couple of strengths but found the film unremarkable overall."
+    },
+    {
+      "id": "pilot-29",
+      "sense": "locked-in",
+      "context": "Sports",
+      "author": "@benchside",
+      "body": "Their keeper was locked in after halftime. Didn't look at the stands once and called every cross before it came in.",
+      "replyAuthor": "@matchdaychat",
+      "reply": "The defense started following those calls without hesitation.",
+      "question": "What does Ben say about the keeper?",
+      "options": [
+        "The keeper was waiting to be substituted because of an injury.",
+        "The keeper was intensely focused on the game.",
+        "The keeper concentrated on following the crowd's instructions.",
+        "The keeper became less involved once the defense settled."
+      ],
+      "answerIndex": 1,
+      "explanation": "The keeper watches play closely and anticipates each cross."
+    },
+    {
+      "id": "pilot-30",
+      "sense": "ghosted",
+      "context": "Personal",
+      "author": "@miramoments",
+      "body": "The person buying my desk confirmed a pickup, then ghosted me when I asked if they needed directions.",
+      "replyAuthor": "@naya",
+      "reply": "I'd check for one reply before holding it another day.",
+      "question": "What does Mira mean about the buyer?",
+      "options": [
+        "They went quiet without explaining whether pickup was still happening.",
+        "They asked to collect the desk at a different address.",
+        "They canceled openly after finding another desk.",
+        "They left a message with detailed directions."
+      ],
+      "answerIndex": 0,
+      "explanation": "The buyer had agreed to meet but stopped responding to the follow-up."
+    }
+  ]
+}

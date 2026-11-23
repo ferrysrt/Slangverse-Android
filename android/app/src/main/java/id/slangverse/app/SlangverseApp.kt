@@ -37,7 +37,7 @@ import kotlinx.coroutines.CancellationException
  * Feed replies drive local practice progress; profiles and content remain fictional/curated.
  * The API Training route continues to use the existing GitHub GET and live backend clients.
  */
-private enum class EditorialScreen { Feed, Detective, Learn, Collection, Challenges, Progress, Profile, ApiSession, Activity, Conversation }
+private enum class EditorialScreen { Feed, Detective, Learn, Collection, Challenges, Progress, ResearchPilot, Profile, ApiSession, Activity, Conversation }
 
 private data class EditorialReply(val handle: String, val text: String)
 
@@ -216,7 +216,11 @@ fun SlangverseApp() {
     }
 
     fun backFromDetail() {
-        screen = if (screen == EditorialScreen.Collection) EditorialScreen.Learn else EditorialScreen.Feed
+        screen = when (screen) {
+            EditorialScreen.Collection -> EditorialScreen.Learn
+            EditorialScreen.ResearchPilot -> EditorialScreen.Progress
+            else -> EditorialScreen.Feed
+        }
     }
 
     BackHandler(screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges, EditorialScreen.Progress, EditorialScreen.Profile),
@@ -280,7 +284,7 @@ fun SlangverseApp() {
                 key(screen, focusedPostId) {
                     Column(
                         Modifier.fillMaxSize()
-                            .then(if (screen == EditorialScreen.Feed || screen == EditorialScreen.Collection) Modifier
+                            .then(if (screen == EditorialScreen.Feed || screen == EditorialScreen.Collection || screen == EditorialScreen.ResearchPilot) Modifier
                                 else Modifier.verticalScroll(rememberScrollState()))
                             .padding(horizontal = 17.dp, vertical = 12.dp),
                         verticalArrangement = Arrangement.spacedBy(14.dp)
@@ -509,6 +513,7 @@ fun SlangverseApp() {
                                     Text("One reward per post. Likes and bookmarks never affect your score.",
                                         fontSize = 12.sp, color = WarmEditorial.Muted)
                                     EditorialSecondary("OPEN SLANG COLLECTION →") { screen = EditorialScreen.Collection }
+                                    EditorialSecondary("OPEN RESEARCH PILOT →") { screen = EditorialScreen.ResearchPilot }
                                 }
                                 feedProgress.decisions.forEach { result ->
                                     val post = feedProgress.posts.first { it.thread.id == result.caseId }
@@ -547,6 +552,8 @@ fun SlangverseApp() {
                                         fontSize = 12.sp)
                                 }
                             }
+
+                            EditorialScreen.ResearchPilot -> ResearchPilotScreen()
 
                             EditorialScreen.Profile -> {
                                 EditorialSection("My Profile", "Your corner of Slangverse")
@@ -646,7 +653,11 @@ private fun EditorialHeader(
             if (screen !in listOf(EditorialScreen.Feed, EditorialScreen.Learn, EditorialScreen.Challenges,
                     EditorialScreen.Progress, EditorialScreen.Profile)) {
                 IconButton(onClick = onBack) {
-                    Icon(Icons.Outlined.ArrowBack, if (screen == EditorialScreen.Collection) "Back to Learn" else "Back to Feed",
+                    Icon(Icons.Outlined.ArrowBack, when (screen) {
+                        EditorialScreen.Collection -> "Back to Learn"
+                        EditorialScreen.ResearchPilot -> "Back to Progress"
+                        else -> "Back to Feed"
+                    },
                         tint = WarmEditorial.CoralDeep)
                 }
             }
@@ -671,6 +682,7 @@ private fun EditorialHeader(
                         EditorialScreen.Collection -> "COLLECTION"
                         EditorialScreen.Challenges -> "QUESTS"
                         EditorialScreen.Progress -> "PROGRESS"
+                        EditorialScreen.ResearchPilot -> "PILOT"
                         EditorialScreen.Profile -> "PROFILE"
                         EditorialScreen.ApiSession -> "API SESSION"
                         EditorialScreen.Activity -> "UPDATES"
