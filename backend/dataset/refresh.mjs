@@ -55,8 +55,11 @@ export async function collectDocuments({key, fetchImpl = fetch, query = process.
     const url = String(row?.url ?? '').trim();
     const markdown = typeof row?.markdown === 'string' ? row.markdown : '';
     if (!validUrl(url) || url.length > 2000 || !markdown.trim() || seen.has(url)) continue;
+    const sourcePublishedAt = row?.metadata?.publishedTime;
     docs.push({
       url, title: clean(row?.title, 150), markdown, collectedAt,
+      ...(typeof sourcePublishedAt === 'string' && /^\d{4}-\d{2}-\d{2}(?:T|$)/.test(sourcePublishedAt)
+        && Number.isFinite(Date.parse(sourcePublishedAt)) ? {sourcePublishedAt} : {}),
       // Fingerprint the full captured markdown, not a truncated prompt excerpt.
       contentSha256: sha256(markdown), collectionMethod: 'firecrawl'
     });
