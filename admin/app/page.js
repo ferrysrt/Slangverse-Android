@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
-import { configured, canDispatch, GITHUB_RUN, readActivePrompt, rpc, session } from '../lib/backend';
-import { login, logout, resetAnswers, startJob } from './actions';
+import { configured, canDispatch, GITHUB_RUN, readActivePrompt, readDiscoveryRun, rpc, session } from '../lib/backend';
+import { login, logout, resetAnswers, startDiscovery, startJob } from './actions';
+import { DiscoverySubmit } from './discovery-submit';
 
 const operations = { generate: 'Generasi', check: 'Pengujian', build: 'Build APK' };
 const statusNames = { queued: 'Antre', running: 'Berjalan', success: 'Lulus', failed: 'Gagal' };
@@ -14,7 +15,10 @@ const notices = {
   answerResetConfirm: 'Ketik RESET untuk memulai periode baru.',
   answerResetFailed: 'Periode baru belum dapat dimulai. Perbarui dashboard, lalu coba lagi.',
   answerResetStale: 'Periode sudah berubah. Periksa periode aktif sebelum mencoba lagi.',
-  answerResetSuccess: 'Periode baru dimulai. Jawaban sebelumnya tersedia di CSV arsip.'
+  answerResetSuccess: 'Periode baru dimulai. Jawaban sebelumnya tersedia di CSV arsip.',
+  discoveryInput: 'Periksa dua tanggal, jumlah URL, domain, dan konfirmasi kredit.',
+  discoveryDispatch: 'Pencarian belum bisa dikirim ke GitHub Actions.',
+  discoverySent: 'Pencarian dikirim. Lihat perkembangannya di GitHub Actions.'
 };
 
 const number = value => new Intl.NumberFormat('id-ID').format(value ?? 0);
@@ -64,6 +68,34 @@ function WorkForm({ list, mode, label, title, description, enabled, versionLabel
       Saya setuju memakai satu panggilan LLM berbayar.</label>}
     <button className={mode === 'generate' ? 'primary' : 'secondary'} disabled={!enabled || !list.length}>{label}</button>
   </form>;
+}
+
+function DiscoveryPanel({ enabled, run, requested, notice }) {
+  const status = run?.status === 'completed' ? ({
+    success: 'Selesai', failure: 'Gagal', cancelled: 'Dibatalkan'
+  }[run.conclusion] ?? 'Selesai') : run?.status === 'in_progress' ? 'Berjalan' : 'Antre';
+  return <article className="card detail" id="firecrawl">
+    <div className="section-head"><h3>Cari dataset dengan Firecrawl</h3></div>
+    {notice && <p className="message" role="status">{notice}</p>}
+    {requested && <p className="message" role="status">
+      {run ? <>Status pencarian <strong>{status}</strong>. </> : 'Permintaan dikirim. '}
+      <a href={GITHUB_RUN + requested}>Buka hasil pencarian</a> ? <a href={'/?crawl=' + requested + '#firecrawl'}>Perbarui status</a>
+      {run?.conclusion === 'success' && <> ? <a href={versionHref('dataset')}>Lihat dataset terbaru</a></>}
+    </p>}
+    <form className="stack discovery-form" action={startDiscovery}>
+      <label>Kata kunci publik<input name="query" maxLength={240} placeholder="English internet slang glossary" /></label>
+      <div className="discovery-grid">
+        <label>Tanggal publikasi mulai<input type="date" name="date_from" /></label>
+        <label>Tanggal publikasi sampai<input type="date" name="date_to" /></label>
+        <label>Minimum URL dengan definisi<input type="number" name="min_source_urls" min={1} max={40} defaultValue={2} required /></label>
+      </div>
+      <p className="muted">Isi kedua tanggal untuk membatasi publikasi. Halaman tanpa tanggal sumber dilewati saat filter aktif.</p>
+      <label>Domain sumber (opsional)<input name="domains" maxLength={500} placeholder="example.com, example.org" /></label>
+      <label className="confirm"><input type="checkbox" name="confirm" value="yes" required />
+        Saya setuju memakai kredit Firecrawl untuk satu pencarian dan pengambilan hasilnya.</label>
+      <div><DiscoverySubmit enabled={enabled} /></div>
+    </form>
+  </article>;
 }
 
 function Ledger({ rows, bank }) {
@@ -206,15 +238,18 @@ export default async function Page({ searchParams }) {
   }
   const view = params.kind;
   const answerNotice = typeof params.notice === 'string' && params.notice.startsWith('answerReset') ? notice : null;
+  const discoveryNotice = typeof params.notice === 'string' && params.notice.startsWith('discovery') ? notice : null;
+  const discoveryId = typeof params.crawl === 'string' && /^[1-9][0-9]{0,14}$/.test(params.crawl) ? params.crawl : null;
   const datasetVersion = view === 'dataset' && (versionId(params.version) ? params.version : data.datasets[0]?.version);
   const bankVersion = (view === 'bank' || (!view && !params.job)) &&
     (view === 'bank' && versionId(params.version) ? params.version : data.banks[0]?.version);
   const page = typeof params.page === 'string' && /^[1-9][0-9]{0,6}$/.test(params.page) ? Number(params.page) : 1;
-  const [job, dataset, bank, activePrompt] = await Promise.all([
+  const [job, dataset, bank, activePrompt, discoveryRun] = await Promise.all([
     uuid(params.job) && rpc(token, 'job', { p_request_id: params.job }).catch(() => null),
     datasetVersion && rpc(token, 'dataset_page', { p_version: datasetVersion, p_offset: (page - 1) * 50 }).catch(() => null),
     bankVersion && rpc(token, 'content', { p_kind: 'bank', p_version: bankVersion }).catch(() => null),
-    view === 'prompt' && readActivePrompt().catch(() => null)
+    view === 'prompt' && readActivePrompt().catch(() => null),
+    discoveryId && readDiscoveryRun(discoveryId).catch(() => null)
   ]);
   const packs = bank ? await Promise.all(bank.packs.map(async descriptor => {
     const pack = await rpc(token, 'bank_pack', { p_version: bank.version, p_pack_id: descriptor.packId }).catch(() => null);
@@ -230,11 +265,11 @@ export default async function Page({ searchParams }) {
         <a className="quiet" href={refreshHref}>Perbarui data</a>
       </div>
       <nav aria-label="Bagian dashboard">
-        <a href="#actions">Pekerjaan</a><a href="#runs">Riwayat</a>
+        <a href="#actions">Pekerjaan</a><a href="#firecrawl">Firecrawl</a><a href="#runs">Riwayat</a>
         <a href={versionHref('dataset')}>Dataset</a><a href={versionHref('bank')}>Bank soal</a>
         <a href={versionHref('prompt')}>Prompt aktif</a><a href="#answers">Jawaban</a>
       </nav>
-      {notice && !answerNotice && <p className="message" role="status">{notice}</p>}
+      {notice && !answerNotice && !discoveryNotice && <p className="message" role="status">{notice}</p>}
       <section className="metrics" aria-label="Ringkasan penelitian">
         <Metric label="Generasi" value={number(data.generation.runs)} detail={number(data.generation.passedRuns) + ' lulus · ' + number(data.generation.failedRuns) + ' gagal'} />
         <Metric label="Soal dinilai" value={number(data.generation.questionsPassed + data.generation.questionsFailed)}
@@ -252,6 +287,7 @@ export default async function Page({ searchParams }) {
           <WorkForm mode="build" title="APK peserta" description="Build memakai bank yang sama dengan hasil tes yang sudah lulus."
             label="Build APK" versionLabel="Versi bank" list={data.banks} enabled={enabled} />
         </div>
+        <DiscoveryPanel enabled={enabled} run={discoveryRun} requested={discoveryId} notice={discoveryNotice} />
       </section>
       <section id="runs"><h2>Riwayat pekerjaan dan prompt</h2>
         <p className="muted">Soal dihitung jika keluaran dapat dinilai. Paket yang lulus tersedia sebagai draf di bukti run.</p>

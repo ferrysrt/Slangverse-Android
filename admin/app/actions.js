@@ -2,7 +2,8 @@
 
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
-import { canDispatch, dispatch, readMainCommit, rpc, session, SESSION, signIn } from '../lib/backend';
+import { canDispatch, dispatch, dispatchDiscovery, readMainCommit, rpc, session, SESSION, signIn } from '../lib/backend';
+import { readDiscoveryOptions } from '../lib/discovery-options.mjs';
 
 export async function login(data) {
   const email = String(data.get('email') || '').trim();
@@ -72,4 +73,29 @@ export async function resetAnswers(data) {
     redirect('/?notice=answerResetFailed#answers');
   }
   redirect('/?notice=' + (reset === true ? 'answerResetSuccess' : 'answerResetStale') + '#answers');
+}
+
+export async function startDiscovery(data) {
+  const token = await session();
+  if (!token) redirect('/?notice=session');
+  if (!canDispatch() || data.get('confirm') !== 'yes') redirect('/?notice=discoveryInput#firecrawl');
+  let options;
+  try {
+    const input = name => String(data.get(name) ?? '');
+    options = readDiscoveryOptions({
+      query: input('query'), from: input('date_from'), to: input('date_to'),
+      minUrls: input('min_source_urls'), domains: input('domains')
+    });
+  } catch {
+    redirect('/?notice=discoveryInput#firecrawl');
+  }
+  let run;
+  try {
+    await rpc(token, 'overview');
+    run = await dispatchDiscovery(options);
+  } catch {
+    redirect('/?notice=discoveryDispatch#firecrawl');
+  }
+  const id = run?.workflow_run_id;
+  redirect(Number.isSafeInteger(id) && id > 0 ? '/?crawl=' + id + '#firecrawl' : '/?notice=discoverySent#firecrawl');
 }

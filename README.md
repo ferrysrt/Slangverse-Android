@@ -1,6 +1,6 @@
 # Slangverse Android — mixed social feed
 
-**Current version:** `0.8.3-participant-preview` (Android version code `13`). The configured Android build uses a bundled 90-question bank, accepts an optional nickname, and records participant answers through Supabase. See the [application handbook](docs/SLANGVERSE_HANDBOOK.md) and the [setup guide](docs/ACCOUNT_SYNC_PLAN.md).
+**Current version:** `0.8.4-participant-preview` (Android version code `14`). The configured Android build uses a bundled 90-question bank, accepts an optional nickname, and records participant answers through Supabase. See the [application handbook](docs/SLANGVERSE_HANDBOOK.md) and the [setup guide](docs/ACCOUNT_SYNC_PLAN.md).
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret slang from posts and indirect reply hints. Product approval does not establish supervisor approval of the research methodology, semantic validity, calibrated difficulty or learning gains.
 

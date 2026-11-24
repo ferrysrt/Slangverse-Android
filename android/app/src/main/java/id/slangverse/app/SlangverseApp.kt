@@ -584,6 +584,7 @@ internal fun SlangverseApp(participant: ResearchParticipant? = null) {
                                         screen = EditorialScreen.Activity
                                     }
                                     EditorialSetting("Appearance", "Warm Editorial") {}
+                                    if (participant != null) ParticipantAppUpdateSetting()
                                     EditorialSetting("Privacy & data", "Information") { showPrivacy = !showPrivacy }
                                     if (showPrivacy) {
                                         val dataNotice = if (participant == null)
@@ -971,7 +972,7 @@ private fun EditorialHeader(
     HorizontalDivider(color = WarmEditorial.Sand)
 }
 
-@Composable private fun EditorialSetting(label: String, value: String, onClick: () -> Unit) {
+@Composable internal fun EditorialSetting(label: String, value: String, onClick: () -> Unit) {
     Row(Modifier.fillMaxWidth().clickable(onClick = onClick).padding(vertical = 7.dp),
         horizontalArrangement = Arrangement.SpaceBetween) {
         Text(label, fontWeight = FontWeight.Medium, fontSize = 13.sp)
