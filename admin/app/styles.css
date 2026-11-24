@@ -74,7 +74,10 @@ pre { background:#f1f0e9; overflow:auto; padding:1rem; max-height:340px; white-s
 .pager { justify-content:center; }
 .pack-list a { gap:.45rem; flex-wrap:wrap; }
 .pack-detail dl { margin:.85rem 0; }
-.question summary .sub { margin-left:1.1rem; }
+.pack-heading { margin-top:1rem; }
+.answer-counts,.question-meta { display:inline-flex; flex-wrap:wrap; gap:.35rem .65rem; align-items:center; }
+.question-meta { display:flex; margin:.35rem 0 0 1.1rem; }
+.section-head code { overflow-wrap:anywhere; }
 .question-copy { padding:.6rem .25rem .5rem 1rem; }
 .question-copy blockquote { margin:.35rem 0 .65rem; border-left:3px solid #cbded7; padding:.45rem .75rem; overflow-wrap:anywhere; }
 .question-copy blockquote.comment { margin-left:1rem; border-color:var(--line); }

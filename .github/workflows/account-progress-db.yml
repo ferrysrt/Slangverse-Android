@@ -55,4 +55,5 @@ jobs:
           node backend/scripts/research-admin.mjs seed-sql > /tmp/slangverse-admin-seed.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < /tmp/slangverse-admin-seed.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/migrations/20261125100000_research_admin_viewers.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/migrations/20261125110000_research_admin_answer_counts.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/research_admin_test.sql
