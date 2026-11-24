@@ -83,6 +83,18 @@ export async function readActivePrompt() {
   return { version, system, commit, template: await read(version + '.txt') };
 }
 
+export function dispatchDiscovery(options) {
+  return github('/actions/workflows/slang-candidates.yml/dispatches', {
+    ref: 'main', inputs: { mode: 'live', query: options.query, date_from: options.from,
+      date_to: options.to, min_source_urls: String(options.minimum), domains: options.hosts.join(',') }
+  });
+}
+
+export async function readDiscoveryRun(id) {
+  const run = await github('/actions/runs/' + id);
+  return run?.path?.split('@')[0] === '.github/workflows/slang-candidates.yml' ? run : null;
+}
+
 export function dispatch(id) {
   return github('/actions/workflows/research-admin.yml/dispatches', {
     ref: 'main', inputs: { request_id: id }

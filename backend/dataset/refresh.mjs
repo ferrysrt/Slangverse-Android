@@ -39,11 +39,13 @@ export function buildRecentSlangQuery(now = new Date()) {
     ' tiktok twitter instagram viral terms -site:youtube.com';
 }
 
-export async function collectDocuments({key, fetchImpl = fetch, query = process.env.FIRECRAWL_QUERY, auditDir} = {}) {
+export async function collectDocuments({key, fetchImpl = fetch, query = process.env.FIRECRAWL_QUERY, auditDir,
+  tbs = RECENCY_TBS, includeDomains = [], maxDocuments = MAX_DOCUMENTS} = {}) {
   if (!key) throw Error('missing-firecrawl-key');
   const response = await post(fetchImpl, SEARCH_URL, key, {
     query: query || buildRecentSlangQuery(),
-    limit: SEARCH_RESULT_LIMIT, tbs: RECENCY_TBS,
+    limit: SEARCH_RESULT_LIMIT, tbs,
+    ...(includeDomains.length ? {includeDomains} : {}),
     sources: [{type: 'web'}], scrapeOptions: {formats: [{type: 'markdown'}]}
   }, {timeoutMs: 120000, auditDir});
   if (!Array.isArray(response?.data?.web)) throw Error('invalid-firecrawl-v2-response');
@@ -51,7 +53,7 @@ export async function collectDocuments({key, fetchImpl = fetch, query = process.
   const collectedAt = new Date().toISOString();
   const docs = [], seen = new Set();
   for (const row of response.data.web.slice(0, SEARCH_RESULT_LIMIT)) {
-    if (docs.length >= MAX_DOCUMENTS) break;
+    if (docs.length >= maxDocuments) break;
     const url = String(row?.url ?? '').trim();
     const markdown = typeof row?.markdown === 'string' ? row.markdown : '';
     if (!validUrl(url) || url.length > 2000 || !markdown.trim() || seen.has(url)) continue;

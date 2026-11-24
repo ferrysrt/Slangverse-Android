@@ -38,7 +38,15 @@ Gunakan profil baru untuk pengambilan data resmi. Reset melalui dashboard tidak 
 
 **Jawaban** menampilkan data dari Supabase, termasuk akurasi berdasarkan revisi soal. CSV dapat mengikutsertakan profil QA berawalan `qa_`. Pembatasan akses berlaku di database dan pada setiap permintaan admin.
 
+## Pembaruan APK peserta
+
+Di aplikasi peserta 0.8.4 ke atas, buka **Profile ? Settings ? Check for app update**. Aplikasi mengecek manifest HTTPS di Vercel dan menawarkan membuka halaman unduhan untuk versi yang lebih baru. Android meminta persetujuan pemasangan.
+
+Untuk mengumumkan rilis baru, tandatangani APK peserta dengan sertifikat yang sama, verifikasi ID aplikasi `id.slangverse.app.staging` dan `versionCode` yang lebih tinggi, lalu sediakan APK di halaman unduhan yang dibagikan kepada peserta. Di Vercel Production, isi `SLANGVERSE_PARTICIPANT_UPDATE` dengan JSON berisi `versionCode`, `versionName`, dan `downloadPage` (URL HTTPS), kemudian deploy ulang. Contoh `{"versionCode":15,"versionName":"0.8.5","downloadPage":"https://example.org/unduh"}`. Manifest dapat dibaca publik, jadi gunakan tautan halaman unduhan dan simpan kontrol akses di halaman tersebut. Jika pengaturan kosong, aplikasi melaporkan bahwa versi baru belum tersedia.
+
 ## Sumber dataset dan perpindahan
+
+Tombol **Jalankan Firecrawl** di dashboard menerima kata kunci, rentang tanggal publikasi, minimum URL yang menyumbang definisi, dan hingga lima domain sumber publik. Isi kedua tanggal untuk membatasi hasil dan halaman tanpa tanggal publikasi akan dilewati. Hasil yang lolos tercatat sebagai versi dataset baru. Status, jumlah URL, dan versi Supabase tersedia di ringkasan GitHub Actions. Satu pencarian dan hasil pengambilan memakai kredit Firecrawl.
 
 **Actions > Refresh normalized slang dataset** menyimpan snapshot baru di Supabase setelah minimal sepuluh istilah berbeda lolos pemeriksaan kutipan. Jadwal Senin 10.00 WIB memakai satu pencarian Firecrawl. Parser membaca definisi eksplisit dari Markdown dan membuat CSV `slang,definition,date,source`. Bukti kutipan dan hash halaman masuk ke JSON. OpenRouter dipakai terpisah saat admin memilih **Generate Soal**.
 

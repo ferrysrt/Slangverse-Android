@@ -19,8 +19,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 13
-        versionName = "0.8.3-participant-preview"
+        versionCode = 14
+        versionName = "0.8.4-participant-preview"
         manifestPlaceholders["slangverseAppLabel"] = "Slangverse"
         buildConfigField("String", "STAGING_SUPABASE_URL", "\"\"")
         buildConfigField("String", "STAGING_SUPABASE_PUBLISHABLE_KEY", "\"\"")
