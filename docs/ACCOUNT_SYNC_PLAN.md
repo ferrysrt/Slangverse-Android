@@ -42,4 +42,10 @@ Create a dedicated Supabase staging project in the owner's organization. Share t
 
 The database owner registers question revisions. Android will send the exact pack ID, SHA-256 and question ID with a persistent event UUID to `submit_practice_attempt`. That function uses the signed-in identity for ownership, checks the answer against the registered revision, and returns the canonical saved row. A repeat with the same event UUID returns that row. A different event for an already answered revision also returns the original result. Android should reconcile to that result. `my_practice_progress` returns the signed-in account's totals, and the authenticated user can read only their own attempt rows.
 
-This staging slice covers the current public mixed bank. Support for legacy and authored packs can be added with their own registered revisions. For a guest import, pass `source = guest_import` and leave timing and hint counts empty. The next integration step is Android sign-in and its persistent offline queue, followed by a cross-device staging test with the two actual test accounts.
+This staging slice covers the current public mixed bank. Support for legacy and authored packs can be added with their own registered revisions. For a guest import, pass `source = guest_import` and leave timing and hint counts empty.
+
+## Android staging preview
+
+Set `SLANGVERSE_SUPABASE_URL` and `SLANGVERSE_SUPABASE_PUBLISHABLE_KEY` in the build environment before running `./gradlew :app:assembleDebug` from `android/`. The resulting **Slangverse Staging** app has its own package ID and installs alongside Slangverse. The regular debug and release apps omit the account preview.
+
+In **Profile → Account preview**, sign in with one of the staging accounts after installing the database schema and grading seed. Enter each test password directly in the app. The preview reads account totals and keeps the session in memory. On-device practice still uses local storage. The next integration step is the persistent offline queue for submitting attempts and a cross-device staging test with the two accounts.

@@ -99,6 +99,10 @@ private val editorialPosts = listOf(
 fun SlangverseApp() {
     val appContext = LocalContext.current.applicationContext
     val practiceStore = remember(appContext) { PracticeProgressStore(appContext) }
+    val stagingAccount = remember {
+        StagingAccountConfig.create(BuildConfig.STAGING_SUPABASE_URL, BuildConfig.STAGING_SUPABASE_PUBLISHABLE_KEY)
+            ?.let { StagingAccountState(StagingAccountClient(it)) }
+    }
     // Answers, likes and saves outlive the process; XP, combo and the history rows are derived from
     // those answers plus the loaded feed, so there is no second copy that could drift.
     val restoredPractice = remember(practiceStore) { practiceStore.load() }
@@ -507,6 +511,7 @@ fun SlangverseApp() {
 
                             EditorialScreen.Profile -> {
                                 EditorialSection("My Profile", "Your corner of Slangverse")
+                                stagingAccount?.let { StagingAccountPanel(it) }
                                 PaperCard {
                                     Row(verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(12.dp)) {
