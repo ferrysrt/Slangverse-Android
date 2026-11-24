@@ -21,7 +21,8 @@ internal data class FeedPracticePost(
     val termTargetHandle: String? = null,
     val termInPost: Boolean = false,
     val learningSenseId: String? = null,
-    val authoredStory: PostStory? = null
+    val authoredStory: PostStory? = null,
+    val researchQuestion: ResearchQuestion? = null
 )
 
 /** Hand-authored UI practice pack. Not generated, expert-validated, or participant research data. */

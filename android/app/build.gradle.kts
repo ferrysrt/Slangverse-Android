@@ -3,6 +3,14 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
+
+val stagingUrl = providers.environmentVariable("SLANGVERSE_SUPABASE_URL").orElse("").get().trim().trimEnd('/')
+val stagingKey = providers.environmentVariable("SLANGVERSE_SUPABASE_PUBLISHABLE_KEY").orElse("").get().trim()
+require((stagingUrl.isEmpty() && stagingKey.isEmpty()) ||
+    (stagingUrl.matches(Regex("https://[a-z0-9]+\\.supabase\\.co")) && stagingKey.matches(Regex("sb_publishable_[A-Za-z0-9_-]+")))) {
+    "Set a Supabase HTTPS project URL and publishable key together for the staging build"
+}
+
 android {
     namespace = "id.slangverse.app"
     compileSdk = 36
@@ -10,15 +18,32 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 11
-        versionName = "0.8.1-feed-polish"
+        versionCode = 13
+        versionName = "0.8.3-participant-preview"
+        manifestPlaceholders["slangverseAppLabel"] = "Slangverse"
+        buildConfigField("String", "STAGING_SUPABASE_URL", "\"\"")
+        buildConfigField("String", "STAGING_SUPABASE_PUBLISHABLE_KEY", "\"\"")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions { jvmTarget = "17" }
-    buildFeatures { compose = true }
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
+    buildTypes.getByName("debug") {
+        if (stagingUrl.isNotEmpty()) {
+            applicationIdSuffix = ".staging"
+            manifestPlaceholders["slangverseAppLabel"] = "Slangverse Staging"
+        }
+        buildConfigField("String", "STAGING_SUPABASE_URL", "\"$stagingUrl\"")
+        buildConfigField("String", "STAGING_SUPABASE_PUBLISHABLE_KEY", "\"$stagingKey\"")
+    }
+    if (stagingUrl.isNotEmpty()) {
+        sourceSets.getByName("debug").assets.srcDir("../../question-bank")
+    }
     sourceSets.getByName("main").res.srcDir("../../assets/profile-pictures/android-res")
     // Robolectric renders the real composables on the JVM; this device's ROM cannot resume an
     // instrumentation activity, so a device-hosted Compose rule would hang instead of testing.

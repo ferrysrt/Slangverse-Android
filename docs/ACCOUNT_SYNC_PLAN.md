@@ -2,7 +2,7 @@
 
 ## Product direction
 
-Keep the usual feed as the practice experience. Sign-in adds durable progress and sync between devices. Guest practice can remain local, with a one-time import offered at first sign-in. The separate Research Pilot is outside this rollout.
+Keep the usual feed as the practice experience. The research build asks for an optional username once and assigns a numbered guest name when skipped. An anonymous Supabase Auth session gives each installation its own participant ID. The separate Research Pilot is outside this rollout.
 
 Account progress and study participation serve different purposes. Let an account store its own practice history. If the study uses that history, enroll the user explicitly and export rows under a study code with the account identity kept separate. Confirm the enrollment and data-retention approach with the study supervisor before collecting participant data.
 
@@ -27,10 +27,10 @@ The existing VPS is optional. It can host a custom sync API or restricted admin 
 
 ## Implementation order
 
-1. Stand up a staging auth/database project with two test accounts. Verify each account can read only its own data.
-2. Implement submit, retry and reconciliation around the exact bank revision. Test offline use, reinstallation, duplicate sends and two devices using the same account.
-3. Add the one-time guest import and connect the compact Progress screen to the synced account totals.
-4. Add approved study enrollment and a restricted, pseudonymous export when the study protocol is ready. Use the same frozen bank for Fixed and Adaptive if comparing the two modes.
+1. Stand up staging auth and apply the migrations and grading seed.
+2. Test the welcome form on two clean installations. Verify submitted answers sync separately, including when both players use the same nickname.
+3. Test answering offline, reopening the app, and syncing the pending answers on reconnect. Use the frozen bank if adding conditions such as Fixed and Adaptive later.
+4. Verify the owner-only research export before collecting participant data.
 
 ## Staging database handoff
 
@@ -38,8 +38,17 @@ Create a dedicated Supabase staging project in the owner's organization. Share t
 
 1. In the staging SQL Editor, apply [`20261124153000_account_progress.sql`](../supabase/migrations/20261124153000_account_progress.sql) once as the project database owner.
 2. From the repository root, generate the private grading seed with `node backend/scripts/export-account-bank-sql.mjs`. Run its output in the same staging SQL Editor. The exporter reads the checked-in mixed catalog, verifies exact hashes, and fails before emitting SQL if a pack is invalid. Re-running the seed leaves registered revisions intact.
-3. In **Authentication → Users**, create two throwaway test accounts using addresses controlled by the project owner. Use the normal sign-in flow to obtain each test session and verify isolation and retry behavior on staging. The desktop SQL fixture is specifically for a disposable PostgreSQL database.
+3. Apply [`20261124163000_research_participants.sql`](../supabase/migrations/20261124163000_research_participants.sql) once.
+4. In **Authentication → Sign In / Providers**, turn on **Allow anonymous sign-ins**. Opening the app and choosing a nickname or skipping creates the participant automatically. [Supabase Auth settings](https://supabase.com/docs/guides/auth/general-configuration)
 
 The database owner registers question revisions. Android will send the exact pack ID, SHA-256 and question ID with a persistent event UUID to `submit_practice_attempt`. That function uses the signed-in identity for ownership, checks the answer against the registered revision, and returns the canonical saved row. A repeat with the same event UUID returns that row. A different event for an already answered revision also returns the original result. Android should reconcile to that result. `my_practice_progress` returns the signed-in account's totals, and the authenticated user can read only their own attempt rows.
 
-This staging slice covers the current public mixed bank. Support for legacy and authored packs can be added with their own registered revisions. For a guest import, pass `source = guest_import` and leave timing and hint counts empty. The next integration step is Android sign-in and its persistent offline queue, followed by a cross-device staging test with the two actual test accounts.
+This staging slice covers the current public mixed bank. Support for legacy and authored packs can be added with their own registered revisions. For a guest import, pass `source = guest_import` and leave timing and hint counts empty.
+
+## Android staging preview
+
+Set `SLANGVERSE_SUPABASE_URL` and `SLANGVERSE_SUPABASE_PUBLISHABLE_KEY` in the build environment before running `./gradlew :app:assembleDebug` from `android/`. The resulting **Slangverse Staging** app has its own package ID and installs alongside Slangverse. It bundles the current mixed bank and verifies its exact revisions against the bundled catalogue before loading them. Regular Android builds retain their local practice flow.
+
+The first launch accepts a nickname or **Skip**. Every submitted feed answer goes into the local queue before the app shows feedback. The app retries pending answers while open with the same event ID. **Profile** shows the nickname and sync status. Use one installation per participant. Clearing storage or switching devices starts a new participant identity. Answers from earlier local-only builds stay separate from the research records.
+
+In the SQL Editor, the project owner can query `slangverse_private.research_answers` and download the results as CSV. Group by `participant_id` and use `username` as the display label. Each row contains the original question and pack revision, selected index, grading, practice order, device submission time and server receipt time.

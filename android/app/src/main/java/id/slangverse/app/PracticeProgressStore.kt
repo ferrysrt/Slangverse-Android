@@ -6,8 +6,10 @@ import android.content.Context
  * Stores the local practice snapshot in this app's private preferences. Kept thin on purpose: the
  * codec carries the behaviour and is tested on the JVM, this class only moves strings around.
  */
-internal class PracticeProgressStore(context: Context) {
-    private val prefs = context.applicationContext.getSharedPreferences(FILE, Context.MODE_PRIVATE)
+internal class PracticeProgressStore(context: Context, participant: Boolean = false) {
+    private val prefs = context.applicationContext.getSharedPreferences(
+        if (participant) "participant-practice" else FILE, Context.MODE_PRIVATE
+    )
 
     fun load(): LocalPracticeSnapshot = LocalPracticeCodec.decode(prefs.getString(KEY, null))
 

@@ -31,6 +31,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * Warm Editorial is a native Jetpack Compose implementation of the approved visual direction.
@@ -96,9 +98,14 @@ private val editorialPosts = listOf(
 )
 
 @Composable
-fun SlangverseApp() {
+internal fun SlangverseApp(participant: ResearchParticipant? = null) {
     val appContext = LocalContext.current.applicationContext
-    val practiceStore = remember(appContext) { PracticeProgressStore(appContext) }
+    if (participant != null && participant.username == null) {
+        ParticipantWelcome(participant::start)
+        return
+    }
+    LaunchedEffect(participant) { participant?.sync() }
+    val practiceStore = remember(appContext, participant) { PracticeProgressStore(appContext, participant != null) }
     // Answers, likes and saves outlive the process; XP, combo and the history rows are derived from
     // those answers plus the loaded feed, so there is no second copy that could drift.
     val restoredPractice = remember(practiceStore) { practiceStore.load() }
@@ -111,12 +118,12 @@ fun SlangverseApp() {
     var managePractice by rememberSaveable { mutableStateOf(false) }
     var feedProgress by rememberSaveable(stateSaver = listSaver<FeedPracticeProgress, String>(
         save = { progress -> progress.answers.map { (id, index) -> "$id:$index" } },
-        restore = { entries -> FeedPracticeProgress(entries.associate {
+        restore = { entries -> FeedPracticeProgress(participant?.savedAnswers ?: entries.associate {
             it.substringBeforeLast(":") to it.substringAfterLast(":").toInt()
         }, posts = emptyList()) }
     )) {
         mutableStateOf(
-            FeedPracticeProgress(posts = emptyList(), answers = restoredPractice.answers.toMap())
+            FeedPracticeProgress(posts = emptyList(), answers = participant?.savedAnswers ?: restoredPractice.answers.toMap())
         )
     }
     LaunchedEffect(feedProgress.answers, likedPosts, savedPosts) {
@@ -127,6 +134,15 @@ fun SlangverseApp() {
     LaunchedEffect(practiceOrder) { practiceStore.saveOrder(practiceOrder) }
     val learning = remember(feedProgress) { PracticeLearning(feedProgress) }
     val displayedPosts = remember(feedProgress.posts, practiceOrder) { learning.orderedPosts(practiceOrder) }
+
+    fun answerPost(post: FeedPracticePost, index: Int) {
+        if (post.thread.id in feedProgress.answers) return
+        if (participant != null) {
+            val question = checkNotNull(post.researchQuestion)
+            if (!participant.queue(question, index, practiceOrder)) return
+        }
+        feedProgress = feedProgress.answer(post.thread.id, index)
+    }
 
     var bankRoot by rememberSaveable { mutableStateOf(PublishedFeedDefaults.BANK_ROOT) }
     var practiceSample by rememberSaveable { mutableStateOf<PracticeSample?>(null) }
@@ -155,23 +171,29 @@ fun SlangverseApp() {
         // Never retain the explicit sample when returning to the published source.
         if (feedProgress.posts.any { !it.published }) feedProgress = feedProgress.copy(posts = emptyList())
         try {
-            val bank = GithubStaticBank(bankRoot)
-            val catalog = bank.fetchCatalog(requireLlm = true)
-            // A pack that does not arrive is reported instead of blanking the whole feed.
-            val load = bank.fetchPublishedSessions(catalog) { loaded, total ->
-                bankLoadedPacks = loaded
-                bankTotalPacks = total
-            }
             val savedOrder = if (loadedBankRoot == bankRoot && loadedBankRefresh == bankRefresh)
                 publishedOrder else emptyList()
-            val posts = mergePublishedFeed(load.sessions, savedOrder = savedOrder)
+            val sessions = if (participant != null) {
+                withContext(Dispatchers.IO) {
+                    loadResearchBank { asset -> appContext.assets.open(asset).bufferedReader().use { it.readText() } }
+                }
+            } else {
+                val bank = GithubStaticBank(bankRoot)
+                val catalog = bank.fetchCatalog(requireLlm = true)
+                val load = bank.fetchPublishedSessions(catalog) { loaded, total ->
+                    bankLoadedPacks = loaded
+                    bankTotalPacks = total
+                }
+                bankNotice = if (load.isPartial)
+                    "${load.sessions.size} of ${load.requestedCount} packs loaded; ${load.problems.size} did not " +
+                        "arrive (${load.problems.first()}). Refresh to retry." else null
+                load.sessions
+            }
+            val posts = mergePublishedFeed(sessions, savedOrder = savedOrder)
             feedProgress = feedProgress.copy(posts = posts)
             publishedOrder = posts.map { it.thread.id }
             loadedBankRoot = bankRoot
             loadedBankRefresh = bankRefresh
-            bankNotice = if (load.isPartial)
-                "${load.sessions.size} of ${load.requestedCount} packs loaded; ${load.problems.size} did not " +
-                    "arrive (${load.problems.first()}). Refresh to retry." else null
         } catch (cancelled: CancellationException) {
             throw cancelled
         } catch (error: Exception) {
@@ -288,7 +310,7 @@ fun SlangverseApp() {
                                     displayedPosts.filter { it.thread.id in savedPosts }
                                 else displayedPosts.filter { context == null || it.context == context }
                                 LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                                    item(key = "published-source") {
+                                    if (participant == null) item(key = "published-source") {
                                         PublishedBankControls(bankRoot, bankLoading, bankLoadedPacks, bankTotalPacks,
                                             bankError, bankNotice, practiceSample, practiceOrder,
                                             onOrder = {
@@ -303,6 +325,9 @@ fun SlangverseApp() {
                                                 feedProgress = feedProgress.copy(posts = emptyList())
                                                 practiceSample = it; feedTab = "For you"; bankRefresh++
                                             })
+                                    }
+                                    if (participant != null && bankError != null) item(key = "bank-error") {
+                                        Text(bankError.orEmpty(), color = WarmEditorial.CoralDeep)
                                     }
                                     item(key = "feed-tabs") {
                                         Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()),
@@ -334,7 +359,7 @@ fun SlangverseApp() {
                                                 likedPosts - post.thread.id else likedPosts + post.thread.id },
                                             onSave = { savedPosts = if (post.thread.id in savedPosts)
                                                 savedPosts - post.thread.id else savedPosts + post.thread.id },
-                                            onAnswer = { feedProgress = feedProgress.answer(post.thread.id, it) },
+                                            onAnswer = { answerPost(post, it) },
                                             onProfile = { profileHandle = it }, onContext = ::openContext)
                                     }
                                     if (visiblePosts.isEmpty()) item {
@@ -356,7 +381,7 @@ fun SlangverseApp() {
                                             EditorialSecondary("VIEW PRACTICE RESULTS →") { screen = EditorialScreen.Progress }
                                         }
                                     }
-                                    item(key = "connected-training") {
+                                    if (participant == null) item(key = "connected-training") {
                                         PaperCard {
                                             EditorialEyebrow("CONNECTED TRAINING")
                                             Text("Use a generated question pack or the live backend.", fontSize = 12.sp)
@@ -382,7 +407,7 @@ fun SlangverseApp() {
                                             likedPosts - post.thread.id else likedPosts + post.thread.id },
                                         onSave = { savedPosts = if (post.thread.id in savedPosts)
                                             savedPosts - post.thread.id else savedPosts + post.thread.id },
-                                        onAnswer = { feedProgress = feedProgress.answer(post.thread.id, it) },
+                                        onAnswer = { answerPost(post, it) },
                                         onProfile = { profileHandle = it }, onContext = ::openContext,
                                         initiallyExpanded = true)
                                 }
@@ -444,14 +469,14 @@ fun SlangverseApp() {
                                             Text(post.content, fontSize = 13.sp, lineHeight = 20.sp)
                                             Text("Slang senses are provisional and vary across communities.",
                                                 color = WarmEditorial.Muted, fontSize = 11.sp)
-                                            EditorialPrimary("PRACTICE THIS TERM →") { launchDetective(post.id) }
+                                            if (participant == null) EditorialPrimary("PRACTICE THIS TERM →") { launchDetective(post.id) }
                                         } else {
                                             Text(post.options[post.answerIndex],
                                                 color = WarmEditorial.Muted, fontSize = 12.sp)
                                         }
                                     }
                                 }
-                                EditorialResearchNote()
+                                if (participant == null) EditorialResearchNote()
                             }
 
                             EditorialScreen.Collection -> SlangCollection(learning, ::openConversation)
@@ -491,10 +516,10 @@ fun SlangverseApp() {
                                             openConversation(postId)
                                         })
                                 }
-                                TextButton(onClick = { managePractice = !managePractice }) {
+                                if (participant == null) TextButton(onClick = { managePractice = !managePractice }) {
                                     Text(if (managePractice) "Hide progress settings" else "Progress settings")
                                 }
-                                if (managePractice) {
+                                if (participant == null && managePractice) {
                                     PracticeResetCard(feedProgress.completedCount, likedPosts.size, savedPosts.size) {
                                         feedProgress = feedProgress.reset()
                                         readUpdateIds = emptyList()
@@ -507,7 +532,8 @@ fun SlangverseApp() {
 
                             EditorialScreen.Profile -> {
                                 EditorialSection("My Profile", "Your corner of Slangverse")
-                                PaperCard {
+                                participant?.let { ParticipantSummary(it) }
+                                if (participant == null) PaperCard {
                                     Row(verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                         ProfilePicture("@you", size = 70.dp)
@@ -560,13 +586,16 @@ fun SlangverseApp() {
                                     EditorialSetting("Appearance", "Warm Editorial") {}
                                     EditorialSetting("Privacy & data", "Information") { showPrivacy = !showPrivacy }
                                     if (showPrivacy) {
-                                        Text("This prototype does not create accounts or store real participant research data.",
+                                        val dataNotice = if (participant == null)
+                                            "This prototype stores progress on this phone."
+                                        else "Your nickname and submitted answers are linked to this research profile."
+                                        Text(dataNotice,
                                             color = WarmEditorial.Muted, fontSize = 12.sp)
                                         Text("Profile illustrations: Open Peeps by Pablo Stanley (CC0), rendered with DiceBear (MIT). These depict fictional characters.",
                                             color = WarmEditorial.Muted, fontSize = 12.sp)
                                     }
                                 }
-                                EditorialResearchNote()
+                                if (participant == null) EditorialResearchNote()
                             }
 
                             EditorialScreen.ApiSession -> {
@@ -649,7 +678,7 @@ private fun EditorialHeader(
     }
 }
 
-@Composable private fun EditorialTitle(value: String, size: Int) {
+@Composable internal fun EditorialTitle(value: String, size: Int) {
     Text(value, color = WarmEditorial.Ink, fontSize = size.sp,
         fontFamily = WarmEditorial.Display, lineHeight = (size + 3).sp)
 }
@@ -659,7 +688,7 @@ private fun EditorialHeader(
         letterSpacing = 1.sp, fontWeight = FontWeight.Bold)
 }
 
-@Composable private fun PaperCard(
+@Composable internal fun PaperCard(
     modifier: Modifier = Modifier,
     background: Color = WarmEditorial.Card,
     content: @Composable ColumnScope.() -> Unit
@@ -687,7 +716,7 @@ private fun EditorialHeader(
     }
 }
 
-@Composable private fun EditorialPrimary(
+@Composable internal fun EditorialPrimary(
     label: String, enabled: Boolean = true, onClick: () -> Unit
 ) {
     Button(
