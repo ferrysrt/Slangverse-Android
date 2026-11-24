@@ -19,7 +19,7 @@ values ('00000000-0000-0000-0000-000000000000');
 ## Melihat dataset, bank, dan prompt
 
 - **Dataset** membuka versi terbaru. Pilih versi lain dari daftar untuk melihat slang, definisi, tanggal publikasi jika tersedia, tautan sumber, dan kutipan. Setiap halaman memuat sampai 50 entri.
-- **Bank soal** membuka bank peserta yang disimpan di Supabase. Pilih paket untuk melihat teks soal dan jumlah benar/salah per soal serta total paket. Buka soal untuk membaca post, komentar, opsi, kunci, dan penjelasan. Hitungan mengikuti hash revisi soal dan mengecualikan akun QA.
+- **Bank soal** menampilkan semua soal dari versi bank yang dipilih dalam satu tabel, dengan jumlah peserta yang menjawab benar dan salah di tiap baris. Klik teks soal untuk membuka post, komentar, opsi, kunci, dan penjelasan. Hitungan mengikuti hash revisi soal dan mengecualikan akun QA.
 - **Prompt aktif** membuka instruksi sistem dan template dari commit `main` yang sama. Generator memakai versi di `backend/prompts/active.json`. Untuk prompt yang sudah diisi dengan input percobaan, buka `prompt.json` di riwayat run.
 
 Pembaruan dashboard memerlukan migrasi `20261125100000_research_admin_viewers.sql` di proyek Supabase yang sama.
