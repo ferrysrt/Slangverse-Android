@@ -9,7 +9,7 @@ const app = source('SlangverseApp');
 const published = source('PublishedFeed');
 const bank = source('GithubStaticBank');
 const effect = app.split('LaunchedEffect(bankRoot, bankRefresh, offlineSample) {')[1]
-  .split('// Last local demo case-file metrics')[0];
+  .split('var detectiveStartCaseId')[0];
 const success = effect.split('try {')[1].split('} catch (cancelled:')[0];
 const failure = effect.split('} catch (error: Exception) {')[1].split('} finally {')[0];
 
@@ -66,7 +66,7 @@ test('selection is mixed-first with a total limit of twelve and no error-driven 
 
 test('feed and progress counters use the loaded feed size, not a single ten-question pack', () => {
   assert.match(app, /feedProgress\.completedCount\} \/ \$\{feedProgress\.posts\.size\} conversations decoded/);
-  assert.match(app, /EditorialMetric\("Conversations decoded", "\$\{feedProgress\.completedCount\} \/ \$\{feedProgress\.posts\.size\}"\)/);
+  assert.match(app, /EditorialMetric\("Answered", "\$\{feedProgress\.completedCount\} \/ \$\{feedProgress\.posts\.size\}"\)/);
   assert.doesNotMatch(app, /all ten|current pack/);
 });
 
@@ -129,9 +129,12 @@ test('test-only mixed fixture contains cross-referenced keys, nine categories, a
   }
 });
 
-test('published feed binds the term target handle for reply highlighting', () => {
+test('published feed distinguishes the original post or reply from the quiz prompt', () => {
   const feed = readFileSync(new URL('../app/src/main/java/id/slangverse/app/PublishedFeed.kt', import.meta.url), 'utf8');
   assert.match(feed, /termTargetHandle = if \(q\.questionTarget == "reply"\) q\.targetHandle else null/);
+  assert.match(feed, /termInPost = q\.questionTarget == "post"/);
+  assert.match(app, /SlangLocationLabel\("THE SLANG IS IN THIS POST"\)/);
+  assert.match(app, /Quiz · about the post/);
   const ui = readFileSync(new URL('../app/src/main/java/id/slangverse/app/SocialSimulationUi.kt', import.meta.url), 'utf8');
   assert.match(ui, /highlightHandle: String\? = null/);
   assert.match(ui, /reply\.handle == highlightHandle/);

@@ -22,7 +22,7 @@ test('feed opens replies by default when they contain the target slang', () => {
   assert.match(feed, /initiallyExpanded: Boolean = post\.termTargetHandle != null/);
   assert.match(feed, /var expanded by rememberSaveable\(thread\.id\) \{ mutableStateOf\(initiallyExpanded\) \}/);
   assert.match(feed, /onClick = \{ expanded = !expanded \}/);
-  assert.match(feed, /if \(expanded\) StoryReplies\(story\.replies, onProfile, post\.termTargetHandle\)/);
+  assert.match(feed, /if \(expanded\) StoryReplies\(story\.replies, onProfile, post\.termTargetHandle, thread\.term\)/);
   assert.match(source('SocialSimulationUi'), /replies\.forEach \{ reply ->/);
 });
 

@@ -19,6 +19,7 @@ internal data class FeedPracticePost(
     val published: Boolean = false,
     val sourceLabel: String = "Hand-authored practice",
     val termTargetHandle: String? = null,
+    val termInPost: Boolean = false,
     val learningSenseId: String? = null,
     val authoredStory: PostStory? = null
 )

@@ -1,6 +1,6 @@
 # Social simulator feed
 
-The app opens directly into fictional post cards. The former “CONTEXT DETECTIVE · V3 / Read the room. Decode the slang.” welcome panel is archived under **Quests → Archived: Context Detective · V3**. The original three-slang mode remains playable there and from the glossary; its results stay separate.
+The app opens directly into fictional post cards. Quests lists current feed goals. The original three-case Context Detective demo remains accessible from the glossary.
 
 ## Current source contract: mixed published feed
 
@@ -15,6 +15,12 @@ Mixed generation samples automatically eligible normalized senses from the own F
 The social renderer retains bundled avatars, profiles, individually collapsible replies, an explicit inline answer composer, separate learning feedback, context filtering, bookmarks, quests and results. Context replies start collapsed unless the target slang appears in a reply. Kai posts a neutral scripted response after the player answers a published conversation. The same response appears in the inbox for either grading outcome. Inbox read status survives a restart. The authored sample adds quoted posts and multi-level replies from consistent recurring characters. Grading and story responses run locally.
 
 See [accepted intent and current acceptance checklist](MIXED_FEED_HANDBOOK.md), [bank operations](GITHUB_GET_QUESTIONS.md), [dataset provenance](DATASET_INTEGRATION.md) and [prompt research protocol](PROMPT_ENGINEERING.md).
+
+## Feed and Progress polish
+
+Every active mixed pack contains five targets in the original post and five in story replies. The feed highlights the authored occurrence and labels Kai's separate question as a quiz. Home can merge and reorder packs, so a visible run of ten cards can mix items from different packs.
+
+Progress shows XP, answered questions, correct answers and contexts. **Answer history** opens a compact list and each row opens the original graded conversation for its details. Reset is available under **Progress settings** with confirmation.
 
 ## V0.6.0 social experience
 
