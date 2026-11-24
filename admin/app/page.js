@@ -101,53 +101,46 @@ function DatasetView({ content, page }) {
   </article>;
 }
 
-function AnswerCounts({ correct = 0, incorrect = 0 }) {
-  return <span className="answer-counts">
-    <span className="badge success">{number(correct)} benar</span>
-    <span className="badge failed">{number(incorrect)} salah</span>
-  </span>;
-}
-
-function BankView({ content, pack, selectedPack }) {
-  const counts = pack?.answerCounts;
-  const totals = Object.values(counts ?? {}).reduce((sum, row) => ({
-    correct: sum.correct + row.correct, incorrect: sum.incorrect + row.incorrect
-  }), { correct: 0, incorrect: 0 });
+function BankView({ content, packs }) {
+  const questionCount = packs.reduce((sum, pack) => sum + (pack?.questions.length ?? 0), 0);
   return <article className="card detail" id="bank-questions">
-    <div className="section-head"><div><h3>Isi bank soal</h3><code>{content.version}</code></div>
-      <span className="muted">{number(content.packs.length)} paket ? {number(content.total)} soal</span></div>
-    <div className="pack-list" aria-label="Paket soal">
-      {content.packs.map((item, index) => <a key={item.packId} className={selectedPack === item.packId ? 'secondary' : 'quiet'}
-        aria-current={selectedPack === item.packId ? 'true' : undefined}
-        href={versionHref('bank', content.version, { pack: item.packId }, 'bank-questions')}>Paket {index + 1}<span className="muted">{number(item.questionCount)} soal</span></a>)}
-    </div>
-    {pack ? <div className="pack-detail">
-      <div className="section-head pack-heading">
-        <h4>Soal Paket {content.packs.findIndex(item => item.packId === selectedPack) + 1}</h4>
-        {counts && <div><span className="muted">Total jawaban paket </span><AnswerCounts {...totals} /></div>}
-      </div>
-      <dl><div><dt>ID paket</dt><dd><code>{pack.packId}</code></dd></div>
-        {pack.promptVersion && <div><dt>Prompt paket</dt><dd>{pack.promptVersion}</dd></div>}
-        {pack.datasetVersion && <div><dt>Dataset paket</dt><dd><code>{pack.datasetVersion}</code></dd></div>}
-      </dl>
-      {pack.questions.map((item, index) => <details key={item.id} className="question" open={index === 0 || undefined}>
-        <summary>
-          <span>{index + 1}. {item.question}</span>
-          <span className="question-meta"><span className="muted">
-            {item.slang} ? {item.questionTarget === 'reply' ? 'Komentar' : 'Post'} ? {item.contextCategory} ? {item.difficulty}
-          </span>{counts && <AnswerCounts {...counts[item.id]} />}</span>
-        </summary>
-        <div className="question-copy">
-          <blockquote><strong>{item.post.handle}</strong><p>{item.post.content}</p></blockquote>
-          {(item.post.comments ?? []).map((comment, i) => <blockquote className="comment" key={i}>
-            <strong>{comment.handle}</strong><p>{comment.text}</p></blockquote>)}
-          {item.questionComment && <blockquote className="comment"><strong>Pertanyaan pembuka</strong><p>{item.questionComment}</p></blockquote>}
-          <h4>Pilihan jawaban</h4><ol type="A">{item.options.map((option, i) => <li key={i}>
-            {option}{i === item.correctIndex && <span className="badge success">Kunci</span>}</li>)}</ol>
-          <p><strong>Penjelasan</strong><br />{item.explanation}</p>
-        </div>
-      </details>)}
-    </div> : selectedPack && <p className="message" role="status">Isi paket belum dapat dimuat.</p>}
+    <div className="section-head"><div><h3>Semua soal</h3><code>{content.version}</code></div>
+      <span className="muted">{number(questionCount)} soal{questionCount !== content.total && ' dari ' + number(content.total)}</span></div>
+    {questionCount !== content.total && <p className="message" role="status">
+      Sebagian soal belum dapat dimuat. <a href={versionHref('bank', content.version, {}, 'bank-questions')}>Coba lagi</a>
+    </p>}
+    <p className="muted">Jumlah peserta per soal. Akun QA dikecualikan.</p>
+    <div className="table-scroll"><table className="question-table">
+      <thead><tr><th scope="col">Soal</th><th scope="col">Benar</th><th scope="col">Salah</th></tr></thead>
+      <tbody>{packs.flatMap((pack, packIndex) => pack ? pack.questions.map(item => {
+        const counts = pack.answerCounts?.[item.id];
+        return <tr key={pack.packId + '/' + item.id}>
+          <td><details className="question">
+            <summary>{item.question}
+              <span className="sub">Paket {packIndex + 1} ? {item.slang}</span>
+            </summary>
+            <div className="question-copy">
+              <p className="muted">{item.questionTarget === 'reply' ? 'Komentar' : 'Post'} ? {item.contextCategory} ? {item.difficulty}</p>
+              <blockquote><strong>{item.post.handle}</strong><p>{item.post.content}</p></blockquote>
+              {(item.post.comments ?? []).map((comment, i) => <blockquote className="comment" key={i}>
+                <strong>{comment.handle}</strong><p>{comment.text}</p></blockquote>)}
+              {item.questionComment && <blockquote className="comment">
+                <strong>Pertanyaan pembuka</strong><p>{item.questionComment}</p>
+              </blockquote>}
+              <h4>Pilihan jawaban</h4><ol type="A">{item.options.map((option, i) => <li key={i}>
+                {option}{i === item.correctIndex && <span className="badge success">Kunci</span>}</li>)}</ol>
+              <p><strong>Penjelasan</strong><br />{item.explanation}</p>
+              {(pack.promptVersion || pack.datasetVersion) && <dl>
+                {pack.promptVersion && <div><dt>Prompt paket</dt><dd>{pack.promptVersion}</dd></div>}
+                {pack.datasetVersion && <div><dt>Dataset paket</dt><dd><code>{pack.datasetVersion}</code></dd></div>}
+              </dl>}
+            </div>
+          </details></td>
+          <td><span className="badge success">{pack.answerCounts ? number(counts?.correct) : '?'}</span></td>
+          <td><span className="badge failed">{pack.answerCounts ? number(counts?.incorrect) : '?'}</span></td>
+        </tr>;
+      }) : [])}</tbody>
+    </table></div>
   </article>;
 }
 
@@ -195,7 +188,8 @@ export default async function Page({ searchParams }) {
   }
   const view = params.kind;
   const datasetVersion = view === 'dataset' && (versionId(params.version) ? params.version : data.datasets[0]?.version);
-  const bankVersion = view === 'bank' && (versionId(params.version) ? params.version : data.banks[0]?.version);
+  const bankVersion = (view === 'bank' || (!view && !params.job)) &&
+    (view === 'bank' && versionId(params.version) ? params.version : data.banks[0]?.version);
   const page = typeof params.page === 'string' && /^[1-9][0-9]{0,6}$/.test(params.page) ? Number(params.page) : 1;
   const [job, dataset, bank, activePrompt] = await Promise.all([
     uuid(params.job) && rpc(token, 'job', { p_request_id: params.job }).catch(() => null),
@@ -203,13 +197,18 @@ export default async function Page({ searchParams }) {
     bankVersion && rpc(token, 'content', { p_kind: 'bank', p_version: bankVersion }).catch(() => null),
     view === 'prompt' && readActivePrompt().catch(() => null)
   ]);
-  const selectedPack = bank?.packs.find(item => item.packId === params.pack)?.packId ?? bank?.packs[0]?.packId;
-  const pack = selectedPack && await rpc(token, 'bank_pack', { p_version: bank.version, p_pack_id: selectedPack }).catch(() => null);
+  const packs = bank ? await Promise.all(bank.packs.map(async descriptor => {
+    const pack = await rpc(token, 'bank_pack', { p_version: bank.version, p_pack_id: descriptor.packId }).catch(() => null);
+    return pack?.packId === descriptor.packId && Array.isArray(pack.questions) &&
+      pack.questions.length === descriptor.questionCount ? pack : null;
+  })) : [];
+  const refreshHref = job ? '/?job=' + job.request_id + '#detail' :
+    bankVersion && view === 'bank' ? versionHref('bank', bankVersion, {}, 'bank-questions') : '/';
   const enabled = canDispatch();
   return <><Header signedIn />
     <main className="wrap dashboard">
       <div className="hero"><div><p className="eyebrow">Slangverse · Penelitian</p><h1>Dashboard admin</h1></div>
-        <a className="quiet" href={job ? '/?job=' + job.request_id + '#detail' : '/'}>Perbarui data</a>
+        <a className="quiet" href={refreshHref}>Perbarui data</a>
       </div>
       <nav aria-label="Bagian dashboard">
         <a href="#actions">Pekerjaan</a><a href="#runs">Riwayat</a>
@@ -259,7 +258,7 @@ export default async function Page({ searchParams }) {
           <p className="message detail" role="status">Dataset versi ini belum dapat dibuka.</p>}
       </section>
       <section id="bank"><h2>Bank soal</h2><div className="card"><Ledger rows={data.banks} bank /></div>
-        {bank ? <BankView content={bank} pack={pack} selectedPack={selectedPack} /> : bankVersion &&
+        {bank ? <BankView content={bank} packs={packs} /> : bankVersion &&
           <p className="message detail" role="status">Bank versi ini belum dapat dibuka.</p>}
       </section>
       <PromptView requested={view === 'prompt'} active={activePrompt} />
@@ -268,23 +267,11 @@ export default async function Page({ searchParams }) {
           <a className="secondary" href="/api/export">Ekspor CSV</a>
           <a className="quiet" href="/api/export?qa=1">CSV termasuk QA</a>
         </div></div>
-        <div className="columns">
-          <article className="card table-scroll"><h3>Jawaban terbaru</h3><table>
-            <thead><tr><th>Peserta</th><th>Konteks</th><th>Hasil</th><th>Waktu (WIB)</th></tr></thead>
-            <tbody>{data.recentAnswers.map((row, i) => <tr key={i}><td>{row.username}<small className="sub">{row.participant_id.slice(0,8)}</small></td>
-              <td>{row.context_category}</td><td>{row.is_correct ? 'Benar' : 'Salah'}</td><td>{date(row.received_at)}</td></tr>)}</tbody>
-          </table>{!data.recentAnswers.length && <p className="empty">Belum ada jawaban peserta.</p>}</article>
-          <article className="card table-scroll"><div className="section-head">
-            <h3>Akurasi per soal</h3><a href={versionHref('bank')}>Lihat teks soal dan hasil</a>
-          </div><table>
-            <thead><tr><th>ID soal / revisi</th><th>Konteks</th><th>Benar / salah</th><th>Akurasi</th></tr></thead>
-            <tbody>{data.questions.map(row => <tr key={row.pack_id + '/' + row.pack_sha256 + '/' + row.question_id}>
-              <td>{row.question_id}<small className="sub">{row.pack_sha256.slice(0,10)}</small></td>
-              <td>{row.context_category}</td><td>{number(row.correct)} / {number(row.total - row.correct)}</td>
-              <td>{percent(row.correct,row.total)}<small className="sub">{row.correct}/{row.total}</small></td>
-            </tr>)}</tbody>
-          </table>{!data.questions.length && <p className="empty">Akurasi tampil setelah jawaban masuk.</p>}</article>
-        </div>
+        <article className="card table-scroll"><h3>Jawaban terbaru</h3><table>
+          <thead><tr><th>Peserta</th><th>Konteks</th><th>Hasil</th><th>Waktu (WIB)</th></tr></thead>
+          <tbody>{data.recentAnswers.map((row, i) => <tr key={i}><td>{row.username}<small className="sub">{row.participant_id.slice(0,8)}</small></td>
+            <td>{row.context_category}</td><td>{row.is_correct ? 'Benar' : 'Salah'}</td><td>{date(row.received_at)}</td></tr>)}</tbody>
+        </table>{!data.recentAnswers.length && <p className="empty">Belum ada jawaban peserta.</p>}</article>
       </section>
     </main></>;
 }
