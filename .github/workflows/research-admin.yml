@@ -1,0 +1,97 @@
+name: Research admin jobs
+run-name: Research admin ${{ inputs.request_id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      request_id:
+        description: 'A request reserved by the Slangverse admin dashboard'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+concurrency:
+  group: research-admin-${{ inputs.request_id }}
+  cancel-in-progress: false
+
+jobs:
+  run:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      RESEARCH_REQUEST_ID: ${{ inputs.request_id }}
+      SLANGVERSE_SUPABASE_URL: ${{ vars.SLANGVERSE_SUPABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Claim the exact commit and request once
+        id: claim
+        env:
+          RESEARCH_WORKER_SUPABASE_KEY: ${{ secrets.RESEARCH_WORKER_SUPABASE_KEY }}
+        run: node backend/scripts/research-admin.mjs claim
+      - name: Verify backend and Android source checks
+        run: |
+          npm --prefix backend test
+          node --test android/scripts/*.test.mjs
+      - name: Generate one draft pack and retain validation evidence
+        if: steps.claim.outputs.operation == 'generate'
+        env:
+          RESEARCH_WORKER_SUPABASE_KEY: ${{ secrets.RESEARCH_WORKER_SUPABASE_KEY }}
+          LLM_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          LLM_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-6-luna' }}
+          LLM_TIMEOUT_MS: '120000'
+          LLM_MAX_TOKENS: '10000'
+        run: node backend/scripts/research-admin.mjs generate
+      - name: Resolve and verify the selected bank revision
+        if: steps.claim.outputs.operation != 'generate'
+        id: bank
+        env:
+          RESEARCH_WORKER_SUPABASE_KEY: ${{ secrets.RESEARCH_WORKER_SUPABASE_KEY }}
+        run: node backend/scripts/research-admin.mjs bank
+      - uses: actions/setup-java@v4
+        if: steps.claim.outputs.operation != 'generate'
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        if: steps.claim.outputs.operation != 'generate'
+      - name: Install Android platform
+        if: steps.claim.outputs.operation != 'generate'
+        run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;36.0.0'
+      - uses: gradle/actions/setup-gradle@v4
+        if: steps.claim.outputs.operation != 'generate'
+        with:
+          gradle-version: '8.14.3'
+      - name: Test the same participant configuration used by the build
+        if: steps.claim.outputs.operation != 'generate'
+        working-directory: android
+        env:
+          SLANGVERSE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.SLANGVERSE_SUPABASE_PUBLISHABLE_KEY }}
+          SLANGVERSE_RESEARCH_BANK_DIR: ${{ steps.bank.outputs.directory }}
+        run: gradle --no-daemon :app:testDebugUnitTest
+      - name: Build the verified participant APK
+        if: steps.claim.outputs.operation == 'build'
+        working-directory: android
+        env:
+          SLANGVERSE_SUPABASE_PUBLISHABLE_KEY: ${{ vars.SLANGVERSE_SUPABASE_PUBLISHABLE_KEY }}
+          SLANGVERSE_RESEARCH_BANK_DIR: ${{ steps.bank.outputs.directory }}
+        run: gradle --no-daemon :app:assembleDebug
+      - name: Upload APK
+        if: steps.claim.outputs.operation == 'build'
+        uses: actions/upload-artifact@v4
+        with:
+          name: participant-apk-${{ github.run_id }}
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+      - name: Save outcome to Supabase
+        if: always() && steps.claim.outcome == 'success'
+        env:
+          RESEARCH_WORKER_SUPABASE_KEY: ${{ secrets.RESEARCH_WORKER_SUPABASE_KEY }}
+          RESEARCH_JOB_SUCCESS: ${{ job.status == 'success' }}
+        run: node backend/scripts/research-admin.mjs finish
