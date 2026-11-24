@@ -69,6 +69,20 @@ export async function readMainCommit() {
   return ref.object.sha;
 }
 
+export async function readActivePrompt() {
+  const commit = await readMainCommit();
+  const read = async name => {
+    const file = await github('/contents/backend/prompts/' + name + '?ref=' + commit);
+    if (file?.encoding !== 'base64' || typeof file.content !== 'string')
+      throw new ServiceError(502, 'missing_prompt_file');
+    return Buffer.from(file.content, 'base64').toString('utf8').replace(/\r\n/g, '\n');
+  };
+  const { version, system } = JSON.parse(await read('active.json'));
+  if (!/^mixed-v[1-9][0-9]*$/.test(version ?? '') || typeof system !== 'string' || !system.trim())
+    throw new ServiceError(502, 'invalid_active_prompt');
+  return { version, system, commit, template: await read(version + '.txt') };
+}
+
 export function dispatch(id) {
   return github('/actions/workflows/research-admin.yml/dispatches', {
     ref: 'main', inputs: { request_id: id }

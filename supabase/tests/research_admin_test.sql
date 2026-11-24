@@ -14,6 +14,12 @@ begin
     begin perform * from public.research_admin_export(20,0,false);
         raise exception 'Participant could export data';
     exception when insufficient_privilege then null; end;
+    begin perform public.research_admin_dataset_page('test',0);
+        raise exception 'Participant could view dataset';
+    exception when insufficient_privilege then null; end;
+    begin perform public.research_admin_bank_pack('test','test');
+        raise exception 'Participant could view questions';
+    exception when insufficient_privilege then null; end;
     begin perform public.research_worker_bank('7e1e593cea34524f');
         raise exception 'Participant could get the worker snapshot';
     exception when insufficient_privilege then null; end;
@@ -26,7 +32,26 @@ declare
     view_data jsonb := public.research_admin_overview();
     dataset_v text := view_data->'datasets'->0->>'version';
     bank_v text := view_data->'banks'->0->>'version';
+    first_page jsonb := public.research_admin_dataset_page(dataset_v,0);
+    second_page jsonb := public.research_admin_dataset_page(dataset_v,50);
+    first_pack text := public.research_admin_content('bank',bank_v)->'packs'->0->>'packId';
+    pack_details jsonb := public.research_admin_bank_pack(bank_v,first_pack);
 begin
+    if jsonb_array_length(first_page->'entries') is distinct from 50
+        or (first_page->>'total')::integer is distinct from 148
+        or first_page->'entries'->0->>'definition' is null
+        or first_page->'entries'->0->>'quote' is null
+        or first_page->'entries'->0 = second_page->'entries'->0
+        or jsonb_array_length(second_page->'entries') is distinct from 50
+        or public.research_admin_dataset_page('missing',0) is not null then
+        raise exception 'Dataset viewer did not preserve versioned paging and provenance';
+    end if;
+    if jsonb_array_length(pack_details->'questions') is distinct from 10
+        or pack_details->>'packId' is distinct from first_pack
+        or pack_details->'questions'->0->>'correctIndex' is null
+        or public.research_admin_bank_pack(bank_v,'missing') is not null then
+        raise exception 'Bank viewer did not return the selected package';
+    end if;
     if (view_data->'banks'->0->>'question_count')::int <> 90
         or public.research_admin_content('dataset', dataset_v)->>'total' is null then
         raise exception 'Seed summaries unavailable';
