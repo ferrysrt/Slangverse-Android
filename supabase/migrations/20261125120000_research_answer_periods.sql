@@ -6,6 +6,8 @@ create table slangverse_private.research_answer_resets (
     started_by uuid references auth.users(id) on delete set null
 );
 
+alter table slangverse_private.research_answer_resets enable row level security;
+
 create view slangverse_private.current_research_answer_period as
 select period_id, started_at
 from slangverse_private.research_answer_resets
