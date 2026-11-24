@@ -2,14 +2,21 @@ name: Refresh normalized slang dataset
 on:
   workflow_dispatch:
     inputs:
+      mode:
+        description: 'Replay an archived capture without providers, or collect fresh glossaries from Firecrawl'
+        type: choice
+        options:
+          - replay
+          - live
+        default: replay
       query:
-        description: 'Optional Firecrawl search query; the default embeds the current UTC date and names tiktok/twitter/instagram (one search, 40 results, at least 10 pages required)'
+        description: 'Optional Firecrawl search query in live mode'
         type: string
         default: ''
   schedule:
     - cron: '0 3 * * 1'
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: slang-candidate-discovery
   cancel-in-progress: false
@@ -20,43 +27,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main
-          fetch-depth: 0
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test dataset and historical compatibility contracts before paid requests
+      - name: Test dataset extraction and compatibility
         working-directory: backend
-        run: node --test test/dataset-refresh.test.mjs test/dataset-curate.test.mjs test/dataset-normalized.test.mjs test/catalog.test.mjs
-      - name: Discover candidate slang via one Firecrawl search and bounded normalization
+        run: node --test test/research-admin.test.mjs test/dataset-refresh.test.mjs test/dataset-curate.test.mjs test/dataset-normalized.test.mjs test/catalog.test.mjs
+      - name: Save a validated dataset version to Supabase
         working-directory: backend
         env:
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL || 'openai/gpt-6-luna' }}
+          DATASET_MODE: ${{ inputs.mode || 'live' }}
+          FIRECRAWL_API_KEY: ${{ inputs.mode != 'replay' && secrets.FIRECRAWL_API_KEY || '' }}
           FIRECRAWL_QUERY: ${{ inputs.query }}
-          # Relative to this step's working-directory (backend/), so the audit
-          # evidence lands in backend/dataset-runs at the repository root.
-          DATASET_AUDIT_DIR: dataset-runs
-        run: npm run dataset:refresh
-      - name: Publish normalized dataset and run evidence
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: normalized-slang-dataset-${{ github.run_id }}
-          path: |
-            backend/data/discovered_candidates.json
-            backend/data/discovered_candidates.csv
-            backend/dataset-runs/
-          if-no-files-found: warn
-      - name: Persist normalized dataset, source captures and audit evidence
-        if: ${{ always() }}
+          SLANGVERSE_SUPABASE_URL: ${{ vars.SLANGVERSE_SUPABASE_URL }}
+          RESEARCH_WORKER_SUPABASE_KEY: ${{ secrets.RESEARCH_WORKER_SUPABASE_KEY }}
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add backend/data/discovered_candidates.json backend/data/discovered_candidates.csv backend/dataset-runs/
-          if git diff --cached --quiet; then exit 0; fi
-          GIT_EDITOR=true git commit -m 'Refresh normalized slang dataset'
-          GIT_EDITOR=true git pull --rebase origin main
-          git push origin HEAD:main
-
+          export DATASET_EXPORT_DIR="$RUNNER_TEMP/slangverse-dataset"
+          if [[ "$DATASET_MODE" == replay ]]; then
+            node dataset/refresh-deterministic.mjs --import --replay dataset-runs/2026-11-18T21-07-05-945Z-066f7cd4-b38f-4e3c-9934-b8bf267ba13b/sources.json
+          else
+            node dataset/refresh-deterministic.mjs --import
+          fi
