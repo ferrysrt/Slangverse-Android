@@ -12,21 +12,31 @@ function csvCell(value) {
 export async function GET(request) {
   const token = await session();
   if (!token) return new Response('Masuk sebagai admin.', { status: 401 });
-  const includeQa = new URL(request.url).searchParams.get('qa') === '1';
+  const params = new URL(request.url).searchParams;
+  const includeQa = params.get('qa') === '1';
+  const archive = params.get('archive') === '1';
   const lines = [fields.join(',')];
   const page = 500;
   try {
+    const overview = await rpc(token, 'overview');
+    const periodEnabled = Object.hasOwn(overview, 'answerPeriod');
+    if (archive && !overview.answerPeriod) return new Response('Arsip belum tersedia.', { status: 404 });
     for (let offset = 0; ; offset += page) {
-      const rows = await rpc(token, 'export', { p_limit: page, p_offset: offset, p_include_qa: includeQa });
+      const options = { p_limit: page, p_offset: offset, p_include_qa: includeQa };
+      const rows = periodEnabled ? await rpc(token, 'export_period', {
+        ...options, p_archive: archive, p_expected_period: overview.answerPeriod?.id ?? null
+      }) : await rpc(token, 'export', options);
       if (offset >= 10_000 && rows.length) return new Response('Ekspor melebihi 10.000 baris. Gunakan SQL Editor.', { status: 413 });
       for (const row of rows) lines.push(fields.map(field => csvCell(row[field])).join(','));
       if (rows.length < page) break;
     }
   } catch (error) {
+    if (error.code === '40001') return new Response('Periode jawaban berubah. Ulangi ekspor.', { status: 409 });
     return new Response('Ekspor tidak tersedia.', { status: error.status === 403 ? 403 : 502 });
   }
   return new Response('\ufeff' + lines.join('\r\n') + '\r\n', { headers: {
     'Content-Type': 'text/csv; charset=utf-8', 'Cache-Control': 'private, no-store',
-    'Content-Disposition': 'attachment; filename="slangverse-answers.csv"'
+    'Content-Disposition': archive ? 'attachment; filename="slangverse-answers-archive.csv"' :
+      'attachment; filename="slangverse-answers.csv"'
   }});
 }
