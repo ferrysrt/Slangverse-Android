@@ -13,6 +13,22 @@ on:
         description: 'Optional Firecrawl search query in live mode'
         type: string
         default: ''
+      date_from:
+        description: 'First publication day (YYYY-MM-DD, with date_to)'
+        type: string
+        default: ''
+      date_to:
+        description: 'Last publication day (YYYY-MM-DD, with date_from)'
+        type: string
+        default: ''
+      min_source_urls:
+        description: 'Minimum distinct URLs that support accepted glossary definitions (1?40)'
+        type: string
+        default: '1'
+      domains:
+        description: 'Optional comma-separated public hostnames'
+        type: string
+        default: ''
   schedule:
     - cron: '0 3 * * 1'
 permissions:
@@ -40,6 +56,10 @@ jobs:
           DATASET_MODE: ${{ inputs.mode || 'live' }}
           FIRECRAWL_API_KEY: ${{ inputs.mode != 'replay' && secrets.FIRECRAWL_API_KEY || '' }}
           FIRECRAWL_QUERY: ${{ inputs.query }}
+          FIRECRAWL_DATE_FROM: ${{ inputs.date_from }}
+          FIRECRAWL_DATE_TO: ${{ inputs.date_to }}
+          FIRECRAWL_MIN_SOURCE_URLS: ${{ inputs.min_source_urls }}
+          FIRECRAWL_DOMAINS: ${{ inputs.domains }}
           SLANGVERSE_SUPABASE_URL: ${{ vars.SLANGVERSE_SUPABASE_URL }}
           RESEARCH_WORKER_SUPABASE_KEY: ${{ secrets.RESEARCH_WORKER_SUPABASE_KEY }}
         run: |
