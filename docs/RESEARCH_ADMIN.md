@@ -26,6 +26,14 @@ values ('00000000-0000-0000-0000-000000000000');
 
 ## Sumber dataset dan perpindahan
 
-Untuk menguji ekstraksi langsung, jalankan `node backend/dataset/refresh-deterministic.mjs` dengan `FIRECRAWL_API_KEY` dan `DATASET_EXPORT_DIR`. Operasi ini memakai kredit Firecrawl. Parser menerima entri glosarium seperti `**Cooked**: In a difficult situation with few options.` CSV berisi `slang,definition,date,source`. Bukti kutipan dan hash halaman masuk ke JSON. Tambahkan `--import` dan konfigurasi worker Supabase untuk menyimpan versi baru.
+**Actions > Refresh normalized slang dataset** menyimpan snapshot baru di Supabase setelah minimal sepuluh istilah berbeda lolos pemeriksaan kutipan. Jadwal Senin 10.00 WIB memakai satu pencarian Firecrawl. Parser membaca definisi eksplisit dari Markdown dan membuat CSV `slang,definition,date,source`. Bukti kutipan dan hash halaman masuk ke JSON. OpenRouter dipakai terpisah saat admin memilih **Generate Soal**.
 
-Snapshot awal diwarisi dari pipeline historis. Sebelum memindahkan sumber utama, verifikasi cakupan sumber parser baru, impor data, uji build dari Supabase dan cek aplikasi lama yang masih membaca URL GitHub. Setelah itu migrasikan workflow terjadwal dan hapus salinan data aktif dari branch. Nomor versi dan revisi soal perlu dipertahankan untuk pelacakan jawaban.
+Jalankan workflow manual dengan mode **replay** untuk memeriksa impor Supabase dari arsip tanpa memakai kredit provider. Waktu pengambilan tetap mengikuti arsip. Untuk pengujian lokal, isi `DATASET_EXPORT_DIR` dan jalankan `node backend/dataset/refresh-deterministic.mjs --replay path/to/sources.json`. Untuk pengambilan baru, pilih **live** dan gunakan `FIRECRAWL_API_KEY` di GitHub Actions.
+
+Aplikasi peserta memakai bank Supabase yang dibekukan di APK. Aplikasi reguler yang sudah terpasang masih membaca URL GitHub, dan alat historis juga membaca snapshot lama. Perpindahan jalur itu memerlukan URL yang kompatibel dan uji pembaruan klien. Nomor versi dan revisi soal dipertahankan untuk pelacakan jawaban.
+
+
+## Verifikasi 24 November 2026
+
+- [Tes rilis](https://github.com/ferrysrt/Slangverse-Android/actions/runs/45392239192) dan [Build APK](https://github.com/ferrysrt/Slangverse-Android/actions/runs/45396245741) lulus untuk commit 96a9b786e dan bank 7e1e593cea34524f. Isi 9 paket, 90 soal, dan hash setiap paket diverifikasi. APK dipasang melalui ADB pada satu Xiaomi dengan tanda tangan yang sesuai. Aplikasi membuka layar, dan tab Quests serta Progress terdeteksi.
+- [Percobaan Generate Soal](https://github.com/ferrysrt/Slangverse-Android/actions/runs/45396914552) memakai satu panggilan OpenRouter. Validator menolak paket berisi 10 soal karena rujukan dan makna kunci pada soal kelima, satu rujukan yang tidak digunakan, serta penulis target balasan pada soal pertama dan ketiga. Bukti tersimpan di Supabase dan dapat dibuka di dashboard. Bank peserta tetap memakai versi yang lulus tes.

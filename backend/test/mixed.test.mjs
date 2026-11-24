@@ -628,7 +628,8 @@ test('publisher consumes the dataset agent interface with no paid call and no le
   const {listNormalizedSenses, DATASET_VERSION} = await import('../src/catalog.mjs');
   let calls = 0;
   const result = await publishMixedBank({outputDir, experimentsDir,
-    provider: fakeProvider({observe: () => calls++})});
+    provider: fakeProvider({observe: () => calls++}),
+    generate: options => generateMixedPack({...options, randomIndex: count => count - 1})});
   assert.equal(calls, 1); assert.equal(result.published, 1);
   const catalog = jsonFile(outputDir, 'catalog.json');
   assert.equal(catalog.datasetVersion, DATASET_VERSION);
