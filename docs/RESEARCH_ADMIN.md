@@ -24,6 +24,12 @@ values ('00000000-0000-0000-0000-000000000000');
 
 Pembaruan dashboard memerlukan migrasi `20261125100000_research_admin_viewers.sql` di proyek Supabase yang sama.
 
+## Memulai periode pengambilan data
+
+Di bagian **Jawaban peserta**, buka **Reset jawaban**, ketik **RESET**, lalu klik **Mulai periode baru** sebelum membagikan APK. Ringkasan, hitungan per soal, dan CSV aktif menampilkan profil yang baru terdaftar sesudah periode dimulai. Profil uji coba dan seluruh jawabannya tersedia melalui **CSV arsip**, termasuk jawaban lama yang baru tersinkron dari perangkat uji. Satu profil tetap merekam satu jawaban per revisi soal.
+
+Gunakan profil baru untuk pengambilan data resmi. Reset melalui dashboard tidak memerlukan build APK baru.
+
 ## Audit generasi dan penelitian
 
 **Generate Soal** memakai satu versi dataset yang dipilih untuk tiap percobaan. Versi tersimpan sebagai snapshot terpisah. Versi terbaru dipilih secara bawaan dan versi sebelumnya tersedia untuk mengulang atau membandingkan percobaan. Setelah konfirmasi, worker membuat satu panggilan LLM. Jika workflow dijalankan ulang untuk permintaan yang sama, database mencegah pemanggilan kedua. Paket lulus tersimpan sebagai draf di bukti run. Hasil menyertakan prompt dan hash, keluaran, kunci validasi, dan model aktual bila dikembalikan provider. Hitungan soal mencerminkan paket yang diterima atau ditolak. Run tanpa keluaran yang dapat dinilai dilaporkan tersendiri.

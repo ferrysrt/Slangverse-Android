@@ -55,3 +55,21 @@ export async function startJob(data) {
   }
   redirect('/?job=' + requestId);
 }
+
+export async function resetAnswers(data) {
+  const token = await session();
+  if (!token) redirect('/?notice=session');
+  const id = data.get('request');
+  const expected = data.get('period');
+  const uuid = /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/;
+  if (data.get('confirm') !== 'RESET' || !uuid.test(id ?? '') || (expected !== '' && !uuid.test(expected ?? ''))) {
+    redirect('/?notice=answerResetConfirm#answers');
+  }
+  let reset;
+  try {
+    reset = await rpc(token, 'reset_answers', { p_request_id: id, p_expected_period: expected || null });
+  } catch {
+    redirect('/?notice=answerResetFailed#answers');
+  }
+  redirect('/?notice=' + (reset === true ? 'answerResetSuccess' : 'answerResetStale') + '#answers');
+}

@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { configured, canDispatch, GITHUB_RUN, readActivePrompt, rpc, session } from '../lib/backend';
-import { login, logout, startJob } from './actions';
+import { login, logout, resetAnswers, startJob } from './actions';
 
 const operations = { generate: 'Generasi', check: 'Pengujian', build: 'Build APK' };
 const statusNames = { queued: 'Antre', running: 'Berjalan', success: 'Lulus', failed: 'Gagal' };
@@ -10,7 +10,11 @@ const notices = {
   gate: 'Jalankan pengujian untuk commit main dan versi bank ini sebelum membuat APK.',
   duplicate: 'Permintaan ini sudah dikirim. Lihat riwayat pekerjaan.',
   request: 'Permintaan belum bisa dijalankan. Periksa versi dan konfigurasi.',
-  dispatch: 'GitHub Actions belum dapat menerima permintaan. Periksa konfigurasi proyek.'
+  dispatch: 'GitHub Actions belum dapat menerima permintaan. Periksa konfigurasi proyek.',
+  answerResetConfirm: 'Ketik RESET untuk memulai periode baru.',
+  answerResetFailed: 'Periode baru belum dapat dimulai. Perbarui dashboard, lalu coba lagi.',
+  answerResetStale: 'Periode sudah berubah. Periksa periode aktif sebelum mencoba lagi.',
+  answerResetSuccess: 'Periode baru dimulai. Jawaban sebelumnya tersedia di CSV arsip.'
 };
 
 const number = value => new Intl.NumberFormat('id-ID').format(value ?? 0);
@@ -101,7 +105,20 @@ function DatasetView({ content, page }) {
   </article>;
 }
 
-function BankView({ content, packs }) {
+function ResetPanel({ period }) {
+  return <details className="reset-panel">
+    <summary>Reset jawaban</summary>
+    <p>Dashboard dan CSV periode baru akan kosong. Profil yang sudah terdaftar serta jawaban mereka masuk arsip. Responden yang baru mendaftar masuk periode baru.</p>
+    <form action={resetAnswers} className="reset-form">
+      <input type="hidden" name="request" value={randomUUID()} />
+      <input type="hidden" name="period" value={period?.id ?? ''} />
+      <label>Ketik RESET untuk konfirmasi<input name="confirm" placeholder="RESET" pattern="RESET" required autoComplete="off" /></label>
+      <button className="danger" type="submit">Mulai periode baru</button>
+    </form>
+  </details>;
+}
+
+function BankView({ content, packs, periodId }) {
   const questionCount = packs.reduce((sum, pack) => sum + (pack?.questions.length ?? 0), 0);
   return <article className="card detail" id="bank-questions">
     <div className="section-head"><div><h3>Semua soal</h3><code>{content.version}</code></div>
@@ -113,7 +130,8 @@ function BankView({ content, packs }) {
     <div className="table-scroll"><table className="question-table">
       <thead><tr><th scope="col">Soal</th><th scope="col">Benar</th><th scope="col">Salah</th></tr></thead>
       <tbody>{packs.flatMap((pack, packIndex) => pack ? pack.questions.map(item => {
-        const counts = pack.answerCounts?.[item.id];
+        const countsAvailable = pack.answerCounts && (pack.answerPeriodId ?? null) === periodId;
+        const counts = countsAvailable && pack.answerCounts[item.id];
         return <tr key={pack.packId + '/' + item.id}>
           <td><details className="question">
             <summary>{item.question}
@@ -136,8 +154,8 @@ function BankView({ content, packs }) {
               </dl>}
             </div>
           </details></td>
-          <td><span className="badge success">{pack.answerCounts ? number(counts?.correct) : '?'}</span></td>
-          <td><span className="badge failed">{pack.answerCounts ? number(counts?.incorrect) : '?'}</span></td>
+          <td><span className="badge success">{countsAvailable ? number(counts?.correct) : '?'}</span></td>
+          <td><span className="badge failed">{countsAvailable ? number(counts?.incorrect) : '?'}</span></td>
         </tr>;
       }) : [])}</tbody>
     </table></div>
@@ -187,6 +205,7 @@ export default async function Page({ searchParams }) {
       'Sesi tidak memiliki akses admin.' : 'Data belum dapat dibuka. Periksa migrasi Supabase.'} />;
   }
   const view = params.kind;
+  const answerNotice = typeof params.notice === 'string' && params.notice.startsWith('answerReset') ? notice : null;
   const datasetVersion = view === 'dataset' && (versionId(params.version) ? params.version : data.datasets[0]?.version);
   const bankVersion = (view === 'bank' || (!view && !params.job)) &&
     (view === 'bank' && versionId(params.version) ? params.version : data.banks[0]?.version);
@@ -215,7 +234,7 @@ export default async function Page({ searchParams }) {
         <a href={versionHref('dataset')}>Dataset</a><a href={versionHref('bank')}>Bank soal</a>
         <a href={versionHref('prompt')}>Prompt aktif</a><a href="#answers">Jawaban</a>
       </nav>
-      {notice && <p className="message" role="status">{notice}</p>}
+      {notice && !answerNotice && <p className="message" role="status">{notice}</p>}
       <section className="metrics" aria-label="Ringkasan penelitian">
         <Metric label="Generasi" value={number(data.generation.runs)} detail={number(data.generation.passedRuns) + ' lulus · ' + number(data.generation.failedRuns) + ' gagal'} />
         <Metric label="Soal dinilai" value={number(data.generation.questionsPassed + data.generation.questionsFailed)}
@@ -258,7 +277,7 @@ export default async function Page({ searchParams }) {
           <p className="message detail" role="status">Dataset versi ini belum dapat dibuka.</p>}
       </section>
       <section id="bank"><h2>Bank soal</h2><div className="card"><Ledger rows={data.banks} bank /></div>
-        {bank ? <BankView content={bank} packs={packs} /> : bankVersion &&
+        {bank ? <BankView content={bank} packs={packs} periodId={data.answerPeriod?.id ?? null} /> : bankVersion &&
           <p className="message detail" role="status">Bank versi ini belum dapat dibuka.</p>}
       </section>
       <PromptView requested={view === 'prompt'} active={activePrompt} />
@@ -266,7 +285,11 @@ export default async function Page({ searchParams }) {
         <div className="section-head"><h2>Jawaban peserta</h2><div className="links">
           <a className="secondary" href="/api/export">Ekspor CSV</a>
           <a className="quiet" href="/api/export?qa=1">CSV termasuk QA</a>
+          {data.answerPeriod && <a className="quiet" href="/api/export?archive=1">CSV arsip</a>}
         </div></div>
+        {answerNotice && <p className="message" role="status">{answerNotice}</p>}
+        {data.answerPeriod && <p className="muted period-start">Periode aktif sejak {date(data.answerPeriod.startedAt)} WIB</p>}
+        {Object.hasOwn(data, 'answerPeriod') && <ResetPanel period={data.answerPeriod} />}
         <article className="card table-scroll"><h3>Jawaban terbaru</h3><table>
           <thead><tr><th>Peserta</th><th>Konteks</th><th>Hasil</th><th>Waktu (WIB)</th></tr></thead>
           <tbody>{data.recentAnswers.map((row, i) => <tr key={i}><td>{row.username}<small className="sub">{row.participant_id.slice(0,8)}</small></td>
