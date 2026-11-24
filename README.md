@@ -1,6 +1,6 @@
 # Slangverse Android — mixed social feed
 
-**Current direction:** Slangverse uses the project's own Firecrawl-normalized slang dataset and pre-generated mixed-slang question packs. `0.8.0-intelligent-learning` (Android version code `9`) adds scripted social responses, a slang collection and optional adaptive practice on device. This repository is separate from `ferrysrt/slangfeed`.
+**Current direction:** Slangverse uses the project's own Firecrawl-normalized slang dataset and pre-generated mixed-slang question packs. `0.8.1-feed-polish` (Android version code `11`) clarifies the source of the slang and shortens Progress. See the [account and sync design](docs/ACCOUNT_SYNC_PLAN.md) for the next phase.
 
 Slangverse is an educational Android game with a **fictional social-media-inspired interface**. Players interpret slang from posts and indirect reply hints. Product approval does not establish supervisor approval of the research methodology, semantic validity, calibrated difficulty or learning gains.
 
@@ -11,7 +11,7 @@ Slangverse is an educational Android game with a **fictional social-media-inspir
 - **Mixed publishing:** `backend/scripts/publish-mixed-bank.mjs`, `backend/src/mixed*.mjs` and `backend/prompts/mixed-v1.txt` implement default **one** attempt, maximum **three**, no retries/repair/mock fallback. Packs contain ten questions, prefer ten unique terms, require at least two, and use nominal 5 easy / 3 medium / 2 hard labels. Each question links to its own source-backed reference and one of nine context categories; categories/scenarios may repeat.
 - **Distribution:** schema 2 catalogues advertise mixed `packs` plus retained legacy `senses`. Old schema 1 packs remain compatible; implemented schema support is not proof new mixed packs are already public. Home prefers mixed packs, using legacy only when no mixed packs are listed—not on mixed-loading failure.
 - **Browsing:** Home merges selected packs and retains context tabs. Browse shuffles on a fresh load or explicit refresh. Adaptive offers a next-question suggestion from local answers, and Fixed order uses stable question identities. Pack ID, content hash and question ID isolate answers and local 80/15 XP. [Intelligent Learning](docs/INTELLIGENT_LEARNING.md)
-- **No live phone LLM:** Home only GETs [public question JSON](https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank/catalog.json). It needs no backend or provider token. Loading/errors are explicit; a failed refresh can retain the previous published feed. The authored sample is opt-in under **Question source**, and Context Detective stays archived under Quests.
+- **No live phone LLM:** Home only GETs [public question JSON](https://raw.githubusercontent.com/ferrysrt/Slangverse-Android/main/question-bank/catalog.json). It needs no backend or provider token. Loading/errors are explicit. A failed refresh can retain the previous published feed. The authored sample is opt-in under **Question source**. The glossary still opens the three-case Context Detective demo.
 
 Per-attempt evidence under `backend/experiments/` records actual input, rendered prompt, request, raw output/response, model/usage/finish reasons, validation and result as available; successful generation adds a pack. `mixed-v4` is the active baseline; v1–v4 are four real archived attempts, each rejected by a validation gate. Critical-nine syntax checks plus integrity/social/completion gates do not prove semantics.
 
@@ -61,7 +61,7 @@ The optional archived mode starts a three-case, **mixed-slang** investigation lo
 5. Receive contextual feedback.
 6. Advance to the **next different slang**; end with a Case Report.
 
-Three provisional hand-authored demo cases: `cooked`, `no cap`, `lowkey`. Practice XP is +80/+15 on correct/incorrect; no timer, streak penalty or paywall. Scores in this mode are **local demonstration state**, not persistent research outcomes. During play, the bottom navigation disappears so the player focuses on the social thread. Learn and the archive in Quests can open this mode.
+Three provisional hand-authored demo cases: `cooked`, `no cap`, `lowkey`. Practice XP is +80/+15 on correct/incorrect; no timer, streak penalty or paywall. Scores in this mode are **local demonstration state**, not persistent research outcomes. During play, the bottom navigation disappears so the player focuses on the social thread. Open a case from Learn.
 
 For the architecture, UI/testing expectations, and MagicPath V3 revision, see [Context Detective V3](docs/CONTEXT_DETECTIVE_V3.md).
 
@@ -101,7 +101,7 @@ Use `HOST=0.0.0.0` if you **intentionally** want a physical Android phone on the
 2. Choose a suitable JDK (17+) and install Android SDK platform 36 if prompted.
 3. This package has `gradle/wrapper/gradle-wrapper.properties`, **but no official `gradle-wrapper.jar`** because the generation environment has no Gradle distribution/network access. If Android Studio does not sync, install compatible Gradle and run `android/scripts/setup-wrapper.ps1` in PowerShell or `android/scripts/setup-wrapper.sh` on Linux/macOS. This generates the genuine wrapper scripts/JAR.
 4. Then run `./gradlew :app:assembleDebug` or the IDE build action. The earlier 2026-11-11 cloud-build record is historical; verify the current mixed-feed build before distributing.
-5. Launch: Home fetches the public bank without Node. For the separate live Connected Training route, run the backend and open **PLAY API SESSION**; `http://10.0.2.2:8787` is the standard Android emulator address. Explicitly select the hand-authored sample for offline practice; **START THE CASE FILE** remains in the Quests archive.
+5. Launch: Home fetches the public bank without Node. For the separate live Connected Training route, run the backend and open **PLAY API SESSION**; `http://10.0.2.2:8787` is the standard Android emulator address. Select the hand-authored sample for offline practice or open the three-case demo from Learn.
 6. For a **physical device**, set API URL to `http://YOUR-LAPTOP-LAN-IP:8787`, and run server with `HOST=0.0.0.0`. Ensure firewall/Wi-Fi allows local access.
 
 Android **debug builds** allow cleartext HTTP for trusted private-LAN testing; release builds do **not** opt into cleartext. Use HTTPS for a cloud backend and enter the separate *backend access token* in API Training. Never put OpenRouter keys in the APK. See [cloud deployment guide](docs/CLOUD_PLAY.md).

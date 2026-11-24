@@ -107,7 +107,8 @@ fun SlangverseApp() {
     var practiceOrder by rememberSaveable { mutableStateOf(practiceStore.loadOrder()) }
     var likedPosts by rememberSaveable { mutableStateOf(restoredPractice.liked) }
     var savedPosts by rememberSaveable { mutableStateOf(restoredPractice.saved) }
-    var archiveExpanded by rememberSaveable { mutableStateOf(false) }
+    var showPracticeHistory by rememberSaveable { mutableStateOf(false) }
+    var managePractice by rememberSaveable { mutableStateOf(false) }
     var feedProgress by rememberSaveable(stateSaver = listSaver<FeedPracticeProgress, String>(
         save = { progress -> progress.answers.map { (id, index) -> "$id:$index" } },
         restore = { entries -> FeedPracticeProgress(entries.associate {
@@ -182,11 +183,6 @@ fun SlangverseApp() {
         }
     }
 
-    // Last local demo case-file metrics; not provider or research data.
-    var sampleXp by remember { mutableIntStateOf(0) }
-    var sampleCombo by remember { mutableIntStateOf(0) }
-    var sampleCompletedCases by remember { mutableIntStateOf(0) }
-    var sampleCorrectCases by remember { mutableIntStateOf(0) }
     var detectiveStartCaseId by remember { mutableStateOf("campus") }
     var glossaryQuery by rememberSaveable { mutableStateOf("") }
     var glossaryFilter by rememberSaveable { mutableStateOf("All") }
@@ -394,16 +390,7 @@ fun SlangverseApp() {
                             }
 
                             EditorialScreen.Detective -> {
-                                ContextDetective(
-                                    startCaseId = detectiveStartCaseId,
-                                    onExit = { screen = EditorialScreen.Feed },
-                                    onSessionCompleted = { earnedXp, trailingCombo, correctCases ->
-                                        sampleXp = earnedXp
-                                        sampleCombo = trailingCombo
-                                        sampleCompletedCases = ContextDetectiveGame.cases.size
-                                        sampleCorrectCases = correctCases
-                                    }
-                                )
+                                ContextDetective(startCaseId = detectiveStartCaseId, onExit = { screen = EditorialScreen.Feed })
                             }
 
                             EditorialScreen.Learn -> {
@@ -482,69 +469,39 @@ fun SlangverseApp() {
                                         learning.masteredSenses.coerceAtMost(1).toFloat(), "CONTEXT SWITCH", "↗")
                                 }
                                 EditorialPrimary("BACK TO THE CONVERSATIONS →") { screen = EditorialScreen.Feed }
-                                PaperCard {
-                                    TextButton(onClick = { archiveExpanded = !archiveExpanded }) {
-                                        Text(if (archiveExpanded) "Hide archived Context Detective ↑"
-                                            else "Archived: Context Detective · V3 ↓")
-                                    }
-                                    if (archiveExpanded) {
-                                        EditorialEyebrow("CONTEXT DETECTIVE · V3")
-                                        EditorialTitle("Read the room. Decode the slang.", 29)
-                                        Text("Three short cases. Three different slang terms. Your evidence matters.", fontSize = 13.sp)
-                                        EditorialPrimary("START THE CASE FILE →") { launchDetective("campus") }
-                                        Text("Original three-slang demo. Its results stay separate from feed practice.",
-                                            fontSize = 11.sp, color = WarmEditorial.Muted)
-                                    }
-                                }
                             }
 
                             EditorialScreen.Progress -> {
-                                EditorialSection("Your practice", "Loaded feed · locally graded practice")
+                                EditorialTitle("Progress", 29)
                                 PaperCard(background = WarmEditorial.Blush) {
-                                    EditorialTitle("${feedProgress.xp} practice XP", 29)
+                                    EditorialTitle("${feedProgress.xp} XP", 26)
                                     EditorialProgress(feedProgress.completedCount.toFloat() / feedProgress.posts.size.coerceAtLeast(1))
-                                    EditorialMetric("Conversations decoded", "${feedProgress.completedCount} / ${feedProgress.posts.size}")
-                                    EditorialMetric("Meanings matched", "${feedProgress.correct} / ${feedProgress.completedCount}")
-                                    EditorialMetric("Contexts explored", "${feedProgress.contexts} / ${feedProgress.contextCount}")
-                                    Text("One reward per post. Likes and bookmarks never affect your score.",
-                                        fontSize = 12.sp, color = WarmEditorial.Muted)
-                                    EditorialSecondary("OPEN SLANG COLLECTION →") { screen = EditorialScreen.Collection }
+                                    EditorialMetric("Answered", "${feedProgress.completedCount} / ${feedProgress.posts.size}")
+                                    EditorialMetric("Correct", "${feedProgress.correct} / ${feedProgress.completedCount}")
+                                    EditorialMetric("Contexts", "${feedProgress.contexts} / ${feedProgress.contextCount}")
                                 }
-                                feedProgress.decisions.forEach { result ->
-                                    val post = feedProgress.posts.first { it.thread.id == result.caseId }
-                                    val displayedOptions = displayAnswerOptions(post.thread.options)
-                                    PaperCard {
-                                        EditorialEyebrow(post.context?.label?.uppercase() ?: "OTHER CONTEXT")
-                                        Text(post.thread.post, fontSize = 13.sp)
-                                        if (displayedOptions == null) {
-                                            Text("This question has ambiguous answer choices and is unavailable for review.", fontSize = 12.sp)
-                                        } else {
-                                            Text("Your reply: ${postedReply(post.thread, result.selectedIndex)}", fontSize = 12.sp)
-                                            Text("Meaning here: ${displayedOptions[post.thread.correctIndex]}", fontSize = 12.sp)
-                                        }
-                                        Text(if (result.correct) "✓ Meaning matched · +${result.xpEarned} XP"
-                                            else "↺ Review · +${result.xpEarned} XP", color = WarmEditorial.CoralDeep)
-                                        Text(post.thread.explanation, fontSize = 12.sp)
+                                EditorialSecondary("SLANG COLLECTION →") { screen = EditorialScreen.Collection }
+                                if (feedProgress.completedCount > 0) {
+                                    EditorialSecondary("ANSWER HISTORY →") { showPracticeHistory = true }
+                                }
+                                if (showPracticeHistory) {
+                                    PracticeHistoryDialog(feedProgress, onDismiss = { showPracticeHistory = false },
+                                        onOpenPost = { postId ->
+                                            showPracticeHistory = false
+                                            openConversation(postId)
+                                        })
+                                }
+                                TextButton(onClick = { managePractice = !managePractice }) {
+                                    Text(if (managePractice) "Hide progress settings" else "Progress settings")
+                                }
+                                if (managePractice) {
+                                    PracticeResetCard(feedProgress.completedCount, likedPosts.size, savedPosts.size) {
+                                        feedProgress = feedProgress.reset()
+                                        readUpdateIds = emptyList()
+                                        likedPosts = emptyList()
+                                        savedPosts = emptyList()
+                                        managePractice = false
                                     }
-                                }
-                                if (feedProgress.completedCount == 0) Text("Reply to a highlighted comment in the feed to begin.")
-                                Text("Local practice only; not a measure of mastery or participant research data.",
-                                    fontSize = 11.sp, color = WarmEditorial.Muted)
-                                EditorialPrimary("RETURN TO FEED →") { screen = EditorialScreen.Feed }
-                                PracticeResetCard(
-                                    answered = feedProgress.completedCount,
-                                    likes = likedPosts.size,
-                                    saves = savedPosts.size
-                                ) {
-                                    feedProgress = feedProgress.reset()
-                                    readUpdateIds = emptyList()
-                                    likedPosts = emptyList()
-                                    savedPosts = emptyList()
-                                }
-                                if (sampleCompletedCases > 0) PaperCard {
-                                    EditorialEyebrow("ARCHIVED DEMO · LAST CASE FILE")
-                                    Text("$sampleCompletedCases cases · $sampleCorrectCases matched · $sampleXp XP · ending combo $sampleCombo",
-                                        fontSize = 12.sp)
                                 }
                             }
 
@@ -831,7 +788,10 @@ private fun EditorialHeader(
     }
     PaperCard {
         StoryIdentity(thread.handle, onProfile, story.time.ifBlank { null }, avatarSize = 40.dp, emphasized = true)
-        Text(thread.post, color = WarmEditorial.Ink, fontSize = 16.sp, lineHeight = 23.sp)
+        if (post.termInPost) {
+            SlangLocationLabel("THE SLANG IS IN THIS POST")
+            Text(emphasizedSlang(thread.post, thread.term), color = WarmEditorial.Ink, fontSize = 16.sp, lineHeight = 23.sp)
+        } else Text(thread.post, color = WarmEditorial.Ink, fontSize = 16.sp, lineHeight = 23.sp)
         story.quote?.let { StoryQuoteCard(it, onProfile) }
         // The pack often repeats the hashtag inside the post body; printing the chip twice is noise.
         if (thread.hashtag.isNotBlank() && !thread.post.contains(thread.hashtag, ignoreCase = true)) {
@@ -857,12 +817,17 @@ private fun EditorialHeader(
                     tint = if (saved) WarmEditorial.Coral else WarmEditorial.Muted)
             }
         }
-        if (expanded) StoryReplies(story.replies, onProfile, post.termTargetHandle)
+        if (expanded) StoryReplies(story.replies, onProfile, post.termTargetHandle, thread.term)
         HorizontalDivider(color = WarmEditorial.Sand)
         Column(Modifier.fillMaxWidth().bringIntoViewRequester(answerPanel)
             .background(WarmEditorial.Blush, RoundedCornerShape(12.dp)).padding(11.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            StoryIdentity("@confuseduser", onProfile, "Replying to ${post.termTargetHandle ?: thread.handle}", avatarSize = 30.dp)
+            val quizContext = when {
+                post.termInPost -> "Quiz · about the post"
+                post.termTargetHandle != null -> "Quiz · about ${post.termTargetHandle}’s reply"
+                else -> "Quiz question"
+            }
+            StoryIdentity("@confuseduser", onProfile, quizContext, avatarSize = 30.dp)
             Text(thread.questionComment, fontSize = 15.sp, lineHeight = 21.sp)
             if (displayedOptions == null) {
                 Text("This question has ambiguous answer choices and is unavailable for practice.", fontSize = 12.sp)

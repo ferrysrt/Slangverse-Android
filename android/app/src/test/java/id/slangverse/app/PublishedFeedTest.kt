@@ -11,6 +11,22 @@ class PublishedFeedTest {
     private fun packText(sense: String = "cooked-trouble") = File(bank, "packs/$sense.json").readText()
     private fun pack(sense: String = "cooked-trouble") = parseBankSession(packText(sense), sense, requireLlm = true)
 
+    @Test fun everyActiveMixedPackHasFiveTargetsInPostsAndFiveInStoryReplies() {
+        val catalog = parseBankCatalog(File(bank, "catalog.json").readText(), requireLlm = true)
+        assertTrue(catalog.packs.isNotEmpty())
+        catalog.packs.forEach { descriptor ->
+            val posts = parseMixedBankSession(packText(descriptor.packId), descriptor.packId, descriptor.sha256).toFeedPosts()
+            assertEquals(descriptor.packId, 5, posts.count { it.termInPost })
+            assertEquals(descriptor.packId, 5, posts.count { it.termTargetHandle != null })
+            posts.forEach { post ->
+                assertTrue(post.termInPost xor (post.termTargetHandle != null))
+                val surface = if (post.termInPost) post.thread.post else
+                    post.replies.orEmpty().single { it.handle == post.termTargetHandle }.text
+                assertTrue(post.thread.id, emphasizedSlang(surface, post.thread.term).spanStyles.isNotEmpty())
+            }
+        }
+    }
+
     @Test fun actualPublishedBankParsesIntoSocialConversationsWithSourceAndAvatarMetadata() {
         val catalog = parseBankCatalog(File(bank, "catalog.json").readText(), requireLlm = true)
         assertEquals("llm", catalog.generationSource)

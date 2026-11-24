@@ -17,6 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -62,8 +65,27 @@ internal fun StoryQuoteCard(quote: StoryQuote, onProfile: (String) -> Unit) {
     }
 }
 
+private val slangToken = Regex("[\\p{L}\\p{N}]+")
+
+internal fun emphasizedSlang(text: String, term: String): AnnotatedString {
+    val tokens = slangToken.findAll(term).map { Regex.escape(it.value) }.toList()
+    if (tokens.isEmpty()) return AnnotatedString(text)
+    val phrase = tokens.joinToString("[^\\p{L}\\p{N}]+")
+    val occurrence = Regex("(?<![\\p{L}\\p{N}])$phrase(?![\\p{L}\\p{N}])", RegexOption.IGNORE_CASE)
+    return buildAnnotatedString {
+        append(text)
+        occurrence.findAll(text).forEach { addStyle(SpanStyle(fontWeight = FontWeight.Bold), it.range.first, it.range.last + 1) }
+    }
+}
+
 @Composable
-internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit, highlightHandle: String? = null) {
+internal fun SlangLocationLabel(label: String) {
+    Text(label, fontSize = 10.sp, lineHeight = 14.sp, fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
+}
+
+@Composable
+internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit,
+                          highlightHandle: String? = null, highlightTerm: String? = null) {
     val repliesById = replies.associateBy { it.id }
     replies.forEach { reply ->
         val parent = reply.parentId?.let(repliesById::get)
@@ -72,19 +94,19 @@ internal fun StoryReplies(replies: List<StoryReply>, onProfile: (String) -> Unit
             parent.parentId?.let(repliesById::containsKey) == true -> 36.dp
             else -> 22.dp
         }
-        val isTermTarget = highlightHandle != null && reply.handle == highlightHandle
+        val emphasized = if (highlightHandle != null && reply.handle == highlightHandle && highlightTerm != null)
+            emphasizedSlang(reply.text, highlightTerm).takeIf { it.spanStyles.isNotEmpty() } else null
         Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min).padding(start = indent),
             horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             if (parent != null) Box(Modifier.width(2.dp).fillMaxHeight().background(WarmEditorial.Sand))
-            if (isTermTarget) {
+            if (emphasized != null) {
                 Surface(Modifier.weight(1f), shape = RoundedCornerShape(12.dp),
                     color = WarmEditorial.Blush, border = BorderStroke(1.dp, WarmEditorial.Coral)) {
                     Column(Modifier.fillMaxWidth().padding(10.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text("THE SLANG IS IN THIS REPLY", fontSize = 10.sp, lineHeight = 14.sp,
-                            fontWeight = FontWeight.Bold, color = WarmEditorial.CoralDeep)
+                        SlangLocationLabel("THE SLANG IS IN THIS REPLY")
                         StoryIdentity(reply.handle, onProfile, avatarSize = 30.dp)
                         Text("Replying to ${parent?.handle ?: "the post"}", fontSize = 12.sp, lineHeight = 18.sp, color = WarmEditorial.Muted)
-                        Text(reply.text, fontSize = 13.sp, lineHeight = 19.sp)
+                        Text(emphasized, fontSize = 13.sp, lineHeight = 19.sp)
                     }
                 }
             } else {
