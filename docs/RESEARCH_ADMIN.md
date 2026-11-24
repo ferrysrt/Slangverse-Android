@@ -16,6 +16,14 @@ values ('00000000-0000-0000-0000-000000000000');
 4. Di **GitHub → Settings → Secrets and variables → Actions**, set variabel `SLANGVERSE_SUPABASE_URL` dan `SLANGVERSE_SUPABASE_PUBLISHABLE_KEY`. Set secret `RESEARCH_WORKER_SUPABASE_KEY` dengan kunci server Supabase yang dapat menjalankan RPC worker. Secret `OPENROUTER_API_KEY` dipakai oleh workflow generasi yang sama seperti sebelumnya. Gunakan nilai rahasia langsung di dashboard pemilik proyek.
 5. Akses URL Vercel, masuk sebagai admin, lalu cek daftar dataset dan bank. Jalankan tes bank sebelum memilih **Build APK**. Pilih build dari run GitHub Actions dan distribusikan satu APK yang sama ke peserta dalam satu gelombang. CI menggunakan tanda tangan debug runner. Untuk mengganti versi pada instalasi yang sudah ada, gunakan kunci penandatanganan yang sama.
 
+## Melihat dataset, bank, dan prompt
+
+- **Dataset** membuka versi terbaru. Pilih versi lain dari daftar untuk melihat slang, definisi, tanggal publikasi jika tersedia, tautan sumber, dan kutipan. Setiap halaman memuat sampai 50 entri.
+- **Bank soal** membuka bank peserta yang disimpan di Supabase. Pilih paket untuk melihat post, komentar, opsi, kunci, penjelasan, dan versi prompt yang tercatat di paket.
+- **Prompt aktif** membuka instruksi sistem dan template dari commit `main` yang sama. Generator memakai versi di `backend/prompts/active.json`. Untuk prompt yang sudah diisi dengan input percobaan, buka `prompt.json` di riwayat run.
+
+Pembaruan dashboard memerlukan migrasi `20261125100000_research_admin_viewers.sql` di proyek Supabase yang sama.
+
 ## Audit generasi dan penelitian
 
 **Generate Soal** meminta satu percobaan LLM setelah konfirmasi. Jika workflow dijalankan ulang untuk permintaan yang sama, database mencegah pemanggilan kedua. Paket lulus tersimpan sebagai draf di bukti run. Hasil menyertakan prompt dan hash, keluaran, kunci validasi, dan model aktual bila dikembalikan provider. Hitungan soal mencerminkan paket yang diterima atau ditolak. Run tanpa keluaran yang dapat dinilai dilaporkan tersendiri.

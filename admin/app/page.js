@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { configured, canDispatch, GITHUB_RUN, rpc, session } from '../lib/backend';
+import { configured, canDispatch, GITHUB_RUN, readActivePrompt, rpc, session } from '../lib/backend';
 import { login, logout, startJob } from './actions';
 
 const operations = { generate: 'Generasi', check: 'Pengujian', build: 'Build APK' };
@@ -66,11 +66,84 @@ function Ledger({ rows, bank }) {
   return <div className="table-scroll"><table>
     <thead><tr><th>Versi</th><th>{bank ? 'Paket / soal' : 'Entri'}</th><th>Diimpor (WIB)</th></tr></thead>
     <tbody>{rows.map(row => <tr key={row.version}>
-      <td><a href={'/?kind=' + (bank ? 'bank' : 'dataset') + '&version=' + row.version + '#versions'}>{row.version}</a></td>
+      <td><a href={versionHref(bank ? 'bank' : 'dataset', row.version)}>{row.version}</a></td>
       <td>{bank ? number(row.packs) + ' / ' + number(row.question_count) : number(row.entries)}</td>
       <td>{date(row.created_at)}</td>
     </tr>)}</tbody>
   </table>{!rows.length && <p className="empty">Belum ada versi yang diimpor.</p>}</div>;
+}
+
+function versionHref(kind, version, extra = {}) {
+  const params = new URLSearchParams({ kind, ...(version ? { version } : {}), ...extra });
+  return '/?' + params + '#' + kind;
+}
+
+function DatasetView({ content, page }) {
+  const last = Math.max(1, Math.ceil(content.total / 50));
+  return <article className="card detail">
+    <div className="section-head"><div>
+      <h3>Isi dataset</h3><code>{content.version}</code>
+    </div><span className="muted">{number(content.total)} entri{content.extraction && ' ? ' + content.extraction}</span></div>
+    {content.entries.length > 0 ? <div className="table-scroll"><table>
+      <thead><tr><th>Slang</th><th>Definisi</th><th>Tanggal sumber</th><th>Sumber</th></tr></thead>
+      <tbody>{content.entries.map((entry, index) => <tr key={index}>
+        <td><strong>{entry.slang}</strong></td><td>{entry.definition}</td>
+        <td className="nowrap">{entry.date || '?'}</td>
+        <td>{/^https?:\/\//.test(entry.source || '') ? <a rel="noreferrer" href={entry.source}>Buka sumber</a> : '?'}
+          {entry.quote && <details className="source-quote"><summary>Kutipan</summary><p>{entry.quote}</p></details>}</td>
+      </tr>)}</tbody>
+    </table></div> : <p className="empty">Tidak ada entri di halaman ini.</p>}
+    {last > 1 && <div className="pager" aria-label="Halaman dataset">
+      {page > 1 && <a href={versionHref('dataset', content.version, { page: Math.min(last, page - 1) })}>Sebelumnya</a>}
+      <span>Halaman {number(page)} dari {number(last)}</span>
+      {page < last && <a href={versionHref('dataset', content.version, { page: page + 1 })}>Berikutnya</a>}
+    </div>}
+  </article>;
+}
+
+function BankView({ content, pack, selectedPack }) {
+  return <article className="card detail">
+    <div className="section-head"><div><h3>Isi bank soal</h3><code>{content.version}</code></div>
+      <span className="muted">{number(content.packs.length)} paket ? {number(content.total)} soal</span></div>
+    <div className="pack-list" aria-label="Paket soal">
+      {content.packs.map((item, index) => <a key={item.packId} className={selectedPack === item.packId ? 'secondary' : 'quiet'}
+        aria-current={selectedPack === item.packId ? 'true' : undefined}
+        href={versionHref('bank', content.version, { pack: item.packId })}>Paket {index + 1}<span className="muted">{number(item.questionCount)} soal</span></a>)}
+    </div>
+    {pack ? <div className="pack-detail">
+      <dl><div><dt>ID paket</dt><dd><code>{pack.packId}</code></dd></div>
+        {pack.promptVersion && <div><dt>Prompt paket</dt><dd>{pack.promptVersion}</dd></div>}
+        {pack.datasetVersion && <div><dt>Dataset paket</dt><dd><code>{pack.datasetVersion}</code></dd></div>}
+      </dl>
+      {pack.questions.map((item, index) => <details key={item.id} className="question" open={index === 0 || undefined}>
+        <summary><span>{index + 1}. {item.question}</span><span className="sub">
+          {item.slang} ? {item.questionTarget === 'reply' ? 'Komentar' : 'Post'} ? {item.contextCategory} ? {item.difficulty}
+        </span></summary>
+        <div className="question-copy">
+          <blockquote><strong>{item.post.handle}</strong><p>{item.post.content}</p></blockquote>
+          {(item.post.comments ?? []).map((comment, i) => <blockquote className="comment" key={i}>
+            <strong>{comment.handle}</strong><p>{comment.text}</p></blockquote>)}
+          {item.questionComment && <blockquote className="comment"><strong>Pertanyaan pembuka</strong><p>{item.questionComment}</p></blockquote>}
+          <h4>Pilihan jawaban</h4><ol type="A">{item.options.map((option, i) => <li key={i}>
+            {option}{i === item.correctIndex && <span className="badge success">Kunci</span>}</li>)}</ol>
+          <p><strong>Penjelasan</strong><br />{item.explanation}</p>
+        </div>
+      </details>)}
+    </div> : selectedPack && <p className="message" role="status">Isi paket belum dapat dimuat.</p>}
+  </article>;
+}
+
+function PromptView({ requested, active }) {
+  return <section id="prompt"><h2>Prompt Generate Soal</h2><article className="card">
+    {active ? <>
+      <div className="section-head"><h3>Versi aktif <span className="badge success">{active.version}</span></h3>
+        <span className="muted">Commit main <code>{active.commit.slice(0, 8)}</code></span></div>
+      <p className="muted">Saat generasi berjalan, referensi dataset, penugasan soal, dan daftar avatar dimasukkan ke template. Prompt lengkap setiap percobaan ada di riwayat.</p>
+      <h4 className="prompt-label">Instruksi sistem</h4><pre>{active.system}</pre>
+      <h4 className="prompt-label">Template prompt</h4><pre>{active.template}</pre>
+    </> : requested ? <p className="message" role="status">Prompt aktif belum dapat dimuat dari GitHub. <a href={versionHref('prompt')}>Coba lagi</a></p> :
+      <a className="secondary" href={versionHref('prompt')}>Lihat prompt aktif</a>}
+  </article></section>;
 }
 
 function JobDetail({ job }) {
@@ -95,9 +168,6 @@ export default async function Page({ searchParams }) {
   const token = await session();
   if (!configured()) return <Login notice={notice} setup="Konfigurasi Supabase belum tersedia." />;
   if (!token) return <Login notice={notice} />;
-  const wantedJob = uuid(params.job) ? rpc(token, 'job', { p_request_id: params.job }).catch(() => null) : null;
-  const wantedContent = versionId(params.version) && ['dataset','bank'].includes(params.kind)
-    ? rpc(token, 'content', { p_kind: params.kind, p_version: params.version }).catch(() => null) : null;
   let data;
   try {
     data = await rpc(token, 'overview');
@@ -105,7 +175,18 @@ export default async function Page({ searchParams }) {
     return <Login existing notice={notice} setup={error.status === 401 || error.status === 403 ?
       'Sesi tidak memiliki akses admin.' : 'Data belum dapat dibuka. Periksa migrasi Supabase.'} />;
   }
-  const [job, content] = await Promise.all([wantedJob, wantedContent]);
+  const view = params.kind;
+  const datasetVersion = view === 'dataset' && (versionId(params.version) ? params.version : data.datasets[0]?.version);
+  const bankVersion = view === 'bank' && (versionId(params.version) ? params.version : data.banks[0]?.version);
+  const page = typeof params.page === 'string' && /^[1-9][0-9]{0,6}$/.test(params.page) ? Number(params.page) : 1;
+  const [job, dataset, bank, activePrompt] = await Promise.all([
+    uuid(params.job) && rpc(token, 'job', { p_request_id: params.job }).catch(() => null),
+    datasetVersion && rpc(token, 'dataset_page', { p_version: datasetVersion, p_offset: (page - 1) * 50 }).catch(() => null),
+    bankVersion && rpc(token, 'content', { p_kind: 'bank', p_version: bankVersion }).catch(() => null),
+    view === 'prompt' && readActivePrompt().catch(() => null)
+  ]);
+  const selectedPack = bank?.packs.find(item => item.packId === params.pack)?.packId ?? bank?.packs[0]?.packId;
+  const pack = selectedPack && await rpc(token, 'bank_pack', { p_version: bank.version, p_pack_id: selectedPack }).catch(() => null);
   const enabled = canDispatch();
   return <><Header signedIn />
     <main className="wrap dashboard">
@@ -113,7 +194,9 @@ export default async function Page({ searchParams }) {
         <a className="quiet" href={job ? '/?job=' + job.request_id + '#detail' : '/'}>Perbarui data</a>
       </div>
       <nav aria-label="Bagian dashboard">
-        <a href="#actions">Pekerjaan</a><a href="#runs">Riwayat</a><a href="#versions">Dataset & bank</a><a href="#answers">Jawaban</a>
+        <a href="#actions">Pekerjaan</a><a href="#runs">Riwayat</a>
+        <a href={versionHref('dataset')}>Dataset</a><a href={versionHref('bank')}>Bank soal</a>
+        <a href={versionHref('prompt')}>Prompt aktif</a><a href="#answers">Jawaban</a>
       </nav>
       {notice && <p className="message" role="status">{notice}</p>}
       <section className="metrics" aria-label="Ringkasan penelitian">
@@ -126,7 +209,7 @@ export default async function Page({ searchParams }) {
       <section id="actions"><h2>Jalankan pekerjaan</h2>
         {!enabled && <p className="message">Sambungan GitHub Actions belum dikonfigurasi.</p>}
         <div className="actions">
-          <WorkForm mode="generate" title="Generasi soal" description="Satu percobaan membuat paket draf dengan hasil validasi dan bukti prompt."
+          <WorkForm mode="generate" title="Generasi soal" description={<>Satu percobaan membuat paket draf. <a href={versionHref('prompt')}>Lihat prompt aktif</a>.</>}
             label="Generate Soal" versionLabel="Versi dataset" list={data.datasets} enabled={enabled} />
           <WorkForm mode="check" title="Tes rilis" description="Periksa backend, Android, dan hash bank pada commit main."
             label="Jalankan tes" versionLabel="Versi bank" list={data.banks} enabled={enabled} />
@@ -153,20 +236,15 @@ export default async function Page({ searchParams }) {
           {!data.promptStats.length && <p className="empty">Ringkasan tampil setelah generasi menyimpan bukti prompt.</p>}
         </div>
       </section>
-      <section id="versions"><h2>Dataset dan bank soal</h2><div className="columns">
-        <div className="card"><h3>Versi dataset</h3><Ledger rows={data.datasets} /></div>
-        <div className="card"><h3>Versi bank</h3><Ledger rows={data.banks} bank /></div>
-      </div>
-      {content && <div className="card detail table-scroll"><h3>{content.version}</h3>
-        {content.entries && <table><thead><tr><th>Slang</th><th>Definisi</th><th>Tanggal</th><th>Sumber</th></tr></thead>
-          <tbody>{content.entries.map((entry,index) => <tr key={index}><td>{entry.slang}</td><td>{entry.definition}</td>
-            <td>{entry.date || '—'}</td><td>{/^https?:\/\//.test(entry.source || '') ?
-              <a rel="noreferrer" href={entry.source}>Buka</a> : '—'}</td></tr>)}</tbody></table>}
-        {content.packs && <table><thead><tr><th>Paket</th><th>Soal</th><th>SHA-256</th></tr></thead>
-          <tbody>{content.packs.map(pack => <tr key={pack.packId}><td>{pack.packId}</td><td>{pack.questionCount}</td>
-            <td><code>{pack.sha256}</code></td></tr>)}</tbody></table>}
-      </div>}
+      <section id="dataset"><h2>Dataset</h2><div className="card"><Ledger rows={data.datasets} /></div>
+        {dataset ? <DatasetView content={dataset} page={page} /> : datasetVersion &&
+          <p className="message detail" role="status">Dataset versi ini belum dapat dibuka.</p>}
       </section>
+      <section id="bank"><h2>Bank soal</h2><div className="card"><Ledger rows={data.banks} bank /></div>
+        {bank ? <BankView content={bank} pack={pack} selectedPack={selectedPack} /> : bankVersion &&
+          <p className="message detail" role="status">Bank versi ini belum dapat dibuka.</p>}
+      </section>
+      <PromptView requested={view === 'prompt'} active={activePrompt} />
       <section id="answers">
         <div className="section-head"><h2>Jawaban peserta</h2><div className="links">
           <a className="secondary" href="/api/export">Ekspor CSV</a>

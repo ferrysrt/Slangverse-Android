@@ -66,3 +66,20 @@ pre { background:#f1f0e9; overflow:auto; padding:1rem; max-height:340px; white-s
 #runs > .muted { margin-bottom:.7rem; }
 @media (max-width:850px) { .actions { grid-template-columns:repeat(2,minmax(0,1fr)); } .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:540px) { .wrap { width:calc(100% - 1.5rem); } .columns,.actions { grid-template-columns:1fr; } .dashboard { padding-top:1.7rem; } .hero { align-items:flex-end; } .links { flex-wrap:wrap; } }
+
+.nowrap { white-space:nowrap; }
+.source-quote { margin-top:.5rem; }
+.source-quote p { margin:.35rem 0 0; min-width:12ch; }
+.pager,.pack-list { display:flex; flex-wrap:wrap; align-items:center; gap:.85rem; margin-top:.85rem; }
+.pager { justify-content:center; }
+.pack-list a { gap:.45rem; flex-wrap:wrap; }
+.pack-detail dl { margin:.85rem 0; }
+.question summary .sub { margin-left:1.1rem; }
+.question-copy { padding:.6rem .25rem .5rem 1rem; }
+.question-copy blockquote { margin:.35rem 0 .65rem; border-left:3px solid #cbded7; padding:.45rem .75rem; overflow-wrap:anywhere; }
+.question-copy blockquote.comment { margin-left:1rem; border-color:var(--line); }
+.question-copy ol { margin:.3rem 0 .65rem; padding-left:1.4rem; }
+.question-copy li { margin:.35rem 0; }
+.question-copy .badge { margin-left:.5rem; }
+.prompt-label { margin-top:.95rem; }
+#prompt pre { margin:.35rem 0 0; }

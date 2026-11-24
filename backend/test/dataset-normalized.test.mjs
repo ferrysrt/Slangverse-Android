@@ -182,6 +182,6 @@ test('weekly glossary refresh keeps Git read-only and replay needs no provider',
  assert.match(workflow,/FIRECRAWL_API_KEY: \$\{\{ inputs.mode != 'replay' && secrets.FIRECRAWL_API_KEY \|\| '' \}\}/);
  assert.match(workflow,/RESEARCH_WORKER_SUPABASE_KEY/);
  assert.match(workflow,/node dataset\/refresh-deterministic\.mjs --import --replay/);
- assert.match(workflow,/node dataset\/refresh-deterministic\.mjs --import\n/);
+ assert.match(workflow,/node dataset\/refresh-deterministic\.mjs --import\r?\n/);
  assert.doesNotMatch(workflow,/OPENROUTER|git (add|push)|dataset:refresh/);
 });
