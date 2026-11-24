@@ -24,7 +24,8 @@ test('Home has context tabs but no slang selection chips or selected-bank-sense 
 test('published load merges available validated sessions before replacing the feed once', () => {
   assert.match(success, /bank\.fetchCatalog\(requireLlm = true\)/);
   assert.match(success, /val load = bank\.fetchPublishedSessions\(catalog\)/);
-  assert.match(success, /val posts = mergePublishedFeed\(load\.sessions, savedOrder = savedOrder\)/);
+  assert.match(success, /load\.sessions\s*\}/);
+  assert.match(success, /val posts = mergePublishedFeed\(sessions, savedOrder = savedOrder\)/);
   assert.match(success, /bankNotice = if \(load\.isPartial\)/);
   assert.equal((success.match(/feedProgress = feedProgress\.copy\(posts = posts\)/g) ?? []).length, 1);
   assert.doesNotMatch(app, /\.shuffled\(|\.random\(/);

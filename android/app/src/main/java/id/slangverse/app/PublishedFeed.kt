@@ -147,7 +147,10 @@ internal fun StaticBankSession.toFeedPosts(): List<FeedPracticePost> {
                 " · GitHub GET · locally graded · ${session.referenceStatus}",
             termTargetHandle = if (q.questionTarget == "reply") q.targetHandle else null,
             termInPost = q.questionTarget == "post",
-            learningSenseId = q.senseId.ifBlank { session.senseId }.ifBlank { null }
+            learningSenseId = q.senseId.ifBlank { session.senseId }.ifBlank { null },
+            researchQuestion = session.packId.takeIf { it.isNotBlank() }?.let { packId ->
+                ResearchQuestion(packId, session.contentVersion, q.id)
+            }
         )
     }
 }

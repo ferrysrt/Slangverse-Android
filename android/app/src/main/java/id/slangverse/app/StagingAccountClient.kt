@@ -4,7 +4,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.json.JSONArray
 import org.json.JSONObject
 
 internal class StagingAccountConfig private constructor(val url: String, val publishableKey: String) {
@@ -21,10 +20,9 @@ internal class StagingAccountConfig private constructor(val url: String, val pub
     }
 }
 
-internal class StagingSession(val email: String, val accessToken: String)
-internal data class StagingProgress(val answered: Long, val correct: Long, val xp: Long)
+internal class ParticipantSession(val userId: String, val accessToken: String, val refreshToken: String)
 internal data class StagingResponse(val status: Int, val body: String)
-internal class StagingAccountError(message: String, val sessionExpired: Boolean = false) : Exception(message)
+internal class ParticipantSyncError(message: String, val needsRefresh: Boolean = false) : Exception(message)
 
 internal fun interface StagingTransport {
     suspend fun post(path: String, body: String, accessToken: String?): StagingResponse
@@ -33,31 +31,57 @@ internal fun interface StagingTransport {
 internal class StagingAccountClient(private val transport: StagingTransport) {
     constructor(config: StagingAccountConfig) : this(SupabaseStagingTransport(config))
 
-    suspend fun signIn(email: String, password: String): StagingSession {
-        val request = JSONObject().put("email", email.trim()).put("password", password)
-        val response = transport.post("/auth/v1/token?grant_type=password", request.toString(), null)
-        if (response.status == 429) throw StagingAccountError("Too many sign-in attempts. Try again shortly.")
-        if (response.status in 400..499) throw StagingAccountError("Sign-in failed. Check the test account and password.")
-        if (response.status !in 200..299) throw StagingAccountError("Sign-in is temporarily unavailable.")
-        val json = JSONObject(response.body)
-        val token = json.getString("access_token")
-        if (!token.matches(Regex("[A-Za-z0-9._-]+"))) throw StagingAccountError("Invalid sign-in response.")
-        val verifiedEmail = json.getJSONObject("user").optString("email").ifBlank { email.trim() }
-        return StagingSession(verifiedEmail, token)
+    suspend fun join(): ParticipantSession = session("/auth/v1/signup", JSONObject())
+
+    suspend fun refresh(current: ParticipantSession): ParticipantSession {
+        val renewed = session("/auth/v1/token?grant_type=refresh_token",
+            JSONObject().put("refresh_token", current.refreshToken))
+        check(renewed.userId == current.userId)
+        return renewed
     }
 
-    suspend fun progress(session: StagingSession): StagingProgress {
-        val response = transport.post("/rest/v1/rpc/my_practice_progress", "{}", session.accessToken)
-        when (response.status) {
-            401 -> throw StagingAccountError("Session expired. Sign in again.", sessionExpired = true)
-            404 -> throw StagingAccountError("The staging database setup has not been applied yet.")
-            403 -> throw StagingAccountError("This account cannot read staging progress.")
+    suspend fun register(username: String, session: ParticipantSession) {
+        rpc("register_research_participant", JSONObject().put("p_username", username), session)
+    }
+
+    suspend fun record(attempt: ParticipantAttempt, session: ParticipantSession) {
+        val data = JSONObject()
+            .put("p_event_id", attempt.eventId)
+            .put("p_pack_id", attempt.question.packId)
+            .put("p_pack_sha256", attempt.question.sha256)
+            .put("p_question_id", attempt.question.questionId)
+            .put("p_selected_index", attempt.selectedIndex)
+            .put("p_mode", attempt.mode)
+            .put("p_answered_at", attempt.answeredAt)
+        rpc("record_research_answer", data, session)
+    }
+
+    private suspend fun session(path: String, data: JSONObject): ParticipantSession {
+        val response = transport.post(path, data.toString(), null)
+        if (response.status == 429) throw ParticipantSyncError("Sync is busy. Your answers are saved on this phone.")
+        if (response.status !in 200..299) {
+            val message = if (path.endsWith("/signup") && response.status in 400..499)
+                "Participant sign-in is unavailable. Your answers are saved on this phone."
+            else "Could not reconnect this participant. Your answers are saved on this phone."
+            throw ParticipantSyncError(message)
         }
-        if (response.status !in 200..299) throw StagingAccountError("Account progress is temporarily unavailable.")
-        val rows = JSONArray(response.body)
-        check(rows.length() == 1)
-        val row = rows.getJSONObject(0)
-        return StagingProgress(row.getLong("answered"), row.getLong("correct"), row.getLong("xp"))
+        val json = JSONObject(response.body)
+        val user = json.getJSONObject("user")
+        check(user.getBoolean("is_anonymous"))
+        val accessToken = json.getString("access_token")
+        check(accessToken.matches(Regex("[A-Za-z0-9._-]+")))
+        return ParticipantSession(user.getString("id"), accessToken, json.getString("refresh_token"))
+    }
+
+    private suspend fun rpc(name: String, data: JSONObject, session: ParticipantSession) {
+        val response = transport.post("/rest/v1/rpc/$name", data.toString(), session.accessToken)
+        when (response.status) {
+            401 -> throw ParticipantSyncError("Reconnecting participant.", needsRefresh = true)
+            404 -> throw ParticipantSyncError("Database setup pending. Your answers are saved on this phone.")
+        }
+        if (response.status !in 200..299) {
+            throw ParticipantSyncError("Answers could not sync yet. They are saved on this phone.")
+        }
     }
 }
 

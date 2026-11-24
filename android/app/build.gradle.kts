@@ -18,8 +18,8 @@ android {
         applicationId = "id.slangverse.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 12
-        versionName = "0.8.2-account-preview"
+        versionCode = 13
+        versionName = "0.8.3-participant-preview"
         manifestPlaceholders["slangverseAppLabel"] = "Slangverse"
         buildConfigField("String", "STAGING_SUPABASE_URL", "\"\"")
         buildConfigField("String", "STAGING_SUPABASE_PUBLISHABLE_KEY", "\"\"")
@@ -40,6 +40,9 @@ android {
         }
         buildConfigField("String", "STAGING_SUPABASE_URL", "\"$stagingUrl\"")
         buildConfigField("String", "STAGING_SUPABASE_PUBLISHABLE_KEY", "\"$stagingKey\"")
+    }
+    if (stagingUrl.isNotEmpty()) {
+        sourceSets.getByName("debug").assets.srcDir("../../question-bank")
     }
     sourceSets.getByName("main").res.srcDir("../../assets/profile-pictures/android-res")
     // Robolectric renders the real composables on the JVM; this device's ROM cannot resume an
