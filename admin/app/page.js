@@ -73,9 +73,9 @@ function Ledger({ rows, bank }) {
   </table>{!rows.length && <p className="empty">Belum ada versi yang diimpor.</p>}</div>;
 }
 
-function versionHref(kind, version, extra = {}) {
+function versionHref(kind, version, extra = {}, anchor = kind) {
   const params = new URLSearchParams({ kind, ...(version ? { version } : {}), ...extra });
-  return '/?' + params + '#' + kind;
+  return '/?' + params + '#' + anchor;
 }
 
 function DatasetView({ content, page }) {
@@ -101,24 +101,42 @@ function DatasetView({ content, page }) {
   </article>;
 }
 
+function AnswerCounts({ correct = 0, incorrect = 0 }) {
+  return <span className="answer-counts">
+    <span className="badge success">{number(correct)} benar</span>
+    <span className="badge failed">{number(incorrect)} salah</span>
+  </span>;
+}
+
 function BankView({ content, pack, selectedPack }) {
-  return <article className="card detail">
+  const counts = pack?.answerCounts;
+  const totals = Object.values(counts ?? {}).reduce((sum, row) => ({
+    correct: sum.correct + row.correct, incorrect: sum.incorrect + row.incorrect
+  }), { correct: 0, incorrect: 0 });
+  return <article className="card detail" id="bank-questions">
     <div className="section-head"><div><h3>Isi bank soal</h3><code>{content.version}</code></div>
       <span className="muted">{number(content.packs.length)} paket ? {number(content.total)} soal</span></div>
     <div className="pack-list" aria-label="Paket soal">
       {content.packs.map((item, index) => <a key={item.packId} className={selectedPack === item.packId ? 'secondary' : 'quiet'}
         aria-current={selectedPack === item.packId ? 'true' : undefined}
-        href={versionHref('bank', content.version, { pack: item.packId })}>Paket {index + 1}<span className="muted">{number(item.questionCount)} soal</span></a>)}
+        href={versionHref('bank', content.version, { pack: item.packId }, 'bank-questions')}>Paket {index + 1}<span className="muted">{number(item.questionCount)} soal</span></a>)}
     </div>
     {pack ? <div className="pack-detail">
+      <div className="section-head pack-heading">
+        <h4>Soal Paket {content.packs.findIndex(item => item.packId === selectedPack) + 1}</h4>
+        {counts && <div><span className="muted">Total jawaban paket </span><AnswerCounts {...totals} /></div>}
+      </div>
       <dl><div><dt>ID paket</dt><dd><code>{pack.packId}</code></dd></div>
         {pack.promptVersion && <div><dt>Prompt paket</dt><dd>{pack.promptVersion}</dd></div>}
         {pack.datasetVersion && <div><dt>Dataset paket</dt><dd><code>{pack.datasetVersion}</code></dd></div>}
       </dl>
       {pack.questions.map((item, index) => <details key={item.id} className="question" open={index === 0 || undefined}>
-        <summary><span>{index + 1}. {item.question}</span><span className="sub">
-          {item.slang} ? {item.questionTarget === 'reply' ? 'Komentar' : 'Post'} ? {item.contextCategory} ? {item.difficulty}
-        </span></summary>
+        <summary>
+          <span>{index + 1}. {item.question}</span>
+          <span className="question-meta"><span className="muted">
+            {item.slang} ? {item.questionTarget === 'reply' ? 'Komentar' : 'Post'} ? {item.contextCategory} ? {item.difficulty}
+          </span>{counts && <AnswerCounts {...counts[item.id]} />}</span>
+        </summary>
         <div className="question-copy">
           <blockquote><strong>{item.post.handle}</strong><p>{item.post.content}</p></blockquote>
           {(item.post.comments ?? []).map((comment, i) => <blockquote className="comment" key={i}>
@@ -209,7 +227,7 @@ export default async function Page({ searchParams }) {
       <section id="actions"><h2>Jalankan pekerjaan</h2>
         {!enabled && <p className="message">Sambungan GitHub Actions belum dikonfigurasi.</p>}
         <div className="actions">
-          <WorkForm mode="generate" title="Generasi soal" description={<>Satu percobaan membuat paket draf. <a href={versionHref('prompt')}>Lihat prompt aktif</a>.</>}
+          <WorkForm mode="generate" title="Generasi soal" description={<>Pilih satu versi dataset untuk satu paket draf. <a href={versionHref('prompt')}>Lihat prompt aktif</a>.</>}
             label="Generate Soal" versionLabel="Versi dataset" list={data.datasets} enabled={enabled} />
           <WorkForm mode="check" title="Tes rilis" description="Periksa backend, Android, dan hash bank pada commit main."
             label="Jalankan tes" versionLabel="Versi bank" list={data.banks} enabled={enabled} />
@@ -256,11 +274,14 @@ export default async function Page({ searchParams }) {
             <tbody>{data.recentAnswers.map((row, i) => <tr key={i}><td>{row.username}<small className="sub">{row.participant_id.slice(0,8)}</small></td>
               <td>{row.context_category}</td><td>{row.is_correct ? 'Benar' : 'Salah'}</td><td>{date(row.received_at)}</td></tr>)}</tbody>
           </table>{!data.recentAnswers.length && <p className="empty">Belum ada jawaban peserta.</p>}</article>
-          <article className="card table-scroll"><h3>Akurasi per soal</h3><table>
-            <thead><tr><th>Soal / revisi</th><th>Konteks</th><th>Akurasi</th></tr></thead>
+          <article className="card table-scroll"><div className="section-head">
+            <h3>Akurasi per soal</h3><a href={versionHref('bank')}>Lihat teks soal dan hasil</a>
+          </div><table>
+            <thead><tr><th>ID soal / revisi</th><th>Konteks</th><th>Benar / salah</th><th>Akurasi</th></tr></thead>
             <tbody>{data.questions.map(row => <tr key={row.pack_id + '/' + row.pack_sha256 + '/' + row.question_id}>
               <td>{row.question_id}<small className="sub">{row.pack_sha256.slice(0,10)}</small></td>
-              <td>{row.context_category}</td><td>{percent(row.correct,row.total)}<small className="sub">{row.correct}/{row.total}</small></td>
+              <td>{row.context_category}</td><td>{number(row.correct)} / {number(row.total - row.correct)}</td>
+              <td>{percent(row.correct,row.total)}<small className="sub">{row.correct}/{row.total}</small></td>
             </tr>)}</tbody>
           </table>{!data.questions.length && <p className="empty">Akurasi tampil setelah jawaban masuk.</p>}</article>
         </div>

@@ -1,8 +1,43 @@
 begin;
 insert into auth.users (id, is_anonymous) values
     ('10000000-0000-4000-8000-000000000111',false),
-    ('10000000-0000-4000-8000-000000000112',true);
+    ('10000000-0000-4000-8000-000000000112',true),
+    ('10000000-0000-4000-8000-000000000113',true),
+    ('10000000-0000-4000-8000-000000000114',true);
 insert into slangverse_private.research_admins values ('10000000-0000-4000-8000-000000000111');
+insert into slangverse_private.research_participants (user_id, username) values
+    ('10000000-0000-4000-8000-000000000112','sample_a'),
+    ('10000000-0000-4000-8000-000000000113','sample_b'),
+    ('10000000-0000-4000-8000-000000000114','qa_sample');
+
+do $$
+declare
+    selected_bank slangverse_private.research_banks%rowtype;
+    descriptor jsonb;
+    pack_question jsonb;
+    key_row slangverse_private.bank_questions%rowtype;
+begin
+    select * into strict selected_bank from slangverse_private.research_banks;
+    descriptor := selected_bank.catalog->'packs'->0;
+    pack_question := ((selected_bank.files->>(descriptor->>'packId'))::jsonb)->'questions'->0;
+    select * into strict key_row from slangverse_private.bank_questions
+    where pack_id=descriptor->>'packId' and pack_sha256=descriptor->>'sha256' and question_id=pack_question->>'id';
+
+    insert into slangverse_private.bank_questions (pack_id,pack_sha256,question_id,sense_id,context_category,correct_index)
+    values (key_row.pack_id,repeat('b',64),key_row.question_id,key_row.sense_id,key_row.context_category,key_row.correct_index);
+    insert into public.practice_attempts (user_id,event_id,pack_id,pack_sha256,question_id,sense_id,context_category,
+        selected_index,is_correct,mode,source,client_answered_at)
+    select sample_id::uuid, gen_random_uuid(), key_row.pack_id, digest, key_row.question_id,
+        key_row.sense_id, key_row.context_category, case when correct then key_row.correct_index
+            else (key_row.correct_index + 1) % 4 end, correct, 'browse', 'practice', now()
+    from (values
+        ('10000000-0000-4000-8000-000000000112',key_row.pack_sha256,true),
+        ('10000000-0000-4000-8000-000000000113',key_row.pack_sha256,false),
+        ('10000000-0000-4000-8000-000000000114',key_row.pack_sha256,true),
+        ('10000000-0000-4000-8000-000000000112',repeat('b',64),false)
+    ) samples(sample_id,digest,correct);
+end;
+$$;
 
 set local role authenticated;
 select set_config('request.jwt.claim.sub','10000000-0000-4000-8000-000000000112',true);
@@ -51,6 +86,11 @@ begin
         or pack_details->'questions'->0->>'correctIndex' is null
         or public.research_admin_bank_pack(bank_v,'missing') is not null then
         raise exception 'Bank viewer did not return the selected package';
+    end if;
+    if (pack_details->'answerCounts'->(pack_details->'questions'->0->>'id'))
+        is distinct from '{"correct":1,"incorrect":1}'::jsonb
+        or pack_details->'answerCounts' ? (pack_details->'questions'->1->>'id') then
+        raise exception 'Question counts must exclude unavailable revisions and QA accounts';
     end if;
     if (view_data->'banks'->0->>'question_count')::int <> 90
         or public.research_admin_content('dataset', dataset_v)->>'total' is null then

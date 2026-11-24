@@ -19,14 +19,14 @@ values ('00000000-0000-0000-0000-000000000000');
 ## Melihat dataset, bank, dan prompt
 
 - **Dataset** membuka versi terbaru. Pilih versi lain dari daftar untuk melihat slang, definisi, tanggal publikasi jika tersedia, tautan sumber, dan kutipan. Setiap halaman memuat sampai 50 entri.
-- **Bank soal** membuka bank peserta yang disimpan di Supabase. Pilih paket untuk melihat post, komentar, opsi, kunci, penjelasan, dan versi prompt yang tercatat di paket.
+- **Bank soal** membuka bank peserta yang disimpan di Supabase. Pilih paket untuk melihat teks soal dan jumlah benar/salah per soal serta total paket. Buka soal untuk membaca post, komentar, opsi, kunci, dan penjelasan. Hitungan mengikuti hash revisi soal dan mengecualikan akun QA.
 - **Prompt aktif** membuka instruksi sistem dan template dari commit `main` yang sama. Generator memakai versi di `backend/prompts/active.json`. Untuk prompt yang sudah diisi dengan input percobaan, buka `prompt.json` di riwayat run.
 
 Pembaruan dashboard memerlukan migrasi `20261125100000_research_admin_viewers.sql` di proyek Supabase yang sama.
 
 ## Audit generasi dan penelitian
 
-**Generate Soal** meminta satu percobaan LLM setelah konfirmasi. Jika workflow dijalankan ulang untuk permintaan yang sama, database mencegah pemanggilan kedua. Paket lulus tersimpan sebagai draf di bukti run. Hasil menyertakan prompt dan hash, keluaran, kunci validasi, dan model aktual bila dikembalikan provider. Hitungan soal mencerminkan paket yang diterima atau ditolak. Run tanpa keluaran yang dapat dinilai dilaporkan tersendiri.
+**Generate Soal** memakai satu versi dataset yang dipilih untuk tiap percobaan. Versi tersimpan sebagai snapshot terpisah. Versi terbaru dipilih secara bawaan dan versi sebelumnya tersedia untuk mengulang atau membandingkan percobaan. Setelah konfirmasi, worker membuat satu panggilan LLM. Jika workflow dijalankan ulang untuk permintaan yang sama, database mencegah pemanggilan kedua. Paket lulus tersimpan sebagai draf di bukti run. Hasil menyertakan prompt dan hash, keluaran, kunci validasi, dan model aktual bila dikembalikan provider. Hitungan soal mencerminkan paket yang diterima atau ditolak. Run tanpa keluaran yang dapat dinilai dilaporkan tersendiri.
 
 **Tes rilis** dan **Build APK** dipasangkan berdasarkan SHA commit dan versi bank. Runner mengunduh bank dari Supabase, membandingkan SHA setiap paket, dan menjalankan ulang pengujian sebelum membuat APK dengan snapshot tersebut. Jika `main` berubah setelah reservasi, pekerjaan dibatalkan sebelum menjalankan generator atau membuat APK.
 
