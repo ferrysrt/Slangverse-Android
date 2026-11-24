@@ -31,3 +31,15 @@ The existing VPS is optional. It can host a custom sync API or restricted admin 
 2. Implement submit, retry and reconciliation around the exact bank revision. Test offline use, reinstallation, duplicate sends and two devices using the same account.
 3. Add the one-time guest import and connect the compact Progress screen to the synced account totals.
 4. Add approved study enrollment and a restricted, pseudonymous export when the study protocol is ready. Use the same frozen bank for Fixed and Adaptive if comparing the two modes.
+
+## Staging database handoff
+
+Create a dedicated Supabase staging project in the owner's organization. Share the Project URL and publishable key for Android configuration. Authorize the project's operator separately through the dashboard or Supabase CLI sign-in. Keep database passwords, Supabase access tokens and secret or service-role keys out of chat and the APK. [Supabase API keys](https://supabase.com/docs/guides/api/api-keys)
+
+1. In the staging SQL Editor, apply [`20261124153000_account_progress.sql`](../supabase/migrations/20261124153000_account_progress.sql) once as the project database owner.
+2. From the repository root, generate the private grading seed with `node backend/scripts/export-account-bank-sql.mjs`. Run its output in the same staging SQL Editor. The exporter reads the checked-in mixed catalog, verifies exact hashes, and fails before emitting SQL if a pack is invalid. Re-running the seed leaves registered revisions intact.
+3. In **Authentication → Users**, create two throwaway test accounts using addresses controlled by the project owner. Use the normal sign-in flow to obtain each test session and verify isolation and retry behavior on staging. The desktop SQL fixture is specifically for a disposable PostgreSQL database.
+
+The database owner registers question revisions. Android will send the exact pack ID, SHA-256 and question ID with a persistent event UUID to `submit_practice_attempt`. That function uses the signed-in identity for ownership, checks the answer against the registered revision, and returns the canonical saved row. A repeat with the same event UUID returns that row. A different event for an already answered revision also returns the original result. Android should reconcile to that result. `my_practice_progress` returns the signed-in account's totals, and the authenticated user can read only their own attempt rows.
+
+This staging slice covers the current public mixed bank. Support for legacy and authored packs can be added with their own registered revisions. For a guest import, pass `source = guest_import` and leave timing and hint counts empty. The next integration step is Android sign-in and its persistent offline queue, followed by a cross-device staging test with the two actual test accounts.

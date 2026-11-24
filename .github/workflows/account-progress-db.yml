@@ -1,0 +1,50 @@
+name: Account database checks
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/**'
+      - 'backend/scripts/export-account-bank-sql.mjs'
+      - 'backend/src/**'
+      - 'question-bank/**'
+      - '.github/workflows/account-progress-db.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/**'
+      - 'backend/scripts/export-account-bank-sql.mjs'
+      - 'backend/src/**'
+      - 'question-bank/**'
+      - '.github/workflows/account-progress-db.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: local-ci-only
+        options: >-
+          --health-cmd "pg_isready -h 127.0.0.1 -U postgres"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify account isolation, grading and retry behavior
+        env:
+          PG_CONTAINER: ${{ job.services.postgres.id }}
+        run: |
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/auth_fixture.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/migrations/20261124153000_account_progress.sql
+          node backend/scripts/export-account-bank-sql.mjs > /tmp/slangverse-bank.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < /tmp/slangverse-bank.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < /tmp/slangverse-bank.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/account_progress_test.sql
