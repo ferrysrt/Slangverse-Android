@@ -50,3 +50,8 @@ jobs:
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/account_progress_test.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/migrations/20261124163000_research_participants.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/research_participants_test.sql
+          docker exec "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 -c 'create role service_role nologin'
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/migrations/20261124180000_research_admin.sql
+          node backend/scripts/research-admin.mjs seed-sql > /tmp/slangverse-admin-seed.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < /tmp/slangverse-admin-seed.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/research_admin_test.sql

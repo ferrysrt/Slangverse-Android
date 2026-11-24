@@ -6,6 +6,7 @@ plugins {
 
 val stagingUrl = providers.environmentVariable("SLANGVERSE_SUPABASE_URL").orElse("").get().trim().trimEnd('/')
 val stagingKey = providers.environmentVariable("SLANGVERSE_SUPABASE_PUBLISHABLE_KEY").orElse("").get().trim()
+val stagedBankDir = providers.environmentVariable("SLANGVERSE_RESEARCH_BANK_DIR").orElse("../../question-bank").get()
 require((stagingUrl.isEmpty() && stagingKey.isEmpty()) ||
     (stagingUrl.matches(Regex("https://[a-z0-9]+\\.supabase\\.co")) && stagingKey.matches(Regex("sb_publishable_[A-Za-z0-9_-]+")))) {
     "Set a Supabase HTTPS project URL and publishable key together for the staging build"
@@ -42,7 +43,7 @@ android {
         buildConfigField("String", "STAGING_SUPABASE_PUBLISHABLE_KEY", "\"$stagingKey\"")
     }
     if (stagingUrl.isNotEmpty()) {
-        sourceSets.getByName("debug").assets.srcDir("../../question-bank")
+        sourceSets.getByName("debug").assets.srcDir(stagedBankDir)
     }
     sourceSets.getByName("main").res.srcDir("../../assets/profile-pictures/android-res")
     // Robolectric renders the real composables on the JVM; this device's ROM cannot resume an
