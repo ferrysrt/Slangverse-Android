@@ -174,12 +174,14 @@ test('active catalog loads without snapshot, curated_senses, or sense_reviews fi
  assert.equal(catalog.DATASET_VERSION,datasetVersionFor(entries));
 });
 
-test('weekly workflow keeps its budget and persists normalized files without manual curation',async()=>{
+test('weekly glossary refresh keeps Git read-only and replay needs no provider',async()=>{
  const workflow=await readFile(new URL('../../.github/workflows/slang-candidates.yml',import.meta.url),'utf8');
  assert.match(workflow,/cron: '0 3 \* \* 1'/);
- assert.doesNotMatch(workflow,/dataset:curate|manual review|review-only|never auto-promote/);
- assert.equal(workflow.match(/run: npm run dataset:refresh/g)?.length,1);
- assert.match(workflow,/one Firecrawl search and bounded normalization/);
- assert.match(workflow,/git add backend\/data\/discovered_candidates.json backend\/data\/discovered_candidates.csv/);
- assert.match(workflow,/dataset-normalized.test.mjs/);
+ assert.match(workflow,/permissions:\s+contents: read/);
+ assert.match(workflow,/default: replay/);
+ assert.match(workflow,/FIRECRAWL_API_KEY: \$\{\{ inputs.mode != 'replay' && secrets.FIRECRAWL_API_KEY \|\| '' \}\}/);
+ assert.match(workflow,/RESEARCH_WORKER_SUPABASE_KEY/);
+ assert.match(workflow,/node dataset\/refresh-deterministic\.mjs --import --replay/);
+ assert.match(workflow,/node dataset\/refresh-deterministic\.mjs --import\n/);
+ assert.doesNotMatch(workflow,/OPENROUTER|git (add|push)|dataset:refresh/);
 });

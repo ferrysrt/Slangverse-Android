@@ -1,6 +1,8 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { collectDocuments, validateDiscoveries } from './refresh.mjs';
 import { importDataset } from '../scripts/research-admin.mjs';
 
@@ -29,19 +31,38 @@ export function glossaryCsv(entries) {
     entry.sources[0].sourcePublishedAt, entry.sources[0].url].map(quote).join(',')).join('\n') + '\n';
 }
 
+async function replayDocuments(path) {
+  const { documents } = JSON.parse(await readFile(path, 'utf8'));
+  if (!Array.isArray(documents)) throw Error('invalid-glossary-capture');
+  // Only complete documents can reproduce hashes of the originally captured pages.
+  const complete = documents.filter(doc => doc?.markdownTruncated === false);
+  for (const doc of complete) {
+    if (typeof doc.markdown !== 'string' || !doc.markdown.trim() ||
+      !/^https?:\/\//.test(doc.url ?? '') || !URL.canParse(doc.url) || !Number.isFinite(Date.parse(doc.collectedAt))) {
+      throw Error('invalid-glossary-capture');
+    }
+    const digest = createHash('sha256').update(doc.markdown).digest('hex');
+    if (digest !== doc.contentSha256) throw Error('glossary-capture-hash-mismatch');
+  }
+  return complete;
+}
+
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const output = process.env.DATASET_EXPORT_DIR;
     if (!output) throw Error('missing-dataset-export-dir');
-    const docs = await collectDocuments({ key: process.env.FIRECRAWL_API_KEY,
-      query: process.env.FIRECRAWL_QUERY || 'English internet slang glossary with terms and explicit definitions' });
+    const { values } = parseArgs({ options: { replay: { type: 'string' }, import: { type: 'boolean' } } });
+    const docs = values.replay === undefined
+      ? await collectDocuments({ key: process.env.FIRECRAWL_API_KEY,
+        query: process.env.FIRECRAWL_QUERY || 'English internet slang glossary with terms and explicit definitions' })
+      : await replayDocuments(values.replay);
     const entries = extractGlossary(docs);
     if (new Set(entries.map(entry => entry.term)).size < 10) throw Error('insufficient-explicit-glossary-terms');
     const document = { entries, extraction: 'deterministic-markdown-v1' };
     await mkdir(output, { recursive: true });
     await writeFile(resolve(output, 'dataset.json'), JSON.stringify(document, null, 2) + '\n');
     await writeFile(resolve(output, 'dataset.csv'), glossaryCsv(entries));
-    const version = process.argv.includes('--import') ? await importDataset(document) : null;
+    const version = values.import ? await importDataset(document) : null;
     console.log(JSON.stringify({ entries: entries.length, version }));
   } catch (error) {
     console.error(/^[a-z][a-z0-9_-]{1,99}$/.test(error.message) ? error.message : 'dataset-refresh-failed');

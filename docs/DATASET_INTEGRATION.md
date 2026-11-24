@@ -2,27 +2,23 @@
 
 ## Current source of truth
 
-`backend/data/discovered_candidates.json` is the canonical active dataset; `backend/data/discovered_candidates.csv` is its inspectable source table. The dataset currently holds **22 entries**: 16 carried forward from the recorded initial collection and 6 added by later refreshes. A fresh refresh is pending; migration/normalization does not count as new collection or evidence of current popularity.
+The research dashboard selects immutable dataset versions from Supabase. The participant bank is also stored there and is frozen into the APK at build time. The regular app and legacy publication and replay tools still use the repository snapshots. See [dashboard operations](RESEARCH_ADMIN.md).
 
-Eligible entries automatically become playable `normalized-<candidateId>` senses with `reviewStatus: normalized-unreviewed`. **There is no manual review or sense-review mapping gate in the current pipeline.** Eligibility is a provenance contract, not semantic approval. `backend/dataset/normalized.mjs` builds these references, and `backend/src/catalog.mjs` exposes them as `firecrawl-normalized`.
-
-The frozen 200-row `backend/data/slangfeed_snapshot.csv`, `sense_reviews.json` and `curated_senses.json` belong to historical/compatibility flows. The snapshot is not an active source, is not refreshed, and is not required to populate the normalized catalogue. Nothing here modifies the independent `ferrysrt/slangfeed` repository. Legacy mocks and published packs remain readable without being represented as new normalized evidence.
+Eligible entries become playable normalized senses with review status `normalized-unreviewed`. The parser keeps an explicit glossary definition and its exact supporting excerpt. This supports audit of provenance. Expert validation is a separate research step.
 
 ## Refresh and cost boundary
 
-**Actions → Refresh normalized slang dataset** (`.github/workflows/slang-candidates.yml`) supports manual dispatch and runs weekly **Monday 03:00 UTC / 10:00 WIB** (`0 3 * * 1`). Each run makes one Firecrawl v2 search returning up to forty results with `tbs: sbd:1` (newest first), then normalizes the captured text with OpenRouter. The default query includes the current UTC date and names TikTok, Twitter and Instagram. Fewer than **ten surviving pages** triggers `insufficient-scraped-documents` before normalization and preserves the previous dataset. Provider charges and quotas apply. Search results are not a representative usage survey.
+**Actions > Refresh normalized slang dataset** runs Monday **03:00 UTC / 10:00 WIB**. Live mode makes one Firecrawl search with Markdown results. The default query targets English internet slang glossaries with explicit definitions. Code extracts lines such as **Cooked** followed by a delimiter and a definition. A batch with fewer than ten distinct supported terms fails before the Supabase import. The worker inserts a new version and preserves earlier versions.
 
-Credentials stay in `FIRECRAWL_API_KEY` and `OPENROUTER_API_KEY` repository secrets. Optional `OPENROUTER_MODEL` defaults to `openai/gpt-6-luna`. The `normalizer-v3` prompt gets the full capture as untrusted data in ~60,000-character chunks with ~2,000 characters of overlap. Chunk candidates are merged by `candidateId` and each citation is verified against the full captured markdown.
+Manual runs default to **replay**. The workflow verifies SHA-256 for complete pages from the archived capture, preserves the original capture time, and imports the resulting version. Use **live** for a new collection. Live mode uses Firecrawl credits. Both modes keep OpenRouter out of dataset preparation. The temporary CSV uses the columns `slang,definition,date,source`. The date is the publication date from the source metadata when available. Supabase JSON preserves supporting quotes and capture metadata. Full page captures from live runs stay out of GitHub.
 
-Each request keeps the 6,000-token output limit. On `finish_reason: length`, the normalizer discards the response and retries that chunk once with the same text and a 10-item prompt limit instead of 25. Only truncation triggers a retry. The **40-call budget** includes retries and reserves a first attempt for each planned chunk. A second truncation fails with `normalizer-output-truncated`. An exhausted budget fails with `normalizer-call-budget-exceeded`. Normalization failures preserve both dataset files, and per-attempt audit files retain the provider response and finish reason when available. Provider keys stay out of Android, public JSON and experiment logs.
-
-From the repository root, with secrets supplied securely:
+For an offline inspection, set `DATASET_EXPORT_DIR` and run:
 
 ```sh
-node backend/dataset/refresh.mjs
+node backend/dataset/refresh-deterministic.mjs --replay path/to/sources.json
 ```
 
-The workflow persists the own JSON and CSV and uploads a normalized-dataset artifact with the run's audit evidence; both steps run even when collection fails. Runtime success of the pending refresh must be reported from its actual run, not inferred from a workflow definition. Dataset refresh and mixed question generation are separate bounded operations; a phone refresh is neither of them.
+The historical normalizer and versioned evidence remain available for reproducing earlier runs. The old refresh used bounded chunks and one truncation retry per chunk, failing before it replaced the snapshot when a chunk still exceeded its output limit.
 
 ## Strict literal provenance, not semantic validation
 
