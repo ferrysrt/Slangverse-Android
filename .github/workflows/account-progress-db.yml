@@ -48,3 +48,5 @@ jobs:
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < /tmp/slangverse-bank.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < /tmp/slangverse-bank.sql
           docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/account_progress_test.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/migrations/20261124163000_research_participants.sql
+          docker exec -i "$PG_CONTAINER" psql -X -U postgres -v ON_ERROR_STOP=1 < supabase/tests/research_participants_test.sql
